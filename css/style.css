@@ -26,30 +26,42 @@ body {
 /* 导航栏 */
 .nav {
     border-bottom: 1px solid #eaeaea;
-    padding-bottom: 10px;
     margin-bottom: 15px;
-    display: flex;
-    gap: 25px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0;
 }
 
 .nav a {
+    display: block;
+    min-width: 0;
     text-decoration: none;
     color: #666;
     font-size: 1rem;
-    padding: 5px 0;
-    position: relative;
-    transition: color 0.2s ease;
+    padding: 7px 4px 9px;
+    margin-bottom: -1px;
+    border-bottom: 2px solid transparent;
+    text-align: center;
+    white-space: nowrap;
+    transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .nav a:hover {
     color: #000;
+    text-decoration: none;
 }
 
-.nav a:not(:last-child)::after {
-    content: "|";
-    color: #ddd;
-    margin-left: 20px;
+.nav a:focus-visible {
+    color: #000;
+    outline: 2px solid #0066cc;
+    outline-offset: -2px;
+    text-decoration: none;
+}
+
+.nav a[aria-current="page"] {
+    color: #111;
+    font-weight: 600;
+    border-bottom-color: #333;
 }
 
 /* 头部容器 - 使用Flexbox布局 */
@@ -212,11 +224,13 @@ footer {
     }
     
     .nav {
-        gap: 10px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
     
-    .nav a:not(:last-child)::after {
-        margin-left: 10px;
+    .nav a {
+        padding-left: 2px;
+        padding-right: 2px;
+        font-size: 0.85rem;
     }
     
     h1 {
