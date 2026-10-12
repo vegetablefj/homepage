@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='utf-8'?>
+<chapter xml:id="sec-min-exponential">
+  <title>The exponential functional</title>
+  <shorttitle>Exponential functional</shorttitle>
+  <introduction>
+    <p>We continue to fix <m>x\in X</m> and now let both the basis and the monomial order vary. For a positive integer <m>m</m> with <m>N_m&gt;0</m>, an ordered basis <m>\mathbf s=(s_1,\ldots,s_{N_m})</m> of <m>R_m</m>, a nonzero monomial test <m>v</m>, and <m>t&gt;0</m>, define<md number="yes" xml:id="eq-min-objective">\begin{aligned}
+ \Phi_{m,t}(v,\mathbf s)
+ &amp;=\frac1{N_m}\sum_{i=1}^{N_m}
+ \exp\!\left(\frac{\A(v)}t-\frac{v(s_i)}m\right),\\
+ \lambda_{m,t}(z)
+ &amp;=\inf_{\substack{v,\mathbf s\\z\in c_X(v)}}
+ \Phi_{m,t}(v,\mathbf s).
+ \end{aligned}</md> The infimum is over all ordered bases and all allowed nonzero tests whose closed center contains <m>z</m>. Positive rescaling is allowed. Rational approximation of the weights on their fixed positive support preserves the center and approximates all section orders and the discrepancy. Restricting the infimum to positive multiples of prime-divisor orders therefore does not change its value.</p>
+    <p>To prove attainment, we need discrepancy bounds that are uniform for sufficiently large <m>m</m> and for <m>t</m> near <m>n+1</m>. We also need a single basis on which to take a limit of monomial weights. Ordinary jets give the discrepancy bounds, and closed loci on the complete flag variety allow us to replace the varying bases by one fixed basis.</p>
+  </introduction>
+  <section>
+    <title>Order and discrepancy bounds</title>
+    <shorttitle>Uniform bounds</shorttitle>
+    <lemma xml:id="lem-min-order-bound">
+      <statement>
+        <p>If <m>x\in c_X(v)</m>, then every nonzero section <m>s</m> satisfies<md number="yes" xml:id="eq-min-order-bound">v(s)\leq\A(v)\mult_x(s).</md> In particular, for <m>s\in R_m\setminus\{0\}</m>,<md number="no">0\leq\frac{v(s)}{\A(v)}\leq Cm,</md> where <m>C</m> is the constant of Lemma <xref ref="lem-min-initials" text="global"/>.</p>
+      </statement>
+      <proof>
+        <p>For a local equation <m>g</m> of an effective divisor at <m>x</m>, let <m>r=\mult_x(g)</m>. If <m>r&gt;0</m>, we first prove<md number="no">\lct_x(g)\geq1/r.</md> Choose a general coordinate direction in which the initial homogeneous form is nonzero. Weierstrass preparation writes <m>g</m>, on a sufficiently small polydisc, as a unit times a monic polynomial of degree <m>r</m> in that coordinate. With the other coordinates fixed, factor this polynomial as <m>\prod_{\ell=1}^r(z-a_\ell)</m>. The roots remain uniformly bounded as the complementary coordinates vary.</p>
+        <p>For <m>0&lt;c&lt;1/r</m>, Hölder's inequality gives<md number="no">\int \prod_{\ell=1}^r|z-a_\ell|^{-2c}\,dV(z)
+ \leq\prod_{\ell=1}^r
+ \left(\int|z-a_\ell|^{-2cr}\,dV(z)\right)^{1/r}.</md> The integrals on the right are uniformly finite: <m>cr&lt;1</m>, and after translation by the root each integration domain lies inside a fixed disc centered at the origin. The absolute value of the unit factor is bounded above and away from zero. Fubini's theorem then gives local integrability of <m>|g|^{-2c}</m>. Letting <m>c</m> tend to <m>1/r</m> proves the threshold bound. If <m>r=0</m>, <m>g</m> is a unit near <m>x</m> and the threshold is infinite.</p>
+        <p>For a divisorial order whose closed center contains <m>x</m>, the valuative threshold formula consequently gives <m>v(g)\leq\A(v)r</m>.<fn>This includes orders along positive-dimensional centers containing <m>x</m>. For the corresponding estimate at the generic center of a valuation, see also <xref ref="bib-jonssonmustata2012" detail="Proposition 5.10"/>.</fn> Rational approximation on a fixed monomial support proves the same inequality for all our tests. Applying <xref ref="eq-min-multiplicity" text="global"/> proves the final bound.</p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-expanded-low-jets">
+      <statement>
+        <p>Fix <m>0&lt;t_0&lt;n+1</m>. There are a constant <m>\kappa\in(0,1)</m> and an integer <m>m_1</m> such that for <m>m\geq m_1</m> and <m>t\in[t_0,n+1]</m>,<md number="yes" xml:id="eq-min-jet-codimension">\codim_{R_m}\{s:\mult_x(s)&gt;m/(2t)\}
+ \geq\kappa N_m.</md> The constants do not depend on <m>m</m> or <m>t</m> in these ranges.</p>
+      </statement>
+      <proof>
+        <p>Choose <m>k</m> such that <m>kL</m> is very ample. Take sections <m>s_0,s_1,\ldots,s_n</m> of <m>kL</m> for which <m>s_0(x)\ne0</m> and <m>z_i=s_i/s_0</m> are regular parameters at <m>x</m>. For each residue class <m>r</m> modulo <m>k</m>, choose a sufficiently large fixed integer <m>b_r</m> in that class such that <m>b_rL</m> is globally generated. Choose <m>\tau_r\in H^0(X,b_rL)</m> nonzero at <m>x</m>. Such <m>b_r</m> exist by ampleness; see <xref ref="bib-stacks-project" detail="Tag 01Q3, (7)"/>. For <m>m</m> in class <m>r</m>, write <m>m=qk+b_r</m>. For <m>m</m> sufficiently large, <m>q\geq0</m>.</p>
+        <p>For every multi-index <m>\alpha</m> with <m>|\alpha|_1\leq q</m>, the section<md number="no">\tau_r s_0^{q-|\alpha|_1}
+ s_1^{\alpha_1}\cdots s_n^{\alpha_n}</md> has, in a frame of <m>mL</m>, germ equal to a common unit times <m>z^\alpha</m>. Let<md number="no">r_m=\min\left(q,
+ \left\lfloor\frac{m}{2(n+1)}\right\rfloor\right).</md> The classes of these sections for <m>|\alpha|_1\leq r_m</m> are linearly independent in the quotient by sections of ordinary order greater than <m>m/(2t)</m>. Indeed, multiplication by the common unit preserves ordinary order, and a nonzero linear combination of the monomials has total degree at most <m>r_m\leq m/(2t)</m>. There are <m>\binom{r_m+n}{n}</m> such classes.</p>
+        <p>Because the choices <m>b_r</m> are fixed and finite in number, <m>q=m/k+O(1)</m> uniformly in <m>r</m>. Thus <m>r_m</m> is at least a fixed positive multiple of <m>m</m> for all large <m>m</m>. Comparing <m>\binom{r_m+n}{n}</m> with the Hilbert asymptotic <xref ref="eq-hilbert-X" text="global"/> yields <xref ref="eq-min-jet-codimension" text="global"/> for a fixed <m>\kappa\in(0,1)</m>.</p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-min-coercivity">
+      <statement>
+        <p>Suppose that <m>P</m> is not generated at <m>x</m>. There are constants <m>0&lt;t_0&lt;n+1</m>, <m>c&gt;0</m>, <m>0&lt;\delta&lt;1</m>, <m>0&lt;a_-\leq a_+&lt;\infty</m>, and an integer <m>m_0</m> such that, for every <m>m\geq m_0</m> and every <m>t\in[t_0,n+1]</m>,<md number="yes" xml:id="eq-min-uniform-bounds">c\leq\lambda_{m,t}(x)\leq1-\delta.</md> Every admissible pair with <m>x\in c_X(v)</m> and <m>\Phi_{m,t}(v,\mathbf s)\leq1-\delta/2</m> satisfies<md number="yes" xml:id="eq-min-discrepancy-bounds">a_-\leq\A(v)\leq a_+.</md> All constants are independent of <m>m</m> and <m>t</m> in the stated ranges.</p>
+      </statement>
+      <proof>
+        <p>By Proposition <xref ref="prop-ordinary-gap" text="global"/>, choose <m>\epsilon&gt;0</m> such that for all sufficiently large <m>m</m>,<md number="no">\frac1{mN_m}\sum_{\gamma\in H_m}|\gamma|_1
+ \geq\frac n{n+1}+3\epsilon.</md> Choose <m>t_0&lt;n+1</m> sufficiently close to <m>n+1</m> that <m>n/t_0\leq n/(n+1)+\epsilon</m>. Take a basis with distinct ordinary initials and use <m>v=\rho\ord_x</m>, where <m>\rho&gt;0</m> is a scaling factor. Here <m>\ord_x</m> is the order of the exceptional divisor of the point blowup, with discrepancy <m>n</m>; in dimension one it is the order at the point. Set <m>b_i=n/t-\mult_x(s_i)/m</m>. The objective is<md number="no">\Phi_{m,t}(\rho\ord_x,\mathbf s)
+ =\frac1{N_m}\sum_i e^{\rho b_i}.</md> Its linear coefficient at <m>\rho=0</m> is at most <m>-2\epsilon</m>. The numbers <m>b_i</m> are uniformly bounded by <xref ref="eq-min-multiplicity" text="global"/> and <m>t\geq t_0</m>. The remainder after the linear term is therefore uniformly <m>O(\rho^2)</m>. One fixed sufficiently small <m>\rho&gt;0</m> gives an upper bound <m>1-\delta</m>, with fixed <m>\delta\in(0,1)</m>, for every <m>m</m> and <m>t</m> under consideration.</p>
+        <p>Apply Lemma <xref ref="lem-expanded-low-jets" text="global"/> for this <m>t_0</m>, and let <m>a=\A(v)</m>. By Lemma <xref ref="lem-min-order-bound" text="global"/>,<md number="no">\{s:v(s)&gt;ma/(2t)\}
+ \subset\{s:\mult_x(s)&gt;m/(2t)\}.</md> The subspace on the left consequently has codimension at least <m>\kappa N_m</m>. At least that many vectors of any basis lie outside it, since the vectors inside are linearly independent and their number is at most the dimension of the subspace.<fn>The basis need not be adapted to <m>v</m>.</fn> Each vector outside contributes at least <m>e^{a/(2t)}</m> to the exponential sum, so<md number="yes" xml:id="eq-min-coercive-exponential">\Phi_{m,t}(v,\mathbf s)
+ \geq\kappa\exp\!\left(\frac a{2t}\right)
+ \geq\kappa\exp\!\left(\frac a{2(n+1)}\right).</md> This gives the lower bound in <xref ref="eq-min-uniform-bounds" text="global"/>, with <m>c=\kappa</m>, and bounds <m>a</m> above on the sublevel set <m>\Phi_{m,t}\leq1-\delta/2</m>.</p>
+        <p>Finally, <xref ref="eq-min-order-bound" text="global"/> and <xref ref="eq-min-multiplicity" text="global"/> imply <m>v(s_i)/m\leq Ca</m>, and hence <m>\Phi_{m,t}(v,\mathbf s)\geq e^{-Ca}</m>. Choose <m>a_-&gt;0</m> so small that <m>e^{-Ca_-}&gt;1-\delta/2</m>. Every pair in the stated sublevel set has <m>a\geq a_-</m>. Enlarge the upper bound if necessary so that <m>a_+\geq a_-</m>. Taking <m>m_0</m> large enough for both the ordinary-order estimate and the jet estimate completes the proof.</p>
+      </proof>
+    </lemma>
+  </section>
+</chapter>

@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='utf-8'?>
+<chapter xml:id="sec-min-ordinary">
+  <title>Ordinary orders and the strict inequality</title>
+  <shorttitle>Ordinary orders</shorttitle>
+  <section xml:id="fujita-ordinary-initials">
+    <title>Ordinary initial exponents</title>
+    <shorttitle>Initial exponents</shorttitle>
+    <p>Fix a closed point <m>x\in X</m>. Choose regular parameters <m>z_1,\ldots,z_n</m> at <m>x</m> and a local frame of <m>L</m>. Use powers of this frame as frames of all <m>jL</m>. Order Taylor monomials first by total degree and then lexicographically. For each nonzero Taylor series, take the smallest monomial with nonzero coefficient in this order. If <m>s\ne0</m>, write <m>\operatorname{in}(s)</m> for the exponent of its initial monomial, and set<md number="no">H_j=\{\operatorname{in}(s):0\ne s\in R_j\}
+ \subset\Z_{\geq0}^n.</md> Then <m>|\operatorname{in}(s)|_1=\mult_x(s)</m>. We will show that failure of generation of <m>P</m> at <m>x</m> forces the mean of these ordinary orders, divided by <m>j</m>, to have lower limit strictly greater than <m>n/(n+1)</m>. The non-strict inequality follows from lattice counting. The equality case requires a separate lifting argument.</p>
+    <p>We give the counting argument for this Taylor ordering.<fn>The argument uses one-dimensional spaces of leading coefficients. This is the principle in <xref ref="bib-lazarsfeldmustata2009" detail="Lemma 1.4"/> for flag valuations and in <xref ref="bib-kavehkhovanskii2012" detail="Proposition 2.6"/> for prevaluations with one-dimensional leaves.</fn></p>
+    <lemma xml:id="lem-min-initials">
+      <statement>
+        <p>The set <m>H_j</m> has cardinality <m>N_j</m>, and a choice of one section for each distinct initial exponent is a basis of <m>R_j</m>. There is a constant <m>C&gt;0</m>, independent of <m>j</m> and of the nonzero section <m>s\in R_j</m>, such that<md number="yes" xml:id="eq-min-multiplicity">\mult_x(s)\leq Cj.</md> Moreover, <m>H_j+H_q\subset H_{j+q}</m>.</p>
+      </statement>
+      <proof>
+        <p>The Taylor expansion map on <m>R_j</m> is injective. A section whose germ is zero vanishes on a nonempty open subset of the integral variety <m>X</m>, and hence vanishes everywhere. Each Taylor coefficient is a scalar. Choose the smallest exponent occurring in the section space and a section with nonzero coefficient there. Eliminate that coefficient by passing to the subspace on which it vanishes. Repeating this operation decreases the dimension by one each time and yields a basis with distinct initial exponents. In a nonzero linear combination of that basis, the smallest initial exponent among its nonzero summands cannot cancel. The set of initial exponents of all sections is therefore exactly the set obtained from the basis.</p>
+        <p>Choose a sufficiently ample multiple <m>kL</m>. For a given divisor of zeros of <m>s</m>, general members of <m>|kL|</m> through <m>x</m> cut out a curve smooth at <m>x</m> and not contained in that divisor. Its local intersection multiplicity with the divisor is at least <m>\mult_x(s)</m>, whereas its total intersection degree is <m>jk^{n-1}L^n</m>. Thus one may take <m>C=k^{n-1}L^n</m>.<fn>The curve may depend on <m>s</m>, but the numerical bound does not.</fn> In dimension one this is the usual bound of the multiplicity of an effective divisor by its degree.</p>
+        <p>The total-degree and lexicographic ordering is multiplicative. Since the local frames were chosen compatibly, the initial exponent of a product of sections is the sum of their initial exponents. This proves the last assertion.</p>
+      </proof>
+    </lemma>
+  </section>
+  <section xml:id="fujita-lattice">
+    <title>Lattice inequalities and leading forms</title>
+    <shorttitle>Lattice inequalities</shorttitle>
+    <lemma xml:id="lem-expanded-lattice-equality">
+      <statement>
+        <p>Let <m>V=L^n</m>. Then<md number="yes" xml:id="eq-min-lattice-lower">\liminf_{j\to\infty}\frac1{jN_j}
+ \sum_{\gamma\in H_j}|\gamma|_1
+ \geq V^{1/n}\frac n{n+1}.</md> If the left side equals <m>n/(n+1)</m>, then <m>V=1</m>. Along any subsequence on which this normalized mean tends to <m>n/(n+1)</m>, every open ball whose closure lies in the interior of<md number="no">\Delta=\{u\in\R_{\geq0}^n:|u|_1\leq1\}</md> meets <m>j^{-1}H_j</m> for all sufficiently large <m>j</m> in the subsequence.</p>
+      </statement>
+      <proof>
+        <p>Among all sets of <m>N_j</m> nonnegative lattice points, the sum of total degrees is smallest for a set <m>T_j</m> obtained by filling successive total degrees. There are <m>\binom{r+n}{n}</m> points of degree at most <m>r</m>, and their degree sum is<md number="no">\sum_{|\gamma|_1\leq r}|\gamma|_1
+ =n\binom{r+n}{n+1}.</md> By <xref ref="eq-hilbert-X" text="global"/>, the last degree occupied by <m>T_j</m> is <m>V^{1/n}j+O(1)</m>. The possible partial last layer contains <m>O(j^{n-1})</m> points. Its contribution changes the degree sum by at most <m>O(j^n)</m>, and hence changes the average total degree by <m>O(1)</m>. Therefore<md number="no">\frac1{N_j}\sum_{\gamma\in T_j}|\gamma|_1
+ =V^{1/n}\frac n{n+1}j+O(1).</md> The minimality of <m>T_j</m> gives <xref ref="eq-min-lattice-lower" text="global"/>. Since <m>V</m> is a positive integer, equality with <m>n/(n+1)</m> forces <m>V=1</m>.</p>
+        <p>Now work along a subsequence with <m>V=1</m> and limiting normalized mean <m>n/(n+1)</m>. If a fixed ball in the interior of <m>\Delta</m> were missed for infinitely many <m>j</m>, then at least <m>c_1j^n</m> lattice points of <m>T_j</m> would be absent from <m>H_j</m>, all of degree at most <m>(1-c_2)j</m>, for constants <m>c_1,c_2&gt;0</m>. Each must be replaced by a point outside <m>T_j</m>, of degree at least <m>j-O(1)</m>. Pair the remaining points of <m>T_j\setminus H_j</m> with the remaining points of <m>H_j\setminus T_j</m>. These replacements cannot decrease total degree. The missed ball would thus increase the degree sum by at least a fixed positive multiple of <m>j^{n+1}</m>. After division by <m>jN_j</m>, this contradicts convergence to the lattice minimum.</p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-expanded-leading-forms">
+      <statement>
+        <p>Suppose that the normalized means in <xref ref="eq-min-lattice-lower" text="global"/> tend to <m>n/(n+1)</m> along a subsequence. For any rational <m>t'</m> with <m>n&lt;t'&lt;n+1</m>, there are a positive integer <m>h</m> with <m>ht'\in\Z</m> and finitely many sections <m>r_\ell\in H^0(X,ht'L)</m> whose initial exponents <m>\beta_\ell=\operatorname{in}(r_\ell)</m> satisfy<md number="yes" xml:id="eq-min-product-initials">|\beta_\ell|_1=nh.</md> The convex hull of the <m>\beta_\ell/h</m> contains <m>\mathbf1=(1,\ldots,1)</m> in its interior relative to the full hyperplane <m>|u|_1=n</m>.</p>
+      </statement>
+      <proof>
+        <p>The point <m>c=(1/t',\ldots,1/t')</m> belongs to the interior of <m>\Delta</m>. Choose a small simplex containing <m>c</m> in its interior and contained in the interior of <m>\Delta</m>. Choose small balls around its vertices such that any choice of one point from each ball still has convex hull containing <m>c</m> in its interior. By Lemma <xref ref="lem-expanded-lattice-equality" text="global"/>, choose a sufficiently large common degree <m>j</m> in the subsequence and initial exponents <m>\gamma_\nu\in H_j</m> with <m>\gamma_\nu/j</m> in those balls. Thus the rational polytope<md number="no">Q=\conv\{\gamma_\nu/j\}</md> contains <m>c</m> in its interior.</p>
+        <p>The intersection of <m>Q</m> with the hyperplane <m>|u|_1=n/t'</m> contains a relative neighborhood of <m>c</m> in this hyperplane. Choose rational points <m>p_1,\ldots,p_b</m> in that intersection whose convex hull contains <m>c</m> in its interior relative to this hyperplane. When <m>n=1</m>, the intersection is the singleton <m>\{c\}</m>, which has the required relative-interior property.</p>
+        <p>For each <m>\ell</m>, express <m>p_\ell</m> as a rational convex combination of the <m>\gamma_\nu/j</m>, and choose <m>s_\nu\in R_j</m> with those initial exponents. Write <m>t'=a/b'</m> in lowest terms. Choose <m>Q_0</m> divisible by <m>a</m> and by all denominators in the convex coefficients. Form <m>r_\ell</m> as a product of <m>Q_0</m> sections chosen from the <m>s_\nu</m>, with the multiplicities prescribed by that convex combination. The multiplicativity in Lemma <xref ref="lem-min-initials" text="global"/> gives<md number="no">\operatorname{in}(r_\ell)=jQ_0p_\ell.</md> Set <m>h=jQ_0/t'</m>, an integer by the choice of <m>Q_0</m>. Then <m>r_\ell\in H^0(X,jQ_0L)</m> and <m>|jQ_0p_\ell|_1=nh</m>. Finally, division by <m>h</m> multiplies the convex hull of the <m>p_\ell</m> by <m>t'</m>, carrying <m>c</m> to <m>\mathbf1</m> and the slice hyperplane to <m>|u|_1=n</m>.</p>
+      </proof>
+    </lemma>
+  </section>
+  <section xml:id="fujita-exceptional-thresholds">
+    <title>Thresholds on the exceptional divisor</title>
+    <shorttitle>Exceptional thresholds</shorttitle>
+    <lemma xml:id="lem-expanded-exceptional-threshold">
+      <statement>
+        <p>For the sections of Lemma <xref ref="lem-expanded-leading-forms" text="global"/>, let <m>p:B=\Bl_xX\to X</m> and <m>E\simeq\mathbb P^{n-1}</m> be the exceptional divisor. If <m>n=1</m>, take <m>p</m> to be the identity and <m>E=x</m>. Remove the common order <m>nh</m> from the pullbacks of the sections <m>r_\ell</m>, and let <m>\mathfrak b</m> be the base ideal of the resulting subsystem of<md number="no">H=p^*(ht'L)-nhE.</md> Then<md number="yes" xml:id="eq-min-restricted-threshold">\lct_z(E,\mathfrak b|_E)&gt;1/h\qquad(z\in E),</md> where <m>\mathfrak b|_E</m> denotes its image in <m>\cO_E</m>.</p>
+      </statement>
+      <proof>
+        <p>Every <m>r_\ell</m> has ordinary order exactly <m>nh</m>. The restricted subsystem on <m>E</m> is generated by the leading homogeneous forms <m>g_\ell</m> of the <m>r_\ell</m>, each of degree <m>nh</m>. For <m>n=1</m>, these restrictions are nonzero at the point <m>E</m>, so the restricted ideal is the unit ideal and its threshold is infinite. Assume <m>n&gt;1</m>.</p>
+        <p>First consider the monomial forms <m>z^{\beta_\ell}</m>. On the chart <m>z_k\ne0</m> of <m>E</m>, the exponent vectors are <m>\beta_\ell^{(k)}</m>, obtained by deleting the <m>k</m>th coordinate. Projection from the hyperplane <m>|u|_1=n</m> to the remaining coordinates is an affine isomorphism. The hypothesis on the convex hull therefore puts the all-ones vector in the ordinary interior of the convex hull of the <m>\beta_\ell^{(k)}/h</m>. Every nonzero linear functional given by <m>u\in\R_{\geq0}^{n-1}</m> takes a value at some point of that polytope strictly smaller than its value at <m>\mathbf1</m>. Consequently<md number="yes" xml:id="eq-min-monomial-strict">\frac1h\min_\ell\langle u,\beta_\ell^{(k)}\rangle
+ &lt;\sum_i u_i\qquad(0\ne u\in\R_{\geq0}^{n-1}).</md></p>
+        <p>For a prime-divisor order over this chart, take <m>u_i</m> to be its values on the coordinate functions. The left side of <xref ref="eq-min-monomial-strict" text="global"/> is the order of the monomial ideal divided by <m>h</m>. The simple normal crossing inequality of Lemma <xref ref="lem-retraction" text="global"/>, applied on this chart, gives the lower bound <m>\sum_i u_i</m> for the log discrepancy of this prime-divisor order. If all <m>u_i</m> are zero, the ideal has order zero and the discrepancy is positive. Thus the monomial ideal is klt at coefficient <m>1/h</m>. Its threshold at each point is computed by a finite list of divisors on a log resolution, so the threshold is strictly greater than <m>1/h</m>.<fn>The monomial condition <xref ref="eq-min-monomial-strict" text="global"/> is also the criterion in <xref ref="bib-howald2001" detail="Main Theorem"/> for the multiplier ideal at coefficient <m>1/h</m> to be the unit ideal. The preceding argument proves the required strict inequality directly.</fn></p>
+        <p>We transfer this conclusion to the forms <m>g_\ell</m> by degeneration. Because their monomial supports are finite, choose integral weights <m>w_1,\ldots,w_n</m> for which the lexicographic initial monomial of each <m>g_\ell</m> is its unique term of smallest weight. For example, successive sufficiently large powers of one integer realize lexicographic order on these finite supports. The forms<md number="no">g_{\ell,\tau}(z)=
+ \tau^{-\langle w,\beta_\ell\rangle}
+ g_\ell(\tau^{w_1}z_1,\ldots,\tau^{w_n}z_n)</md> have polynomial coefficients in <m>\tau</m>. At <m>\tau=0</m> they are nonzero scalar multiples of <m>z^{\beta_\ell}</m>. Viewed as sections of <m>\cO_E(nh)</m>, they define an algebraic family of base ideals on <m>E\times\mathbb A^1</m>.</p>
+        <p>By Lemma <xref ref="lem-lct-family" text="global"/>, the set of pairs where the log canonical threshold of the fiber ideal is at most <m>1/h</m> is closed. Its projection to <m>\mathbb A^1</m> is closed because <m>E</m> is projective. This projection omits <m>0</m>, by the monomial computation, so there is a nonzero parameter at which the threshold is greater than <m>1/h</m> at every point of <m>E</m>. Every nonzero fiber is obtained from the original forms by a diagonal projective automorphism and nonzero scalar changes of generators. The threshold inequality therefore holds for the original restricted ideal.<fn>Lemma <xref ref="lem-lct-family" text="global"/> uses the family semicontinuity furnished by <xref ref="bib-dk2001" detail="Lemma 3.2"/>.</fn></p>
+      </proof>
+    </lemma>
+  </section>
+  <section xml:id="fujita-ordinary-lifting">
+    <title>Lifting in the equality case</title>
+    <shorttitle>Lifting from equality</shorttitle>
+    <lemma xml:id="lem-expanded-ordinary-lift">
+      <statement>
+        <p>With the notation of Lemma <xref ref="lem-expanded-exceptional-threshold" text="global"/>, the bundle <m>P</m> is generated at <m>x</m>.</p>
+      </statement>
+      <proof>
+        <p>The canonical divisor formula for the point blowup, including the convention for <m>n=1</m>, gives<md number="yes" xml:id="eq-min-adjoint-identity">p^*P-(K_B+E)-H/h=(n+1-t')p^*L.</md> Choose a projective log resolution <m>\sigma:T\to B</m> of <m>E</m> and <m>\mathfrak b</m>. Let <m>E'</m> be the strict transform of <m>E</m>, and write <m>\mathfrak b\cO_T=\cO_T(-G)</m>. The restricted ideal on <m>E</m> is not identically zero, so <m>E'</m> is not a component of <m>G</m>. Set<md number="no">D_T=K_T+\sigma^*(p^*P-K_B-E)-\lfloor G/h\rfloor.</md> This divisor is integral. Pulling back <xref ref="eq-min-adjoint-identity" text="global"/> gives<md number="yes" xml:id="eq-min-preliminary-positivity">D_T-K_T-\{G/h\}
+ =(n+1-t')(p\sigma)^*L+(\sigma^*H-G)/h.</md> The first summand is nef and big because <m>t'&lt;n+1</m>. The resolved subsystem generates <m>\sigma^*H-G</m>, so the second summand is nef. The fractional boundary <m>\{G/h\}</m> has simple normal crossing support. Theorem <xref ref="thm-kv" text="global"/>, in the rounding form of <xref ref="bib-fujinoKV" detail="Theorem 0.1"/>, yields<md number="no">H^1(T,\cO_T(D_T))=0.</md></p>
+        <p>Let <m>\sigma_E:E'\to E</m> be the restricted morphism. Adjunction identifies <m>(D_T+E')|_{E'}</m> with<md number="yes" xml:id="eq-min-preliminary-restriction">\sigma_E^*(p^*P|_E)+K_{E'/E}
+ -\lfloor G|_{E'}/h\rfloor.</md> Taking floors of <m>G/h</m> commutes with restriction to <m>E'</m>. Indeed, <m>E'+\Supp(G)</m> is simple normal crossing: every component meeting <m>E'</m> restricts with multiplicity one, and two different components cannot have the same prime component in their restrictions, since their triple intersection with <m>E'</m> has codimension at least three in <m>T</m>.</p>
+        <p>The pulled-back generators of the restricted ideal generate <m>\cO_{E'}(-G|_{E'})</m>. Thus <m>\sigma_E</m> is a log resolution of that ideal. The strict threshold inequality <xref ref="eq-min-restricted-threshold" text="global"/> implies, for every prime divisor <m>F</m> on <m>E'</m>,<md number="no">\ord_F(K_{E'/E})+1&gt;
+ \frac1h\ord_F(G|_{E'}).</md> Since the canonical coefficient is an integer, this inequality is equivalent to that coefficient being at least the floor of the corresponding coefficient of <m>G|_{E'}/h</m>. Therefore<md number="no">K_{E'/E}-\lfloor G|_{E'}/h\rfloor\geq0.</md> The line bundle represented by the first summand of <xref ref="eq-min-preliminary-restriction" text="global"/> is trivial, with fiber <m>P_x</m>. Multiply a nonzero vector of <m>P_x</m> by the canonical section of the effective correction. This gives a section on <m>E'</m> nonzero at its generic point. The exact sequence<md number="no">0\longrightarrow\cO_T(D_T)
+ \longrightarrow\cO_T(D_T+E')
+ \longrightarrow\cO_{E'}((D_T+E')|_{E'})
+ \longrightarrow0</md> and the vanishing above lift this section to <m>T</m>.</p>
+        <p>Relative to <m>(p\sigma)^*P</m>, the divisor correcting the lifted line bundle is<md number="no">C_T=K_{T/B}-\sigma^*E+E'-\lfloor G/h\rfloor.</md> Its coefficient on <m>E'</m> is zero. On every other <m>\sigma</m>-nonexceptional prime its coefficient is nonpositive. Its positive part is consequently exceptional over <m>X</m>. Since <m>E'</m> maps to <m>x</m> and the lifted section is nonzero at the generic point of <m>E'</m>, Lemma <xref ref="lem-descent" text="global"/> gives a section of <m>P</m> nonzero at <m>x</m>. The same proof applies in dimension one: <m>E'</m> is the point <m>x</m>, the restricted correction is zero, and the exact sequence is the restriction sequence at that point.</p>
+      </proof>
+    </lemma>
+  </section>
+  <section xml:id="fujita-ordinary-gap">
+    <title>The strict inequality at a base point</title>
+    <shorttitle>The strict inequality</shorttitle>
+    <proposition xml:id="prop-ordinary-gap">
+      <statement>
+        <p>If <m>P</m> is not generated by its global sections at <m>x</m>, then<md number="yes" xml:id="eq-min-gap">\liminf_{j\to\infty}\frac1{jN_j}
+ \sum_{\gamma\in H_j}|\gamma|_1
+ &gt;\frac n{n+1}.</md></p>
+      </statement>
+      <proof>
+        <p>Suppose that <xref ref="eq-min-gap" text="global"/> fails. The lower bound of Lemma <xref ref="lem-expanded-lattice-equality" text="global"/> forces <m>L^n=1</m> and a subsequence with normalized mean tending to <m>n/(n+1)</m>. Choose any rational <m>t'</m> between <m>n</m> and <m>n+1</m>. Lemma <xref ref="lem-expanded-leading-forms" text="global"/> constructs the sections with the stated convex-hull property. Lemma <xref ref="lem-expanded-exceptional-threshold" text="global"/> gives the strict threshold bound for the restricted base ideal, and Lemma <xref ref="lem-expanded-ordinary-lift" text="global"/> gives generation of <m>P</m> at <m>x</m>, a contradiction.</p>
+      </proof>
+    </proposition>
+  </section>
+</chapter>

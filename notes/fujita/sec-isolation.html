@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-darkmode="disabled">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette: blue-red                     *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Boundary construction and adjoint generation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Notes on OpenAI’s Proof of Fujita’s Freeness Conjecture">
+<meta property="og:title" content="Notes on OpenAI’s Proof of Fujita’s Freeness Conjecture">
+<meta property="book:title" content="Notes on OpenAI’s Proof of Fujita’s Freeness Conjecture">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.53"></script><script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="../../vendor/lunr/lunr.min.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+<link rel="stylesheet" href="../../layout.css?v=35ca26643f">
+<script src="../../layout.js?v=d5f08d6678" defer></script><link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"C": "\\mathbb C", "Pone": "\\mathbb{P}^1_{\\mathbb{C}}", "cO": "\\mathcal O", "ord": "\\operatorname{ord}", "lt": "<", "gt": ">", "amp": "&", "N": "\\mathbb N", "R": "\\mathbb R", "Q": "\\mathbb Q", "Z": "\\mathbb Z", "A": "A", "floor": ["\\left\\lfloor #1\\right\\rfloor", 1], "ceil": ["\\left\\lceil #1\\right\\rceil", 1], "mult": "\\operatorname{mult}", "lct": "\\operatorname{lct}", "Supp": "\\operatorname{Supp}", "conv": "\\operatorname{conv}", "Bl": "\\operatorname{Bl}", "codim": "\\operatorname{codim}", "im": "\\operatorname{im}", "cent": "\\operatorname{cent}", "divisor": "\\operatorname{div}"}}, "options": {"ignoreHtmlClass": "ignore-math", "processHtmlClass": "process-math", "enableMenu": false}};</script><script src="../../vendor/mathjax/tex-chtml.js" defer></script>
+</head>
+<body class="pretext book ignore-math note-page" data-page-format="note">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner"><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="fujita-notes.html"><span class="title">Notes on OpenAI’s Proof of Fujita’s Freeness Conjecture</span></a></div>
+<p class="byline"><a href="../../home.html">Jie Fu</a>'s <a href="../../notes.html">Notes</a></p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Contents</span></button><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true"></span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="treebuttons"><a class="previous-button button" href="sec-centers.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="up-button button" href="fujita-notes.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Up</span></a><a class="next-button button" href="fujita-notes-13.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a></span>
+</div></nav><div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth4 focused" data-preexpanded-levels="1" data-max-levels="4"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="fujita-overview.html" class="internal"><span class="codenumber">1</span> <span class="title">The conjecture</span></a></div>
+<ul id="ptx-toc-group-fujita-overview" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="fujita-overview.html#fujita-overview-4" class="internal"><span class="codenumber">1.1</span> <span class="title">Previous results</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="fujita-overview.html#fujita-overview-5" class="internal"><span class="codenumber">1.2</span> <span class="title">Notation and argument</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sec-preliminaries.html" class="internal"><span class="codenumber">2</span> <span class="title">Valuations and thresholds</span></a></div>
+<ul id="ptx-toc-group-sec-preliminaries" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-preliminaries.html#sec-preliminaries-4" class="internal"><span class="codenumber">2.1</span> <span class="title">Monomial orders</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-preliminaries.html#sec-preliminaries-5" class="internal"><span class="codenumber">2.2</span> <span class="title">Thresholds in families</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sec-generation-criterion.html" class="internal"><span class="codenumber">3</span> <span class="title">Local generation</span></a></div>
+<ul id="ptx-toc-group-sec-generation-criterion" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-generation-criterion.html#sec-generation-criterion-4" class="internal"><span class="codenumber">3.1</span> <span class="title">Vanishing and descent</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-generation-criterion.html#sec-generation-criterion-5" class="internal"><span class="codenumber">3.2</span> <span class="title">Generation criterion</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sec-min-ordinary.html" class="internal"><span class="codenumber">4</span> <span class="title">Ordinary orders</span></a></div>
+<ul id="ptx-toc-group-sec-min-ordinary" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-min-ordinary.html#fujita-ordinary-initials" class="internal"><span class="codenumber">4.1</span> <span class="title">Initial exponents</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-min-ordinary.html#fujita-lattice" class="internal"><span class="codenumber">4.2</span> <span class="title">Lattice inequalities</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-min-ordinary.html#fujita-exceptional-thresholds" class="internal"><span class="codenumber">4.3</span> <span class="title">Exceptional thresholds</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-min-ordinary.html#fujita-ordinary-lifting" class="internal"><span class="codenumber">4.4</span> <span class="title">Lifting from equality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-min-ordinary.html#fujita-ordinary-gap" class="internal"><span class="codenumber">4.5</span> <span class="title">The strict inequality</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sec-min-exponential.html" class="internal"><span class="codenumber">5</span> <span class="title">Exponential functional</span></a></div>
+<ul id="ptx-toc-group-sec-min-exponential" class="structural toc-item-list"><li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-min-exponential.html#sec-min-exponential-4" class="internal"><span class="codenumber">5.1</span> <span class="title">Uniform bounds</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="fujita-attainment.html" class="internal"><span class="codenumber">6</span> <span class="title">Attainment</span></a></div>
+<ul id="ptx-toc-group-fujita-attainment" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="fujita-attainment.html#fujita-attainment-3" class="internal"><span class="codenumber">6.1</span> <span class="title">Closed flag loci</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="fujita-attainment.html#fujita-attainment-4" class="internal"><span class="codenumber">6.2</span> <span class="title">Attainment</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="fujita-attainment.html#fujita-attainment-5" class="internal"><span class="codenumber">6.3</span> <span class="title">Specialization</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="fujita-restrictions.html" class="internal"><span class="codenumber">7</span> <span class="title">Uniform restrictions</span></a></div>
+<ul id="ptx-toc-group-fujita-restrictions" class="structural toc-item-list"><li class="toc-item toc-section"><div class="toc-title-box"><a href="fujita-restrictions.html#fujita-restrictions-3" class="internal"><span class="codenumber">7.1</span> <span class="title">Restriction estimates</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sec-centers.html" class="internal"><span class="codenumber">8</span> <span class="title">Point centers</span></a></div>
+<ul id="ptx-toc-group-sec-centers" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-centers.html#sec-centers-4" class="internal"><span class="codenumber">8.1</span> <span class="title">Tangential variation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-centers.html#sec-centers-5" class="internal"><span class="codenumber">8.2</span> <span class="title">Tangential slices</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-centers.html#sec-centers-6" class="internal"><span class="codenumber">8.3</span> <span class="title">Degrees and limits</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="sec-isolation.html" class="internal"><span class="codenumber">9</span> <span class="title">Boundary and generation</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-sec-isolation">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-isolation.html#sec-isolation-4" class="internal"><span class="codenumber">9.1</span> <span class="title">Rational supporting data</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-isolation.html#sec-isolation-5" class="internal"><span class="codenumber">9.2</span> <span class="title">The equality divisor</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-isolation.html#sec-isolation-6" class="internal"><span class="codenumber">9.3</span> <span class="title">Final application</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sec-isolation.html#sec-isolation-7" class="internal"><span class="codenumber">9.4</span> <span class="title">Higher adjoint powers</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="fujita-notes-13.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul id="ptx-toc-group-fujita-notes-13" class="structural toc-item-list"><li class="toc-item toc-references"><div class="toc-title-box"><a href="fujita-references.html" class="internal"><span class="title">References</span></a></div></li></ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="chapter" id="sec-isolation">
+<h1 class="heading">
+<span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">9</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Boundary construction and adjoint generation</span>
+</h1>
+<section class="introduction" id="sec-isolation-3">
+<div class="para" id="sec-isolation-3-1">Fix a closed point <span class="process-math">\(x\in X\)</span> and suppose, for contradiction, that <span class="process-math">\(P=K_X+(n+1)L\)</span> is not generated at <span class="process-math">\(x\text{.}\)</span> Propositions <a href="fujita-attainment.html#prop-minimizers" class="xref" data-knowl="./knowl/xref/prop-minimizers.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 6.2">6.2</a> and <a href="sec-centers.html#prop-point-center" class="xref" data-knowl="./knowl/xref/prop-point-center.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 8.1">8.1</a> give a positive real number <span class="process-math">\(t&lt;n+1\)</span> and an integer <span class="process-math">\(m\)</span> such that <span class="process-math">\(\lambda_{m,t}(x)\)</span> is attained and every minimizing monomial pair in this degree has center <span class="process-math">\(\{x\}\text{.}\)</span> Keep <span class="process-math">\(t\)</span> and <span class="process-math">\(m\)</span> fixed throughout the section. We will construct an effective rational divisor <span class="process-math">\(B\)</span> on a smooth projective model <span class="process-math">\(\rho:T\to X\)</span> and a nonempty reduced divisor <span class="process-math">\(S\)</span> whose components map to <span class="process-math">\(x\text{.}\)</span> For each component <span class="process-math">\(F\)</span> of <span class="process-math">\(S\text{,}\)</span> the coefficient of <span class="process-math">\(B\)</span> along <span class="process-math">\(F\)</span> will equal <span class="process-math">\(\A(F)\text{.}\)</span> For each other component of the chosen SNC divisor that meets <span class="process-math">\(S\text{,}\)</span> this coefficient will be strictly smaller than its log discrepancy. These coefficient comparisons, together with nefness and bigness of <span class="process-math">\((n+1)\rho^*L-B\text{,}\)</span> will produce a section of <span class="process-math">\(P\)</span> nonzero at <span class="process-math">\(x\text{.}\)</span>
+</div></section>
+<section class="section" id="sec-isolation-4">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">9.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Rational supporting data</span>
+</h2>
+<div class="para logical" id="sec-isolation-4-3">
+<div class="para" id="sec-isolation-4-3-8-anchor">Choose a minimizing pair <span class="process-math">\((s_1,\ldots,s_{N_m};v)\)</span> as in Proposition <a href="fujita-attainment.html#prop-minimizers" class="xref" data-knowl="./knowl/xref/prop-minimizers.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 6.2">6.2</a>. Thus <span class="process-math">\(s_1,\ldots,s_{N_m}\)</span> is a basis of <span class="process-math">\(R_m\text{,}\)</span> and <span class="process-math">\(v\)</span> is a nonzero monomial test on a projective log resolution <span class="process-math">\(\pi:Y\to X\)</span> of the divisors <span class="process-math">\(D_i=\operatorname{div}(s_i)\text{.}\)</span><a id="sec-isolation-4-3-8" href="#margin-sec-isolation-4-3-8" class="margin-note-marker" aria-label="Margin note 1">1</a> Let <span class="process-math">\(E_j\)</span> be the components of the SNC divisor consisting of the supports of <span class="process-math">\(\pi^*D_i\)</span> and all exceptional divisors. For each component, set <span class="process-math">\(a_j=\A(E_j)\)</span> and define</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/prop-minimizers.html" id="sec-isolation-4-3-12">
+\begin{equation*}
+z_j=\left(\frac{\ord_{E_j}(D_i)}{a_j}\right)_{i=1}^{N_m}.
+\end{equation*}
+</div>
+<div class="para">Smoothness of <span class="process-math">\(X\)</span> implies that every <span class="process-math">\(a_j\)</span> is a positive integer. Consequently every <span class="process-math">\(z_j\)</span> is a rational vector with nonnegative entries.</div>
+</div>
+<div class="para logical" id="sec-isolation-4-4">
+<div class="para">Let <span class="process-math">\(Z\)</span> be an irreducible component of an SNC stratum whose closure has image containing <span class="process-math">\(x\text{,}\)</span> and let <span class="process-math">\(J(Z)\)</span> index the components <span class="process-math">\(E_j\)</span> containing <span class="process-math">\(Z\text{.}\)</span> For <span class="process-math">\(J(Z)\ne\varnothing\text{,}\)</span> define</div>
+<div class="displaymath process-math" id="eq-order-polytopes">
+\begin{equation}
+C_Z=\conv\{z_j:j\in J(Z)\}.\tag{9.1}
+\end{equation}
+</div>
+<div class="para">There are finitely many such indexed polytopes. The indexing matters even when two polytopes are equal, since their strata may have different images on <span class="process-math">\(X\text{.}\)</span>
+</div>
+</div>
+<div class="para" id="sec-isolation-4-5">Points of <span class="process-math">\(C_Z\)</span> give the orders divided by discrepancy for monomial tests supported on the crossing components indexed by <span class="process-math">\(J(Z)\text{.}\)</span> Indeed, if <span class="process-math">\(z=\sum_{j\in J(Z)}\theta_jz_j\text{,}\)</span> where <span class="process-math">\(\theta_j\geq0\)</span> and <span class="process-math">\(\sum_j\theta_j=1\text{,}\)</span> assign weight <span class="process-math">\(\theta_j/a_j\)</span> to <span class="process-math">\(E_j\text{.}\)</span> The monomial discrepancy formula gives discrepancy one, and the order of <span class="process-math">\(D_i\)</span> is <span class="process-math">\(z_i\text{.}\)</span> When some <span class="process-math">\(\theta_j\)</span> vanish, take the component of the intersection of the remaining positive-weight divisors containing <span class="process-math">\(Z\text{.}\)</span> The closure of this component contains the closure of <span class="process-math">\(Z\text{,}\)</span> so its image on <span class="process-math">\(X\)</span> still contains <span class="process-math">\(x\text{.}\)</span> Rescaling the weights realizes the same normalized vector <span class="process-math">\(z\)</span> with any prescribed positive discrepancy.</div>
+<div class="para logical" id="sec-isolation-4-6">
+<div class="para">For the chosen minimizing test, set <span class="process-math">\(a=\A(v)&gt;0\)</span> and write</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/eq-order-polytopes.html ./knowl/xref/prop-point-center.html" id="sec-isolation-4-6-2">
+\begin{equation*}
+q=\left(\frac{v(s_i)}{a}\right)_{i=1}^{N_m}.
+\end{equation*}
+</div>
+<div class="para">The vector <span class="process-math">\(q\)</span> belongs to the union of the polytopes <a href="sec-isolation.html#eq-order-polytopes" class="xref" data-knowl="./knowl/xref/eq-order-polytopes.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 9.1">(9.1)</a>. It belongs to no polytope indexed by a stratum with positive-dimensional image. To prove this, suppose that <span class="process-math">\(q\in C_Z\)</span> for such a stratum. Realize <span class="process-math">\(q\)</span> by the preceding monomial construction and rescale that test to discrepancy <span class="process-math">\(a\text{.}\)</span> The constructed test has the same discrepancy and the same orders on the sections <span class="process-math">\(s_i\)</span> as <span class="process-math">\(v\text{,}\)</span> so its value of <span class="process-math">\(\Phi_{m,t}\)</span> is also <span class="process-math">\(\lambda_{m,t}(x)\text{.}\)</span> The center of this test contains the positive-dimensional image of the closure of <span class="process-math">\(Z\text{.}\)</span> This contradicts the assertion in Proposition <a href="sec-centers.html#prop-point-center" class="xref" data-knowl="./knowl/xref/prop-point-center.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 8.1">8.1</a> that every minimizing pair has center <span class="process-math">\(\{x\}\text{.}\)</span>
+</div>
+</div>
+<article class="lemma theorem-like" id="lem-isolation-expanded-supporting-functional"><h3 class="heading">
+<span class="type">Lemma</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">9.1</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="lem-isolation-expanded-supporting-functional-1-1">
+<div class="para">Define</div>
+<div class="displaymath process-math" id="eq-supporting-functional">
+\begin{equation}
+b_i=\frac{t}{m}
+\frac{\exp(-v(s_i)/m)}{\sum_{h=1}^{N_m}\exp(-v(s_h)/m)}.\tag{9.2}
+\end{equation}
+</div>
+<div class="para">Then</div>
+<div class="displaymath process-math" id="eq-supporting-budget">
+\begin{equation}
+\begin{aligned}
+b\cdot q&amp;=1,\\
+m\sum_i b_i&amp;=t&lt;n+1.
+\end{aligned}\tag{9.3}
+\end{equation}
+</div>
+<div class="para">Every coefficient <span class="process-math">\(b_i\)</span> is strictly positive. For each indexed polytope containing <span class="process-math">\(q\text{,}\)</span> one also has</div>
+<div class="displaymath process-math" id="eq-supporting-inequality">
+\begin{equation}
+b\cdot q'\leq1
+\quad\text{for every }q'\in C_Z\text{ whenever }q\in C_Z.\tag{9.4}
+\end{equation}
+</div>
+</div>
+</article>
+<details id="lem-isolation-expanded-supporting-functional-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="lem-isolation-expanded-supporting-functional-2-1">
+<div class="para">Positive rescaling of <span class="process-math">\(v\)</span> preserves its center and remains an admissible test at <span class="process-math">\(x\text{.}\)</span> Therefore the function <span class="process-math">\(c\mapsto\Phi_{m,t}(cv,(s_i))\text{,}\)</span> for <span class="process-math">\(c&gt;0\text{,}\)</span> has a minimum at <span class="process-math">\(c=1\text{.}\)</span> Since this function is positive, its logarithmic derivative also vanishes there. Using <span class="process-math">\(v(s_i)=a q_i\text{,}\)</span> we obtain</div>
+<div class="displaymath process-math" id="lem-isolation-expanded-supporting-functional-2-1-7">
+\begin{equation*}
+0=\left.\frac{d}{dc}\log\Phi_{m,t}(cv,(s_i))\right|_{c=1}
+=\frac{a}{t}
+-\frac{a}{m}
+\frac{\sum_i q_i\exp(-v(s_i)/m)}{\sum_i\exp(-v(s_i)/m)}
+=\frac{a}{t}(1-b\cdot q).
+\end{equation*}
+</div>
+<div class="para">This proves <span class="process-math">\(b\cdot q=1\text{.}\)</span> The formula for <span class="process-math">\(b_i\)</span> also gives strict positivity and <span class="process-math">\(m\sum_i b_i=t\text{.}\)</span>
+</div>
+</div>
+<div class="para logical" id="lem-isolation-expanded-supporting-functional-2-2">
+<div class="para">Now fix <span class="process-math">\(C_Z\)</span> containing <span class="process-math">\(q\)</span> and fix <span class="process-math">\(q'\in C_Z\text{.}\)</span> For <span class="process-math">\(0\leq\epsilon\leq1\text{,}\)</span> the segment <span class="process-math">\(q_\epsilon=(1-\epsilon)q+\epsilon q'\)</span> lies in <span class="process-math">\(C_Z\text{.}\)</span> Choose convex representations of its endpoints and interpolate their coefficients. The resulting monomial tests have discrepancy one, and their orders on the <span class="process-math">\(D_i\)</span> form the vector <span class="process-math">\(q_\epsilon\text{.}\)</span> Their centers all contain <span class="process-math">\(x\text{,}\)</span> including when some weights are zero. After rescaling to discrepancy <span class="process-math">\(a\text{,}\)</span> their objective values are</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/eq-supporting-inequality.html" id="lem-isolation-expanded-supporting-functional-2-2-11">
+\begin{equation*}
+\Psi(\epsilon)=\frac{\exp(a/t)}{N_m}
+\sum_i\exp\left(-\frac{a}{m}\bigl((1-\epsilon)q_i+\epsilon q'_i\bigr)\right).
+\end{equation*}
+</div>
+<div class="para">At <span class="process-math">\(\epsilon=0\)</span> this equals the global minimum <span class="process-math">\(\lambda_{m,t}(x)\text{.}\)</span> Thus <span class="process-math">\(\Psi'(0)\geq0\text{.}\)</span> Dividing by <span class="process-math">\(\Psi(0)&gt;0\)</span> gives</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/eq-supporting-inequality.html" id="lem-isolation-expanded-supporting-functional-2-2-16">
+\begin{equation*}
+0\leq\frac{\Psi'(0)}{\Psi(0)}
+=-\frac{a}{t}\,b\cdot(q'-q).
+\end{equation*}
+</div>
+<div class="para">Since <span class="process-math">\(b\cdot q=1\text{,}\)</span> this is precisely <a href="sec-isolation.html#eq-supporting-inequality" class="xref" data-knowl="./knowl/xref/eq-supporting-inequality.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 9.4">(9.4)</a>.</div>
+</div>
+</article></details>
+<div class="para" id="sec-isolation-4-8">The coefficients of the divisor used for vanishing must be rational. An arbitrary rational approximation to <span class="process-math">\(q\)</span> need not preserve the supporting inequalities, and it may enter a polytope indexed by a stratum with positive-dimensional image. We therefore approximate <span class="process-math">\(q\)</span> inside the faces on which the functional <span class="process-math">\(b\)</span> is constant, and then approximate <span class="process-math">\(b\)</span> inside the polyhedron of supporting functionals.</div>
+<article class="lemma theorem-like" id="lem-rational-support"><h3 class="heading">
+<span class="type">Lemma</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">9.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="lem-rational-support-1-1">
+<div class="para" id="lem-rational-support-1-1-4-anchor">Let <span class="process-math">\(\mathcal C\)</span> be a finite indexed family of rational polytopes in <span class="process-math">\(\R^N\text{,}\)</span> and let <span class="process-math">\(q\)</span> belong to their union.<a id="lem-rational-support-1-1-4" href="#margin-lem-rational-support-1-1-4" class="margin-note-marker" aria-label="Margin note 2">2</a> Suppose that <span class="process-math">\(b\in\R_{&gt;0}^N\)</span> satisfies</div>
+<div class="displaymath process-math" id="lem-rational-support-1-1-6">
+\begin{equation*}
+\begin{aligned}
+b\cdot q&amp;=1,\\
+b\cdot z&amp;\leq1
+\quad\text{for every }z\in C\text{ whenever }q\in C\in\mathcal C.
+\end{aligned}
+\end{equation*}
+</div>
+<div class="para">For every open neighborhood <span class="process-math">\(V\)</span> of <span class="process-math">\(b\text{,}\)</span> there are rational vectors <span class="process-math">\(q^0\)</span> arbitrarily close to <span class="process-math">\(q\)</span> and <span class="process-math">\(b^0\in V\cap\Q_{&gt;0}^N\)</span> such that</div>
+<ol class="decimal" id="lem-rational-support-1-1-12">
+<li id="lem-rational-support-1-1-12-1">
+<div class="para" id="lem-rational-support-1-1-12-1-1">
+<span class="process-math">\(q^0\in C\)</span> if and only if <span class="process-math">\(q\in C\text{,}\)</span> for each indexed member <span class="process-math">\(C\)</span> of <span class="process-math">\(\mathcal C\text{;}\)</span>
+</div>
+</li>
+<li id="lem-rational-support-1-1-12-2">
+<div class="para" id="lem-rational-support-1-1-12-2-1">
+<span class="process-math">\(b^0\cdot q^0=1\text{,}\)</span> and <span class="process-math">\(b^0\cdot z\leq1\)</span> on every <span class="process-math">\(C\in\mathcal C\)</span> containing <span class="process-math">\(q^0\text{.}\)</span>
+</div>
+</li>
+</ol>
+</div>
+</article>
+<details id="lem-rational-support-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="lem-rational-support-2-1">For every <span class="process-math">\(C\)</span> containing <span class="process-math">\(q\text{,}\)</span> let <span class="process-math">\(F_C\)</span> be the smallest face of <span class="process-math">\(C\)</span> containing <span class="process-math">\(q\text{.}\)</span> Then <span class="process-math">\(q\)</span> lies in the relative interior of <span class="process-math">\(F_C\text{.}\)</span> The inequality on <span class="process-math">\(C\)</span> and the equality <span class="process-math">\(b\cdot q=1\)</span> imply that <span class="process-math">\(F_C\)</span> lies in the face where <span class="process-math">\(b\)</span> has value one. Hence <span class="process-math">\(b\cdot z=1\)</span> for all <span class="process-math">\(z\in F_C\text{.}\)</span>
+</div>
+<div class="para logical" id="lem-rational-support-2-2">
+<div class="para">The intersection</div>
+<div class="displaymath process-math" id="lem-rational-support-2-2-1">
+\begin{equation*}
+F=\bigcap_{C\ni q}F_C
+\end{equation*}
+</div>
+<div class="para">is a nonempty rational polytope. The point <span class="process-math">\(q\)</span> lies in its relative interior: a sufficiently small neighborhood of <span class="process-math">\(q\)</span> in the intersection of the affine hulls of the <span class="process-math">\(F_C\)</span> is contained in every <span class="process-math">\(F_C\text{.}\)</span> Rational points are dense in a rational polytope, so we may choose <span class="process-math">\(q^0\in F\cap\Q^N\)</span> arbitrarily close to <span class="process-math">\(q\text{.}\)</span> Choose it close enough to avoid every member of <span class="process-math">\(\mathcal C\)</span> not containing <span class="process-math">\(q\text{.}\)</span> Such a choice is possible because those members form a finite collection of closed sets disjoint from <span class="process-math">\(q\text{.}\)</span> The first assertion follows, and <span class="process-math">\(b\cdot q^0=1\)</span> because <span class="process-math">\(q^0\in F\text{.}\)</span>
+</div>
+</div>
+<div class="para" id="lem-rational-support-2-3">With this rational point <span class="process-math">\(q^0\)</span> fixed, consider all functionals <span class="process-math">\(c\)</span> satisfying <span class="process-math">\(c\cdot q^0=1\)</span> and <span class="process-math">\(c\cdot z\leq1\)</span> at every vertex of every polytope containing <span class="process-math">\(q^0\text{.}\)</span> These are finitely many rational linear constraints, so their solution set is a rational polyhedron. It contains <span class="process-math">\(b\text{.}\)</span> The smallest face of this polyhedron containing <span class="process-math">\(b\)</span> has rational points dense in it. Choose a rational point <span class="process-math">\(b^0\)</span> in this face sufficiently close to <span class="process-math">\(b\)</span> that it belongs to <span class="process-math">\(V\)</span> and every coordinate remains positive. The vertex inequalities imply the inequalities on the entire polytopes, proving the second assertion.</div>
+</article></details>
+<div class="para logical" id="sec-isolation-4-10">
+<div class="para">Apply Lemma <a href="sec-isolation.html#lem-rational-support" class="xref" data-knowl="./knowl/xref/lem-rational-support.html" data-reveal-label="Reveal" data-close-label="Close" title="Lemma 9.2">9.2</a> to the indexed family <a href="sec-isolation.html#eq-order-polytopes" class="xref" data-knowl="./knowl/xref/eq-order-polytopes.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 9.1">(9.1)</a>. Choose <span class="process-math">\(V\)</span> small enough that <span class="process-math">\(m\sum_i c_i&lt;n+1\)</span> for every <span class="process-math">\(c\in V\text{.}\)</span> This is possible by the strict inequality in <a href="sec-isolation.html#eq-supporting-budget" class="xref" data-knowl="./knowl/xref/eq-supporting-budget.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 9.3">(9.3)</a>. We obtain rational vectors <span class="process-math">\(q^0\in\Q_{\geq0}^{N_m}\)</span> and <span class="process-math">\(b^0\in\Q_{&gt;0}^{N_m}\)</span> satisfying</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/lem-rational-support.html ./knowl/xref/eq-order-polytopes.html ./knowl/xref/eq-supporting-budget.html ./knowl/xref/lem-rational-support.html" id="eq-rational-support-properties">
+\begin{equation}
+\begin{aligned}
+b^0\cdot q^0&amp;=1,\\
+m\sum_i b_i^0&amp;&lt;n+1,\\
+b^0\cdot q'&amp;\leq1
+\quad\text{for every }q'\in C_Z\text{ whenever }q^0\in C_Z.
+\end{aligned}\tag{9.5}
+\end{equation}
+</div>
+<div class="para">The first conclusion of Lemma <a href="sec-isolation.html#lem-rational-support" class="xref" data-knowl="./knowl/xref/lem-rational-support.html" data-reveal-label="Reveal" data-close-label="Close" title="Lemma 9.2">9.2</a> shows that <span class="process-math">\(q^0\)</span> belongs to no polytope indexed by a stratum with positive-dimensional image. The equality <span class="process-math">\(b^0\cdot q^0=1\)</span> also gives <span class="process-math">\(q^0\ne0\text{.}\)</span>
+</div>
+</div>
+<article class="lemma theorem-like" id="lem-isolation-expanded-divisorial-realization"><h3 class="heading">
+<span class="type">Lemma</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">9.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="lem-isolation-expanded-divisorial-realization-1-1">
+<div class="para">There is a prime divisor <span class="process-math">\(F_0\)</span> over <span class="process-math">\(X\)</span> such that its center on <span class="process-math">\(X\)</span> is <span class="process-math">\(\{x\}\text{,}\)</span>
+</div>
+<div class="displaymath process-math" id="lem-isolation-expanded-divisorial-realization-1-1-5">
+\begin{equation*}
+\begin{aligned}
+\left(\frac{\ord_{F_0}(D_i)}{\A(F_0)}\right)_{i=1}^{N_m}&amp;=q^0,\\
+\sum_j\ord_{F_0}(E_j)a_j&amp;=\A(F_0).
+\end{aligned}
+\end{equation*}
+</div>
+<div class="para">The divisor <span class="process-math">\(F_0\)</span> can be retained by its strict transform on every common resolution dominating a model on which it appears.</div>
+</div>
+</article>
+<details id="lem-isolation-expanded-divisorial-realization-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="lem-isolation-expanded-divisorial-realization-2-1">Choose an indexed polytope containing <span class="process-math">\(q^0\text{.}\)</span> Since its vertices and <span class="process-math">\(q^0\)</span> are rational, the linear system giving a convex representation has a rational solution. Write <span class="process-math">\(q^0=\sum_j\theta_jz_j\)</span> with rational <span class="process-math">\(\theta_j\geq0\)</span> and <span class="process-math">\(\sum_j\theta_j=1\text{.}\)</span> The weights <span class="process-math">\(\theta_j/a_j\)</span> are rational. Discard the zero weights and take the component of the remaining intersection containing the chosen stratum. These weights define a monomial test with discrepancy one whose orders on the <span class="process-math">\(D_i\)</span> form the vector <span class="process-math">\(q^0\text{.}\)</span>
+</div>
+<div class="para" id="lem-isolation-expanded-divisorial-realization-2-2">As in <a href="sec-preliminaries.html" class="internal" title="Chapter 2: Valuations, discrepancies, and thresholds">Chapter 2</a>, clear the denominators of the positive weights and divide the resulting integers by their greatest common divisor. The resulting positive integral weights define a primitive ray in the local toroidal cone. Extracting this ray gives a prime divisor <span class="process-math">\(F_0\text{.}\)</span> Its divisorial order is a positive multiple of the monomial test, so division by discrepancy gives the same vector <span class="process-math">\(q^0\text{.}\)</span> The monomial discrepancy formula gives the displayed equality with the discrepancy of its retraction to <span class="process-math">\(Y\text{.}\)</span>
+</div>
+<div class="para" id="lem-isolation-expanded-divisorial-realization-2-3">The center on <span class="process-math">\(Y\)</span> of this monomial test has image in <span class="process-math">\(X\)</span> containing <span class="process-math">\(x\text{.}\)</span> Its normalized vector belongs to the polytope of its own positive-support stratum. If that image were positive-dimensional, it would give an indexed polytope with positive-dimensional image containing <span class="process-math">\(q^0\text{,}\)</span> which has been excluded. Its center on <span class="process-math">\(X\)</span> is therefore <span class="process-math">\(\{x\}\text{.}\)</span> Resolution gives a smooth projective model on which the extracted divisor remains a prime divisor. On higher common resolutions, use its strict transform. With <span class="process-math">\(Y\)</span> fixed, the section orders along <span class="process-math">\(F_0\text{,}\)</span> its log discrepancy, and the discrepancy of its retraction to <span class="process-math">\(Y\)</span> do not change under this replacement. The equality of discrepancies therefore persists on these models.</div>
+</article></details></section>
+<section class="section" id="sec-isolation-5">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">9.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Equality in the discrepancy bound</span>
+</h2>
+<div class="para logical" id="sec-isolation-5-3">
+<div class="para">To construct <span class="process-math">\(B\text{,}\)</span> let <span class="process-math">\(I=\{i:q_i^0&gt;0\}\text{.}\)</span> This set is nonempty. Choose an integer <span class="process-math">\(M&gt;0\)</span> such that <span class="process-math">\(M/q_i^0\)</span> is an integer for every <span class="process-math">\(i\in I\text{,}\)</span> and define the coherent ideal</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/eq-perturbed-boundary.html" id="eq-isolating-ideal">
+\begin{equation}
+\mathfrak c=\sum_{i\in I}\cO_X\bigl(-(M/q_i^0)D_i\bigr)
+\subseteq\cO_X.\tag{9.6}
+\end{equation}
+</div>
+<div class="para">Since each <span class="process-math">\(D_i\)</span> is effective, every summand is an ideal. For any prime divisor <span class="process-math">\(F\)</span> over <span class="process-math">\(X\text{,}\)</span> the order of this sum is the minimum of the orders of its summands. Thus the order of <span class="process-math">\(\mathfrak c\)</span> divided by <span class="process-math">\(M\)</span> is the minimum of the ratios <span class="process-math">\(\ord_F(D_i)/q_i^0\text{,}\)</span> for <span class="process-math">\(i\in I\text{.}\)</span> At <span class="process-math">\(F_0\text{,}\)</span> each ratio equals <span class="process-math">\(\A(F_0)\text{.}\)</span> The convex combination in <a href="sec-isolation.html#eq-perturbed-boundary" class="xref" data-knowl="./knowl/xref/eq-perturbed-boundary.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 9.7">(9.7)</a> will preserve this equality. Equality in the coefficient bound will require all these ratios to be equal. The positivity of <span class="process-math">\(b_i^0\)</span> for <span class="process-math">\(i\notin I\)</span> will also determine the zero coordinates of the normalized vector.</div>
+</div>
+<div class="para logical" id="sec-isolation-5-4">
+<div class="para">Ampleness of <span class="process-math">\(L\)</span> gives an integer <span class="process-math">\(u\)</span> for which <span class="process-math">\(\mathfrak c(uL)\)</span> is globally generated; see <a href="fujita-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-stacks-project.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Tag 01Q3, (7)]</a>. After fixing <span class="process-math">\(u\text{,}\)</span> take a smooth projective resolution <span class="process-math">\(\rho:T\to X\)</span> dominating <span class="process-math">\(Y\text{,}\)</span> retaining <span class="process-math">\(F_0\text{,}\)</span> and principalizing <span class="process-math">\(\mathfrak c\text{.}\)</span> Write <span class="process-math">\(\rho=\pi\circ\tau\text{,}\)</span> where <span class="process-math">\(\tau:T\to Y\text{,}\)</span> and write</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/bib-stacks-project.html" id="sec-isolation-5-4-12">
+\begin{equation*}
+\mathfrak c\cO_T=\cO_T(-G).
+\end{equation*}
+</div>
+<div class="para">Choose the resolution so that <span class="process-math">\(G\text{,}\)</span> all pullbacks of the <span class="process-math">\(D_i\text{,}\)</span> and all exceptional divisors have SNC support. Pull back the evaluation map for <span class="process-math">\(\mathfrak c(uL)\)</span> and compose it with the map to <span class="process-math">\(\cO_T(u\rho^*L)\text{.}\)</span> Its image is <span class="process-math">\(\cO_T(u\rho^*L-G)\text{,}\)</span> so this line bundle is globally generated. Hence <span class="process-math">\(u\rho^*L-G\)</span> is nef.</div>
+</div>
+<div class="para logical" id="sec-isolation-5-5">
+<div class="para">For a rational number <span class="process-math">\(0&lt;\eta&lt;1\text{,}\)</span> define</div>
+<div class="displaymath process-math" id="eq-perturbed-boundary">
+\begin{equation}
+B=(1-\eta)\rho^*\left(\sum_i b_i^0D_i\right)+\frac{\eta}{M}G.\tag{9.7}
+\end{equation}
+</div>
+<div class="para">This is an effective rational divisor with SNC support. Since <span class="process-math">\(D_i\sim mL\text{,}\)</span> one has</div>
+<div class="displaymath process-math" id="eq-boundary-nef-big">
+\begin{equation}
+\begin{aligned}
+(n+1)\rho^*L-B
+&amp;\equiv
+\left(n+1-(1-\eta)m\sum_i b_i^0-\frac{\eta u}{M}\right)\rho^*L
+\\
+&amp;\hspace{2em}+\frac{\eta}{M}(u\rho^*L-G).
+\end{aligned}\tag{9.8}
+\end{equation}
+</div>
+<div class="para">At <span class="process-math">\(\eta=0\text{,}\)</span> the coefficient of <span class="process-math">\(\rho^*L\)</span> on the right is <span class="process-math">\(n+1-m\sum_i b_i^0&gt;0\text{.}\)</span> Fix <span class="process-math">\(\eta\)</span> rational and sufficiently small that this coefficient remains positive. The pullback <span class="process-math">\(\rho^*L\)</span> is nef and big, while the second summand is nef. It follows that <span class="process-math">\((n+1)\rho^*L-B\)</span> is nef and big. Here <span class="process-math">\(\eta\)</span> is chosen after <span class="process-math">\(\mathfrak c\)</span> and <span class="process-math">\(u\)</span> have been fixed.</div>
+</div>
+<div class="para logical" id="sec-isolation-5-6">
+<div class="para">For a prime divisor <span class="process-math">\(F\)</span> on <span class="process-math">\(T\text{,}\)</span> set <span class="process-math">\(a_F=\A(F)\)</span> and let</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/lem-retraction.html" id="sec-isolation-5-6-4">
+\begin{equation*}
+r_F=\sum_j\ord_F(E_j)a_j.
+\end{equation*}
+</div>
+<div class="para">The divisors <span class="process-math">\(E_j\)</span> in this formula are on <span class="process-math">\(Y\text{,}\)</span> and their orders along <span class="process-math">\(F\)</span> are computed after pullback by <span class="process-math">\(\tau\text{.}\)</span> Lemma <a href="sec-preliminaries.html#lem-retraction" class="xref" data-knowl="./knowl/xref/lem-retraction.html" data-reveal-label="Reveal" data-close-label="Close" title="Lemma 2.2">2.2</a> gives <span class="process-math">\(0\leq r_F\leq a_F\text{.}\)</span> When <span class="process-math">\(r_F&gt;0\text{,}\)</span> the number <span class="process-math">\(r_F\)</span> is the discrepancy of the monomial retraction to <span class="process-math">\(Y\text{,}\)</span> before rescaling. The number <span class="process-math">\(a_F\)</span> is always a positive integer.</div>
+</div>
+<div class="para logical" id="sec-isolation-5-7">
+<div class="para">Let <span class="process-math">\(S\)</span> be the reduced sum of the primes in the chosen SNC support satisfying</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/lem-isolation-expanded-divisorial-realization.html" id="eq-equality-divisor-definition">
+\begin{equation}
+\begin{aligned}
+x&amp;\in\rho(F),\\
+\left(\frac{\ord_F(D_i)}{a_F}\right)_{i=1}^{N_m}&amp;=q^0,\\
+r_F&amp;=a_F.
+\end{aligned}\tag{9.9}
+\end{equation}
+</div>
+<div class="para">The retained divisor <span class="process-math">\(F_0\)</span> satisfies all three conditions by Lemma <a href="sec-isolation.html#lem-isolation-expanded-divisorial-realization" class="xref" data-knowl="./knowl/xref/lem-isolation-expanded-divisorial-realization.html" data-reveal-label="Reveal" data-close-label="Close" title="Lemma 9.3">9.3</a>. It belongs to the SNC support because <span class="process-math">\(q^0\ne0\text{,}\)</span> so at least one <span class="process-math">\(D_i\)</span> has positive order along it. Therefore <span class="process-math">\(S\ne0\text{.}\)</span>
+</div>
+</div>
+<article class="lemma theorem-like" id="lem-isolated-equality"><h3 class="heading">
+<span class="type">Lemma</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">9.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="lem-isolated-equality-1-1">Every component <span class="process-math">\(F\)</span> of <span class="process-math">\(S\)</span> maps to <span class="process-math">\(x\)</span> and has coefficient <span class="process-math">\(a_F\)</span> in <span class="process-math">\(B\text{.}\)</span> For any prime divisor <span class="process-math">\(F\)</span> in the chosen SNC support, if <span class="process-math">\(F\)</span> meets <span class="process-math">\(S\)</span> and is not a component of <span class="process-math">\(S\text{,}\)</span> its coefficient in <span class="process-math">\(B\)</span> is strictly smaller than its log discrepancy.</div>
+</article>
+<details id="lem-isolated-equality-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="lem-isolated-equality-2-1">Let <span class="process-math">\(F\)</span> be a component of <span class="process-math">\(S\text{.}\)</span> Its retraction to <span class="process-math">\(Y\)</span> is nonzero since <span class="process-math">\(r_F=a_F&gt;0\text{.}\)</span> The orders of the <span class="process-math">\(D_i\)</span> are preserved under retraction, and the equality of discrepancies shows that its normalized vector is <span class="process-math">\(q^0\text{.}\)</span> The image of its retraction center contains <span class="process-math">\(\rho(F)\)</span> and hence contains <span class="process-math">\(x\text{.}\)</span> A positive-dimensional image would give a polytope <a href="sec-isolation.html#eq-order-polytopes" class="xref" data-knowl="./knowl/xref/eq-order-polytopes.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 9.1">(9.1)</a> of that stratum containing <span class="process-math">\(q^0\text{,}\)</span> contrary to its choice. Thus the image of the retraction center is <span class="process-math">\(\{x\}\text{,}\)</span> and <span class="process-math">\(\rho(F)=\{x\}\)</span> as well.</div>
+<div class="para logical" id="lem-isolated-equality-2-2">
+<div class="para">Principalization and the formula for the order of a sum of ideals give, for every prime <span class="process-math">\(F\)</span> on <span class="process-math">\(T\text{,}\)</span>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/eq-perturbed-boundary.html" id="eq-ideal-order-minimum">
+\begin{equation}
+\frac{\ord_F(G)}{M}=\min_{i\in I}\frac{\ord_F(D_i)}{q_i^0}.\tag{9.10}
+\end{equation}
+</div>
+<div class="para">If <span class="process-math">\(F\)</span> is a component of <span class="process-math">\(S\text{,}\)</span> every ratio on the right is <span class="process-math">\(a_F\text{.}\)</span> Moreover,</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/eq-perturbed-boundary.html" id="lem-isolated-equality-2-2-7">
+\begin{equation*}
+\sum_i b_i^0\ord_F(D_i)=a_F\,b^0\cdot q^0=a_F.
+\end{equation*}
+</div>
+<div class="para">Both summands of <a href="sec-isolation.html#eq-perturbed-boundary" class="xref" data-knowl="./knowl/xref/eq-perturbed-boundary.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 9.7">(9.7)</a>, before multiplication by <span class="process-math">\(1-\eta\)</span> and <span class="process-math">\(\eta\text{,}\)</span> consequently have coefficient <span class="process-math">\(a_F\text{.}\)</span> Hence <span class="process-math">\(\operatorname{coeff}_F B=a_F\text{.}\)</span>
+</div>
+</div>
+<div class="para" id="lem-isolated-equality-2-3">Now let <span class="process-math">\(F\)</span> be any prime divisor in the SNC support meeting a component <span class="process-math">\(F_S\)</span> of <span class="process-math">\(S\text{.}\)</span> Choose a closed point in <span class="process-math">\(F\cap F_S\)</span> and let <span class="process-math">\(y\)</span> be its image on <span class="process-math">\(Y\text{.}\)</span> Since <span class="process-math">\(\rho(F_S)=\{x\}\text{,}\)</span> the point <span class="process-math">\(y\)</span> lies over <span class="process-math">\(x\text{.}\)</span> Let <span class="process-math">\(Z\)</span> be the component of the stratum through <span class="process-math">\(y\)</span> obtained from all the <span class="process-math">\(E_j\)</span> passing through <span class="process-math">\(y\text{,}\)</span> and let <span class="process-math">\(C=C_Z\text{.}\)</span> The image of the closure of <span class="process-math">\(Z\)</span> under <span class="process-math">\(\pi\)</span> contains <span class="process-math">\(x\text{,}\)</span> so <span class="process-math">\(C\)</span> belongs to the indexed family <a href="sec-isolation.html#eq-order-polytopes" class="xref" data-knowl="./knowl/xref/eq-order-polytopes.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 9.1">(9.1)</a>.</div>
+<div class="para logical" id="lem-isolated-equality-2-4">
+<div class="para">If <span class="process-math">\(\ord_F(E_j)&gt;0\text{,}\)</span> then the closed center of <span class="process-math">\(F\)</span> on <span class="process-math">\(Y\)</span> is contained in <span class="process-math">\(E_j\text{.}\)</span> Since this center contains <span class="process-math">\(y\text{,}\)</span> the divisor <span class="process-math">\(E_j\)</span> passes through <span class="process-math">\(y\text{.}\)</span> The same argument applies to <span class="process-math">\(F_S\text{.}\)</span> Whenever <span class="process-math">\(r_F&gt;0\text{,}\)</span> the retraction formula therefore expresses</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/eq-rational-support-properties.html" id="lem-isolated-equality-2-4-10">
+\begin{equation*}
+\left(\frac{\ord_F(D_i)}{r_F}\right)_i
+=\sum_j\frac{a_j\ord_F(E_j)}{r_F}\,z_j
+\end{equation*}
+</div>
+<div class="para">as a convex combination of vertices of <span class="process-math">\(C\text{.}\)</span> For <span class="process-math">\(F_S\text{,}\)</span> the discrepancy of its retraction equals <span class="process-math">\(a_{F_S}\)</span> and its normalized vector is <span class="process-math">\(q^0\text{.}\)</span> Thus <span class="process-math">\(q^0\in C\text{,}\)</span> and the supporting inequality in <a href="sec-isolation.html#eq-rational-support-properties" class="xref" data-knowl="./knowl/xref/eq-rational-support-properties.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 9.5">(9.5)</a> applies on this same polytope.</div>
+</div>
+<div class="para logical" id="lem-isolated-equality-2-5">
+<div class="para">If <span class="process-math">\(r_F=0\text{,}\)</span> the retraction formula gives <span class="process-math">\(\ord_F(D_i)=0\)</span> for all <span class="process-math">\(i\text{,}\)</span> and <a href="sec-isolation.html#eq-ideal-order-minimum" class="xref" data-knowl="./knowl/xref/eq-ideal-order-minimum.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 9.10">(9.10)</a> gives <span class="process-math">\(\ord_F(G)=0\text{.}\)</span> Therefore <span class="process-math">\(\operatorname{coeff}_F B=0&lt;a_F\text{.}\)</span> Suppose now that <span class="process-math">\(r_F&gt;0\text{,}\)</span> and let</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/eq-ideal-order-minimum.html ./knowl/xref/eq-rational-support-properties.html" id="lem-isolated-equality-2-5-8">
+\begin{equation*}
+\begin{aligned}
+q'&amp;=\left(\frac{\ord_F(D_i)}{r_F}\right)_{i=1}^{N_m}\in C,\\
+\mu&amp;=\min_{i\in I}\frac{q'_i}{q_i^0}.
+\end{aligned}
+\end{equation*}
+</div>
+<div class="para">The positive numbers <span class="process-math">\(b_i^0q_i^0\text{,}\)</span> for <span class="process-math">\(i\in I\text{,}\)</span> sum to one by <a href="sec-isolation.html#eq-rational-support-properties" class="xref" data-knowl="./knowl/xref/eq-rational-support-properties.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 9.5">(9.5)</a>. Using these numbers as weights for the ratios defining <span class="process-math">\(\mu\)</span> gives</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/eq-ideal-order-minimum.html ./knowl/xref/eq-rational-support-properties.html" id="eq-rigid-minimum-inequality">
+\begin{equation}
+\mu\leq\sum_{i\in I}b_i^0q'_i\leq b^0\cdot q'\leq1.\tag{9.11}
+\end{equation}
+</div>
+<div class="para">The middle inequality uses <span class="process-math">\(q'_i\geq0\)</span> and <span class="process-math">\(b_i^0&gt;0\)</span> for all <span class="process-math">\(i\text{.}\)</span> The last is the supporting inequality on <span class="process-math">\(C\text{,}\)</span> which contains <span class="process-math">\(q^0\text{.}\)</span>
+</div>
+</div>
+<div class="para logical" id="lem-isolated-equality-2-6">
+<div class="para">The coefficient in the first summand of <a href="sec-isolation.html#eq-perturbed-boundary" class="xref" data-knowl="./knowl/xref/eq-perturbed-boundary.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 9.7">(9.7)</a> is <span class="process-math">\((1-\eta)r_F b^0\cdot q'\text{.}\)</span> By <a href="sec-isolation.html#eq-ideal-order-minimum" class="xref" data-knowl="./knowl/xref/eq-ideal-order-minimum.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 9.10">(9.10)</a>, the coefficient in the second summand is <span class="process-math">\(\eta r_F\mu\text{.}\)</span> Hence</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/eq-perturbed-boundary.html ./knowl/xref/eq-ideal-order-minimum.html" id="eq-boundary-discrepancy-ratio">
+\begin{equation}
+\frac{\operatorname{coeff}_F B}{a_F}
+=\frac{r_F}{a_F}\bigl((1-\eta)b^0\cdot q'+\eta\mu\bigr)
+\leq1.\tag{9.12}
+\end{equation}
+</div>
+<div class="para">All factors here are nonnegative, <span class="process-math">\(r_F/a_F\leq1\text{,}\)</span> and both <span class="process-math">\(b^0\cdot q'\)</span> and <span class="process-math">\(\mu\)</span> are at most one.</div>
+</div>
+<div class="para" id="lem-isolated-equality-2-7">If equality holds in <a href="sec-isolation.html#eq-boundary-discrepancy-ratio" class="xref" data-knowl="./knowl/xref/eq-boundary-discrepancy-ratio.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 9.12">(9.12)</a>, then <span class="process-math">\(r_F=a_F\text{.}\)</span> Since <span class="process-math">\(0&lt;\eta&lt;1\text{,}\)</span> equality also requires <span class="process-math">\(b^0\cdot q'=\mu=1\text{.}\)</span> Every inequality in <a href="sec-isolation.html#eq-rigid-minimum-inequality" class="xref" data-knowl="./knowl/xref/eq-rigid-minimum-inequality.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 9.11">(9.11)</a> is then an equality. A weighted average of the ratios <span class="process-math">\(q'_i/q_i^0\text{,}\)</span> with every weight <span class="process-math">\(b_i^0q_i^0\)</span> positive, can equal their minimum only if every ratio equals that minimum. Thus <span class="process-math">\(q'_i/q_i^0=1\)</span> for all <span class="process-math">\(i\in I\text{.}\)</span> Equality in the middle inequality gives <span class="process-math">\(\sum_{i\notin I}b_i^0q'_i=0\text{,}\)</span> so strict positivity of the <span class="process-math">\(b_i^0\)</span> implies <span class="process-math">\(q'_i=0\)</span> for <span class="process-math">\(i\notin I\text{.}\)</span> Therefore <span class="process-math">\(q'=q^0\text{,}\)</span> including the zero coordinates.</div>
+<div class="para" id="lem-isolated-equality-2-8">The intersection with <span class="process-math">\(F_S\)</span> also gives <span class="process-math">\(x\in\rho(F)\text{.}\)</span> Together with <span class="process-math">\(r_F=a_F\)</span> and <span class="process-math">\(q'=q^0\text{,}\)</span> this says that <span class="process-math">\(F\)</span> satisfies all conditions in <a href="sec-isolation.html#eq-equality-divisor-definition" class="xref" data-knowl="./knowl/xref/eq-equality-divisor-definition.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 9.9">(9.9)</a>. Hence <span class="process-math">\(F\)</span> is a component of <span class="process-math">\(S\text{.}\)</span> Equality in the coefficient bound therefore occurs only for components of <span class="process-math">\(S\text{,}\)</span> proving the required strict inequality for every other component of the chosen SNC divisor that meets <span class="process-math">\(S\text{.}\)</span>
+</div>
+</article></details></section>
+<section class="section" id="sec-isolation-6">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">9.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Application of the local criterion</span>
+</h2>
+<div class="para" id="sec-isolation-6-3">Apply Lemma <a href="sec-generation-criterion.html#lem-local-generation" class="xref" data-knowl="./knowl/xref/lem-local-generation.html" data-reveal-label="Reveal" data-close-label="Close" title="Lemma 3.3">3.3</a> to the morphism <span class="process-math">\(\rho:T\to X\)</span> and the divisors <span class="process-math">\(B\)</span> and <span class="process-math">\(S\)</span> just constructed. The morphism is projective and birational, with <span class="process-math">\(T\)</span> smooth. The divisor <span class="process-math">\(B\)</span> is effective and rational with SNC support by <a href="sec-isolation.html#eq-perturbed-boundary" class="xref" data-knowl="./knowl/xref/eq-perturbed-boundary.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 9.7">(9.7)</a>, and <span class="process-math">\((n+1)\rho^*L-B\)</span> is nef and big by <a href="sec-isolation.html#eq-boundary-nef-big" class="xref" data-knowl="./knowl/xref/eq-boundary-nef-big.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 9.8">(9.8)</a>. The divisor <span class="process-math">\(S\)</span> is nonempty and reduced by its definition and the presence of <span class="process-math">\(F_0\text{.}\)</span> Lemma <a href="sec-isolation.html#lem-isolated-equality" class="xref" data-knowl="./knowl/xref/lem-isolated-equality.html" data-reveal-label="Reveal" data-close-label="Close" title="Lemma 9.4">9.4</a> shows that every component <span class="process-math">\(F\)</span> of <span class="process-math">\(S\)</span> maps to <span class="process-math">\(x\)</span> and has coefficient <span class="process-math">\(a_F\)</span> in <span class="process-math">\(B\text{.}\)</span> It also gives the strict coefficient inequality for every other prime in the chosen SNC support meeting <span class="process-math">\(S\text{.}\)</span> For a prime outside that support, the coefficient in <span class="process-math">\(B\)</span> is zero and <span class="process-math">\(a_F&gt;0\text{,}\)</span> so the required strict inequality holds there as well. All hypotheses of the local criterion are therefore satisfied.</div>
+<div class="para" id="sec-isolation-6-4">The criterion gives a section <span class="process-math">\(s\in H^0(X,P)\)</span> with <span class="process-math">\(s(x)\ne0\text{,}\)</span> contradicting the assumed failure of generation at <span class="process-math">\(x\text{.}\)</span> The application also includes <span class="process-math">\(n=1\text{:}\)</span> a component of <span class="process-math">\(S\)</span> may be the nonexceptional point <span class="process-math">\(x\)</span> itself, and the coefficient and descent calculations in Lemma <a href="sec-generation-criterion.html#lem-local-generation" class="xref" data-knowl="./knowl/xref/lem-local-generation.html" data-reveal-label="Reveal" data-close-label="Close" title="Lemma 3.3">3.3</a> still apply. Since any failure of global generation occurs at a closed point, this proves Theorem <a href="fujita-overview.html#thm-main" class="xref" data-knowl="./knowl/xref/thm-main.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 1.1">1.1</a>.</div>
+</section>
+<section class="section" id="sec-isolation-7">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">9.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">All higher adjoint powers</span>
+</h2>
+<article class="corollary theorem-like" id="cor-all-powers"><h3 class="heading">
+<span class="type">Corollary</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">9.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="cor-all-powers-1-1">Under the hypotheses of Theorem <a href="fujita-overview.html#thm-main" class="xref" data-knowl="./knowl/xref/thm-main.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 1.1">1.1</a>, the line bundle <span class="process-math">\(K_X+mL\)</span> is globally generated for every integer <span class="process-math">\(m\geq n+1\text{.}\)</span>
+</div>
+</article>
+<details id="cor-all-powers-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="cor-all-powers-2-1">
+<div class="para" id="cor-all-powers-2-1-9-anchor">Let <span class="process-math">\(r=m-n-1\text{.}\)</span> If <span class="process-math">\(r=0\text{,}\)</span> then <span class="process-math">\(m=n+1\)</span> and the conclusion is Theorem <a href="fujita-overview.html#thm-main" class="xref" data-knowl="./knowl/xref/thm-main.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 1.1">1.1</a>. If <span class="process-math">\(r&gt;0\text{,}\)</span> apply that theorem to the smooth connected variety <span class="process-math">\(X\times\mathbb P^r\)</span> of dimension <span class="process-math">\(n+r\)</span> and the ample line bundle <span class="process-math">\(L\boxtimes\cO_{\mathbb P^r}(1)\text{.}\)</span><a id="cor-all-powers-2-1-9" href="#margin-cor-all-powers-2-1-9" class="margin-note-marker" aria-label="Margin note 1">1</a> The canonical bundle of the product is <span class="process-math">\(K_X\boxtimes\cO_{\mathbb P^r}(-r-1)\text{,}\)</span> so the adjoint bundle in dimension <span class="process-math">\(n+r\)</span> is</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/thm-main.html" id="cor-all-powers-2-1-12">
+\begin{equation*}
+(K_X+(n+r+1)L)\boxtimes\cO_{\mathbb P^r}(n)
+=(K_X+mL)\boxtimes\cO_{\mathbb P^r}(n).
+\end{equation*}
+</div>
+<div class="para">This adjoint bundle is globally generated. Fix a point <span class="process-math">\(z\in\mathbb P^r\text{.}\)</span> Restriction to <span class="process-math">\(X\times\{z\}\)</span> gives generating sections of <span class="process-math">\(K_X+mL\)</span> tensored with the one-dimensional fiber of <span class="process-math">\(\cO_{\mathbb P^r}(n)\)</span> at <span class="process-math">\(z\text{.}\)</span> Choosing a nonzero vector in that fiber identifies the restricted bundle with <span class="process-math">\(K_X+mL\text{,}\)</span> so <span class="process-math">\(K_X+mL\)</span> is globally generated.</div>
+</div>
+</article></details></section></section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="sec-centers.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Top</span></a><a class="next-button button" href="fujita-notes-13.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a>
+</div></main>
+<div class="margin-notes" role="complementary" aria-label="Margin notes">
+<aside id="margin-sec-isolation-4-3-8" class="aside aside-like margin-note" data-margin-anchor="sec-isolation-4-3-8-anchor" data-margin-label="1" data-margin-inline="true"><h4 class="heading"><a href="#sec-isolation-4-3-8-anchor" class="margin-note-label">1</a></h4>
+<div class="para">The order of a divisor on <span class="process-math">\(X\)</span> along a prime divisor over <span class="process-math">\(X\)</span> means the order of its pullback to a model containing that prime divisor.
+</div></aside><aside id="margin-lem-rational-support-1-1-4" class="aside aside-like margin-note" data-margin-anchor="lem-rational-support-1-1-4-anchor" data-margin-label="2" data-margin-inline="true"><h4 class="heading"><a href="#lem-rational-support-1-1-4-anchor" class="margin-note-label">2</a></h4>
+<div class="para">Distinct indices may specify the same polytope.
+</div></aside><aside id="margin-cor-all-powers-2-1-9" class="aside aside-like margin-note" data-margin-anchor="cor-all-powers-2-1-9-anchor" data-margin-label="1" data-margin-inline="true"><h4 class="heading"><a href="#cor-all-powers-2-1-9-anchor" class="margin-note-label">1</a></h4>
+<div class="para">An external product is the tensor product of the pullbacks under the two projections.
+</div></aside>
+</div>
+</div>
+<footer id="site-copyright" class="site-copyright"><p>© 2026 Jie Fu. All rights reserved.</p></footer>
+</body>
+</html>

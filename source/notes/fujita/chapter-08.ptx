@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='utf-8'?>
+<chapter xml:id="sec-centers">
+  <title>Excluding positive-dimensional centers</title>
+  <shorttitle>Point centers</shorttitle>
+  <introduction>
+    <p>The specialization comparison permits us to vary a minimizing test in directions tangent to its center. Minimality bounds the resulting tangential moment from above. Sections restricted to the center give a lower bound for the same moment. To compare these bounds when the minimizing test varies with the degree, the estimate for restricted sections must be independent of the center.</p>
+    <proposition xml:id="prop-point-center">
+      <statement>
+        <p>Suppose that <m>P</m> is not generated at <m>x</m>. There is a real number <m>0&lt;t&lt;n+1</m> such that, for arbitrarily large integers <m>m</m>, the infimum <m>\lambda_{m,t}(x)</m> is attained and every minimizing monomial pair has center exactly <m>\{x\}</m>.</p>
+      </statement>
+    </proposition>
+    <p>A minimizing pair consists of a monomial test and a basis attaining the infimum. The proposition applies to every such pair in the selected degrees, even when their models, coordinates, and bases differ. In <xref ref="sec-isolation" text="type-global"/>, a second test admissible at <m>x</m> has the same discrepancy and normalized section orders on the basis of a minimizing pair. With this basis, it also attains the minimum and must therefore have center <m>\{x\}</m>.</p>
+  </introduction>
+  <section>
+    <title>Coordinates and the tangential variation</title>
+    <shorttitle>Tangential variation</shorttitle>
+    <p>Assume that <m>P</m> is not generated at <m>x</m>. Fix <m>t\in[t_0,n+1]</m> and a degree <m>m</m> in the range of Proposition <xref ref="prop-minimizers" text="global"/>. Throughout the calculation for this degree, write <m>\lambda_j=\lambda_{j,t}(x)</m>. Suppose that a minimizing monomial pair has test <m>v</m> and center <m>W</m> of dimension <m>d&gt;0</m>. Let <m>\Sigma</m> be the closure of the chosen stratum on a smooth model <m>Y\to X</m>, and let <m>r</m> be the number of positive weights of <m>v</m>. Set <m>k'=n-d</m>. The variety <m>\Sigma</m> has dimension <m>n-r</m> and maps onto <m>W</m>, so <m>r\le k'</m>.</p>
+    <p>Choose a very general smooth point <m>y\in W</m> satisfying the degree-<m>m</m> specialization comparison:<md number="yes" xml:id="eq-center-specialization">\lambda_{m,t}(y)\ge\lambda_{m,t}(x).</md> Generic smoothness in characteristic zero gives a dense open subset of the open stratum on which the map to <m>W</m> is smooth; see <xref ref="bib-vakil2006smoothness" detail="Proposition 3.1"/>. Its image contains a dense open subset of <m>W</m>. We may choose <m>y</m> in this image and a point <m>z\in\Sigma</m> above <m>y</m> where <m>\Sigma\to W</m> is smooth, avoiding every additional component of the relative canonical divisor. These open conditions are compatible with the very general condition in Lemma <xref ref="lem-specialization" text="global"/>.</p>
+    <p>At <m>z</m>, choose regular parameters in three groups. The first <m>r</m> parameters define the divisors with positive weights. The next <m>k'-r</m> parameters restrict to parameters along the fiber of <m>\Sigma\to W</m>. For the last group, choose <m>d</m> affine linear functions on an affine chart of the fixed <m>kL</m> embedding. Require that their restrictions to <m>W</m> vanish at <m>y</m> and have independent differentials there. Their pullbacks give the last <m>d</m> parameters. Smoothness of <m>\Sigma\to W</m> at <m>z</m> permits us to complete these pullbacks by the fiber parameters to obtain parameters on <m>\Sigma</m>, and then by the equations of the crossing divisors to obtain parameters on <m>Y</m>.</p>
+    <p>The equations of the positive divisors differ from their original equations by units. Lemma <xref ref="lem-monomial-local" text="global"/> therefore computes the original test in the Taylor ring at <m>z</m> with these parameters. All complementary parameters still have weight zero. Fix a local frame of <m>L</m> at <m>y</m>, pull it back to <m>Y</m>, and use its powers in every degree <m>j</m>. On setting the first <m>r</m> parameters equal to zero, the germ of a section restricts to <m>\Sigma</m>. This restriction is pulled back from <m>W</m> and depends only on the last <m>d</m> parameters.</p>
+    <p>Write a Taylor exponent as<md number="no">(p,\beta)\in\Z_{\ge0}^{k'}\times\Z_{\ge0}^{d}.</md> Here <m>p</m> records the exponents of the parameters defining the positive-weight divisors and of the fiber parameters. Let <m>\ell(p)</m> be the <m>v</m>-value of the monomial in the first <m>k'</m> parameters with exponent <m>p</m>, so the fiber exponents do not contribute to <m>\ell(p)</m>. Order the Taylor monomials first by increasing <m>\ell(p)</m> and then by increasing <m>|\beta|_1</m>. Resolve the remaining ties by increasing total degree and then by a fixed order on exponents that is compatible with addition.</p>
+    <p>This order on monomials is additive and is a well-order. Under any fixed bound for <m>\ell(p)</m>, there are finitely many choices of exponents in the positive-weight parameters because their weights are strictly positive. A least tangential degree can then be chosen, and the last comparison has least elements even when fiber exponents vary. Thus every nonzero Taylor series has an initial exponent.</p>
+    <p>For every <m>j</m>, let <m>\Gamma_j</m> be the set of initial exponents of nonzero sections in <m>R_j</m>. Taylor expansion is injective and the coefficient of an initial monomial is a complex scalar. The elimination argument of Lemma <xref ref="lem-min-initials" text="global"/>, or the count for a prevaluation with one-dimensional leaves in <xref ref="bib-kavehkhovanskii2012" detail="Proposition 2.6"/>, gives<md number="yes" xml:id="eq-center-semigroup">\begin{aligned}
+ \#\Gamma_j&amp;=N_j,\\
+ \Gamma_j+\Gamma_q&amp;\subset\Gamma_{j+q}.
+ \end{aligned}</md> For the second inclusion, products of sections use powers of the same frame, and the additive monomial order makes their initial exponents add.</p>
+    <p>Choose a basis of <m>R_m</m> with distinct initial exponents. It is adapted to the filtration by <m>v</m>, since the first comparison in the order is the <m>v</m>-value. More explicitly, for every real number <m>a</m>, the vectors of this basis with <m>v</m>-value at least <m>a</m> form a basis of the filtration subspace <m>\{s:v(s)\ge a\}</m>. Their number is therefore at least the number of vectors of any other basis lying in that subspace. After sorting each list in decreasing order, the value at every position for the chosen basis is at least the value at that position for any other basis. Since the objective decreases as a section order increases, replacing the original basis by this one preserves minimality.</p>
+    <p>For this fixed test, coordinate system, and reference degree <m>m</m>, define the weighted sum<md number="yes" xml:id="eq-center-q-b">Z_j=\sum_{(p,\beta)\in\Gamma_j}e^{-\ell(p)/m}.</md> The denominator in the exponential is always <m>m</m>, including when the section degree is <m>j</m>. Minimality in degree <m>m</m> gives<md number="yes" xml:id="eq-center-q-minimum">Z_m=N_m\lambda_m e^{-\A(v)/t}.</md> In degree <m>m</m>, define the normalized tangential moment by<fn>Equivalently, <m>M_m</m> is the weighted mean of <m>|\beta|_1/m</m>, with each weight divided by <m>Z_m</m> so that the weights sum to one.</fn><md number="no">M_m=\frac{1}{mZ_m}\sum_{(p,\beta)\in\Gamma_m}
+                    |\beta|_1e^{-\ell(p)/m}.</md></p>
+    <lemma xml:id="lem-center-expanded-variation">
+      <statement>
+        <p>For the minimizing pair and coordinates just chosen,<md number="yes" xml:id="eq-center-variation-upper">M_m\le\frac dt.</md></p>
+      </statement>
+      <proof>
+        <p>Leave the original positive weights fixed. Give each of the <m>d</m> tangential parameters weight <m>\epsilon</m>, and each of the <m>k'-r</m> fiber parameters weight <m>\epsilon^2</m>. For <m>\epsilon&gt;0</m>, this defines an allowed monomial test <m>v_\epsilon</m> whose center on <m>Y</m> is <m>z</m> and whose center on <m>X</m> is <m>y</m>. The coordinate divisors added at <m>z</m> do not occur in the relative canonical divisor and therefore have log discrepancy one. Thus<md number="yes" xml:id="eq-center-discrepancy-variation">\A(v_\epsilon)=\A(v)+d\epsilon+(k'-r)\epsilon^2.</md></p>
+        <p>For a basis section <m>s</m> with initial exponent <m>(p,\beta)</m>, we claim that<md number="yes" xml:id="eq-center-order-variation">v_\epsilon(s)=\ell(p)+\epsilon|\beta|_1+O(\epsilon^2)
+ \qquad(\epsilon\downarrow0).</md> To check the claim for a possibly infinite Taylor series, let <m>a=\ell(p)</m> and <m>b=|\beta|_1</m>. Only finitely many exponent vectors in the positive-weight parameters have old weight at most <m>a+1</m>. Hence the old weights that are strictly greater than <m>a</m> have a positive gap from <m>a</m> in this interval. A term realizing old weight <m>a</m> and tangential degree <m>b</m> has perturbed weight <m>a+\epsilon b+\epsilon^2 c_s</m>, for some finite fiber degree <m>c_s</m>. For sufficiently small <m>\epsilon</m>, this term has weight below every term of larger old weight. Among terms of old weight <m>a</m>, the least tangential degree is <m>b</m> by the definition of the initial order. Since tangential degrees are integers and all fiber degrees are nonnegative, terms of tangential degree greater than <m>b</m> also have larger perturbed weight for small <m>\epsilon</m>. The minimum is therefore between <m>a+\epsilon b</m> and <m>a+\epsilon b+\epsilon^2c_s</m>, which proves <xref ref="eq-center-order-variation" text="global"/>.</p>
+        <p>Let <m>\mathbf s</m> be the chosen basis and let <m>\Psi(\epsilon)=\Phi_{m,t}(v_\epsilon,\mathbf s)</m> for <m>\epsilon&gt;0</m>, with <m>\Psi(0)=\Phi_{m,t}(v,\mathbf s)</m>. By the definition of the infimum at <m>y</m> and <xref ref="eq-center-specialization" text="global"/>,<md number="no">\Psi(\epsilon)\ge\lambda_{m,t}(y)
+                  \ge\lambda_{m,t}(x)=\Psi(0).</md> The right derivative at zero is nonnegative. Since the sum defining <m>\Psi</m> has finitely many terms, <xref ref="eq-center-discrepancy-variation" text="global"/> and <xref ref="eq-center-order-variation" text="global"/> give its derivative term by term:<md number="no">\Psi'(0+)=\frac{e^{\A(v)/t}}{N_m}
+ \left(\frac dt Z_m-\frac1m
+       \sum_{(p,\beta)\in\Gamma_m}|\beta|_1e^{-\ell(p)/m}\right).</md> Dividing by the positive factor <m>e^{\A(v)/t}Z_m/N_m</m> proves <xref ref="eq-center-variation-upper" text="global"/>. This differentiation is performed for one fixed finite basis. The range of <m>\epsilon</m> need not be uniform as <m>m</m> varies.</p>
+      </proof>
+    </lemma>
+  </section>
+  <section>
+    <title>Growth of tangential slices</title>
+    <shorttitle>Tangential slices</shorttitle>
+    <p>For <m>p\in\Z_{\ge0}^{k'}</m>, let <m>G_p(j)=\{\beta:(p,\beta)\in\Gamma_j\}</m> and define<md number="no">b_p(j)=\bigl(d!\#G_p(j)\bigr)^{1/d}.</md> In particular, <m>b_p(j)=0</m> when the slice is empty. The slice with <m>p=0</m> includes the initial exponents obtained from restrictions to <m>W</m>. A nonzero restriction has old weight zero, and its Taylor series on <m>\Sigma</m> has no fiber variables. Elimination in the image of the restriction map consequently produces <m>I_W(h)</m> distinct initials in <m>G_0(h)</m>. By Lemma <xref ref="lem-uniform-restrictions" text="global"/>,<md number="yes" xml:id="eq-center-pure-growth">b_0(h)\ge h-C_d\qquad(h\ge H_d).</md></p>
+    <p>We also need a fixed finite collection of initials in a bounded degree. Let <m>h_0=kd</m>, and write the selected tangential coordinates as <m>s_i/s_0</m>, where <m>s_0(y)\ne0</m> and <m>s_i(y)=0</m> for <m>1\le i\le d</m>. For <m>\beta\in\{0,1\}^d</m>, the section<md number="no">\prod_{i=1}^d s_i^{\beta_i}s_0^{d-|\beta|_1}\in R_{h_0}</md> has initial exponent <m>(0,\beta)</m>. Changing from the projective frame to the chosen frame multiplies its germ by a unit with initial exponent zero. Hence<md number="yes" xml:id="eq-center-cube">\{0,1\}^d\subset G_0(h_0).</md></p>
+    <lemma xml:id="lem-center-expanded-discrete-bm">
+      <statement>
+        <p>If <m>A</m> and <m>C</m> are nonempty finite subsets of <m>\Z^d</m>, then<md number="yes" xml:id="eq-discrete-bm">\#\bigl(A+C+\{0,1\}^d\bigr)^{1/d}
+       \ge(\#A)^{1/d}+(\#C)^{1/d}.</md></p>
+      </statement>
+      <proof>
+        <p>For a finite lattice set, the translates of <m>[0,1]^d</m> have disjoint interiors. The volume of its sum with this cube is therefore its cardinality. The identity<md number="no">(A+[0,1]^d)+(C+[0,1]^d)
+       =A+C+\{0,1\}^d+[0,1]^d</md> and the continuous Brunn–Minkowski inequality <xref ref="bib-gardner2002" detail="Theorem 4.1"/> give <xref ref="eq-discrete-bm" text="global"/>. The sets to which that theorem is applied are nonempty finite unions of compact cubes, so both their measurability and the measurability of their sum hold.</p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-center-expanded-slice-growth">
+      <statement>
+        <p>There are constants <m>C'_d</m> and <m>H'_d</m>, depending only on <m>(X,L,k,d)</m>, such that for every nonempty <m>G_p(j)</m> and every <m>h\ge H'_d</m>,<md number="yes" xml:id="eq-center-slice-growth">b_p(j+h)\ge b_p(j)+h-C'_d.</md> These constants are independent of <m>j</m>, <m>p</m>, the center, the test, and the coordinates chosen above.</p>
+      </statement>
+      <proof>
+        <p>Let <m>C'_d=C_d+h_0</m>, and choose an integer<md number="no">H'_d\ge\max\{H_d+h_0,\lceil C'_d\rceil+1\}.</md> By <xref ref="eq-center-semigroup" text="global"/> and <xref ref="eq-center-cube" text="global"/>,<md number="no">G_p(j)+G_0(h-h_0)+\{0,1\}^d\subset G_p(j+h).</md> For <m>h\ge H'_d</m>, the estimate <xref ref="eq-center-pure-growth" text="global"/> gives <m>b_0(h-h_0)\ge h-C'_d&gt;0</m>. The set <m>G_0(h-h_0)</m> is therefore nonempty. Applying Lemma <xref ref="lem-center-expanded-discrete-bm" text="global"/> and multiplying by <m>(d!)^{1/d}</m>, we obtain<md number="no">b_p(j+h)\ge b_p(j)+b_0(h-h_0)
+             \ge b_p(j)+h-h_0-C_d.</md> This proves <xref ref="eq-center-slice-growth" text="global"/>, and the constants have the stated uniformity.</p>
+      </proof>
+    </lemma>
+    <p>Retain the same test and the same reference degree <m>m</m> in all exponential weights. Define<md number="no">\mathcal B_j=\frac1{d!}\sum_p e^{-\ell(p)/m}b_p(j)^{d+1}.</md> These sums are finite because <m>\Gamma_j</m> is finite. The exponent <m>d+1</m> permits both a growth estimate in terms of <m>Z_j</m> and a comparison with the tangential moment.</p>
+    <lemma xml:id="lem-center-expanded-weighted-growth">
+      <statement>
+        <p>For <m>h\ge H'_d</m>, one has<md number="yes" xml:id="eq-center-b-growth">\mathcal B_{j+h}\ge
+       \mathcal B_j+(d+1)(h-C'_d)Z_j.</md> In degree <m>m</m>, one also has<md number="yes" xml:id="eq-center-moment">\sum_{(p,\beta)\in\Gamma_m}
+      e^{-\ell(p)/m}(|\beta|_1+d)
+       \ge\frac{d}{d+1}\mathcal B_m.</md></p>
+      </statement>
+      <proof>
+        <p>Let <m>\Delta=h-C'_d\ge0</m>. For each slice present in degree <m>j</m>, Lemma <xref ref="lem-center-expanded-slice-growth" text="global"/> and convexity give<md number="no">b_p(j+h)^{d+1}\ge(b_p(j)+\Delta)^{d+1}
+       \ge b_p(j)^{d+1}+(d+1)\Delta b_p(j)^d.</md> Multiply by <m>e^{-\ell(p)/m}/d!</m> and sum over these slices. The remaining slices in degree <m>j+h</m> have nonnegative contributions, and <m>b_p(j)^d/d!=\#G_p(j)</m>. This proves <xref ref="eq-center-b-growth" text="global"/>.</p>
+        <p>For the moment estimate, take a finite nonempty set <m>A\subset\Z_{\ge0}^d</m> and let <m>b=(d!\#A)^{1/d}</m>. The simplex<md number="no">\Delta_b=\{u\in\R_{\ge0}^d:|u|_1\le b\}</md> has volume <m>\#A</m>. Among measurable subsets of the positive orthant of this volume, it minimizes the integral of <m>|u|_1</m>. To verify this directly, let <m>U</m> be any such set. On <m>U\setminus\Delta_b</m> the integrand is at least <m>b</m>, and on <m>\Delta_b\setminus U</m> it is at most <m>b</m>. These two differences have equal volume, so<md number="no">\int_U|u|_1\,du\ge\int_{\Delta_b}|u|_1\,du
+       =\frac{d}{(d+1)d!}b^{d+1}.</md> The last integral is computed by integrating <m>s</m> against the derivative of the sublevel volume <m>s^d/d!</m> for <m>0\le s\le b</m>.</p>
+        <p>Apply the inequality to <m>U=A+[0,1]^d</m>. Integrating over the translated unit cubes gives<md number="no">\sum_{\beta\in A}\left(|\beta|_1+\frac d2\right)
+       \ge\frac{d}{(d+1)d!}b^{d+1}.</md> Replacing <m>d/2</m> by <m>d</m> preserves the inequality. Apply this to every nonempty <m>G_p(m)</m> and multiply by <m>e^{-\ell(p)/m}</m>. Empty slices contribute zero. Summing proves <xref ref="eq-center-moment" text="global"/>.</p>
+      </proof>
+    </lemma>
+  </section>
+  <section>
+    <title>The choice of degree and the limiting contradiction</title>
+    <shorttitle>Degrees and limits</shorttitle>
+    <proof ref="prop-point-center">
+      <p>Proposition <xref ref="prop-ordinary-gap" text="global"/>, Lemma <xref ref="lem-min-coercivity" text="global"/>, and Proposition <xref ref="prop-minimizers" text="global"/> give an interval <m>[t_0,n+1]</m> and an integer <m>m_0</m> with the following properties. For <m>m\ge m_0</m> and <m>t</m> in this interval, the minimum is attained and is bounded uniformly away from zero and one. Every minimizing test satisfies<md number="no">a_-\le\A(v)\le a_+</md> for fixed constants <m>0&lt;a_-\le a_+&lt;\infty</m>. The positive lower bound gives<md number="no">I_*:=\int_0^1 s^n
+        \exp\!\left(\frac{(1-s)a_-}{n+1}\right)\,ds
+       &gt;\int_0^1s^n\,ds=\frac1{n+1}.</md> Choose one <m>t\in[t_0,n+1)</m> sufficiently close to <m>n+1</m> that<md number="yes" xml:id="eq-center-choose-t">I_*&gt;\frac1t.</md> This choice is made before choosing the degrees and their minimizing pairs.</p>
+      <p>Write <m>\lambda_j=\lambda_{j,t}(x)</m> and let <m>c=\liminf_{j\to\infty}\lambda_j&gt;0</m>. Choose an increasing sequence of integers <m>m</m> with <m>\lambda_m\to c</m>. Suppose that infinitely many degrees in this sequence admit a minimizing monomial pair with positive-dimensional center. Choose one such pair in each of those degrees. After passing to a subsequence, their center dimensions equal a fixed integer <m>d&gt;0</m>. The centers, valuations, coordinates, and models may all vary with <m>m</m>.</p>
+      <p>For each chosen pair, choose the coordinates and define <m>\Gamma_j</m> as in the preceding two sections. In the estimates for auxiliary degrees <m>j</m>, keep this test, these coordinates, and the reference degree <m>m</m> fixed. The constants <m>C'_d</m> and <m>H'_d</m> are independent of these choices. Table <xref ref="tab-constants" text="global"/> records the dependencies and the order of limits.</p>
+      <table xml:id="tab-constants">
+        <title>Dependencies and order of limits in the center argument.</title>
+        <tabular halign="left" valign="top">
+          <row>
+            <cell>Data</cell>
+            <cell>Dependence and order of choice</cell>
+          </row>
+          <row>
+            <cell><m>k</m>, <m>C_d</m>, <m>H_d</m>, <m>C'_d</m>, <m>H'_d</m></cell>
+            <cell>Depend only on <m>(X,L)</m> and <m>d</m> after fixing a very ample multiple <m>kL</m>. They are independent of the center, its degree and singularities, and the test.</cell>
+          </row>
+          <row>
+            <cell><m>t_0</m>, <m>a_-</m>, <m>a_+</m></cell>
+            <cell>Fixed by Lemma <xref ref="lem-min-coercivity" text="global"/> at the hypothetical base point <m>x</m>. They are uniform in all sufficiently large degrees and <m>t\in[t_0,n+1]</m>.</cell>
+          </row>
+          <row>
+            <cell><m>t</m>, then <m>m</m></cell>
+            <cell>Choose one <m>t&lt;n+1</m> using <m>a_-</m>. Then choose degrees with <m>\lambda_m\to\liminf_j\lambda_j&gt;0</m>. Centers and models may vary with <m>m</m>.</cell>
+          </row>
+          <row>
+            <cell><m>v</m>, <m>\Gamma_j</m>, <m>Z_j</m>, <m>\mathcal B_j</m>, <m>M_m</m></cell>
+            <cell>For each reference degree <m>m</m>, fix its minimizing test and coordinates. All auxiliary degrees <m>j</m> use that test, that coordinate system, and denominator <m>m</m> in the weights.</cell>
+          </row>
+          <row>
+            <cell><m>\epsilon</m>, then <m>l</m></cell>
+            <cell>Differentiate at <m>\epsilon=0</m> separately for each finite basis. In the partition estimate let <m>m\to\infty</m> with <m>l</m> fixed, and afterwards let <m>l\to\infty</m>.</cell>
+          </row>
+        </tabular>
+      </table>
+      <p>Fix an integer <m>l\ge2</m>, and let <m>j_i=\lfloor mi/l\rfloor</m> for <m>1\le i\le l</m>. In particular, <m>j_l=m</m>. With <m>l</m> fixed, each increment <m>j_{i+1}-j_i</m> tends to infinity as <m>m\to\infty</m>. For all sufficiently large <m>m</m>, <xref ref="eq-center-b-growth" text="global"/> therefore applies to every increment. Iteration, starting with <m>\mathcal B_{j_1}\ge0</m>, gives<md number="no">\mathcal B_m\ge(d+1)\sum_{i=1}^{l-1}
+       (j_{i+1}-j_i-C'_d)Z_{j_i}.</md> The moment estimate <xref ref="eq-center-moment" text="global"/>, divided by <m>mZ_m</m>, now gives<md number="yes" xml:id="eq-center-partition-bound">M_m+\frac dm\ge
+ d\sum_{i=1}^{l-1}
+       \frac{j_{i+1}-j_i-C'_d}{m}\,
+       \frac{Z_{j_i}}{Z_m}.</md> This iteration is valid even though the center varies with <m>m</m>, because both the constant <m>C'_d</m> and the threshold <m>H'_d</m> are uniform.</p>
+      <p>We compare <m>Z_j</m> with the minimum in degree <m>j</m>. The rescaled test <m>(j/m)v</m> is admissible at <m>x</m>, since its center is <m>W</m> and <m>x\in W</m>. Its discrepancy is <m>j\A(v)/m</m>, while its section orders divided by <m>j</m> are <m>v(s)/m</m>. Choose representatives of <m>\Gamma_j</m> as a basis of <m>R_j</m>. The definition of <m>\lambda_j</m> gives<md number="no">\lambda_j\le
+      \frac{e^{j\A(v)/(mt)}}{N_j}Z_j.</md> Thus, for every sufficiently large <m>j</m>,<md number="yes" xml:id="eq-center-q-compare">Z_j\ge N_j\lambda_j e^{-j\A(v)/(mt)}.</md> The comparison is made at <m>x</m>. The point <m>y</m> selected for the first variation was required to satisfy specialization only in degree <m>m</m>.</p>
+      <p>Using <xref ref="eq-center-q-minimum" text="global"/>, we obtain<md number="yes" xml:id="eq-center-ratio">\frac{Z_{j_i}}{Z_m}\ge
+       \frac{N_{j_i}}{N_m}\frac{\lambda_{j_i}}{\lambda_m}
+       \exp\!\left(\left(1-\frac{j_i}{m}\right)
+                          \frac{\A(v)}{t}\right).</md> For each fixed <m>1\le i\le l-1</m>, the Hilbert asymptotic <xref ref="eq-hilbert-X" text="global"/> gives<md number="no">\frac{N_{j_i}}{N_m}\longrightarrow(i/l)^n.</md> Also <m>j_i\to\infty</m> and <m>\lambda_m\to c=\liminf_j\lambda_j&gt;0</m>, so<md number="no">\liminf_{m\to\infty}\frac{\lambda_{j_i}}{\lambda_m}\ge1.</md> Indeed, for any <m>0&lt;\eta&lt;c</m>, every sufficiently large degree <m>j</m> satisfies <m>\lambda_j\ge c-\eta</m>, while <m>\lambda_m\le c+\eta</m> eventually on the chosen subsequence. The ratio is at least <m>(c-\eta)/(c+\eta)</m>, and we may let <m>\eta\downarrow0</m>. In particular, the auxiliary degrees need not themselves realize the lower limit.</p>
+      <p>The discrepancy bound <m>\A(v)\ge a_-</m> and the inequality <m>t&lt;n+1</m> give<md number="no">\exp\!\left(\left(1-\frac{j_i}{m}\right)\frac{\A(v)}{t}\right)
+ \ge
+ \exp\!\left(\left(1-\frac{j_i}{m}\right)\frac{a_-}{n+1}\right).</md> Every coefficient in the finite sum in <xref ref="eq-center-partition-bound" text="global"/> is nonnegative for large <m>m</m>, and<md number="no">\frac{j_{i+1}-j_i-C'_d}{m}\longrightarrow\frac1l.</md> Applying these estimates to <xref ref="eq-center-partition-bound" text="global"/> and taking the lower limit along the chosen subsequence yields<md number="yes" xml:id="eq-center-riemann-lower">\liminf_{m\to\infty}M_m\ge
+       \frac dl\sum_{i=1}^{l-1}(i/l)^n
+           \exp\!\left(\frac{(1-i/l)a_-}{n+1}\right).</md> This holds for every fixed <m>l\ge2</m>. Only after taking the lower limit in <m>m</m> do we let <m>l\to\infty</m>. The Riemann sums tend to <m>dI_*</m>, so<md number="no">\liminf_{m\to\infty}M_m\ge dI_*&gt;\frac dt.</md> This contradicts Lemma <xref ref="lem-center-expanded-variation" text="global"/>.</p>
+      <p>Only finitely many degrees of the original sequence with <m>\lambda_m\to c</m> can therefore admit a positive-dimensional minimizing monomial center. In every remaining sufficiently large degree, the minimum is attained. Every admitted test is nonzero and has a nonempty closed center containing <m>x</m>. A zero-dimensional irreducible closed center containing <m>x</m> is <m>\{x\}</m>. Thus every minimizing pair in these arbitrarily large degrees has center exactly <m>\{x\}</m>, as claimed.</p>
+    </proof>
+  </section>
+</chapter>

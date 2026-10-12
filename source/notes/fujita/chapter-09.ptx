@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='utf-8'?>
+<chapter xml:id="sec-isolation">
+  <title>Boundary construction and adjoint generation</title>
+  <shorttitle>Boundary and generation</shorttitle>
+  <introduction>
+    <p>Fix a closed point <m>x\in X</m> and suppose, for contradiction, that <m>P=K_X+(n+1)L</m> is not generated at <m>x</m>. Propositions <xref ref="prop-minimizers" text="global"/> and <xref ref="prop-point-center" text="global"/> give a positive real number <m>t&lt;n+1</m> and an integer <m>m</m> such that <m>\lambda_{m,t}(x)</m> is attained and every minimizing monomial pair in this degree has center <m>\{x\}</m>. Keep <m>t</m> and <m>m</m> fixed throughout the section. We will construct an effective rational divisor <m>B</m> on a smooth projective model <m>\rho:T\to X</m> and a nonempty reduced divisor <m>S</m> whose components map to <m>x</m>. For each component <m>F</m> of <m>S</m>, the coefficient of <m>B</m> along <m>F</m> will equal <m>\A(F)</m>. For each other component of the chosen SNC divisor that meets <m>S</m>, this coefficient will be strictly smaller than its log discrepancy. These coefficient comparisons, together with nefness and bigness of <m>(n+1)\rho^*L-B</m>, will produce a section of <m>P</m> nonzero at <m>x</m>.</p>
+  </introduction>
+  <section>
+    <title>Rational supporting data</title>
+    <shorttitle>Rational supporting data</shorttitle>
+    <p>Choose a minimizing pair <m>(s_1,\ldots,s_{N_m};v)</m> as in Proposition <xref ref="prop-minimizers" text="global"/>. Thus <m>s_1,\ldots,s_{N_m}</m> is a basis of <m>R_m</m>, and <m>v</m> is a nonzero monomial test on a projective log resolution <m>\pi:Y\to X</m> of the divisors <m>D_i=\operatorname{div}(s_i)</m>.<fn>The order of a divisor on <m>X</m> along a prime divisor over <m>X</m> means the order of its pullback to a model containing that prime divisor.</fn> Let <m>E_j</m> be the components of the SNC divisor consisting of the supports of <m>\pi^*D_i</m> and all exceptional divisors. For each component, set <m>a_j=\A(E_j)</m> and define<md number="no">z_j=\left(\frac{\ord_{E_j}(D_i)}{a_j}\right)_{i=1}^{N_m}.</md> Smoothness of <m>X</m> implies that every <m>a_j</m> is a positive integer. Consequently every <m>z_j</m> is a rational vector with nonnegative entries.</p>
+    <p>Let <m>Z</m> be an irreducible component of an SNC stratum whose closure has image containing <m>x</m>, and let <m>J(Z)</m> index the components <m>E_j</m> containing <m>Z</m>. For <m>J(Z)\ne\varnothing</m>, define<md number="yes" xml:id="eq-order-polytopes">C_Z=\conv\{z_j:j\in J(Z)\}.</md> There are finitely many such indexed polytopes. The indexing matters even when two polytopes are equal, since their strata may have different images on <m>X</m>.</p>
+    <p>Points of <m>C_Z</m> give the orders divided by discrepancy for monomial tests supported on the crossing components indexed by <m>J(Z)</m>. Indeed, if <m>z=\sum_{j\in J(Z)}\theta_jz_j</m>, where <m>\theta_j\geq0</m> and <m>\sum_j\theta_j=1</m>, assign weight <m>\theta_j/a_j</m> to <m>E_j</m>. The monomial discrepancy formula gives discrepancy one, and the order of <m>D_i</m> is <m>z_i</m>. When some <m>\theta_j</m> vanish, take the component of the intersection of the remaining positive-weight divisors containing <m>Z</m>. The closure of this component contains the closure of <m>Z</m>, so its image on <m>X</m> still contains <m>x</m>. Rescaling the weights realizes the same normalized vector <m>z</m> with any prescribed positive discrepancy.</p>
+    <p>For the chosen minimizing test, set <m>a=\A(v)&gt;0</m> and write<md number="no">q=\left(\frac{v(s_i)}{a}\right)_{i=1}^{N_m}.</md> The vector <m>q</m> belongs to the union of the polytopes <xref ref="eq-order-polytopes" text="global"/>. It belongs to no polytope indexed by a stratum with positive-dimensional image. To prove this, suppose that <m>q\in C_Z</m> for such a stratum. Realize <m>q</m> by the preceding monomial construction and rescale that test to discrepancy <m>a</m>. The constructed test has the same discrepancy and the same orders on the sections <m>s_i</m> as <m>v</m>, so its value of <m>\Phi_{m,t}</m> is also <m>\lambda_{m,t}(x)</m>. The center of this test contains the positive-dimensional image of the closure of <m>Z</m>. This contradicts the assertion in Proposition <xref ref="prop-point-center" text="global"/> that every minimizing pair has center <m>\{x\}</m>.</p>
+    <lemma xml:id="lem-isolation-expanded-supporting-functional">
+      <statement>
+        <p>Define<md number="yes" xml:id="eq-supporting-functional">b_i=\frac{t}{m}
+ \frac{\exp(-v(s_i)/m)}{\sum_{h=1}^{N_m}\exp(-v(s_h)/m)}.</md> Then<md number="yes" xml:id="eq-supporting-budget">\begin{aligned}
+ b\cdot q&amp;=1,\\
+ m\sum_i b_i&amp;=t&lt;n+1.
+ \end{aligned}</md> Every coefficient <m>b_i</m> is strictly positive. For each indexed polytope containing <m>q</m>, one also has<md number="yes" xml:id="eq-supporting-inequality">b\cdot q'\leq1
+ \quad\text{for every }q'\in C_Z\text{ whenever }q\in C_Z.</md></p>
+      </statement>
+      <proof>
+        <p>Positive rescaling of <m>v</m> preserves its center and remains an admissible test at <m>x</m>. Therefore the function <m>c\mapsto\Phi_{m,t}(cv,(s_i))</m>, for <m>c&gt;0</m>, has a minimum at <m>c=1</m>. Since this function is positive, its logarithmic derivative also vanishes there. Using <m>v(s_i)=a q_i</m>, we obtain<md number="no">0=\left.\frac{d}{dc}\log\Phi_{m,t}(cv,(s_i))\right|_{c=1}
+ =\frac{a}{t}
+ -\frac{a}{m}
+ \frac{\sum_i q_i\exp(-v(s_i)/m)}{\sum_i\exp(-v(s_i)/m)}
+ =\frac{a}{t}(1-b\cdot q).</md> This proves <m>b\cdot q=1</m>. The formula for <m>b_i</m> also gives strict positivity and <m>m\sum_i b_i=t</m>.</p>
+        <p>Now fix <m>C_Z</m> containing <m>q</m> and fix <m>q'\in C_Z</m>. For <m>0\leq\epsilon\leq1</m>, the segment <m>q_\epsilon=(1-\epsilon)q+\epsilon q'</m> lies in <m>C_Z</m>. Choose convex representations of its endpoints and interpolate their coefficients. The resulting monomial tests have discrepancy one, and their orders on the <m>D_i</m> form the vector <m>q_\epsilon</m>. Their centers all contain <m>x</m>, including when some weights are zero. After rescaling to discrepancy <m>a</m>, their objective values are<md number="no">\Psi(\epsilon)=\frac{\exp(a/t)}{N_m}
+ \sum_i\exp\left(-\frac{a}{m}\bigl((1-\epsilon)q_i+\epsilon q'_i\bigr)\right).</md> At <m>\epsilon=0</m> this equals the global minimum <m>\lambda_{m,t}(x)</m>. Thus <m>\Psi'(0)\geq0</m>. Dividing by <m>\Psi(0)&gt;0</m> gives<md number="no">0\leq\frac{\Psi'(0)}{\Psi(0)}
+ =-\frac{a}{t}\,b\cdot(q'-q).</md> Since <m>b\cdot q=1</m>, this is precisely <xref ref="eq-supporting-inequality" text="global"/>.</p>
+      </proof>
+    </lemma>
+    <p>The coefficients of the divisor used for vanishing must be rational. An arbitrary rational approximation to <m>q</m> need not preserve the supporting inequalities, and it may enter a polytope indexed by a stratum with positive-dimensional image. We therefore approximate <m>q</m> inside the faces on which the functional <m>b</m> is constant, and then approximate <m>b</m> inside the polyhedron of supporting functionals.</p>
+    <lemma xml:id="lem-rational-support">
+      <statement>
+        <p>Let <m>\mathcal C</m> be a finite indexed family of rational polytopes in <m>\R^N</m>, and let <m>q</m> belong to their union.<fn>Distinct indices may specify the same polytope.</fn> Suppose that <m>b\in\R_{&gt;0}^N</m> satisfies<md number="no">\begin{aligned}
+ b\cdot q&amp;=1,\\
+ b\cdot z&amp;\leq1
+ \quad\text{for every }z\in C\text{ whenever }q\in C\in\mathcal C.
+ \end{aligned}</md> For every open neighborhood <m>V</m> of <m>b</m>, there are rational vectors <m>q^0</m> arbitrarily close to <m>q</m> and <m>b^0\in V\cap\Q_{&gt;0}^N</m> such that<ol><li><p><m>q^0\in C</m> if and only if <m>q\in C</m>, for each indexed member <m>C</m> of <m>\mathcal C</m>;</p></li><li><p><m>b^0\cdot q^0=1</m>, and <m>b^0\cdot z\leq1</m> on every <m>C\in\mathcal C</m> containing <m>q^0</m>.</p></li></ol></p>
+      </statement>
+      <proof>
+        <p>For every <m>C</m> containing <m>q</m>, let <m>F_C</m> be the smallest face of <m>C</m> containing <m>q</m>. Then <m>q</m> lies in the relative interior of <m>F_C</m>. The inequality on <m>C</m> and the equality <m>b\cdot q=1</m> imply that <m>F_C</m> lies in the face where <m>b</m> has value one. Hence <m>b\cdot z=1</m> for all <m>z\in F_C</m>.</p>
+        <p>The intersection<md number="no">F=\bigcap_{C\ni q}F_C</md> is a nonempty rational polytope. The point <m>q</m> lies in its relative interior: a sufficiently small neighborhood of <m>q</m> in the intersection of the affine hulls of the <m>F_C</m> is contained in every <m>F_C</m>. Rational points are dense in a rational polytope, so we may choose <m>q^0\in F\cap\Q^N</m> arbitrarily close to <m>q</m>. Choose it close enough to avoid every member of <m>\mathcal C</m> not containing <m>q</m>. Such a choice is possible because those members form a finite collection of closed sets disjoint from <m>q</m>. The first assertion follows, and <m>b\cdot q^0=1</m> because <m>q^0\in F</m>.</p>
+        <p>With this rational point <m>q^0</m> fixed, consider all functionals <m>c</m> satisfying <m>c\cdot q^0=1</m> and <m>c\cdot z\leq1</m> at every vertex of every polytope containing <m>q^0</m>. These are finitely many rational linear constraints, so their solution set is a rational polyhedron. It contains <m>b</m>. The smallest face of this polyhedron containing <m>b</m> has rational points dense in it. Choose a rational point <m>b^0</m> in this face sufficiently close to <m>b</m> that it belongs to <m>V</m> and every coordinate remains positive. The vertex inequalities imply the inequalities on the entire polytopes, proving the second assertion.</p>
+      </proof>
+    </lemma>
+    <p>Apply Lemma <xref ref="lem-rational-support" text="global"/> to the indexed family <xref ref="eq-order-polytopes" text="global"/>. Choose <m>V</m> small enough that <m>m\sum_i c_i&lt;n+1</m> for every <m>c\in V</m>. This is possible by the strict inequality in <xref ref="eq-supporting-budget" text="global"/>. We obtain rational vectors <m>q^0\in\Q_{\geq0}^{N_m}</m> and <m>b^0\in\Q_{&gt;0}^{N_m}</m> satisfying<md number="yes" xml:id="eq-rational-support-properties">\begin{aligned}
+ b^0\cdot q^0&amp;=1,\\
+ m\sum_i b_i^0&amp;&lt;n+1,\\
+ b^0\cdot q'&amp;\leq1
+ \quad\text{for every }q'\in C_Z\text{ whenever }q^0\in C_Z.
+ \end{aligned}</md> The first conclusion of Lemma <xref ref="lem-rational-support" text="global"/> shows that <m>q^0</m> belongs to no polytope indexed by a stratum with positive-dimensional image. The equality <m>b^0\cdot q^0=1</m> also gives <m>q^0\ne0</m>.</p>
+    <lemma xml:id="lem-isolation-expanded-divisorial-realization">
+      <statement>
+        <p>There is a prime divisor <m>F_0</m> over <m>X</m> such that its center on <m>X</m> is <m>\{x\}</m>,<md number="no">\begin{aligned}
+ \left(\frac{\ord_{F_0}(D_i)}{\A(F_0)}\right)_{i=1}^{N_m}&amp;=q^0,\\
+ \sum_j\ord_{F_0}(E_j)a_j&amp;=\A(F_0).
+ \end{aligned}</md> The divisor <m>F_0</m> can be retained by its strict transform on every common resolution dominating a model on which it appears.</p>
+      </statement>
+      <proof>
+        <p>Choose an indexed polytope containing <m>q^0</m>. Since its vertices and <m>q^0</m> are rational, the linear system giving a convex representation has a rational solution. Write <m>q^0=\sum_j\theta_jz_j</m> with rational <m>\theta_j\geq0</m> and <m>\sum_j\theta_j=1</m>. The weights <m>\theta_j/a_j</m> are rational. Discard the zero weights and take the component of the remaining intersection containing the chosen stratum. These weights define a monomial test with discrepancy one whose orders on the <m>D_i</m> form the vector <m>q^0</m>.</p>
+        <p>As in <xref ref="sec-preliminaries" text="type-global"/>, clear the denominators of the positive weights and divide the resulting integers by their greatest common divisor. The resulting positive integral weights define a primitive ray in the local toroidal cone. Extracting this ray gives a prime divisor <m>F_0</m>. Its divisorial order is a positive multiple of the monomial test, so division by discrepancy gives the same vector <m>q^0</m>. The monomial discrepancy formula gives the displayed equality with the discrepancy of its retraction to <m>Y</m>.</p>
+        <p>The center on <m>Y</m> of this monomial test has image in <m>X</m> containing <m>x</m>. Its normalized vector belongs to the polytope of its own positive-support stratum. If that image were positive-dimensional, it would give an indexed polytope with positive-dimensional image containing <m>q^0</m>, which has been excluded. Its center on <m>X</m> is therefore <m>\{x\}</m>. Resolution gives a smooth projective model on which the extracted divisor remains a prime divisor. On higher common resolutions, use its strict transform. With <m>Y</m> fixed, the section orders along <m>F_0</m>, its log discrepancy, and the discrepancy of its retraction to <m>Y</m> do not change under this replacement. The equality of discrepancies therefore persists on these models.</p>
+      </proof>
+    </lemma>
+  </section>
+  <section>
+    <title>Equality in the discrepancy bound</title>
+    <shorttitle>The equality divisor</shorttitle>
+    <p>To construct <m>B</m>, let <m>I=\{i:q_i^0&gt;0\}</m>. This set is nonempty. Choose an integer <m>M&gt;0</m> such that <m>M/q_i^0</m> is an integer for every <m>i\in I</m>, and define the coherent ideal<md number="yes" xml:id="eq-isolating-ideal">\mathfrak c=\sum_{i\in I}\cO_X\bigl(-(M/q_i^0)D_i\bigr)
+ \subseteq\cO_X.</md> Since each <m>D_i</m> is effective, every summand is an ideal. For any prime divisor <m>F</m> over <m>X</m>, the order of this sum is the minimum of the orders of its summands. Thus the order of <m>\mathfrak c</m> divided by <m>M</m> is the minimum of the ratios <m>\ord_F(D_i)/q_i^0</m>, for <m>i\in I</m>. At <m>F_0</m>, each ratio equals <m>\A(F_0)</m>. The convex combination in <xref ref="eq-perturbed-boundary" text="global"/> will preserve this equality. Equality in the coefficient bound will require all these ratios to be equal. The positivity of <m>b_i^0</m> for <m>i\notin I</m> will also determine the zero coordinates of the normalized vector.</p>
+    <p>Ampleness of <m>L</m> gives an integer <m>u</m> for which <m>\mathfrak c(uL)</m> is globally generated; see <xref ref="bib-stacks-project" detail="Tag 01Q3, (7)"/>. After fixing <m>u</m>, take a smooth projective resolution <m>\rho:T\to X</m> dominating <m>Y</m>, retaining <m>F_0</m>, and principalizing <m>\mathfrak c</m>. Write <m>\rho=\pi\circ\tau</m>, where <m>\tau:T\to Y</m>, and write<md number="no">\mathfrak c\cO_T=\cO_T(-G).</md> Choose the resolution so that <m>G</m>, all pullbacks of the <m>D_i</m>, and all exceptional divisors have SNC support. Pull back the evaluation map for <m>\mathfrak c(uL)</m> and compose it with the map to <m>\cO_T(u\rho^*L)</m>. Its image is <m>\cO_T(u\rho^*L-G)</m>, so this line bundle is globally generated. Hence <m>u\rho^*L-G</m> is nef.</p>
+    <p>For a rational number <m>0&lt;\eta&lt;1</m>, define<md number="yes" xml:id="eq-perturbed-boundary">B=(1-\eta)\rho^*\left(\sum_i b_i^0D_i\right)+\frac{\eta}{M}G.</md> This is an effective rational divisor with SNC support. Since <m>D_i\sim mL</m>, one has<md number="yes" xml:id="eq-boundary-nef-big">\begin{aligned}
+ (n+1)\rho^*L-B
+ &amp;\equiv
+ \left(n+1-(1-\eta)m\sum_i b_i^0-\frac{\eta u}{M}\right)\rho^*L
+ \\
+ &amp;\hspace{2em}+\frac{\eta}{M}(u\rho^*L-G).
+ 
+\end{aligned}</md> At <m>\eta=0</m>, the coefficient of <m>\rho^*L</m> on the right is <m>n+1-m\sum_i b_i^0&gt;0</m>. Fix <m>\eta</m> rational and sufficiently small that this coefficient remains positive. The pullback <m>\rho^*L</m> is nef and big, while the second summand is nef. It follows that <m>(n+1)\rho^*L-B</m> is nef and big. Here <m>\eta</m> is chosen after <m>\mathfrak c</m> and <m>u</m> have been fixed.</p>
+    <p>For a prime divisor <m>F</m> on <m>T</m>, set <m>a_F=\A(F)</m> and let<md number="no">r_F=\sum_j\ord_F(E_j)a_j.</md> The divisors <m>E_j</m> in this formula are on <m>Y</m>, and their orders along <m>F</m> are computed after pullback by <m>\tau</m>. Lemma <xref ref="lem-retraction" text="global"/> gives <m>0\leq r_F\leq a_F</m>. When <m>r_F&gt;0</m>, the number <m>r_F</m> is the discrepancy of the monomial retraction to <m>Y</m>, before rescaling. The number <m>a_F</m> is always a positive integer.</p>
+    <p>Let <m>S</m> be the reduced sum of the primes in the chosen SNC support satisfying<md number="yes" xml:id="eq-equality-divisor-definition">\begin{aligned}
+ x&amp;\in\rho(F),\\
+ \left(\frac{\ord_F(D_i)}{a_F}\right)_{i=1}^{N_m}&amp;=q^0,\\
+ r_F&amp;=a_F.
+ \end{aligned}</md> The retained divisor <m>F_0</m> satisfies all three conditions by Lemma <xref ref="lem-isolation-expanded-divisorial-realization" text="global"/>. It belongs to the SNC support because <m>q^0\ne0</m>, so at least one <m>D_i</m> has positive order along it. Therefore <m>S\ne0</m>.</p>
+    <lemma xml:id="lem-isolated-equality">
+      <statement>
+        <p>Every component <m>F</m> of <m>S</m> maps to <m>x</m> and has coefficient <m>a_F</m> in <m>B</m>. For any prime divisor <m>F</m> in the chosen SNC support, if <m>F</m> meets <m>S</m> and is not a component of <m>S</m>, its coefficient in <m>B</m> is strictly smaller than its log discrepancy.</p>
+      </statement>
+      <proof>
+        <p>Let <m>F</m> be a component of <m>S</m>. Its retraction to <m>Y</m> is nonzero since <m>r_F=a_F&gt;0</m>. The orders of the <m>D_i</m> are preserved under retraction, and the equality of discrepancies shows that its normalized vector is <m>q^0</m>. The image of its retraction center contains <m>\rho(F)</m> and hence contains <m>x</m>. A positive-dimensional image would give a polytope <xref ref="eq-order-polytopes" text="global"/> of that stratum containing <m>q^0</m>, contrary to its choice. Thus the image of the retraction center is <m>\{x\}</m>, and <m>\rho(F)=\{x\}</m> as well.</p>
+        <p>Principalization and the formula for the order of a sum of ideals give, for every prime <m>F</m> on <m>T</m>,<md number="yes" xml:id="eq-ideal-order-minimum">\frac{\ord_F(G)}{M}=\min_{i\in I}\frac{\ord_F(D_i)}{q_i^0}.</md> If <m>F</m> is a component of <m>S</m>, every ratio on the right is <m>a_F</m>. Moreover,<md number="no">\sum_i b_i^0\ord_F(D_i)=a_F\,b^0\cdot q^0=a_F.</md> Both summands of <xref ref="eq-perturbed-boundary" text="global"/>, before multiplication by <m>1-\eta</m> and <m>\eta</m>, consequently have coefficient <m>a_F</m>. Hence <m>\operatorname{coeff}_F B=a_F</m>.</p>
+        <p>Now let <m>F</m> be any prime divisor in the SNC support meeting a component <m>F_S</m> of <m>S</m>. Choose a closed point in <m>F\cap F_S</m> and let <m>y</m> be its image on <m>Y</m>. Since <m>\rho(F_S)=\{x\}</m>, the point <m>y</m> lies over <m>x</m>. Let <m>Z</m> be the component of the stratum through <m>y</m> obtained from all the <m>E_j</m> passing through <m>y</m>, and let <m>C=C_Z</m>. The image of the closure of <m>Z</m> under <m>\pi</m> contains <m>x</m>, so <m>C</m> belongs to the indexed family <xref ref="eq-order-polytopes" text="global"/>.</p>
+        <p>If <m>\ord_F(E_j)&gt;0</m>, then the closed center of <m>F</m> on <m>Y</m> is contained in <m>E_j</m>. Since this center contains <m>y</m>, the divisor <m>E_j</m> passes through <m>y</m>. The same argument applies to <m>F_S</m>. Whenever <m>r_F&gt;0</m>, the retraction formula therefore expresses<md number="no">\left(\frac{\ord_F(D_i)}{r_F}\right)_i
+ =\sum_j\frac{a_j\ord_F(E_j)}{r_F}\,z_j</md> as a convex combination of vertices of <m>C</m>. For <m>F_S</m>, the discrepancy of its retraction equals <m>a_{F_S}</m> and its normalized vector is <m>q^0</m>. Thus <m>q^0\in C</m>, and the supporting inequality in <xref ref="eq-rational-support-properties" text="global"/> applies on this same polytope.</p>
+        <p>If <m>r_F=0</m>, the retraction formula gives <m>\ord_F(D_i)=0</m> for all <m>i</m>, and <xref ref="eq-ideal-order-minimum" text="global"/> gives <m>\ord_F(G)=0</m>. Therefore <m>\operatorname{coeff}_F B=0&lt;a_F</m>. Suppose now that <m>r_F&gt;0</m>, and let<md number="no">\begin{aligned}
+ q'&amp;=\left(\frac{\ord_F(D_i)}{r_F}\right)_{i=1}^{N_m}\in C,\\
+ \mu&amp;=\min_{i\in I}\frac{q'_i}{q_i^0}.
+ \end{aligned}</md> The positive numbers <m>b_i^0q_i^0</m>, for <m>i\in I</m>, sum to one by <xref ref="eq-rational-support-properties" text="global"/>. Using these numbers as weights for the ratios defining <m>\mu</m> gives<md number="yes" xml:id="eq-rigid-minimum-inequality">\mu\leq\sum_{i\in I}b_i^0q'_i\leq b^0\cdot q'\leq1.</md> The middle inequality uses <m>q'_i\geq0</m> and <m>b_i^0&gt;0</m> for all <m>i</m>. The last is the supporting inequality on <m>C</m>, which contains <m>q^0</m>.</p>
+        <p>The coefficient in the first summand of <xref ref="eq-perturbed-boundary" text="global"/> is <m>(1-\eta)r_F b^0\cdot q'</m>. By <xref ref="eq-ideal-order-minimum" text="global"/>, the coefficient in the second summand is <m>\eta r_F\mu</m>. Hence<md number="yes" xml:id="eq-boundary-discrepancy-ratio">\frac{\operatorname{coeff}_F B}{a_F}
+ =\frac{r_F}{a_F}\bigl((1-\eta)b^0\cdot q'+\eta\mu\bigr)
+ \leq1.</md> All factors here are nonnegative, <m>r_F/a_F\leq1</m>, and both <m>b^0\cdot q'</m> and <m>\mu</m> are at most one.</p>
+        <p>If equality holds in <xref ref="eq-boundary-discrepancy-ratio" text="global"/>, then <m>r_F=a_F</m>. Since <m>0&lt;\eta&lt;1</m>, equality also requires <m>b^0\cdot q'=\mu=1</m>. Every inequality in <xref ref="eq-rigid-minimum-inequality" text="global"/> is then an equality. A weighted average of the ratios <m>q'_i/q_i^0</m>, with every weight <m>b_i^0q_i^0</m> positive, can equal their minimum only if every ratio equals that minimum. Thus <m>q'_i/q_i^0=1</m> for all <m>i\in I</m>. Equality in the middle inequality gives <m>\sum_{i\notin I}b_i^0q'_i=0</m>, so strict positivity of the <m>b_i^0</m> implies <m>q'_i=0</m> for <m>i\notin I</m>. Therefore <m>q'=q^0</m>, including the zero coordinates.</p>
+        <p>The intersection with <m>F_S</m> also gives <m>x\in\rho(F)</m>. Together with <m>r_F=a_F</m> and <m>q'=q^0</m>, this says that <m>F</m> satisfies all conditions in <xref ref="eq-equality-divisor-definition" text="global"/>. Hence <m>F</m> is a component of <m>S</m>. Equality in the coefficient bound therefore occurs only for components of <m>S</m>, proving the required strict inequality for every other component of the chosen SNC divisor that meets <m>S</m>.</p>
+      </proof>
+    </lemma>
+  </section>
+  <section>
+    <title>Application of the local criterion</title>
+    <shorttitle>Final application</shorttitle>
+    <p>Apply Lemma <xref ref="lem-local-generation" text="global"/> to the morphism <m>\rho:T\to X</m> and the divisors <m>B</m> and <m>S</m> just constructed. The morphism is projective and birational, with <m>T</m> smooth. The divisor <m>B</m> is effective and rational with SNC support by <xref ref="eq-perturbed-boundary" text="global"/>, and <m>(n+1)\rho^*L-B</m> is nef and big by <xref ref="eq-boundary-nef-big" text="global"/>. The divisor <m>S</m> is nonempty and reduced by its definition and the presence of <m>F_0</m>. Lemma <xref ref="lem-isolated-equality" text="global"/> shows that every component <m>F</m> of <m>S</m> maps to <m>x</m> and has coefficient <m>a_F</m> in <m>B</m>. It also gives the strict coefficient inequality for every other prime in the chosen SNC support meeting <m>S</m>. For a prime outside that support, the coefficient in <m>B</m> is zero and <m>a_F&gt;0</m>, so the required strict inequality holds there as well. All hypotheses of the local criterion are therefore satisfied.</p>
+    <p>The criterion gives a section <m>s\in H^0(X,P)</m> with <m>s(x)\ne0</m>, contradicting the assumed failure of generation at <m>x</m>. The application also includes <m>n=1</m>: a component of <m>S</m> may be the nonexceptional point <m>x</m> itself, and the coefficient and descent calculations in Lemma <xref ref="lem-local-generation" text="global"/> still apply. Since any failure of global generation occurs at a closed point, this proves Theorem <xref ref="thm-main" text="global"/>.</p>
+  </section>
+  <section>
+    <title>All higher adjoint powers</title>
+    <shorttitle>Higher adjoint powers</shorttitle>
+    <corollary xml:id="cor-all-powers">
+      <statement>
+        <p>Under the hypotheses of Theorem <xref ref="thm-main" text="global"/>, the line bundle <m>K_X+mL</m> is globally generated for every integer <m>m\geq n+1</m>.</p>
+      </statement>
+      <proof>
+        <p>Let <m>r=m-n-1</m>. If <m>r=0</m>, then <m>m=n+1</m> and the conclusion is Theorem <xref ref="thm-main" text="global"/>. If <m>r&gt;0</m>, apply that theorem to the smooth connected variety <m>X\times\mathbb P^r</m> of dimension <m>n+r</m> and the ample line bundle <m>L\boxtimes\cO_{\mathbb P^r}(1)</m>.<fn>An external product is the tensor product of the pullbacks under the two projections.</fn> The canonical bundle of the product is <m>K_X\boxtimes\cO_{\mathbb P^r}(-r-1)</m>, so the adjoint bundle in dimension <m>n+r</m> is<md number="no">(K_X+(n+r+1)L)\boxtimes\cO_{\mathbb P^r}(n)
+   =(K_X+mL)\boxtimes\cO_{\mathbb P^r}(n).</md> This adjoint bundle is globally generated. Fix a point <m>z\in\mathbb P^r</m>. Restriction to <m>X\times\{z\}</m> gives generating sections of <m>K_X+mL</m> tensored with the one-dimensional fiber of <m>\cO_{\mathbb P^r}(n)</m> at <m>z</m>. Choosing a nonzero vector in that fiber identifies the restricted bundle with <m>K_X+mL</m>, so <m>K_X+mL</m> is globally generated.</p>
+      </proof>
+    </corollary>
+  </section>
+</chapter>
