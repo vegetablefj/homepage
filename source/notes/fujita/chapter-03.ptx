@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<chapter xml:id="sec-generation-criterion">
+  <title>A local criterion for adjoint generation</title>
+  <shorttitle>Local generation</shorttitle>
+  <introduction>
+    <p>The final step of the proof is a local criterion for generation of <m>P=K_X+(n+1)L</m> at a closed point <m>x</m>. Its hypotheses compare the coefficients of a rational divisor with log discrepancies, both on a reduced divisor over <m>x</m> and on the other prime divisors meeting it. Global nefness and bigness give vanishing, while the coefficient comparisons give a section on the reduced divisor that can be lifted.</p>
+  </introduction>
+  <section>
+    <title>Vanishing and descent</title>
+    <p>We use Kawamata–Viehweg vanishing, proved in <xref ref="bib-kawamata1982"/> and <xref ref="bib-viehweg1982"/>, in the rounding form of <xref ref="bib-fujinoKV" detail="Theorem 0.1"/>.</p>
+    <theorem xml:id="thm-kv">
+      <title>Kawamata–Viehweg vanishing</title>
+      <statement>
+        <p>Let <m>T</m> be smooth and projective over <m>\C</m>. Let <m>\Delta</m> be an effective rational divisor with simple normal crossing support and coefficients in <m>[0,1)</m>, and let <m>D</m> be an integral divisor. If <m>D-(K_T+\Delta)</m> is nef and big, then<md number="no">H^i(T,\cO_T(D))=0\qquad(i&gt;0).</md></p>
+      </statement>
+    </theorem>
+    <p>To obtain this statement from the rounding form, take <m>Q=D-K_T-\Delta</m>. The support of its fractional part is simple normal crossing and <m>K_T+\ceil{Q}=D</m>. In particular, if <m>M</m> is an integral divisor, <m>B</m> is an effective rational divisor with simple normal crossing support, and <m>M-B</m> is nef and big, then<md number="no">H^i(T,\cO_T(K_T+M-\floor{B}))=0\qquad(i&gt;0).</md> For this application the boundary is <m>\{B\}=B-\floor{B}</m>, and the required nef and big divisor is <m>M-B</m>.</p>
+    <lemma xml:id="lem-descent">
+      <statement>
+        <p>Let <m>\pi:T\to V</m> be a proper birational morphism of smooth varieties, let <m>P_V</m> be a line bundle on <m>V</m>, and let <m>C</m> be an integral divisor on <m>T</m> whose positive part is exceptional over <m>V</m>. A section of <m>\pi^*P_V+C</m> defines a regular section of <m>P_V</m> on <m>V</m>.</p>
+        <p>Suppose that a prime divisor <m>F</m> on <m>T</m> maps to a point <m>x</m>, that the coefficient of <m>C</m> on <m>F</m> is zero, and that the section is nonzero generically on <m>F</m>. Then its descended section is nonzero at <m>x</m>.</p>
+      </statement>
+      <proof>
+        <p>Regard the section as a rational section of <m>P_V</m> in the common function field. On each nonexceptional prime of <m>T</m>, the order of its pullback is at least the negative of the coefficient of <m>C</m>, and this coefficient is nonpositive. Every prime divisor on <m>V</m> has a nonexceptional strict transform on <m>T</m>, so the rational section has no pole along any prime of <m>V</m>. Normality of <m>V</m> extends it from codimension one to a regular section everywhere.</p>
+        <p>At <m>F</m>, the coefficient of <m>C</m> is zero, so nonvanishing at its generic point means that the pullback of the descended section has order zero. A local function vanishing at <m>x</m> has positive order along every prime centered at <m>x</m>. In a local frame of <m>P_V</m> near <m>x</m>, the coefficient of the descended section therefore cannot vanish at <m>x</m>.</p>
+      </proof>
+    </lemma>
+  </section>
+  <section>
+    <title>The local generation criterion</title>
+    <shorttitle>Generation criterion</shorttitle>
+    <p>Fujita's argument in <xref ref="bib-fujita1993" detail="§1(1.5)–(1.6)"/> uses equality on a divisor over <m>x</m> and strict discrepancy inequalities on the components meeting it. Kawamata–Viehweg vanishing lifts a section from that divisor, and a correction whose positive part is exceptional permits descent. The following lemma gives this argument for a possibly reducible reduced divisor <m>S</m>.</p>
+    <lemma xml:id="lem-local-generation">
+      <statement>
+        <p>Let <m>X</m> be a smooth projective variety over <m>\C</m> of dimension <m>n\geq1</m>, let <m>L</m> be an ample line bundle, and let <m>x\in X</m> be a closed point. Let <m>\pi:T\to X</m> be a projective birational morphism with <m>T</m> smooth, and let <m>B</m> be an effective rational divisor with SNC support. For a prime divisor <m>F</m> on <m>T</m>, write<md number="no">a_F=\A(F)=1+\ord_F(K_{T/X}).</md> Assume that <m>(n+1)\pi^*L-B</m> is nef and big. Suppose that <m>S</m> is a nonempty effective reduced divisor on <m>T</m> such that<ol><li><p>every component <m>F</m> of <m>S</m> satisfies <m>\pi(F)=\{x\}</m> and <m>\operatorname{coeff}_F B=a_F</m>;</p></li><li><p>every other prime divisor <m>F</m> on <m>T</m> meeting <m>S</m> satisfies <m>\operatorname{coeff}_F B&lt;a_F</m>.</p></li></ol></p>
+        <p>Then there is a section <m>s\in H^0(X,P)</m> with <m>s(x)\ne0</m>, where <m>P=K_X+(n+1)L</m>.</p>
+      </statement>
+      <proof>
+        <p>Define the integral Cartier divisor<md number="yes" xml:id="eq-final-lifting-divisor">D=K_T+(n+1)\pi^*L-\lfloor B\rfloor.</md> Since the fractional part <m>\{B\}=B-\lfloor B\rfloor</m> is an effective rational SNC divisor with coefficients in <m>[0,1)</m>,<md number="no">D-(K_T+\{B\})=(n+1)\pi^*L-B.</md> The right side is nef and big by hypothesis. Kawamata–Viehweg vanishing in Theorem <xref ref="thm-kv" text="global"/>, equivalently the rounding formulation of <xref ref="bib-fujinoKV" detail="Theorem 0.1"/>, therefore gives <m>H^1(T,\cO_T(D))=0</m>. Since <m>T</m> is smooth, <m>S</m> is Cartier. Its restriction sequence is<md number="no">0\longrightarrow\cO_T(D)\longrightarrow\cO_T(D+S)
+ \longrightarrow\cO_S(D+S)\longrightarrow0.</md> The vanishing gives a surjection<md number="yes" xml:id="eq-final-restriction-surjection">H^0(T,\cO_T(D+S))\longrightarrow H^0(S,\cO_S(D+S)).</md></p>
+        <p>To construct a section on <m>S</m>, compare <m>D+S</m> with the pullback of <m>P</m>:<md number="yes" xml:id="eq-final-correction">C:=D+S-\pi^*P=K_{T/X}-\lfloor B\rfloor+S.</md> Smoothness of <m>X</m> and <m>T</m> implies that every <m>a_F</m> is a positive integer. For a component <m>F</m> of <m>S</m>, the coefficient of <m>K_{T/X}</m> is <m>a_F-1</m>, and the first hypothesis gives <m>\operatorname{coeff}_F B=a_F</m>. Hence<md number="no">\operatorname{coeff}_F C=(a_F-1)-a_F+1=0.</md> For any other prime <m>F</m> meeting <m>S</m>, the second hypothesis gives <m>\lfloor\operatorname{coeff}_F B\rfloor\leq a_F-1</m>. Its coefficient in <m>S</m> is zero, so its coefficient in <m>C</m> is nonnegative. A prime outside <m>\Supp(B)</m> and the exceptional locus of <m>\pi</m> has coefficient zero in <m>C</m>: its coefficient in <m>K_{T/X}</m> is zero, and it cannot be a component of <m>S</m> because every component of <m>S</m> has positive coefficient in <m>B</m>.</p>
+        <p>It follows that <m>C</m> is effective on a neighborhood of <m>S</m> and that no component of <m>S</m> occurs in its support. More explicitly, every negative component of <m>C</m> is disjoint from <m>S</m>. Remove the supports of these finitely many components to obtain an open neighborhood of <m>S</m> on which <m>C</m> is effective. This local effectivity permits restriction of the canonical rational section of <m>\cO_T(C)</m> to <m>S</m>.</p>
+        <p>Every component of <m>S</m> maps to <m>x</m>, and <m>S</m> is reduced. Therefore <m>\pi|_S</m> factors scheme-theoretically through the reduced point <m>x</m>. To check this, take a local function in the maximal ideal of <m>x</m>. Its pullback restricts to zero on each irreducible component of <m>S</m> and hence to zero on <m>S</m>, because the intersection of the minimal prime ideals of a reduced ring is zero. It follows that<md number="no">\pi^*P|_S\simeq P|_x\otimes_{\C}\cO_S.</md> Choose a nonzero vector in the one-dimensional fiber <m>P|_x</m>. Under this isomorphism it gives a constant section of <m>\pi^*P|_S</m>. Multiply that constant section by the restriction to <m>S</m> of the canonical rational section of <m>\cO_T(C)</m>. The canonical section is regular on the neighborhood just constructed and is nonzero at the generic point of each component of <m>S</m>, because the coefficient of <m>C</m> there is zero. The product is a global section of <m>\cO_S(D+S)</m> nonzero at the generic point of every component. This construction uses effectivity of <m>C</m> only near <m>S</m>, since its negative components elsewhere are disjoint from <m>S</m>.</p>
+        <p>Lift this section to <m>\widetilde s\in H^0(T,\cO_T(D+S))</m> using <xref ref="eq-final-restriction-surjection" text="global"/>. View it as a section of <m>\pi^*P+C</m>. On any nonexceptional prime outside <m>S</m>, the coefficient of <m>K_{T/X}</m> is zero, and therefore<md number="no">\operatorname{coeff}_F C=-\lfloor\operatorname{coeff}_F B\rfloor\leq0.</md> On a component of <m>S</m>, the coefficient of <m>C</m> is zero. Thus the positive part of <m>C</m> is exceptional over <m>X</m>. The divisor <m>S</m> is nonempty, and each of its components maps to <m>x</m>, has coefficient zero in <m>C</m>, and has <m>\widetilde s</m> nonzero at its generic point. Lemma <xref ref="lem-descent" text="global"/> gives a regular section <m>s\in H^0(X,P)</m> with <m>s(x)\ne0</m>.</p>
+        <p>The proof includes <m>n=1</m>. A component of <m>S</m> can then be the nonexceptional point <m>x</m> itself. Its coefficient in <m>C</m> is still zero, the restriction sequence is the sequence for this effective Cartier divisor on the smooth curve, and the same descent argument gives <m>s(x)\ne0</m>.</p>
+      </proof>
+    </lemma>
+  </section>
+</chapter>

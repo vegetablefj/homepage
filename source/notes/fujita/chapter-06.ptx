@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8'?>
+<chapter xml:id="fujita-attainment">
+  <title>Flags, fixed bases, and attainment</title>
+  <shorttitle>Attainment</shorttitle>
+  <section>
+    <title>Closed loci on the flag variety</title>
+    <shorttitle>Closed flag loci</shorttitle>
+    <lemma xml:id="lem-min-flags">
+      <statement>
+        <p>Fix <m>m</m> with <m>N_m&gt;0</m> and rational numbers <m>\alpha_1\geq\cdots\geq\alpha_{N_m}\geq0</m>. The set of points <m>z\in X</m> for which an ordered basis <m>\mathbf s</m> and a prime-divisor order <m>v</m> with <m>z\in c_X(v)</m> satisfy<md number="yes" xml:id="eq-min-rational-list">\frac{v(s_i)}{\A(v)}\geq\alpha_i
+ \qquad(1\leq i\leq N_m)</md> is Zariski closed. More precisely, there is a closed incidence locus in <m>X\times\mathcal F</m>, where <m>\mathcal F</m> is the complete flag variety of <m>R_m</m>, recording realization of these inequalities by bases adapted to the given flag.</p>
+      </statement>
+      <proof>
+        <p>A flag is a chain of subspaces <m>U_i\subset R_m</m> with <m>\dim U_i=i</m>. Let <m>\mathfrak b_i</m> be the base ideal of <m>U_i</m>, that is, the image of the evaluation morphism <m>U_i\otimes\cO_X(-mL)\to\cO_X</m>. A basis is adapted to this flag if <m>U_i</m> is spanned by its first <m>i</m> vectors.</p>
+        <p>For a decreasing list <m>\alpha_i</m>, <xref ref="eq-min-rational-list" text="global"/> for an adapted basis is equivalent to<md number="yes" xml:id="eq-min-flag-inequalities">v(\mathfrak b_i)\geq\alpha_i\A(v)
+ \qquad(1\leq i\leq N_m).</md> In one direction, each of the first <m>i</m> vectors has value at least <m>\alpha_i\A(v)</m>, so every element of <m>U_i</m> does. Conversely, the inequality for the base ideal of <m>U_i</m> applies to its basis vector <m>s_i</m>. Thus if the flag inequalities hold, every basis adapted to that flag satisfies the section inequalities.</p>
+        <p>Assume at least one <m>\alpha_i</m> is positive. Choose a positive integer <m>M</m> such that <m>M/\alpha_i</m> is an integer for each positive entry, and form<md number="no">\mathfrak a_\alpha=
+ \sum_{i:\alpha_i&gt;0}\mathfrak b_i^{\,M/\alpha_i}.</md> Since the value of a sum of ideals is the minimum of their values and the value of a power multiplies by its exponent,<md number="no">v(\mathfrak a_\alpha)=
+ \min_{i:\alpha_i&gt;0}\frac M{\alpha_i}v(\mathfrak b_i).</md> Therefore <xref ref="eq-min-flag-inequalities" text="global"/> is equivalent to <m>v(\mathfrak a_\alpha)\geq M\A(v)</m>. There exists a prime-divisor order satisfying these inequalities whose closed center contains <m>z</m> if and only if<md number="yes" xml:id="eq-min-flag-threshold">\lct_z(X,\mathfrak a_\alpha)\leq1/M.</md> The forward implication is the valuative threshold inequality. The reverse implication follows because the local threshold is computed by a prime component on a log resolution, whose image contains <m>z</m>.</p>
+        <p>The universal subbundles on <m>\mathcal F</m> give algebraic families of generators of the <m>\mathfrak b_i</m> on <m>X\times\mathcal F</m>. Taking the indicated powers and sum gives an algebraic family of generators of <m>\mathfrak a_\alpha</m>. Lemma <xref ref="lem-lct-family" text="global"/> shows that the incidence locus defined by <xref ref="eq-min-flag-threshold" text="global"/> is closed. Since the flag variety is projective, projection of this incidence locus to <m>X</m> is closed. If every <m>\alpha_i</m> is zero, the inequalities impose no restriction, and both loci are the whole parameter spaces.</p>
+      </proof>
+    </lemma>
+  </section>
+  <section>
+    <title>Attainment on a fixed resolution</title>
+    <shorttitle>Attainment</shorttitle>
+    <proposition xml:id="prop-minimizers">
+      <statement>
+        <p>Suppose that <m>P</m> is not generated at <m>x</m>. For the constants and ranges of Lemma <xref ref="lem-min-coercivity" text="global"/>, the number <m>\lambda_{m,t}(x)</m> satisfies <xref ref="eq-min-uniform-bounds" text="global"/> and is attained by an ordered basis of <m>R_m</m> and a nonzero real monomial test on a projective log resolution of the divisors of that basis. Every minimizing test satisfies<md number="no">a_-\leq\A(v)\leq a_+.</md> These bounds also hold eventually along every minimizing sequence. The positive lower bounds for <m>\lambda_{m,t}(x)</m> and for the discrepancy are both independent of <m>m\geq m_0</m> and <m>t\in[t_0,n+1]</m>.</p>
+      </statement>
+      <proof>
+        <p>The bounds follow from Lemma <xref ref="lem-min-coercivity" text="global"/>. We prove attainment. Fix <m>m</m> and <m>t</m> in the stated ranges. Take divisorial pairs <m>(v_b,\mathbf s_b)</m> admissible at <m>x</m> whose objective values decrease to <m>\lambda_{m,t}(x)</m>. Eventually these values are at most <m>1-\delta/2</m>, so the discrepancies lie in <m>[a_-,a_+]</m>.</p>
+        <p>Reorder each basis so that its normalized section orders are decreasing. By Lemma <xref ref="lem-min-order-bound" text="global"/>, these values lie in <m>[0,Cm]</m>. After passage to a subsequence, write<md number="no">\begin{aligned}
+ a_b=\A(v_b)&amp;\longrightarrow a\in[a_-,a_+],\\
+ q_{b,i}=\frac{v_b(s_{b,i})}{\A(v_b)}&amp;\longrightarrow q_i.
+ \end{aligned}</md> The limit list is decreasing, and continuity of the finite exponential sum gives<md number="yes" xml:id="eq-min-limit-objective">\lambda_{m,t}(x)=\frac1{N_m}\sum_i
+ \exp\!\left(\frac at-\frac{aq_i}m\right).</md> At least one <m>q_i</m> is positive. Otherwise the right side would be <m>e^{a/t}&gt;1</m>, contrary to <xref ref="eq-min-uniform-bounds" text="global"/>.</p>
+        <p>Choose decreasing nonnegative rational lists <m>\alpha^{(k)}=(\alpha_i^{(k)})</m> that increase componentwise to <m>(q_i)</m>, with <m>\alpha_i^{(k)}&lt;q_i</m> whenever <m>q_i&gt;0</m> and <m>\alpha_i^{(k)}=0</m> when <m>q_i=0</m>. Each fixed list gives inequalities satisfied by all sufficiently late pairs of the sequence. By Lemma <xref ref="lem-min-flags" text="global"/>, the flags whose inequalities are satisfied by a prime-divisor order with closed center containing <m>x</m> form a nonempty closed subset <m>\mathcal F_k\subset\mathcal F</m>. These closed subsets are nested. Projectivity gives a flag in their intersection. Choose a basis <m>s_1,\ldots,s_{N_m}</m> adapted to this one flag. For every <m>k</m>, there is a prime-divisor order satisfying the inequalities for this flag at <m>x</m>, and every adapted basis satisfies the same lower bounds for that order. Thus this fixed basis can be used for all lists.</p>
+        <p>Resolve the divisors of the fixed basis on one smooth projective model <m>Y\to X</m>, including all exceptional divisors in the simple normal crossing support. For each sufficiently large <m>k</m>, choose a prime-divisor order satisfying the list <m>\alpha^{(k)}</m> at <m>x</m> and realize it on a smooth common model dominating <m>Y</m>. Retraction to <m>Y</m> by Lemma <xref ref="lem-retraction" text="global"/> preserves the orders of all <m>s_i</m> and does not increase discrepancy. The closed center of the retracted order on <m>X</m> contains the original closed center. The retraction is nonzero because <m>\alpha^{(k)}</m> has a positive entry. Divide it by its discrepancy to obtain <m>\widetilde v_k</m> with discrepancy one.<fn>Positive rescaling does not change the closed center or the ratios of section orders to discrepancy.</fn> The section orders are preserved and the discrepancy does not increase, so their normalized values do not decrease. Therefore<md number="yes" xml:id="eq-min-retracted-lists">\widetilde v_k(s_i)\geq\alpha_i^{(k)}
+ \qquad(1\leq i\leq N_m).</md></p>
+        <p>There are finitely many strata of the simple normal crossing divisor on <m>Y</m>, and each has finitely many irreducible components. Pass to a subsequence whose retractions are defined at the generic point of the same stratum component. Let <m>J</m> index the coordinate divisors with positive weights. The normalized weights of these retractions lie in the compact simplex<md number="no">\left\{(u_j)_{j\in J}:u_j\geq0,
+ \ \sum_{j\in J}\A(E_j)u_j=1\right\}.</md> All the discrepancy coefficients in this simplex are strictly positive because <m>X</m> is smooth. After passing to a further subsequence, take a limit of the weights. At least one limit weight is positive, because their weighted sum remains one. If some weights become zero, choose the component of the intersection of the divisors with positive limit weights that contains the closure of the stratum used in the subsequence. This component contains the preceding closed center on <m>Y</m>, so its image in <m>X</m> still contains <m>x</m>.</p>
+        <p>These limiting data define a nonzero monomial test <m>\widetilde v</m> with discrepancy one. The pulled-back divisor of each <m>s_i</m> is supported on the fixed simple normal crossing divisor. Its order is therefore a linear function of the weights, also when some weights tend to zero. Passing to the limit in <xref ref="eq-min-retracted-lists" text="global"/> gives <m>\widetilde v(s_i)\geq q_i</m> for each <m>i</m>.</p>
+        <p>Set <m>v=a\widetilde v</m>. Then <xref ref="eq-min-limit-objective" text="global"/> yields<md number="no">\Phi_{m,t}(v,\mathbf s)
+ \leq\frac1{N_m}\sum_i
+ \exp\!\left(\frac at-\frac{aq_i}m\right)
+ =\lambda_{m,t}(x).</md> This pair is admissible at <m>x</m>, so the reverse inequality holds by definition of the infimum. It is a minimizing pair on the chosen projective model. Every minimizing pair, and all sufficiently late pairs in every minimizing sequence, lie in the sublevel set of Lemma <xref ref="lem-min-coercivity" text="global"/>, proving all the discrepancy assertions.</p>
+      </proof>
+    </proposition>
+  </section>
+  <section>
+    <title>Comparison along a subvariety</title>
+    <shorttitle>Specialization</shorttitle>
+    <p>The closed loci in Lemma <xref ref="lem-min-flags" text="global"/> also compare the values of <m>\lambda_{m,t}</m> at a very general point of a possible center and at <m>x</m>. This comparison is used for the tangential variation in <xref first="fujita-restrictions" last="sec-centers" text="type-global"/>.</p>
+    <lemma xml:id="lem-specialization">
+      <statement>
+        <p>Fix <m>m</m> with <m>N_m&gt;0</m>, and let <m>W\subset X</m> be a closed irreducible subvariety containing <m>x</m>. At a very general closed point <m>y\in W</m>, one has simultaneously for every <m>t&gt;0</m><md number="yes" xml:id="eq-min-specialization">\lambda_{m,t}(y)\geq\lambda_{m,t}(x).</md></p>
+      </statement>
+      <proof>
+        <p>There are countably many decreasing nonnegative rational lists of length <m>N_m</m>. For each list, intersect its closed locus from Lemma <xref ref="lem-min-flags" text="global"/> with <m>W</m>. Exclude this intersection if it is a proper closed subset of <m>W</m>. The complement of the excluded subsets contains very general closed points over <m>\C</m>. At any such <m>y</m>, the closed locus for a rational list realized at <m>y</m> must contain all of <m>W</m>. Hence that list is also realized at <m>x</m>.</p>
+        <p>Take any divisorial test <m>v</m> and ordered basis <m>\mathbf s</m> admissible at <m>y</m>. Reorder the basis so that <m>q_i=v(s_i)/\A(v)</m> is decreasing, and let <m>a=\A(v)&gt;0</m>. Approximate <m>(q_i)</m> from below by decreasing nonnegative rational lists <m>\alpha^{(b)}</m>. Each is realized at <m>y</m>, hence at <m>x</m>. For each list, choose a pair at <m>x</m> satisfying its inequalities, and rescale the test to have discrepancy <m>a</m>. The normalized orders of its basis vectors are at least <m>\alpha_i^{(b)}</m>, so<md number="no">\lambda_{m,t}(x)\leq\frac1{N_m}\sum_i
+ \exp\!\left(\frac at-\frac{a\alpha_i^{(b)}}m\right).</md> Letting <m>b</m> tend to infinity gives <m>\lambda_{m,t}(x)\leq\Phi_{m,t}(v,\mathbf s)</m>. Taking the infimum over the divisorial pairs at <m>y</m> proves <xref ref="eq-min-specialization" text="global"/>. The excluded closed subsets were chosen from rational lists alone and do not depend on <m>t</m>, so the same very general <m>y</m> works for all <m>t&gt;0</m>.</p>
+      </proof>
+    </lemma>
+  </section>
+</chapter>
