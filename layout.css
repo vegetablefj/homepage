@@ -16,7 +16,7 @@ html { scrollbar-gutter: stable; }
 @supports not (scrollbar-gutter: stable) {
   html { overflow-y: scroll; }
 }
-body.pretext { padding-top: var(--site-directory-top); box-sizing: border-box; }
+body.pretext { padding-top: var(--site-directory-top); padding-bottom: 0; box-sizing: border-box; }
 #ptx-masthead { position: fixed; top: 0; left: 0; width: 100%; z-index: 101; }
 #ptx-masthead .ptx-banner-heading { color: var(--doc-title-color, #2a5ea4); }
 .note-page #ptx-masthead .title-container { font-size: 24px; }
@@ -41,7 +41,7 @@ body.pretext { padding-top: var(--site-directory-top); box-sizing: border-box; }
 .ptx-main > #ptx-content.ptx-content {
   width: calc(100% - 40px);
   max-width: 860px;
-  padding: 32px 50px 60px;
+  padding: 32px clamp(18px, 4vw, 50px) 60px;
   box-sizing: border-box;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -49,6 +49,7 @@ body.pretext { padding-top: var(--site-directory-top); box-sizing: border-box; }
 #ptx-sidebar.ptx-sidebar {
   position: fixed;
   top: var(--site-directory-top);
+  bottom: auto;
   left: var(--site-sidebar-left);
   width: var(--site-sidebar-width);
   max-width: var(--site-sidebar-width);
@@ -58,6 +59,8 @@ body.pretext { padding-top: var(--site-directory-top); box-sizing: border-box; }
   max-height: calc(100dvh - var(--site-directory-top) - 16px);
   overflow-y: auto;
   height: auto;
+  min-height: 0;
+  box-sizing: border-box;
 }
 #ptx-sidebar #ptx-toc { position: static; height: auto; max-height: none; overflow: visible; }
 #ptx-toc {
@@ -179,7 +182,7 @@ body.pretext { padding-top: var(--site-directory-top); box-sizing: border-box; }
   gap: 8px;
 }
 /* Contents uses exactly the same horizontal geometry as the directory. */
-@media (min-width: 800px) {
+@media (min-width: 801px) {
   #ptx-navbar .ptx-navbar-contents { position: relative; width: 100%; max-width: none; margin: 0; display: block; }
   #ptx-navbar #ptx-toc-toggle {
     position: absolute;
@@ -193,13 +196,19 @@ body.pretext { padding-top: var(--site-directory-top); box-sizing: border-box; }
     font-size: 14px;
   }
 }
-@media (max-width: 799px) {
-  .note-page #ptx-masthead .title-container { font-size: 16px; }
-  .note-page #ptx-masthead .byline { font-size: 14px; }
+@media (max-width: 800px) {
+  #ptx-masthead .title-container { flex: 1; min-width: 0; padding: 0; text-align: left; }
+  #ptx-masthead .title-container .heading { line-height: 1.3; }
+  .site-page #ptx-masthead .title-container { font-size: 24px; }
+  .note-page #ptx-masthead .title-container { font-size: 18px; }
+  .note-page #ptx-masthead .byline { display: block; font-size: 14px; }
   #ptx-navbar #ptx-toc-toggle { position: absolute; left: 12px; width: 44px; min-width: 44px; flex: none; }
+  .site-page #ptx-navbar #ptx-toc-toggle { width: 100px; }
+  .site-page #ptx-navbar #ptx-toc-toggle .name { display: inline; }
   #ptx-navbar .treebuttons > * { flex: none; }
   .note-page #ptx-navbar .ptx-search-box { right: 12px; }
   .note-page #ptx-search-button .name { display: none; }
+  .ptx-main > #ptx-content.ptx-content { width: calc(100% - 20px); padding-top: 24px; padding-bottom: 40px; }
 }
 .site-page #ptx-content li > .para { margin-top: .35em; margin-bottom: .35em; }
 .site-page #ptx-content li { margin-top: .8em; }
@@ -280,7 +289,6 @@ body.pretext { padding-top: var(--site-directory-top); box-sizing: border-box; }
 @media (max-width: 640px) {
   .note-page .bib { grid-template-columns: minmax(0, 1fr); row-gap: .2em; }
   .note-page #ptx-content .summary-links a { font-size: 16px; }
-  .ptx-main > #ptx-content.ptx-content { width: calc(100% - 20px); padding: 24px 18px 40px; }
   .site-page .sbsrow { flex-direction: column; gap: 18px; }
   .site-page .sbspanel { width: 100% !important; }
   .site-page .sbspanel:has(img) { max-width: 200px; }

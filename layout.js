@@ -6,14 +6,23 @@
   const sidebar = document.getElementById("ptx-sidebar");
   const tocToggle = document.getElementById("ptx-toc-toggle");
   const wideScreen = window.matchMedia("(min-width: 1280px)");
+  const setDirectoryVisible = (visible) => {
+    sidebar.classList.toggle("visible", visible);
+    sidebar.classList.toggle("hidden", !visible);
+    tocToggle.setAttribute("aria-expanded", String(visible));
+  };
   const initializeDirectory = () => {
     if (!sidebar || !tocToggle) return;
-    sidebar.classList.toggle("visible", wideScreen.matches);
-    sidebar.classList.toggle("hidden", !wideScreen.matches);
-    tocToggle.setAttribute("aria-expanded", String(wideScreen.matches));
+    setDirectoryVisible(wideScreen.matches);
   };
   wideScreen.addEventListener("change", initializeDirectory);
   initializeDirectory();
+  // Keep outside-click dismissal working after resizing from a desktop layout.
+  window.addEventListener("click", (event) => {
+    if (!sidebar || !tocToggle || wideScreen.matches || !sidebar.classList.contains("visible")) return;
+    const path = event.composedPath();
+    if (!path.includes(sidebar) && !path.includes(tocToggle)) setDirectoryVisible(false);
+  }, { capture: true });
   let scheduled = false;
   const update = () => {
     scheduled = false;

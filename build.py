@@ -362,11 +362,40 @@ def verify(notes):
         raise RuntimeError(json.dumps(report, indent=2))
     print("Built the homepage and independent PreTeXt notes. All local links resolve.")
 
+def check_generated_ignore_rules(generated):
+    """Check publishable paths without requiring them to be staged or tracked."""
+    if not (ROOT / ".git").exists() or shutil.which("git") is None:
+        return {"git_ignore_check": "skipped", "ignored_generated_files": []}
+    try:
+        result = subprocess.run(
+            ["git", "check-ignore", "--no-index", "-z", "--stdin"],
+            input="\0".join(sorted(generated)) + "\0", cwd=ROOT,
+            capture_output=True, text=True, encoding="utf-8",
+        )
+    except FileNotFoundError:
+        return {"git_ignore_check": "skipped", "ignored_generated_files": []}
+    if result.returncode not in (0, 1):
+        raise RuntimeError("Could not check generated files against Git ignore rules: " + result.stderr.strip())
+    ignored = sorted(path for path in result.stdout.split("\0") if path)
+    return {"git_ignore_check": "failed" if ignored else "passed", "ignored_generated_files": ignored}
+
+
 def publish_to_root():
     """Synchronize generated files, preserving user files and repository data."""
     manifest_path = ROOT / ".site-files.json"
     previous = set(json.loads(manifest_path.read_text(encoding="utf-8"))) if manifest_path.exists() else set()
     generated = {path.relative_to(OUT).as_posix() for path in OUT.rglob("*") if path.is_file()}
+    publishing = check_generated_ignore_rules(generated)
+    report_path = REPORTS / "build-check.json"
+    report = json.loads(report_path.read_text(encoding="utf-8")) if report_path.exists() else {}
+    report["publishing"] = publishing
+    REPORTS.mkdir(parents=True, exist_ok=True)
+    report_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
+    if publishing["ignored_generated_files"]:
+        raise RuntimeError(
+            "Generated website files are excluded by Git ignore rules. Update .gitignore before publishing:\n"
+            + "\n".join(publishing["ignored_generated_files"])
+        )
     protected = {".git", ".venv", ".build", "source", "publication", "xsl", "tools", "cv", "images"}
     protected_files = {"CNAME", ".nojekyll", ".gitignore", ".site-files.json", "README.md", "README_cn.md", "NOTES.md", "NOTES_cn.md", "project.ptx", "build.py", "requirements.txt", "Rebuild.ps1", "Start-preview.ps1"}
 
