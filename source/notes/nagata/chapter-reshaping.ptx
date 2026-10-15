@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="nagata-reshaping">
+  <title>Changing two simplex intercepts</title>
+  <introduction>
+  <p>Let <m>k</m> be algebraically closed. The construction in this chapter replaces two intercepts <m>A,B</m> by <m>w,AB/w</m>, for every sufficiently small prescribed <m>w&gt;0</m>. It preserves the number of exponents in each degree and addition between degrees. Separation of jets by the resulting monomials implies separation by the original monomials. We use <xref ref="bib-openai-positive" detail="Section 4"/>, whose formal argument also proves the corresponding step of <xref ref="bib-openai-higher" detail="Proposition 4.1"/>.</p>
+  <p>Fix <m>A,B&gt;0</m>, and let <m>H=AB</m> and <m>\delta=\max\{3/A,2/B\}</m>. Define <m>W=\delta H=\max\{2A,3B\}</m> and <m>c=1/\delta</m>. Then <m>cW=H</m>, and
+    <md number="no">T=\delta^2H=\max\{9B/A,4A/B\}\geq6.</md>
+  </p>
+  </introduction>
+  <section>
+    <title>The two branches of a node</title>
+    <p>For <m>t&gt;0</m>, compare pairs <m>(\alpha,\beta)\in\Z_{\geq0}^2</m> by the lexicographic order of <m>(\alpha+t\beta,\beta)</m>. This is a monomial well-order because only finitely many nonnegative integral pairs have bounded first weight. Denote the least exponent in this order by <m>\nu_t</m>.</p>
+    <lemma xml:id="lem-nodal-support">
+      <statement>
+        <p>There are formal coordinates <m>\xi,\eta</m> at the origin of <m>\mathbb A_k^2</m> such that
+          <md number="no">y^2+xy-x^3=\xi\eta.</md>
+          For <m>t&gt;0</m>, let <m>a=Wt/(1+t)</m> and <m>b=W/(1+t)</m>, and let
+          <md number="no">Q=\operatorname{conv}\{(0,0),(a,0),(c,c),(0,b)\}.</md>
+          If <m>\kappa\geq0</m> and a nonzero polynomial <m>f\in k[x,y]</m> has all its exponents in <m>\kappa\Delta(A,B)</m>, then its expansion in these coordinates satisfies <m>\nu_t(f)\in\kappa Q</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>Let <m>g=y^2+xy-x^3</m>. The parametrization
+          <md number="no">(x,y)=\bigl(v(v+1),v^2(v+1)\bigr)</md>
+          identifies the part of <m>g=0</m> where <m>x\ne0</m> with <m>\operatorname{Spec}k[v,1/(v(v+1))]</m>. Its inverse is <m>v=y/x</m>. A polynomial vanishes under this parametrization precisely when it is divisible by <m>g</m>: after inverting <m>x</m>, its class is zero in the displayed coordinate ring, and <m>g</m> is relatively prime to <m>x</m> in <m>k[x,y]</m>.
+        </p>
+        <p xml:id="anchor-characteristic-two-node">The polynomial <m>Z^2+Z-x</m> has distinct simple roots <m>0,-1</m> modulo <m>x</m>. Hensel lifting gives roots <m>r_1,r_2\in k[[x]]</m> with these constant terms. Define <m>\eta=y-xr_1(x)</m> and <m>\xi=y-xr_2(x)</m>.
+          Their linear terms are <m>y</m> and <m>y+x</m>, so <m>\xi,\eta</m> are formal coordinates and <m>g=\xi\eta</m>. At <m>v=0</m>, uniqueness of the lifted root gives <m>r_1(x(v))=v</m>. Thus this branch is <m>\eta=0</m>, and <m>\xi</m> has order one in <m>v</m>. At <m>v=-1</m>, the branch is <m>\xi=0</m>, and <m>\eta</m> has order one in <m>v+1</m>. The roots and the linear terms remain distinct in characteristic two.
+        </p>
+      <aside xml:id="margin-characteristic-two-node"><p>In characteristic two the tangent cone is <m>y(y+x)</m>, with two distinct linear factors. The roots <m>0</m> and <m>1</m> of the auxiliary equation are simple, so they lift to two formal branches. This preserves the two branch orders used in the degree estimate.</p></aside>
+        <p>Factor <m>f=g^ef_0</m>, where <m>e\geq0</m> and <m>g\nmid f_0</m>. Give <m>x,y</m> the weights <m>1/A,1/B</m>, and let <m>\deg_{A,B}</m> be the maximum weight of a polynomial's monomials. The highest weight forms of two nonzero polynomials have nonzero product, so this degree is additive on products. Since <m>1/A+1/B\leq\delta</m> and the monomials <m>x^3,y^2</m> occur in <m>g</m>, its degree is <m>\delta</m>. Therefore
+          <md number="no">\deg_{A,B}(f_0)=\deg_{A,B}(f)-e\deg_{A,B}(g)\leq\kappa-e\delta.</md>
+          In particular, <m>e\delta\leq\kappa</m>.
+          The polynomial
+          <md number="no">F_0(v)=f_0\bigl(v(v+1),v^2(v+1)\bigr)</md>
+          is nonzero, and
+          <md number="no">\deg F_0\leq W(\kappa-e\delta).</md>
+          The last inequality follows from <m>2i+3j\leq W(i/A+j/B)</m> for each monomial <m>x^iy^j</m> in <m>f_0</m>.
+        </p>
+        <p>Let <m>\nu_t(f_0)=(\alpha,\beta)</m> and <m>\mu=\alpha+t\beta</m>. Every term in the expansion has weight at least <m>\mu</m>. Restriction to <m>\eta=0</m> has order at least <m>\mu</m>, and restriction to <m>\xi=0</m> has order at least <m>\mu/t</m>. These restrictions are nonzero because they are the expansions of the nonzero polynomial <m>F_0</m> at two distinct points. Therefore
+          <md number="no">(1+1/t)\mu\leq\operatorname{ord}_{v=0}F_0+\operatorname{ord}_{v=-1}F_0\leq\deg F_0\leq W(\kappa-e\delta).</md>
+          Equivalently, <m>(\alpha,\beta)\in(\kappa-e\delta)\Delta(a,b)</m>. Multiplicativity of least exponents gives
+          <md number="no">\nu_t(f)=(e,e)+\nu_t(f_0)=e\delta(c,c)+\nu_t(f_0)\in\kappa Q.</md>
+          If <m>\kappa=0</m>, the polynomial is constant and its least exponent is zero.
+        </p>
+      </proof>
+    </lemma>
+    <p>Choose <m>t&gt;T</m>. Then <m>a+b=W</m> and
+      <md number="no">\frac ca+\frac cb=\frac{(1+t)^2}{Tt}&gt;1.</md>
+      Thus <m>Q</m> is a quadrilateral with the vertices in the order of <xref ref="lem-nodal-support"/>. Its area is <m>c(a+b)/2=H/2</m>. By <xref ref="lem-surface-diagonal-slices"/>, the shear <m>(\alpha,\beta)\mapsto(\alpha-\beta,\beta)</m> followed by compression in the second coordinate gives the triangular bound
+      <md number="no">P=\operatorname{conv}\{(-b,0),(a,0),(0,c)\}.</md>
+      Its area is also <m>H/2</m>.
+    </p>
+  </section>
+  <section>
+    <title>A primitive lattice direction</title>
+    <lemma xml:id="lem-primitive-height">
+      <statement>
+        <p>If <m>w&gt;0</m> and <m>\delta w&lt;1/16</m>, there are <m>t&gt;T</m> and a primitive vector <m>u=(i,j)\in\Z^2</m> such that the values of <m>z\mapsto\det(u,z)</m> at the three vertices of <m>P</m> are distinct and their range has length <m>H/w</m>.</p>
+      </statement>
+      <proof>
+        <p>Let <m>R=H/w</m> and <m>a_0=WT/(1+T)</m>. As <m>t</m> varies over <m>(T,\infty)</m>, the value <m>a=Wt/(1+t)</m> varies over <m>(a_0,W)</m>. For <m>u=(i,j)</m>, the three heights are <m>jb,-ja,i/\delta</m>. We choose <m>j&gt;0</m> with <m>jW\leq R/2</m>, and then choose <m>i</m> coprime to <m>j</m> and <m>a\in(a_0,W)</m> so that
+          <md number="no">ja+i/\delta=R.</md>
+          This equality implies <m>i/\delta-jb=R-jW&gt;0</m>.
+        </p>
+        <p>Let <m>j</m> be the largest power of two at most <m>R/(2W)=1/(2\delta w)</m>. Then
+          <md number="no">j&gt;\frac1{4\delta w}&gt;4.</md>
+          The open interval
+          <md number="no">\bigl(\delta(R-jW),\,\delta(R-ja_0)\bigr)</md>
+          has length <m>\delta j(W-a_0)=jT/(1+T)&gt;2</m>. Choose an odd integer <m>i</m> in this interval. Since <m>j</m> is a power of two, <m>(i,j)</m> is primitive. The number <m>a=(R-i/\delta)/j</m> lies in <m>(a_0,W)</m> and determines a unique <m>t&gt;T</m>. The heights satisfy
+          <md number="no">-ja&lt;jb&lt;i/\delta,</md>
+          because <m>i/\delta-jb=R-jW\geq R/2</m>. Their range is <m>i/\delta+ja=R</m>.
+        </p>
+      </proof>
+    </lemma>
+  </section>
+  <section>
+    <title>The resulting simplex</title>
+    <proposition xml:id="prop-two-intercepts">
+      <statement>
+        <p>Let <m>n\geq2</m>, let <m>A,B,a_3,\ldots,a_n&gt;0</m>, and let <m>(S_N)_{N\geq1}</m> be a graded family of finite subsets of <m>\Z^n</m> with
+          <md number="no">S_N\subset N\Delta(A,B,a_3,\ldots,a_n).</md>
+          Let <m>\delta=\max\{3/A,2/B\}</m>. For every <m>w&gt;0</m> satisfying <m>\delta w&lt;1/16</m>, there is a graded family <m>(S'_N)_{N\geq1}</m> such that
+          <md number="no">S'_N\subset N\Delta(w,AB/w,a_3,\ldots,a_n).</md>
+          Moreover, <m>\#S'_N=\#S_N</m> in every degree.
+          For every <m>N,r\geq1</m> and <m>\ell\geq0</m>, separation of jets through degree <m>\ell</m> by <m>\mathcal M(S'_N)</m> at some <m>r</m> distinct points of <m>\mathbb T_k^n</m> implies separation of the same jets by <m>\mathcal M(S_N)</m> at some <m>r</m> distinct torus points. For <m>n=2</m>, the lists of further intercepts are empty.</p>
+      </statement>
+      <proof>
+        <p>Use the constants <m>H,W,c,T</m> defined at the beginning of the chapter, and choose <m>t,u</m> by <xref ref="lem-primitive-height"/>. These choices and the formal coordinates of <xref ref="lem-nodal-support"/> are fixed in every degree. For a degree <m>N</m> and a label <m>\gamma=(\gamma_3,\ldots,\gamma_n)</m> occurring in <m>S_N</m>, let
+          <md number="no">\kappa=N-\sum_{h=3}^n\gamma_h/a_h\geq0.</md>
+          The pair exponents with label <m>\gamma</m> lie in <m>\kappa\Delta(A,B)</m>. Take their polynomial span in <m>k[x,y]</m>, expand in <m>\xi,\eta</m>, and replace the row by its possible least exponents for <m>\nu_t</m>, retaining <m>\gamma</m>.
+        </p>
+        <p xml:id="anchor-labelled-products">The labelled-space assertion of <xref ref="lem-jets-least"/> preserves the cardinality in each degree and the graded property: products of row spaces belong to the summed degree and label, and least exponents add. For a fixed degree, choose bases with distinct least exponents in all the finitely many rows. By <xref ref="lem-jets-weights"/>, one positive integral weight vector exposes all their least terms. Then <xref ref="lem-jets-formal"/> transfers separation from the least monomials to the polynomial row spaces simultaneously, including all label variables. The polynomial functions can be evaluated at points in the dense open torus of <m>\mathbb A_k^2\times\mathbb T_k^{n-2}</m>, so this is the required implication for the original monomial space. The exposing weights can depend on <m>N</m>; the formal coordinates and the order defining the graded family do not.
+        </p>
+      <aside xml:id="margin-labelled-products"><p>A label is the exponent of a monomial in the other coordinates. Multiplying two row spaces adds both labels and section degrees. Applying the same least-exponent order to every row therefore preserves multiplication, even though bases are chosen separately in each degree.</p></aside>
+        <p>By <xref ref="lem-nodal-support"/>, the pair exponents of each new row lie in <m>\kappa Q</m>. Apply the shear described above, followed by compression in the second coordinate. The slice-length formulas give the bound <m>\kappa P</m>. By <xref ref="lem-jets-unimodular"/> and <xref ref="lem-jets-compression"/>, both operations preserve cardinality, gradedness, and the implication for jet separation.
+        </p>
+        <p>Complete the primitive vector <m>u</m> to a basis <m>(u,v)</m> of <m>\Z^2</m> with <m>\det(u,v)=1</m>, and use the coordinates in this basis. Its second coordinate is <m>z\mapsto\det(u,z)</m>. Write <m>q_0&lt;q_1&lt;q_2</m> for the three vertex heights of the transformed triangle. Its horizontal slice length is linear from zero at <m>q_0</m> to a maximum at <m>q_1</m>, and linear back to zero at <m>q_2</m>. Since its area is <m>H/2</m> and <m>q_2-q_0=R=H/w</m>, the maximum slice length is <m>w</m>.
+        </p>
+        <p>Compression in the first coordinate gives the triangular bound
+          <md number="no">\operatorname{conv}\{(0,q_0),(w,q_1),(0,q_2)\}.</md>
+          At first coordinate <m>h\in[0,w]</m>, its vertical slice has length <m>R(1-h/w)</m>. Compression in the second coordinate therefore gives <m>\Delta(w,R)</m>. The lattice changes and all three compressions commute with multiplication of the bounding polygons by <m>\kappa</m>, so each label has the bound <m>\kappa\Delta(w,R)</m>. If <m>\kappa=0</m>, the only possible pair exponent is zero, and each operation sends it to zero.
+        </p>
+        <p>Restoring the labels gives
+          <md number="no">S'_N\subset N\Delta(w,R,a_3,\ldots,a_n).</md>
+          Every operation preserves cardinality and addition between degrees and transfers separation to the preceding space, which proves the assertion.
+        </p>
+      </proof>
+    </proposition>
+  </section>
+</chapter>

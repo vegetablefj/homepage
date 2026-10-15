@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="nagata-interpolation">
+  <title>Interpolation and completion</title>
+  <introduction><p>The row interpolation and polygon estimates are those of <xref ref="bib-openai-plane" detail="Section 5"/>. Their degree bounds depend on the distribution of row sizes, rather than only on the total number of exponents.</p></introduction>
+  <section>
+    <title>Interpolation by rows</title>
+    <p>For the exponent set <m>S\subset\Z^2</m>, let <m>N_K=\#\{j:(j,K)\in S\}</m>. The rows of <m>B_0</m> are evaluations on <m>S</m> of the monomials spanning<md number="no">\mathcal P_{q,m}=\operatorname{span}_{\C}\{K^\ell J^b:0\leq b&lt;m,\ 0\leq\ell&lt;q(m-b)\}.</md>Thus <m>B_0</m> has full column rank exactly when these polynomials interpolate arbitrary values on <m>S</m>.</p>
+    <lemma xml:id="nagata-row-interpolation">
+      <statement><p>Let <m>S\subset\C^2</m> be finite, with coordinates <m>(j,K)</m>. Suppose every represented row has <m>N_K\leq m</m> and, for each integer <m>1\leq t\leq m</m>,<md number="no">\#\{K:N_K\geq t\}\leq q(m-t+1).</md>Then the restrictions of <m>\mathcal P_{q,m}</m> give every function <m>S\to\C</m>.</p></statement>
+      <proof>
+        <p>Order the represented heights as <m>K_1,\ldots,K_s</m> so that their row sizes <m>N_i</m> are nonincreasing. The first <m>i</m> rows have size at least <m>N_i</m>, whence <m>i\leq q(m-N_i+1)</m>. Suppose values on the first <m>i-1</m> rows have been matched. Put <m>Q_i(K)=\prod_{a&lt;i}(K-K_a)</m>. Since <m>Q_i(K_i)\ne0</m> and the <m>j</m>-coordinates in row <m>i</m> are distinct, a polynomial <m>p_i(J)</m> of degree at most <m>N_i-1</m> can supply the required correction on this row. The polynomial <m>Q_i(K)p_i(J)</m> vanishes on preceding rows.</p>
+        <p>Every monomial in this correction has <m>b\leq N_i-1&lt;m</m> and <m>\ell\leq i-1&lt;q(m-N_i+1)\leq q(m-b)</m>. Therefore the correction lies in <m>\mathcal P_{q,m}</m>. Repeating this step interpolates the prescribed function.</p>
+      </proof>
+    </lemma>
+  </section>
+  <section>
+    <title>The polygon containing the exponents</title>
+    <p>Recall <m>a=3(\sqrt r-3)</m>, <m>h=m\rho</m>, and <m>q=2a+a^2/9</m>. Let <m>U_0=h(a-\Delta)/9+ma</m> and use normalized coordinates <m>X=j/m</m> and <m>Y=(K-U_0)/m</m>. The endpoint formulas for <m>S</m> in <xref ref="nagata-collision"/> imply<md number="no">\begin{aligned}
+0&amp;\leq X\leq1+\rho/9,\\
+-aX+\Delta(X-1)_+&amp;\leq Y\leq-aX+\rho+(\Delta-9)(X-1)_+,
+\end{aligned}</md>where <m>t_+=\max\{t,0\}</m>. For <m>j\leq m</m>, these inequalities are the interval <m>U_0-aj&lt;K&lt;U_0-aj+h</m>. For <m>j&gt;m</m>, they follow by substituting <m>n_j=h-9(j-m)</m> in the lower endpoint <m>n_j(a-\Delta)/9</m> and its upper endpoint. The possible degree-zero block lies at the common endpoint of the two bounds.</p>
+    <p>Choose <m>\lambda\in(0,1)</m> sufficiently close to one that<md number="no">\rho+\frac{\Delta\rho}{9}&lt;\lambda a-9(1-\lambda).</md>This is possible because <m>\rho+\Delta\rho/9&lt;a</m>. Define<md number="no">D_\lambda=\{(X,Y):X\geq0,\ -aX\leq Y\leq-aX+\lambda a-9(X-\lambda)_+\}.</md>The preceding bounds give<md number="no">S\subseteq mD_\lambda+(0,U_0).</md>Indeed, their lower bound is at least <m>-aX</m>. If <m>X\leq1</m>, the displayed condition on <m>\lambda</m> makes the upper boundary of <m>D_\lambda</m> exceed <m>-aX+\rho</m>. If <m>1\leq X\leq1+\rho/9</m>, subtracting <m>-aX-9(X-1)</m> from both upper bounds reduces the comparison to <m>\rho+\Delta(X-1)\leq\rho+\Delta\rho/9&lt;\lambda a-9(1-\lambda)</m>.</p>
+    <p>The polygon satisfies <m>D_\lambda=\lambda D_1</m>. Its unscaled form has vertices <m>(0,0)</m>, <m>(0,a)</m>, <m>(1,0)</m>, and <m>(1+a/9,-a(1+a/9))</m>. Directly solving its two boundary equations shows that the length of its horizontal slice at height <m>Y</m> is<md number="no">w(Y)=\begin{cases}
+1-Y/a,&amp;0\leq Y\leq a,\\
+1+Y/[a(1+a/9)],&amp;-a(1+a/9)\leq Y\leq0.
+\end{cases}</md>The maximum slice length is one. After scaling by <m>m\lambda</m> and translating by <m>U_0</m>, the heights of nonempty slices of length at least <m>s</m>, for <m>0\leq s\leq m\lambda</m>, form an interval of length<md number="no">q(m\lambda-s).</md>The identity <m>q=2a+a^2/9</m> is exactly the sum of the two slopes in this length calculation.</p>
+  </section>
+  <section>
+    <title>The integer row bounds</title>
+    <lemma xml:id="nagata-row-count">
+      <statement><p>If <m>q(1-\lambda)m\geq1</m>, then the exponent set <m>S</m> satisfies the hypotheses of <xref ref="nagata-row-interpolation"/>.</p></statement>
+      <proof>
+        <p xml:id="anchor-integer-error">Each horizontal slice of <m>mD_\lambda+(0,U_0)</m> has length at most <m>m\lambda&lt;m</m>. The integer <m>j</m>-positions in a row therefore number at most <m>m</m>. A row containing at least <m>t</m> positions requires a nonempty slice of length at least <m>t-1</m>. If <m>t-1&gt;m\lambda</m>, there are no such rows. Otherwise their integer heights lie in an interval of length <m>q(m\lambda-t+1)</m>. An interval of length <m>L</m> contains at most <m>L+1</m> integers. Thus<md number="no">\#\{K:N_K\geq t\}\leq q(m\lambda-t+1)+1\leq q(m-t+1),</md>where the last inequality is precisely <m>q(1-\lambda)m\geq1</m>.</p>
+      <aside xml:id="margin-integer-error"><p>Passing from an interval length to its number of integer heights adds at most one. The strict inequality <m>\lambda&lt;1</m> leaves a gap of size <m>q(1-\lambda)m</m>. Taking a common power increases this gap without changing <m>r</m> or <m>d/m</m>.</p></aside>
+      </proof>
+    </lemma>
+    <p>Under this size condition, <xref ref="nagata-row-count"/> and <xref ref="nagata-row-interpolation"/> show that <m>B_0</m> has full column rank. By <xref ref="nagata-collision"/>, <m>J_\tau</m> is then injective for all sufficiently small <m>\tau&gt;0</m>.</p>
+  </section>
+  <section>
+    <title>Completion</title>
+    <proposition xml:id="nagata-exclusion">
+      <statement><p>For every <m>r\geq10</m>, no universal system <m>\mathsf U_r(d,m)</m> exists with positive integers <m>d,m</m> satisfying <m>d/m\leq\sqrt r</m>.</p></statement>
+      <proof>
+        <p>If <m>r</m> is a square, <xref ref="nagata-square"/> gives the result. Otherwise, <m>d/m&lt;\sqrt r</m> because <m>d/m</m> is rational. By <xref ref="nagata-cubic-bound"/>, also <m>d/m&gt;3</m>. Choose <m>\Delta</m> and <m>\lambda</m> as above. The implication <m>\mathsf U_r(d,m)\Rightarrow\mathsf U_r(Nd,Nm)</m> in <xref ref="nagata-universal"/> permits a common multiple large enough that <m>q(1-\lambda)Nm\geq1</m>. Taking this multiple does not change the ratio or the choices of <m>\rho</m>, <m>\Delta</m>, and <m>\lambda</m>. Apply the construction to this pair.</p>
+        <p>For every fixed <m>\tau</m>, <xref ref="nagata-collision-kernel"/> gives <m>\ker J_\tau\ne0</m>. The row count and interpolation give full column rank of <m>B_0</m>, so <m>J_\tau</m> is injective for all sufficiently small positive <m>\tau</m>. This contradiction excludes the universal system.</p>
+      </proof>
+    </proposition>
+    <p>By <xref ref="nagata-universal"/>, <xref ref="nagata-exclusion"/> proves <xref ref="nagata-main"/> simultaneously for all degrees and all vectors of nonnegative multiplicities. The argument concerns every nonzero form, including those defining reducible or nonreduced curves.</p>
+  </section>
+  <section xml:id="nagata-consequence">
+    <title>The plane Seshadri constant</title>
+    <p>Let <m>X</m> be the blowup at a tuple covered by <xref ref="nagata-main"/>, with <m>H</m> the pullback of a line and <m>E_i</m> the exceptional curves. The class <m>N_r=\sqrt r H-\sum_iE_i</m> has square zero. It intersects each exceptional curve in one and the strict transform of any plane curve <m>C</m> in <m>\sqrt r\deg C-\sum_i\mult_{p_i}C&gt;0</m>. Hence it is strictly nef. Dividing by <m>\sqrt r</m> gives the lower bound <m>1/\sqrt r</m> for the Seshadri constant, and <xref ref="lem-jets-volume"/> gives the matching upper bound. Thus<md number="no">\varepsilon(\Pp^2,\cO_{\Pp^2}(1);p_1,\ldots,p_r)=\frac1{\sqrt r}.</md>This is <xref ref="bib-openai-plane" detail="Corollary 6.2"/>.</p>
+  </section>
+  <section>
+    <title>The plane inequality over other fields</title>
+    <corollary xml:id="nagata-plane-fields">
+      <statement><p>Let <m>k</m> be an uncountable algebraically closed field of characteristic zero. For every <m>r\geq10</m>, the strict inequality of <xref ref="nagata-main"/> holds outside a countable union of proper closed subsets of <m>U_r(\Pp_k^2)</m>, with nonempty complement.</p></statement>
+      <proof><p>The incidence loci in <xref ref="nagata-universal"/> are defined over <m>\mathbb Q</m> by minors of the matrices of Taylor coefficients. Whenever <m>d\sqrt r\leq\sum_i m_i</m>, the corresponding locus is proper over <m>\C</m> by <xref ref="nagata-main"/>. A nonzero rational defining minor remains nonzero under field extension, so the locus is proper over <m>k</m>. Exclude these loci for the countably many violating pairs <m>(d,\mathbf m)</m>. Because <m>k</m> is uncountable, it contains <m>2r</m> elements algebraically independent over <m>\mathbb Q</m>: at each successive choice the algebraic closure of the field generated by the preceding elements is countable. Using them as affine coordinates gives a tuple avoiding every excluded locus and every diagonal. This proves <xref ref="bib-openai-plane" detail="Corollary 6.1"/>.</p></proof>
+    </corollary>
+  </section>
+</chapter>

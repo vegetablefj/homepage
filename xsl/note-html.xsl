@@ -5,19 +5,85 @@
   <xsl:template match="*" mode="primary-navigation-other-controls"/>
   <xsl:template name="readability-options"/>
   <xsl:template name="runestone-header"/>
-  <!-- Keep author metadata for the banner and PDF without a separate HTML cover. -->
-  <xsl:template match="frontmatter" mode="chunking"/>
-  <xsl:template match="frontmatter" mode="summary-nav"/>
-  <xsl:template match="frontmatter" mode="toc-item"/>
-  <xsl:template match="frontmatter" mode="search-page-docs"/>
+  <!-- Keep title-page metadata, but present prefaces without an HTML cover. -->
+  <xsl:variable name="note-frontmatter-divisions" select="$document-root/frontmatter/*[self::colophon or self::biography or self::dedication or self::acknowledgement or self::preface or self::contributors]"/>
+  <xsl:template match="frontmatter" mode="chunking">
+    <xsl:apply-templates select="$note-frontmatter-divisions" mode="chunking"/>
+  </xsl:template>
+  <xsl:template match="frontmatter" mode="summary-nav">
+    <xsl:apply-templates select="$note-frontmatter-divisions" mode="summary-nav"/>
+  </xsl:template>
+  <xsl:template match="frontmatter" mode="toc-item">
+    <xsl:apply-templates select="$note-frontmatter-divisions" mode="toc-item"/>
+  </xsl:template>
+  <xsl:template match="frontmatter" mode="toc-item-list">
+    <xsl:apply-templates select="$note-frontmatter-divisions" mode="toc-item-list"/>
+  </xsl:template>
+  <xsl:template match="frontmatter" mode="search-page-docs">
+    <xsl:apply-templates select="$note-frontmatter-divisions" mode="search-page-docs"/>
+  </xsl:template>
+  <xsl:template match="frontmatter" mode="url">
+    <xsl:choose>
+      <xsl:when test="$note-frontmatter-divisions">
+        <xsl:apply-templates select="$note-frontmatter-divisions[1]" mode="url"/>
+      </xsl:when>
+      <xsl:otherwise><xsl:apply-templates select=".." mode="url"/></xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+  <xsl:template match="frontmatter/colophon | frontmatter/biography | frontmatter/dedication | frontmatter/acknowledgement | frontmatter/preface | frontmatter/contributors" mode="previous-linear-url">
+    <xsl:choose>
+      <xsl:when test="count(. | $note-frontmatter-divisions[1]) = 1">
+        <xsl:apply-templates select="../.." mode="url"/>
+      </xsl:when>
+      <xsl:otherwise><xsl:apply-imports/></xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+  <xsl:template match="frontmatter/colophon | frontmatter/biography | frontmatter/dedication | frontmatter/acknowledgement | frontmatter/preface | frontmatter/contributors" mode="up-url">
+    <xsl:apply-templates select="../.." mode="url"/>
+  </xsl:template>
+  <!-- A bibliography alone does not need an intervening Back Matter page. -->
+  <xsl:template match="backmatter[references and not(appendix or solutions or glossary or index or colophon)]" mode="chunking">
+    <xsl:apply-templates select="references" mode="chunking"/>
+  </xsl:template>
+  <xsl:template match="backmatter[references and not(appendix or solutions or glossary or index or colophon)]" mode="summary-nav">
+    <xsl:apply-templates select="references" mode="summary-nav"/>
+  </xsl:template>
+  <xsl:template match="backmatter[references and not(appendix or solutions or glossary or index or colophon)]" mode="toc-item">
+    <xsl:apply-templates select="references" mode="toc-item"/>
+  </xsl:template>
+  <xsl:template match="backmatter[references and not(appendix or solutions or glossary or index or colophon)]" mode="toc-item-list">
+    <xsl:apply-templates select="references" mode="toc-item-list"/>
+  </xsl:template>
+  <xsl:template match="backmatter[references and not(appendix or solutions or glossary or index or colophon)]" mode="search-page-docs">
+    <xsl:apply-templates select="references" mode="search-page-docs"/>
+  </xsl:template>
+  <xsl:template match="backmatter[references and not(appendix or solutions or glossary or index or colophon)]" mode="url">
+    <xsl:apply-templates select="references" mode="url"/>
+  </xsl:template>
+  <xsl:template match="backmatter[references and not(appendix or solutions or glossary or index or colophon)]/references" mode="previous-linear-url">
+    <xsl:apply-templates select=".." mode="previous-linear-url"/>
+  </xsl:template>
+  <xsl:template match="backmatter[references and not(appendix or solutions or glossary or index or colophon)]/references" mode="up-url">
+    <xsl:apply-templates select="../.." mode="url"/>
+  </xsl:template>
   <xsl:template match="aside[starts-with(@xml:id, 'margin-')]" mode="is-hidden">false</xsl:template>
   <xsl:template match="biblio[@label]" mode="serial-number">
     <xsl:value-of select="@label"/>
   </xsl:template>
   <xsl:template match="book" mode="next-linear-url">
-    <xsl:apply-templates select="(part | chapter)[1]" mode="url"/>
+    <xsl:choose>
+      <xsl:when test="$note-frontmatter-divisions">
+        <xsl:apply-templates select="$note-frontmatter-divisions[1]" mode="url"/>
+      </xsl:when>
+      <xsl:otherwise><xsl:apply-templates select="(part | chapter)[1]" mode="url"/></xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
   <xsl:template match="book/chapter[1] | book/part[1]" mode="previous-linear-url">
-    <xsl:apply-templates select=".." mode="url"/>
+    <xsl:choose>
+      <xsl:when test="$note-frontmatter-divisions">
+        <xsl:apply-templates select="$note-frontmatter-divisions[last()]" mode="previous-descent-url"/>
+      </xsl:when>
+      <xsl:otherwise><xsl:apply-templates select=".." mode="url"/></xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 </xsl:stylesheet>

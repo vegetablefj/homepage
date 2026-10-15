@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="nagata-statement">
+  <title>Nagata's conjecture and Seshadri constants</title>
+  <introduction>
+    <p>These notes reorganize four manuscripts of OpenAI on plane curves and multipoint Seshadri constants <xref ref="bib-openai-plane"/>, <xref ref="bib-openai-surface"/>, <xref ref="bib-openai-higher"/>, <xref ref="bib-openai-positive"/>. They are intended for personal study. The shared statements about finite jets, least exponents, and interpolation are proved once. The plane proof and the proof by finite subgroups on complex surfaces retain their separate geometric constructions.</p>
+  </introduction>
+  <section>
+    <title>The plane inequality</title>
+    <p>Let <m>U_r(\Pp^2)</m> be the space of ordered distinct <m>r</m>-tuples in <m>(\Pp^2_{\C})^r</m>. A property holds for very general tuples if it holds outside a countable union of proper Zariski-closed subsets of this space. A plane curve may be reducible or nonreduced. Its multiplicity at a point is the order of a local equation. Nagata introduced the plane problem in his work on Hilbert's fourteenth problem <xref ref="bib-nagata-1959"/>. He proved the square cases <m>r=e^2</m>, <m>e\geq4</m>; see <xref ref="bib-nagata-1965" detail="Chapter III, Section 1, Proposition 1"/>.</p>
+    <theorem xml:id="nagata-main">
+      <statement><p>For every integer <m>r\geq10</m>, there is a countable union <m>E_r</m> of proper Zariski-closed subsets of <m>U_r(\Pp^2)</m>, with nonempty complement, such that the following holds for every tuple <m>(p_1,\ldots,p_r)\notin E_r</m>. If <m>C</m> is a nonzero effective plane curve of degree <m>d\geq1</m> and <m>\mult_{p_i}C\geq m_i</m> for nonnegative integers <m>m_i</m>, then<md number="no">d\sqrt r&gt;\sum_{i=1}^r m_i.</md></p></statement>
+    </theorem>
+    <p>This is <xref ref="bib-openai-plane" detail="Theorem 1.1"/>. The inequality is strict, includes unequal multiplicities, and uses one exceptional set for all degrees and multiplicity vectors. At nine general points a cubic gives equality, so the conclusion cannot begin at <m>r=9</m>.</p>
+  </section>
+  <section>
+    <title>Multipoint Seshadri constants</title>
+    <p>Let <m>k</m> be an algebraically closed field, let <m>X/k</m> be a smooth integral projective variety of dimension <m>n\geq2</m>, and let <m>L</m> be ample. Set <m>V=L^n</m> and let <m>U_r(X)\subset X^r</m> be the open space of ordered distinct tuples. For such a tuple <m>\mathbf p=(p_1,\ldots,p_r)</m>, define the ordinary multipoint Seshadri constant by<md number="no">\varepsilon(X,L;\mathbf p)=\inf_C\frac{L\cdot C}{\sum_i\mult_{p_i}C},</md>where the infimum ranges over integral curves meeting at least one marked point. The multiplicity is zero at a point outside the curve. Only this curve-defined constant is used here.</p>
+    <p>A real divisor class is nef if it has nonnegative intersection with every integral curve. On the blowup <m>\pi:Y\to X</m>, with exceptional divisors <m>E_i</m>, the same constant is the supremum of the real numbers <m>t\geq0</m> for which <m>\pi^*L-t\sum_iE_i</m> is nef. Its volume bound is<md number="no">\varepsilon(X,L;\mathbf p)\leq(V/r)^{1/n}.</md>The intersection calculation and the treatment of singular curves are given in <xref ref="lem-jets-volume"/>.</p>
+    <theorem xml:id="thm-seshadri-complex">
+      <statement><p>If <m>k=\C</m>, there is an integer <m>r_0=r_0(X,L)</m> such that for each integer <m>r\geq r_0</m> there is a countable union <m>Z_r</m> of proper closed subsets of <m>U_r(X)</m>, with nonempty complement, for which<md number="no">\varepsilon(X,L;\mathbf p)=(V/r)^{1/n}\qquad(\mathbf p\in U_r(X)\setminus Z_r).</md>At every such tuple the class <m>\pi^*L-(V/r)^{1/n}\sum_iE_i</m> is nef and has top self-intersection zero.</p></statement>
+    </theorem>
+    <p xml:id="anchor-seshadri-background">The surface statement is <xref ref="bib-openai-surface" detail="Theorem 1.1"/>. The statement in dimension at least three is <xref ref="bib-openai-higher" detail="Theorem 1.1"/>. The threshold depends on the fixed polarized variety, and the assertion concerns every integer beyond that threshold. The qualitative Nagata–Biran–Szemberg formulation in arbitrary dimension is <xref ref="bib-roe-ross" detail="Conjecture 1.3 and Remark 1.4"/>. Küchle gives asymptotically optimal lower bounds as <m>r\to\infty</m> <xref ref="bib-kuechle"/>; the theorem here asserts exact equality at every sufficiently large point count.</p>
+      <aside xml:id="margin-seshadri-background"><p>The exponent <m>1/n</m> comes from the top intersection number on the point blowup. The infimum defining <m>\varepsilon</m> still ranges over curves. Roé–Ross also consider higher-dimensional cycle constants; those are different invariants.</p></aside>
+    <p>In positive characteristic let <m>K_r=\overline{k(U_r(X))}</m>, and let <m>p_1,\ldots,p_r\in X(K_r)</m> be the tuple specified by the geometric generic point of <m>U_r(X)</m>. Write<md number="no">\varepsilon_r(X,L)=\varepsilon(X_{K_r},L_{K_r};p_1,\ldots,p_r).</md></p>
+    <theorem xml:id="thm-seshadri-positive">
+      <statement><p>If <m>\operatorname{char}k&gt;0</m>, there is an integer <m>r_0=r_0(X,L)</m> such that<md number="no">\varepsilon_r(X,L)=(V/r)^{1/n}\qquad(r\geq r_0).</md>The boundary class on the blowup at the geometric generic tuple is nef and has top self-intersection zero.</p></statement>
+    </theorem>
+    <p xml:id="anchor-generic-field">This is <xref ref="bib-openai-positive" detail="Theorem 1.1 and Remark 6.3"/>. The geometric generic formulation also applies when <m>k</m> is countable. It does not require a <m>k</m>-valued tuple in a countable intersection of open sets.</p>
+      <aside xml:id="margin-generic-field"><p>Over a countable algebraically closed field, the closed points of a positive-dimensional variety themselves form a countable union of proper closed subsets. A geometric generic tuple lives over <m>K_r</m> and satisfies the open jet conditions without choosing a tuple in that union's complement.</p></aside>
+  </section>
+  <section>
+    <title>The proofs</title>
+    <p>The plane inequality is proved by specializing forms to a normal bundle and, for nonsquare <m>r</m>, using theta bases on cubics. Point collision gives a nonzero kernel of a jet map; interpolation on the limiting exponent set gives injectivity and a contradiction. For general complex surfaces, a fixed nodal divisor bounds the least exponents of sections. Compression produces triangles admitting injective jet evaluations on finite torus subgroups.</p>
+    <p>The higher-dimensional proof uses surjective jet evaluations. A complete-intersection flag bounds a graded family of least exponents by a simplex of volume <m>V/n!</m>. A two-coordinate construction changes its intercepts while preserving dimensions and multiplication. Full asymptotic density then gives all lattice points in compact subsets of the interior, where one-variable interpolation produces the required jets. Formal substitution and a node with two distinct branches in every characteristic allow this argument to include the positive-characteristic case. The final arguments for complex very-general tuples and positive-characteristic geometric generic tuples are given separately.</p>
+  </section>
+</chapter>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="nagata-collision">
+  <title>Collision and the limiting matrix</title>
+  <introduction><p>The two limiting arguments follow <xref ref="bib-openai-plane" detail="Section 4"/>. The points are collided on each fixed cubic before its theta bases are compared as <m>\tau\to0</m>.</p></introduction>
+  <section>
+    <title>The collision on a fixed cubic</title>
+    <p>For <m>q=r-9</m>, define the set of jet indices<md number="no">I=\{(\ell,b):0\leq b&lt;m,\ 0\leq\ell&lt;q(m-b)\}.</md>For a fixed <m>\tau</m>, let <m>J_\tau:\W_\tau\to\C^I</m> take <m>F</m> to the derivatives <m>(\partial_x^\ell\partial_y^b H_F)(0,0)</m> indexed by <m>I</m>.</p>
+    <lemma xml:id="nagata-collision-kernel">
+      <statement><p>Under the hypothetical universal property, <m>\ker J_\tau\ne0</m> for every fixed <m>0&lt;\tau&lt;1</m>.</p></statement>
+      <proof>
+        <p>For each positive integer <m>\nu</m>, choose distinct numbers <m>\xi_{1,\nu},\ldots,\xi_{q,\nu}</m> tending to zero. The last paragraph of <xref ref="nagata-elliptic"/> gives a nonzero <m>F_\nu\in\W_\tau</m> with multiplicity at least <m>m</m> at <m>(\xi_{\alpha,\nu},0)</m>. Fix a norm on the finite-dimensional space <m>\W_\tau</m>, normalize <m>F_\nu</m>, and take a convergent subsequence. Its limit <m>F_0</m> has norm one.</p>
+        <p xml:id="anchor-collision-ideal">For each <m>b&lt;m</m>, the holomorphic function <m>h_{b,\nu}(x)=\partial_y^bH_{F_\nu}(x,0)</m> has a zero of order at least <m>m-b</m> at every <m>\xi_{\alpha,\nu}</m>. The functions converge locally uniformly, with their derivatives, to <m>h_{b,0}</m>. If this limit is nonzero, the argument principle on a small circle around zero gives <m>\ord_0h_{b,0}\geq q(m-b)</m>; if it vanishes identically, the same derivative conditions hold. Hence all the derivatives indexed by <m>I</m> vanish on <m>F_0</m>, so <m>J_\tau(F_0)=0</m>.</p>
+      <aside xml:id="margin-collision-ideal"><p>After <m>b</m> fiber derivatives, each of the <m>q</m> separate points contributes a zero of order <m>m-b</m> in one variable. The resulting conditions are those of the ideal <m>(x^q,y)^m</m>. This is a statement about specified mixed coefficients, not the addition of ordinary surface multiplicities.</p></aside>
+      </proof>
+    </lemma>
+    <p>The order of the limits matters. The sections in this proof are chosen after <m>\tau</m> is fixed. The subsequent limit <m>\tau\to0</m> compares matrices, not a family of selected kernel vectors.</p>
+  </section>
+  <section>
+    <title>Normalized Laurent bases</title>
+    <p>Consider <m>D(n,\gamma)</m> with <m>n&gt;0</m> and <m>\gamma=\epsilon\tau^\sigma</m>, where <m>\epsilon\in\{1,-1\}</m>. Set <m>U=\sigma-x_0n</m> and suppose <m>U\notin\Z</m>. Each integer <m>K</m> in the open interval <m>(U,U+n)</m> represents one residue class modulo <m>n</m>. In the Laurent recurrence of <xref ref="nagata-torus-basis"/>, choose its starting coefficient to be <m>\tau^{-x_0K}</m>. At <m>z=z_0e^x</m>, the corresponding section is<md number="no">\sum_{p\in\Z}\epsilon^{-p}\tau^{p(K-U)+np(p-1)/2}e^{(K+np)x}.</md>The exponent of <m>\tau</m> is positive for <m>p\ne0</m>, since <m>0&lt;K-U&lt;n</m>; it grows quadratically with <m>|p|</m>. Thus this expression and each fixed derivative in <m>x</m> tend locally uniformly to <m>e^{Kx}</m> as <m>\tau\to0</m>.</p>
+    <p>For the coefficient blocks <m>V_j</m>, put<md number="no">\begin{aligned}
+U_j&amp;=\frac{h(a-\Delta)}9+(m-j)a,&amp;&amp;0\leq j\leq m,\\
+n_j&amp;=3(d-3j)=h-9(j-m),&amp;&amp;m&lt;j\leq u_0,\\
+U_j&amp;=\frac{n_j(a-\Delta)}9,&amp;&amp;m&lt;j\leq u_0,\ n_j&gt;0.
+\end{aligned}</md>For <m>j\leq m</m>, the bundle <m>T+(m-j)A</m> has degree <m>h</m> and its normalized basis is indexed by the integers <m>U_j&lt;K&lt;U_j+h</m>. For <m>j&gt;m</m> and <m>n_j&gt;0</m>, normalize a basis of <m>H^0(B,(d-3j)L)</m> indexed by <m>U_j&lt;K&lt;U_j+n_j</m>, then multiply by <m>\Pi^{j-m}</m>. In either formula, the coefficient of <m>\sqrt r</m> in <m>U_j</m> is <m>d-3j&gt;0</m>, while the other terms are rational. Thus none of these endpoints is integral.</p>
+    <p>If <m>3</m> divides <m>d</m>, there is one remaining block at <m>j=d/3</m>: it is the image of <m>H^0(B,\cO_B)=\C</m> under multiplication by <m>\Pi^{j-m}</m>. We label this basis element by <m>(j,K)=(d/3,0)</m>. Let <m>S</m> be the union of all the pairs <m>(j,K)</m> just described. It indexes a basis <m>E_{j,K,\tau}</m> of <m>\W_\tau</m>, and<md number="no">|S|=\dim\W_\tau=\binom{d+2}{2}-9\binom{m+1}{2}.</md></p>
+    <p>Because <m>0&lt;x_0-x_i&lt;1</m>, the theta products satisfy <m>\Pi(z_0e^x)\to1</m> locally uniformly with all fixed derivatives. The normalized basis therefore has the common limit<md number="no">H_{E_{j,K,\tau}}(x,y)\longrightarrow e^{Kx+jy}.</md>This also holds for the degree-zero block with <m>K=0</m>.</p>
+  </section>
+  <section>
+    <title>The matrix</title>
+    <p xml:id="anchor-exponent-evaluation">In the basis indexed by <m>S</m>, the matrix of <m>J_\tau</m> has rows indexed by <m>I</m>. The preceding convergence gives its entrywise limit<md number="no">B_0=\bigl(K^\ell j^b\bigr)_{(\ell,b)\in I,\ (j,K)\in S}.</md>If <m>B_0</m> has full column rank, one of its maximal minors is nonzero. The corresponding minor of the matrix of <m>J_\tau</m> remains nonzero for sufficiently small positive <m>\tau</m>. Then <m>J_\tau</m> is injective, contrary to <xref ref="nagata-collision-kernel"/>. It remains to prove the rank assertion. The passage from one-point derivative matrices to polynomial evaluation on exponent diagrams appears in <xref ref="bib-dumnicki" detail="proof of Proposition 13"/>. The allowed degrees here are specified by the collision index set <m>I</m>.</p>
+      <aside xml:id="margin-exponent-evaluation"><p>The columns correspond to basis sections, while the rows correspond to derivatives. For the limiting exponential, each derivative contributes a power of its exponent. Row interpolation must therefore span every function on <m>S</m> to give full column rank.</p></aside>
+  </section>
+</chapter>

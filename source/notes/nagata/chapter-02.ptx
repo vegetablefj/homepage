@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="nagata-reduction">
+  <title>From plane curves to normal polynomials</title>
+  <introduction><p>In the plane proof we work over <m>\C</m> and write <m>U_r=U_r(\Pp^2)</m>. The reduction and normal specialization below follow <xref ref="bib-openai-plane" detail="Section 2"/>.</p></introduction>
+  <section>
+    <title>Universal systems</title>
+    <p>For positive integers <m>d,m</m>, let <m>\mathsf U_r(d,m)</m> mean that, for every tuple in <m>U_r</m>, some nonzero form of degree <m>d</m> has multiplicity at least <m>m</m> at every marked point. The form may depend on the tuple.</p>
+    <lemma xml:id="nagata-universal">
+      <statement><p>For each <m>r\geq10</m>, there is one countable union <m>E_r</m> of proper closed subsets of <m>U_r</m>, with nonempty complement, such that a violation of <xref ref="nagata-main"/> at any tuple outside <m>E_r</m> implies <m>\mathsf U_r(d,m)</m> for some positive integers <m>d,m</m> with <m>d/m\leq\sqrt r</m>. Moreover, <m>\mathsf U_r(d,m)</m> implies <m>\mathsf U_r(Nd,Nm)</m> for every positive integer <m>N</m>.</p></statement>
+      <proof>
+        <p>Fix a degree <m>e\geq1</m> and a vector <m>\mathbf n=(n_1,\ldots,n_r)</m> of nonnegative integers. The tuples supporting a nonzero degree-<m>e</m> form with these multiplicities form a closed incidence locus <m>A_{e,\mathbf n}</m>. Indeed, in affine charts the Taylor coefficients of orders below <m>n_i</m> form a matrix whose entries are polynomials in the coordinates of the points. The form exists exactly when this matrix has less than full column rank, so the locus is cut out by its maximal minors. These equations are defined over <m>\mathbb Q</m>.</p>
+        <p xml:id="anchor-cyclic-product">Let <m>E_r</m> be the union of all such loci that are proper. There are countably many. A tuple whose affine coordinates are algebraically independent over <m>\mathbb Q</m> avoids every proper locus and the diagonals, so the complement is nonempty. If a tuple outside <m>E_r</m> admits a degree-<m>d_0</m> form with multiplicities at least <m>m_i</m>, then its incidence locus is all of <m>U_r</m>. At any tuple choose a form for each cyclic permutation of the multiplicity vector and multiply the <m>r</m> forms. The product has degree <m>d=rd_0</m> and common multiplicity at least <m>m=\sum_i m_i</m>. A violation gives <m>m&gt;0</m> and<md number="no">\frac d m=\frac{rd_0}{\sum_i m_i}\leq\sqrt r.</md>Taking powers gives the last assertion. The cyclic-product reduction is Nagata's <xref ref="bib-nagata-1965" detail="Chapter III, Section 1, proof of Proposition 1"/>.</p>
+      <aside xml:id="margin-cyclic-product"><p>The incidence locus is either excluded as proper or equals the entire configuration space. In the latter case every cyclic permutation is available at an arbitrary tuple. Each original multiplicity then contributes once at each point of the product divisor.</p></aside>
+      </proof>
+    </lemma>
+    <p>Thus the same exceptional set works simultaneously for all degrees and all multiplicity vectors. In the rest of the argument we assume <m>\mathsf U_r(d,m)</m> and derive a contradiction.</p>
+  </section>
+  <section>
+    <title>Normal specialization</title>
+    <p>Let <m>B\subset\Pp^2</m> be a smooth plane curve of degree <m>e</m>, and let <m>L=\cO_B(1)</m> and <m>M=eL</m>. The normal bundle of <m>B</m> in the plane is <m>M</m>. A polynomial section<md number="no">F(w)=\sum_{j=0}^{\lfloor d/e\rfloor}f_jw^j</md>on <m>\Tot(M)</m> takes values in the pullback of <m>dL</m> when <m>f_j\in H^0(B,(d-ej)L)</m>. The normal-bundle identification follows from the Cartier-divisor formula in <xref ref="bib-stacks"/> (<url href="https://stacks.math.columbia.edu/tag/0B3P">Tag 0B3P</url>).</p>
+    <proposition xml:id="nagata-normal">
+      <statement><p>If <m>\mathsf U_r(d,m)</m> holds, then for any distinct <m>a_1,\ldots,a_r\in B</m> and arbitrary normal vectors <m>c_i\in M_{a_i}</m>, there is a nonzero polynomial section <m>F</m> of the displayed form with multiplicity at least <m>m</m> at each <m>(a_i,c_i)\in\Tot(M)</m>.</p></statement>
+      <proof>
+        <p>Choose an equation <m>G_B</m> of <m>B</m> and move each <m>a_i</m> along an affine line <m>p_i(s)</m> whose first normal derivative is <m>c_i</m>. For <m>s\ne0</m>, the universal property gives a degree-<m>d</m> form vanishing to order <m>m</m> at every <m>p_i(s)</m>. The equations for its coefficients are linear over <m>\C(s)</m>. Their rank is deficient for every general complex <m>s</m>, hence also over <m>\C(s)</m>. After clearing denominators and dividing out a common power of <m>s</m>, obtain a polynomial family <m>S(s)=\sum_{\alpha\geq0}s^\alpha S_\alpha</m> with <m>S_0\ne0</m>.</p>
+        <p xml:id="anchor-normal-rescaling">For each nonzero coefficient write <m>S_\alpha=G_B^{j_\alpha}R_\alpha</m>, where <m>R_\alpha|_B\ne0</m>. Let <m>u</m> be the smallest value of <m>\alpha+j_\alpha</m>. Rescale a local equation <m>t</m> of <m>B</m> by <m>t=sw</m> and divide the family by <m>s^u</m>. Its limit is<md number="no">F(w)=\sum_{\alpha+j_\alpha=u}(R_\alpha|_B)w^{j_\alpha}.</md>The terms have distinct exponents, so <m>F\ne0</m>. Since <m>R_\alpha</m> has degree <m>d-ej_\alpha</m>, the coefficients lie in the asserted spaces. The change of frame for <m>t</m> is the transition for the normal bundle, so these local expressions glue.</p>
+      <aside xml:id="margin-normal-rescaling"><p>A term <m>s^\alpha G_B^jR</m> acquires a factor <m>s^{\alpha+j}</m> after <m>t=sw</m>. Choosing the least value of <m>\alpha+j</m> retains the first nonzero normal limit. For other degenerations and fat-point limits, see also <xref ref="bib-ciliberto-miranda" detail="Section 2"/> and <xref ref="bib-evain" detail="Sections 2 and 6"/>.</p></aside>
+        <p>In coordinates centered at the moving points, the rescaled family is holomorphic through <m>s=0</m>. Its derivatives of total order below <m>m</m> vanish for general <m>s\ne0</m> and hence at <m>s=0</m>. The normal coordinates of the moving points tend to <m>c_i</m>. Therefore <m>F</m> has the required multiplicities.</p>
+      </proof>
+    </proposition>
+  </section>
+  <section>
+    <title>Square values of the number of points</title>
+    <proposition xml:id="nagata-square">
+      <statement><p>If <m>r=e^2</m> with <m>e\geq4</m>, then <m>\mathsf U_r(d,m)</m> is impossible whenever <m>d\leq em</m>.</p></statement>
+      <proof>
+        <p>Take a smooth plane curve <m>B</m> of degree <m>e</m>. Its genus is positive, and <m>\deg M=e^2=r</m>. Choose distinct points <m>a_i</m> such that, for <m>P=\sum_i a_i</m>, the degree-zero bundle <m>A=M-P</m> is nontorsion. Fixing <m>r-1</m> points and varying the last gives uncountably many distinct bundles, whereas the torsion subgroup of <m>\Pic^0(B)</m> is countable. Distinctness follows because a linear equivalence between two different single points would give a degree-one map to <m>\Pp^1</m>, contradicting positive genus.</p>
+        <p xml:id="anchor-square-evaluation">The restriction sequence from the plane gives <m>h^0(B,M)=\binom{e+2}{2}-1=(e^2+3e)/2&lt;e^2</m>. Choose normal vectors <m>c_i</m> outside the image of the evaluation map <m>H^0(B,M)\to\bigoplus_iM_{a_i}</m>. Let <m>F=\sum f_jw^j</m> be given by <xref ref="nagata-normal"/>, and let <m>j</m> be its largest nonzero exponent. Since <m>d\leq em</m>, one has <m>j\leq m</m>. The required vanishing of <m>H^1(\Pp^2,\cO)</m> is included in <xref ref="bib-stacks"/> (<url href="https://stacks.math.columbia.edu/tag/01XT">Tag 01XT</url>).</p>
+      <aside xml:id="margin-square-evaluation"><p>If the highest nonzero fiber degree were below <m>m</m>, the equality case would give a section of a nontrivial degree-zero bundle. The nontorsion choice forces the highest degree to be <m>m</m>. The coefficient <m>f_{m-1}</m> is then compared with the chosen normal vectors.</p></aside>
+        <p>If <m>j&lt;m</m>, differentiating <m>j</m> times in the fiber shows that <m>f_j</m> vanishes to order at least <m>m-j</m> at each <m>a_i</m>. The degree satisfies<md number="no">\deg((d-ej)L)=e(d-ej)\leq e^2(m-j).</md>Strict inequality is impossible by the zero count. Equality forces <m>d=em</m> and a nonzero section of <m>(m-j)A</m>, which is impossible because <m>A</m> is nontorsion. Thus <m>j=m</m> and <m>d=em</m>.</p>
+        <p>Now <m>f_m</m> is a nonzero constant. On the fiber at <m>a_i</m>, multiplicity <m>m</m> at <m>c_i</m> forces <m>F(w)=f_m(w-c_i)^m</m>. Comparison of the coefficients of <m>w^{m-1}</m> gives <m>f_{m-1}(a_i)=-mf_mc_i</m>. But <m>f_{m-1}\in H^0(B,M)</m>, contradicting the choice of the vector <m>(c_i)</m>.</p>
+      </proof>
+    </proposition>
+  </section>
+  <section>
+    <title>The cubic bound</title>
+    <p>For the nonsquare case, take a smooth cubic <m>B</m> and give zero normal displacement to nine points <m>a_1,\ldots,a_9</m>. Write <m>P=\sum_{i=1}^9a_i</m>. If <m>F=\sum f_jw^j</m> has multiplicity at least <m>m</m> at these nine points, then the coefficients with <m>j&lt;m</m> satisfy<md number="no">f_j\in H^0\bigl(B,(d-3j)L-(m-j)P\bigr).</md>The coefficient of <m>w^j</m> must vanish to base order at least <m>m-j</m> at each point.</p>
+    <lemma xml:id="nagata-cubic-bound">
+      <statement><p>If <m>r\geq10</m> and <m>\mathsf U_r(d,m)</m> holds, then <m>d&gt;3m</m>.</p></statement>
+      <proof>
+        <p>For <m>d&lt;3m</m>, every possible exponent is below <m>m</m>, and the displayed bundle has degree <m>3(d-3m)&lt;0</m>. Thus all coefficients vanish, contrary to <xref ref="nagata-normal"/>. If <m>d=3m</m>, choose the nine points so that <m>A=3L-P</m> is nontorsion. Each coefficient with <m>j&lt;m</m> would be a section of <m>(m-j)A</m> and hence vanishes. The normal polynomial is then a nonzero constant times <m>w^m</m>. Give a tenth point a nonzero normal displacement. This polynomial does not vanish there, again contradicting <xref ref="nagata-normal"/>.</p>
+      </proof>
+    </lemma>
+    <p>If <m>r\geq10</m> is nonsquare, a hypothetical universal system with <m>d/m\leq\sqrt r</m> therefore has<md number="no">3&lt;\frac d m&lt;\sqrt r.</md>The second inequality is strict because <m>d/m</m> is rational.</p>
+  </section>
+</chapter>
