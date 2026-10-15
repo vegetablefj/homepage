@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-darkmode="disabled">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette: blue-red                     *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Categories, functors, and natural transformations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Notes on 1-category theory">
+<meta property="og:title" content="Notes on 1-category theory">
+<meta property="book:title" content="Notes on 1-category theory">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.53"></script><script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="../../vendor/lunr/lunr.min.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+<link rel="stylesheet" href="../../layout.css?v=fee08a8c1c">
+<script src="../../layout.js?v=e9391a21a7" defer></script><link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"C": "\\mathbb{C}", "Pone": "\\mathbb{P}^1_{\\mathbb{C}}", "cO": "\\mathcal{O}", "ord": "\\operatorname{ord}", "lt": "<", "gt": ">", "amp": "&", "Ob": "\\operatorname{Ob}", "Ar": "\\operatorname{Ar}", "Hom": "\\operatorname{Hom}", "Fun": "\\operatorname{Fun}", "Nat": "\\operatorname{Nat}", "End": "\\operatorname{End}", "Aut": "\\operatorname{Aut}", "Iso": "\\operatorname{Iso}", "Set": "\\mathsf{Set}", "Mon": "\\mathsf{Mon}", "Grp": "\\mathsf{Grp}", "Ring": "\\mathsf{Ring}", "CRing": "\\mathsf{CRing}", "Cat": "\\mathsf{Cat}", "id": "\\mathrm{id}", "op": "\\mathrm{op}", "N": "\\mathbb{N}", "Z": "\\mathbb{Z}", "Q": "\\mathbb{Q}", "U": "\\mathcal{U}", "V": "\\mathcal{V}"}}, "options": {"ignoreHtmlClass": "ignore-math", "processHtmlClass": "process-math", "enableMenu": false}};</script><script src="../../vendor/mathjax/tex-chtml.js" defer></script>
+</head>
+<body class="pretext book ignore-math note-page" data-page-format="note">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner"><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="category-theory-notes.html"><span class="title">Notes on 1-category theory</span></a></div>
+<p class="byline"><a href="../../home.html">Jie Fu</a>'s <a href="../../notes.html">Notes</a></p>
+<p class="note-metadata"><span class="note-review-status">Under review and improvement</span> · <span class="note-last-updated">Last updated: <time datetime="2026-10-14">2026-10-14</time></span></p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Contents</span></button><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true"></span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="treebuttons"><a class="previous-button button" href="cat-conventions.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="up-button button" href="category-theory-notes.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Up</span></a><a class="next-button button" href="cat-references.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a></span>
+</div></nav><div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth4 focused" data-preexpanded-levels="1" data-max-levels="4"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-conventions.html" class="internal"><span class="codenumber">0</span> <span class="title">Conventions and foundations</span></a></div>
+<ul id="ptx-toc-group-cat-conventions" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-conventions.html#cat-conventions-language" class="internal"><span class="codenumber">0.1</span> <span class="title">Language and notation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-conventions.html#cat-universes" class="internal"><span class="codenumber">0.2</span> <span class="title">The ambient sets</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-conventions.html#cat-conventions-size" class="internal"><span class="codenumber">0.3</span> <span class="title">Small, locally small, and essentially small</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-conventions.html#cat-conventions-standard-categories" class="internal"><span class="codenumber">0.4</span> <span class="title">Categories of algebraic objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-conventions.html#cat-conventions-functor-size" class="internal"><span class="codenumber">0.5</span> <span class="title">Size of functors and natural transformations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-conventions.html#cat-conventions-choice-sources" class="internal"><span class="codenumber">0.6</span> <span class="title">Choices and comparisons with sources</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="cat-language.html" class="internal"><span class="codenumber">1</span> <span class="title">Categories, functors, and natural transformations</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-cat-language">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-category-data" class="internal"><span class="codenumber">1.1</span> <span class="title">Objects, arrows, and composition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-isomorphisms-cancellation" class="internal"><span class="codenumber">1.2</span> <span class="title">Isomorphisms, retracts, and cancellation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-opposites-subcategories" class="internal"><span class="codenumber">1.3</span> <span class="title">Opposites and subcategories</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-functors" class="internal"><span class="codenumber">1.4</span> <span class="title">Functors and what they detect</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-natural-transformations" class="internal"><span class="codenumber">1.5</span> <span class="title">Natural transformations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-transformation-calculus" class="internal"><span class="codenumber">1.6</span> <span class="title">Composition and changing the source or target</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-functor-categories" class="internal"><span class="codenumber">1.7</span> <span class="title">Functor categories and natural isomorphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-equivalences" class="internal"><span class="codenumber">1.8</span> <span class="title">Equivalence and the choice of representatives</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="cat-references.html" class="internal"><span class="title">References</span></a></div></li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="chapter" id="cat-language">
+<h1 class="heading">
+<span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Categories, functors, and natural transformations</span>
+</h1>
+<section class="introduction" id="cat-language-2">
+<div class="para" id="cat-language-2-1">A category specifies which objects are being considered, which arrows connect them, and how arrows compose. A functor transports this entire arrangement. A natural transformation compares two such transports in a way compatible with every arrow. The point of establishing these notions together is that constructions must usually be checked on arrows, and comparisons must usually be checked for naturality.</div>
+<div class="para" id="cat-language-2-2">We use the size conventions of <a href="cat-conventions.html#cat-size-conventions" class="xref" data-knowl="./knowl/xref/cat-size-conventions.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 0.1: Relative size conventions">Definition 0.1</a>. In particular, our categories are encoded by sets, although their sets of objects need not be small relative to the fixed universe <span class="process-math">\(\U\text{.}\)</span> Unless specified otherwise, their local morphism sets belong to <span class="process-math">\(\U\text{.}\)</span> The main sources for the language developed here are <a href="cat-references.html#LiI" class="xref" data-knowl="./knowl/xref/bib-cat-li1.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiI">[LiI, Sections 2.1–2.3]</a>, <a href="cat-references.html#KS06" class="xref" data-knowl="./knowl/xref/bib-cat-ks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry KS06">[KS06, Chapter 1]</a>, and <a href="cat-references.html#Rie" class="xref" data-knowl="./knowl/xref/bib-cat-riehl.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Rie">[Rie, Sections 1.1–1.5]</a>. Our examples use sets, orders, and elementary algebra.</div></section>
+<section class="section" id="cat-category-data">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Objects, arrows, and composition</span>
+</h2>
+<div class="para" id="cat-category-data-2">Composition has a direction and a domain of definition. We write <span class="process-math">\(gf=g\circ f\)</span> for the composite that first applies <span class="process-math">\(f\)</span> and then <span class="process-math">\(g\text{.}\)</span> The source and target are part of an arrow’s meaning, even when two arrows happen to have the same underlying formula.</div>
+<article class="definition definition-like" id="cat-def-category"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Category and basic notation.</span>
+</h3>
+<div class="para" id="cat-def-category-2-1">A <em class="emphasis">category</em> <span class="process-math">\(\mathcal C\)</span> consists of the following data.</div> 
+<ol class="decimal" id="cat-def-category-2-2">
+<li id="cat-def-category-2-2-1">
+<div class="para" id="cat-def-category-2-2-1-1">A set <span class="process-math">\(\Ob(\mathcal C)\)</span> of objects and, for each ordered pair of objects <span class="process-math">\(X,Y\text{,}\)</span> a set <span class="process-math">\(\Hom_{\mathcal C}(X,Y)\)</span> of morphisms or arrows from <span class="process-math">\(X\)</span> to <span class="process-math">\(Y\text{.}\)</span>
+</div>
+</li>
+<li id="cat-def-category-2-2-2">
+<div class="para logical" id="cat-def-category-2-2-2-1">
+<div class="para">For every object <span class="process-math">\(X\text{,}\)</span> an identity arrow <span class="process-math">\(\id_X\in\Hom_{\mathcal C}(X,X)\text{,}\)</span> and for every three objects a composition map</div>
+<div class="displaymath process-math" id="cat-def-category-2-2-2-1-3">
+\begin{equation*}
+\Hom_{\mathcal C}(Y,Z)\times\Hom_{\mathcal C}(X,Y)\longrightarrow\Hom_{\mathcal C}(X,Z),\qquad (g,f)\longmapsto gf.
+\end{equation*}
+</div>
+<div class="para">These maps satisfy <span class="process-math">\(\id_Yf=f=f\id_X\)</span> and <span class="process-math">\(h(gf)=(hg)f\)</span> whenever the arrows have the indicated consecutive endpoints.</div>
+</div>
+</li>
+</ol> 
+<div class="para logical" id="cat-def-category-2-3">
+<div class="para">We write <span class="process-math">\(X\in\mathcal C\)</span> for <span class="process-math">\(X\in\Ob(\mathcal C)\text{.}\)</span> The set of all typed arrows is</div>
+<div class="displaymath process-math" id="cat-def-category-2-3-3">
+\begin{equation*}
+\Ar(\mathcal C)=\coprod_{(X,Y)\in\Ob(\mathcal C)^2}\Hom_{\mathcal C}(X,Y).
+\end{equation*}
+</div>
+<div class="para">The endomorphism set is <span class="process-math">\(\End_{\mathcal C}(X)=\Hom_{\mathcal C}(X,X)\text{;}\)</span> its composition and identity make it a monoid.</div>
+</div>
+</article>
+<div class="para" id="cat-category-data-4">The local sets in this definition need not be pairwise disjoint: taking their tagged disjoint union gives each arrow an unambiguous source and target. This distinction also keeps the local size condition separate from the size of object labels.<a id="cat-category-data-4-1" href="#margin-cat-category-data-4-1" class="margin-note-marker" aria-label="Margin note 1">1</a> In particular, composition is not an operation on every pair of arrows; only matching endpoints allow a composite.</div>
+<div class="para" id="cat-category-data-5">The object set may be empty. Then every required datum is empty and all axioms hold vacuously; this is the empty category, denoted <span class="process-math">\(\mathbf 0\text{.}\)</span> If <span class="process-math">\(X\)</span> is an object, however, its endomorphism set is nonempty because it contains <span class="process-math">\(\id_X\text{.}\)</span> There is no requirement that <span class="process-math">\(\Hom_{\mathcal C}(X,Y)\)</span> be nonempty when <span class="process-math">\(X\ne Y\text{.}\)</span> The identity at <span class="process-math">\(X\)</span> is forced by the axioms: two candidates <span class="process-math">\(e,e'\)</span> would satisfy <span class="process-math">\(e=ee'=e'\text{.}\)</span>
+</div>
+<article class="example example-like" id="cat-example-elementary-categories"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Sets, discrete categories, and orders.</span>
+</h3>
+<div class="para" id="cat-example-elementary-categories-2">Several basic examples expose different parts of the definition.</div>
+<ol class="decimal" id="cat-example-elementary-categories-3">
+<li id="cat-example-elementary-categories-3-1">
+<div class="para" id="cat-example-elementary-categories-3-1-1">In <span class="process-math">\(\Set=\Set_{\U}\text{,}\)</span> objects are the sets belonging to <span class="process-math">\(\U\text{,}\)</span> arrows are functions, and composition is ordinary function composition. This is locally <span class="process-math">\(\U\)</span>-small, but is not <span class="process-math">\(\U\)</span>-small: its object set is <span class="process-math">\(\U\)</span> itself. The full subcategory of finite sets is denoted <span class="process-math">\(\operatorname{FinSet}\text{.}\)</span> Its objects are finite, but that does not make the category a finite category.</div>
+</li>
+<li id="cat-example-elementary-categories-3-2">
+<div class="para" id="cat-example-elementary-categories-3-2-1">A set <span class="process-math">\(S\)</span> defines a discrete category: the only arrows are the identities. Thus <span class="process-math">\(\Hom(x,y)\)</span> is empty for distinct objects and is a singleton for equal objects. The terminal category <span class="process-math">\(\mathbf 1\)</span> is the discrete category on one object. A finite category means one with finitely many objects and finitely many typed arrows. For example, <span class="process-math">\([n]\)</span> has objects <span class="process-math">\(0,\ldots,n\)</span> and one arrow <span class="process-math">\(i\to j\)</span> exactly when <span class="process-math">\(i\le j\text{.}\)</span>
+</div>
+</li>
+<li id="cat-example-elementary-categories-3-3">
+<div class="para" id="cat-example-elementary-categories-3-3-1">A preorder <span class="process-math">\((P,\le)\)</span> defines a category with one arrow <span class="process-math">\(x\to y\)</span> when <span class="process-math">\(x\le y\)</span> and none otherwise. Reflexivity gives identities and transitivity gives composition. Conversely, a category with at most one arrow between each pair of objects, called a thin category, determines a preorder. Antisymmetry is an additional condition: if <span class="process-math">\(x\le y\)</span> and <span class="process-math">\(y\le x\)</span> force <span class="process-math">\(x=y\text{,}\)</span> the preorder is a partially ordered set.</div>
+</li>
+</ol>
+</article>
+<div class="para" id="cat-category-data-7">A preorder can therefore contain distinct objects joined by arrows in both directions. Since every available endomorphism is the identity, those arrows are inverse. Passing from a preorder to the quotient by <span class="process-math">\(x\sim y\)</span> if <span class="process-math">\(x\le y\le x\)</span> gives a poset; later we will recognize this as replacing a category by equivalent representatives.</div>
+<article class="example example-like" id="cat-example-monoids-and-quivers"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Algebra and freely generated arrows.</span>
+</h3>
+<div class="para" id="cat-example-monoids-and-quivers-2">A monoid <span class="process-math">\(M\)</span> defines a category with one object <span class="process-math">\(*\)</span> and <span class="process-math">\(\Hom(*,*)=M\text{,}\)</span> with <span class="process-math">\(gf\)</span> interpreted as multiplication in that order. Every one-object category arises this way. This example concerns one monoid encoded as a category. It differs from <span class="process-math">\(\Mon\text{,}\)</span> the category whose objects are monoids and whose arrows are monoid homomorphisms. Similarly, <span class="process-math">\(\Grp\)</span> has groups as objects and group homomorphisms as arrows; <span class="process-math">\(\Ring\)</span> here has associative unital rings and homomorphisms preserving the unit, with commutativity imposed only in its full subcategory <span class="process-math">\(\CRing\text{.}\)</span>
+</div>
+<div class="para" id="cat-example-monoids-and-quivers-3">A quiver is a set of vertices and a set of directed edges with specified endpoints. It does not yet specify identities or composites. Its free category has the vertices as objects and finite composable paths as arrows, including a length-zero identity path at each vertex; composition concatenates paths. For a quiver with one vertex and one loop, the free category has infinitely many arrows. Thus a finite generating picture need not give a finite category. Assigning the vertices and edges to objects and arrows of any category determines a unique functor from the free category, because the image of a path must be the composite of its edge images.</div>
+</article>
+<div class="para" id="cat-category-data-9">A commutative diagram is a collection of objects and arrows for which specified parallel paths have equal composites. Its picture can suppress identities and composite arrows, but these remain part of the category. Conversely, additional relations between paths produce different categories from the same generating quiver. Reading a diagram therefore requires knowing both its arrows and which path equalities are being asserted.</div>
+</section>
+<section class="section" id="cat-isomorphisms-cancellation">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Isomorphisms, retracts, and cancellation</span>
+</h2>
+<div class="para" id="cat-isomorphisms-cancellation-2">Invertibility is internal to a category: an inverse must itself be an allowed arrow. One-sided inverses and cancellation properties describe weaker conditions. We collect the terminology before recording the relations between it.</div>
+<article class="definition definition-like" id="cat-def-invertibility-cancellation"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Invertible and cancellable arrows.</span>
+</h3>
+<div class="para" id="cat-def-invertibility-cancellation-2-1">Let <span class="process-math">\(f:X\to Y\)</span> be an arrow of <span class="process-math">\(\mathcal C\text{.}\)</span>
+</div> 
+<ol class="decimal" id="cat-def-invertibility-cancellation-2-2">
+<li id="cat-def-invertibility-cancellation-2-2-1">
+<div class="para" id="cat-def-invertibility-cancellation-2-2-1-1">It is an isomorphism if an arrow <span class="process-math">\(g:Y\to X\)</span> satisfies <span class="process-math">\(gf=\id_X\)</span> and <span class="process-math">\(fg=\id_Y\text{.}\)</span> We then write <span class="process-math">\(f^{-1}=g\)</span> and <span class="process-math">\(X\cong Y\text{.}\)</span> An automorphism is an isomorphism from an object to itself; the automorphisms of <span class="process-math">\(X\)</span> form the group <span class="process-math">\(\Aut_{\mathcal C}(X)\text{.}\)</span> A groupoid is a category in which every arrow is invertible.</div>
+</li>
+<li id="cat-def-invertibility-cancellation-2-2-2">
+<div class="para" id="cat-def-invertibility-cancellation-2-2-2-1">The arrow <span class="process-math">\(f\)</span> is a split monomorphism, or section, if it has a left inverse <span class="process-math">\(r:Y\to X\text{,}\)</span> so <span class="process-math">\(rf=\id_X\text{.}\)</span> It is a split epimorphism, or retraction, if it has a right inverse <span class="process-math">\(s:Y\to X\text{,}\)</span> so <span class="process-math">\(fs=\id_Y\text{.}\)</span> More generally, a pair <span class="process-math">\(X\xrightarrow{s}Y\xrightarrow{r}X\)</span> with <span class="process-math">\(rs=\id_X\)</span> exhibits <span class="process-math">\(X\)</span> as a retract of <span class="process-math">\(Y\text{.}\)</span>
+</div>
+</li>
+<li id="cat-def-invertibility-cancellation-2-2-3">
+<div class="para" id="cat-def-invertibility-cancellation-2-2-3-1">The arrow <span class="process-math">\(f\)</span> is a monomorphism if <span class="process-math">\(fa=fb\)</span> implies <span class="process-math">\(a=b\)</span> for all parallel arrows <span class="process-math">\(a,b:T\to X\)</span> and all objects <span class="process-math">\(T\text{.}\)</span> It is an epimorphism if <span class="process-math">\(af=bf\)</span> implies <span class="process-math">\(a=b\)</span> for all parallel arrows <span class="process-math">\(a,b:Y\to T\text{.}\)</span> We also say monic and epic.</div>
+</li>
+</ol>
+</article>
+<div class="para" id="cat-isomorphisms-cancellation-4">A left inverse and a right inverse of the same arrow coincide when both exist: if <span class="process-math">\(rf=\id_X\)</span> and <span class="process-math">\(fs=\id_Y\text{,}\)</span> then <span class="process-math">\(r=r(fs)=(rf)s=s\text{.}\)</span> Hence an isomorphism has exactly one inverse. One-sided inverses need not be unique. In the monoid example, invertible arrows are precisely the units of the monoid, so its one-object category is a groupoid exactly when the monoid is a group.</div>
+<article class="proposition theorem-like" id="cat-prop-cancellation"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Basic consequences of cancellation.</span>
+</h3>
+<div class="para" id="cat-prop-cancellation-2-1">The following properties hold in any category.</div> 
+<ol class="decimal" id="cat-prop-cancellation-2-2">
+<li id="cat-prop-cancellation-2-2-1">
+<div class="para" id="cat-prop-cancellation-2-2-1-1">Composites of isomorphisms are isomorphisms, with <span class="process-math">\((gf)^{-1}=f^{-1}g^{-1}\text{.}\)</span> A split monomorphism is monic and a split epimorphism is epic.</div>
+</li>
+<li id="cat-prop-cancellation-2-2-2">
+<div class="para" id="cat-prop-cancellation-2-2-2-1">Composites of monomorphisms are monic; if <span class="process-math">\(gf\)</span> is monic, then <span class="process-math">\(f\)</span> is monic. Dually, composites of epimorphisms are epic; if <span class="process-math">\(gf\)</span> is epic, then <span class="process-math">\(g\)</span> is epic.</div>
+</li>
+<li id="cat-prop-cancellation-2-2-3">
+<div class="para" id="cat-prop-cancellation-2-2-3-1">An arrow which is monic and split epic is an isomorphism. An arrow which is epic and split monic is also an isomorphism.</div>
+</li>
+</ol>
+</article>
+<details id="cat-prop-cancellation-3" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="cat-prop-cancellation-3-1">The inverse formula follows by composing in both orders. If <span class="process-math">\(rf=\id_X\text{,}\)</span> multiplying <span class="process-math">\(fa=fb\)</span> on the left by <span class="process-math">\(r\)</span> gives <span class="process-math">\(a=b\text{.}\)</span> For monic <span class="process-math">\(f,g\text{,}\)</span> an equality <span class="process-math">\(gfa=gfb\)</span> first cancels <span class="process-math">\(g\)</span> and then <span class="process-math">\(f\text{.}\)</span> If only <span class="process-math">\(gf\)</span> is known to be monic, <span class="process-math">\(fa=fb\)</span> still implies <span class="process-math">\(gfa=gfb\text{,}\)</span> hence <span class="process-math">\(a=b\text{.}\)</span> Finally, if <span class="process-math">\(fs=\id_Y\)</span> and <span class="process-math">\(f\)</span> is monic, then <span class="process-math">\(f(sf)=f=f\id_X\)</span> gives <span class="process-math">\(sf=\id_X\text{.}\)</span> Reversing all arrows proves the dual assertions.</div>
+</article></details>
+<div class="para logical" id="cat-isomorphisms-cancellation-6">
+<div class="para">The cancellation definitions are equivalent to injectivity of the functions</div>
+<div class="displaymath process-math" id="cat-isomorphisms-cancellation-6-1">
+\begin{equation*}
+\Hom_{\mathcal C}(T,X)\longrightarrow\Hom_{\mathcal C}(T,Y),\quad a\longmapsto fa,
+\end{equation*}
+</div>
+<div class="para">for monicity, and of <span class="process-math">\(\Hom_{\mathcal C}(Y,T)\to\Hom_{\mathcal C}(X,T)\text{,}\)</span> <span class="process-math">\(a\mapsto af\text{,}\)</span> for epicity. The quantifier ranges over all test objects. In a thin category every arrow is both monic and epic, although an arrow in a poset is invertible only when its endpoints are equal.</div>
+</div>
+<article class="example example-like" id="cat-example-epi-not-surjective"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Cancellation and underlying functions.</span>
+</h3>
+<div class="para" id="cat-example-epi-not-surjective-2">In <span class="process-math">\(\Set\text{,}\)</span> monomorphisms are precisely injective functions: singleton test objects detect equality of individual elements. Epimorphisms are precisely surjective functions. To verify the latter converse, if <span class="process-math">\(y\in Y\)</span> is outside the image of <span class="process-math">\(f:X\to Y\text{,}\)</span> the zero function <span class="process-math">\(Y\to\{0,1\}\)</span> and the function taking value one only at <span class="process-math">\(y\)</span> agree after composition with <span class="process-math">\(f\text{,}\)</span> but differ.</div>
+<div class="para" id="cat-example-epi-not-surjective-3">These identifications must be checked in each category. The inclusion <span class="process-math">\(\Z\to\Q\)</span> in <span class="process-math">\(\Ring\)</span> is monic and epic, but is not an isomorphism. Monicity follows from injectivity. If two ring maps <span class="process-math">\(a,b:\Q\to R\)</span> agree on <span class="process-math">\(\Z\text{,}\)</span> then for every nonzero integer <span class="process-math">\(n\)</span> they agree on <span class="process-math">\(n^{-1}\text{,}\)</span> since its image must be the inverse of their common image of <span class="process-math">\(n\text{.}\)</span> They consequently agree on every rational number. The inclusion is not surjective, and a ring inverse would in particular be an inverse function. This example is also given in <a href="cat-references.html#Rie" class="xref" data-knowl="./knowl/xref/bib-cat-riehl.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Rie">[Rie, Exercise 1.2.iv]</a>.</div>
+</article>
+<div class="para" id="cat-isomorphisms-cancellation-8">For a category equipped with a faithful underlying-set functor, injective and surjective underlying functions always give monic and epic arrows, respectively: cancel the functions and use faithfulness. The converse requires more information. Thus the word epimorphism never means surjective by our general convention.<a id="cat-isomorphisms-cancellation-8-1" href="#margin-cat-isomorphisms-cancellation-8-1" class="margin-note-marker" aria-label="Margin note 2">2</a>
+</div>
+</section>
+<section class="section" id="cat-opposites-subcategories">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Opposites and subcategories</span>
+</h2>
+<div class="para" id="cat-opposites-subcategories-2">Many statements come in pairs obtained by reversing arrows. This operation changes the category under discussion; it is not an instruction to reverse a function while keeping its source and target fixed.</div>
+<article class="definition definition-like" id="cat-def-opposite-subcategory"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.7</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Opposite and subcategories.</span>
+</h3>
+<ol class="decimal" id="cat-def-opposite-subcategory-2-1">
+<li id="cat-def-opposite-subcategory-2-1-1">
+<div class="para logical" id="cat-def-opposite-subcategory-2-1-1-1">
+<div class="para">The opposite category <span class="process-math">\(\mathcal C^{\mathrm{op}}\)</span> has the same objects as <span class="process-math">\(\mathcal C\)</span> and</div>
+<div class="displaymath process-math" id="cat-def-opposite-subcategory-2-1-1-1-3">
+\begin{equation*}
+\Hom_{\mathcal C^{\mathrm{op}}}(X,Y)=\Hom_{\mathcal C}(Y,X).
+\end{equation*}
+</div>
+<div class="para">An arrow <span class="process-math">\(f:X\to Y\)</span> is written <span class="process-math">\(f^{\mathrm{op}}:Y\to X\)</span> in the opposite. Composition is specified by <span class="process-math">\(f^{\mathrm{op}}g^{\mathrm{op}}=(gf)^{\mathrm{op}}\text{,}\)</span> and identities are unchanged.</div>
+</div>
+</li>
+<li id="cat-def-opposite-subcategory-2-1-2">
+<div class="para" id="cat-def-opposite-subcategory-2-1-2-1">A subcategory <span class="process-math">\(\mathcal A\subseteq\mathcal C\)</span> consists of a subset of objects and subsets <span class="process-math">\(\Hom_{\mathcal A}(X,Y)\subseteq\Hom_{\mathcal C}(X,Y)\)</span> containing the required identities and closed under composition. Its structure is inherited from <span class="process-math">\(\mathcal C\text{.}\)</span> It is full if these morphism subsets are equal to the corresponding morphism sets of <span class="process-math">\(\mathcal C\text{;}\)</span> it is wide if it has every object of <span class="process-math">\(\mathcal C\text{.}\)</span>
+</div>
+</li>
+<li id="cat-def-opposite-subcategory-2-1-3">
+<div class="para" id="cat-def-opposite-subcategory-2-1-3-1">A category is skeletal if isomorphic objects are equal. A skeleton of <span class="process-math">\(\mathcal C\)</span> is a full subcategory containing exactly one object from each isomorphism class of objects of <span class="process-math">\(\mathcal C\text{.}\)</span>
+</div>
+</li>
+</ol>
+</article>
+<div class="para" id="cat-opposites-subcategories-4">Associativity and the identity rules for the opposite follow from those of <span class="process-math">\(\mathcal C\text{,}\)</span> and reversing twice recovers the original structure. Invertibility is unchanged, while monomorphisms and epimorphisms exchange roles. A categorical statement, including its hypotheses, may therefore be dualized. This principle does not identify a particular category with its opposite.</div>
+<div class="para" id="cat-opposites-subcategories-5">The discrete category on <span class="process-math">\(\Ob(\mathcal C)\)</span> is a wide subcategory of <span class="process-math">\(\mathcal C\text{,}\)</span> but need not be full. All objects together with all invertible arrows form another wide subcategory, the maximal subgroupoid, often called the core. A full subcategory is determined by its chosen objects. A skeleton of finite sets can be obtained by taking one standard set of each finite cardinality, such as <span class="process-math">\(\{0,\ldots,n-1\}\text{.}\)</span> It still has all functions between those representatives, not just identity maps.</div>
+<div class="para" id="cat-opposites-subcategories-6">A skeleton exists for every set-encoded category under our choice assumption: isomorphism is an equivalence relation on its object set, and one chooses a representative from each class. It is not a canonical collection of objects. A skeleton of a <span class="process-math">\(\U\)</span>-small category is again <span class="process-math">\(\U\)</span>-small, but a skeleton of an essentially <span class="process-math">\(\U\)</span>-small category need not be strictly <span class="process-math">\(\U\)</span>-small with its inherited object names; an equivalent presentation using small labels may be needed. We will prove below that a skeleton inclusion is an equivalence. Fullness alone does not ensure closure under isomorphism in the ambient category.<a id="cat-opposites-subcategories-6-5" href="#margin-cat-opposites-subcategories-6-5" class="margin-note-marker" aria-label="Margin note 3">3</a>
+</div>
+</section>
+<section class="section" id="cat-functors">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Functors and what they detect</span>
+</h2>
+<div class="para" id="cat-functors-2">An object assignment becomes a functor only after specifying arrow maps and checking both structure rules. A map of the underlying quivers need not preserve the identity arrows or the composites that the categories already possess.</div>
+<article class="definition definition-like" id="cat-def-functor"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.8</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Functor and comparison properties.</span>
+</h3>
+<div class="para logical" id="cat-def-functor-2-1">
+<div class="para">For categories <span class="process-math">\(\mathcal C,\mathcal D\text{,}\)</span> a functor <span class="process-math">\(F:\mathcal C\to\mathcal D\)</span> assigns an object <span class="process-math">\(FX\)</span> to each <span class="process-math">\(X\)</span> and a function</div>
+<div class="displaymath process-math" id="cat-def-functor-2-1-5">
+\begin{equation*}
+F_{X,Y}:\Hom_{\mathcal C}(X,Y)\longrightarrow\Hom_{\mathcal D}(FX,FY)
+\end{equation*}
+</div>
+<div class="para">to each pair, such that <span class="process-math">\(F(\id_X)=\id_{FX}\)</span> and <span class="process-math">\(F(gf)=F(g)F(f)\text{.}\)</span> When its direction is clear, this is also called a covariant functor.</div>
+</div> 
+<ol class="decimal" id="cat-def-functor-2-2">
+<li id="cat-def-functor-2-2-1">
+<div class="para" id="cat-def-functor-2-2-1-1">It is faithful if every <span class="process-math">\(F_{X,Y}\)</span> is injective, full if every <span class="process-math">\(F_{X,Y}\)</span> is surjective, and fully faithful if all these functions are bijective.</div>
+</li>
+<li id="cat-def-functor-2-2-2">
+<div class="para" id="cat-def-functor-2-2-2-1">It is essentially surjective if each object of <span class="process-math">\(\mathcal D\)</span> is isomorphic to some <span class="process-math">\(FX\text{.}\)</span> It is conservative if <span class="process-math">\(F(f)\)</span> being invertible always implies that <span class="process-math">\(f\)</span> is invertible.</div>
+</li>
+<li id="cat-def-functor-2-2-3">
+<div class="para" id="cat-def-functor-2-2-3-1">A contravariant functor from <span class="process-math">\(\mathcal C\)</span> to <span class="process-math">\(\mathcal D\)</span> means a functor <span class="process-math">\(\mathcal C^{\mathrm{op}}\to\mathcal D\text{.}\)</span> Thus it assigns to <span class="process-math">\(f:X\to Y\)</span> an arrow <span class="process-math">\(F(f):FY\to FX\text{,}\)</span> with <span class="process-math">\(F(gf)=F(f)F(g)\text{.}\)</span>
+</div>
+</li>
+</ol>
+</article>
+<div class="para logical" id="cat-functors-4">
+<div class="para">Identity functors and composites of functors are defined on both objects and arrows; their structure rules follow immediately. A covariant functor <span class="process-math">\(F:\mathcal C\to\mathcal D\)</span> also induces a covariant functor</div>
+<div class="displaymath process-math" id="cat-functors-4-2">
+\begin{equation*}
+F^{\mathrm{op}}:\mathcal C^{\mathrm{op}}\to\mathcal D^{\mathrm{op}},\qquad f^{\mathrm{op}}\longmapsto F(f)^{\mathrm{op}}.
+\end{equation*}
+</div>
+<div class="para">This construction reverses both categories. It differs from declaring <span class="process-math">\(F\)</span> contravariant, which reverses only the source in the notation for the functor’s domain.</div>
+</div>
+<article class="example example-like" id="cat-example-functors"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.9</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Order maps and algebraic forgetful functors.</span>
+</h3>
+<div class="para" id="cat-example-functors-2">A functor between preorder categories is exactly an order-preserving map of their object sets. The inclusion of a subcategory is faithful, and is full exactly when the subcategory is full. The forgetful functor <span class="process-math">\(\Grp\to\Set\)</span> is faithful and conservative: group homomorphisms are determined by their functions, and the inverse function of a bijective homomorphism is again a homomorphism. It is not full, since arbitrary functions between groups need not respect multiplication.</div>
+<div class="para" id="cat-example-functors-3">For a fixed object <span class="process-math">\(A\text{,}\)</span> postcomposition defines a covariant functor <span class="process-math">\(\Hom_{\mathcal C}(A,-):\mathcal C\to\Set\text{,}\)</span> whereas precomposition defines a functor <span class="process-math">\(\Hom_{\mathcal C}(-,A):\mathcal C^{\mathrm{op}}\to\Set\text{.}\)</span> Their identity and composition rules are precisely the identity and associativity rules of the category. A functor between one-object monoid categories is a homomorphism of monoids, including preservation of the unit.</div>
+</article>
+<article class="proposition theorem-like" id="cat-prop-functor-detection"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.10</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Invertibility under functors.</span>
+</h3>
+<ol class="decimal" id="cat-prop-functor-detection-2-1">
+<li id="cat-prop-functor-detection-2-1-1">
+<div class="para" id="cat-prop-functor-detection-2-1-1-1">Every functor preserves isomorphisms and their inverses. Every fully faithful functor is conservative.</div>
+</li>
+<li id="cat-prop-functor-detection-2-1-2">
+<div class="para" id="cat-prop-functor-detection-2-1-2-1">If <span class="process-math">\(F\)</span> is fully faithful, then <span class="process-math">\(FX\cong FY\)</span> if and only if <span class="process-math">\(X\cong Y\text{.}\)</span> The forward implication concerns existence of an isomorphism between the image objects, not merely the image of a previously specified arrow.</div>
+</li>
+<li id="cat-prop-functor-detection-2-1-3">
+<div class="para" id="cat-prop-functor-detection-2-1-3-1">Composites of faithful, full, fully faithful, essentially surjective, or conservative functors have the respective property.</div>
+</li>
+</ol>
+</article>
+<details id="cat-prop-functor-detection-3" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="cat-prop-functor-detection-3-1">Apply a functor to the two inverse equations to obtain the first preservation assertion. If <span class="process-math">\(F(f)\)</span> is invertible and <span class="process-math">\(F\)</span> is fully faithful, fullness lifts its inverse to an arrow <span class="process-math">\(g\text{;}\)</span> faithfulness converts <span class="process-math">\(F(gf)=\id_{FX}\)</span> and <span class="process-math">\(F(fg)=\id_{FY}\)</span> into the inverse equations for <span class="process-math">\(f\text{.}\)</span> More generally, fullness first lifts an isomorphism <span class="process-math">\(FX\to FY\)</span> itself, and the same argument applies. The morphism-set properties are closed under composition of functions. Essential surjectivity of a composite uses preservation of the isomorphism witnessing the first choice of a preimage; conservativity applies successively.</div>
+</article></details>
+<div class="para" id="cat-functors-7">Faithfulness refers to each fixed pair of objects. It does not require the object map to be injective. For example, the category with two objects and exactly one arrow between every pair maps fully faithfully to <span class="process-math">\(\mathbf 1\text{.}\)</span> Conversely, a faithful functor need not be conservative: the functor from the poset <span class="process-math">\(0&lt;1\)</span> to <span class="process-math">\(\mathbf 1\)</span> sends its noninvertible arrow to an identity. Essential surjectivity likewise need not provide equality with an image object; it provides an isomorphism.</div>
+<div class="para" id="cat-functors-8">Preservation of isomorphisms follows from explicit inverse equations, which a functor carries to inverse equations. Preservation of monomorphisms or epimorphisms does not follow from the functor axioms alone. For example, the unique nonidentity arrow of the poset category <span class="process-math">\(0&lt;1\)</span> is both monic and epic. A functor to <span class="process-math">\(\Set\)</span> can send it to any function between the two chosen image sets, including a noninjective or nonsurjective function. The source cancellation tests involve only source arrows, whereas the target tests involve every target arrow. This explains why preservation statements later in the notes require additional hypotheses.</div>
+</section>
+<section class="section" id="cat-natural-transformations">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Natural transformations</span>
+</h2>
+<div class="para" id="cat-natural-transformations-2">Let <span class="process-math">\(F,G:\mathcal C\to\mathcal D\)</span> be functors. Choosing one arrow <span class="process-math">\(FX\to GX\)</span> for each object is only the first step of comparing them. The arrows must respect every relation transported from the source category.</div>
+<article class="definition definition-like" id="cat-def-natural-transformation"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.11</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Natural transformation and natural isomorphism.</span>
+</h3>
+<div class="para logical" id="cat-def-natural-transformation-2-1">
+<div class="para">A natural transformation <span class="process-math">\(\eta:F\Rightarrow G\)</span> is a family <span class="process-math">\((\eta_X)_{X\in\Ob(\mathcal C)}\)</span> with <span class="process-math">\(\eta_X:FX\to GX\text{,}\)</span> such that for each arrow <span class="process-math">\(f:X\to Y\text{,}\)</span>
+</div>
+<div class="displaymath process-math" id="cat-equation-naturality">
+\begin{equation*}
+G(f)\eta_X=\eta_YF(f).
+\end{equation*}
+</div>
+<div class="para">The arrow <span class="process-math">\(\eta_X\)</span> is its component at <span class="process-math">\(X\text{.}\)</span> We write <span class="process-math">\(\Nat(F,G)\)</span> for the set of such transformations. A natural isomorphism is a natural transformation whose every component is an isomorphism; it is denoted <span class="process-math">\(F\cong G\text{.}\)</span>
+</div>
+</div>
+</article>
+<figure class="figure figure-like" id="cat-diagram-transformation"><div class="image-box" style="width: 28%; margin-left: 36%; margin-right: 36%;"><img src="generated/latex-image/cat-image-transformation.svg" role="img" class="contained" alt="Two curved arrows F and G run from category C to category D. A double arrow labelled eta points from the upper arrow F to the lower arrow G."></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.12<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>A natural transformation <span class="process-math">\(\eta:F\Rightarrow G\)</span> is drawn between two parallel functors.</figcaption>
+</figure>
+<figure class="figure figure-like" id="cat-diagram-naturality"><div class="image-box" style="width: 34%; margin-left: 33%; margin-right: 33%;"><img src="generated/latex-image/cat-image-naturality.svg" role="img" class="contained" alt="A commutative square with F(X) and F(Y) above G(X) and G(Y). The horizontal arrows are F(f) and G(f), and the vertical arrows are eta_X and eta_Y."></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.13<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Naturality requires this square to commute for every morphism <span class="process-math">\(f:X\to Y\text{.}\)</span></figcaption>
+</figure>
+<div class="para" id="cat-natural-transformations-6">The naturality square compares two routes from <span class="process-math">\(FX\)</span> to <span class="process-math">\(GY\text{:}\)</span> first compare and then apply <span class="process-math">\(G(f)\text{,}\)</span> or first apply <span class="process-math">\(F(f)\)</span> and then compare. The family must work for all source arrows, including automorphisms and maps between distinct objects. A comparison chosen independently for each object frequently fails this test. For contravariant functors the definition is applied to <span class="process-math">\(\mathcal C^{\mathrm{op}}\text{;}\)</span> for <span class="process-math">\(f:X\to Y\)</span> in <span class="process-math">\(\mathcal C\text{,}\)</span> the equation becomes <span class="process-math">\(G(f)\eta_Y=\eta_XF(f)\text{.}\)</span>
+</div>
+<article class="example example-like" id="cat-example-naturality"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.14</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Singletons and a failure of arbitrary choices.</span>
+</h3>
+<div class="para" id="cat-example-naturality-2">On <span class="process-math">\(\Set\text{,}\)</span> let <span class="process-math">\(\mathcal P(X)\)</span> be the power set and send <span class="process-math">\(f:X\to Y\)</span> to direct image <span class="process-math">\(A\mapsto f(A)\text{.}\)</span> The functions <span class="process-math">\(\sigma_X:X\to\mathcal P(X)\text{,}\)</span> <span class="process-math">\(x\mapsto\{x\}\text{,}\)</span> form a natural transformation from the identity functor to <span class="process-math">\(\mathcal P\text{,}\)</span> because <span class="process-math">\(f(\{x\})=\{f(x)\}\text{.}\)</span> Here the same rule interacts correctly with every function.</div>
+<div class="para" id="cat-example-naturality-3">In contrast, a natural transformation from the constant singleton functor to the identity on the category of nonempty sets would select elements <span class="process-math">\(x_X\in X\)</span> satisfying <span class="process-math">\(f(x_X)=x_Y\)</span> for every function <span class="process-math">\(f:X\to Y\text{.}\)</span> A two-element set has a permutation with no fixed point, so this is impossible, despite the existence of an element in each object. Ordinary existence and compatibility under maps are different demands.</div>
+<div class="para" id="cat-example-naturality-4">For a one-object category coming from a monoid <span class="process-math">\(M\text{,}\)</span> two functors to another one-object monoid category give homomorphisms <span class="process-math">\(F,G:M\to N\text{.}\)</span> A natural transformation between them is an element <span class="process-math">\(a\in N\)</span> satisfying <span class="process-math">\(G(m)a=aF(m)\)</span> for every <span class="process-math">\(m\in M\text{.}\)</span> Thus even one component can carry a substantial compatibility condition.</div>
+</article>
+<div class="para" id="cat-natural-transformations-8">If the source category is discrete, there are no naturality restrictions beyond the identity equations, which are automatic. If it is empty, there is exactly one functor to any category and exactly one transformation between such functors: the empty family. These cases are useful checks on later constructions rather than exceptions to the definition.</div>
+</section>
+<section class="section" id="cat-transformation-calculus">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Composition and changing the source or target</span>
+</h2>
+<div class="para" id="cat-transformation-calculus-2">Natural transformations can be composed between functors with a common source and target, or transported by composing those functors with another functor. These operations will let us manipulate comparisons without making new component choices.</div>
+<article class="definition definition-like" id="cat-def-transformation-operations"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.15</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Vertical composition, whiskering, and horizontal composition.</span>
+</h3>
+<ol class="decimal" id="cat-def-transformation-operations-2-1">
+<li id="cat-def-transformation-operations-2-1-1">
+<div class="para" id="cat-def-transformation-operations-2-1-1-1">For <span class="process-math">\(\eta:F\Rightarrow G\)</span> and <span class="process-math">\(\theta:G\Rightarrow K\text{,}\)</span> their vertical composite is <span class="process-math">\(\theta\cdot\eta:F\Rightarrow K\)</span> with components <span class="process-math">\((\theta\cdot\eta)_X=\theta_X\eta_X\text{.}\)</span> The identity transformation <span class="process-math">\(\id_F:F\Rightarrow F\)</span> has components <span class="process-math">\(\id_{FX}\text{.}\)</span>
+</div>
+</li>
+<li id="cat-def-transformation-operations-2-1-2">
+<div class="para" id="cat-def-transformation-operations-2-1-2-1">For <span class="process-math">\(L:\mathcal B\to\mathcal C\)</span> and <span class="process-math">\(H:\mathcal D\to\mathcal E\text{,}\)</span> the whiskered transformations <span class="process-math">\(\eta L:FL\Rightarrow GL\)</span> and <span class="process-math">\(H\eta:HF\Rightarrow HG\)</span> have components <span class="process-math">\(\eta_{LB}\)</span> and <span class="process-math">\(H(\eta_X)\text{,}\)</span> respectively.</div>
+</li>
+<li id="cat-def-transformation-operations-2-1-3">
+<div class="para logical" id="cat-def-transformation-operations-2-1-3-1">
+<div class="para">For <span class="process-math">\(\eta:F\Rightarrow G\)</span> with <span class="process-math">\(F,G:\mathcal C\to\mathcal D\)</span> and <span class="process-math">\(\theta:H\Rightarrow K\)</span> with <span class="process-math">\(H,K:\mathcal D\to\mathcal E\text{,}\)</span> their horizontal composite <span class="process-math">\(\theta*\eta:HF\Rightarrow KG\)</span> has components</div>
+<div class="displaymath process-math" id="cat-def-transformation-operations-2-1-3-1-6">
+\begin{equation*}
+(\theta*\eta)_X=\theta_{GX}H(\eta_X)=K(\eta_X)\theta_{FX}.
+\end{equation*}
+</div>
+<div class="para">The equality is the naturality of <span class="process-math">\(\theta\)</span> applied to the arrow <span class="process-math">\(\eta_X\text{.}\)</span>
+</div>
+</div>
+</li>
+</ol>
+</article>
+<article class="proposition theorem-like" id="cat-prop-transformation-calculus"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.16</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Compatibility of composition.</span>
+</h3>
+<div class="para logical" id="cat-prop-transformation-calculus-2-1">
+<div class="para">The transformations just defined are natural. Vertical and horizontal composition are associative with their indicated identity transformations, and whiskering preserves vertical composition and identities. If <span class="process-math">\(\eta:F_0\Rightarrow F_1\text{,}\)</span> <span class="process-math">\(\eta':F_1\Rightarrow F_2\text{,}\)</span> <span class="process-math">\(\theta:H_0\Rightarrow H_1\text{,}\)</span> and <span class="process-math">\(\theta':H_1\Rightarrow H_2\)</span> have matching source and target categories, then the interchange identity holds:</div>
+<div class="displaymath process-math" id="cat-prop-transformation-calculus-2-1-5">
+\begin{equation*}
+(\theta'\cdot\theta)*(\eta'\cdot\eta)=(\theta'*\eta')\cdot(\theta*\eta).
+\end{equation*}
+</div>
+<div class="para">Both sides are transformations <span class="process-math">\(H_0F_0\Rightarrow H_2F_2\text{.}\)</span>
+</div>
+</div> 
+<div class="para logical" id="cat-prop-transformation-calculus-2-2">
+<div class="para">The horizontal units are the identity transformations of the identity functors. Explicitly, for <span class="process-math">\(\eta:F\Rightarrow G\)</span> with <span class="process-math">\(F,G:\mathcal C\to\mathcal D\text{,}\)</span>
+</div>
+<div class="displaymath process-math" id="cat-prop-transformation-calculus-2-2-3">
+\begin{equation*}
+\id_{\id_{\mathcal D}}*\eta=\eta=\eta*\id_{\id_{\mathcal C}}.
+\end{equation*}
+</div>
+<div class="para">This differs from vertical composition, whose unit at a fixed functor <span class="process-math">\(F\)</span> is <span class="process-math">\(\id_F\text{.}\)</span>
+</div>
+</div>
+</article>
+<details id="cat-prop-transformation-calculus-3" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="cat-prop-transformation-calculus-3-1">For vertical composition, slide <span class="process-math">\(K(f)\)</span> across <span class="process-math">\(\theta_X\)</span> using naturality and then slide <span class="process-math">\(G(f)\)</span> across <span class="process-math">\(\eta_X\text{;}\)</span> this gives <span class="process-math">\(K(f)\theta_X\eta_X=\theta_Y\eta_YF(f)\text{.}\)</span> Precomposition substitutes <span class="process-math">\(L(f)\)</span> in a naturality equation, while postcomposition applies <span class="process-math">\(H\)</span> to that equation. The horizontal composite is consequently a composite of whiskered natural transformations.</div>
+<div class="para logical" id="cat-prop-transformation-calculus-3-2">
+<div class="para">For interchange, expanding the right side at <span class="process-math">\(X\)</span> gives</div>
+<div class="displaymath process-math" id="cat-prop-transformation-calculus-3-2-2">
+\begin{equation*}
+\theta'_{F_2X}H_1(\eta'_X)\theta_{F_1X}H_0(\eta_X)
+=\theta'_{F_2X}\theta_{F_2X}H_0(\eta'_X)H_0(\eta_X).
+\end{equation*}
+</div>
+<div class="para">The equality uses naturality of <span class="process-math">\(\theta\)</span> at <span class="process-math">\(\eta'_X\text{;}\)</span> the final expression is the left side. Vertical associativity and identities are those of the component arrows. Horizontal associativity follows by expanding three transformations with the same component formula and using functoriality; both parenthesizations give the composite of the three appropriately whiskered components. Identity transformations give the asserted units by the same formula.</div>
+</div>
+</article></details>
+<div class="para" id="cat-transformation-calculus-5">The displayed types are part of these rules. Vertical composition requires a shared middle functor, whereas horizontal composition requires consecutive source and target categories. For example, <span class="process-math">\(H\eta=\id_H*\eta\)</span> and <span class="process-math">\(\eta L=\eta*\id_L\text{.}\)</span> These operations only organize functors and transformations between ordinary categories; no additional theory is needed to use them.<a id="cat-transformation-calculus-5-3" href="#margin-cat-transformation-calculus-5-3" class="margin-note-marker" aria-label="Margin note 4">4</a>
+</div>
+</section>
+<section class="section" id="cat-functor-categories">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.7</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Functor categories and natural isomorphisms</span>
+</h2>
+<div class="para" id="cat-functor-categories-2">Vertical composition allows comparisons themselves to serve as arrows of a category. Keeping this category visible is useful: an assertion about functors being isomorphic is then an ordinary assertion about objects and arrows.</div>
+<article class="definition definition-like" id="cat-def-functor-category"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.17</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Functor category.</span>
+</h3>
+<div class="para" id="cat-def-functor-category-2-1">The functor category <span class="process-math">\(\Fun(\mathcal C,\mathcal D)\)</span> has functors <span class="process-math">\(\mathcal C\to\mathcal D\)</span> as its objects, morphism sets <span class="process-math">\(\Nat(F,G)\text{,}\)</span> and vertical composition as its composition law. Its identity at <span class="process-math">\(F\)</span> is <span class="process-math">\(\id_F\text{.}\)</span>
+</div>
+</article>
+<div class="para logical" id="cat-functor-categories-4">
+<div class="para">The preceding proposition verifies its category axioms. Its objects and arrows are sets under our set-encoding convention: object maps, local arrow maps, and component families are subsets of sets of possible functions. If <span class="process-math">\(\mathcal C\)</span> is <span class="process-math">\(\U\)</span>-small and <span class="process-math">\(\mathcal D\)</span> is locally <span class="process-math">\(\U\)</span>-small, then</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/bib-cat-li1.html" id="cat-functor-categories-4-5">
+\begin{equation*}
+\Nat(F,G)\subseteq\prod_{X\in\Ob(\mathcal C)}\Hom_{\mathcal D}(FX,GX)
+\end{equation*}
+</div>
+<div class="para" id="cat-functor-categories-4-11-anchor">belongs to <span class="process-math">\(\U\text{.}\)</span> Thus the functor category is locally <span class="process-math">\(\U\)</span>-small. If both categories are <span class="process-math">\(\U\)</span>-small, their functor category is <span class="process-math">\(\U\)</span>-small as well. For a source that is not <span class="process-math">\(\U\)</span>-small, these conclusions at the same scale do not follow: one must check the size or work in a larger universe.<a id="cat-functor-categories-4-11" href="#margin-cat-functor-categories-4-11" class="margin-note-marker" aria-label="Margin note 5">5</a>
+</div>
+</div>
+<article class="proposition theorem-like" id="cat-prop-natural-isomorphism"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.18</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Invertibility is detected on components.</span>
+</h3>
+<div class="para" id="cat-prop-natural-isomorphism-2-1">A transformation <span class="process-math">\(\eta:F\Rightarrow G\)</span> is an isomorphism in <span class="process-math">\(\Fun(\mathcal C,\mathcal D)\)</span> if and only if every component <span class="process-math">\(\eta_X\)</span> is invertible. Its inverse then has components <span class="process-math">\(\eta_X^{-1}\text{.}\)</span>
+</div>
+</article>
+<details id="cat-prop-natural-isomorphism-3" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="cat-prop-natural-isomorphism-3-1">
+<div class="para">An inverse transformation gives inverse component arrows by the definition of vertical composition. Conversely, if every component is invertible, the naturality equation implies</div>
+<div class="displaymath process-math" id="cat-prop-natural-isomorphism-3-1-1">
+\begin{equation*}
+F(f)\eta_X^{-1}=\eta_Y^{-1}G(f)
+\end{equation*}
+</div>
+<div class="para">after multiplication by the inverse components on the two sides. Thus the inverse family is natural, and its vertical composites with <span class="process-math">\(\eta\)</span> have identity components.</div>
+</div>
+</article></details>
+<div class="para" id="cat-functor-categories-6">The condition concerns the components of a specified natural transformation. The weaker assertion that <span class="process-math">\(FX\)</span> and <span class="process-math">\(GX\)</span> happen to be isomorphic for every <span class="process-math">\(X\)</span> need not yield a natural isomorphism. For example, take the source to be the one-object group category of a nontrivial finite group <span class="process-math">\(M\text{,}\)</span> and the target its one-object group category as well. The identity homomorphism and the trivial homomorphism have the same image object, but a natural isomorphism would be an invertible <span class="process-math">\(a\in M\)</span> with <span class="process-math">\(a=am\)</span> for every <span class="process-math">\(m\in M\text{,}\)</span> which is impossible. Naturality therefore retains information invisible at the level of image objects.</div>
+</section>
+<section class="section" id="cat-equivalences">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.8</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Equivalence and the choice of representatives</span>
+</h2>
+<div class="para" id="cat-equivalences-2">An isomorphism of categories requires inverse functors with literal equality of the two composites to the identity functors. Many comparisons in mathematics instead recover objects by isomorphisms compatible with arrows. Equivalence records this latter situation.</div>
+<article class="definition definition-like" id="cat-def-equivalence"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.19</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Equivalence of categories.</span>
+</h3>
+<div class="para logical" id="cat-def-equivalence-2-1">
+<div class="para">A functor <span class="process-math">\(F:\mathcal C\to\mathcal D\)</span> is an equivalence if there is a functor <span class="process-math">\(G:\mathcal D\to\mathcal C\)</span> and natural isomorphisms</div>
+<div class="displaymath process-math" id="cat-def-equivalence-2-1-3">
+\begin{equation*}
+\eta:\id_{\mathcal C}\Rightarrow GF,\qquad \varepsilon:FG\Rightarrow\id_{\mathcal D}.
+\end{equation*}
+</div>
+<div class="para">Such a functor <span class="process-math">\(G\)</span> is called a quasi-inverse. We write <span class="process-math">\(\mathcal C\simeq\mathcal D\)</span> when an equivalence exists.</div>
+</div>
+</article>
+<div class="para" id="cat-equivalences-4">The definition does not impose extra equations on the two specified natural isomorphisms. In particular, they need not initially satisfy the compatibility equations used for an adjunction. The next criterion constructs the comparison maps explicitly, and explains where choice enters.</div>
+<article class="proposition theorem-like" id="cat-prop-equivalence-criterion"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.20</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Fully faithful and essentially surjective criterion.</span>
+</h3>
+<div class="para" id="cat-prop-equivalence-criterion-2-1">A functor between our set-encoded categories is an equivalence if and only if it is fully faithful and essentially surjective.</div>
+</article>
+<details id="cat-prop-equivalence-criterion-3" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="cat-prop-equivalence-criterion-3-1">First suppose <span class="process-math">\(F\)</span> has a quasi-inverse <span class="process-math">\(G\)</span> with comparisons <span class="process-math">\(\eta,\varepsilon\text{.}\)</span> Essential surjectivity follows from <span class="process-math">\(\varepsilon_Y:FGY\cong Y\text{.}\)</span> If <span class="process-math">\(Ff=Fg\text{,}\)</span> apply <span class="process-math">\(G\)</span> and conjugate by the components of <span class="process-math">\(\eta\)</span> to obtain <span class="process-math">\(f=g\text{;}\)</span> hence <span class="process-math">\(F\)</span> is faithful. The same argument with <span class="process-math">\(\varepsilon\)</span> shows that <span class="process-math">\(G\)</span> is faithful. Given <span class="process-math">\(h:FX\to FX'\text{,}\)</span> set <span class="process-math">\(f=\eta_{X'}^{-1}G(h)\eta_X\text{.}\)</span> Naturality of <span class="process-math">\(\eta\)</span> at this arrow gives <span class="process-math">\(GF(f)=G(h)\text{.}\)</span> Since <span class="process-math">\(G\)</span> is faithful, <span class="process-math">\(F(f)=h\text{.}\)</span> Thus <span class="process-math">\(F\)</span> is full. This argument uses naturality rather than assuming unmentioned compatibility between the two comparisons.</div>
+<div class="para" id="cat-prop-equivalence-criterion-3-2">Conversely, suppose <span class="process-math">\(F\)</span> is fully faithful and essentially surjective. For every <span class="process-math">\(Y\in\mathcal D\text{,}\)</span> choose an object <span class="process-math">\(GY\in\mathcal C\)</span> and an isomorphism <span class="process-math">\(\varepsilon_Y:F(GY)\to Y\text{.}\)</span> These choices are indexed by the set <span class="process-math">\(\Ob(\mathcal D)\text{,}\)</span> and the possible pairs form sets, so the axiom of choice supplies them. No choice indexed by a proper class is being made.</div>
+<div class="para logical" id="cat-prop-equivalence-criterion-3-3">
+<div class="para">For an arrow <span class="process-math">\(b:Y\to Y'\text{,}\)</span> define <span class="process-math">\(G(b):GY\to GY'\)</span> to be the unique lift under full faithfulness of</div>
+<div class="displaymath process-math" id="cat-prop-equivalence-criterion-3-3-3">
+\begin{equation*}
+\varepsilon_{Y'}^{-1}b\varepsilon_Y:F(GY)\longrightarrow F(GY').
+\end{equation*}
+</div>
+<div class="para">The image of <span class="process-math">\(G(\id_Y)\)</span> is an identity, so faithfulness gives <span class="process-math">\(G(\id_Y)=\id_{GY}\text{.}\)</span> The image of <span class="process-math">\(G(cb)\)</span> equals the product of the images of <span class="process-math">\(G(c)\)</span> and <span class="process-math">\(G(b)\text{,}\)</span> by cancellation of the middle <span class="process-math">\(\varepsilon\)</span> factors; faithfulness gives <span class="process-math">\(G(cb)=G(c)G(b)\text{.}\)</span> Hence <span class="process-math">\(G\)</span> is a functor. Its defining equation makes <span class="process-math">\(\varepsilon:FG\Rightarrow\id_{\mathcal D}\)</span> natural.</div>
+</div>
+<div class="para logical" id="cat-prop-equivalence-criterion-3-4">
+<div class="para">For each <span class="process-math">\(X\text{,}\)</span> let <span class="process-math">\(\eta_X:X\to GFX\)</span> be the unique lift of <span class="process-math">\(\varepsilon_{FX}^{-1}\text{.}\)</span> It is invertible by <a href="cat-language.html#cat-prop-functor-detection" class="xref" data-knowl="./knowl/xref/cat-prop-functor-detection.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 1.10: Invertibility under functors">Proposition 1.10</a>. For <span class="process-math">\(f:X\to X'\text{,}\)</span> the definition of <span class="process-math">\(G(Ff)\)</span> yields</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/cat-prop-functor-detection.html ./knowl/xref/cat-prop-natural-isomorphism.html" id="cat-prop-equivalence-criterion-3-4-7">
+\begin{equation*}
+F\bigl(G(Ff)\eta_X\bigr)
+=\varepsilon_{FX'}^{-1}F(f)
+=F\bigl(\eta_{X'}f\bigr).
+\end{equation*}
+</div>
+<div class="para">Faithfulness makes <span class="process-math">\(\eta\)</span> natural. Both comparisons have invertible components, so they are natural isomorphisms by <a href="cat-language.html#cat-prop-natural-isomorphism" class="xref" data-knowl="./knowl/xref/cat-prop-natural-isomorphism.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 1.18: Invertibility is detected on components">Proposition 1.18</a>. This proves the equivalence.</div>
+</div>
+</article></details>
+<div class="para logical" id="cat-equivalences-6">
+<div class="para">The criterion and its representative construction are treated in <a href="cat-references.html#LiI" class="xref" data-knowl="./knowl/xref/bib-cat-li1.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiI">[LiI, Section 2.2, Theorem 2.2.13]</a> and <a href="cat-references.html#Rie" class="xref" data-knowl="./knowl/xref/bib-cat-riehl.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Rie">[Rie, Section 1.5]</a>. The quasi-inverse depends on choices, but any two quasi-inverses of a fixed equivalence are naturally isomorphic. More precisely, if <span class="process-math">\(G,G'\)</span> have comparisons <span class="process-math">\(\varepsilon:FG\Rightarrow\id_{\mathcal D}\)</span> and <span class="process-math">\(\varepsilon':FG'\Rightarrow\id_{\mathcal D}\text{,}\)</span> full faithfulness determines <span class="process-math">\(\tau_Y:GY\to G'Y\)</span> uniquely by</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/bib-cat-li1.html ./knowl/xref/bib-cat-riehl.html" id="cat-equivalences-6-7">
+\begin{equation*}
+F(\tau_Y)=(\varepsilon'_Y)^{-1}\varepsilon_Y.
+\end{equation*}
+</div>
+<div class="para">Naturality of the two comparisons and faithfulness prove naturality of <span class="process-math">\(\tau\text{,}\)</span> and its components are invertible. This gives uniqueness with the comparisons fixed; it does not say that there is exactly one natural isomorphism between bare quasi-inverse functors.</div>
+</div>
+<article class="example example-like" id="cat-example-equivalences"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.21</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Equivalent presentations.</span>
+</h3>
+<div class="para" id="cat-example-equivalences-2">A skeleton inclusion is fully faithful by definition and essentially surjective because every object has a representative. It is therefore an equivalence. For a preorder, the poset of equivalence classes described earlier gives the same phenomenon without having to choose a full subcategory first.</div>
+<div class="para" id="cat-example-equivalences-3">The groupoid with two distinct objects and exactly one arrow between every pair is equivalent to <span class="process-math">\(\mathbf 1\text{,}\)</span> but is not isomorphic to it as a category. An isomorphism of categories would induce a bijection on object sets. Notice that every arrow in this groupoid, including the arrows between its two objects, is invertible; the identity distinction between the two objects remains a distinction of labels.</div>
+<div class="para" id="cat-example-equivalences-4">For a field <span class="process-math">\(k\)</span> whose underlying set belongs to <span class="process-math">\(\U\text{,}\)</span> the category with objects the nonnegative integers and arrows <span class="process-math">\(n\to m\)</span> the <span class="process-math">\(m\times n\)</span> matrices over <span class="process-math">\(k\)</span> is equivalent to the category of finite-dimensional vector spaces whose underlying sets belong to <span class="process-math">\(\U\text{.}\)</span> The functor sends <span class="process-math">\(n\)</span> to <span class="process-math">\(k^n\)</span> and a matrix to its linear map. It is fully faithful by matrix representation and essentially surjective by the existence of a basis. Zero-dimensional spaces and empty matrices include the object <span class="process-math">\(n=0\text{.}\)</span> No assertion that every vector space literally equals one of these coordinate spaces is required.</div>
+</article>
+<div class="para" id="cat-equivalences-8">Equivalences compose: quasi-inverses compose in reverse order, and whiskering the comparison isomorphisms gives comparisons for the composite. They are symmetric because a quasi-inverse is itself an equivalence. These observations make equivalence an appropriate way to compare different presentations of the same categorical structure. They do not permit replacing actual equality of arrows by unspecified isomorphisms; a commutative diagram still asserts equal composites in its particular category.</div>
+</section></section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="cat-conventions.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Top</span></a><a class="next-button button" href="cat-references.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a>
+</div></main>
+<div class="margin-notes" role="complementary" aria-label="Margin notes">
+<aside id="margin-cat-category-data-4-1" class="aside aside-like margin-note" data-margin-anchor="cat-category-data-4" data-margin-label="1" data-margin-inline="true"><h4 class="heading"><a href="#cat-category-data-4" class="margin-note-label">1</a></h4>
+<div class="para">The definition using local morphism sets and the equivalent definition using source and target maps on all typed arrows are compared in <a href="cat-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-cat-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Tag 0013, Definition 4.2.1]</a>. We retain local morphism sets for the universe conventions of these notes.
+</div></aside><aside id="margin-cat-isomorphisms-cancellation-8-1" class="aside aside-like margin-note" data-margin-anchor="cat-isomorphisms-cancellation-8" data-margin-label="2" data-margin-inline="true"><h4 class="heading"><a href="#cat-isomorphisms-cancellation-8" class="margin-note-label">2</a></h4>
+<div class="para">Some algebra texts use epimorphism for a surjective homomorphism. Our terminology is categorical cancellation; see <a href="cat-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-cat-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Tag 003B]</a> and, for rings, <a href="cat-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-cat-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Tag 04VM]</a>.
+</div></aside><aside id="margin-cat-opposites-subcategories-6-5" class="aside aside-like margin-note" data-margin-anchor="cat-opposites-subcategories-6" data-margin-label="3" data-margin-inline="true"><h4 class="heading"><a href="#cat-opposites-subcategories-6" class="margin-note-label">3</a></h4>
+<div class="para">A full subcategory closed under ambient isomorphisms is sometimes called replete or strictly full; Stacks uses strictly full in <a href="cat-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-cat-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Tag 0013, Definition 4.2.10]</a>. A skeleton typically fails this condition because it deliberately chooses only one representative.
+</div></aside><aside id="margin-cat-transformation-calculus-5-3" class="aside aside-like margin-note" data-margin-anchor="cat-transformation-calculus-5" data-margin-label="4" data-margin-inline="true"><h4 class="heading"><a href="#cat-transformation-calculus-5" class="margin-note-label">4</a></h4>
+<div class="para">The component formulas and interchange are treated together in <a href="cat-references.html#LiI" class="xref" data-knowl="./knowl/xref/bib-cat-li1.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiI">[LiI, Section 2.2, Lemma 2.2.7]</a>. The terminology horizontal and vertical refers to how these comparisons are placed in diagrams.
+</div></aside><aside id="margin-cat-functor-categories-4-11" class="aside aside-like margin-note" data-margin-anchor="cat-functor-categories-4-11-anchor" data-margin-label="5" data-margin-inline="true"><h4 class="heading"><a href="#cat-functor-categories-4-11-anchor" class="margin-note-label">5</a></h4>
+<div class="para">The local smallness argument is exactly why a small source appears in <a href="cat-references.html#LiI" class="xref" data-knowl="./knowl/xref/bib-cat-li1.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiI">[LiI, Section 2.3, Remark 2.3.5]</a>. It does not assert that the category of all locally <span class="process-math">\(\U\)</span>-small categories lies inside <span class="process-math">\(\U\text{.}\)</span>
+</div></aside>
+</div>
+</div>
+<footer id="site-copyright" class="site-copyright"><p>© 2026 Jie Fu. All rights reserved.</p></footer>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="nagata-surfaces">
+  <title>Nodal divisors on polarized surfaces</title>
+  <section xml:id="surface-nodal-divisor">
+    <title>A nodal divisor</title>
+    <p>Let <m>S</m> be a smooth integral complex projective surface and let <m>L</m> be ample. Write <m>V=L^2</m>. The argument in <xref ref="bib-openai-surface" detail="Section 3"/> uses an integral member of an ample linear system with two transverse branches at a point.</p>
+    <lemma xml:id="lem-surface-node">
+      <statement><p>There are a positive integer <m>D</m>, an integral divisor <m>B\in|DL|</m>, and a point <m>p\in B</m> such that <m>B</m> is smooth away from <m>p</m> and has two smooth transverse analytic branches at <m>p</m>.</p></statement>
+      <proof>
+        <p>Choose <m>e&gt;0</m> such that <m>eL</m> is very ample, embed <m>S</m> in <m>\Pp^q</m> by this bundle, and choose <m>p\in S</m>. In homogeneous coordinates with <m>p=[1:0:\cdots:0]</m>, the restrictions of <m>X_1,\ldots,X_q</m> generate <m>\mathcal I_p\otimes\cO_S(eL)</m>. Away from <m>p</m> one of these restrictions is nonzero. Near <m>p</m>, their ratios with <m>X_0</m> generate the maximal ideal because the embedding is a closed immersion.</p>
+        <p>Let <m>\rho:X=\operatorname{Bl}_pS\to S</m> be the blow-up and let <m>F</m> be its exceptional curve. These generators give a surjection<md number="no">\operatorname{Sym}^{\bullet}(\cO_S^{\oplus q})\longrightarrow\bigoplus_{j\geq0}\mathcal I_p^j\otimes\cO_S(jeL).</md>Relative <m>\operatorname{Proj}</m> gives a closed immersion <m>X\hookrightarrow S\times\Pp^{q-1}</m>, the closure of the graph of projection from <m>p</m>. The second factor pulls <m>\cO(1)</m> back to <m>\cO_X(e\rho^*L-F)</m>. The restriction of <m>\cO(1,1)</m> from <m>\Pp^q\times\Pp^{q-1}</m> is therefore the very ample bundle<md number="no">\mathcal A=\cO_X(2e\rho^*L-F).</md> The Rees-algebra description is <xref ref="bib-stacks"/> (<url href="https://stacks.math.columbia.edu/tag/01OF">Tag 01OF</url>).</p>
+        <p>A general member <m>\widetilde B\in|2\mathcal A|</m> is smooth and integral by Bertini. We can require that it meet <m>F</m> transversely at two distinct points. Indeed, <m>\mathcal A|_F\simeq\cO_{\Pp^1}(1)</m>. Its global sections generate this bundle and hence span its two-dimensional space of sections. Products of these sections show that<md number="no">H^0(X,2\mathcal A)\longrightarrow H^0(F,\cO_{\Pp^1}(2))</md>is surjective. A section with two distinct zeros on <m>F</m> is consequently a nonempty open condition, which can be imposed with the Bertini conditions. Bertini for the very ample embedding is <xref ref="bib-stacks"/> (<url href="https://stacks.math.columbia.edu/tag/0G4G">Tag 0G4G</url>).</p>
+        <p>Set <m>D=4e</m> and <m>B=\rho(\widetilde B)</m>. The divisor class gives <m>B\in|DL|</m>, and <m>B</m> is integral because <m>\widetilde B</m> is integral. The blow-down is an isomorphism away from <m>F</m>, so <m>B</m> is smooth away from <m>p</m>. In a local chart the blow-down is <m>(a,u)\mapsto(a,au)</m>. A curve transverse to <m>F=\{a=0\}</m> has <m>a</m> as a local parameter and maps to a smooth branch. The two distinct intersection points with <m>F</m> give different tangent directions. Their images are the required transverse branches.</p>
+      </proof>
+    </lemma>
+    <p>This is <xref ref="bib-openai-surface"/>, Lemma 3.1. Fix <m>D,B,p</m> as in <xref ref="lem-surface-node"/>. Choose holomorphic coordinates <m>(x,z)</m> in which the two branches are the coordinate axes, and choose a nonvanishing local frame of <m>L</m>. A defining section <m>\tau\in H^0(S,DL)</m> then has local expression<md number="no">\tau=u(x,z)xz,\qquad u(0,0)\ne0.</md>Sections of tensor powers of <m>L</m> are represented in the corresponding powers of this frame.</p>
+  </section>
+  <section xml:id="surface-exponent-bound">
+    <title>Weighted initial exponents</title>
+    <p>Fix <m>T&gt;1</m> such that <m>(1+t)^2&gt;D^2Vt</m> for every <m>t&gt;T</m>. Let <m>c=1/D</m> and <m>W=DV</m>. For <m>t&gt;T</m>, define <m>a=Wt/(1+t)</m> and <m>b=W/(1+t)</m>, and let<md number="no">\begin{aligned}\Delta_t&amp;=\operatorname{conv}\{(0,0),(a,0),(0,b)\},\\Q_t&amp;=\operatorname{conv}\{(0,0),(a,0),(c,c),(0,b)\}.\end{aligned}</md>The inequality for <m>t</m> is equivalent to <m>c/a+c/b&gt;1</m>. Thus <m>Q_t</m> is a quadrilateral with the displayed vertices in cyclic order. Its area is <m>c(a+b)/2=V/2</m>.</p>
+    <p>For a nonzero holomorphic germ, let <m>\nu_t</m> be its least Taylor exponent when <m>(\alpha,\beta)</m> are ordered by increasing <m>\alpha+t\beta</m> and, for equal weight, by increasing <m>\beta</m>. This order is compatible with addition. Initial exponents therefore add under multiplication, and a unit has initial exponent <m>(0,0)</m>.</p>
+    <proposition xml:id="prop-surface-quadrilateral">
+      <statement><p>For every positive integer <m>N</m>, every <m>t&gt;T</m>, and every nonzero <m>s\in H^0(S,NL)</m>, one has <m>\nu_t(s)\in NQ_t</m>. The section space has a basis with distinct initial exponents in <m>NQ_t</m>.</p></statement>
+      <proof>
+        <p xml:id="anchor-global-nodal-curve">Suppose that the divisor <m>C</m> of <m>s</m> does not contain <m>B</m>, and write <m>f(x,z)</m> for its local function. Neither <m>f(x,0)</m> nor <m>f(0,z)</m> vanishes identically. The intersection <m>C\cap B</m> is a finite closed subset of the integral algebraic curve <m>B</m>, whereas an identically zero restriction would place an entire analytic branch in this subset.</p>
+      <aside xml:id="margin-global-nodal-curve"><p>The algebraic curve <m>B</m> is integral globally, although its analytic germ at the node has two branches. A divisor not containing <m>B</m> meets it in finitely many points. Its restriction to either branch is therefore nonzero, so both branch orders can be used in the intersection bound.</p></aside>
+        <p>Let <m>\ell_x=\ord_0f(x,0)</m>, <m>\ell_z=\ord_0f(0,z)</m>, and let <m>v</m> be the weight of <m>\nu_t(f)</m>. The pure terms on the two branches give <m>\ell_x\geq v</m> and <m>\ell_z\geq v/t</m>. Local intersection multiplicity is additive over the two smooth branches, so<md number="no">v\left(1+\frac1t\right)\leq\ell_x+\ell_z=I_p(C,B)\leq C\cdot B=NDV.</md>The local analytic and algebraic intersection numbers agree because both are the colength of <m>(f,xz)</m> in <m>\C[[x,z]]</m>. It follows that <m>v\leq Na</m>. Since <m>a=tb</m>, this says <m>\nu_t(s)\in N\Delta_t</m>.</p>
+        <p>For general <m>s</m>, let <m>j</m> be the coefficient of <m>B</m> in its divisor and let <m>N'=N-jD</m>. Division by its defining section gives <m>s=\tau^j\sigma</m> with <m>\sigma\in H^0(S,N'L)</m>, whose effective divisor <m>R</m> does not contain <m>B</m>. Ampleness gives <m>N'V=L\cdot R\geq0</m>, hence <m>N'\geq0</m>. If <m>N'=0</m>, ampleness forces <m>R=0</m>, and <m>\sigma</m> is a nonzero constant. If <m>N'&gt;0</m>, the preceding bound gives <m>\nu_t(\sigma)\in N'\Delta_t</m>.</p>
+        <p>The local expression for <m>\tau</m> yields <m>\nu_t(s)=(j,j)+\nu_t(\sigma)</m>. When <m>N'&gt;0</m>,<md number="no">\frac{\nu_t(s)}N=\frac{N'}N\frac{\nu_t(\sigma)}{N'}+\frac{jD}N(c,c)\in Q_t,</md>because the two coefficients are nonnegative and sum to one. When <m>N'=0</m>, the normalized exponent is <m>(c,c)</m>.</p>
+        <p>Restriction of global sections to this local chart is injective by the identity theorem. Finite coefficient elimination, as in <xref ref="lem-jets-initial-analytic"/>, gives a basis with distinct initial exponents. Each exponent satisfies the bound just proved.</p>
+      </proof>
+    </proposition>
+    <p>The bound is <xref ref="bib-openai-surface"/>, Proposition 3.2.</p>
+  </section>
+  <section xml:id="surface-slice-compression">
+    <title>Diagonal slices</title>
+    <p>Write <m>\mathbb T=(\C^\times)^2</m>. For a bounded real set <m>\Omega\subset\mathbb R^2</m>, we use the local convention <m>\mathcal M(\Omega)=\mathcal M(\Omega\cap\Z^2)</m> for its Laurent monomial space. Define<md number="no">P_t=\operatorname{conv}\{(-b,0),(a,0),(0,c)\}.</md>Its area is <m>V/2</m>.</p>
+    <lemma xml:id="lem-surface-diagonal-slices">
+      <statement><p>Let <m>a,b,c&gt;0</m> satisfy <m>c/a+c/b&gt;1</m>, and let <m>Q=\operatorname{conv}\{(0,0),(a,0),(c,c),(0,b)\}</m>. Its slice on <m>\alpha-\beta=q</m> has length in the <m>\beta</m> coordinate<md number="no">\ell(q)=\begin{cases}c(1+q/b),&amp;-b\leq q\leq0,\\c(1-q/a),&amp;0\leq q\leq a.\end{cases}</md>There are no slices outside <m>[-b,a]</m>. Consequently, the shear followed by vertical compression gives the triangle<md number="no">\operatorname{conv}\{(-b,0),(a,0),(0,c)\}=\{(q,h):-b\leq q\leq a,\ 0\leq h\leq\ell(q)\}.</md></p></statement>
+      <proof>
+        <p>In coordinates <m>(q,\beta)=(\alpha-\beta,\beta)</m>, the vertices are <m>(0,0)</m>, <m>(a,0)</m>, <m>(0,c)</m>, and <m>(-b,b)</m>. For <m>0\leq q\leq a</m>, the slice runs from zero to <m>c(1-q/a)</m>. For <m>-b\leq q\leq0</m>, it runs from <m>-q</m> to <m>c+(c-b)q/b</m>. Subtracting the endpoints gives the asserted lengths. The region between zero and these lengths is the stated triangle.</p>
+      </proof>
+    </lemma>
+    <p>For the surface parameters, denote this slice length by <m>\ell_t(q)</m>. The same real slice calculation is used for the auxiliary node in <xref ref="nagata-reshaping"/>.</p>
+    <proposition xml:id="prop-surface-compression">
+      <statement><p>Let <m>N,m,r</m> be positive integers. If the <m>J^{m-1}</m> evaluation on <m>\mathcal M(NP_t)</m> is injective at some <m>r</m> distinct points of <m>\mathbb T</m>, then the corresponding evaluation on <m>\mathcal M(NQ_t)</m> is injective at some <m>r</m> distinct points of <m>\mathbb T</m>.</p></statement>
+      <proof>
+        <p>Use torus coordinates <m>(x,z)=(u,v/u)</m>, so that <m>x^\alpha z^\beta=u^{\alpha-\beta}v^\beta</m>. For each nonempty integer slice <m>q</m> of <m>NQ_t</m>, let <m>\beta_q^-</m> and <m>\beta_q^+</m> be its least and greatest integer heights. Convexity implies that every integer between them occurs. The slice has a basis<md number="no">u^qv^{\beta_q^-}(v-1)^h,\qquad 0\leq h\leq\beta_q^+-\beta_q^-.</md>Expansion in powers of <m>v</m> gives a triangular change of basis with diagonal entries one. By <xref ref="lem-surface-diagonal-slices"/>,<md number="no">h\leq\beta_q^+-\beta_q^-\leq N\ell_t(q/N),</md>so each pair <m>(q,h)</m> lies in <m>NP_t\cap\Z^2</m>. These pairs are distinct.</p>
+        <p>Let <m>(u_i,y_i)</m> be an injective test tuple for <m>\mathcal M(NP_t)</m> in coordinates <m>(u,y)</m>. Substitute <m>v=1+sy</m> into the displayed basis and divide the member indexed by <m>h</m> by <m>s^h</m>. For positive <m>s</m> tending to zero, the functions become<md number="no">u^q(1+sy)^{\beta_q^-}y^h\longrightarrow u^qy^h.</md>Choose bounded neighborhoods of the finitely many points on which <m>u</m> stays away from zero. For small <m>s</m>, one has <m>|sy|&lt;1/2</m> there. The displayed convergence is locally uniform, including for negative Laurent powers. The Cauchy formula gives convergence of all derivatives of order at most <m>m-1</m>.</p>
+        <p>The limiting monomials span a subspace of <m>\mathcal M(NP_t)</m>, so their jet matrix has full column rank. By <xref ref="lem-jets-rank-analytic"/>, the rescaled functions also have full column rank for sufficiently small <m>s&gt;0</m>. They form a rescaled pullback of a basis of <m>\mathcal M(NQ_t)</m>.</p>
+        <p>The corresponding points in the original torus are<md number="no">\left(u_i,\frac{1+sy_i}{u_i}\right),\qquad1\leq i\leq r.</md>They are nonzero and distinct. The coordinate map has Jacobian determinant <m>s/u\ne0</m>, so it preserves orders of vanishing. The full column rank is exactly the claimed injectivity.</p>
+      </proof>
+    </proposition>
+    <p>The slice formula and compression are <xref ref="bib-openai-surface"/>, Lemma 3.3 and Proposition 3.4.</p>
+  </section>
+  <section xml:id="surface-jet-transfer">
+    <title>Jets of global sections</title>
+    <corollary xml:id="cor-surface-triangle-transfer">
+      <statement><p>Let <m>N,m,r</m> be positive integers. If the <m>J^{m-1}</m> evaluation on <m>\mathcal M(NP_t)</m> is injective at some <m>r</m> distinct torus points, then the <m>J^{m-1}</m> evaluation on <m>H^0(S,NL)</m> is injective at some <m>r</m> distinct points of <m>S</m>.</p></statement>
+      <proof>
+        <p>If <m>H^0(S,NL)=0</m>, every tuple works. Otherwise, <xref ref="prop-surface-compression"/> gives an injective test on <m>\mathcal M(NQ_t)</m>. Restrict sections to germs in the fixed chart at <m>p</m>. This restriction is injective, and <xref ref="prop-surface-quadrilateral"/> gives distinct initial monomials in <m>NQ_t</m>. Their span has injective jets at the torus tuple. The weighted initial-monomial transfer <xref ref="lem-jets-initial-analytic"/> gives injective jets for the section germs at distinct points of the chart, hence for global sections at those points.</p>
+      </proof>
+    </corollary>
+    <p>This is <xref ref="bib-openai-surface"/>, Corollary 3.5. The tuple supplied by this corollary may depend on <m>N</m> and <m>m</m>.</p>
+  </section>
+</chapter>

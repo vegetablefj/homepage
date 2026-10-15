@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="cfr-atoms">
+  <title>Hodge atoms and blowups</title>
+  <section xml:id="cfr-quantum-hodge">
+    <title>Quantum multiplication and Hodge structures</title>
+    <p>For a smooth projective variety <m>X</m>, genus-zero Gromov–Witten invariants deform the cup product on <m>H^\bullet(X,\mathbb Q)</m>. The big quantum product depends on Novikov variables recording curve classes and on cohomology parameters <m>\tau</m>. Quantum multiplication by the Euler vector field defines an endomorphism
+    <md>\kappa_\tau=\operatorname{Eu}_\tau\star_\tau(-).</md>
+    At a small quantum point, where the additional cohomology parameters vanish, the Euler field is <m>c_1(TX)</m>. The distinction between small and big quantum cohomology will matter: an eigenspace at a small point may split after the other parameters vary.</p>
+    <p>The quantum connection belongs to the theory of noncommutative Hodge structures developed in <xref ref="bib-cfr-kp-nchodge" detail="Sections 2–3"/>. Its underlying cohomology is considered modulo Tate twists. The cohomological grading retains its parity, while the Hodge decomposition retains the degree <m>p-q</m>, often called the Hochschild degree. The two degrees <m>p+q</m> and <m>p-q</m> should not be confused.</p>
+    <p>Katzarkov, Kontsevich, Pantev, and Yu use a non-archimedean field of characteristic zero to define an analytic version of the quantum connection. An <m>F</m>-bundle consists of a super vector bundle <m>\mathcal H</m> over <m>B\times\mathbb D</m>, where <m>B</m> is smooth and <m>\mathbb D</m> is a disk germ with coordinate <m>u</m>, and a flat meromorphic connection <m>\nabla</m> with poles only along <m>u=0</m>. The operators <m>\nabla_{u^2\partial_u}</m> and <m>\nabla_{u\xi}</m> are regular for vector fields <m>\xi</m> on <m>B</m>. These pole conditions are the definition in <xref ref="bib-cfr-kkpy" detail="Definition 3.1"/>. The non-archimedean construction avoids assuming complex analytic convergence of the Gromov–Witten potential.</p>
+    <p>The Hodge group acts on this construction. On the locus <m>B^{\mathrm{Hod}}</m> of Hodge parameters, <m>\kappa_\tau</m> commutes with that action. Its generalized eigenspaces therefore carry Hodge representations. For the maximal A-model <m>F</m>-bundle, the spectral decomposition theorem extends a decomposition with disjoint spectra at one point to a decomposition of <m>F</m>-bundles near that point <xref ref="bib-cfr-kkpy" detail="Theorem 4.1"/>.</p>
+    <p>A Hodge atom is defined using the reduced spectral cover over the open subset of <m>B^{\mathrm{Hod}}</m> where the number of distinct eigenvalues is maximal. Its local representatives are connected components of this cover. The covering degree supplies their multiplicities. Global atoms are equivalence classes under the correspondences induced by disjoint unions, smooth blowups, and projective bundles <xref ref="bib-cfr-kkpy" detail="Sections 5.2 and 5.4"/>. Thus an atom contains more information than an irreducible summand of ordinary cohomology. A generalized eigenspace at an evaluated parameter is usually called a coarse atom.</p>
+    <p>Write <m>\mathrm{CF}(X)</m> for the multiset of Hodge atoms, including multiplicities. For an atom <m>\alpha</m>, two numerical invariants used below are the dimension <m>\rho_\alpha</m> of its rational Hodge classes after extension of coefficients and its Hodge polynomial
+    <md>P_\alpha(t)=\sum_k\dim E_\alpha^{(k)}t^k.</md>
+    Here <m>E_\alpha^{(k)}</m> denotes the part of Hochschild degree <m>k</m>.</p>
+  </section>
+  <section xml:id="cfr-blowup-decomposition">
+    <title>The decomposition for blowups</title>
+    <p>Let <m>Z\subset X</m> be smooth of codimension <m>r\geq2</m>, and let <m>\widetilde X=\operatorname{Bl}_Z X</m>. Ordinary cohomology has the decomposition
+    <md>H^\bullet(\widetilde X,\mathbb Q)\simeq H^\bullet(X,\mathbb Q)\oplus\bigoplus_{j=1}^{r-1}H^{\bullet-2j}(Z,\mathbb Q)(-j).</md>
+    Iritani proves a corresponding decomposition of formal quantum <m>D</m>-modules after a Laurent–Novikov base change and a change of parameters:
+    <md>\operatorname{QDM}(\widetilde X)^{\mathrm{la}}\simeq\tau^*\operatorname{QDM}(X)^{\mathrm{la}}\oplus\bigoplus_{j=0}^{r-2}\varsigma_j^*\operatorname{QDM}(Z)^{\mathrm{la}}.</md>
+    The maps <m>\tau</m> and <m>\varsigma_j</m> are part of the theorem. This is an isomorphism of big quantum connections with changed parameters, rather than an equality of small quantum products in their original coordinates <xref ref="bib-cfr-iritani-blowups" detail="Theorems 1.1 and 5.18"/>.</p>
+    <p>The coefficient field and Hodge compatibility require attention. Iritani proves cyclotomic control of the coefficients, equivariance under the Hodge group, and compatibility with the spaces of complexified Hodge classes in <xref ref="bib-cfr-iritani-notes" detail="Propositions 3 and 8 and Corollary 11"/>. These statements justify retaining Hodge information through the decomposition.</p>
+    <p>After passing to non-archimedean analytic domains, the decomposition gives the formula
+    <md>\mathrm{CF}(\widetilde X)=\mathrm{CF}(X)+(r-1)\mathrm{CF}(Z).</md>
+    The Tate shifts disappear under the grading convention used for atoms. Atomic composition itself changes under a blowup. What remains invariant in dimension <m>d</m> is its class modulo atoms occurring on varieties of dimension at most <m>d-2</m>.</p>
+    <p>The weak factorization theorem expresses a birational map between smooth complete varieties in characteristic zero as blowups and blowdowns with smooth centers <xref ref="bib-cfr-weak-factorization" detail="Theorem 0.1.1"/>. Divisorial centers can be omitted, since blowing up a smooth Cartier divisor is an isomorphism. All remaining centers in dimension <m>d</m> have dimension at most <m>d-2</m>.</p>
+    <proposition xml:id="cfr-atomic-obstruction">
+      <statement><p>Let <m>d\geq2</m>. If a smooth complex projective <m>d</m>-fold has a Hodge atom which occurs on no smooth projective variety of dimension at most <m>d-2</m>, then it is irrational.</p></statement>
+      <proof><p>A weak factorization to <m>\mathbb P^d</m> would express the difference of their atomic compositions as a signed sum of atomic compositions of the centers. Every such contribution comes from dimension at most <m>d-2</m>. The atoms of projective space come from points. The asserted atom therefore cannot occur in a rational <m>d</m>-fold. This is the criterion of <xref ref="bib-cfr-kkpy" detail="Proposition 5.30"/>.</p></proof>
+    </proposition>
+  </section>
+</chapter>

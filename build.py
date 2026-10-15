@@ -1,6 +1,7 @@
 """Build one native PreTeXt site with shared navigation and centered text."""
 from pathlib import Path
 from copy import deepcopy
+from datetime import date
 import hashlib
 import json
 import re
@@ -191,18 +192,41 @@ def note_targets():
         search = publication.find("html/search")
         crossrefs = publication.find("html/cross-references")
         knowl = publication.find("html/knowl")
-        footnotes = settings.get("notes", {}).get(target.get("name"), {}).get("footnotes", defaults.get("footnotes", "margin"))
+        note_settings = settings.get("notes", {}).get(target.get("name"), {})
+        footnotes = note_settings.get("footnotes", defaults.get("footnotes", "margin"))
         if footnotes not in ("margin", "inline"):
             raise ValueError("Footnotes must be 'margin' or 'inline' for " + target.get("name"))
+        metadata = {key: note_settings.get(key, defaults.get(key)) for key in ("status", "last_updated")}
+        if metadata["last_updated"]:
+            date.fromisoformat(metadata["last_updated"])
         features = {"search": search is not None and search.get("variant") not in (None, "none"),
                     "previews": crossrefs is not None and crossrefs.get("knowled") != "never",
                     "folded_proofs": knowl is not None and knowl.get("proof") == "yes"}
         notes.append({"target": target.get("name"), "directory": directory,
                       "entry": directory / (document_id + ".html"), "id": document_id,
-                      "macros": source_macros(source), "features": features, "footnotes": footnotes})
+                      "macros": source_macros(source), "features": features, "footnotes": footnotes,
+                      "latex_images": bool(source.xpath('//latex-image')), "metadata": metadata})
     return notes
 
-def finish_pages(directory, is_note=False, macros=None, footnotes="margin"):
+def note_metadata_paragraph(metadata):
+    """Render the same explicit review status and update date in both contexts."""
+    metadata = metadata or {}
+    status, updated = metadata.get("status"), metadata.get("last_updated")
+    if not status and not updated:
+        return None
+    paragraph = etree.Element("p", attrib={"class": "note-metadata"})
+    if status:
+        label = etree.SubElement(paragraph, "span", attrib={"class": "note-review-status"})
+        label.text = status
+        if updated:
+            label.tail = " · "
+    if updated:
+        label = etree.SubElement(paragraph, "span", attrib={"class": "note-last-updated"})
+        label.text = "Last updated: "
+        etree.SubElement(label, "time", datetime=updated).text = updated
+    return paragraph
+
+def finish_pages(directory, is_note=False, macros=None, footnotes="margin", metadata=None, listed_notes=None):
     shared = "../" * len(directory.relative_to(OUT).parts)
     layout_version = hashlib.sha256((ROOT / "source/layout.css").read_bytes()).hexdigest()[:10]
     script_version = hashlib.sha256((ROOT / "source/layout.js").read_bytes()).hexdigest()[:10]
@@ -226,18 +250,22 @@ def finish_pages(directory, is_note=False, macros=None, footnotes="margin"):
             continue
         if is_note:
             # The title opens this note's entry; the byline links Home and Notes.
-            for byline in document.xpath('//*[@id="ptx-masthead"]//p[contains(concat(" ", normalize-space(@class), " "), " byline ")]'):
-                if not "".join(byline.itertext()).strip():
-                    continue
+            title_containers = document.xpath('//*[@id="ptx-masthead"]//*[contains(concat(" ", normalize-space(@class), " "), " title-container ")]')
+            for title_container in title_containers:
+                bylines = title_container.xpath('./p[contains(concat(" ", normalize-space(@class), " "), " byline ")]')
+                byline = bylines[0] if bylines else etree.SubElement(title_container, "p", attrib={"class": "byline"})
+                byline.clear()
+                byline.set("class", "byline")
                 author_link = etree.Element("a", href=shared + "home.html")
-                author_link.text = byline.text
-                byline.text = None
-                for child in list(byline):
-                    byline.remove(child)
-                    author_link.append(child)
+                author_link.text = "Jie Fu"
                 byline.append(author_link)
                 author_link.tail = "'s "
                 etree.SubElement(byline, "a", href=shared + "notes.html").text = "Notes"
+                for previous in title_container.xpath('./p[@class="note-metadata"]'):
+                    title_container.remove(previous)
+                note_metadata = note_metadata_paragraph(metadata)
+                if note_metadata is not None:
+                    byline.addnext(note_metadata)
         else:
             update_banner(document)
             menu_toggle = document.get_element_by_id("ptx-toc-toggle", None)
@@ -248,6 +276,13 @@ def finish_pages(directory, is_note=False, macros=None, footnotes="margin"):
             site_menu = document.get_element_by_id("ptx-toc", None)
             if site_menu is not None:
                 site_menu.set("aria-label", "Menu")
+            for link in document.xpath('//*[@id="ptx-content"]//a[@href]'):
+                note_metadata = (listed_notes or {}).get(link.get("href"))
+                items = link.xpath('ancestor::li[1]')
+                if note_metadata and items and not items[0].xpath('./p[@class="note-metadata"]'):
+                    paragraph = note_metadata_paragraph(note_metadata)
+                    if paragraph is not None:
+                        items[0].append(paragraph)
         body.set("data-page-format", "note" if is_note else "site")
         body.set("class", body.get("class", "") + (" note-page" if is_note else " site-page"))
         if is_note:
@@ -432,10 +467,13 @@ def main():
         remove_generated_tree(OUT)
     OUT.mkdir(parents=True)
     for target in ["web"] + [note["target"] for note in notes]:
+        if any(note["target"] == target and note["latex_images"] for note in notes):
+            subprocess.run([sys.executable, "-X", "utf8", str(ROOT / "tools/pretext_cli.py"), "generate", "latex-image", "-t", target, "--only-changed"], cwd=ROOT, check=True)
         subprocess.run([sys.executable, "-X", "utf8", str(ROOT / "tools/pretext_cli.py"), "build", target, "--no-generate"], cwd=ROOT, check=True)
-    finish_pages(OUT)
+    listed_notes = {note["entry"].relative_to(OUT).as_posix(): note["metadata"] for note in notes}
+    finish_pages(OUT, listed_notes=listed_notes)
     for note in notes:
-        finish_pages(note["directory"], is_note=True, macros=note["macros"], footnotes=note["footnotes"])
+        finish_pages(note["directory"], is_note=True, macros=note["macros"], footnotes=note["footnotes"], metadata=note["metadata"])
     write_note_redirects(notes)
     verify(notes)
     publish_to_root()

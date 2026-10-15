@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-darkmode="disabled">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette: blue-red                     *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Collision and the limiting matrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Notes on OpenAI’s proofs of Nagata’s conjecture and maximal multipoint Seshadri constants">
+<meta property="og:title" content="Notes on OpenAI’s proofs of Nagata’s conjecture and maximal multipoint Seshadri constants">
+<meta property="book:title" content="Notes on OpenAI’s proofs of Nagata’s conjecture and maximal multipoint Seshadri constants">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.53"></script><script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="../../vendor/lunr/lunr.min.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+<link rel="stylesheet" href="../../layout.css?v=fee08a8c1c">
+<script src="../../layout.js?v=e9391a21a7" defer></script><link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"C": "\\mathbb C", "Pone": "\\mathbb{P}^1_{\\mathbb{C}}", "cO": "\\mathcal O", "ord": "\\operatorname{ord}", "lt": "<", "gt": ">", "amp": "&", "Z": "\\mathbb Z", "R": "\\mathbb R", "N": "\\mathbb N", "Pp": "\\mathbb P", "W": "\\mathcal W", "mult": "\\operatorname{mult}", "Tot": "\\operatorname{Tot}", "Pic": "\\operatorname{Pic}", "conv": "\\operatorname{conv}", "vol": "\\operatorname{vol}", "length": "\\operatorname{length}", "Spec": "\\operatorname{Spec}"}}, "options": {"ignoreHtmlClass": "ignore-math", "processHtmlClass": "process-math", "enableMenu": false}};</script><script src="../../vendor/mathjax/tex-chtml.js" defer></script>
+</head>
+<body class="pretext book ignore-math note-page" data-page-format="note">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner"><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="nagata-notes.html"><span class="title">Notes on OpenAI’s proofs of Nagata’s conjecture and maximal multipoint Seshadri constants</span></a></div>
+<p class="byline"><a href="../../home.html">Jie Fu</a>'s <a href="../../notes.html">Notes</a></p>
+<p class="note-metadata"><span class="note-review-status">Under review and improvement</span> · <span class="note-last-updated">Last updated: <time datetime="2026-10-14">2026-10-14</time></span></p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Contents</span></button><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true"></span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="treebuttons"><a class="previous-button button" href="nagata-elliptic.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="up-button button" href="nagata-notes.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Up</span></a><a class="next-button button" href="nagata-interpolation.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a></span>
+</div></nav><div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth4 focused" data-preexpanded-levels="1" data-max-levels="4"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="nagata-statement.html" class="internal"><span class="codenumber">1</span> <span class="title">Nagata’s conjecture and Seshadri constants</span></a></div>
+<ul id="ptx-toc-group-nagata-statement" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-statement.html#nagata-statement-3" class="internal"><span class="codenumber">1.1</span> <span class="title">The plane inequality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-statement.html#nagata-statement-4" class="internal"><span class="codenumber">1.2</span> <span class="title">Multipoint Seshadri constants</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-statement.html#nagata-statement-5" class="internal"><span class="codenumber">1.3</span> <span class="title">The proofs</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="nagata-jets.html" class="internal"><span class="codenumber">2</span> <span class="title">Finite jets and least exponents</span></a></div>
+<ul id="ptx-toc-group-nagata-jets" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-jets.html#nagata-jets-3" class="internal"><span class="codenumber">2.1</span> <span class="title">Rank conditions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-jets.html#nagata-jets-4" class="internal"><span class="codenumber">2.2</span> <span class="title">Least exponents</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-jets.html#nagata-jets-5" class="internal"><span class="codenumber">2.3</span> <span class="title">Transfer from monomials</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-jets.html#nagata-jets-6" class="internal"><span class="codenumber">2.4</span> <span class="title">Integral changes and compression</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="nagata-reduction.html" class="internal"><span class="codenumber">3</span> <span class="title">From plane curves to normal polynomials</span></a></div>
+<ul id="ptx-toc-group-nagata-reduction" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-reduction.html#nagata-reduction-3" class="internal"><span class="codenumber">3.1</span> <span class="title">Universal systems</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-reduction.html#nagata-reduction-4" class="internal"><span class="codenumber">3.2</span> <span class="title">Normal specialization</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-reduction.html#nagata-reduction-5" class="internal"><span class="codenumber">3.3</span> <span class="title">Square values of the number of points</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-reduction.html#nagata-reduction-6" class="internal"><span class="codenumber">3.4</span> <span class="title">The cubic bound</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="nagata-elliptic.html" class="internal"><span class="codenumber">4</span> <span class="title">The elliptic coefficient spaces</span></a></div>
+<ul id="ptx-toc-group-nagata-elliptic" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-elliptic.html#nagata-elliptic-3" class="internal"><span class="codenumber">4.1</span> <span class="title">Nine prescribed zeros</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-elliptic.html#nagata-elliptic-4" class="internal"><span class="codenumber">4.2</span> <span class="title">Sections on a multiplicative elliptic curve</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-elliptic.html#nagata-elliptic-5" class="internal"><span class="codenumber">4.3</span> <span class="title">A family of marked cubics</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="nagata-collision.html" class="internal"><span class="codenumber">5</span> <span class="title">Collision and the limiting matrix</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-nagata-collision">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-collision.html#nagata-collision-3" class="internal"><span class="codenumber">5.1</span> <span class="title">The collision on a fixed cubic</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-collision.html#nagata-collision-4" class="internal"><span class="codenumber">5.2</span> <span class="title">Normalized Laurent bases</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-collision.html#nagata-collision-5" class="internal"><span class="codenumber">5.3</span> <span class="title">The matrix</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="nagata-interpolation.html" class="internal"><span class="codenumber">6</span> <span class="title">Interpolation and completion</span></a></div>
+<ul id="ptx-toc-group-nagata-interpolation" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-interpolation.html#nagata-interpolation-3" class="internal"><span class="codenumber">6.1</span> <span class="title">Interpolation by rows</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-interpolation.html#nagata-interpolation-4" class="internal"><span class="codenumber">6.2</span> <span class="title">The polygon containing the exponents</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-interpolation.html#nagata-interpolation-5" class="internal"><span class="codenumber">6.3</span> <span class="title">The integer row bounds</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-interpolation.html#nagata-interpolation-6" class="internal"><span class="codenumber">6.4</span> <span class="title">Completion</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-interpolation.html#nagata-consequence" class="internal"><span class="codenumber">6.5</span> <span class="title">The plane Seshadri constant</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-interpolation.html#nagata-interpolation-8" class="internal"><span class="codenumber">6.6</span> <span class="title">The plane inequality over other fields</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="nagata-surfaces.html" class="internal"><span class="codenumber">7</span> <span class="title">Nodal divisors on polarized surfaces</span></a></div>
+<ul id="ptx-toc-group-nagata-surfaces" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-surfaces.html#surface-nodal-divisor" class="internal"><span class="codenumber">7.1</span> <span class="title">A nodal divisor</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-surfaces.html#surface-exponent-bound" class="internal"><span class="codenumber">7.2</span> <span class="title">Weighted initial exponents</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-surfaces.html#surface-slice-compression" class="internal"><span class="codenumber">7.3</span> <span class="title">Diagonal slices</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-surfaces.html#surface-jet-transfer" class="internal"><span class="codenumber">7.4</span> <span class="title">Jets of global sections</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="nagata-subgroups.html" class="internal"><span class="codenumber">8</span> <span class="title">Finite subgroups and maximal constants on surfaces</span></a></div>
+<ul id="ptx-toc-group-nagata-subgroups" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-subgroups.html#surface-triangle-multiplicity" class="internal"><span class="codenumber">8.1</span> <span class="title">Multiplicity in a triangle</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-subgroups.html#surface-finite-subgroup" class="internal"><span class="codenumber">8.2</span> <span class="title">A subgroup of prescribed size</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-subgroups.html#surface-primitive-direction" class="internal"><span class="codenumber">8.3</span> <span class="title">A direction for every large point count</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-subgroups.html#surface-homogeneous-nef" class="internal"><span class="codenumber">8.4</span> <span class="title">Homogeneous vanishing and nefness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-subgroups.html#surface-completion" class="internal"><span class="codenumber">8.5</span> <span class="title">Maximality at very general tuples</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter"><div class="toc-title-box"><a href="nagata-flag.html" class="internal"><span class="codenumber">9</span> <span class="title">A simplex from a complete-intersection flag</span></a></div></li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="nagata-reshaping.html" class="internal"><span class="codenumber">10</span> <span class="title">Changing two simplex intercepts</span></a></div>
+<ul id="ptx-toc-group-nagata-reshaping" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-reshaping.html#nagata-reshaping-3" class="internal"><span class="codenumber">10.1</span> <span class="title">The two branches of a node</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-reshaping.html#nagata-reshaping-4" class="internal"><span class="codenumber">10.2</span> <span class="title">A primitive lattice direction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-reshaping.html#nagata-reshaping-5" class="internal"><span class="codenumber">10.3</span> <span class="title">The resulting simplex</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="nagata-filling.html" class="internal"><span class="codenumber">11</span> <span class="title">Interior lattice points and interpolation</span></a></div>
+<ul id="ptx-toc-group-nagata-filling" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-filling.html#nagata-filling-interior" class="internal"><span class="codenumber">11.1</span> <span class="title">Interior lattice points</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-filling.html#nagata-filling-interpolation" class="internal"><span class="codenumber">11.2</span> <span class="title">Interpolation in an elongated simplex</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-filling.html#nagata-filling-jets" class="internal"><span class="codenumber">11.3</span> <span class="title">Jets from additive exponent sets</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="nagata-positivity.html" class="internal"><span class="codenumber">12</span> <span class="title">Jet separation and maximal Seshadri constants</span></a></div>
+<ul id="ptx-toc-group-nagata-positivity" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-positivity.html#nagata-positivity-3" class="internal"><span class="codenumber">12.1</span> <span class="title">Repeated changes of intercepts</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-positivity.html#nagata-positivity-4" class="internal"><span class="codenumber">12.2</span> <span class="title">Curve multiplicities and the volume bound</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-positivity.html#nagata-positivity-5" class="internal"><span class="codenumber">12.3</span> <span class="title">Very general complex tuples</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-positivity.html#nagata-positivity-6" class="internal"><span class="codenumber">12.4</span> <span class="title">Geometric generic tuples</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="nagata-positivity.html#nagata-positivity-7" class="internal"><span class="codenumber">12.5</span> <span class="title">Uncountable fields of characteristic zero</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="nagata-references.html" class="internal"><span class="title">References</span></a></div></li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="chapter" id="nagata-collision">
+<h1 class="heading">
+<span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Collision and the limiting matrix</span>
+</h1>
+<section class="introduction" id="nagata-collision-2">
+<div class="para" id="nagata-collision-2-1">The two limiting arguments follow <a href="nagata-references.html#OAI-N" class="xref" data-knowl="./knowl/xref/bib-openai-plane.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry OAI-N">[OAI-N, Section 4]</a>. The points are collided on each fixed cubic before its theta bases are compared as <span class="process-math">\(\tau\to0\text{.}\)</span>
+</div></section>
+<section class="section" id="nagata-collision-3">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The collision on a fixed cubic</span>
+</h2>
+<div class="para logical" id="nagata-collision-3-2">
+<div class="para">For <span class="process-math">\(q=r-9\text{,}\)</span> define the set of jet indices</div>
+<div class="displaymath process-math" id="nagata-collision-3-2-2">
+\begin{equation*}
+I=\{(\ell,b):0\leq b&lt;m,\ 0\leq\ell&lt;q(m-b)\}.
+\end{equation*}
+</div>
+<div class="para">For a fixed <span class="process-math">\(\tau\text{,}\)</span> let <span class="process-math">\(J_\tau:\W_\tau\to\C^I\)</span> take <span class="process-math">\(F\)</span> to the derivatives <span class="process-math">\((\partial_x^\ell\partial_y^b H_F)(0,0)\)</span> indexed by <span class="process-math">\(I\text{.}\)</span>
+</div>
+</div>
+<article class="lemma theorem-like" id="nagata-collision-kernel"><h3 class="heading">
+<span class="type">Lemma</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.1</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="nagata-collision-kernel-1-1">Under the hypothetical universal property, <span class="process-math">\(\ker J_\tau\ne0\)</span> for every fixed <span class="process-math">\(0&lt;\tau&lt;1\text{.}\)</span>
+</div>
+</article>
+<details id="nagata-collision-kernel-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="nagata-collision-kernel-2-1">For each positive integer <span class="process-math">\(\nu\text{,}\)</span> choose distinct numbers <span class="process-math">\(\xi_{1,\nu},\ldots,\xi_{q,\nu}\)</span> tending to zero. The last paragraph of <a href="nagata-elliptic.html" class="internal" title="Chapter 4: The elliptic coefficient spaces">Chapter 4</a> gives a nonzero <span class="process-math">\(F_\nu\in\W_\tau\)</span> with multiplicity at least <span class="process-math">\(m\)</span> at <span class="process-math">\((\xi_{\alpha,\nu},0)\text{.}\)</span> Fix a norm on the finite-dimensional space <span class="process-math">\(\W_\tau\text{,}\)</span> normalize <span class="process-math">\(F_\nu\text{,}\)</span> and take a convergent subsequence. Its limit <span class="process-math">\(F_0\)</span> has norm one.</div>
+<div class="para" id="anchor-collision-ideal">For each <span class="process-math">\(b&lt;m\text{,}\)</span> the holomorphic function <span class="process-math">\(h_{b,\nu}(x)=\partial_y^bH_{F_\nu}(x,0)\)</span> has a zero of order at least <span class="process-math">\(m-b\)</span> at every <span class="process-math">\(\xi_{\alpha,\nu}\text{.}\)</span> The functions converge locally uniformly, with their derivatives, to <span class="process-math">\(h_{b,0}\text{.}\)</span> If this limit is nonzero, the argument principle on a small circle around zero gives <span class="process-math">\(\ord_0h_{b,0}\geq q(m-b)\text{;}\)</span> if it vanishes identically, the same derivative conditions hold. Hence all the derivatives indexed by <span class="process-math">\(I\)</span> vanish on <span class="process-math">\(F_0\text{,}\)</span> so <span class="process-math">\(J_\tau(F_0)=0\text{.}\)</span><a href="#margin-collision-ideal" class="margin-note-marker" aria-label="Margin note 1">1</a>
+</div>
+</article></details>
+<div class="para" id="nagata-collision-3-4">The order of the limits matters. The sections in this proof are chosen after <span class="process-math">\(\tau\)</span> is fixed. The subsequent limit <span class="process-math">\(\tau\to0\)</span> compares matrices, not a family of selected kernel vectors.</div>
+</section>
+<section class="section" id="nagata-collision-4">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Normalized Laurent bases</span>
+</h2>
+<div class="para logical" id="nagata-collision-4-2">
+<div class="para">Consider <span class="process-math">\(D(n,\gamma)\)</span> with <span class="process-math">\(n&gt;0\)</span> and <span class="process-math">\(\gamma=\epsilon\tau^\sigma\text{,}\)</span> where <span class="process-math">\(\epsilon\in\{1,-1\}\text{.}\)</span> Set <span class="process-math">\(U=\sigma-x_0n\)</span> and suppose <span class="process-math">\(U\notin\Z\text{.}\)</span> Each integer <span class="process-math">\(K\)</span> in the open interval <span class="process-math">\((U,U+n)\)</span> represents one residue class modulo <span class="process-math">\(n\text{.}\)</span> In the Laurent recurrence of <a href="nagata-elliptic.html#nagata-torus-basis" class="xref" data-knowl="./knowl/xref/nagata-torus-basis.html" data-reveal-label="Reveal" data-close-label="Close" title="Lemma 4.2">Lemma 4.2</a>, choose its starting coefficient to be <span class="process-math">\(\tau^{-x_0K}\text{.}\)</span> At <span class="process-math">\(z=z_0e^x\text{,}\)</span> the corresponding section is</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/nagata-torus-basis.html" id="nagata-collision-4-2-13">
+\begin{equation*}
+\sum_{p\in\Z}\epsilon^{-p}\tau^{p(K-U)+np(p-1)/2}e^{(K+np)x}.
+\end{equation*}
+</div>
+<div class="para">The exponent of <span class="process-math">\(\tau\)</span> is positive for <span class="process-math">\(p\ne0\text{,}\)</span> since <span class="process-math">\(0&lt;K-U&lt;n\text{;}\)</span> it grows quadratically with <span class="process-math">\(|p|\text{.}\)</span> Thus this expression and each fixed derivative in <span class="process-math">\(x\)</span> tend locally uniformly to <span class="process-math">\(e^{Kx}\)</span> as <span class="process-math">\(\tau\to0\text{.}\)</span>
+</div>
+</div>
+<div class="para logical" id="nagata-collision-4-3">
+<div class="para">For the coefficient blocks <span class="process-math">\(V_j\text{,}\)</span> put</div>
+<div class="displaymath process-math" id="nagata-collision-4-3-2">
+\begin{equation*}
+\begin{aligned}
+U_j&amp;=\frac{h(a-\Delta)}9+(m-j)a,&amp;&amp;0\leq j\leq m,\\
+n_j&amp;=3(d-3j)=h-9(j-m),&amp;&amp;m&lt;j\leq u_0,\\
+U_j&amp;=\frac{n_j(a-\Delta)}9,&amp;&amp;m&lt;j\leq u_0,\ n_j&gt;0.
+\end{aligned}
+\end{equation*}
+</div>
+<div class="para">For <span class="process-math">\(j\leq m\text{,}\)</span> the bundle <span class="process-math">\(T+(m-j)A\)</span> has degree <span class="process-math">\(h\)</span> and its normalized basis is indexed by the integers <span class="process-math">\(U_j&lt;K&lt;U_j+h\text{.}\)</span> For <span class="process-math">\(j&gt;m\)</span> and <span class="process-math">\(n_j&gt;0\text{,}\)</span> normalize a basis of <span class="process-math">\(H^0(B,(d-3j)L)\)</span> indexed by <span class="process-math">\(U_j&lt;K&lt;U_j+n_j\text{,}\)</span> then multiply by <span class="process-math">\(\Pi^{j-m}\text{.}\)</span> In either formula, the coefficient of <span class="process-math">\(\sqrt r\)</span> in <span class="process-math">\(U_j\)</span> is <span class="process-math">\(d-3j&gt;0\text{,}\)</span> while the other terms are rational. Thus none of these endpoints is integral.</div>
+</div>
+<div class="para logical" id="nagata-collision-4-4">
+<div class="para">If <span class="process-math">\(3\)</span> divides <span class="process-math">\(d\text{,}\)</span> there is one remaining block at <span class="process-math">\(j=d/3\text{:}\)</span> it is the image of <span class="process-math">\(H^0(B,\cO_B)=\C\)</span> under multiplication by <span class="process-math">\(\Pi^{j-m}\text{.}\)</span> We label this basis element by <span class="process-math">\((j,K)=(d/3,0)\text{.}\)</span> Let <span class="process-math">\(S\)</span> be the union of all the pairs <span class="process-math">\((j,K)\)</span> just described. It indexes a basis <span class="process-math">\(E_{j,K,\tau}\)</span> of <span class="process-math">\(\W_\tau\text{,}\)</span> and</div>
+<div class="displaymath process-math" id="nagata-collision-4-4-11">
+\begin{equation*}
+|S|=\dim\W_\tau=\binom{d+2}{2}-9\binom{m+1}{2}.
+\end{equation*}
+</div>
+</div>
+<div class="para logical" id="nagata-collision-4-5">
+<div class="para">Because <span class="process-math">\(0&lt;x_0-x_i&lt;1\text{,}\)</span> the theta products satisfy <span class="process-math">\(\Pi(z_0e^x)\to1\)</span> locally uniformly with all fixed derivatives. The normalized basis therefore has the common limit</div>
+<div class="displaymath process-math" id="nagata-collision-4-5-3">
+\begin{equation*}
+H_{E_{j,K,\tau}}(x,y)\longrightarrow e^{Kx+jy}.
+\end{equation*}
+</div>
+<div class="para">This also holds for the degree-zero block with <span class="process-math">\(K=0\text{.}\)</span>
+</div>
+</div>
+</section>
+<section class="section" id="nagata-collision-5">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The matrix</span>
+</h2>
+<div class="para logical" id="anchor-exponent-evaluation">
+<div class="para">In the basis indexed by <span class="process-math">\(S\text{,}\)</span> the matrix of <span class="process-math">\(J_\tau\)</span> has rows indexed by <span class="process-math">\(I\text{.}\)</span> The preceding convergence gives its entrywise limit</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/nagata-collision-kernel.html ./knowl/xref/bib-dumnicki.html" id="anchor-exponent-evaluation-4">
+\begin{equation*}
+B_0=\bigl(K^\ell j^b\bigr)_{(\ell,b)\in I,\ (j,K)\in S}.
+\end{equation*}
+</div>
+<div class="para">If <span class="process-math">\(B_0\)</span> has full column rank, one of its maximal minors is nonzero. The corresponding minor of the matrix of <span class="process-math">\(J_\tau\)</span> remains nonzero for sufficiently small positive <span class="process-math">\(\tau\text{.}\)</span> Then <span class="process-math">\(J_\tau\)</span> is injective, contrary to <a href="nagata-collision.html#nagata-collision-kernel" class="xref" data-knowl="./knowl/xref/nagata-collision-kernel.html" data-reveal-label="Reveal" data-close-label="Close" title="Lemma 5.1">Lemma 5.1</a>. It remains to prove the rank assertion. The passage from one-point derivative matrices to polynomial evaluation on exponent diagrams appears in <a href="nagata-references.html#Dum07" class="xref" data-knowl="./knowl/xref/bib-dumnicki.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Dum07">[Dum07, proof of Proposition 13]</a>. The allowed degrees here are specified by the collision index set <span class="process-math">\(I\text{.}\)</span>
+</div>
+<a href="#margin-exponent-evaluation" class="margin-note-marker" aria-label="Margin note 2">2</a>
+</div>
+</section></section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="nagata-elliptic.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Top</span></a><a class="next-button button" href="nagata-interpolation.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a>
+</div></main>
+<div class="margin-notes" role="complementary" aria-label="Margin notes">
+<aside class="aside aside-like margin-note" id="margin-collision-ideal" data-margin-anchor="anchor-collision-ideal"><h4 class="heading"><a href="#anchor-collision-ideal" class="margin-note-label">1</a></h4>
+<div class="para" id="margin-collision-ideal-1">After <span class="process-math">\(b\)</span> fiber derivatives, each of the <span class="process-math">\(q\)</span> separate points contributes a zero of order <span class="process-math">\(m-b\)</span> in one variable. The resulting conditions are those of the ideal <span class="process-math">\((x^q,y)^m\text{.}\)</span> This is a statement about specified mixed coefficients, not the addition of ordinary surface multiplicities.</div>
+</aside><aside class="aside aside-like margin-note" id="margin-exponent-evaluation" data-margin-anchor="anchor-exponent-evaluation"><h3 class="heading"><a href="#anchor-exponent-evaluation" class="margin-note-label">2</a></h3>
+<div class="para" id="margin-exponent-evaluation-1">The columns correspond to basis sections, while the rows correspond to derivatives. For the limiting exponential, each derivative contributes a power of its exponent. Row interpolation must therefore span every function on <span class="process-math">\(S\)</span> to give full column rank.</div>
+</aside>
+</div>
+</div>
+<footer id="site-copyright" class="site-copyright"><p>© 2026 Jie Fu. All rights reserved.</p></footer>
+</body>
+</html>

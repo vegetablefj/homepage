@@ -6,16 +6,18 @@ These instructions apply to the production project at `D:\homepage`. Paths below
 
 | File | Purpose |
 | --- | --- |
-| `source/notes/fujita/fujita.ptx` | The current note's book, macros, and includes |
-| `source/notes/fujita/chapter-01.ptx` through `chapter-09.ptx` | Its nine chapters |
-| `source/notes/fujita/references.ptx` | Its bibliography |
-| `publication/fujita.ptx` | Search, contents, numbering, proofs, and reference previews |
-| `publication/note-settings.json` | Footnote presentation by target |
+| `source/notes/fujita/fujita.ptx`, `source/notes/nagata/nagata.ptx`, `source/notes/cubic-fourfolds/cubic-fourfolds.ptx` | The three notes' book roots, macros, and includes |
+| `source/notes/category-theory/category-theory.ptx`, `chapter-00.ptx`, `chapter-01.ptx`, and `references.ptx` | The ordinary category theory draft, its conventions and first chapter, and bibliography |
+| `source/notes/fujita/chapter-01.ptx` through `chapter-09.ptx` | The Fujita note's nine chapters |
+| `source/notes/fujita/references.ptx` | The Fujita note's bibliography |
+| `publication/fujita.ptx`, `publication/nagata.ptx`, `publication/cubic-fourfolds.ptx` | Search, contents, numbering, proofs, and reference previews for each note |
+| `publication/category-theory.ptx` | Category theory settings, including chapter numbering beginning at zero |
+| `publication/note-settings.json` | Footnote presentation, review status, and update dates by target |
 | `source/layout.css` and `source/layout.js` | Shared layout and responsive margin notes |
 | `project.ptx` | Active build targets |
 | `source/notes-list.ptx` | Shared Notes and Home listing links |
 
-The production targets are `web` for the homepage and `note-fujita` for the current note. Edit the sources, then run `.\Rebuild.ps1`. Published HTML and shared static assets are generated at the project root. The ignored `.build/cache`, `.build/tmp`, and `.build/reports` directories hold runtime files and reports. See [README.md](README.md) for setup and publishing.
+The active targets are `web` for the homepage, and `note-fujita`, `note-nagata`, `note-cubic-fourfolds`, and `note-category-theory` for the notes. All four notes appear in the shared Home and Notes listing. Edit the sources, then run `.\Rebuild.ps1`. Published HTML and shared static assets are generated at the project root. The ignored `.build/cache`, `.build/tmp`, and `.build/reports` directories hold runtime files and reports. See [README.md](README.md) for setup and publishing.
 
 The four examples `source/notes/affine-basics.ptx`, `divisors-p1.ptx`, `finite-maps.ptx`, and `projective-line.ptx` remain available to copy. They are absent from the production targets and public listings. The three older PDF notes remain in `pdfs/`, without listing entries.
 
@@ -73,6 +75,27 @@ Create the included files before building. A chapter file has a `chapter` root:
 
 Add `section`, `subsection`, and `subsubsection` as needed. IDs must be unique across all included files of a note. Keep them stable when changing titles or moving content: references and saved links use the IDs.
 
+### Preface
+
+Use native `frontmatter` and `preface` elements for a preface. Add the include below to an existing `frontmatter`, preserving its `bibinfo` (including author metadata) and `titlepage`. If none exists, create one before the chapter includes; do not create a second `frontmatter`.
+
+~~~xml
+<frontmatter>
+  <xi:include href="preface.ptx"/>
+</frontmatter>
+~~~
+
+The separate `preface.ptx` has this outline:
+
+~~~xml
+<preface xml:id="my-note-preface">
+  <title>Preface</title>
+  <!-- Add the supplied preface here. -->
+</preface>
+~~~
+
+The comment is not preface content: the native schema requires at least one content block, such as `<p>`, before building. Retain the `xi` namespace declaration on the book's `pretext` root. A preface is independent of the bibliography and the shared note header. The user will provide a preface template later; until then, do not add placeholder prefaces to public notes.
+
 ## Statements, proofs, and mathematics
 
 Use native elements rather than HTML imitation blocks. A theorem contains a `statement` and, when proved here, a `proof`:
@@ -107,6 +130,10 @@ Use `m` for inline mathematics. Put displayed `md` mathematics inside the paragr
 ~~~
 
 Use `number="no"` for an unnumbered display. Define additional mathematical macros in `docinfo/macros`. XML characters must be escaped: use `&lt;`, `&gt;`, and `&amp;` where needed; `\lt`, `\gt`, and `\amp` are available in mathematics.
+
+### Commutative diagrams
+
+The category theory draft uses native `latex-image` elements with `tikz-cd`; see `source/notes/category-theory/diagram-naturality.ptx` and `diagram-transformation.ptx`. The book's `docinfo/latex-image-preamble` loads `tikz-cd`. Use `\amp` as the cell separator in XML. `.\Rebuild.ps1` detects these images and generates changed assets before building their note. This step needs a working TeX installation with `tikz-cd`; the generated SVGs preserve curved arrows and double arrows. Keep captions and alternative text in the source.
 
 ## Footnotes and margin notes
 
@@ -145,7 +172,13 @@ This paragraph and aside may also be inside a `proof`. The build anchors the asi
 
 At widths of at least 1280 px, notes occupy the right rail and align with their anchor paragraphs, with spacing to prevent overlap. Below 1280 px, they return directly below their anchors. Notes anchored inside a closed proof are hidden; on a narrow screen, they remain inside that proof when returned to the text.
 
-Keep essential hypotheses, estimates, existence choices, and limiting arguments in the body. Use notes for supplementary interpretation, conventions, and source comments.
+### Use margin notes actively in exposition
+
+Use margin notes actively to help readers follow the argument. Suitable content includes short derivations or calculations, explanations of proof steps, the role of a hypothesis, examples and intuition, notation and background conventions, and precise source comments. When discussion reveals a useful clarification, add it beside the relevant passage if it fits in a short note.
+
+Keep essential hypotheses, estimates, existence choices, and limiting arguments in the body, together with the main logical steps of the proof. Margin notes can expand a local step or explain a standard fact; they should supplement the argument without moving an indispensable part of the proof entirely out of the body.
+
+Anchor each note to the passage it explains. Notes may contain inline or displayed mathematics and linked references. Keep them focused: if a supplementary argument becomes long, write it as a lemma, remark, subsection, or appendix and link to it from the margin.
 
 ## Linked references with alphabetic labels
 
@@ -172,7 +205,19 @@ Place the corresponding entry in the note's `references`:
 
 The stylesheet displays the supplied `label`, such as `How01`, rather than a numerical bibliography label. Choose unambiguous author-year labels and order entries consistently. Cite with `xref` instead of typing a bracketed label: the reference then remains linked. Reuse an existing entry rather than duplicating its ID.
 
+Keep bibliography sources inside native `backmatter`. When the back matter contains only the bibliography, the shared note template automatically presents **References** directly in the contents and navigation, without a redundant **Back Matter** level. If it contains other divisions, retain the normal back-matter structure.
+
 Check the source's version, hypotheses, and exact theorem or definition used. A bibliographical link or a successful build does not verify the mathematical claim. Use “see also” for supplementary sources.
+
+## Shared note header
+
+Use sentence case for note titles, retaining the capitalization of proper names and mathematical abbreviations. Keep the title in the book root and its Home/Notes listing identical.
+
+Review status and update dates are maintained in `publication/note-settings.json`. The default `status` is `Under review and improvement`; each note's target entry supplies an explicit `last_updated` date in `YYYY-MM-DD` format. The build displays the same values in the Home/Notes listings and below the note's byline. Update the date when the note or its publication metadata changes; rebuilding alone never advances it. The date is an update record, not a statement that mathematical review is complete.
+
+Every independent note must display its title at the top, followed by the black text **Jie Fu's Notes**. The title links to that note's entry page; **Jie Fu** links to the site's Home page, and **Notes** links to the Notes listing. This header appears on all pages of the note, including its entry, chapters, and references, on both desktop and narrow screens.
+
+The `finish_pages` function in `build.py` applies this convention automatically to targets whose names begin with `note-`. Rebuild after adding a note; do not edit generated HTML. This navigation text does not identify the authors of a source article. Keep source-author metadata and acknowledgements separate and accurate.
 
 ## Search, contents, and presentation
 

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="nagata-positivity">
+  <title>Jet separation and maximal Seshadri constants</title>
+  <introduction>
+  <p>Let <m>X/k</m> be smooth, integral and projective of dimension <m>n\geq2</m>, with <m>k</m> algebraically closed, and let <m>L</m> be ample. Write <m>V=L^n</m>. The jet-separation and intersection arguments in <xref ref="bib-openai-higher" detail="Section 6"/> and <xref ref="bib-openai-positive" detail="Proposition 5.3 and Section 6"/> prove eventual maximality. We use their common algebraic argument and then treat the two genericity conditions separately.</p>
+  </introduction>
+  <section>
+    <title>Repeated changes of intercepts</title>
+    <proposition xml:id="prop-asymptotic-sections">
+      <statement>
+        <p>There is an integer <m>r_0=r_0(X,L)</m> such that, for every integer <m>r\geq r_0</m> and every real number
+          <md number="no">0&lt;\theta&lt;(V/r)^{1/n},</md>
+          the space <m>H^0(X,NL)</m> separates jets through degree <m>\lfloor N\theta\rfloor</m> at some ordered tuple of <m>r</m> distinct <m>k</m>-points for all sufficiently large <m>N</m>. The tuple can depend on <m>N,r,\theta</m>.</p>
+      </statement>
+      <proof>
+        <p>Choose <m>D\geq1</m> such that <m>DL</m> is very ample. By <xref ref="prop-flag-simplex"/>, there are graded supports <m>S_N\subset N\Delta(a_1,\ldots,a_n)</m> with
+          <md number="no">(a_1,\ldots,a_n)=(1/D,\ldots,1/D,D^{n-1}V),</md>
+          and
+          <md number="no">\#S_N=h^0(X,NL)=\frac{V}{n!}N^n+o(N^n).</md>
+          Their intercepts have product <m>V</m>. Let <m>\ell_0=\min_i a_i</m>, and choose <m>r_0</m> so that
+          <md number="no">w=(V/r)^{1/n}&lt;\ell_0/100\qquad(r\geq r_0).</md>
+        </p>
+        <p>Fix <m>r\geq r_0</m>. Change the first two intercepts to <m>w,a_1a_2/w</m> by <xref ref="prop-two-intercepts"/>. Keep the new intercept <m>w</m> fixed and change the second and third intercepts. Continue until the first <m>n-1</m> intercepts equal <m>w</m>. At every stage, the two intercepts <m>A,B</m> being changed are at least <m>\ell_0</m>. An intercept not yet changed has this property, and the new intercept <m>AB/w</m> is greater than <m>A</m> because <m>B\geq\ell_0&gt;w</m>. Thus
+          <md number="no">w\max(3/A,2/B)\leq3w/\ell_0&lt;1/16,</md>
+          as required by <xref ref="prop-two-intercepts"/>.
+        </p>
+        <p>The product of the intercepts remains <m>V</m>, so the final graded supports <m>F_N</m> satisfy
+          <md number="no">F_N\subset NP_*\cap\Z^n,</md>
+          where <m>P_*=\Delta(w,\ldots,w,V/w^{n-1})=\Delta(w,\ldots,w,rw)</m>.
+          They also satisfy
+          <md number="no">\#F_N=h^0(X,NL)=\operatorname{vol}(P_*)N^n+o(N^n).</md>
+          By <xref ref="prop-full-volume-jets"/>, for each <m>0&lt;\theta&lt;w</m> their monomials separate jets through degree <m>\lfloor N\theta\rfloor</m> at <m>r</m> distinct torus points for all sufficiently large <m>N</m>. Each application of <xref ref="prop-two-intercepts"/> transfers this separation to the preceding support. The transfer in <xref ref="prop-flag-simplex"/> gives the assertion for <m>H^0(X,NL)</m>.
+        </p>
+      </proof>
+    </proposition>
+  </section>
+  <section>
+    <title>Curve multiplicities and the volume bound</title>
+    <p>The intersection statements are <xref ref="bib-openai-higher" detail="Section 6"/> and <xref ref="bib-openai-positive" detail="Lemmas 6.1 and 6.2"/>. Their proofs work over every algebraically closed field. The one-point complex characterization by asymptotic jet generation is <xref ref="bib-demailly" detail="Section 6, Theorem 6.4"/>. The ordinary one-point formula is recalled, and its proof is noted to be characteristic-free, in <xref ref="bib-mustata-schwede" detail="Section 2, (2.3)"/>.</p>
+    <lemma xml:id="lem-jets-curve-bound">
+      <statement>
+        <p>Let <m>Y</m> be smooth, integral and projective, let <m>A</m> be a line bundle, and let <m>q_1,\ldots,q_r</m> be distinct points. Suppose <m>H^0(Y,A)</m> separates jets through degree <m>\ell\geq1</m> at these points. Every integral curve <m>C\subset Y</m> meeting at least one marked point satisfies
+          <md number="no">A\cdot C\geq\ell\sum_{i=1}^r\mult_{q_i}C.</md>
+          The multiplicity is zero at points outside <m>C</m>.
+        </p>
+      </statement>
+      <proof>
+        <p xml:id="anchor-nonzero-curve-restriction">Choose a marked point <m>q_j\in C</m>. Let <m>R=\cO_{C,q_j}</m> and let <m>\mathfrak n</m> be its maximal ideal. The vector space <m>\mathfrak n^\ell/\mathfrak n^{\ell+1}</m> is nonzero. Otherwise Nakayama's lemma would give <m>\mathfrak n^\ell=0</m>, contrary to <m>R</m> being a one-dimensional local domain. In a local frame of <m>A</m>, lift a nonzero class in this vector space to an ambient jet in the image of <m>\mathfrak m_{Y,q_j}^\ell</m>. Prescribe that jet at <m>q_j</m> and the zero jet at every other marked point. Separation gives a section <m>\sigma</m> that vanishes to order at least <m>\ell</m> at all marked points and has nonzero restriction to <m>C</m>.
+        </p>
+      <aside xml:id="margin-nonzero-curve-restriction"><p>Vanishing at the marked points would not suffice if the section contained the entire curve. Prescribing a nonzero degree-<m>\ell</m> class in the curve's local ring ensures that the restriction is nonzero. Its zeros then have total length equal to the degree of the restricted line bundle.</p></aside>
+        <p>For a one-dimensional Noetherian local domain <m>(R,\mathfrak n)</m> and <m>0\ne f\in\mathfrak n^\ell</m>, let <m>e(R)</m> be its Hilbert--Samuel multiplicity. Since <m>f</m> is a nonzero divisor, multiplication by its powers gives
+          <md number="no">t\operatorname{length}_R(R/(f))=\operatorname{length}_R(R/(f^t))\geq\operatorname{length}_R(R/\mathfrak n^{\ell t})=\ell t\,e(R)+O(1).</md>
+          Dividing by <m>t</m> and letting <m>t\to\infty</m> gives
+          <md number="no">\operatorname{length}_R(R/(f))\geq\ell e(R).</md>
+          Apply this estimate to the local equations of <m>\sigma|_C</m> at the marked points on <m>C</m>. Its zero scheme is an effective Cartier divisor on the integral projective curve, whose total length is <m>\deg(A|_C)=A\cdot C</m>. The required inequality follows by summing the local lengths.
+         The Hilbert–Samuel length polynomial and multiplicity are discussed in <xref ref="bib-stacks"/> (<url href="https://stacks.math.columbia.edu/tag/0AZU">Tag 0AZU</url>).</p>
+      </proof>
+    </lemma>
+    <lemma xml:id="lem-jets-volume">
+      <statement>
+        <p>Let <m>Y</m> be smooth, integral and projective of dimension <m>n\geq2</m>, let <m>A</m> be ample, and let <m>q_1,\ldots,q_r</m> be distinct points. Then
+          <md number="no">\varepsilon(Y,A;q_1,\ldots,q_r)\leq(A^n/r)^{1/n}.</md>
+        </p>
+      </statement>
+      <proof>
+        <p>Write <m>\varepsilon=\varepsilon(Y,A;q_1,\ldots,q_r)</m>. Blow up the marked points, with <m>\pi:\widetilde Y\to Y</m> and exceptional divisors <m>E_1,\ldots,E_r</m>. For every rational <m>0\leq s&lt;\varepsilon</m>, the class
+          <md number="no">D_s=\pi^*A-s\sum_iE_i</md>
+          is nef. On an exceptional divisor its restriction is <m>s\cO_{\Pp^{n-1}}(1)</m>. Every other integral curve is the strict transform <m>\widetilde C</m> of an integral curve <m>C\subset Y</m>, and
+          <md number="no">D_s\cdot\widetilde C=A\cdot C-s\sum_i\mult_{q_i}C\geq0.</md>
+        </p>
+        <p>The exceptional intersection formula used here includes singular curves. The ambient Rees algebra surjects onto the Rees algebra of the restricted point ideal on <m>C</m>. Its Proj is integral and agrees with <m>C</m> away from the marked points, so its closed image is the strict transform. At a marked point with local ring <m>(R,\mathfrak n)</m>, its exceptional fiber is
+          <md number="no">\operatorname{Proj}(\operatorname{gr}_{\mathfrak n}R).</md>
+          This is the effective Cartier divisor cut out by <m>E_i</m> on <m>\widetilde C</m>. Its length is <m>e(R)</m>, because the eventual value of <m>\dim_k\mathfrak n^t/\mathfrak n^{t+1}</m> is both its length and the Hilbert--Samuel multiplicity. Therefore <m>E_i\cdot\widetilde C=\mult_{q_i}C</m>. If <m>q_i\notin C</m>, both sides are zero.
+        </p>
+        <p>A nef real divisor on a projective variety is a limit of ample classes and has nonnegative top self-intersection. The exceptional divisors are disjoint, <m>\pi^*A</m> restricts trivially to each, and <m>E_i^n=(-1)^{n-1}</m>. Hence
+          <md number="no">0\leq D_s^n=A^n-rs^n.</md>
+          If <m>\varepsilon&gt;(A^n/r)^{1/n}</m>, a rational <m>s</m> strictly between these numbers contradicts this inequality. If <m>\varepsilon=0</m>, the assertion holds because <m>A^n&gt;0</m>.
+        </p>
+      </proof>
+    </lemma>
+  </section>
+  <section>
+    <title>Very general complex tuples</title>
+    <p>Assume <m>k=\C</m>, fix <m>r\geq r_0</m> from <xref ref="prop-asymptotic-sections"/>, and set <m>w=(V/r)^{1/n}</m>. Let
+      <md number="no">U_r(X)=\{(p_1,\ldots,p_r)\in X^r:p_i\ne p_j\text{ for }i\ne j\}.</md>
+      Choose a sequence <m>0&lt;\theta_j&lt;w</m> increasing to <m>w</m>. For each <m>j</m>, choose <m>N_j</m> so that <m>H^0(X,NL)</m> separates jets through degree <m>\lfloor N\theta_j\rfloor\geq1</m> at some tuple for every <m>N\geq N_j</m>. By <xref ref="lem-jets-open"/>, the corresponding locus <m>O_{j,N}\subset U_r(X)</m> is nonempty and Zariski open.
+    </p>
+    <p>The exceptional set
+      <md number="no">Z_r=\bigcup_{j\geq1}\ \bigcup_{N\geq N_j}\bigl(U_r(X)\setminus O_{j,N}\bigr)</md>
+      is a countable union of proper Zariski-closed subsets. Its complement is nonempty by <xref ref="lem-jets-open"/>. This is the common very-general locus of <xref ref="bib-openai-higher" detail="Section 6.2"/>.
+    </p>
+    <p>At every tuple <m>\mathbf p</m> outside <m>Z_r</m>, <xref ref="lem-jets-curve-bound"/> applied to <m>A=NL</m> gives
+      <md number="no">\frac{L\cdot C}{\sum_i\mult_{p_i}C}\geq\frac{\lfloor N\theta_j\rfloor}{N}\qquad(N\geq N_j)</md>
+      for every integral curve meeting a marked point. Letting <m>N\to\infty</m> gives <m>\varepsilon(X,L;\mathbf p)\geq\theta_j</m>, and letting <m>j\to\infty</m> gives <m>\varepsilon(X,L;\mathbf p)\geq w</m>. By <xref ref="lem-jets-volume"/>, equality holds. This proves <xref ref="thm-seshadri-complex"/>. The construction permits <m>n=2</m>, where <xref ref="prop-two-intercepts"/> is applied once.
+    </p>
+  </section>
+  <section>
+    <title>Geometric generic tuples</title>
+    <p xml:id="anchor-geometric-generic-opens">Assume <m>\operatorname{char}k=p&gt;0</m>. Fix <m>r\geq r_0</m>, let <m>w=(V/r)^{1/n}</m>, and let <m>K_r=\overline{k(U_r(X))}</m>. The geometric generic point of <m>U_r(X)</m> specifies distinct points <m>p_1,\ldots,p_r</m> of <m>X_{K_r}</m>. For each fixed <m>0&lt;\theta&lt;w</m> and all sufficiently large <m>N</m>, <xref ref="prop-asymptotic-sections"/> gives a nonempty open separation locus in <m>U_r(X)</m>. Since <m>U_r(X)</m> is integral, its generic point belongs to that locus. The evaluation map and its principal-parts targets commute with extension of the ground field, so <m>H^0(X_{K_r},NL_{K_r})</m> separates jets through degree <m>\lfloor N\theta\rfloor</m> at the geometric generic tuple. The tuple is the same for every separation statement, as in <xref ref="bib-openai-positive" detail="Proposition 5.3"/>.
+    </p>
+      <aside xml:id="margin-geometric-generic-opens"><p>The generic point of an integral variety belongs to every nonempty open subset defined over its ground field. Hence the same geometric generic tuple satisfies all these finite jet conditions. No countable-intersection argument on <m>k</m>-valued points is needed.</p></aside>
+    <p>For every integral curve in the infimum defining <m>\varepsilon_r(X,L)</m>, <xref ref="lem-jets-curve-bound"/> gives
+      <md number="no">\frac{L_{K_r}\cdot C}{\sum_i\mult_{p_i}C}\geq\frac{\lfloor N\theta\rfloor}{N}</md>
+      for all sufficiently large <m>N</m>. Thus <m>\varepsilon_r(X,L)\geq\theta</m>. Since <m>0&lt;\theta&lt;w</m> is arbitrary, <m>\varepsilon_r(X,L)\geq w</m>. The top intersection number of <m>L_{K_r}</m> is <m>V</m>, so <xref ref="lem-jets-volume"/> gives equality. This proves <xref ref="thm-seshadri-positive"/>, including dimension two as in <xref ref="bib-openai-positive" detail="Remark 6.3"/>.
+    </p>
+    <p>At either a complex tuple in the common very-general locus or the positive-characteristic geometric generic tuple, the real class
+      <md number="no">\pi^*L-w\sum_iE_i</md>
+      on the blow-up is nef and has top self-intersection zero. Nefness follows from the curve inequality, including curves in the exceptional divisors, and the intersection calculation is <m>V-rw^n=0</m>.
+    </p>
+  </section>
+  <section>
+    <title>Uncountable fields of characteristic zero</title>
+    <p>The descent of finite algebraic data and closed rank loci extends the surface conclusion to uncountable fields of characteristic zero. We express the proof of <xref ref="bib-openai-surface" detail="Corollary 5.5"/> using the surjective jet maps proved here.</p>
+    <corollary xml:id="cor-seshadri-uncountable">
+      <statement>
+        <p>Let <m>K</m> be an uncountable algebraically closed field of characteristic zero, let <m>S/K</m> be a smooth integral projective surface, and let <m>L</m> be ample. There is an integer <m>r_0=r_0(S,L)</m> such that, for every <m>r\geq r_0</m>, outside a countable union of proper Zariski-closed subsets of <m>U_r(S)</m>, with nonempty complement,
+          <md number="no">\varepsilon(S,L;p_1,\ldots,p_r)=\sqrt{L^2/r}.</md>
+        </p>
+      </statement>
+      <proof>
+        <p>Descend projective equations for <m>S</m> and the finite gluing data of <m>L</m> to a subfield <m>F\subset K</m> finitely generated over <m>\mathbb Q</m>. This gives a smooth geometrically integral projective surface <m>S_0/F</m> and an ample line bundle <m>L_0</m> whose base change to <m>K</m> is <m>(S,L)</m>. Choose an embedding <m>F\hookrightarrow\C</m>. Apply <xref ref="prop-asymptotic-sections"/> to <m>(S_{0,\C},L_{0,\C})</m>, obtaining one threshold <m>r_0</m>. Intersection numbers do not change under field extension, so <m>L_0^2=L^2</m>.
+         Finite-presentation descent, descent of the line bundle, and ampleness are <xref ref="bib-stacks"/> (<url href="https://stacks.math.columbia.edu/tag/01ZM">Tag 01ZM</url>, <url href="https://stacks.math.columbia.edu/tag/0B8W">Tag 0B8W</url>, <url href="https://stacks.math.columbia.edu/tag/0D3C">Tag 0D3C</url>).</p>
+        <p>Fix <m>r\geq r_0</m>, and let <m>w=\sqrt{L^2/r}</m>. Choose <m>0&lt;\theta_j&lt;w</m> increasing to <m>w</m>, and choose <m>N_j</m> as in the complex proof. For <m>N\geq N_j</m>, let <m>B_{j,N}\subset U_r(S_0)</m> be the locus where
+          <md number="no">H^0(S_0,NL_0)\longrightarrow\bigoplus_{i=1}^rJ_{p_i}^{\lfloor N\theta_j\rfloor}(NL_0)</md>
+          fails to be surjective. More precisely, this is the closed rank locus of the corresponding map of vector bundles on <m>U_r(S_0)</m>. Principal parts, global sections, and the defining minors commute with field extension. Each <m>B_{j,N}</m> is proper after base change to <m>\C</m> by the choice of <m>N_j</m>, so it is proper over <m>F</m> and remains proper after base change to <m>K</m>.
+         Compatibility of global sections with field extension is <xref ref="bib-stacks"/> (<url href="https://stacks.math.columbia.edu/tag/02KH">Tag 02KH</url>).</p>
+        <p>Let <m>Z_r=\bigcup_{j\geq1}\bigcup_{N\geq N_j}B_{j,N,K}</m>. Its complement has a <m>K</m>-point. The field <m>F</m> is countable, whereas <m>K</m> is uncountable and algebraically closed, so <m>K</m> contains <m>2r</m> elements algebraically independent over <m>F</m>. The function field <m>F(U_r(S_0))</m> has transcendence degree <m>2r</m> and is finite over a purely transcendental subfield of that degree. Map a transcendence basis to the chosen elements and extend the embedding of fields across the finite algebraic extension using algebraic closedness of <m>K</m>. The resulting <m>K</m>-point of <m>U_r(S_0)</m> maps to its generic point and avoids every <m>B_{j,N}</m>.
+        </p>
+        <p>At every tuple outside <m>Z_r</m>, the jet maps are surjective for every <m>j</m> and <m>N\geq N_j</m>. The proof of <xref ref="lem-jets-curve-bound"/> works over <m>K</m> and gives <m>\varepsilon(S,L;\mathbf p)\geq\theta_j</m> after letting <m>N\to\infty</m>. Letting <m>j\to\infty</m> gives the lower bound <m>w</m>, and <xref ref="lem-jets-volume"/> gives the reverse inequality.
+        </p>
+      </proof>
+    </corollary>
+  </section>
+</chapter>

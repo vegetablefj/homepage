@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="cat-language" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Categories, functors, and natural transformations</title>
+  <introduction>
+  <p>A category specifies which objects are being considered, which arrows connect them, and how arrows compose. A functor transports this entire arrangement. A natural transformation compares two such transports in a way compatible with every arrow. The point of establishing these notions together is that constructions must usually be checked on arrows, and comparisons must usually be checked for naturality.</p>
+  <p>We use the size conventions of <xref ref="cat-size-conventions"/>. In particular, our categories are encoded by sets, although their sets of objects need not be small relative to the fixed universe <m>\U</m>. Unless specified otherwise, their local morphism sets belong to <m>\U</m>. The main sources for the language developed here are <xref ref="bib-cat-li1" detail="Sections 2.1–2.3"/>, <xref ref="bib-cat-ks" detail="Chapter 1"/>, and <xref ref="bib-cat-riehl" detail="Sections 1.1–1.5"/>. Our examples use sets, orders, and elementary algebra.</p>
+  </introduction>
+
+  <section xml:id="cat-category-data">
+    <title>Objects, arrows, and composition</title>
+    <p>Composition has a direction and a domain of definition. We write <m>gf=g\circ f</m> for the composite that first applies <m>f</m> and then <m>g</m>. The source and target are part of an arrow's meaning, even when two arrows happen to have the same underlying formula.</p>
+    <definition xml:id="cat-def-category">
+      <title>Category and basic notation</title>
+      <statement>
+        <p>A <em>category</em> <m>\mathcal C</m> consists of the following data.</p>
+        <ol>
+          <li><p>A set <m>\Ob(\mathcal C)</m> of objects and, for each ordered pair of objects <m>X,Y</m>, a set <m>\Hom_{\mathcal C}(X,Y)</m> of morphisms or arrows from <m>X</m> to <m>Y</m>.</p></li>
+          <li><p>For every object <m>X</m>, an identity arrow <m>\id_X\in\Hom_{\mathcal C}(X,X)</m>, and for every three objects a composition map
+            <md number="no">\Hom_{\mathcal C}(Y,Z)\times\Hom_{\mathcal C}(X,Y)\longrightarrow\Hom_{\mathcal C}(X,Z),\qquad (g,f)\longmapsto gf.</md>
+            These maps satisfy <m>\id_Yf=f=f\id_X</m> and <m>h(gf)=(hg)f</m> whenever the arrows have the indicated consecutive endpoints.</p></li>
+        </ol>
+        <p>We write <m>X\in\mathcal C</m> for <m>X\in\Ob(\mathcal C)</m>. The set of all typed arrows is
+          <md number="no">\Ar(\mathcal C)=\coprod_{(X,Y)\in\Ob(\mathcal C)^2}\Hom_{\mathcal C}(X,Y).</md>
+          The endomorphism set is <m>\End_{\mathcal C}(X)=\Hom_{\mathcal C}(X,X)</m>; its composition and identity make it a monoid.</p>
+      </statement>
+    </definition>
+    <p>The local sets in this definition need not be pairwise disjoint: taking their tagged disjoint union gives each arrow an unambiguous source and target. This distinction also keeps the local size condition separate from the size of object labels.<fn>The definition using local morphism sets and the equivalent definition using source and target maps on all typed arrows are compared in <xref ref="bib-cat-stacks" detail="Tag 0013, Definition 4.2.1"/>. We retain local morphism sets for the universe conventions of these notes.</fn> In particular, composition is not an operation on every pair of arrows; only matching endpoints allow a composite.</p>
+    <p>The object set may be empty. Then every required datum is empty and all axioms hold vacuously; this is the empty category, denoted <m>\mathbf 0</m>. If <m>X</m> is an object, however, its endomorphism set is nonempty because it contains <m>\id_X</m>. There is no requirement that <m>\Hom_{\mathcal C}(X,Y)</m> be nonempty when <m>X\ne Y</m>. The identity at <m>X</m> is forced by the axioms: two candidates <m>e,e'</m> would satisfy <m>e=ee'=e'</m>.</p>
+    <example xml:id="cat-example-elementary-categories">
+      <title>Sets, discrete categories, and orders</title>
+      <p>Several basic examples expose different parts of the definition.</p>
+      <ol>
+        <li><p>In <m>\Set=\Set_{\U}</m>, objects are the sets belonging to <m>\U</m>, arrows are functions, and composition is ordinary function composition. This is locally <m>\U</m>-small, but is not <m>\U</m>-small: its object set is <m>\U</m> itself. The full subcategory of finite sets is denoted <m>\operatorname{FinSet}</m>. Its objects are finite, but that does not make the category a finite category.</p></li>
+        <li><p>A set <m>S</m> defines a discrete category: the only arrows are the identities. Thus <m>\Hom(x,y)</m> is empty for distinct objects and is a singleton for equal objects. The terminal category <m>\mathbf 1</m> is the discrete category on one object. A finite category means one with finitely many objects and finitely many typed arrows. For example, <m>[n]</m> has objects <m>0,\ldots,n</m> and one arrow <m>i\to j</m> exactly when <m>i\le j</m>.</p></li>
+        <li><p>A preorder <m>(P,\le)</m> defines a category with one arrow <m>x\to y</m> when <m>x\le y</m> and none otherwise. Reflexivity gives identities and transitivity gives composition. Conversely, a category with at most one arrow between each pair of objects, called a thin category, determines a preorder. Antisymmetry is an additional condition: if <m>x\le y</m> and <m>y\le x</m> force <m>x=y</m>, the preorder is a partially ordered set.</p></li>
+      </ol>
+    </example>
+    <p>A preorder can therefore contain distinct objects joined by arrows in both directions. Since every available endomorphism is the identity, those arrows are inverse. Passing from a preorder to the quotient by <m>x\sim y</m> if <m>x\le y\le x</m> gives a poset; later we will recognize this as replacing a category by equivalent representatives.</p>
+    <example xml:id="cat-example-monoids-and-quivers">
+      <title>Algebra and freely generated arrows</title>
+      <p>A monoid <m>M</m> defines a category with one object <m>*</m> and <m>\Hom(*,*)=M</m>, with <m>gf</m> interpreted as multiplication in that order. Every one-object category arises this way. This example concerns one monoid encoded as a category. It differs from <m>\Mon</m>, the category whose objects are monoids and whose arrows are monoid homomorphisms. Similarly, <m>\Grp</m> has groups as objects and group homomorphisms as arrows; <m>\Ring</m> here has associative unital rings and homomorphisms preserving the unit, with commutativity imposed only in its full subcategory <m>\CRing</m>.</p>
+      <p>A quiver is a set of vertices and a set of directed edges with specified endpoints. It does not yet specify identities or composites. Its free category has the vertices as objects and finite composable paths as arrows, including a length-zero identity path at each vertex; composition concatenates paths. For a quiver with one vertex and one loop, the free category has infinitely many arrows. Thus a finite generating picture need not give a finite category. Assigning the vertices and edges to objects and arrows of any category determines a unique functor from the free category, because the image of a path must be the composite of its edge images.</p>
+    </example>
+    <p>A commutative diagram is a collection of objects and arrows for which specified parallel paths have equal composites. Its picture can suppress identities and composite arrows, but these remain part of the category. Conversely, additional relations between paths produce different categories from the same generating quiver. Reading a diagram therefore requires knowing both its arrows and which path equalities are being asserted.</p>
+  </section>
+
+  <section xml:id="cat-isomorphisms-cancellation">
+    <title>Isomorphisms, retracts, and cancellation</title>
+    <p>Invertibility is internal to a category: an inverse must itself be an allowed arrow. One-sided inverses and cancellation properties describe weaker conditions. We collect the terminology before recording the relations between it.</p>
+    <definition xml:id="cat-def-invertibility-cancellation">
+      <title>Invertible and cancellable arrows</title>
+      <statement>
+        <p>Let <m>f:X\to Y</m> be an arrow of <m>\mathcal C</m>.</p>
+        <ol>
+          <li><p>It is an isomorphism if an arrow <m>g:Y\to X</m> satisfies <m>gf=\id_X</m> and <m>fg=\id_Y</m>. We then write <m>f^{-1}=g</m> and <m>X\cong Y</m>. An automorphism is an isomorphism from an object to itself; the automorphisms of <m>X</m> form the group <m>\Aut_{\mathcal C}(X)</m>. A groupoid is a category in which every arrow is invertible.</p></li>
+          <li><p>The arrow <m>f</m> is a split monomorphism, or section, if it has a left inverse <m>r:Y\to X</m>, so <m>rf=\id_X</m>. It is a split epimorphism, or retraction, if it has a right inverse <m>s:Y\to X</m>, so <m>fs=\id_Y</m>. More generally, a pair <m>X\xrightarrow{s}Y\xrightarrow{r}X</m> with <m>rs=\id_X</m> exhibits <m>X</m> as a retract of <m>Y</m>.</p></li>
+          <li><p>The arrow <m>f</m> is a monomorphism if <m>fa=fb</m> implies <m>a=b</m> for all parallel arrows <m>a,b:T\to X</m> and all objects <m>T</m>. It is an epimorphism if <m>af=bf</m> implies <m>a=b</m> for all parallel arrows <m>a,b:Y\to T</m>. We also say monic and epic.</p></li>
+        </ol>
+      </statement>
+    </definition>
+    <p>A left inverse and a right inverse of the same arrow coincide when both exist: if <m>rf=\id_X</m> and <m>fs=\id_Y</m>, then <m>r=r(fs)=(rf)s=s</m>. Hence an isomorphism has exactly one inverse. One-sided inverses need not be unique. In the monoid example, invertible arrows are precisely the units of the monoid, so its one-object category is a groupoid exactly when the monoid is a group.</p>
+    <proposition xml:id="cat-prop-cancellation">
+      <title>Basic consequences of cancellation</title>
+      <statement>
+        <p>The following properties hold in any category.</p>
+        <ol>
+          <li><p>Composites of isomorphisms are isomorphisms, with <m>(gf)^{-1}=f^{-1}g^{-1}</m>. A split monomorphism is monic and a split epimorphism is epic.</p></li>
+          <li><p>Composites of monomorphisms are monic; if <m>gf</m> is monic, then <m>f</m> is monic. Dually, composites of epimorphisms are epic; if <m>gf</m> is epic, then <m>g</m> is epic.</p></li>
+          <li><p>An arrow which is monic and split epic is an isomorphism. An arrow which is epic and split monic is also an isomorphism.</p></li>
+        </ol>
+      </statement>
+      <proof>
+        <p>The inverse formula follows by composing in both orders. If <m>rf=\id_X</m>, multiplying <m>fa=fb</m> on the left by <m>r</m> gives <m>a=b</m>. For monic <m>f,g</m>, an equality <m>gfa=gfb</m> first cancels <m>g</m> and then <m>f</m>. If only <m>gf</m> is known to be monic, <m>fa=fb</m> still implies <m>gfa=gfb</m>, hence <m>a=b</m>. Finally, if <m>fs=\id_Y</m> and <m>f</m> is monic, then <m>f(sf)=f=f\id_X</m> gives <m>sf=\id_X</m>. Reversing all arrows proves the dual assertions.</p>
+      </proof>
+    </proposition>
+    <p>The cancellation definitions are equivalent to injectivity of the functions
+      <md number="no">\Hom_{\mathcal C}(T,X)\longrightarrow\Hom_{\mathcal C}(T,Y),\quad a\longmapsto fa,</md>
+      for monicity, and of <m>\Hom_{\mathcal C}(Y,T)\to\Hom_{\mathcal C}(X,T)</m>, <m>a\mapsto af</m>, for epicity. The quantifier ranges over all test objects. In a thin category every arrow is both monic and epic, although an arrow in a poset is invertible only when its endpoints are equal.</p>
+    <example xml:id="cat-example-epi-not-surjective">
+      <title>Cancellation and underlying functions</title>
+      <p>In <m>\Set</m>, monomorphisms are precisely injective functions: singleton test objects detect equality of individual elements. Epimorphisms are precisely surjective functions. To verify the latter converse, if <m>y\in Y</m> is outside the image of <m>f:X\to Y</m>, the zero function <m>Y\to\{0,1\}</m> and the function taking value one only at <m>y</m> agree after composition with <m>f</m>, but differ.</p>
+      <p>These identifications must be checked in each category. The inclusion <m>\Z\to\Q</m> in <m>\Ring</m> is monic and epic, but is not an isomorphism. Monicity follows from injectivity. If two ring maps <m>a,b:\Q\to R</m> agree on <m>\Z</m>, then for every nonzero integer <m>n</m> they agree on <m>n^{-1}</m>, since its image must be the inverse of their common image of <m>n</m>. They consequently agree on every rational number. The inclusion is not surjective, and a ring inverse would in particular be an inverse function. This example is also given in <xref ref="bib-cat-riehl" detail="Exercise 1.2.iv"/>.</p>
+    </example>
+    <p>For a category equipped with a faithful underlying-set functor, injective and surjective underlying functions always give monic and epic arrows, respectively: cancel the functions and use faithfulness. The converse requires more information. Thus the word epimorphism never means surjective by our general convention.<fn>Some algebra texts use epimorphism for a surjective homomorphism. Our terminology is categorical cancellation; see <xref ref="bib-cat-stacks" detail="Tag 003B"/> and, for rings, <xref ref="bib-cat-stacks" detail="Tag 04VM"/>.</fn></p>
+  </section>
+
+  <section xml:id="cat-opposites-subcategories">
+    <title>Opposites and subcategories</title>
+    <p>Many statements come in pairs obtained by reversing arrows. This operation changes the category under discussion; it is not an instruction to reverse a function while keeping its source and target fixed.</p>
+    <definition xml:id="cat-def-opposite-subcategory">
+      <title>Opposite and subcategories</title>
+      <statement>
+        <ol>
+          <li><p>The opposite category <m>\mathcal C^{\mathrm{op}}</m> has the same objects as <m>\mathcal C</m> and
+            <md number="no">\Hom_{\mathcal C^{\mathrm{op}}}(X,Y)=\Hom_{\mathcal C}(Y,X).</md>
+            An arrow <m>f:X\to Y</m> is written <m>f^{\mathrm{op}}:Y\to X</m> in the opposite. Composition is specified by <m>f^{\mathrm{op}}g^{\mathrm{op}}=(gf)^{\mathrm{op}}</m>, and identities are unchanged.</p></li>
+          <li><p>A subcategory <m>\mathcal A\subseteq\mathcal C</m> consists of a subset of objects and subsets <m>\Hom_{\mathcal A}(X,Y)\subseteq\Hom_{\mathcal C}(X,Y)</m> containing the required identities and closed under composition. Its structure is inherited from <m>\mathcal C</m>. It is full if these morphism subsets are equal to the corresponding morphism sets of <m>\mathcal C</m>; it is wide if it has every object of <m>\mathcal C</m>.</p></li>
+          <li><p>A category is skeletal if isomorphic objects are equal. A skeleton of <m>\mathcal C</m> is a full subcategory containing exactly one object from each isomorphism class of objects of <m>\mathcal C</m>.</p></li>
+        </ol>
+      </statement>
+    </definition>
+    <p>Associativity and the identity rules for the opposite follow from those of <m>\mathcal C</m>, and reversing twice recovers the original structure. Invertibility is unchanged, while monomorphisms and epimorphisms exchange roles. A categorical statement, including its hypotheses, may therefore be dualized. This principle does not identify a particular category with its opposite.</p>
+    <p>The discrete category on <m>\Ob(\mathcal C)</m> is a wide subcategory of <m>\mathcal C</m>, but need not be full. All objects together with all invertible arrows form another wide subcategory, the maximal subgroupoid, often called the core. A full subcategory is determined by its chosen objects. A skeleton of finite sets can be obtained by taking one standard set of each finite cardinality, such as <m>\{0,\ldots,n-1\}</m>. It still has all functions between those representatives, not just identity maps.</p>
+    <p>A skeleton exists for every set-encoded category under our choice assumption: isomorphism is an equivalence relation on its object set, and one chooses a representative from each class. It is not a canonical collection of objects. A skeleton of a <m>\U</m>-small category is again <m>\U</m>-small, but a skeleton of an essentially <m>\U</m>-small category need not be strictly <m>\U</m>-small with its inherited object names; an equivalent presentation using small labels may be needed. We will prove below that a skeleton inclusion is an equivalence. Fullness alone does not ensure closure under isomorphism in the ambient category.<fn>A full subcategory closed under ambient isomorphisms is sometimes called replete or strictly full; Stacks uses strictly full in <xref ref="bib-cat-stacks" detail="Tag 0013, Definition 4.2.10"/>. A skeleton typically fails this condition because it deliberately chooses only one representative.</fn></p>
+  </section>
+
+  <section xml:id="cat-functors">
+    <title>Functors and what they detect</title>
+    <p>An object assignment becomes a functor only after specifying arrow maps and checking both structure rules. A map of the underlying quivers need not preserve the identity arrows or the composites that the categories already possess.</p>
+    <definition xml:id="cat-def-functor">
+      <title>Functor and comparison properties</title>
+      <statement>
+        <p>For categories <m>\mathcal C,\mathcal D</m>, a functor <m>F:\mathcal C\to\mathcal D</m> assigns an object <m>FX</m> to each <m>X</m> and a function
+          <md number="no">F_{X,Y}:\Hom_{\mathcal C}(X,Y)\longrightarrow\Hom_{\mathcal D}(FX,FY)</md>
+          to each pair, such that <m>F(\id_X)=\id_{FX}</m> and <m>F(gf)=F(g)F(f)</m>. When its direction is clear, this is also called a covariant functor.</p>
+        <ol>
+          <li><p>It is faithful if every <m>F_{X,Y}</m> is injective, full if every <m>F_{X,Y}</m> is surjective, and fully faithful if all these functions are bijective.</p></li>
+          <li><p>It is essentially surjective if each object of <m>\mathcal D</m> is isomorphic to some <m>FX</m>. It is conservative if <m>F(f)</m> being invertible always implies that <m>f</m> is invertible.</p></li>
+          <li><p>A contravariant functor from <m>\mathcal C</m> to <m>\mathcal D</m> means a functor <m>\mathcal C^{\mathrm{op}}\to\mathcal D</m>. Thus it assigns to <m>f:X\to Y</m> an arrow <m>F(f):FY\to FX</m>, with <m>F(gf)=F(f)F(g)</m>.</p></li>
+        </ol>
+      </statement>
+    </definition>
+    <p>Identity functors and composites of functors are defined on both objects and arrows; their structure rules follow immediately. A covariant functor <m>F:\mathcal C\to\mathcal D</m> also induces a covariant functor
+      <md number="no">F^{\mathrm{op}}:\mathcal C^{\mathrm{op}}\to\mathcal D^{\mathrm{op}},\qquad f^{\mathrm{op}}\longmapsto F(f)^{\mathrm{op}}.</md>
+      This construction reverses both categories. It differs from declaring <m>F</m> contravariant, which reverses only the source in the notation for the functor's domain.</p>
+    <example xml:id="cat-example-functors">
+      <title>Order maps and algebraic forgetful functors</title>
+      <p>A functor between preorder categories is exactly an order-preserving map of their object sets. The inclusion of a subcategory is faithful, and is full exactly when the subcategory is full. The forgetful functor <m>\Grp\to\Set</m> is faithful and conservative: group homomorphisms are determined by their functions, and the inverse function of a bijective homomorphism is again a homomorphism. It is not full, since arbitrary functions between groups need not respect multiplication.</p>
+      <p>For a fixed object <m>A</m>, postcomposition defines a covariant functor <m>\Hom_{\mathcal C}(A,-):\mathcal C\to\Set</m>, whereas precomposition defines a functor <m>\Hom_{\mathcal C}(-,A):\mathcal C^{\mathrm{op}}\to\Set</m>. Their identity and composition rules are precisely the identity and associativity rules of the category. A functor between one-object monoid categories is a homomorphism of monoids, including preservation of the unit.</p>
+    </example>
+    <proposition xml:id="cat-prop-functor-detection">
+      <title>Invertibility under functors</title>
+      <statement>
+        <ol>
+          <li><p>Every functor preserves isomorphisms and their inverses. Every fully faithful functor is conservative.</p></li>
+          <li><p>If <m>F</m> is fully faithful, then <m>FX\cong FY</m> if and only if <m>X\cong Y</m>. The forward implication concerns existence of an isomorphism between the image objects, not merely the image of a previously specified arrow.</p></li>
+          <li><p>Composites of faithful, full, fully faithful, essentially surjective, or conservative functors have the respective property.</p></li>
+        </ol>
+      </statement>
+      <proof>
+        <p>Apply a functor to the two inverse equations to obtain the first preservation assertion. If <m>F(f)</m> is invertible and <m>F</m> is fully faithful, fullness lifts its inverse to an arrow <m>g</m>; faithfulness converts <m>F(gf)=\id_{FX}</m> and <m>F(fg)=\id_{FY}</m> into the inverse equations for <m>f</m>. More generally, fullness first lifts an isomorphism <m>FX\to FY</m> itself, and the same argument applies. The morphism-set properties are closed under composition of functions. Essential surjectivity of a composite uses preservation of the isomorphism witnessing the first choice of a preimage; conservativity applies successively.</p>
+      </proof>
+    </proposition>
+    <p>Faithfulness refers to each fixed pair of objects. It does not require the object map to be injective. For example, the category with two objects and exactly one arrow between every pair maps fully faithfully to <m>\mathbf 1</m>. Conversely, a faithful functor need not be conservative: the functor from the poset <m>0&lt;1</m> to <m>\mathbf 1</m> sends its noninvertible arrow to an identity. Essential surjectivity likewise need not provide equality with an image object; it provides an isomorphism.</p>
+    <p>Preservation of isomorphisms follows from explicit inverse equations, which a functor carries to inverse equations. Preservation of monomorphisms or epimorphisms does not follow from the functor axioms alone. For example, the unique nonidentity arrow of the poset category <m>0&lt;1</m> is both monic and epic. A functor to <m>\Set</m> can send it to any function between the two chosen image sets, including a noninjective or nonsurjective function. The source cancellation tests involve only source arrows, whereas the target tests involve every target arrow. This explains why preservation statements later in the notes require additional hypotheses.</p>
+  </section>
+
+  <section xml:id="cat-natural-transformations">
+    <title>Natural transformations</title>
+    <p>Let <m>F,G:\mathcal C\to\mathcal D</m> be functors. Choosing one arrow <m>FX\to GX</m> for each object is only the first step of comparing them. The arrows must respect every relation transported from the source category.</p>
+    <definition xml:id="cat-def-natural-transformation">
+      <title>Natural transformation and natural isomorphism</title>
+      <statement>
+        <p>A natural transformation <m>\eta:F\Rightarrow G</m> is a family <m>(\eta_X)_{X\in\Ob(\mathcal C)}</m> with <m>\eta_X:FX\to GX</m>, such that for each arrow <m>f:X\to Y</m>,
+          <md xml:id="cat-equation-naturality" number="no">G(f)\eta_X=\eta_YF(f).</md>
+          The arrow <m>\eta_X</m> is its component at <m>X</m>. We write <m>\Nat(F,G)</m> for the set of such transformations. A natural isomorphism is a natural transformation whose every component is an isomorphism; it is denoted <m>F\cong G</m>.</p>
+      </statement>
+    </definition>
+    <xi:include href="diagram-transformation.ptx"/>
+    <xi:include href="diagram-naturality.ptx"/>
+    <p>The naturality square compares two routes from <m>FX</m> to <m>GY</m>: first compare and then apply <m>G(f)</m>, or first apply <m>F(f)</m> and then compare. The family must work for all source arrows, including automorphisms and maps between distinct objects. A comparison chosen independently for each object frequently fails this test. For contravariant functors the definition is applied to <m>\mathcal C^{\mathrm{op}}</m>; for <m>f:X\to Y</m> in <m>\mathcal C</m>, the equation becomes <m>G(f)\eta_Y=\eta_XF(f)</m>.</p>
+    <example xml:id="cat-example-naturality">
+      <title>Singletons and a failure of arbitrary choices</title>
+      <p>On <m>\Set</m>, let <m>\mathcal P(X)</m> be the power set and send <m>f:X\to Y</m> to direct image <m>A\mapsto f(A)</m>. The functions <m>\sigma_X:X\to\mathcal P(X)</m>, <m>x\mapsto\{x\}</m>, form a natural transformation from the identity functor to <m>\mathcal P</m>, because <m>f(\{x\})=\{f(x)\}</m>. Here the same rule interacts correctly with every function.</p>
+      <p>In contrast, a natural transformation from the constant singleton functor to the identity on the category of nonempty sets would select elements <m>x_X\in X</m> satisfying <m>f(x_X)=x_Y</m> for every function <m>f:X\to Y</m>. A two-element set has a permutation with no fixed point, so this is impossible, despite the existence of an element in each object. Ordinary existence and compatibility under maps are different demands.</p>
+      <p>For a one-object category coming from a monoid <m>M</m>, two functors to another one-object monoid category give homomorphisms <m>F,G:M\to N</m>. A natural transformation between them is an element <m>a\in N</m> satisfying <m>G(m)a=aF(m)</m> for every <m>m\in M</m>. Thus even one component can carry a substantial compatibility condition.</p>
+    </example>
+    <p>If the source category is discrete, there are no naturality restrictions beyond the identity equations, which are automatic. If it is empty, there is exactly one functor to any category and exactly one transformation between such functors: the empty family. These cases are useful checks on later constructions rather than exceptions to the definition.</p>
+  </section>
+
+  <section xml:id="cat-transformation-calculus">
+    <title>Composition and changing the source or target</title>
+    <p>Natural transformations can be composed between functors with a common source and target, or transported by composing those functors with another functor. These operations will let us manipulate comparisons without making new component choices.</p>
+    <definition xml:id="cat-def-transformation-operations">
+      <title>Vertical composition, whiskering, and horizontal composition</title>
+      <statement>
+        <ol>
+          <li><p>For <m>\eta:F\Rightarrow G</m> and <m>\theta:G\Rightarrow K</m>, their vertical composite is <m>\theta\cdot\eta:F\Rightarrow K</m> with components <m>(\theta\cdot\eta)_X=\theta_X\eta_X</m>. The identity transformation <m>\id_F:F\Rightarrow F</m> has components <m>\id_{FX}</m>.</p></li>
+          <li><p>For <m>L:\mathcal B\to\mathcal C</m> and <m>H:\mathcal D\to\mathcal E</m>, the whiskered transformations <m>\eta L:FL\Rightarrow GL</m> and <m>H\eta:HF\Rightarrow HG</m> have components <m>\eta_{LB}</m> and <m>H(\eta_X)</m>, respectively.</p></li>
+          <li><p>For <m>\eta:F\Rightarrow G</m> with <m>F,G:\mathcal C\to\mathcal D</m> and <m>\theta:H\Rightarrow K</m> with <m>H,K:\mathcal D\to\mathcal E</m>, their horizontal composite <m>\theta*\eta:HF\Rightarrow KG</m> has components
+            <md number="no">(\theta*\eta)_X=\theta_{GX}H(\eta_X)=K(\eta_X)\theta_{FX}.</md>
+            The equality is the naturality of <m>\theta</m> applied to the arrow <m>\eta_X</m>.</p></li>
+        </ol>
+      </statement>
+    </definition>
+    <proposition xml:id="cat-prop-transformation-calculus">
+      <title>Compatibility of composition</title>
+      <statement>
+        <p>The transformations just defined are natural. Vertical and horizontal composition are associative with their indicated identity transformations, and whiskering preserves vertical composition and identities. If
+          <m>\eta:F_0\Rightarrow F_1</m>, <m>\eta':F_1\Rightarrow F_2</m>,
+          <m>\theta:H_0\Rightarrow H_1</m>, and <m>\theta':H_1\Rightarrow H_2</m>
+          have matching source and target categories, then the interchange identity holds:
+          <md number="no">(\theta'\cdot\theta)*(\eta'\cdot\eta)=(\theta'*\eta')\cdot(\theta*\eta).</md>
+          Both sides are transformations <m>H_0F_0\Rightarrow H_2F_2</m>.</p>
+        <p>The horizontal units are the identity transformations of the identity functors. Explicitly, for <m>\eta:F\Rightarrow G</m> with <m>F,G:\mathcal C\to\mathcal D</m>,
+          <md number="no">\id_{\id_{\mathcal D}}*\eta=\eta=\eta*\id_{\id_{\mathcal C}}.</md>
+          This differs from vertical composition, whose unit at a fixed functor <m>F</m> is <m>\id_F</m>.</p>
+      </statement>
+      <proof>
+        <p>For vertical composition, slide <m>K(f)</m> across <m>\theta_X</m> using naturality and then slide <m>G(f)</m> across <m>\eta_X</m>; this gives <m>K(f)\theta_X\eta_X=\theta_Y\eta_YF(f)</m>. Precomposition substitutes <m>L(f)</m> in a naturality equation, while postcomposition applies <m>H</m> to that equation. The horizontal composite is consequently a composite of whiskered natural transformations.</p>
+        <p>For interchange, expanding the right side at <m>X</m> gives
+          <md number="no">\theta'_{F_2X}H_1(\eta'_X)\theta_{F_1X}H_0(\eta_X)
+          =\theta'_{F_2X}\theta_{F_2X}H_0(\eta'_X)H_0(\eta_X).</md>
+          The equality uses naturality of <m>\theta</m> at <m>\eta'_X</m>; the final expression is the left side. Vertical associativity and identities are those of the component arrows. Horizontal associativity follows by expanding three transformations with the same component formula and using functoriality; both parenthesizations give the composite of the three appropriately whiskered components. Identity transformations give the asserted units by the same formula.</p>
+      </proof>
+    </proposition>
+    <p>The displayed types are part of these rules. Vertical composition requires a shared middle functor, whereas horizontal composition requires consecutive source and target categories. For example, <m>H\eta=\id_H*\eta</m> and <m>\eta L=\eta*\id_L</m>. These operations only organize functors and transformations between ordinary categories; no additional theory is needed to use them.<fn>The component formulas and interchange are treated together in <xref ref="bib-cat-li1" detail="Section 2.2, Lemma 2.2.7"/>. The terminology horizontal and vertical refers to how these comparisons are placed in diagrams.</fn></p>
+  </section>
+
+  <section xml:id="cat-functor-categories">
+    <title>Functor categories and natural isomorphisms</title>
+    <p>Vertical composition allows comparisons themselves to serve as arrows of a category. Keeping this category visible is useful: an assertion about functors being isomorphic is then an ordinary assertion about objects and arrows.</p>
+    <definition xml:id="cat-def-functor-category">
+      <title>Functor category</title>
+      <statement>
+        <p>The functor category <m>\Fun(\mathcal C,\mathcal D)</m> has functors <m>\mathcal C\to\mathcal D</m> as its objects, morphism sets <m>\Nat(F,G)</m>, and vertical composition as its composition law. Its identity at <m>F</m> is <m>\id_F</m>.</p>
+      </statement>
+    </definition>
+    <p>The preceding proposition verifies its category axioms. Its objects and arrows are sets under our set-encoding convention: object maps, local arrow maps, and component families are subsets of sets of possible functions. If <m>\mathcal C</m> is <m>\U</m>-small and <m>\mathcal D</m> is locally <m>\U</m>-small, then
+      <md number="no">\Nat(F,G)\subseteq\prod_{X\in\Ob(\mathcal C)}\Hom_{\mathcal D}(FX,GX)</md>
+      belongs to <m>\U</m>. Thus the functor category is locally <m>\U</m>-small. If both categories are <m>\U</m>-small, their functor category is <m>\U</m>-small as well. For a source that is not <m>\U</m>-small, these conclusions at the same scale do not follow: one must check the size or work in a larger universe.<fn>The local smallness argument is exactly why a small source appears in <xref ref="bib-cat-li1" detail="Section 2.3, Remark 2.3.5"/>. It does not assert that the category of all locally <m>\U</m>-small categories lies inside <m>\U</m>.</fn></p>
+    <proposition xml:id="cat-prop-natural-isomorphism">
+      <title>Invertibility is detected on components</title>
+      <statement>
+        <p>A transformation <m>\eta:F\Rightarrow G</m> is an isomorphism in <m>\Fun(\mathcal C,\mathcal D)</m> if and only if every component <m>\eta_X</m> is invertible. Its inverse then has components <m>\eta_X^{-1}</m>.</p>
+      </statement>
+      <proof>
+        <p>An inverse transformation gives inverse component arrows by the definition of vertical composition. Conversely, if every component is invertible, the naturality equation implies
+          <md number="no">F(f)\eta_X^{-1}=\eta_Y^{-1}G(f)</md>
+          after multiplication by the inverse components on the two sides. Thus the inverse family is natural, and its vertical composites with <m>\eta</m> have identity components.</p>
+      </proof>
+    </proposition>
+    <p>The condition concerns the components of a specified natural transformation. The weaker assertion that <m>FX</m> and <m>GX</m> happen to be isomorphic for every <m>X</m> need not yield a natural isomorphism. For example, take the source to be the one-object group category of a nontrivial finite group <m>M</m>, and the target its one-object group category as well. The identity homomorphism and the trivial homomorphism have the same image object, but a natural isomorphism would be an invertible <m>a\in M</m> with <m>a=am</m> for every <m>m\in M</m>, which is impossible. Naturality therefore retains information invisible at the level of image objects.</p>
+  </section>
+
+  <section xml:id="cat-equivalences">
+    <title>Equivalence and the choice of representatives</title>
+    <p>An isomorphism of categories requires inverse functors with literal equality of the two composites to the identity functors. Many comparisons in mathematics instead recover objects by isomorphisms compatible with arrows. Equivalence records this latter situation.</p>
+    <definition xml:id="cat-def-equivalence">
+      <title>Equivalence of categories</title>
+      <statement>
+        <p>A functor <m>F:\mathcal C\to\mathcal D</m> is an equivalence if there is a functor <m>G:\mathcal D\to\mathcal C</m> and natural isomorphisms
+          <md number="no">\eta:\id_{\mathcal C}\Rightarrow GF,\qquad \varepsilon:FG\Rightarrow\id_{\mathcal D}.</md>
+          Such a functor <m>G</m> is called a quasi-inverse. We write <m>\mathcal C\simeq\mathcal D</m> when an equivalence exists.</p>
+      </statement>
+    </definition>
+    <p>The definition does not impose extra equations on the two specified natural isomorphisms. In particular, they need not initially satisfy the compatibility equations used for an adjunction. The next criterion constructs the comparison maps explicitly, and explains where choice enters.</p>
+    <proposition xml:id="cat-prop-equivalence-criterion">
+      <title>Fully faithful and essentially surjective criterion</title>
+      <statement>
+        <p>A functor between our set-encoded categories is an equivalence if and only if it is fully faithful and essentially surjective.</p>
+      </statement>
+      <proof>
+        <p>First suppose <m>F</m> has a quasi-inverse <m>G</m> with comparisons <m>\eta,\varepsilon</m>. Essential surjectivity follows from <m>\varepsilon_Y:FGY\cong Y</m>. If <m>Ff=Fg</m>, apply <m>G</m> and conjugate by the components of <m>\eta</m> to obtain <m>f=g</m>; hence <m>F</m> is faithful. The same argument with <m>\varepsilon</m> shows that <m>G</m> is faithful. Given <m>h:FX\to FX'</m>, set <m>f=\eta_{X'}^{-1}G(h)\eta_X</m>. Naturality of <m>\eta</m> at this arrow gives <m>GF(f)=G(h)</m>. Since <m>G</m> is faithful, <m>F(f)=h</m>. Thus <m>F</m> is full. This argument uses naturality rather than assuming unmentioned compatibility between the two comparisons.</p>
+        <p>Conversely, suppose <m>F</m> is fully faithful and essentially surjective. For every <m>Y\in\mathcal D</m>, choose an object <m>GY\in\mathcal C</m> and an isomorphism <m>\varepsilon_Y:F(GY)\to Y</m>. These choices are indexed by the set <m>\Ob(\mathcal D)</m>, and the possible pairs form sets, so the axiom of choice supplies them. No choice indexed by a proper class is being made.</p>
+        <p>For an arrow <m>b:Y\to Y'</m>, define <m>G(b):GY\to GY'</m> to be the unique lift under full faithfulness of
+          <md number="no">\varepsilon_{Y'}^{-1}b\varepsilon_Y:F(GY)\longrightarrow F(GY').</md>
+          The image of <m>G(\id_Y)</m> is an identity, so faithfulness gives <m>G(\id_Y)=\id_{GY}</m>. The image of <m>G(cb)</m> equals the product of the images of <m>G(c)</m> and <m>G(b)</m>, by cancellation of the middle <m>\varepsilon</m> factors; faithfulness gives <m>G(cb)=G(c)G(b)</m>. Hence <m>G</m> is a functor. Its defining equation makes <m>\varepsilon:FG\Rightarrow\id_{\mathcal D}</m> natural.</p>
+        <p>For each <m>X</m>, let <m>\eta_X:X\to GFX</m> be the unique lift of <m>\varepsilon_{FX}^{-1}</m>. It is invertible by <xref ref="cat-prop-functor-detection"/>. For <m>f:X\to X'</m>, the definition of <m>G(Ff)</m> yields
+          <md number="no">F\bigl(G(Ff)\eta_X\bigr)
+          =\varepsilon_{FX'}^{-1}F(f)
+          =F\bigl(\eta_{X'}f\bigr).</md>
+          Faithfulness makes <m>\eta</m> natural. Both comparisons have invertible components, so they are natural isomorphisms by <xref ref="cat-prop-natural-isomorphism"/>. This proves the equivalence.</p>
+      </proof>
+    </proposition>
+    <p>The criterion and its representative construction are treated in <xref ref="bib-cat-li1" detail="Section 2.2, Theorem 2.2.13"/> and <xref ref="bib-cat-riehl" detail="Section 1.5"/>. The quasi-inverse depends on choices, but any two quasi-inverses of a fixed equivalence are naturally isomorphic. More precisely, if <m>G,G'</m> have comparisons <m>\varepsilon:FG\Rightarrow\id_{\mathcal D}</m> and <m>\varepsilon':FG'\Rightarrow\id_{\mathcal D}</m>, full faithfulness determines <m>\tau_Y:GY\to G'Y</m> uniquely by
+      <md number="no">F(\tau_Y)=(\varepsilon'_Y)^{-1}\varepsilon_Y.</md>
+      Naturality of the two comparisons and faithfulness prove naturality of <m>\tau</m>, and its components are invertible. This gives uniqueness with the comparisons fixed; it does not say that there is exactly one natural isomorphism between bare quasi-inverse functors.</p>
+    <example xml:id="cat-example-equivalences">
+      <title>Equivalent presentations</title>
+      <p>A skeleton inclusion is fully faithful by definition and essentially surjective because every object has a representative. It is therefore an equivalence. For a preorder, the poset of equivalence classes described earlier gives the same phenomenon without having to choose a full subcategory first.</p>
+      <p>The groupoid with two distinct objects and exactly one arrow between every pair is equivalent to <m>\mathbf 1</m>, but is not isomorphic to it as a category. An isomorphism of categories would induce a bijection on object sets. Notice that every arrow in this groupoid, including the arrows between its two objects, is invertible; the identity distinction between the two objects remains a distinction of labels.</p>
+      <p>For a field <m>k</m> whose underlying set belongs to <m>\U</m>, the category with objects the nonnegative integers and arrows <m>n\to m</m> the <m>m\times n</m> matrices over <m>k</m> is equivalent to the category of finite-dimensional vector spaces whose underlying sets belong to <m>\U</m>. The functor sends <m>n</m> to <m>k^n</m> and a matrix to its linear map. It is fully faithful by matrix representation and essentially surjective by the existence of a basis. Zero-dimensional spaces and empty matrices include the object <m>n=0</m>. No assertion that every vector space literally equals one of these coordinate spaces is required.</p>
+    </example>
+    <p>Equivalences compose: quasi-inverses compose in reverse order, and whiskering the comparison isomorphisms gives comparisons for the composite. They are symmetric because a quasi-inverse is itself an equivalence. These observations make equivalence an appropriate way to compare different presentations of the same categorical structure. They do not permit replacing actual equality of arrows by unspecified isomorphisms; a commutative diagram still asserts equal composites in its particular category.</p>
+  </section>
+</chapter>
