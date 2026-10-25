@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="ha-c14">
+  <title>Compact generation and representability</title>
+  <introduction>
+    <p>A right adjoint can be constructed by representing a family of Hom-valued functors. Brown representability gives conditions under which this method works in a triangulated category. Compact objects supply those conditions and also allow some comparisons to be checked on a generating set.</p>
+    <p>Throughout this chapter, small coproducts mean coproducts indexed in the fixed universe. Representing functors take values in small abelian groups. We use <xref ref="bib-ha-neeman"/> and <xref ref="bib-ha-krause" detail="Sections 5–7"/> as the main references. The compactly generated Brown theorem and its adjoint consequence are stated and proved in <xref ref="bib-ha-stacks" detail="Tag 0A8E"/>.</p>
+  </introduction>
+  <section xml:id="ha-c14-compact">
+    <title>Compact objects and generators</title>
+    <definition xml:id="ha-c14-definition-compact">
+      <title>Compactness and generation</title>
+      <idx>Compact object</idx><idx>Compactly generated category</idx><idx>Localizing subcategory</idx><idx>Classical generator</idx>
+    <statement>
+      <p>Let <m>\mathcal T</m> have small coproducts.</p>
+      <p><ol>
+        <li><p>An object <m>C</m> is compact if the canonical map <m>\bigoplus_i\Hom(C,X_i)\to\Hom(C,\bigoplus_iX_i)</m> is an isomorphism for every small family. Write <m>\mathcal T^c</m> for the full subcategory of compact objects.</p></li>
+        <li><p>A set <m>G</m> detects zero objects if <m>\Hom(g,X[n])=0</m> for every <m>g\in G</m> and <m>n\in\Z</m> implies <m>X=0</m>. We call <m>\mathcal T</m> compactly generated if such a small set can be chosen with every <m>g</m> compact.</p></li>
+        <li><p>A localizing subcategory is a strictly full triangulated subcategory closed under small coproducts. Write <m>\Loc(G)</m> for the smallest one containing <m>G</m>. Write <m>\thick(G)</m> for closure under finite sums, shifts, triangles, and retracts. A classical generator <m>g</m> satisfies <m>\thick(g)=\mathcal T</m>.</p></li>
+      </ol></p>
+    </statement>
+    </definition>
+    <p>Compactness is a condition on an object, not on the sizes of the morphism sets. It is also different from finite presentation in an abelian category.<fn>Some sources call compact objects <em>small</em> or <em>finite</em>. Here <em>small</em> continues to refer to the chosen universe. The phrase <em>generator</em> can mean zero detection, localizing generation, or classical generation; the condition used in a statement is given explicitly.</fn></p>
+    <p>The compactness map is always injective: each projection from a coproduct recovers the corresponding component of a finite sum of maps. Thus compactness can be tested by requiring every map <m>C\to\bigoplus_iX_i</m> to factor through a finite partial coproduct. The canonical comparison includes this finite-support requirement; an abstract isomorphism between the two groups would not state it.</p>
+    <p>A zero-detecting set is a test for objects and for isomorphisms, rather than a claim that it detects every nonzero morphism. A map is an isomorphism if its maps on <m>\Hom(g,-[n])</m> are isomorphisms, since those tests annihilate its cone. Vanishing of the tests on a map itself need not make the map zero. For example, in <m>\D(\Ab)</m>, the nonzero extension class <m>\Z/n\Z\to\Z[1]</m> induces zero on every cohomology group. The compact generator <m>\Z</m> detects cohomology and therefore detects zero objects, but it does not detect that extension class.</p>
+    <p>A small detecting set can be replaced by the single object <m>\bigoplus_{g\in G}g</m> for zero detection. That sum need not be compact. Compact generation by a set and compact generation by one compact object are consequently different assertions. Classical generation is different again: it permits finitely many cone and retract operations, rather than arbitrary coproducts.</p>
+    <proposition xml:id="ha-c14-proposition-compact-closure">
+      <statement>
+        <p>The compact objects form a thick subcategory. If <m>C</m> is compact and <m>X_0\to X_1\to\cdots</m> is a sequence, then</p>
+        <p><md number="no">\Hom(C,\operatorname{hocolim}_nX_n)\simeq\colim_n\Hom(C,X_n).</md></p>
+      </statement>
+      <proof>
+        <p>Closure under shifts and retracts follows directly from the defining comparison. For a triangle, compare the long exact Hom sequences before and after a coproduct. Exactness of direct sums of abelian groups and the five lemma give closure under cones.</p>
+        <p>The sequential homotopy colimit is a cone of <m>1-s:\bigoplus_nX_n\to\bigoplus_nX_n</m>, where <m>s</m> uses the transition maps into the next summand. After applying <m>\Hom(C,-)</m>, compactness replaces Hom into these coproducts by direct sums of Hom groups. The map <m>1-s</m> on either degree of those direct sums is injective: an element has finite support, and its first nonzero coordinate cannot cancel. Its cokernel is the direct limit. The long exact sequence gives the assertion.</p>
+      </proof>
+    </proposition>
+    <p>This construction specifies a sequential homotopy colimit by a distinguished triangle. A triangulated category does not supply a functorial choice of cones for arbitrary maps, so no additional coherence of all such choices is implicit. The displayed Hom calculation is independent of the chosen cone in the sense supplied by isomorphisms of triangles.<fn>A telescope is another name for this construction. It is not the ordinary categorical colimit of the sequence, and its defining triangle is what allows compactness to compute its Hom groups.</fn></p>
+    <theorem xml:id="ha-c14-theorem-generation">
+      <statement>
+        <p>If a small set <m>G</m> of compact objects detects zero objects, then <m>\Loc(G)=\mathcal T</m>, and <m>\mathcal T^c=\thick(G)</m>. In particular, <m>\mathcal T^c</m> is essentially small.</p>
+      </statement>
+    </theorem>
+    <p>We use this compact generation theorem as an existence result; see <xref ref="bib-ha-neeman"/> and <xref ref="bib-ha-krause" detail="Remark 5.1.2(1), Section 5.3, and Corollary 7.2.2"/>. Its finite part is stronger than zero detection: a compact object can be obtained using only finitely many cones and finite sums, followed by a retract. The general construction first uses coproducts and sequential homotopy colimits, and compactness then gives that finite factorization. Merely testing vanishing against a set of noncompact objects does not establish this finite conclusion.</p>
+  </section>
+  <section xml:id="ha-c14-module-example">
+    <title>Derived categories of modules</title>
+    <example xml:id="ha-c14-example-ring">
+      <p>Let <m>R</m> be an associative ring and use left modules. The object <m>R[0]</m> is compact in <m>\D(R)</m>, since</p>
+      <p><md number="no">\Hom_{\D(R)}(R,X[n])\simeq H^n(X)</md></p>
+      <p>and direct sums of modules are exact. These groups detect whether <m>X</m> is zero. Thus <m>\D(R)</m> is compactly generated by <m>R</m>.</p>
+      <p>A perfect complex is an object isomorphic in <m>\D(R)</m> to a bounded complex of finitely generated projective left modules. Such complexes form <m>\thick(R)</m>, and hence are precisely the compact objects. To see the finite construction, each finitely generated projective module is a retract of a finite free module, and successive brutal truncation triangles construct a bounded complex from its terms. Conversely, perfect complexes are closed under retracts in the derived category; this last assertion is part of the perfect-complex theorem, not an assertion that every idempotent chain map splits termwise in the chosen representative. For the commutative-ring version, see <xref ref="bib-ha-stacks" detail="Tag 07LQ"/>.</p>
+    </example>
+    <p>Bounded cohomology with finitely generated cohomology modules is a different condition. Over <m>k[\epsilon]/(\epsilon^2)</m>, the module <m>k</m> in degree zero has that condition but has infinite projective dimension, so is not perfect. Thus it is not compact in the unbounded derived category.</p>
+    <p>An abelian generator of a Grothendieck category need not become a compact object of its derived category. In particular, the existence of enough injectives or K-injectives is not a compact-generation theorem. Whenever the compactly generated results below are applied to <m>\D(\mathcal A)</m>, compact generation must be checked separately.</p>
+    <p>Even over a field, the compact generator is usually not a classical generator for the whole unbounded category. The thick closure of <m>k</m> consists of complexes with finite-dimensional total cohomology. The localizing closure allows arbitrary coproducts and is all of <m>\D(k)</m>. Perfect complexes are useful here because they describe the part built by finite operations, without replacing the surrounding category by a bounded one. The relation with dualizable objects is established in <xref ref="ha-c16"/>.</p>
+  </section>
+  <section xml:id="ha-c14-brown">
+    <title>Brown representability and right adjoints</title>
+    <theorem xml:id="ha-c14-theorem-brown">
+      <statement>
+        <p>Let <m>\mathcal T</m> be compactly generated. A contravariant cohomological functor <m>H:\mathcal T\to\Ab</m> which sends small coproducts to products is representable: there are <m>Y\in\mathcal T</m> and a natural isomorphism <m>H(X)\simeq\Hom_{\mathcal T}(X,Y)</m>.</p>
+      </statement>
+    </theorem>
+    <p>This is Brown representability in the form of <xref ref="bib-ha-stacks" detail="Tag 0A8E, Lemma 13.38.1"/>. Both conditions on <m>H</m> are necessary for representation: representable functors are cohomological and turn coproducts into products.</p>
+    <p>The construction can be described through a universal element. A pair <m>(Y,u)</m>, with <m>u\in H(Y)</m>, defines a natural transformation <m>\Hom(-,Y)\to H</m> by sending <m>a:X\to Y</m> to <m>H(a)(u)</m>. Representation asks that this map be bijective for every <m>X</m>. Its uniqueness is the Yoneda uniqueness of a representing pair, rather than equality of independently constructed objects.</p>
+    <p>Here is why compact generators suffice in the construction. Close the chosen set of generators under shifts. Let <m>Y_1</m> be the coproduct of one copy of <m>g</m> for each pair <m>(g,a)</m> with <m>a\in H(g)</m>. Preservation of coproducts gives an element <m>u_1\in H(Y_1)</m> with those components, so the comparison is surjective on generators. At stage <m>n</m>, take the coproduct <m>K_n</m> of all maps <m>g\to Y_n</m> in the kernels of these comparisons. Complete <m>K_n\to Y_n</m> to a triangle with third object <m>Y_{n+1}</m>. The element <m>u_n</m> restricts to zero on <m>K_n</m>; the cohomological property supplies a lift <m>u_{n+1}</m>. Thus every relation detected at one stage vanishes at the next.</p>
+    <p>Let <m>Y=\operatorname{hocolim}_nY_n</m>. The telescope triangle and <m>H(\bigoplus Y_n)=\prod H(Y_n)</m> supply an element <m>u\in H(Y)</m> lifting the compatible family <m>(u_n)</m>. Compactness computes maps from each generator into <m>Y</m> as a direct limit. Surjectivity was imposed at the first stage, and a kernel element is killed at the next stage, so the comparison is an isomorphism on every shifted generator. The objects on which it is an isomorphism in every shift form a localizing subcategory: use the two long exact sequences for triangles and the product comparison for coproducts. The generation theorem makes that subcategory all of <m>\mathcal T</m>. This is the mechanism of the cited proof; the smallness hypotheses ensure that each attaching coproduct has a small indexing set.</p>
+    <corollary xml:id="ha-c14-corollary-adjoint">
+      <statement>
+        <p>Let <m>F:\mathcal T\to\mathcal U</m> be an exact functor, with <m>\mathcal T</m> compactly generated and <m>\mathcal U</m> a locally small triangulated category. If <m>F</m> preserves small coproducts, then it has an exact right adjoint.</p>
+      </statement>
+      <proof>
+        <p>For <m>Y\in\mathcal U</m>, the functor <m>\Hom_{\mathcal U}(F(-),Y)</m> is cohomological and sends coproducts to products. Brown representability gives an object <m>GY</m> representing it. Yoneda makes these representing objects functorial in <m>Y</m> and gives <m>F\dashv G</m>. Exactness of the right adjoint follows from the exact-adjoint result of <xref ref="ha-c11"/>. This is also <xref ref="bib-ha-stacks" detail="Tag 0A8E, Proposition 13.38.2"/>.</p>
+      </proof>
+    </corollary>
+    <p>The theorem is contravariant. A covariant homological functor preserving products is a different representability question, and the corresponding existence of left adjoints is not obtained by formally reversing this theorem. Nor does the representing object automatically belong to a bounded subcategory.</p>
+    <p>There is a broader Brown theorem for well generated triangulated categories, which includes noncompact generators with controlled cardinal bounds and an additional generation condition. The unbounded derived category of a Grothendieck category belongs to this broader class; see <xref ref="bib-ha-krause" detail="Sections 6 and 7.7"/>. We use the compactly generated form here. Applying the broader result requires its actual well-generation hypotheses, not merely replacing the word <em>compact</em> by a cardinality bound in one argument.</p>
+  </section>
+  <section xml:id="ha-c14-adjoints">
+    <title>Preservation and tests on generators</title>
+    <proposition xml:id="ha-c14-proposition-compact-adjoint">
+      <statement>
+        <p>Suppose <m>F:\mathcal T\rightleftarrows\mathcal U:G</m> is an exact adjunction, both categories have small coproducts, and <m>\mathcal T</m> is compactly generated. Then <m>G</m> preserves small coproducts if and only if <m>F</m> takes compact objects to compact objects.</p>
+      </statement>
+      <proof>
+        <p>If <m>G</m> preserves coproducts and <m>C</m> is compact, then <m>\Hom(FC,\bigoplus_iY_i)\simeq\Hom(C,\bigoplus_iGY_i)</m>, which proves compactness of <m>FC</m>. Conversely, test the canonical map <m>\bigoplus_iGY_i\to G(\bigoplus_iY_i)</m> against every shift of a compact generator. Compactness of that generator and of its image under <m>F</m>, followed by adjunction, makes every test an isomorphism. The cone is zero by generation.</p>
+      </proof>
+    </proposition>
+    <proposition xml:id="ha-c14-proposition-test">
+      <statement>
+        <p>Let <m>F_1,F_2:\mathcal T\to\mathcal U</m> be exact coproduct-preserving functors, where <m>\mathcal T=\Loc(G)</m>. A natural transformation compatible with suspension is an isomorphism on all objects if it is an isomorphism on every member of <m>G</m>.</p>
+      </statement>
+      <proof>
+        <p>The objects on which the transformation is invertible form a localizing subcategory. Closure under triangles follows by comparing long exact Hom sequences, and closure under coproducts uses preservation by both functors. This subcategory contains <m>G</m>, so it is all of <m>\mathcal T</m>.</p>
+      </proof>
+    </proposition>
+    <p>This last test will extend a projection or duality comparison from dualizable generators. Its preservation assumptions concern both sides of the comparison; a right adjoint cannot be assumed to preserve coproducts merely because its left adjoint does.</p>
+    <proposition xml:id="ha-c14-proposition-equivalence-test">
+      <statement><p>Let <m>F:\mathcal T\to\mathcal U</m> be exact and preserve small coproducts. Suppose <m>\mathcal T</m> is compactly generated by a small set <m>G</m>, every <m>Fg</m> is compact, and the natural maps
+        <md number="no">\Hom_{\mathcal T}(g,h[n])\longrightarrow\Hom_{\mathcal U}(Fg,Fh[n])</md>
+        are isomorphisms for <m>g,h\in G</m> and <m>n\in\Z</m>. Then <m>F</m> is fully faithful. If the objects <m>Fg</m> also detect zero objects of <m>\mathcal U</m>, then <m>F</m> is an equivalence.</p></statement>
+      <proof><p>Fix <m>g\in G</m>. Compactness of <m>g</m> and <m>Fg</m> makes the objects <m>X</m> on which <m>\Hom(g,X[n])\to\Hom(Fg,FX[n])</m> is an isomorphism for all <m>n</m> a localizing subcategory. It contains <m>G</m>, hence all objects. Now fix <m>X</m> in the target variable and vary the source of the same Hom comparison. These contravariant Hom functors take coproducts to products without a compactness assumption; the same localizing argument extends the isomorphism from <m>G</m> to all sources. This proves full faithfulness. The essential image of a fully faithful exact coproduct-preserving functor is a localizing subcategory. In the final case it contains the compact generators <m>FG</m> of <m>\mathcal U</m>, so equals <m>\mathcal U</m>.</p></proof>
+    </proposition>
+    <p>Testing only the maps between generators without controlling coproducts would miss both steps of this proof. This criterion compares entire triangulated categories; it does not construct a functor from a proposed correspondence on generators. Constructing such a functor can require information beyond the Hom groups of the generators.</p>
+  </section>
+</chapter>

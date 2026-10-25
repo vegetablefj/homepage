@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="toric-riemann-roch">
+  <title>Riemann<ndash/>Roch, duality, and lattice points</title>
+  <introduction>
+    <p>Intersection numbers compute the leading term of a lattice-point count. Riemann<ndash/>Roch computes the remaining coefficients through characteristic classes. Serre duality relates negative multiples of an ample divisor to interior lattice points through the adjoint divisor. This chapter connects the intersection ring and line-bundle cohomology of <xref ref="toric-intersection"/> with the Ehrhart polynomial of <xref ref="toric-ehrhart"/>.</p>
+    <p>Let <m>X=X_\Sigma</m> be a smooth projective toric variety of dimension <m>n\geq1</m> over our algebraically closed field <m>k</m>. We retain arbitrary characteristic. The general Riemann<ndash/>Roch and Serre duality theorems are cited where used. We prove the toric Euler sequence, compute the characteristic classes, and prove the adjoint vanishing needed for the lattice-point interpretation. The zero-dimensional case is a point, for which the Euler characteristic and the lattice-point count are both one.</p>
+  </introduction>
+
+  <section xml:id="toric-rr-euler">
+    <title>The tangent bundle and the boundary divisors</title>
+    <p>Write <m>r=|\Sigma(1)|</m>, and let <m>\partial_u</m> be the logarithmic derivation defined on characters by
+      <md number="no">\partial_u(\chi^m)=\langle m,u\rangle\chi^m.</md>
+      Here <m>u\in N\otimes_\Z k</m>, and the integer pairing is read in <m>k</m>. Define
+      <md number="no">V=\ker\left(k^{\Sigma(1)}\longrightarrow N\otimes_\Z k,\ (v_\rho)_\rho\longmapsto\sum_\rho v_\rho u_\rho\right).</md>
+      The rays of any maximal cone form a lattice basis, so this map is surjective and <m>\dim_k V=r-n</m>.</p>
+    <proposition xml:id="toric-prop-euler-sequence">
+      <statement><p>There is an exact sequence of vector bundles
+        <md xml:id="toric-eq-euler-sequence" number="yes">0\longrightarrow V\otimes_k\mathcal O_X\longrightarrow\bigoplus_{\rho\in\Sigma(1)}\mathcal O_X(D_\rho)\longrightarrow T_X\longrightarrow0.</md>
+        The first map uses the canonical sections <m>1\in H^0(X,\mathcal O_X(D_\rho))</m>. The second sends a rational coefficient <m>f</m> in the <m>\rho</m>-summand to <m>f\partial_{u_\rho}</m>.</p></statement>
+      <proof><p>Take a maximal cone with ray basis <m>u_{\rho_1},\ldots,u_{\rho_n}</m> and dual coordinates <m>z_i=\chi^{m_i}</m>. On its affine chart, the divisor <m>D_{\rho_i}</m> has equation <m>z_i=0</m> and <m>\mathcal O(D_{\rho_i})</m> has frame <m>z_i^{-1}</m>. That frame maps to <m>\partial/\partial z_i</m>. A divisor whose ray is outside this cone is disjoint from the chart; its frame <m>1</m> maps to the regular vector field
+        <md number="no">\partial_{u_\rho}=\sum_{i=1}^n\langle m_i,u_\rho\rangle z_i\frac{\partial}{\partial z_i}.</md>
+        These formulas prove regularity and surjectivity.</p>
+      <p>The composite with <m>V\otimes\mathcal O_X</m> is zero by the defining ray relation. Projection of <m>V</m> onto the coordinates outside the cone is an isomorphism: the inside coefficients are uniquely determined by the ray basis. In the displayed local frames, a constant vector <m>v\in V</m> has inside components <m>z_iv_{\rho_i}</m> and outside components <m>v_\rho</m>. Allowing <m>v</m> to have coefficients in the chart's coordinate ring, every vector in the kernel has this form, with its outside components determining the inside ones. Thus the kernel is the asserted trivial bundle. The ray basis is unimodular, so the argument holds in every characteristic.</p></proof>
+    </proposition>
+    <p>This is the smooth complete case of the toric Euler sequence; compare <xref ref="bib-toric-cls" detail="Theorem 8.1.6"/>. Since <m>\Pic(X)</m> is free here, the divisor sequence identifies <m>V</m> with <m>\Hom_\Z(\Pic(X),k)</m>. The ray-relation description specifies the maps without choosing generators of the Picard group.</p>
+    <p xml:id="toric-anchor-rr-canonical-section">The notation <m>1\in\mathcal O(D_\rho)</m> denotes a rational function viewed as a section of a divisorial sheaf. In the frame <m>z_i^{-1}</m> its coefficient is <m>z_i</m>, so this section vanishes along <m>D_\rho</m>.</p>
+    <aside xml:id="margin-toric-rr-canonical-section"><p>A local frame is nowhere zero as a section of the line bundle. The rational function that represents it may have a pole. Confusing the frame <m>z_i^{-1}</m> with the canonical section <m>1</m> would reverse the local description of the Euler sequence.</p></aside>
+    <p>Let <m>d_\rho=[D_\rho]\in A^1(X)</m>. Multiplicativity of Chern classes in the exact sequence gives
+      <md xml:id="toric-eq-tangent-chern" number="yes">c(T_X)=\prod_{\rho\in\Sigma(1)}(1+d_\rho).</md>
+      In particular, <m>c_1(T_X)=\sum_\rho d_\rho=-[K_X]</m>. The products are taken in the Chow ring of <xref ref="toric-thm-smooth-chow-ring"/>, and all components of degree greater than <m>n</m> vanish. See <xref ref="bib-toric-cls" detail="Proposition 13.1.2"/> for the same formula over <m>\C</m>.</p>
+  </section>
+
+  <section xml:id="toric-rr-todd">
+    <title>Euler characteristics from the Chow ring</title>
+    <p>For a coherent sheaf <m>\mathcal F</m> on <m>X</m>, its Euler characteristic is
+      <md number="no">\chi(X,\mathcal F)=\sum_{i=0}^n(-1)^i\dim_kH^i(X,\mathcal F).</md>
+      We use rational Chow classes <m>A^*(X)_\Q=A^*(X)\otimes_\Z\Q</m>. The notation <m>\int_X\alpha</m> means the degree of the codimension-<m>n</m> component of <m>\alpha</m>.</p>
+    <p>The Todd class is the multiplicative characteristic class whose value on a line bundle of first Chern class <m>x</m> is the power series
+      <md number="no">\operatorname{td}(x)=\frac{x}{1-e^{-x}}=1+\frac{x}{2}+\frac{x^2}{12}-\frac{x^4}{720}+\cdots.</md>
+      Its value on a trivial bundle is one. Thus the Euler sequence gives
+      <md xml:id="toric-eq-todd-product" number="yes">\operatorname{Td}(T_X)=\prod_{\rho\in\Sigma(1)}\operatorname{td}(d_\rho).</md>
+      The definition and multiplicativity are recalled in <xref ref="bib-toric-stacks" detail="Tag 02UN"/>; the toric product is <xref ref="bib-toric-cls" detail="Theorem 13.1.6"/>.</p>
+    <p xml:id="toric-anchor-rr-formal-denominator">Each factor means its power-series expansion, truncated in degrees greater than <m>n</m>. No divisor class is inverted in the Chow ring.</p>
+    <aside xml:id="margin-toric-rr-formal-denominator"><p>The rational coefficients belong to <m>A^*(X)_\Q</m>, even when <m>k</m> has positive characteristic. We do not interpret <m>1/2</m> or <m>1/12</m> as elements of <m>k</m>. The final degree in Riemann<ndash/>Roch is an integer because it equals an Euler characteristic.</p></aside>
+    <theorem xml:id="toric-thm-hrr">
+      <title>Hirzebruch<ndash/>Riemann<ndash/>Roch</title>
+      <statement><p>For a Cartier divisor <m>D</m> on <m>X</m>,
+        <md xml:id="toric-eq-hrr" number="yes">\chi(X,\mathcal O_X(D))=\int_X e^{[D]}\operatorname{Td}(T_X)=\int_X e^{[D]}\prod_{\rho\in\Sigma(1)}\frac{d_\rho}{1-e^{-d_\rho}}.</md>
+        The exponential is also truncated in degree <m>n</m>.</p></statement>
+    </theorem>
+    <p>We use the algebraic Riemann<ndash/>Roch theorem for a smooth proper variety over a field, applied to the line bundle with Chern character <m>e^{[D]}</m>; see <xref ref="bib-toric-stacks" detail="Tag 02UO"/> and <xref ref="bib-toric-fulton-intersection" detail="Chapter 18"/>. This general theorem is an external result. The toric calculation consists of the Euler sequence, the product for the Todd class, and evaluation in the explicitly presented Chow ring.</p>
+    <proposition xml:id="toric-prop-rr-ehrhart">
+      <statement><p>Let <m>D</m> be a nef torus-invariant Cartier divisor. For every integer <m>q\geq0</m>,
+        <md xml:id="toric-eq-rr-ehrhart" number="yes">\#(qP_D\cap M)=\sum_{j=0}^n\frac{q^j}{j!}\int_X[D]^j\operatorname{Td}_{n-j}(T_X).</md>
+        Here <m>\operatorname{Td}_i</m> denotes the codimension-<m>i</m> component. In particular, the constant term is one. If <m>n\geq2</m>, the coefficients of <m>q^n</m> and <m>q^{n-1}</m> are
+        <md number="no">\frac{D^n}{n!}\quad\text{and}\quad-\frac{D^{n-1}\cdot K_X}{2(n-1)!},</md>
+        respectively.</p></statement>
+      <proof><p>Demazure vanishing, <xref ref="toric-thm-demazure-vanishing"/>, identifies the Euler characteristic of <m>\mathcal O(qD)</m> with the dimension of its space of sections for <m>q\geq0</m>. Those sections have basis the characters in <m>qP_D\cap M</m>. Expanding the exponential in <xref ref="toric-eq-hrr"/> gives the formula. The first two Todd components are <m>1</m> and <m>c_1(T_X)/2=-[K_X]/2</m>. For the constant term, apply Demazure vanishing to <m>\mathcal O_X</m>; completeness gives <m>H^0(X,\mathcal O_X)=k</m>, so <m>\chi(X,\mathcal O_X)=1</m>.</p></proof>
+    </proposition>
+    <p xml:id="toric-anchor-rr-nonbig">Nefness permits a lower-dimensional <m>P_D</m>. Then the polynomial has degree <m>\dim P_D</m>, and the higher intersection coefficients vanish. The formula remains a computation on the <m>n</m>-dimensional variety <m>X</m>; its leading nonzero coefficient uses the intrinsic lattice of <m>P_D</m>, as in <xref ref="toric-ehrhart-algebra"/>.</p>
+    <aside xml:id="margin-toric-rr-singular"><p>The product for <m>\operatorname{Td}(T_X)</m> was proved under smoothness. For a singular normal-fan variety, choose a smooth projective fan refinement and pull back its ample Cartier divisor. The pullback is nef, has the same polytope, and can be used in the proposition. Applying the smooth tangent-bundle product directly on a singular variety would require a different Riemann<ndash/>Roch theory.</p></aside>
+  </section>
+
+  <section xml:id="toric-rr-duality">
+    <title>Serre duality and interior points</title>
+    <p>Our canonical divisor is <m>K_X=-\sum_\rho D_\rho</m>, represented by the invariant rational logarithmic form <m>\omega</m> of <xref ref="toric-thm-canonical-divisor"/>. Multiplication by <m>\omega</m> identifies the divisorial sheaf <m>\mathcal O(K_X)</m> with the canonical sheaf. We use this identification when discussing weights.</p>
+    <theorem xml:id="toric-thm-serre-duality">
+      <title>Serre duality</title>
+      <statement><p>For every Cartier divisor <m>D</m>, multiplication and the trace map give perfect pairings
+        <md xml:id="toric-eq-serre-pairing" number="yes">H^i(X,\mathcal O(D))\times H^{n-i}(X,\mathcal O(K_X-D))\longrightarrow H^n(X,\mathcal O(K_X))\longrightarrow k.</md>
+        Consequently <m>\chi(X,\mathcal O(K_X-D))=(-1)^n\chi(X,\mathcal O(D))</m>.</p></statement>
+    </theorem>
+    <p>This is the smooth projective case of Serre duality; see <xref ref="bib-toric-hartshorne" detail="Chapter III, Theorem 7.6"/>. The toric formulation is <xref ref="bib-toric-cls" detail="Theorem 9.2.10"/>. These are external duality results. The equality of Euler characteristics follows by replacing <m>i</m> by <m>n-i</m> in the alternating sum.</p>
+    <p xml:id="toric-anchor-rr-dual-weights">Use the coefficient exponents of <xref ref="toric-prop-weight-cech"/>. Since <m>\omega</m> is invariant and the trace is equivariant with trivial target, the pairing restricts to perfect pairings between exponent <m>m</m> in the first factor and exponent <m>-m</m> in the second.</p>
+    <aside xml:id="margin-toric-rr-dual-weights"><p>A rational section <m>\chi^m</m> has action weight <m>-m</m> under <m>(t\cdot s)(p)=s(t^{-1}p)</m>. Duality reverses action weights and hence also reverses these coefficient exponents. Replacing <m>D</m> by <m>D+\divisor(\chi^u)</m> shifts the first set of exponents by <m>-u</m> and the second by <m>u</m>, since the second divisor is <m>K_X-D</m>.</p></aside>
+    <p>Let <m>D=\sum_\rho a_\rho D_\rho</m> be ample and let <m>q\geq1</m>. Its polytope is full-dimensional. The section inequalities for the adjoint divisor are
+      <md number="no">P_{K_X+qD}\cap M=\{m\in M:\langle m,u_\rho\rangle\geq1-qa_\rho\text{ for every }\rho\}=\operatorname{Int}(qP_D)\cap M.</md>
+      The last equality uses integrality: strict inequality against the integer <m>-qa_\rho</m> is equivalent to being at least <m>1-qa_\rho</m>. Thus sections of the adjoint line bundle count interior lattice points. To identify their dimension with an Euler characteristic, we need adjoint vanishing.</p>
+    <proposition xml:id="toric-prop-adjoint-vanishing">
+      <statement><p>If <m>D</m> is ample, then <m>H^i(X,\mathcal O(K_X+D))=0</m> for every <m>i&gt;0</m>, in every characteristic.</p></statement>
+      <proof><p>For a positive integer <m>\ell</m>, multiplication by <m>\ell</m> on <m>N</m> defines a finite toric map <m>\varphi_\ell:X\to X</m>. On each invariant affine chart it acts by <m>\chi^m\mapsto\chi^{\ell m}</m>. The monomial assignment defines an <m>\mathcal O_X</m>-linear split inclusion
+        <md number="no">\mathcal O(K_X+D)\longrightarrow(\varphi_\ell)_*\mathcal O(K_X+\ell D).</md>
+        To check this assertion, on a chart the source exponents satisfy <m>\langle m,u_\rho\rangle\geq1-a_\rho</m>. Multiplication by <m>\ell</m> satisfies the target inequalities. A target exponent in <m>\ell M</m>, written <m>\ell m</m>, satisfies
+        <md number="no">\ell\langle m,u_\rho\rangle\geq1-\ell a_\rho\quad\Longleftrightarrow\quad\langle m,u_\rho\rangle\geq1-a_\rho.</md>
+        Thus projection onto the exponents in <m>\ell M</m>, followed by division by <m>\ell</m>, is a retraction. Multiplication by a source function shifts exponents by an element of <m>\ell M</m>, so the retraction is linear. These maps commute with the character localizations on chart intersections and glue.</p>
+      <p>Finite pushforward is exact and computes cohomology on the source. The split inclusion therefore makes <m>H^i(X,\mathcal O(K_X+D))</m> a direct summand of <m>H^i(X,\mathcal O(K_X+\ell D))</m>. Serre vanishing makes the latter zero for <m>i&gt;0</m> and <m>\ell</m> sufficiently large. No separability of <m>\varphi_\ell</m> is used.</p></proof>
+    </proposition>
+    <p>The power-map argument is the toric proof of adjoint vanishing; compare <xref ref="bib-toric-fujino" detail="Corollary 1.5 and Section 2.11"/> and <xref ref="bib-toric-cls" detail="Theorem 9.3.1"/>. The general Serre vanishing theorem used at the last step is <xref ref="bib-toric-hartshorne" detail="Chapter III, Theorem 5.2"/>.</p>
+    <corollary xml:id="toric-cor-duality-reciprocity">
+      <statement><p>If <m>D</m> is ample and <m>q\geq1</m>, then
+        <md xml:id="toric-eq-duality-reciprocity" number="yes">\#(\operatorname{Int}(qP_D)\cap M)=\chi(X,\mathcal O(K_X+qD))=(-1)^n\chi(X,\mathcal O(-qD))=(-1)^nE_{P_D}(-q).</md>
+        Here the final argument is evaluation of the Ehrhart polynomial.</p></statement>
+      <proof><p>The section inequalities and adjoint vanishing give the first equality. Serre duality gives the second. Riemann<ndash/>Roch expresses <m>\chi(X,\mathcal O(tD))</m> as a polynomial in <m>t</m>, and <xref ref="toric-prop-rr-ehrhart"/> identifies it with <m>E_{P_D}(t)</m> for every nonnegative integer <m>t</m>. The two polynomials are equal, so they agree at <m>t=-q</m>.</p></proof>
+    </corollary>
+    <p>The combinatorial proof in <xref ref="toric-thm-ehrhart-reciprocity-proof"/> applies to every lattice polytope in its intrinsic lattice, including those with singular normal fan. The corollary explains the reciprocity sign through duality for polytopes polarized by a smooth projective toric variety. Its use of a full-dimensional interior and the dimension <m>n</m> matches the ampleness assumption.</p>
+  </section>
+
+  <section xml:id="toric-rr-surfaces">
+    <title>Surface formulas and two calculations</title>
+    <p>For a smooth projective toric surface, only the terms through codimension two contribute. Write <m>c_i=c_i(T_X)</m>. The Todd expansion and Riemann<ndash/>Roch give
+      <md number="no">\chi(X,\mathcal O(D))=\frac{D^2}{2}+\frac{D\cdot c_1}{2}+\frac{\int_X(c_1^2+c_2)}{12}.</md>
+      At <m>D=0</m> the last term is <m>\chi(X,\mathcal O_X)=1</m>. Since <m>c_1=-[K_X]</m>, we obtain
+      <md xml:id="toric-eq-surface-rr" number="yes">\chi(X,\mathcal O(D))=1+\frac{D^2-D\cdot K_X}{2}.</md>
+      This identity holds for every divisor class, without a positivity assumption. Positivity is needed when interpreting it as a section count.</p>
+    <example xml:id="toric-example-rr-p2">
+      <title>The projective plane</title>
+      <p>The Chow ring has <m>H^3=0</m> and <m>\int_{\P^2}H^2=1</m>. The three boundary classes are <m>H</m>, so
+        <md number="no">c(T_{\P^2})=(1+H)^3=1+3H+3H^2.</md>
+        Hence <m>\operatorname{Td}(T_{\P^2})=1+3H/2+H^2</m>. For every integer <m>d</m>,
+        <md number="no">\chi(\P^2,\mathcal O(d))=1+\frac{d^2+3d}{2}=\frac{(d+1)(d+2)}2.</md>
+        For <m>d\geq0</m>, this counts the lattice points of the triangle <m>p\geq0</m>, <m>q\geq0</m>, <m>p+q\leq d</m>. For <m>d\geq1</m>, its interior count is <m>(d-1)(d-2)/2</m>, with value zero at <m>d=1,2</m>.</p>
+      <p>Duality identifies <m>H^2(\P^2,\mathcal O(-d))</m> with the dual of <m>H^0(\P^2,\mathcal O(d-3))</m>. It has dimension <m>(d-1)(d-2)/2</m> for <m>d\geq3</m>. This agrees with the Čech calculation in <xref ref="toric-example-p2-cohomology"/>. The positive Euler characteristic of <m>\mathcal O(-3)</m> is contributed by <m>H^2</m>; that line bundle has no nonzero global section.</p>
+    </example>
+    <example xml:id="toric-example-rr-hirzebruch">
+      <title>A Hirzebruch surface</title>
+      <p>Use the notation of <xref ref="toric-example-hirzebruch-intersection"/>: <m>S^2=-a</m>, <m>S\cdot F=1</m>, and <m>F^2=0</m>. The canonical class is <m>K=-2S-(a+2)F</m>. For <m>D=\alpha S+\beta F</m>,
+        <md number="no"><mrow>D^2=2\alpha\beta-a\alpha^2,</mrow><mrow>D\cdot K=(a-2)\alpha-2\beta.</mrow></md>
+        Substitution in the surface formula gives, for all integers <m>\alpha,\beta</m>,
+        <md xml:id="toric-eq-rr-hirzebruch" number="yes">\chi(\mathbb F_a,\mathcal O(D))=(\alpha+1)(\beta+1)-\frac{a\alpha(\alpha+1)}2.</md>
+        If <m>\alpha\geq0</m> and <m>\beta\geq a\alpha</m>, the divisor is nef. The representative <m>\alpha D_2+\beta D_1</m> has inequalities <m>-\beta\leq p\leq aq</m> and <m>-\alpha\leq q\leq0</m>. Summing the integer lengths of the rows <m>q=-j</m> gives
+        <md number="no">h^0(\mathbb F_a,\mathcal O(D))=\sum_{j=0}^{\alpha}(\beta-aj+1)=(\alpha+1)(\beta+1)-\frac{a\alpha(\alpha+1)}2.</md>
+        Demazure vanishing accounts for the agreement with the Euler characteristic.</p>
+      <p>For <m>a=2</m> and <m>D=S</m>, the polyhedron has only the lattice point <m>(0,0)</m>, so <m>h^0(\mathcal O(S))=1</m>. Riemann<ndash/>Roch gives <m>\chi(\mathcal O(S))=0</m>. The class <m>K-S=-3S-4F</m> has no sections: its polyhedron would require both <m>q\geq3</m> and <m>q\leq0</m>. Duality gives <m>h^2(\mathcal O(S))=0</m>, and therefore <m>h^1(\mathcal O(S))=1</m>. This non-nef example shows exactly where an Euler characteristic differs from a lattice-point count.</p>
+    </example>
+  </section>
+
+  <section xml:id="toric-rr-pick">
+    <title>Pick's formula for an arbitrary lattice polygon</title>
+    <p>In this section let <m>M</m> have rank two, and let <m>P\subset M_\R</m> be a full-dimensional lattice polygon. Write <m>A=\vol_M(P)</m>, <m>B=\#(\partial P\cap M)</m>, and <m>I=\#(\operatorname{Int}(P)\cap M)</m>. The normal-fan surface <m>X_P</m> may be singular. Choose a smooth projective toric refinement <m>f:X\to X_P</m> and let <m>D=f^*D_P</m>. The refinement exists by <xref ref="toric-birational-higher-resolution"/>. Pullback preserves the support function and its polytope, so <m>P_D=P</m>; the divisor <m>D</m> is nef.</p>
+    <proposition xml:id="toric-prop-pick">
+      <statement><p>The lattice-point polynomial and the area satisfy
+        <md number="no">E_P(q)=Aq^2+\frac B2q+1,</md>
+        and
+        <md xml:id="toric-eq-pick" number="yes">A=I+\frac B2-1.</md></p></statement>
+      <proof><p>Riemann<ndash/>Roch and Demazure vanishing on <m>X</m> give
+        <md number="no">E_P(q)=\frac{D^2}{2}q^2-\frac{D\cdot K_X}{2}q+1\quad(q\geq0).</md>
+        The intersection<ndash/>volume formula gives <m>D^2/2=A</m>. Write the coefficient of <m>q</m> as <m>c</m>. By the already proved combinatorial reciprocity theorem, the number of interior lattice points of <m>qP</m>, for <m>q\geq1</m>, is <m>Aq^2-cq+1</m>. The difference between the two counts is <m>2cq</m>.</p>
+      <p>An edge whose difference vector is <m>\ell</m> times a primitive lattice vector has <m>\ell+1</m> lattice points, including its endpoints. Adding the edge counts and counting each vertex once gives <m>B=\sum_{\text{edges}}\ell</m>. Dilation by <m>q\geq1</m> multiplies every edge length by <m>q</m>, so <m>\#(\partial(qP)\cap M)=qB</m>. Thus <m>2c=B</m>, proving the polynomial. At <m>q=1</m>, reciprocity gives <m>I=A-B/2+1</m>, which is Pick's formula.</p></proof>
+    </proposition>
+    <p>The argument also gives <m>-D\cdot K_X=B</m> on any chosen smooth toric refinement. Exceptional boundary curves on which the pullback has degree zero contribute zero to this sum. The area uses a lattice fundamental parallelogram of area one; the normalized volume of our conventions is <m>2A</m>.</p>
+    <p>In this form, Riemann<ndash/>Roch explains all three coefficients: area comes from the top self-intersection, the boundary coefficient from the canonical divisor, and the constant term from <m>\chi(\mathcal O_X)=1</m>. The smooth refinement allows the same calculation for polygons whose normal-fan surfaces are singular, while the combinatorial reciprocity theorem supplies the interior count without an extra positivity assertion about the adjoint pullback.</p>
+  </section>
+</chapter>

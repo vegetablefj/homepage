@@ -10,4 +10,5 @@ if (-not $PythonPath) {
 }
 Write-Host "Open http://localhost:$Port/"
 Write-Host 'Press Ctrl+C to stop this local preview.'
-& $PythonPath @pythonOptions -m http.server $Port --bind 127.0.0.1 --directory $PSScriptRoot
+& $PythonPath @pythonOptions -X utf8 (Join-Path $PSScriptRoot 'tools\preview_server.py') --port $Port --root $PSScriptRoot
+if ($LASTEXITCODE -ne 0) { throw 'The local preview server stopped with an error.' }

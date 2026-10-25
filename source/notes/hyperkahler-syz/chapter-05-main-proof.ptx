@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="hks-main-proof">
+  <title>From a special Lagrangian torus to semiampleness</title>
+  <introduction>
+    <p>The degeneration and the metric theorem produce a special Lagrangian torus on a deformation of the original manifold. We must prove that it becomes holomorphic after rotation, that the resulting fibration corresponds to the specified class <m>e</m>, and that semiampleness returns to the original nef line bundle <m>L</m>. Each assertion requires more than the existence of a torus.</p>
+    <p>We apply <xref ref="hks-thm-prescribed-degeneration"/> and <xref ref="hks-thm-metric-torus"/>. The proof follows <xref ref="hks-bib-openai-syz" detail="Section 5"/>. The final section compares it with <xref ref="hks-bib-engel-mauri" detail="Sections 2 and 4"/>.</p>
+  </introduction>
+
+  <section xml:id="hks-rotation-of-profound-torus">
+    <title>The torus and its rotation</title>
+    <p>Let <m>L</m> be a nontrivial nef line bundle on the IHS manifold <m>X</m> of dimension <m>2n</m>, with <m>q_X(c_1(L))=0</m>. Write <m>c_1(L)=\lambda=me</m>, where <m>e</m> is primitive and <m>m&gt;0</m>. Since <m>H^1(X,\cO_X)=0</m> and <m>H^2(X,\Z)</m> is torsion-free, the exponential sequence gives a unique line bundle <m>E_X</m> with <m>c_1(E_X)=e</m> and <m>L\simeq E_X^{\otimes m}</m>. Its class is nef. The sign of <m>e</m> is specified by
+      <md number="no">q_X(e,\kappa_X)&gt;0</md>
+      for any Kähler class <m>\kappa_X</m>.</p>
+    <p>Apply <xref ref="hks-thm-prescribed-degeneration"/> to this <m>e</m> in the marked component containing <m>X</m>. Fix an irrational real number <m>\alpha</m> and choose the path <m>\tau=\alpha+iy</m>. The degeneration has normalized period
+      <md number="no">p(\tau)=f+\tau v-\frac a2\tau^2e,\qquad
+        q(e,f)=1,\quad q(v)=a&gt;0,\quad h\perp P=\langle e,f,v\rangle_\Q.</md>
+      Its actual monodromy <m>T_2=U_w</m> satisfies
+      <md number="no">\operatorname{im}(T_2-\operatorname{id})=\langle e,v\rangle_\Q.</md></p>
+    <p>All hypotheses of <xref ref="hks-thm-metric-torus"/> have been proved: the family is algebraic over a curve and projective, its polarization extends, its semistable total space is smooth, and the logarithmic volume form has growth <m>s^{2n}</m> and a nonzero residue at a maximal crossing in algebraic coordinates. For a sufficiently late point on the path, choose a smooth fiber <m>Y=(M_t,J)</m> and a special Lagrangian real <m>2n</m>-torus <m>F\subset Y</m> isotopic to the coordinate torus at that crossing. The Ricci-flat metric <m>g</m> has Kähler class a positive multiple of <m>h</m>. A constant rescaling of the metric, with the parallel volume form renormalized, preserves these conditions on <m>F</m>.</p>
+    <p>Choose the hyperkähler triple so that
+      <md xml:id="hks-eq-metric-triple-period" number="yes">[\omega_J]\in\R_{&gt;0}h,\qquad
+        \sigma_J=\omega_K+i\omega_I=c\,\sigma_t,\qquad c&gt;0.</md>
+      The positive scalar matches the norm of the holomorphic symplectic form to the metric; the phase of <m>\sigma_t</m> fixes <m>I</m> and <m>K</m>. Taking imaginary parts gives
+      <md xml:id="hks-eq-transverse-form" number="yes">[\omega_I]=cy(v-a\alpha e),\qquad
+        q(e,[\omega_K])=c&gt;0.</md></p>
+    <proposition xml:id="hks-prop-rotated-torus">
+      <statement><p>The submanifold <m>F</m> is a holomorphic Lagrangian complex torus in <m>Z=(M_t,I')</m>, where <m>I'=K</m>. On <m>Z</m>, the class <m>e</m> has type <m>(1,1)</m> and satisfies <m>q(e,[\omega_{I'}])&gt;0</m>.</p></statement>
+      <proof>
+        <p>Let <m>i:F\hookrightarrow Y</m> be the inclusion. For the coordinate representative, keep the radii of <m>z_1,\ldots,z_{2n}</m> fixed as <m>t</m> travels around a circle, and determine <m>z_0</m> from the product equation. At the end of the loop the parameterized embedding is the same. Its restriction map on cohomology therefore satisfies
+          <md number="no">i^*T_k=i^*:H^k(Y,\R)\longrightarrow H^k(F,\R).</md>
+          This is <xref ref="hks-lemma-monodromy-restriction"/>; isotopy transfers the identity to the special Lagrangian representative. In degree two it gives
+          <md number="no">i^*\langle e,v\rangle_\R=0.</md>
+          Equation <xref ref="hks-eq-transverse-form"/> implies <m>i^*[\omega_I]=0</m>.</p>
+        <p>Apply <xref ref="hks-thm-cohomological-rotation"/> to the triple <m>(I',J,K')=(K,J,-I)</m>. The form <m>\omega_{K'}=-\omega_I</m> restricts to zero in cohomology, so the compact special Lagrangian <m>F</m> is <m>I'</m>-holomorphic Lagrangian. Explicitly, exactness on <m>F</m> and Stokes' theorem give
+          <md number="no">\begin{aligned}
+            \vol_g(F)&amp;=\left|\int_F\frac{(\omega_K+i\omega_I)^n}{n!}\right|
+              =\left|\int_F\frac{\omega_K^n}{n!}\right|\\
+            &amp;\leq\int_F\left|\frac{\omega_K^n}{n!}\right|
+              \leq\vol_g(F).
+          \end{aligned}</md>
+          Equality in the integrated Wirtinger inequality forces every tangent plane to be <m>K</m>-complex. The quaternion identities and <m>\omega_J|_F=0</m> then give <m>\omega_I|_F=0</m> pointwise, proving the holomorphic Lagrangian assertion.</p>
+        <p>The period plane for <m>Z</m> is spanned by <m>[\omega_I]</m> and <m>[\omega_J]</m>. Both are perpendicular to <m>e</m>, so <m>e\in H^{1,1}(Z)</m>. Its pairing with the Kähler class <m>[\omega_{I'}]=[\omega_K]</m> is positive by <xref ref="hks-eq-transverse-form"/>.</p>
+        <p>It remains to check that the complex manifold <m>F</m> is a complex torus, rather than just diffeomorphic to one. The induced Kähler metric and <m>b_1(F)=2n</m> give <m>h^{1,0}(F)=n</m>. Its Albanese map <m>u:F\to\operatorname{Alb}(F)</m> induces an isomorphism on integral first cohomology. Both cohomology rings are exterior algebras on <m>H^1</m>, so <m>u^*</m> is an isomorphism in every degree. In top degree this gives <m>|\deg u|=1</m>; holomorphicity makes the degree positive and the map surjective.</p>
+        <p>For a Kähler class <m>\xi</m> on <m>F</m>, write <m>\xi=u^*\beta</m> using surjectivity on <m>H^2(-,\R)</m>. A positive-dimensional fiber would contain a positive-dimensional compact analytic component <m>V</m>. If <m>\dim V=r</m>, then <m>\int_V\xi^r=0</m>, contrary to Kähler positivity. Thus <m>u</m> is finite. A finite degree-one map onto the normal complex torus <m>\operatorname{Alb}(F)</m> is an isomorphism.</p>
+      </proof>
+    </proposition>
+    <p>In this proof, the coordinate torus controls the restriction of every degree-two class in <m>\operatorname{im}(T_2-\operatorname{id})</m>. Monodromy invariance of the top-dimensional homology class alone would give a weaker statement and would not imply the needed restriction identity.</p>
+  </section>
+
+  <section xml:id="hks-identifying-fibration-class">
+    <title>Nonprojectivity and the class of the fibration</title>
+    <p>The irrational real part of <m>\tau</m> ensures that the rotated manifold <m>Z</m> is nonprojective. It also singles out <m>\Q e</m> among its rational isotropic classes. Both properties are used to obtain a semiample bundle with the required first Chern class.</p>
+    <proposition xml:id="hks-prop-rotated-picard">
+      <statement><p>Every <m>x\in H^{1,1}(Z)\cap H^2(M_t,\Q)</m> satisfies
+        <md number="no">q(x)\leq0,\qquad q(x)=0\ \Longrightarrow\ x\in\Q e.</md>
+        In particular, <m>Z</m> is nonprojective.</p></statement>
+      <proof>
+        <p>The rotated period plane is
+          <md number="no">\langle v-a\alpha e,h\rangle_\R.</md>
+          Orthogonality of a rational <m>(1,1)</m>-class gives <m>q(x,h)=0</m> and <m>q(x,v)=a\alpha q(x,e)</m>. The pairings <m>q(x,v)</m>, <m>q(x,e)</m>, and the nonzero number <m>a</m> are rational, whereas <m>\alpha</m> is irrational. Thus
+          <md number="no">q(x,e)=q(x,v)=0.</md></p>
+        <p>The BBF form on <m>H^{1,1}(Z,\R)</m> has signature <m>(1,b_2-3)</m>. In a real space of signature <m>(1,r)</m>, the perpendicular of a nonzero null vector is negative semidefinite with radical that null line. For a proof, complete <m>e</m> to a null pair <m>e,f'</m> with <m>q(e,f')=1</m>. Its orthogonal complement is negative definite. A vector perpendicular to <m>e</m> has no <m>f'</m>-component, so its square is the square of its negative-definite component. Equality forces it to lie on <m>\R e</m>; rationality and the integral primitivity of <m>e</m> give <m>x\in\Q e</m>.</p>
+        <p>A projective <m>Z</m> would have an integral ample class of positive BBF square, contradicting the inequality. This direction of the hyperkähler projectivity criterion is included in <url href="/notes/hyperkahler/hkg-bbf.html">The BBF form in General HK</url>.</p>
+      </proof>
+    </proposition>
+    <p>The irrational number separates rational coefficients in the equation <m>q(x,v)=a\alpha q(x,e)</m>, giving a unique rational isotropic line.<fn>Negative-square rational classes can remain, so <m>\NS(Z)_\Q</m> need not equal <m>\Q e</m>. Only the uniqueness of the rational isotropic line is needed to identify the pullback of an ample class from the fibration base.</fn></p>
+    <theorem xml:id="hks-thm-nonprojective-torus-fibration">
+      <title>(Greb–Lehn–Rollenske)</title>
+      <statement><p>Let <m>Z</m> be a nonprojective compact IHS manifold of dimension <m>2n</m> containing a holomorphic Lagrangian complex torus <m>F</m>. There is a holomorphic algebraic reduction <m>f:Z\to B</m> which is a Lagrangian fibration with <m>F</m> as a fiber. The base can be chosen normal and projective, and has dimension <m>n</m>.</p></statement>
+    </theorem>
+    <p>We use <xref ref="hks-bib-glr" detail="Theorem 4.1"/> as an external theorem. The projective base is obtained by its algebraic-reduction construction in Section 4.2 and Stein factorization. It is the nonprojective case of that theorem which applies to <m>Z</m>; no assertion about a projective manifold containing a torus is substituted for it.</p>
+    <proposition xml:id="hks-prop-semiample-primitive-ray">
+      <statement><p>The line bundle <m>E_Z</m> on <m>Z</m> with <m>c_1(E_Z)=e</m> is semiample.</p></statement>
+      <proof>
+        <p>Existence of <m>E_Z</m> follows because the integral class <m>e</m> has type <m>(1,1)</m>; uniqueness follows from <m>H^1(Z,\cO_Z)=0</m>. Apply <xref ref="hks-thm-nonprojective-torus-fibration"/>. Choose an ample bundle <m>H</m> on <m>B</m> and let <m>A=f^*H</m>, with <m>b=c_1(A)</m>. A positive power of <m>A</m> is globally generated, so <m>A</m> is semiample and nef.</p>
+        <p>The class <m>b</m> is nonzero. For example, the pullback of a Fubini–Study representative for a sufficiently high power of <m>H</m> is semipositive and has positive trace on the open set where <m>f</m> has positive rank. Its integral against a Kähler form to the power <m>2n-1</m> is positive. Since <m>\dim B=n</m>, we have <m>b^{2n}=0</m>. Fujiki's identity implies <m>q(b)=0</m>. By <xref ref="hks-prop-rotated-picard"/>, <m>b=ke</m> for an integer <m>k\ne0</m>.</p>
+        <p>Both <m>b</m> and <m>e</m> pair positively with <m>[\omega_{I'}]</m>: for <m>b</m> this is the positivity of a nonzero nef null vector, and for <m>e</m> it is <xref ref="hks-prop-rotated-torus"/>. Thus <m>k&gt;0</m>. Injectivity of the first Chern class map gives
+          <md number="no">A\simeq E_Z^{\otimes k}.</md>
+          A globally generated positive power of <m>A</m> is a globally generated positive power of <m>E_Z</m>.</p>
+      </proof>
+    </proposition>
+  </section>
+
+  <section xml:id="hks-returning-to-nef-pair">
+    <title>Returning to the specified nef pair</title>
+    <p>Semiampleness on one deformation does not automatically imply semiampleness on every deformation. We use the theorem of Soldatenkov–Verbitsky for a specified isotropic class. We state the version on Teichmüller space, so that the marking and the positive sign can be checked explicitly.</p>
+    <p>Fix a connected component <m>\mathcal T^\circ(M)</m> of the Teichmüller space of complex structures of IHS type. For a complex structure <m>A</m>, let <m>\mathcal C_A</m> be the component of the positive cone containing its Kähler cone. Define
+      <md number="no">\mathcal T^\circ_e
+        =\{[A]\in\mathcal T^\circ(M):
+          e\in H^{1,1}(M,A),\ e\in\overline{\mathcal C_A}\}.</md>
+      Since <m>e\ne0</m> is isotropic, the sign condition is equivalent to <m>q(e,\kappa_A)&gt;0</m> for a Kähler class <m>\kappa_A</m>. On each member there is a unique line bundle <m>E_A</m> of class <m>e</m>. Let <m>\mathcal T^\circ_{e,\mathrm{nef}}</m> and <m>\mathcal T^\circ_{e,\mathrm{sa}}</m> be the loci where <m>E_A</m> is nef and semiample.</p>
+    <theorem xml:id="hks-thm-fixed-class-semiampleness">
+      <title>(Soldatenkov–Verbitsky)</title>
+      <idx>Semiampleness in families</idx>
+      <statement><p>The space <m>\mathcal T^\circ_e</m> is connected. If <m>\mathcal T^\circ_{e,\mathrm{sa}}\ne\varnothing</m>, then
+        <md number="no">\mathcal T^\circ_{e,\mathrm{nef}}=\mathcal T^\circ_{e,\mathrm{sa}}.</md>
+        In a smooth connected family of compact IHS manifolds carrying a line bundle, if one member is semiample and another member is nef and isotropic, the latter line bundle is semiample.</p></statement>
+    </theorem>
+    <p>Connectedness is <xref ref="hks-bib-soldatenkov-verbitsky" detail="Proposition 2.7"/>. The equality is Theorem 3.7(v), and the family formulation is Theorem 3.8 of the same paper. These are external theorems. Their proof uses the global Torelli theorem for the semiample locus and degenerate twistor deformations; it is not an application of semicontinuity of the dimension of a space of sections.<fn>The positive locus permits members on which <m>e</m> is not nef. Nefness is required at the point to which the semiampleness conclusion is applied. One need not construct a path all of whose members carry a nef class.</fn></p>
+    <theorem xml:id="hks-thm-syz-proof">
+      <title>(Engel–Mauri; OpenAI)</title>
+      <statement><p>Let <m>L</m> be a nontrivial nef line bundle on a compact IHS manifold <m>X</m>, with <m>q_X(c_1(L))=0</m>. Then <m>L</m> is semiample. A globally generated positive power defines, after Stein factorization, a holomorphic Lagrangian fibration on <m>X</m>.</p></statement>
+      <proof>
+        <p>Write <m>c_1(L)=me</m> as at the start of the chapter. The prescribed degeneration belongs to the marked component containing <m>X</m>. Its smooth fiber <m>Y=(M_t,J)</m> therefore represents a point in that same component. Hyperkähler rotation from <m>J</m> to <m>I'=K</m> is a path in its twistor sphere, so the rotated <m>Z</m> remains in the component.</p>
+        <p>At the original point <m>X</m>, the class <m>e</m> is of type <m>(1,1)</m>, nef, and has positive pairing with the Kähler cone. At <m>Z</m>, it is of type <m>(1,1)</m> and has the same positive sign by <xref ref="hks-prop-rotated-torus"/>. Thus both endpoints lie in <m>\mathcal T^\circ_e</m>. By <xref ref="hks-prop-semiample-primitive-ray"/>, its semiample locus is nonempty. Applying <xref ref="hks-thm-fixed-class-semiampleness"/> at the nef point <m>X</m> shows that <m>E_X</m> is semiample.</p>
+        <p>Choose <m>r&gt;0</m> with <m>E_X^{\otimes r}</m> globally generated. Then
+          <md number="no">L^{\otimes r}\simeq(E_X^{\otimes r})^{\otimes m}</md>
+          is globally generated. The fibration assertion follows from <xref ref="hks-prop-semiample-fibration"/>: the numerical dimension of a nonzero nef isotropic class is <m>n</m>, and the fibers of the resulting morphism are Lagrangian.</p>
+      </proof>
+    </theorem>
+    <p>The construction is allowed to leave the divisor on which <m>e</m> has type <m>(1,1)</m> while it produces the special Lagrangian torus. After rotation it returns to that divisor with the correct sign. Connectedness of the positive locus and the equality of its nef and semiample loci then apply to the two endpoints. Retaining the label <m>e</m> in <xref ref="hks-thm-prescribed-degeneration"/> is what makes this argument a proof for the original bundle.</p>
+  </section>
+
+  <section xml:id="hks-two-geometric-proofs">
+    <title>The two cohomological arguments</title>
+    <p>The proof above uses the restriction map in degree two. Engel–Mauri instead use the class of the torus in middle degree. The difference concerns which cohomological information is proved before applying the same calibration argument.</p>
+    <p>For the degeneration constructed here, <xref ref="hks-profound-torus-class"/> gives
+      <md number="no">\operatorname{PD}[F]=c_F e^n,\qquad c_F\in\Q\setminus\{0\}.</md>
+      Fujiki's relation, polarized with the isotropic class <m>e</m>, gives for every <m>\beta\in H^2(M_t,\C)</m>
+      <md number="no">\int_F\beta^n=
+        \frac{c_Fc_X\,2^n}{\binom{2n}{n}}\,q(e,\beta)^n.</md>
+      This is <xref ref="hks-lemma-fujiki-on-torus"/>. Since <m>q(e,[\omega_I])=0</m> and <m>q(e,\sigma_J)=c&gt;0</m>, it follows that
+      <md number="no">\int_F(\omega_K+i\omega_I)^n=\int_F\omega_K^n.</md>
+      The special Lagrangian calibration and the integrated Wirtinger inequality make <m>F</m> holomorphic Lagrangian for <m>K</m>, as in <xref ref="hks-prop-rotated-torus"/>. For an unnormalized symplectic form, the angle is <m>\arg q(e,\sigma_J)</m>, and <xref ref="hks-prop-isotropic-rotation"/> chooses the required rotation.</p>
+    <p>The numerical identity <m>q(e,[\omega_I])=0</m> by itself does not assert that <m>[\omega_I]|_F=0</m>. In Engel–Mauri's argument it gives an equality of top-degree integrals through the formula for <m>\operatorname{PD}[F]</m>. Calibration then forces pointwise equality in Wirtinger's inequality. In the proof using <m>i^*(T_2-\operatorname{id})=0</m>, the restriction class vanishes before applying calibration. The two proofs reach the same holomorphic torus, but the statements about restriction and Poincaré duality should not be interchanged.</p>
+    <p>Engel–Mauri obtain a nonprojective pair by deforming the holomorphic Lagrangian torus and the isotropic line together, and then apply Greb–Lehn–Rollenske and Soldatenkov–Verbitsky. The explicit irrational period used here proves nonprojectivity and uniqueness of the rational null line on the rotated member itself. It avoids an additional deformation of the torus. Both proofs rely on the analytic existence theorem for a special Lagrangian representative of the specified profound-torus class.</p>
+  </section>
+</chapter>

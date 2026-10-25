@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <chapter xml:id="cat-conventions">
   <title>Conventions and foundations</title>
 
@@ -23,13 +23,14 @@
     <p>A category is presented by its object set, its morphism sets, and the identity and composition data. Its total arrow set <m>\Ar(\mathcal C)</m> is the disjoint union of the morphism sets, with source and target recorded. This distinguishes a morphism in one hom-set from an identical underlying label used in another.<fn>Concretely, total arrows can be encoded as triples <m>(X,Y,f)</m> with <m>f\in\Hom_{\mathcal C}(X,Y)</m>. Local smallness below concerns the actual sets of labels <m>\Hom_{\mathcal C}(X,Y)</m>, not the triples after external object labels have been attached. This is the hom-set presentation of a category; it avoids imposing a size restriction merely through the names of its objects.</fn></p>
     <definition xml:id="cat-size-conventions">
       <title>Relative size conventions</title>
+      <idx>Small category</idx><idx>Locally small category</idx><idx>Essentially small category</idx><idx>Universe conventions</idx>
       <statement>
         <p>For a set-encoded category <m>\mathcal C</m>, we use the following terms.</p>
-        <ol>
+        <p><ol>
           <li><p>It is <term><m>\U</m>-small</term> if <m>\Ob(\mathcal C)\in\U</m> and <m>\Ar(\mathcal C)\in\U</m>.</p></li>
           <li><p>It is <term>locally <m>\U</m>-small</term> if <m>\Hom_{\mathcal C}(X,Y)\in\U</m> for every pair of objects <m>X,Y</m>.</p></li>
           <li><p>It is <term>essentially <m>\U</m>-small</term> if it is equivalent to a <m>\U</m>-small category.</p></li>
-        </ol>
+        </ol></p>
       </statement>
     </definition>
     <p>Unless otherwise specified, our categories are locally <m>\U</m>-small. When we use the abbreviation <term><m>\U</m>-category</term>, it means a set-encoded, locally <m>\U</m>-small category; it does not mean a <m>\U</m>-small category. Its object set can have size beyond <m>\U</m>. With our hom-set presentation, a locally <m>\U</m>-small category whose object set belongs to <m>\U</m> is <m>\U</m>-small: its total arrows form a <m>\U</m>-small indexed disjoint union.</p>
@@ -41,14 +42,13 @@
     <title>Categories of algebraic objects</title>
     <p>The category <m>\Set_{\U}</m> has the sets in <m>\U</m> as objects and all functions between them as morphisms. Thus <m>\Ob(\Set_{\U})=\U</m>. For objects <m>A,B</m>, its hom-set is the function set <m>B^A\in\U</m>. Consequently <m>\Set_{\U}</m> is locally <m>\U</m>-small but not <m>\U</m>-small. Its complete category encoding belongs to <m>\V</m>. The universe has made the intended collection of sets into an object set at a larger scale, without making it small at the original scale.</p>
     <p>Similarly, <m>\Mon_{\U}</m>, <m>\Grp_{\U}</m>, and <m>\Ring_{\U}</m> consist of structures whose underlying sets belong to <m>\U</m>. Their morphisms are the usual structure-preserving functions. Monoids have an identity and their homomorphisms preserve it. Rings are associative with identity, are not assumed commutative, and their homomorphisms preserve the identity. The zero ring is included; the commutative subcategory is denoted by <m>\CRing_{\U}</m>.<fn>Including the zero ring does not provide a unital homomorphism from it to every ring. A unital map from the zero ring to <m>R</m> forces <m>1_R=0_R</m>. Some books use Ring exclusively for commutative rings or allow nonunital homomorphisms; such conventions give different categories.</fn></p>
-    <p>We usually omit the subscript and write <m>\Set,\Mon,\Grp,\Ring</m>. This always retains the current <m>\U</m> convention. It never means the collection of all sets or all algebraic structures in every universe. When both scales appear in one argument, the subscripts are restored.</p>
+    <p>We usually omit the subscript and write <m>\Set,\Mon,\Grp,\Ring</m>. This always retains the current <m>\U</m> convention. It never means the collection of all sets or all algebraic structures in every universe. When both scales appear in one argument, the subscripts are restored.<fn>The actual membership of local Hom sets in <m>\U</m> matters for the Yoneda functors taking values in <m>\Set_\U</m>. The author's errata to <xref ref="bib-cat-ks" detail="Categories and Sheaves, item (i), page 2"/> point out that Hom sets merely bijective to members of <m>\U</m> need not themselves be objects of <m>\Set_\U</m>. Our convention requires actual membership and keeps external object names out of the local Hom labels.</fn></p>
   </section>
 
   <section xml:id="cat-conventions-functor-size">
     <title>Size of functors and natural transformations</title>
     <p>The notation <m>\Fun(\mathcal C,\mathcal D)</m> denotes the category of functors and natural transformations; its morphism sets are written <m>\Nat(F,G)</m>. Local smallness of <m>\mathcal C</m> and <m>\mathcal D</m> alone does not guarantee local smallness of this category at the same scale. The number of components in a natural transformation matters.</p>
     <proposition xml:id="cat-functor-size-bound">
-      <title>A size bound for functor categories</title>
       <statement>
         <p>If <m>\mathcal C</m> is <m>\U</m>-small and <m>\mathcal D</m> is locally <m>\U</m>-small, then <m>\Nat(F,G)\in\U</m> for all functors <m>F,G:\mathcal C\to\mathcal D</m>. If, in addition, <m>\mathcal D</m> is <m>\V</m>-small, the full functor category is <m>\V</m>-small.</p>
       </statement>

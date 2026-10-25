@@ -1,0 +1,107 @@
+<chapter xml:id="ha-c11">
+  <title>Total derived functors and adjunctions</title>
+  <introduction><p>A total derived functor acts on derived objects and retains connecting morphisms. Its cohomology recovers classical derived functors, but their individual values do not by themselves specify all this data. This chapter fixes the universal-property convention and constructs the functors using resolutions. Main references are <xref ref="bib-ha-li2" detail="Sections 4.7–4.11"/>, <xref ref="bib-ha-gm" detail="Sections III.6–III.7"/>, and <xref ref="bib-ha-ks" detail="Chapters 13–14"/>.</p></introduction>
+  <section xml:id="ha-c11-universal">
+    <title>The universal comparison</title>
+    <definition xml:id="ha-c11-def-derived">
+      <title>Total derived functors</title><idx>Total derived functor</idx><idx>Derived natural transformation</idx>
+      <statement><p>Let <m>Q:\mathcal T\to\mathcal T[S^{-1}]</m> be a localization and let <m>F:\mathcal T\to\mathcal E</m>. A right derived functor in our convention is a functor <m>\mathbf RF:\mathcal T[S^{-1}]\to\mathcal E</m> and a transformation <m>\eta:F\to(\mathbf RF)Q</m> such that, for every <m>H:\mathcal T[S^{-1}]\to\mathcal E</m>, composition with <m>\eta</m> induces a bijection
+        <md number="no">\operatorname{Nat}(\mathbf RF,H)\longrightarrow\operatorname{Nat}(F,HQ).</md>
+        A left derived functor has a transformation <m>\varepsilon:(\mathbf LF)Q\to F</m> and the dual universal property. Use the same definitions on bounded homotopy categories when a bounded domain is specified.</p></statement>
+    </definition>
+    <p>With the usual convention for Kan extensions, the displayed right derived functor is a left Kan extension along <m>Q</m>. The adjective right refers to the resolution and classical right-derived construction, not to the direction of this Kan extension.<fn>Universal-property terminology is not uniform. The direction of <m>\eta</m> removes the ambiguity. A total right derived functor <m>\mathbf RF</m> and the family of classical functors <m>R^nF</m> are related below but are different kinds of objects.</fn></p>
+    <p>The universal property compares functors already defined on the localization. It does not assert that <m>F</m> itself preserves denominators. If <m>F</m> does preserve them, the ordinary localization property gives <m>\overline F</m> with <m>\overline FQ\simeq F</m>; the comparison is then invertible, and <m>\overline F</m> is both a right and a left derived functor. In particular, an exact functor between abelian categories induces its derived functor termwise without any hypothesis about enough injectives or projectives.</p>
+    <p>For two right derived functors of the same <m>F</m>, apply universality in both directions to their comparison maps. The two resulting composites must be identities, again by uniqueness. This explains what the phrase “unique compatible isomorphism” means: compatibility is with the specified map out of <m>F</m>, and it determines the isomorphism. A bare isomorphism between objectwise values does not supply this compatibility.</p>
+    <proposition xml:id="ha-c11-prop-replacement">
+      <statement><p>Let <m>F:\mathcal A\to\mathcal B</m> be additive, applied termwise to complexes. If <m>\mathcal A</m> has K-injective replacements, then
+        <md number="no">\mathbf RF(X)=F(I_X)\quad\text{in }\D(\mathcal B)</md>
+        defines a right derived functor of <m>Q_{\mathcal B}F:\K(\mathcal A)\to\D(\mathcal B)</m>. The comparison is induced by <m>X\to I_X</m>. K-projective replacements dually define <m>\mathbf LF(X)=F(P_X)</m>. Both functors are exact, and different choices give unique compatible natural isomorphisms.</p></statement>
+      <proof><p>The K-injective replacement identifies the localized category with <m>\K_{\mathrm{inj}}(\mathcal A)</m>. Its inclusion into <m>\K(\mathcal A)</m> is right adjoint to localization, by the Hom calculation in <xref ref="ha-c10"/>. If <m>\alpha:F\to HQ_{\mathcal A}</m> is given, evaluate it on <m>I_X</m> and identify <m>Q_{\mathcal A}I_X\simeq X</m> to obtain the required map <m>\mathbf RF(X)\to H(X)</m>. Naturality for <m>X\to I_X</m> proves both the factorization and uniqueness. Exactness follows because K-injectives are closed under cones and shifts, and the termwise additive functor preserves cone triangles. The projective construction is dual.</p></proof>
+    </proposition>
+    <p>Enough injectives gives the bounded below construction, and enough projectives gives the bounded above construction. Grothendieck categories give the unbounded right-derived construction; module categories also give the unbounded left-derived construction. An arbitrary choice of termwise injective unbounded resolution is insufficient.</p>
+    <proposition xml:id="ha-c11-prop-classical">
+      <statement><p>If <m>F</m> is left exact and <m>\mathcal A</m> has enough injectives, then for <m>A\in\mathcal A</m> one has <m>H^n(\mathbf RF(A))\simeq R^nF(A)</m>, naturally in <m>A</m>. In degree zero the comparison identifies <m>F(A)</m> with <m>H^0(\mathbf RF(A))</m>. Dually, for a right exact functor with projective resolutions, <m>H^{-n}(\mathbf LF(A))\simeq L_nF(A)</m>.</p></statement>
+      <proof><p>Use a classical resolution concentrated in nonnegative degrees for the right-derived case. The total construction is its image complex, whose cohomology defines <m>R^nF</m>. Left exactness identifies its degree-zero kernel with <m>F(A)</m>. The maps agree by the comparison theorem for resolutions. Reversing degrees proves the left-derived assertion.</p></proof>
+    </proposition>
+    <p>A transformation <m>F\to G</m> between additive functors with the same source category induces <m>\mathbf RF\to\mathbf RG</m> by evaluation on the same K-injective replacement; this is independent of choices. For functors with different variance or target categories, the appropriate comparison must first be specified.</p>
+    <p>The map can also be constructed directly from universality: compose <m>F\to G</m> with <m>G\to\mathbf RGQ</m> and factor the result through <m>\mathbf RF</m>. Thus deriving transformations respects identity transformations and composition. If a transformation is invertible on a class of replacements computing both derived functors, its derived transformation is invertible on every object represented by those replacements.</p>
+  </section>
+  <section xml:id="ha-c11-adapted-classes">
+    <title>Adapted classes and bounded computation</title>
+    <p>K-injective replacements give one general construction. A functor may admit a simpler computing class, and enough injectives need not be part of its existence theorem. The following criterion is a useful categorical version of the acyclic-resolution method.</p>
+    <theorem xml:id="ha-c11-adapted-criterion">
+      <statement><p>Let <m>F:\mathcal A\to\mathcal B</m> be additive between abelian categories, and let <m>\mathcal J\subseteq\mathcal A</m> be a full additive subcategory such that:
+        <ol>
+          <li><p>Every object of <m>\mathcal A</m> embeds in an object of <m>\mathcal J</m>.</p></li>
+          <li><p>If <m>0\to J'\to J\to C\to0</m> is exact with <m>J',J\in\mathcal J</m>, then <m>C\in\mathcal J</m> and <m>0\to FJ'\to FJ\to FC\to0</m> is exact.</p></li>
+        </ol>
+        Then every bounded below complex has a quasi-isomorphism to a bounded below complex with terms in <m>\mathcal J</m>. The functor <m>\mathbf RF:\D^+(\mathcal A)\to\D^+(\mathcal B)</m> exists and is computed by applying <m>F</m> to such a replacement. The dual criterion, using epimorphisms and kernels, constructs <m>\mathbf LF</m> on <m>\D^-(\mathcal A)</m>.</p></statement>
+    </theorem>
+    <p>This is <xref ref="bib-ha-li2" detail="Definition–Proposition 4.8.2 and the following construction"/>. The second condition explains its mechanism. In an acyclic bounded below complex of objects of <m>\mathcal J</m>, start in its first nonzero degree. Successive short exact sequences of cycles show inductively that all cycles belong to <m>\mathcal J</m>, and that <m>F</m> preserves these sequences. Hence its image complex is acyclic. The first condition constructs replacements, successively embedding objects and using pushouts to extend the differentials. Localization of the computing subcategory then gives the stated derived functor. This proof uses the lower bound to start the induction.<fn>An adapted class is relative to <m>F</m>. Its members need not be injective objects, and the criterion does not claim the existence of K-injective replacements for all functors or all unbounded complexes.</fn></p>
+    <p>Injective objects satisfy the criterion when there are enough of them: a monomorphism between injectives splits, so its cokernel is injective and every additive functor preserves the resulting sequence. For left exact <m>F</m> with existing classical derived functors, the class of <m>F</m>-acyclic objects satisfies it by <xref ref="ha-c05"/>. Thus these two familiar methods fit the same criterion.</p>
+    <proposition xml:id="ha-c11-leray">
+      <statement><p>Suppose that <m>F</m> is left exact, <m>\mathcal A</m> has enough injectives, and <m>J</m> is a bounded below complex whose terms are <m>F</m>-acyclic. Then the comparison <m>FJ\to\mathbf RF(J)</m> is an isomorphism. The bounded above left-derived assertion holds under the dual hypotheses.</p></statement>
+    </proposition>
+    <p>This is Leray's acyclicity lemma; see <url href="https://stacks.math.columbia.edu/tag/015E">Stacks, Tag 015E</url>. The adapted-class criterion gives its bounded below form. Its assertion concerns an arbitrary bounded below complex, not only a resolution of an object in degree zero. This distinction is what permits a composite derived functor to be computed on the image of a resolution.</p>
+    <p>Boundedness of the input and boundedness of the output are separate issues. A left exact functor has <m>\mathbf RF(\D^{\geq a})\subseteq\D^{\geq a}</m>, because bounded below injective replacements can start in degree <m>a</m>. Even for an object in degree zero its higher derived values may be nonzero in arbitrarily high degrees. A uniform bound <m>R^nF=0</m> for <m>n&gt;d</m> supplies the missing upper control on bounded inputs; the truncation argument is given in <xref ref="ha-c13"/>.</p>
+  </section>
+  <section xml:id="ha-c11-composition">
+    <title>Composition and acyclicity</title>
+    <proposition xml:id="ha-c11-prop-composition">
+      <statement><p>Let <m>F:\mathcal A\to\mathcal B</m> and <m>G:\mathcal B\to\mathcal C</m> be left exact between abelian categories with enough injectives in <m>\mathcal A</m> and <m>\mathcal B</m>. If <m>F</m> takes injectives to <m>G</m>-acyclic objects, there is a natural isomorphism on bounded below derived categories
+        <md number="no">\mathbf R(GF)\simeq(\mathbf RG)(\mathbf RF).</md>
+        More generally, for unbounded constructions it suffices that the chosen <m>F(I_X)</m> compute <m>\mathbf RG</m> and that the same replacements compute <m>\mathbf R(GF)</m>.</p></statement>
+      <proof><p>Choose an injective resolution <m>X\to I_X</m>. In the bounded below case the complex <m>F(I_X)</m> consists of <m>G</m>-acyclic objects, so the acyclic-resolution theorem for bounded below complexes computes <m>\mathbf RG</m> by applying <m>G</m> termwise. Both sides are consequently represented by <m>GF(I_X)</m>. Comparison with a replacement in <m>\mathcal B</m> proves naturality. The unbounded assertion states the exact replacement criterion used by the same argument; termwise acyclicity alone is not substituted for that criterion.</p></proof>
+    </proposition>
+    <p>Without the acyclicity hypothesis there is still a canonical composition comparison whenever the indicated derived constructions exist, but it need not be invertible. To specify it, write <m>\eta_F:Q_{\mathcal B}F\to\mathbf RFQ_{\mathcal A}</m> and similarly for <m>G</m>. Form the transformation
+      <md number="no">Q_{\mathcal C}GF\xrightarrow{\eta_G F}\mathbf RGQ_{\mathcal B}F\xrightarrow{\mathbf RG\eta_F}(\mathbf RG)(\mathbf RF)Q_{\mathcal A}.</md>
+      Universality gives the unique compatible map
+      <md number="no">\gamma_{G,F}:\mathbf R(GF)\longrightarrow(\mathbf RG)(\mathbf RF).</md>
+      The proposition supplies a sufficient condition for this particular comparison to be invertible. For left derived functors the direction is <m>(\mathbf LG)(\mathbf LF)\to\mathbf L(GF)</m>.</p>
+    <p>These comparisons are compatible with a third functor: the two composites from <m>\mathbf R(HGF)</m> to <m>\mathbf RH\mathbf RG\mathbf RF</m> agree. Both are obtained from the same three underived comparison maps, and the derived universal property forces equality. Identity comparisons behave in the same way. This associativity is needed before omitting parentheses in a formula for iterated derived operations.<fn>A composition isomorphism is therefore a specified comparison proved invertible, rather than an arbitrary choice of an isomorphism between two resulting functors.</fn></p>
+    <p>For unbounded inputs, a convenient sufficient condition is that <m>F</m> take the chosen K-injective complexes to K-injective complexes in <m>\mathcal B</m>. More generally they need only lie in a computing class for <m>G</m>. Checking that each term is <m>G</m>-acyclic proves the bounded below criterion, but does not prove this unbounded one.</p>
+    <theorem xml:id="ha-c11-thm-grothendieck-ss">
+      <statement><p>Under the bounded below hypotheses of <xref ref="ha-c11-prop-composition"/>, for <m>A\in\mathcal A</m> there is a natural first-quadrant spectral sequence
+        <md number="no">E_2^{p,q}=R^pG(R^qF(A))\Longrightarrow R^{p+q}(GF)(A).</md>
+        The abutment has a finite filtration in each total degree.</p></statement>
+    </theorem>
+    <p>Apply <m>\mathbf RG</m> to the truncation tower of <m>\mathbf RF(A)</m>. Its successive cohomology objects are <m>R^qF(A)[-q]</m>. The exact couples of this tower give the displayed second page. The composition proposition identifies the abutment, and the first-quadrant bounds make the filtration finite in each degree. A complex-level construction and the comparison with the double-complex spectral sequence are given in <xref ref="bib-ha-weibel" detail="Chapter 5"/> and <xref ref="bib-ha-gm" detail="Section III.7"/>.</p>
+    <p>The five-term sequence in low degree is
+      <md number="no">0\to R^1G(F A)\to R^1(GF)(A)\to G(R^1F(A))\to R^2G(F A)\to R^2(GF)(A).</md>
+      If <m>A</m> is <m>F</m>-acyclic, only row zero remains and the edge map gives <m>R^n(GF)(A)\cong R^nG(FA)</m>. If instead every <m>R^qF(A)</m> is <m>G</m>-acyclic, only column zero remains and <m>R^n(GF)(A)\cong G(R^nF(A))</m>. These are different collapse conditions. Neither follows merely from left exactness of the two functors.</p>
+  </section>
+  <section xml:id="ha-c11-adjunction">
+    <title>Deriving an adjunction</title>
+    <theorem xml:id="ha-c11-thm-adjunction">
+      <statement><p>Let <m>F:\mathcal A\rightleftarrows\mathcal B:G</m> be an additive adjunction with <m>F</m> left adjoint. Assume every complex of <m>\mathcal A</m> has a K-projective replacement and every complex of <m>\mathcal B</m> has a K-injective replacement. Then there is a natural adjunction
+        <md number="no">\mathbf LF:\D(\mathcal A)\rightleftarrows\D(\mathcal B):\mathbf RG.</md>
+        Its unit and counit satisfy the triangle identities.</p></statement>
+      <proof><p>Choose <m>P_X\to X</m> and <m>Y\to I_Y</m>. The ordinary adjunction gives an adjunction on homotopy categories: it respects chain maps and chain homotopies. Hence
+        <md number="no"><mrow>\Hom_{\D(\mathcal B)}(F(P_X),Y)\simeq\Hom_{\K(\mathcal B)}(F(P_X),I_Y)</mrow><mrow>\simeq\Hom_{\K(\mathcal A)}(P_X,G(I_Y))\simeq\Hom_{\D(\mathcal A)}(X,G(I_Y)).</mrow></md>
+        The first equality uses the target replacement and the last uses the source replacement. Neither requires <m>F(P_X)</m> to be K-projective or <m>G(I_Y)</m> to be K-injective. These natural bijections define the derived adjunction, and their unit and counit satisfy the triangle identities by the general adjunction theorem.</p></proof>
+    </theorem>
+    <p>The derived unit can be displayed as a roof. Resolve <m>X</m> by <m>P_X</m> and choose a K-injective replacement <m>F(P_X)\to I_{F(P_X)}</m>. The unit is represented by
+      <md number="no">X\xleftarrow{\sim}P_X\longrightarrow G(I_{F(P_X)}),</md>
+      where the second arrow is adjoint to the replacement map. For the counit at <m>Y</m>, choose <m>Y\to I_Y</m> and a K-projective replacement <m>P_{G(I_Y)}\to G(I_Y)</m>. It is represented by the composite
+      <md number="no">F(P_{G(I_Y)})\longrightarrow F G(I_Y)\longrightarrow I_Y\xleftarrow{\sim}Y.</md>
+      These descriptions use the original unit and counit together with the replacement maps. The triangle identities hold because the Hom bijections defining the derived adjunction are inverse; they are not additional equations to be imposed on independent choices of resolutions.</p>
+    <p>As for every adjunction, <m>\mathbf LF</m> is fully faithful exactly when its unit is invertible, and <m>\mathbf RG</m> is fully faithful exactly when its counit is invertible. These are derived comparison conditions. Full faithfulness of the original functor on abelian objects does not, by itself, verify them on all complexes.</p>
+    <proposition xml:id="ha-c11-prop-preservation">
+      <statement><p>In an additive adjunction <m>F\dashv G</m>, if <m>F</m> is exact then <m>G</m> preserves K-injective complexes. If <m>G</m> is exact then <m>F</m> preserves K-projective complexes. An adjoint of an exact functor between triangulated categories has a canonical exact structure.</p></statement>
+      <proof><p>For acyclic <m>N</m> and K-injective <m>I</m>, the adjunction gives <m>\Hom_{\K}(N,G I)=\Hom_{\K}(F N,I)=0</m> when <m>F</m> is exact. The other assertion is dual. For a triangulated adjoint, Yoneda first transports the translation isomorphism. To prove preservation of triangles, compare the image of a triangle with a distinguished triangle on its first map, use the adjunction to construct the comparison on the third object, and apply the long exact Hom sequences. See <xref ref="bib-ha-stacks" detail="Tag 0A8D"/> for this argument.</p></proof>
+    </proposition>
+    <proposition xml:id="ha-c11-exact-adjoint-case">
+      <statement><p>Let <m>F\dashv G</m> be an additive adjunction between abelian categories.
+        <ol>
+          <li><p>If <m>F</m> is exact and <m>\mathcal B</m> has K-injective replacements, then <m>F:\D(\mathcal A)\to\D(\mathcal B)</m> is left adjoint to <m>\mathbf RG</m>. No K-projective replacement hypothesis on <m>\mathcal A</m> is needed.</p></li>
+          <li><p>If <m>G</m> is exact and <m>\mathcal A</m> has K-projective replacements, then <m>\mathbf LF</m> is left adjoint to the induced <m>G:\D(\mathcal B)\to\D(\mathcal A)</m>. No K-injective replacement hypothesis on <m>\mathcal B</m> is needed.</p></li>
+        </ol>
+      </p></statement>
+      <proof><p>For the first assertion choose <m>Y\to I_Y</m>. Exactness of <m>F</m> makes <m>G(I_Y)</m> K-injective by the preceding proposition. Hence
+        <md number="no">\begin{aligned}\Hom_{\D(\mathcal B)}(FX,Y)&amp;\cong\Hom_{\K(\mathcal B)}(FX,I_Y)\\&amp;\cong\Hom_{\K(\mathcal A)}(X,G I_Y)\\&amp;\cong\Hom_{\D(\mathcal A)}(X,\mathbf RG Y).\end{aligned}</md>
+        The dual calculation proves the second assertion.</p></proof>
+    </proposition>
+    <p>This form is useful for abstract operations on Grothendieck categories: an exact left adjoint and K-injectives suffice to derive its right adjoint. A simultaneous supply of projective resolutions is unnecessary. Subsequent projection and base-change formulas still require their own comparison maps and hypotheses.</p>
+    <p>For a ring map <m>R\to S</m>, restriction of scalars is exact and is right adjoint to <m>S\otimes_R-</m>. Its derived adjunction is <m>S\Ltensor_R-\dashv\operatorname{Res}</m>. Restriction also has a right adjoint <m>\Hom_R(S,-)</m>, which gives <m>\operatorname{Res}\dashv\RHom_R(S,-)</m> with its specified <m>S</m>-module structure. These are useful algebraic adjunctions; the notation alone does not identify this chain of three functors with an indexed six-operation system.</p>
+  </section>
+</chapter>

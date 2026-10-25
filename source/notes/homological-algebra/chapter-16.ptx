@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="ha-c16">
+  <title>Monoidal triangulated categories and duality</title>
+  <introduction>
+    <p>Derived tensor products and derived Hom have both an adjunction and a compatibility with triangles. We separate the consequences of these two structures from statements that depend on a particular category of complexes. The distinction between a dualizable object, a reflexive object, and a compact object will be used in the comparison of adjoints.</p>
+    <p>The ordinary duality conventions are those of <xref ref="bib-ha-li2" detail="§9.1"/>; the categorical treatment of duality and adjoints in <xref ref="bib-ha-fhm" detail="Sections 3 and 5"/> is the main reference for the derived formalism. The construction of derived tensor and Hom remains the responsibility of <xref ref="ha-c12"/>; their existence is not part of the abstract definition below.</p>
+  </introduction>
+  <section xml:id="ha-c16-structures">
+    <title>Exact closed monoidal structures</title>
+    <definition xml:id="ha-c16-definition-structure">
+      <title>Monoidal triangulated structure</title>
+      <idx>Monoidal triangulated category</idx><idx>Closed symmetric monoidal category</idx>
+    <statement>
+      <p>Let <m>\mathcal T</m> be a locally small triangulated category. An exact closed symmetric monoidal structure consists of a symmetric monoidal product <m>\otimes</m>, a unit <m>\mathbf1</m>, and internal Hom objects <m>[A,B]</m> with natural bijections</p>
+      <p><md number="no">\Hom_{\mathcal T}(C\otimes A,B)\simeq\Hom_{\mathcal T}(C,[A,B]).</md></p>
+      <p>We require tensor and internal Hom to be exact in each variable, internal Hom being contravariant in the first variable. Their specified suspension isomorphisms must respect the adjunction, associativity, and the unit. Moving two suspensions past each other introduces a minus sign. In particular, under the resulting identification <m>\mathbf1[1]\otimes\mathbf1[1]\simeq\mathbf1[2]</m>, its symmetry is <m>-\id</m>. We use these suspension conventions throughout this chapter.</p>
+    </statement>
+    </definition>
+    <p>The adjective <em>closed</em> refers to the existence of internal Hom. It does not refer to closure under a class of limits. The symbol <m>[A,B]</m> denotes an object of <m>\mathcal T</m>; <m>\Hom_{\mathcal T}(A,B)</m> denotes an ordinary morphism set.<fn>In a derived category, <m>[A,B]</m> is often written <m>\RHom(A,B)</m>. Some authors use that notation for a complex of abelian groups instead. The category containing the Hom object must be specified before these expressions can be compared.</fn></p>
+    <p>We require only the exactness and suspension compatibilities used in our statements. Additional compatibility axioms for tensor products of triangles occur in stronger definitions of a monoidal triangulated category. No theorem concerning such additional axioms is implicit here.</p>
+    <p>For example, if <m>A\to B\to C\to A[1]</m> is distinguished, exactness in the second Hom variable gives a triangle <m>[X,A]\to[X,B]\to[X,C]\to[X,A][1]</m>. Contravariance in the first variable instead gives a triangle <m>[C,X]\to[B,X]\to[A,X]\to[C,X][1]</m>, with its connecting map determined by the contravariant translation convention. These assertions identify objects and maps in a triangle, not just three isomorphism classes. This distinction matters when one takes mates of connecting morphisms.</p>
+    <p>The graded endomorphisms of the unit illustrate the suspension sign. Set <m>\End^n(\mathbf1)=\Hom(\mathbf1,\mathbf1[n])</m>, and for homogeneous maps of degrees <m>p,q</m> define <m>ab=a[q]\circ b</m>. The symmetry of the two shifted units gives <m>ab=(-1)^{pq}ba</m>. Degree zero recovers the commutative ring of unit endomorphisms from <xref ref="ha-c03"/>. The graded statement uses the suspension compatibility in addition to ordinary monoidal coherence.</p>
+    <proposition xml:id="ha-c16-proposition-exactness">
+      <statement>
+        <p>In the structure of <xref ref="ha-c16-definition-structure"/>:</p>
+        <p><ol>
+          <li><p>Tensoring with a fixed object preserves every coproduct that exists.</p></li>
+          <li><p>The functor <m>[A,-]</m> is exact. Internal Hom is exact contravariantly in its first variable, with the usual reversal of a distinguished triangle.</p></li>
+          <li><p>There are natural isomorphisms <m>[A[r],B[s]]\simeq[A,B][s-r]</m>, compatible with the suspension signs.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>The first assertion follows because <m>-\otimes A</m> is a left adjoint. The second records the exactness required in the definition; exactness of <m>[A,-]</m> also follows from adjoint exactness as in <xref ref="ha-c11"/>. The suspension formula follows by moving the shifts across the adjunction, with the chosen suspension isomorphisms.</p>
+      </proof>
+    </proposition>
+    <example xml:id="ha-c16-example-derived-ring">
+      <p>For a commutative ring <m>R</m>, the unbounded derived category <m>\D(R)</m> has tensor product <m>\Ltensor_R</m>, internal Hom <m>\RHom_R</m>, and unit <m>R[0]</m>. The symmetry on homogeneous tensors is <m>x\otimes y\mapsto(-1)^{|x||y|}y\otimes x</m>. The resolutions constructed in <xref ref="ha-c10"/> are needed to define these operations on arbitrary unbounded complexes.</p>
+      <p>For a noncommutative ring, the tensor product of two left modules has no such definition in general. Bimodule tensor products still exist with their stated source and target rings; they do not turn <m>\D(R)</m> into a symmetric monoidal category by omission of the right actions.</p>
+    </example>
+  </section>
+  <section xml:id="ha-c16-dualizable">
+    <title>Duals and the tensor–Hom comparison</title>
+    <definition xml:id="ha-c16-definition-dual">
+      <title>Dualizable and invertible objects</title>
+      <idx>Dualizable object</idx><idx>Invertible object</idx>
+    <statement>
+      <p>An object <m>A</m> is <em>dualizable</em> if there is an object <m>A^\vee</m> with evaluation and coevaluation maps</p>
+      <p><md number="no">e:A^\vee\otimes A\longrightarrow\mathbf1,\qquad c:\mathbf1\longrightarrow A\otimes A^\vee</md></p>
+      <p>such that inserting <m>c</m> and then applying <m>e</m> gives the identity on <m>A</m> and on <m>A^\vee</m>. Associativity and unit isomorphisms are understood in these two triangle identities. An object is <em>invertible</em> if tensoring with it is an equivalence, or equivalently if it has a tensor inverse.</p>
+    </statement>
+    </definition>
+    <p>Write <m>DA=[A,\mathbf1]</m>. Evaluation defines, for every <m>B</m>, a natural comparison</p>
+    <p><md number="no">\nu_{A,B}:DA\otimes B\longrightarrow[A,B].</md></p>
+    <p>Its adjoint is the map <m>(DA\otimes B)\otimes A\to B</m> obtained by moving <m>B</m> past <m>A</m> and evaluating. The existence of <m>DA</m> alone does not assert that <m>A</m> is dualizable.</p>
+    <proposition xml:id="ha-c16-proposition-dual-criterion">
+      <statement>
+        <p>For <m>A\in\mathcal T</m>, the following conditions are equivalent:</p>
+        <p><ol>
+          <li><p><m>A</m> is dualizable.</p></li>
+          <li><p><m>\nu_{A,B}</m> is an isomorphism for every <m>B</m>.</p></li>
+          <li><p><m>\nu_{A,A}</m> is an isomorphism.</p></li>
+        </ol></p>
+        <p>When these conditions hold, <m>A^\vee\simeq DA</m>, the canonical map <m>A\to DDA</m> is an isomorphism, and</p>
+        <p><md number="no">\Hom_{\mathcal T}(X\otimes A,Y)\simeq\Hom_{\mathcal T}(X,DA\otimes Y).</md></p>
+      </statement>
+      <proof>
+        <p>Evaluation and coevaluation for a dual pair give the displayed adjunction by inserting coevaluation in one direction and applying evaluation in the other. The triangle identities show that these operations are inverse. Uniqueness of right adjoints identifies <m>A^\vee\otimes-</m> with <m>[A,-]</m>, and evaluation identifies <m>A^\vee</m> with <m>DA</m>.</p>
+        <p>The second condition implies the third. Under the third condition, the morphism <m>\mathbf1\to[A,A]</m> corresponding to <m>\id_A</m> gives a coevaluation into <m>DA\otimes A</m>; compose with the symmetry to obtain a map into <m>A\otimes DA</m>. The tensor–Hom adjunction makes the first triangle identity exactly the assertion that this map corresponds to <m>\id_A</m>. Applying the same adjunction to evaluation gives the second triangle identity. Thus <m>DA</m> is a dual. Applying uniqueness of duals to this pair proves the bidual assertion.</p>
+      </proof>
+    </proposition>
+    <proposition xml:id="ha-c16-proposition-thick">
+      <statement>
+        <p>The dualizable objects contain the unit and are closed under shifts, finite sums, tensor products, and retracts. If two objects of a distinguished triangle are dualizable, so is the third.</p>
+      </statement>
+      <proof>
+        <p>The unit is its own dual. Duals of shifts and finite sums are obtained by shifting oppositely and taking the corresponding finite sum. The dual of <m>A\otimes B</m> is <m>DB\otimes DA</m>. A retract of a dualizable object has an invertible comparison <m>\nu_{A,-}</m>, because this comparison is a retract of an isomorphism. For a triangle, compare the exact contravariant functors <m>D(-)\otimes B</m> and <m>[-,B]</m>. The maps <m>\nu</m> give a morphism of triangles. Applying Hom and the five lemma proves that the third comparison is an isomorphism.</p>
+      </proof>
+    </proposition>
+    <p>An invertible object is dualizable, but a dualizable object need not be invertible. A two-dimensional vector space over a field is dualizable; the dimension of a tensor inverse would have to multiply its dimension to one. This distinction persists in derived categories.</p>
+    <p>The inverse of an invertible object is its dual. The objects <m>\mathbf1[n]</m> are invertible, with inverse <m>\mathbf1[-n]</m>. In particular, suspending an object changes its dual by the opposite shift. Invertibility is stronger than nonvanishing or the existence of biduality; it asks that the evaluation against its dual be an isomorphism to the unit.</p>
+  </section>
+  <section xml:id="ha-c16-reflexive">
+    <title>Reflexivity and dualizing objects</title>
+    <definition xml:id="ha-c16-definition-relative-duality">
+      <title>Relative duality</title>
+      <idx>Reflexive object</idx><idx>Dualizing object</idx><idx>Bidual map</idx>
+    <statement>
+      <p>For <m>\omega\in\mathcal T</m>, set <m>D_\omega A=[A,\omega]</m>. The evaluation map induces a canonical bidual map <m>A\to D_\omega D_\omega A</m>. We call <m>A</m> <em><m>\omega</m>-reflexive</em> when this map is an isomorphism. If a full subcategory <m>\mathcal T_0</m> is preserved by <m>D_\omega</m> and all its objects are <m>\omega</m>-reflexive, then <m>\omega</m> is a <em>dualizing object for <m>\mathcal T_0</m></em>.</p>
+    </statement>
+    </definition>
+    <p>A dualizing object makes <m>D_\omega:\mathcal T_0^\op\to\mathcal T_0</m> a contravariant equivalence. The subcategory is part of this assertion: an object may give duality on perfect complexes or on another bounded subcategory without giving duality on all objects.<fn>The words <em>dual</em>, <em>dualizable</em>, and <em>dualizing</em> therefore express different conditions. The internal Hom object <m>[A,\omega]</m> always exists in a closed category; dualizability concerns tensor evaluation, and a dualizing object concerns biduality on a specified subcategory.</fn></p>
+    <proposition xml:id="ha-c16-proposition-biduality">
+      <statement><p>Let <m>\delta_A:A\to D_\omega D_\omega A</m> denote the bidual map. It satisfies
+        <md number="no">D_\omega(\delta_A)\circ\delta_{D_\omega A}=\id_{D_\omega A}.</md>
+        The full subcategory of <m>\omega</m>-reflexive objects is thick and preserved by <m>D_\omega</m>. This functor is a duality on that subcategory. If <m>\omega</m> is invertible, it is a dualizing object on the subcategory of dualizable objects.</p></statement>
+      <proof><p>The defining adjoint of <m>\delta_A</m> is evaluation with its two factors interchanged. Evaluate the displayed composite on <m>A</m>; the two adjunction identities give evaluation itself, proving the identity by adjunction. If <m>\delta_A</m> is invertible, so is <m>D_\omega(\delta_A)</m>, and the identity makes <m>\delta_{D_\omega A}</m> its inverse. This proves preservation. The map <m>\delta</m> compares two exact covariant functors, so its isomorphism locus is closed under shifts and triangles by the five lemma and under retracts by taking retracts of the comparison. It is therefore thick. Biduality supplies the inverse equivalence. For invertible <m>\omega</m> and dualizable <m>A</m>, one has <m>D_\omega A\simeq DA\otimes\omega</m>; dualizing this expression a second time contracts <m>D\omega\otimes\omega</m> and gives <m>A</m>, with the resulting map equal to <m>\delta_A</m>.</p></proof>
+    </proposition>
+    <p>The reflexive subcategory need not be closed under tensor products or infinite coproducts. These are additional questions about <m>\omega</m> and the category. It need not consist of the dualizable objects. Even the unit need not be <m>\omega</m>-reflexive: its bidual map is the homothety <m>\mathbf1\to[\omega,\omega]</m>, so its invertibility is a condition on <m>\omega</m>.<fn>The term “dualizing complex” in geometric or commutative-algebra sources often includes boundedness, finiteness, and injective-dimension assumptions. Our phrase “dualizing object for a specified subcategory” states only the categorical duality property; it does not include those extra conditions.</fn></p>
+    <example xml:id="ha-c16-example-reflexive-not-dualizable">
+      <p>In <m>\D(k)</m> for a field <m>k</m>, let <m>X</m> have one copy of <m>k</m> in every nonnegative degree and zero differential. Its Hom dual into <m>k[0]</m> has one copy in every nonpositive degree. Double duality is an isomorphism in each degree, so <m>X\to DDX</m> is an isomorphism.</p>
+      <p>It is not compact: <m>X=\bigoplus_{n\geq0}k[-n]</m>, and its identity cannot factor through a finite partial sum, since such a factorization would act as zero on its cohomology in sufficiently large degree. Compactness of the unit and <xref ref="ha-c16-proposition-compact"/> show that it is not dualizable. Biduality with respect to the unit therefore does not imply dualizability, even for complexes of vector spaces. Dualizability requires finite-dimensional total cohomology here, rather than finite dimension separately in each degree.</p>
+      <p>Both <m>X</m> and <m>DX</m> are reflexive, but <m>X\otimes DX</m> is not: its degree-zero cohomology is the infinite direct sum of copies of <m>k</m>, which is not isomorphic to its algebraic bidual by the evaluation map. The infinite coproduct of copies of <m>k[0]</m> gives the same failure of closure under coproducts.</p>
+    </example>
+  </section>
+  <section xml:id="ha-c16-compactness">
+    <title>Compactness and perfect complexes</title>
+    <p>Compactness concerns coproducts and Hom sets. Dualizability concerns the tensor product. A hypothesis about the unit relates them.</p>
+    <p>Both properties were needed separately in the earlier chapters. Duality moves a tensor factor across Hom without changing the category; compactness moves Hom across a coproduct. A formula involving both operations must justify both moves. In particular, an exact strong monoidal functor preserves dualizable objects, whereas preservation of compact objects is governed by the coproduct behavior of its right adjoint, as in <xref ref="ha-c14"/>.</p>
+    <proposition xml:id="ha-c16-proposition-compact">
+      <statement>
+        <p>Assume <m>\mathcal T</m> has small coproducts.</p>
+        <p><ol>
+          <li><p>If <m>\mathbf1</m> is compact, every dualizable object is compact.</p></li>
+          <li><p>If <m>\mathbf1</m> is compact and <m>\mathcal T</m> is compactly generated by dualizable objects, the compact and dualizable objects coincide.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>For a dualizable object <m>A</m>, the formula <m>\Hom(A,-)\simeq\Hom(\mathbf1,DA\otimes-)</m> proves the first assertion: tensor preserves coproducts and the unit is compact. For the second, the description of compact objects in <xref ref="ha-c14"/> says that they form the thick closure of the given compact generators. Use <xref ref="ha-c16-proposition-thick"/>.</p>
+      </proof>
+    </proposition>
+    <p>A closed symmetric monoidal triangulated category with compact unit, small coproducts, and a small set of dualizable compact generators is often called <em>rigidly compactly generated</em>. In that terminology the equality of compact and dualizable objects is the conclusion of the proposition, not an additional finiteness condition on every object of the large category. The compact subcategory is thick and closed under tensoring its own objects. It is not generally a tensor ideal of the large category: if it contained the unit and were closed under tensoring with every large object, it would contain every object.</p>
+    <example xml:id="ha-c16-example-perfect">
+      <p>For a commutative ring <m>R</m>, the compact objects of <m>\D(R)</m> are precisely the perfect complexes, and <m>R</m> is a compact generator. Since <m>R</m> is dualizable, the proposition identifies dualizable objects with perfect complexes. A bounded complex of finitely generated projective modules has dual given by its Hom complex into <m>R</m>. Finite projectivity ensures that the Hom–tensor comparison is an isomorphism; boundedness makes the sums in tensor totalization and the products in Hom totalization finite in each degree.</p>
+    </example>
+    <example xml:id="ha-c16-example-noncompact-unit">
+      <p>Let <m>I</m> be an infinite set and use componentwise tensor on <m>\mathcal T=\prod_{i\in I}\D(k)</m>. Its unit is the constant family <m>(k)_{i\in I}</m>, so it is dualizable. Let <m>E_i</m> be <m>k</m> in component <m>i</m> and zero elsewhere. Then <m>\bigoplus_iE_i=\mathbf1</m>, while</p>
+      <p><md number="no">\bigoplus_i\Hom(\mathbf1,E_i)=k^{(I)}\ne k^I=\Hom\bigl(\mathbf1,\bigoplus_iE_i\bigr).</md></p>
+      <p>The unit is not compact. This example isolates the role of the compact-unit hypothesis.</p>
+    </example>
+    <p>More generally, in that product category an object is dualizable precisely when every component is perfect, with no bound on the number of nonzero components. Compactness instead requires finite support and a compact object in every component: apply compactness to the coproduct decomposition by components, and then test the surviving components separately. Thus the two classes differ by an explicit support condition. This example is categorical and does not depend on a geometric construction.</p>
+  </section>
+  <section xml:id="ha-c16-tensor-localization">
+    <title>Tensor-compatible localization</title>
+    <proposition xml:id="ha-c16-proposition-tensor-localization">
+      <statement><p>Suppose <m>\mathcal T</m> has compact unit and is compactly generated by dualizable objects. Let <m>\mathcal S</m> be a localizing tensor ideal, meaning that <m>S\otimes X\in\mathcal S</m> whenever <m>S\in\mathcal S</m> and <m>X\in\mathcal T</m>. If <m>\mathcal S</m> is generated as a localizing subcategory by a small set of compact objects, its localization satisfies a natural isomorphism
+        <md number="no">LX\simeq X\otimes L\mathbf1.</md>
+        Under this isomorphism the unit is <m>\id_X\otimes\eta_{\mathbf1}</m>.</p></statement>
+      <proof><p>The localization exists and is smashing by <xref ref="ha-c15"/>. If <m>C</m> is dualizable and <m>Y</m> is local, then <m>C\otimes Y</m> is local: for <m>S\in\mathcal S</m>, the group <m>\Hom(S,C\otimes Y[n])\simeq\Hom(DC\otimes S,Y[n])</m> vanishes because <m>\mathcal S</m> is a tensor ideal. In particular <m>C\otimes L\mathbf1</m> is local. The objects <m>X</m> for which <m>X\otimes L\mathbf1</m> is local form a localizing subcategory: tensor is exact and preserves coproducts, and the local objects are closed under coproducts because the localization is smashing. They contain the dualizable generators, so this holds for all <m>X</m>.</p><p>Tensor the localization triangle of the unit with <m>X</m>. Its acyclic term <m>X\otimes\Gamma\mathbf1</m> belongs to <m>\mathcal S</m>, while its last term is local by the preceding argument. It is therefore the localization triangle of <m>X</m>, by the universal property of reflection. That property supplies the natural isomorphism and identifies the unit.</p></proof>
+    </proposition>
+    <p>The tensor ideal assumption and compact generation of the kernel have separate roles. The first makes the tensor of an acyclic object acyclic; the second gives existence and coproduct closure of local objects. A coproduct-preserving localization without a tensor ideal hypothesis does not acquire the displayed formula from its name. This statement is an application of duality, compact generation, and localization, rather than a new construction of all indexed operations.</p>
+  </section>
+  <section xml:id="ha-c16-traces">
+    <title>Trace and suspension</title>
+    <p>For a dualizable object <m>A</m> and endomorphism <m>f</m>, define its trace by
+      <md number="no">\mathbf1\xrightarrow{c}A\otimes DA\xrightarrow{f\otimes\id}A\otimes DA\xrightarrow{c_{A,DA}}DA\otimes A\xrightarrow{e}\mathbf1.</md>
+      Thus a trace takes values in <m>\End(\mathbf1)</m>, rather than in a field unless such a field has been identified. The triangle identities give cyclicity <m>\operatorname{tr}_A(gf)=\operatorname{tr}_B(fg)</m> for maps <m>f:A\to B</m>, <m>g:B\to A</m> between dualizable objects. Tensor products multiply traces, and finite biproducts add them. These ordinary categorical trace properties are developed in <xref ref="bib-ha-li2" detail="§9.2"/>.</p>
+    <p>For a perfect complex over a field, the trace of its identity is <m>\sum_n(-1)^n\dim_k H^n(A)</m>. Split the complex into its cohomology and contractible summands; the latter vanish in the derived category, and the Koszul symmetry contributes the sign on each shifted one-dimensional summand. This calculation explains why the suspension sign in the monoidal structure must be retained. A general additivity theorem for traces along distinguished triangles requires further compatibility of tensor products of triangles; it is not included among the assumptions used here.</p>
+  </section>
+</chapter>

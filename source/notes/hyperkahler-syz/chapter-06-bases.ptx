@@ -1,0 +1,179 @@
+<chapter xml:id="hks-bases">
+  <title>The base and multiple fibres</title>
+
+  <introduction>
+    <p>A Lagrangian fibration determines both an isotropic line bundle on its total space and a projective variety of half the dimension. Semiampleness constructs the morphism. Identifying its base requires further arguments about singularities. We explain those arguments separately, and then discuss the multiplicities of divisors pulled back from the base.</p>
+  </introduction>
+
+  <section xml:id="hks-bases-classical">
+    <title>Smooth bases and isolated quotient singularities</title>
+
+    <p>Let <m>f:X\to B</m> be a holomorphic Lagrangian fibration from a compact IHS manifold of dimension <m>2n</m>. Its base is normal and projective by <xref ref="hks-thm-matsushita"/>. In the projective setting, we also use that <m>B</m> is a <m>\Q</m>-factorial klt Fano variety of Picard number one; these results and their original sources are collected in <xref ref="hks-bib-openai-bases" detail="Proposition 2.1"/>. Smoothness has a much stronger consequence: <m>B\simeq\PP^n</m>. Hwang proved this when <m>X</m> is projective, and Greb–Lehn proved the compact Kähler version <xref ref="hks-bib-hwang" detail="Theorem 1.2"/>; <xref ref="hks-bib-greb-lehn" detail="Theorem 1.1"/>. Li–Tosatti give a proof using the special Kähler metric and a connectedness theorem for families of minimal rational curves <xref ref="hks-bib-li-tosatti" detail="Theorem 1.3 and Section 7"/>. We construct that metric in <xref ref="hks-special-kahler"/>.</p>
+
+    <p>The difficulty is therefore to prove smoothness of <m>B</m>. Equality of rational Betti numbers with those of <m>\PP^n</m> does not imply this. The local quotient case already shows why the fibration itself matters.</p>
+
+    <p>Müller–Xu prove the following local theorem <xref ref="hks-bib-muller-xu" detail="Theorem 1.3"/>. A projective morphism here has a relatively ample line bundle; its total space need not be compact.</p>
+
+    <theorem xml:id="hks-thm-isolated-quotient-base">
+      <statement>
+        <p>Let <m>f:Z\to U</m> be a germ of a projective Lagrangian fibration from a smooth holomorphic symplectic manifold to a normal analytic space. If <m>U</m> has only isolated quotient singularities, then <m>U</m> is smooth.</p>
+      </statement>
+      <proof>
+        <p>We use two external results in the forms established in <xref ref="hks-bib-muller-xu" detail="Corollary 2.4 and Theorem 2.5"/>. For a projective Lagrangian fibration over a smooth base, the isomorphisms <m>R^i f_*\cO_Z\simeq\Omega_U^i</m> are equivariant under finite symplectic group actions on the fibration. For a finite-order automorphism <m>g</m> of a projective scheme <m>F</m> with no fixed point, the coherent Lefschetz number is zero:
+          <md number="no">\sum_i(-1)^i\Tr\bigl(g^*\mid H^i(F,\cO_F)\bigr)=0.</md>
+          This second result applies to a singular or nonreduced scheme-theoretic fibre.</p>
+
+        <p>Write a singular base germ as <m>U=V/G</m>, where <m>V</m> is a small neighbourhood of the origin in <m>\C^n</m>, and choose the quotient presentation without pseudoreflections. Since the singularity is isolated, every nonidentity element <m>g\in G</m> has no nonzero fixed vector. Thus <m>\det(1-g\mid T_0V)\ne0</m>.</p>
+
+        <p>Normalize <m>Z\times_U V</m>, and denote the resulting map to <m>V</m> by <m>f':Z'\to V</m>. The finite map <m>Z'\to Z</m> is étale in codimension one: the quotient map has this property, and equidimensionality prevents the inverse image of its branch locus from containing a divisor. Purity of the branch locus makes <m>Z'\to Z</m> étale everywhere. In particular, <m>Z'</m> is smooth and symplectic, and the deck group acts freely on it.</p>
+
+        <p>The map <m>f'</m> is projective and equidimensional over the smooth space <m>V</m>, hence flat. Tensoring the translates of a relatively ample bundle over <m>G</m> gives an invariant relative polarization. Let <m>F=(f')^{-1}(0)</m> with its scheme structure. Local freeness of the higher direct images and cohomology and base change give equivariant isomorphisms
+          <md number="no">H^i(F,\cO_F)\simeq\Omega_V^i|_0.</md>
+          For <m>g\ne1</m>, freeness on <m>Z'</m> implies freeness on <m>F</m>. Apply coherent Lefschetz vanishing and the exterior-power trace identity to obtain
+          <md number="no">0=\sum_i(-1)^i\Tr\bigl(g^*\mid\Lambda^iT_0^*V\bigr)=\det(1-g^*\mid T_0^*V).</md>
+          This contradicts the absence of fixed vectors. The quotient group is trivial, so the base germ is smooth.</p>
+      </proof>
+    </theorem>
+
+    <p>The same paper proves that a projective Lagrangian fibration from a smooth symplectic fourfold has smooth surface base without a prior assumption on its singularities, and that a threefold base with terminal singularities is smooth <xref ref="hks-bib-muller-xu" detail="Corollary 1.4 and Theorem 1.5"/>. In the compact projective fourfold case this recovers <m>B\simeq\PP^2</m>, previously proved by Ou and Huybrechts–Xu.</p>
+
+    <p xml:id="hks-p-isolated-qualification">For a quotient singularity with a positive-dimensional fixed locus, the determinant in the proof can vanish without contradiction. Such quotient strata occur for noncompact symplectic total spaces <xref ref="hks-bib-muller-xu" detail="Example 4.1"/>. Their exclusion for compact IHS fibrations uses global geometry.</p>
+  </section>
+
+  <section xml:id="hks-bases-two-fibrations">
+    <title>Two fibrations and a finite cover by an abelian variety</title>
+
+    <p>Two distinct Lagrangian fibrations on one IHS manifold meet in finitely many points over general base points. Mixed intersection numbers make this assertion precise and produce a finite map from an abelian variety to either base.</p>
+
+    <proposition xml:id="hks-prop-finite-abelian-cover">
+      <statement>
+        <p>Let <m>X</m> be projective IHS of dimension <m>2n</m>, and let <m>f:X\to B</m> and <m>g:X\to C</m> be Lagrangian fibrations with normal projective bases. Choose ample line bundles <m>H_B,H_C</m>, and set <m>\lambda=c_1(f^*H_B)</m> and <m>\mu=c_1(g^*H_C)</m>. If <m>q_X(\lambda,\mu)&gt;0</m>, then for every smooth fibre <m>A</m> of <m>g</m>, the restriction <m>f|_A:A\to B</m> is finite and surjective.</p>
+      </statement>
+      <proof>
+        <p>Both classes are nef and isotropic. Compare the coefficient of <m>t^n</m> in the Fujiki identity for <m>\lambda+t\mu</m>:
+          <md number="no">\binom{2n}{n}\int_X\lambda^n\mu^n=c_X\,2^nq_X(\lambda,\mu)^n&gt;0.</md>
+          Intersecting <m>n</m> general divisors in sufficiently high powers of <m>H_C</m> shows that
+          <md number="no">\mu^n=\left(\int_Cc_1(H_C)^n\right)[A].</md>
+          Therefore <m>\int_A(\lambda|_A)^n&gt;0</m>.</p>
+
+        <p>A nef line bundle on an abelian variety with positive top self-intersection is ample. To see this, represent its real first Chern class by the unique translation-invariant real <m>(1,1)</m>-form. Approximation by ample classes makes its Hermitian matrix positive semidefinite. Positive top self-intersection makes the determinant positive, so every eigenvalue is positive. The line bundle has positive curvature and is ample.</p>
+
+        <p>Apply this to <m>f^*H_B|_A</m>. A positive-dimensional fibre of <m>f|_A</m> would contain a curve, whose degree against this ample bundle would be zero. Thus <m>f|_A</m> is proper with finite fibres and is finite. Its image is closed of dimension <m>n=\dim B</m>, so it equals <m>B</m>.</p>
+      </proof>
+    </proposition>
+
+    <p>For distinct nonzero isotropic rays in the closure of one positive cone, the BBF pairing is positive. This follows by writing the form in Lorentz coordinates: equality in the Cauchy–Schwarz inequality occurs only for proportional null vectors. The proposition applies, in particular, when the two nef classes have distinct rays.</p>
+
+    <p>The existence of such a second fibration while keeping the <em>first base</em> fixed is a separate theorem. The projective-base manuscript proves it by deforming the original fibration <xref ref="hks-bib-openai-bases" detail="Propositions 7.2 and 9.1"/>. Its precise conclusion needed here is the following.</p>
+
+    <theorem xml:id="hks-thm-second-fibration">
+      <statement>
+        <p>Let <m>f_0:X_0\to B</m> be a projective Lagrangian fibration from a compact IHS manifold, with <m>B</m> projective, and let <m>\lambda=c_1(f_0^*H_B)</m> for an ample bundle <m>H_B</m>. In every sufficiently small neighbourhood of <m>X_0</m> in <m>\Def(X_0,\lambda)</m>, there is a projective deformation <m>X'</m> carrying Lagrangian fibrations <m>f':X'\to B</m> and <m>g:X'\to C</m>. Under the marking, <m>c_1((f')^*H_B)=\lambda</m>. For an ample bundle <m>H_C</m> on <m>C</m>, the class <m>\mu=c_1(g^*H_C)</m> satisfies <m>q_{X'}(\lambda,\mu)&gt;0</m>.</p>
+      </statement>
+    </theorem>
+
+    <p>The cited proof constructs two integral nef null classes with every positive linear combination Kähler. Strong SYZ then gives the second morphism on that very manifold. Its lattice argument uses parallel-transport operators and the Kähler form of Torelli, so that the two classes are nef on one model, rather than merely becoming nef on unrelated birational models. Applying <xref ref="hks-prop-finite-abelian-cover"/> gives a finite surjection <m>A\to B</m> from an abelian variety.</p>
+
+    <p xml:id="hks-p-fixed-base-distinction">The fixed-base assertion is essential. Matsushita's deformation theorem produces nearby Lagrangian morphisms along the locus where <m>\lambda</m> is of type <m>(1,1)</m>, but their targets may initially vary. The manuscript proves that their normal Stein targets form the product with the original <m>B</m> <xref ref="hks-bib-openai-bases" detail="Proposition 7.2"/>. A fibration onto a different deformation of <m>B</m> would not by itself produce the finite cover of the original base used below.</p>
+  </section>
+
+  <section xml:id="hks-bases-euler">
+    <title>Euler characteristics and singular strata</title>
+
+    <p>The projective-base theorem in <xref ref="hks-bib-openai-bases"/> first proves that every base germ is a quotient of a smooth germ by a finite group. We describe the two numerical conclusions about a closed stratum that force this result. The construction of that stratum and the vanishing theorem are quoted here, including their use of tensor categories, Hodge modules and reduction to positive characteristic.</p>
+
+    <p>A finite map is <term>quasi-étale</term> if it is étale outside a subset of codimension at least two. On maximal finite local quasi-étale covers of base germs, the manuscript considers the dimension of the smooth factor in a local product decomposition. If some maximal chart is singular, the minimum of those dimensions is attained on a nonempty closed stratum. The exact conclusions of the construction and the Euler calculation are as follows <xref ref="hks-bib-openai-bases" detail="Propositions 4.3, 4.5 and 6.1"/>.</p>
+
+    <theorem xml:id="hks-thm-minimum-stratum">
+      <statement>
+        <p>Let <m>f:X\to B</m> be a projective Lagrangian fibration from a compact IHS manifold to a normal projective base of dimension <m>n</m>. If <m>B</m> has a germ which is not a quotient singularity, there exist an irreducible normal projective subvariety <m>S_0\subset B</m> of dimension <m>d&lt;n</m> and a smooth proper Deligne–Mumford stack <m>\mathcal S</m> with coarse space <m>S_0</m>. On each maximal local chart near this stratum, the pair has a product presentation <m>(\Delta^d\times T,\Delta^d\times\{t\})</m>. The ordinary topological Euler characteristic satisfies <m>\chi_{\rm top}(S_0)=0</m>.</p>
+      </statement>
+    </theorem>
+
+    <p>The stack retains the finite groups on the local charts, including elements that act trivially on the smooth factor. This distinction affects the vanishing argument. Integration on an orbifold normally weights a chart by the reciprocal of its stabilizer order. Such a weighted Euler number need not equal the ordinary Euler characteristic of the coarse space. For example, a point with stabilizer <m>G</m> has ordinary Euler characteristic <m>1</m>, whereas its Satake orbifold Euler number is <m>1/|G|</m>.<fn>The phrase <q>orbifold Euler characteristic</q> has several conventions. The Euler characteristic of the inertia stack is another invariant. Here <m>\chi_{\rm top}</m> always means the alternating sum of ordinary rational Betti numbers of the coarse space.</fn></p>
+
+    <p>The proof of the vanishing theorem has two substantial parts. Reflexive cotangent tensors on the finite charts determine a residual tensor category. Deligne's criterion and a classification of the resulting representations control its exterior powers. After algebraization and good reduction, ordinary coherent base change, Frobenius pullbacks and Riemann–Roch force Euler vanishing for specified coefficient sheaves. The coefficient sheaves are then chosen to isolate the trivial representation of the full stabilizer. This last operation is what gives the ordinary number <m>\chi_{\rm top}(S_0)</m>. The compatibility of direct images with these coefficient operations uses projective Hodge-module direct images <xref ref="hks-bib-openai-bases" detail="Sections 3–6"/>.</p>
+
+    <p>The opposite inequality comes from the symplectic form and deformation of the fibration. The elementary Hodge-theoretic implication can be separated from that deformation argument.</p>
+
+    <lemma xml:id="hks-lemma-diagonal-euler">
+      <statement>
+        <p>Let <m>\mathcal S</m> be a connected smooth proper complex Deligne–Mumford stack with projective coarse space <m>S_0</m>. Suppose that <m>\mathcal S</m> is Kähler and <m>H^{p,q}(\mathcal S)=0</m> for <m>p\ne q</m>. Then
+          <md number="no">\chi_{\rm top}(S_0)=\sum_p h^{p,p}(\mathcal S)&gt;0.</md></p>
+      </statement>
+      <proof>
+        <p>For the coarse map <m>c:\mathcal S\to S_0</m>, finite stabilizers have no positive-degree rational cohomology. Locally, taking invariants is exact by averaging over the finite group. Consequently <m>Rc_*\Q=\Q</m> and <m>H^k(\mathcal S,\Q)\simeq H^k(S_0,\Q)</m>. This remains true when a stabilizer acts trivially on its chart.</p>
+
+        <p>Orbifold Hodge decomposition expresses the Euler characteristic as <m>\sum_{p,q}(-1)^{p+q}h^{p,q}(\mathcal S)</m>. The hypothesis leaves only <m>p=q</m>, for which every sign is positive. Connectedness gives <m>h^{0,0}=1</m>.</p>
+      </proof>
+    </lemma>
+
+    <p>When <m>b_2(X)\ge5</m>, the fixed-base family of <xref ref="hks-thm-second-fibration"/> permits the required period variation. The argument in <xref ref="hks-bib-openai-bases" detail="Proposition 7.6"/> gives
+      <md number="no">H^{p,q}(\mathcal S)=0\qquad(p\ne q).</md>
+      Its geometric starting point is a resolution of the inverse image of <m>S_0</m>. The pulled-back symplectic form vanishes on two vertical vectors. Wedging a pulled-back <m>p</m>-form from a <m>d</m>-dimensional base with more than <m>d-p</m> copies of that symplectic form therefore gives zero. Varying the period extends this identity to the conjugate period, and Hamiltonian contraction gives the diagonal Hodge conclusion.</p>
+
+    <p>The rank condition has a precise role. The restriction of <m>q_X</m> to <m>\lambda^\perp_\C</m> has radical <m>\C\lambda</m> and rank <m>b_2(X)-2</m>. For <m>b_2\ge5</m>, its null cone is irreducible. The local periods form an analytic open set in its projectivization, hence are Zariski dense there. The relevant polynomial identity then holds at the conjugate period. For <m>b_2=4</m>, the cone is reducible, and this continuation alone does not prove the same conclusion.</p>
+
+    <p>The original projective fibration has <m>b_2(X)\ge4</m>: an ample class and <m>\lambda</m> span a hyperbolic plane, while <m>\Re\sigma,\Im\sigma</m> span an orthogonal positive plane. The remaining rank-four cases are proved separately in the manuscript. If the smooth fibres have constant polarized period map, ramification and reflection arguments reduce a possible minimum stratum to an elliptic curve. A holomorphic connection on a line bundle of negative degree gives a contradiction <xref ref="hks-bib-openai-bases" detail="Proposition 8.1"/>. If that period map varies, the second fibration can be chosen with nonconstant period map. Its finite maps from smooth abelian fibres, the symmetry of the period cubic, and the fixed-part theorem give diagonal Hodge cohomology of <m>\mathcal S</m> <xref ref="hks-bib-openai-bases" detail="Propositions 9.6 and 10.1"/>. These are external results here. In every case, Euler positivity contradicts <xref ref="hks-thm-minimum-stratum"/>.</p>
+  </section>
+
+  <section xml:id="hks-bases-smoothness">
+    <title>From quotient singularities to projective space</title>
+
+    <p>After the preceding argument, all base germs are finite quotients of smooth germs. The finite abelian cover from <xref ref="hks-prop-finite-abelian-cover"/> supplies the additional global restriction. The precise result is <xref ref="hks-bib-openai-bases" detail="Proposition 11.1"/>.</p>
+
+    <theorem xml:id="hks-thm-quotient-base-smoothness">
+      <statement>
+        <p>Let <m>f:X\to B</m> be a projective Lagrangian fibration from a compact IHS manifold to a normal projective base. Suppose that <m>B</m> has quotient singularities and that there is a finite surjective morphism <m>A\to B</m> from an abelian variety. Then <m>B</m> is smooth.</p>
+      </statement>
+    </theorem>
+
+    <p>Both maps enter the proof. The original fibration gives higher direct-image identities and the ampleness of <m>-K_B</m>. The abelian variety gives translation-invariant vector fields. On the canonical smooth stack of the quotient variety, an equivariant identity for the higher direct images produces a translation field whose projection to each stabilizer's fixed tangent directions has no zero on the corresponding fixed locus. The finite relation of <m>A\to B</m>, its difference maps in the abelian group, and the ramification divisor then exclude nonidentity stabilizers. The map <m>A\to B</m> is not assumed Galois. We quote this global argument rather than replacing it by the local isolated-singularity theorem.</p>
+
+    <p>The projective-base conclusion now follows <xref ref="hks-bib-openai-bases" detail="Theorem 1.1"/>.</p>
+
+    <theorem xml:id="hks-thm-projective-base">
+      <statement>
+        <p>Let <m>X</m> be a compact IHS Kähler manifold of dimension <m>2n</m>, and let <m>f:X\to B</m> be a projective surjective holomorphic morphism with connected fibres. Suppose that <m>B</m> is normal and projective of dimension <m>n</m>, and every irreducible component of every fibre is Lagrangian. Then <m>B\simeq\PP^n</m>.</p>
+      </statement>
+      <proof>
+        <p>For <m>n=1</m>, the smooth-base theorem applies to the normal curve <m>B</m>. For <m>n&gt;1</m>, the Euler argument proves that <m>B</m> has quotient singularities. The fixed-base deformation and the second fibration give a finite surjection from an abelian variety to <m>B</m>. The preceding theorem makes <m>B</m> smooth. Hwang's theorem then gives <m>B\simeq\PP^n</m>.</p>
+      </proof>
+    </theorem>
+
+    <p xml:id="hks-p-projectivity-of-morphism">Projectivity of <m>f</m> means the existence of a relatively ample holomorphic line bundle. Together with projectivity of <m>B</m>, it makes <m>X</m> projective. The theorem permits nonprojective compact Kähler deformations inside its proof, but its statement assumes a projective morphism. Projectivity of the base alone does not supply that hypothesis.</p>
+
+    <p>Strong SYZ is used in constructing the second fibration. The proof of strong SYZ in <xref ref="hks-main-proof"/> constructs a Lagrangian morphism without first identifying its base with projective space. Thus the two principal conclusions have this order: semiampleness, construction of the second system, and identification of the projective base.</p>
+  </section>
+
+  <section xml:id="hks-bases-multiple-fibres">
+    <title>Multiplicities and the primitive pullback class</title>
+
+    <p>Let <m>D\subset B</m> be a prime divisor. Over its general point write
+      <md number="no">f^*D=\sum_i a_iE_i,\qquad a_i\in\Z_{&gt;0}.</md>
+      The multiplicity along <m>D</m> is <m>\gcd_i a_i</m>. A codimension-one multiple fibre means that this gcd is greater than one, or equivalently that <m>f^*D=mE</m> for an integral effective divisor <m>E</m> and <m>m&gt;1</m>. This differs from requiring each <m>a_i=1</m>.<fn>For a Kodaira fibre of type <m>I_0^*</m>, the central component has multiplicity two and the four outer components have multiplicity one. The gcd is one, although the fibre is not reduced.</fn></p>
+
+    <p>Kim–Oguiso–Shinder prove the next theorem <xref ref="hks-bib-kim-oguiso-shinder" detail="Theorem 3.4"/>. Kamenova–Verbitsky give a different proof and prove primitivity of the hyperplane pullback <xref ref="hks-bib-kamenova-verbitsky" detail="Theorems 1.5 and 1.6"/>.</p>
+
+    <theorem xml:id="hks-thm-no-multiple-divisor">
+      <idx>Multiple fibres</idx><idx>Primitive pullback class</idx>
+      <statement>
+        <p>Let <m>f:X\to\PP^n</m> be a Lagrangian fibration from a compact IHS manifold. Then <m>\gcd_i a_i=1</m> for every prime divisor <m>D\subset\PP^n</m>. The class <m>c_1(f^*\cO_{\PP^n}(1))</m> is primitive in <m>H^2(X,\Z)</m>.</p>
+      </statement>
+    </theorem>
+
+    <p>The projective proof of the first assertion can be given with a single contradiction in <m>K_0(\PP^n)</m>. Suppose that <m>f^*D=mE</m>, where <m>D</m> has degree <m>d</m> and <m>m&gt;1</m>. One has <m>\gcd(d,m)=1</m>. Otherwise, for a prime <m>p</m> dividing both integers, take the cyclic degree-<m>p</m> cover of <m>\PP^n</m> branched along <m>D</m>. Its normalized pullback to <m>X</m> is connected and étale in codimension one: locally the equation is <m>t^p=u s^m</m>, with <m>u</m> a unit. Normalization removes the divisorial branching because <m>p\mid m</m>. Purity makes this a connected étale cover of degree <m>p</m> of the simply connected manifold <m>X</m>, a contradiction <xref ref="hks-bib-kim-oguiso-shinder" detail="Proposition 2.1"/>.</p>
+
+    <p>Choose integers <m>a,b</m> with <m>ad+bm=1</m>. The bundle <m>P=\cO_X(aE)\otimes f^*\cO_{\PP^n}(b)</m> satisfies <m>P^m\simeq f^*\cO_{\PP^n}(1)</m> and is trivial on a general fibre. A higher-direct-image theorem proved using Kollár vanishing and splitting gives
+      <md number="no">R^if_*P\simeq\bigoplus_{j=0}^n\cO_{\PP^n}(-j)^{\oplus r_{ij}},\qquad \sum_jr_{ij}=\binom ni</md>
+      <xref ref="hks-bib-kim-oguiso-shinder" detail="Theorem 2.5"/>. We use this as an external theorem.</p>
+
+    <p>Write <m>\zeta=[\cO_{\PP^n}(-1)]</m>. The classes <m>1,\zeta,\ldots,\zeta^n</m> form an integral basis of <m>K_0(\PP^n)</m>. Give a class the sum of the absolute values of its coefficients in this basis, denoted <m>\|\cdot\|</m>. For <m>\alpha=\sum_i(-1)^i[R^if_*P]</m>, the splitting gives
+      <md number="no">\|\alpha\|\le\sum_i\binom ni=2^n.</md>
+      But <m>q_X(c_1(P\otimes f^*\cO(k)))=0</m> for every integer <m>k</m>. Riemann–Roch gives the constant Hilbert polynomial
+      <md number="no">\chi(\PP^n,\alpha(k))=\chi(X,P\otimes f^*\cO(k))=\chi(X,\cO_X)=n+1.</md>
+      A class of <m>K_0(\PP^n)</m> is determined by its Hilbert polynomial, so <m>\alpha=(n+1)[\cO_p]</m> for a point <m>p</m>. The Koszul resolution gives <m>[\cO_p]=(1-\zeta)^n</m>, whence <m>\|\alpha\|=(n+1)2^n</m>. This is the contradiction.</p>
+
+    <p>The extension to compact Kähler <m>X</m> uses a degenerate twistor deformation over the same <m>\PP^n</m> to a projective total space, preserving the fibres and their multiplicities <xref ref="hks-bib-kim-oguiso-shinder" detail="proof of Theorem 3.4"/>. Primitivity is a separate assertion, proved in <xref ref="hks-bib-kamenova-verbitsky" detail="Section 4"/>. In the global notation <m>\lambda=m e</m>, it says that for the connected fibration itself and the hyperplane bundle on its base, <m>m=1</m>. A prescribed isotropic bundle can still be a positive tensor power of that pullback.</p>
+  </section>
+</chapter>

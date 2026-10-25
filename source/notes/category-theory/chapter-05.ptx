@@ -1,0 +1,538 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="cat-adjunctions">
+  <title>Adjunctions and existence theorems</title>
+  <introduction>
+    <p>A universal construction solves a mapping problem for one object. An adjunction solves a family of such problems, with the solutions compatible as the object varies. The compatibility both determines the maps between the constructed objects and explains why many familiar constructions preserve limits or colimits.</p>
+    <p>Our convention is <m>F:\mathcal C\to\mathcal D</m> left adjoint to <m>G:\mathcal D\to\mathcal C</m>, written <m>F\dashv G</m>. The principal sources are <xref ref="bib-cat-li1" detail="Section 2.6"/>, <xref ref="bib-cat-riehl" detail="Sections 4.1–4.5"/>, and <xref ref="bib-cat-stacks" detail="Section 4.24, Tag 0036"/>. The final sections prove the general and special adjoint functor theorems, following <xref ref="bib-cat-li2" detail="Section 1.11"/> and <xref ref="bib-cat-riehl" detail="Section 4.7"/>. All diagrams called small are small relative to <m>\U</m>.</p>
+  </introduction>
+
+  <section xml:id="cat-c05-hom-correspondence">
+    <title>The natural mapping correspondence</title>
+    <p>The same map can often be specified using two different kinds of data. The defining requirement of an adjunction is that this change of description be compatible with every map in both variables.</p>
+    <definition xml:id="cat-c05-def-adjunction">
+      <title>Adjunction and transpose</title>
+      <idx>Adjunction</idx><idx>Transpose</idx>
+      <statement>
+        <p>An <term>adjunction</term> consists of functors <m>F:\mathcal C\to\mathcal D</m> and <m>G:\mathcal D\to\mathcal C</m>, together with bijections
+          <md number="no">\Phi_{X,Y}:\Hom_{\mathcal D}(FX,Y)\longrightarrow\Hom_{\mathcal C}(X,GY)</md>
+          natural in <m>X\in\mathcal C</m> and <m>Y\in\mathcal D</m>. We call <m>F</m> the <term>left adjoint</term> and <m>G</m> the <term>right adjoint</term>. The transpose of <m>f:FX\to Y</m> is <m>f^\sharp=\Phi_{X,Y}(f)</m>; the inverse transpose of <m>g:X\to GY</m> is <m>g^\flat=\Phi_{X,Y}^{-1}(g)</m>.</p>
+        <p>Explicitly, if <m>a:X'\to X</m> and <m>b:Y\to Y'</m>, naturality says
+          <md number="no">\Phi_{X',Y'}\bigl(bfF(a)\bigr)=G(b)\Phi_{X,Y}(f)a.</md>
+          Thus the bijections form a natural isomorphism of ordinary set-valued functors on <m>\mathcal C^{\op}\times\mathcal D</m>.</p>
+      </statement>
+    </definition>
+    <p>The notation <m>F\dashv G</m> commonly suppresses the chosen correspondence <m>\Phi</m>. For fixed functors, different adjunction structures can exist. Naturality of a specified correspondence is part of the data; a collection of unrelated bijections between hom-sets does not suffice.<fn>Li includes <m>\Phi</m> explicitly in the adjoint pair <xref ref="bib-cat-li1" detail="Definition 2.6.1"/>. Stacks gives the same condition as an isomorphism of two functors in <xref ref="bib-cat-stacks" detail="Definition 4.24.1, Tag 0037"/>. The phrase <m>G</m> has a left adjoint means that <m>G</m> is a right adjoint.</fn></p>
+    <example xml:id="cat-c05-example-currying">
+      <title>Functions of two variables</title>
+      <p>Fix a set <m>A\in\U</m>. The product functor <m>F(X)=X\times A</m> is left adjoint to the function-set functor <m>G(Y)=Y^A</m>. The correspondence is
+        <md number="no">f:X\times A\to Y\quad\longmapsto\quad\bigl[x\longmapsto(a\longmapsto f(x,a))\bigr].</md>
+        Evaluation supplies its inverse. Substituting a function into <m>x</m> or composing a function after the value of <m>f</m> commutes with this correspondence, which verifies both naturality conditions.</p>
+      <p>This adjunction changes the form of a mapping problem. It does not assert that <m>X\times A</m> and <m>Y^A</m> are inverse constructions on objects. When <m>A=\varnothing</m>, the left adjoint is the constant empty set and the right adjoint is the constant singleton set; the mapping correspondence still holds for every <m>X,Y</m>.</p>
+    </example>
+  </section>
+
+  <section xml:id="cat-c05-unit-counit">
+    <title>The unit, the counit, and the triangle identities</title>
+    <p>The entire correspondence can be recovered from the transposes of identity arrows. The resulting two families compare an object with the result of going across the adjunction and back.</p>
+    <definition xml:id="cat-c05-def-unit-counit">
+      <title>Unit and counit</title>
+      <idx>Unit of an adjunction</idx><idx>Counit of an adjunction</idx>
+      <statement>
+        <p>For <m>F\dashv G</m>, its <term>unit</term> and <term>counit</term> have components
+          <md number="no">\eta_X=\Phi_{X,FX}(\id_{FX}):X\to GFX,\qquad
+            \varepsilon_Y=\Phi_{GY,Y}^{-1}(\id_{GY}):FGY\to Y.</md>
+          We write the families as <m>\eta:\id_{\mathcal C}\Rightarrow GF</m> and <m>\varepsilon:FG\Rightarrow\id_{\mathcal D}</m>.</p>
+      </statement>
+    </definition>
+    <proposition xml:id="cat-c05-prop-triangles">
+      <idx>Triangle identities</idx>
+      <statement>
+        <p>The unit and counit are natural and satisfy
+          <md number="no">\varepsilon_{FX}F(\eta_X)=\id_{FX},\qquad
+            G(\varepsilon_Y)\eta_{GY}=\id_{GY}.</md>
+          These are the <term>triangle identities</term>. Conversely, any two natural transformations of the displayed types satisfying these identities determine an adjunction. The correspondences are
+          <md number="no">f^\sharp=G(f)\eta_X,\qquad g^\flat=\varepsilon_YF(g).</md>
+          For fixed <m>F,G</m>, this is a bijection between adjunction correspondences and pairs <m>(\eta,\varepsilon)</m> satisfying the triangle identities.</p>
+      </statement>
+      <proof>
+        <p>Naturality of <m>\Phi</m> applied to an identity gives the two transpose formulas. For <m>a:X\to X'</m>, apply the first formula to <m>F(a)</m>, and also use naturality in <m>X</m>; the resulting equality is <m>GF(a)\eta_X=\eta_{X'}a</m>. This proves naturality of <m>\eta</m>. The inverse correspondence proves naturality of <m>\varepsilon</m> in the same way.</p>
+        <p>By definition, <m>\eta_X^\flat=\id_{FX}</m> and <m>\varepsilon_Y^\sharp=\id_{GY}</m>. Substituting the transpose formulas gives the triangle identities.</p>
+        <p>Conversely, define the two maps by the stated formulas. Their naturality follows from that of <m>\eta,\varepsilon</m>. For <m>f:FX\to Y</m>, their composite is
+          <md number="no">\varepsilon_YFG(f)F(\eta_X)
+            =f\varepsilon_{FX}F(\eta_X)=f.</md>
+          The first equality uses naturality of the counit and the second uses a triangle identity. For <m>g:X\to GY</m>, the other composite is
+          <md number="no">G(\varepsilon_Y)GF(g)\eta_X
+            =G(\varepsilon_Y)\eta_{GY}g=g.</md>
+          Here naturality of the unit is followed by the other triangle identity. Finally, evaluating the correspondence and its inverse at identities recovers the original unit and counit, proving the assertion about data.</p>
+      </proof>
+    </proposition>
+    <p>The two identities express compatibility between the comparisons, not invertibility of each comparison. In the product/function-set example, the unit sends <m>x</m> to the function <m>a\mapsto(x,a)</m>, and the counit sends <m>(u,a)</m> to <m>u(a)</m>. Both triangles reduce to substituting a variable into its own evaluation.<fn>The equivalent descriptions and the explicit inverse calculations are compared in <xref ref="bib-cat-li1" detail="Definitions 2.6.1 and 2.6.3, Lemma 2.6.4, and Proposition 2.6.5"/>. The triangle equations can also be depicted using the horizontal composition from <xref ref="cat-transformation-calculus"/>; the component equations already contain all the required information.</fn></p>
+  </section>
+
+  <section xml:id="cat-c05-universal-arrows">
+    <title>Constructing the adjoint object by object</title>
+    <p>The universal-arrow formulation separates finding an object from defining its functorial behavior. A map between two input objects forces the corresponding map between their universal solutions.</p>
+    <proposition xml:id="cat-c05-prop-universal-criterion">
+      <statement>
+        <p>Let <m>G:\mathcal D\to\mathcal C</m> be a functor. It has a left adjoint if and only if for every <m>X\in\mathcal C</m> the comma category <m>(X\downarrow G)</m> has an initial object. More explicitly, choose an object <m>FX\in\mathcal D</m> and an arrow <m>\eta_X:X\to GFX</m> such that each <m>u:X\to GY</m> has a unique expression
+          <md number="no">u=G(f)\eta_X,\qquad f:FX\to Y.</md>
+          These choices extend to a unique functor <m>F</m> for which <m>\eta</m> is natural, and they determine an adjunction <m>F\dashv G</m>.</p>
+        <p>Dually, <m>F:\mathcal C\to\mathcal D</m> has a right adjoint if and only if each <m>(F\downarrow Y)</m> has a terminal object.</p>
+      </statement>
+      <proof>
+        <p>An adjunction gives the required universal arrow by its unit and the transpose formulas. Conversely, for <m>a:X\to X'</m>, define <m>F(a)</m> by the unique equation
+          <md number="no">G(F(a))\eta_X=\eta_{X'}a.</md>
+          The identity arrow satisfies this equation for <m>a=\id_X</m>, and the composite <m>F(b)F(a)</m> satisfies it for <m>ba</m>. Uniqueness proves the identity and composition laws. The same defining equation is naturality of <m>\eta</m>.</p>
+        <p>The universal factorizations give bijections <m>\Hom_{\mathcal D}(FX,Y)\to\Hom_{\mathcal C}(X,GY)</m>. Postcomposing a factorization, or precomposing it with <m>a</m> and using the displayed definition of <m>F(a)</m>, verifies naturality in each variable. The converse construction therefore supplies the entire adjunction, rather than only its object assignment.</p>
+      </proof>
+    </proposition>
+    <p>Here the initial-object condition includes the chosen structural arrow. An object <m>FX</m> alone does not specify a free or universal construction. Since <m>\Ob(\mathcal C)</m> is a set under our conventions, choosing an initial object for each of these comma categories uses ordinary set-indexed choice. The statement makes no appeal to global choice.<fn>Compare <xref ref="bib-cat-li1" detail="Proposition 2.6.9"/>, <xref ref="bib-cat-li2" detail="Lemma 1.11.1"/>, and <xref ref="bib-cat-riehl" detail="Lemma 4.7.1"/>. The comma convention here is the one fixed in <xref ref="cat-constructions"/>; reversing the direction of the structural arrow exchanges the initial and terminal formulations.</fn></p>
+    <example xml:id="cat-c05-example-free-monoids">
+      <title>Free monoids as a compatible family of universal objects</title>
+      <p>For a set <m>S\in\U</m>, the monoid <m>S^*</m> of finite words, including the empty word, has the universal property established in <xref ref="cat-constructions"/>. A function <m>S\to T</m> acts on a word by applying the function to each letter. This is the unique extension required by the proposition, so the free-monoid construction is a left adjoint to the forgetful functor <m>\Mon\to\Set</m>.</p>
+      <p>The unit inserts a letter as a word of length one. The counit at a monoid multiplies the letters of a word in that monoid, sending the empty word to its identity. The universal property explains these maps and their compatibility simultaneously.</p>
+    </example>
+  </section>
+
+  <section xml:id="cat-c05-order-examples">
+    <title>Order adjunctions and quantification</title>
+    <p>In a preorder category, each hom-set is either empty or a singleton. A natural bijection of hom-sets then states an equivalence between two inequalities. This gives a concrete way to read the unit, counit, and universal-property conditions.</p>
+    <definition xml:id="cat-c05-def-order-adjunction">
+      <title>Galois connection in the monotone convention</title>
+      <idx>Galois connection</idx>
+      <statement>
+        <p>For preorders <m>P,Q</m> and monotone maps <m>F:P\to Q</m>, <m>G:Q\to P</m>, an adjunction is the condition
+          <md number="no">F(x)\le y\quad\Longleftrightarrow\quad x\le G(y).</md>
+          Equivalently, <m>x\le GF(x)</m> and <m>FG(y)\le y</m> for all <m>x,y</m>. For posets these maps are often called a <term>Galois connection</term> in the monotone convention.</p>
+      </statement>
+    </definition>
+    <p>The equivalence of the two descriptions follows by applying monotonicity to either inequality: if <m>F(x)\le y</m>, then <m>x\le GF(x)\le G(y)</m>; if <m>x\le G(y)</m>, then <m>F(x)\le FG(y)\le y</m>. There is no further naturality condition to check in thin categories.<fn>The name Galois connection is also widely used for a pair of order-reversing maps. That convention can be expressed by replacing one poset by its opposite. The variance must be stated before comparing the two conventions; the displayed monotone adjunction is our convention here.</fn></p>
+    <example xml:id="cat-c05-example-image-quantifiers">
+      <title>Existential and universal image operations</title>
+      <p>A function <m>f:X\to Y</m> gives three monotone maps between the posets of subsets:
+        <md number="no">f_!:\mathcal P(X)\to\mathcal P(Y),\quad A\mapsto f(A),</md>
+        <md number="no">f^*:\mathcal P(Y)\to\mathcal P(X),\quad B\mapsto f^{-1}(B),</md>
+        <md number="no">f_*:\mathcal P(X)\to\mathcal P(Y),\quad A\mapsto\{y\in Y\mid f^{-1}(\{y\})\subseteq A\}.</md>
+        They satisfy <m>f_!\dashv f^*\dashv f_*</m>, because
+        <md number="no">f(A)\subseteq B\ \Longleftrightarrow\ A\subseteq f^{-1}(B),</md>
+        <md number="no">f^{-1}(B)\subseteq A\ \Longleftrightarrow\ B\subseteq f_*(A).</md>
+        Membership in <m>f_!(A)</m> asks whether some point of the fiber lies in <m>A</m>; membership in <m>f_*(A)</m> asks whether every point of the fiber lies in <m>A</m>. In particular, an empty fiber satisfies the latter condition. This is why <m>f_*(A)</m> need not be contained in the image of <m>f</m>.</p>
+    </example>
+    <proposition xml:id="cat-c05-prop-order-closure">
+      <statement>
+        <p>If <m>F\dashv G</m> is an adjunction of posets, then <m>GF</m> is monotone, extensive, and idempotent. Conversely, for any monotone map <m>c:P\to P</m> with <m>x\le c(x)</m> and <m>c(c(x))=c(x)</m>, the map <m>x\mapsto c(x)</m> is left adjoint to the inclusion of the subposet of fixed points into <m>P</m>.</p>
+      </statement>
+      <proof>
+        <p>The unit gives extensivity. Apply the unit at <m>GF(x)</m> and apply <m>G</m> to the counit at <m>F(x)</m>; these give the two opposite inequalities between <m>GF(x)</m> and <m>GFGF(x)</m>. Antisymmetry gives equality. For the converse, if <m>c(y)=y</m>, then <m>c(x)\le y</m> implies <m>x\le y</m>, and <m>x\le y</m> implies <m>c(x)\le c(y)=y</m>.</p>
+      </proof>
+    </proposition>
+    <p>For preorders the same reasoning gives mutual inequalities, hence isomorphism in the preorder category, rather than literal equality of the two object assignments. Antisymmetry is exactly what turns this into an idempotent equality for posets. In a general category, the unit and counit carry more information than their order analogues, so these formulas do not make an arbitrary adjunction into an idempotent construction.</p>
+  </section>
+  <section xml:id="cat-c05-calculus">
+    <title>Uniqueness and composition</title>
+    <p>The uniqueness of an adjoint concerns its specified universal structure. The following formulation makes the compatibility condition visible and also explains how adjoints compose.</p>
+    <proposition xml:id="cat-c05-prop-calculus">
+      <statement>
+        <p><ol>
+          <li><p>Suppose <m>F\dashv G</m> and <m>F\dashv G'</m> have counits <m>\varepsilon,\varepsilon'</m>. There is a unique natural isomorphism <m>\tau:G\Rightarrow G'</m> such that
+            <md number="no">\varepsilon'_YF(\tau_Y)=\varepsilon_Y.</md>
+            Dually, left adjoints to a fixed functor are uniquely isomorphic with compatibility with their units.</p></li>
+          <li><p>For <m>F:\mathcal C\to\mathcal D</m>, <m>F':\mathcal D\to\mathcal E</m> with <m>F\dashv G</m> and <m>F'\dashv G'</m>, the composite adjunction is <m>F'F\dashv GG'</m>. Its unit and counit are
+            <md number="no">\eta^{\mathrm{comp}}_X=G(\eta'_{FX})\eta_X,\qquad
+              \varepsilon^{\mathrm{comp}}_Z=\varepsilon'_ZF'(\varepsilon_{G'Z}).</md></p></li>
+          <li><p>Passing to opposite categories reverses the adjunction: <m>G^{\op}\dashv F^{\op}</m>.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>The pair <m>(GY,\varepsilon_Y)</m> is terminal in <m>(F\downarrow Y)</m>, as is <m>(G'Y,\varepsilon'_Y)</m>. The unique comparison of terminal objects gives <m>\tau_Y</m> with the displayed equation and an inverse comparison. For <m>b:Y\to Y'</m>, the two maps <m>G'(b)\tau_Y</m> and <m>\tau_{Y'}G(b)</m> have the same composite with the structural arrow of the relevant terminal object, by naturality of the two counits. Uniqueness proves naturality of <m>\tau</m>.</p>
+        <p>For composition, compose the natural bijections
+          <md number="no">\Hom_{\mathcal E}(F'FX,Z)\cong\Hom_{\mathcal D}(FX,G'Z)\cong\Hom_{\mathcal C}(X,GG'Z).</md>
+          Evaluating this composite and its inverse at identity arrows gives the stated unit and counit. For opposite categories, reverse the original hom-bijection and use the definition of the opposite hom-sets.</p>
+      </proof>
+    </proposition>
+    <p>The comparison can be computed as <m>\tau_Y=\Phi'_{GY,Y}(\varepsilon_Y)</m>. This formula ties the isomorphism to the two adjunction structures. Bare functors can have other natural automorphisms, so omitting the compatibility condition would change the uniqueness assertion.<fn>See <xref ref="bib-cat-li1" detail="Propositions 2.6.10 and 2.6.11"/>. The same qualification was needed for representing objects in <xref ref="cat-yoneda"/>: the structure maps are part of the universal solution.</fn></p>
+  </section>
+
+  <section xml:id="cat-c05-mates">
+    <title>Mates of natural transformations</title>
+    <p>Adjoint transposition also applies to a natural transformation comparing composites of functors. Fix adjunctions
+      <md number="no">F:\mathcal C\rightleftarrows\mathcal D:G,
+        \qquad F':\mathcal C'\rightleftarrows\mathcal D':G',</md>
+      with <m>F\dashv G</m> and <m>F'\dashv G'</m>. Their units and counits are <m>\eta,\varepsilon</m> and <m>\eta',\varepsilon'</m>. Let <m>H:\mathcal C'\to\mathcal C</m> and <m>K:\mathcal D'\to\mathcal D</m>. No equality between their composites with the adjoints is assumed. All categories are set-encoded, so the natural transformations below form ordinary sets even when their functor categories are not locally <m>\U</m>-small.</p>
+    <definition xml:id="cat-c05-def-mates">
+      <title>Mates and conjugate transformations</title>
+      <idx>Mate</idx><idx>Conjugate natural transformations</idx>
+      <statement>
+        <p>The mates correspondence is the bijection
+          <md number="no">\Nat(FH,KF')\longrightarrow\Nat(HG',GK),
+            \qquad\alpha\longmapsto\alpha^\sharp,</md>
+          defined by
+          <md number="no">\alpha^\sharp
+            =(GK\varepsilon')\,(G\alpha G')\,(\eta HG').</md>
+          Its inverse sends <m>\beta:HG'\Rightarrow GK</m> to
+          <md number="no">\beta^\flat
+            =(\varepsilon KF')\,(F\beta F')\,(FH\eta').</md>
+          Corresponding transformations are called mates. When <m>\mathcal C'=\mathcal C</m>, <m>\mathcal D'=\mathcal D</m>, and <m>H,K</m> are identity functors, they are also called conjugates: a transformation <m>F\Rightarrow F'</m> corresponds to a transformation <m>G'\Rightarrow G</m>.</p>
+      </statement>
+    </definition>
+    <p>Each formula is a composite of natural transformations with the following types:
+      <md number="no">HG'\xrightarrow{\eta HG'}GFHG'
+        \xrightarrow{G\alpha G'}GKF'G'
+        \xrightarrow{GK\varepsilon'}GK,</md>
+      and
+      <md number="no">FH\xrightarrow{FH\eta'}FHG'F'
+        \xrightarrow{F\beta F'}FGKF'
+        \xrightarrow{\varepsilon KF'}KF'.</md>
+      The formulas therefore define natural transformations, not just component maps. Here expressions such as <m>G\alpha G'</m> mean whiskering, as in <xref ref="cat-language"/>.<fn>This is <xref ref="bib-cat-riehl" detail="Proposition 4.3.8"/>. Our use of <m>\sharp</m> for the transformation towards the right adjoints agrees with the arrow-transpose convention of <xref ref="cat-c05-def-adjunction"/>; Riehl labels this direction by <m>\flat</m>. The displayed source and target specify the correspondence.</fn></p>
+    <proposition xml:id="cat-c05-prop-mates">
+      <statement>
+        <p>The formulas in <xref ref="cat-c05-def-mates"/> are inverse bijections. Equivalently, <m>\beta=\alpha^\sharp</m> is characterized by the equation
+          <md number="no">(\varepsilon K)(F\beta)=(K\varepsilon')(\alpha G'):
+            FHG'\Rightarrow K.</md>
+          If <m>h:H_0\Rightarrow H</m> and <m>k:K\Rightarrow K_1</m>, the correspondence satisfies
+          <md number="no">\bigl((kF')\alpha(Fh)\bigr)^\sharp
+            =(Gk)\alpha^\sharp(hG').</md></p>
+      </statement>
+      <proof>
+        <p>Transposing components across <m>F\dashv G</m> gives a bijection
+          <md number="no">\Nat(FH,KF')\cong\Nat(H,GKF'),
+            \qquad\alpha\longmapsto(G\alpha)(\eta H).</md>
+          Naturality of the component transpose follows from naturality of the adjunction. To finish, let <m>L=GK</m>. There is a second bijection
+          <md number="no">\Nat(H,LF')\cong\Nat(HG',L),</md>
+          sending <m>\gamma</m> to <m>(L\varepsilon')(\gamma G')</m>, with inverse <m>\beta\mapsto(\beta F')(H\eta')</m>.</p>
+        <p>For the first composite of these last two operations, naturality of <m>\gamma</m> at each component of <m>\eta'</m> reduces the result to
+          <md number="no">L(\varepsilon'F')\,L(F'\eta')\,\gamma=\gamma.</md>
+          For the other composite, naturality of <m>\beta</m> at each component of <m>\varepsilon'</m> reduces the result to
+          <md number="no">\beta\,H(G'\varepsilon')\,H(\eta'G')=\beta.</md>
+          Both equalities are triangle identities. Composing the two bijections gives exactly the two formulas stated in the definition.</p>
+        <p>The characterizing equation says that <m>\beta</m> is the transpose across <m>F\dashv G</m> of <m>(K\varepsilon')(\alpha G')</m>. Uniqueness of that transpose proves the characterization. Naturality of transposition under precomposition and postcomposition, followed by naturality of <m>\varepsilon'</m>, proves the equation involving <m>h,k</m>.</p>
+      </proof>
+    </proposition>
+    <p>The correspondence respects composition of adjacent comparisons. To state the directions, take a third adjunction <m>F''\dashv G''</m> between <m>\mathcal C''</m> and <m>\mathcal D''</m>, functors <m>H':\mathcal C''\to\mathcal C'</m>, <m>K':\mathcal D''\to\mathcal D'</m>, and a transformation <m>\alpha':F'H'\Rightarrow K'F''</m>.</p>
+    <proposition xml:id="cat-c05-prop-mate-composition">
+      <statement>
+        <p>The identity comparison for one adjunction has identity mate. For adjacent comparisons as above,
+          <md number="no">\bigl((K\alpha')(\alpha H')\bigr)^\sharp
+            =(\alpha^\sharp K')(H(\alpha'^\sharp)):
+            HH'G''\Rightarrow GKK'.</md>
+          In particular, for three adjunctions <m>F_i\dashv G_i</m> between fixed categories and transformations <m>\alpha:F_0\Rightarrow F_1</m>, <m>\gamma:F_1\Rightarrow F_2</m>, conjugation satisfies
+          <md number="no">(\gamma\alpha)^\sharp=\alpha^\sharp\gamma^\sharp.</md>
+          Conjugation consequently sends natural isomorphisms to natural isomorphisms.</p>
+      </statement>
+      <proof>
+        <p>The identity of <m>G</m> satisfies the characterizing equation for the identity comparison of <m>F</m>. For composition, let <m>\beta=\alpha^\sharp</m> and <m>\beta'=\alpha'^\sharp</m>. Apply <m>F</m> to <m>(\beta K')(H\beta')</m> and then compose with <m>\varepsilon KK'</m>. The characterizing equation for <m>\beta</m>, naturality of <m>\alpha</m>, and the equation for <m>\beta'</m> give
+          <md number="no">\begin{aligned}
+            (\varepsilon KK')F\bigl((\beta K')(H\beta')\bigr)
+              &amp;=(K\varepsilon'K')(\alpha G'K')(FH\beta')\\
+              &amp;=(K\varepsilon'K')(KF'\beta')(\alpha H'G'')\\
+              &amp;=(KK'\varepsilon'')(K\alpha'G'')(\alpha H'G'').
+          \end{aligned}</md>
+          This is the equation characterizing the mate of <m>(K\alpha')(\alpha H')</m>. The conjugation rule is its case with the connecting functors equal to identities. Conjugating an isomorphism and its inverse therefore gives inverse transformations.</p>
+      </proof>
+    </proposition>
+    <example xml:id="cat-c05-example-noninvertible-mate">
+      <title>An invertible comparison with a noninvertible mate</title>
+      <p>General mates do not preserve invertibility. Let <m>F:[1]\to\mathbf1</m> be the unique functor, and let <m>G:\mathbf1\to[1]</m> select the greatest object <m>1</m>. Then <m>F\dashv G</m>. Use the identity adjunction as <m>F'\dashv G'</m> on <m>[1]</m>, and let <m>H=\id_{[1]}</m>, <m>K=F</m>. The identity comparison <m>\alpha:F\Rightarrow F</m> is invertible, but its mate is the unit
+        <md number="no">\alpha^\sharp=\eta:\id_{[1]}\Rightarrow GF.</md>
+        Its component at <m>0</m> is <m>0\to1</m>, which is not invertible. Here the connecting functors are not both identities, so this does not contradict the conjugation statement.</p>
+    </example>
+    <p>The same distinction occurs in the base-change setting of <xref ref="cat-c14-base-change"/>. For a commuting square, the canonical comparison between the two iterated pullback functors is invertible. Its mate between dependent-product functors is the Beck–Chevalley comparison. Invertibility of that mate is proved there using the pullback hypothesis on the square; it does not follow from the mates bijection alone.</p>
+  </section>
+
+  <section xml:id="cat-c05-parameters">
+    <title>Adjunctions with a parameter</title>
+    <p>Suppose a bifunctor has a right adjoint after one argument is fixed. The action of the right adjoints on a varying parameter is determined by conjugation. Its variance is opposite to that of the fixed argument of the original bifunctor.</p>
+    <definition xml:id="cat-c05-def-parametrized-adjunction">
+      <title>Parametrized and two-variable adjunctions</title>
+      <idx>Adjunction with a parameter</idx><idx>Parametrized adjunction</idx><idx>Two-variable adjunction</idx>
+      <statement>
+        <p>For <m>F:\mathcal A\times\mathcal B\to\mathcal C</m>, a parametrized right adjoint is a bifunctor <m>G:\mathcal A^\op\times\mathcal C\to\mathcal B</m> with bijections
+          <md number="no">\Phi_{a,b,c}:\Hom_{\mathcal C}(F(a,b),c)
+            \cong\Hom_{\mathcal B}(b,G(a,c))</md>
+          natural in all three variables. If there is also <m>H:\mathcal B^\op\times\mathcal C\to\mathcal A</m> and natural bijections
+          <md number="no">\Hom_{\mathcal C}(F(a,b),c)
+            \cong\Hom_{\mathcal B}(b,G(a,c))
+            \cong\Hom_{\mathcal A}(a,H(b,c)),</md>
+          these data form a two-variable adjunction.</p>
+      </statement>
+    </definition>
+    <proposition xml:id="cat-c05-prop-parametrized-adjunction">
+      <statement>
+        <p>Let <m>F:\mathcal A\times\mathcal B\to\mathcal C</m>. For each <m>a\in\mathcal A</m>, suppose an adjunction <m>F_a=F(a,-)\dashv G_a</m> is chosen, with unit <m>\eta^a</m>, counit <m>\varepsilon^a</m>, and correspondence <m>\Phi^a</m>. There is a unique bifunctor <m>G:\mathcal A^\op\times\mathcal C\to\mathcal B</m> with <m>G(a,-)=G_a</m> for which these correspondences are natural also in <m>a</m>. For <m>u:a\to a'</m>, its parameter map is
+          <md number="no">G(u,c)=\Phi^a_{G_{a'}c,c}
+            \bigl(\varepsilon^{a'}_cF(u,G_{a'}c)\bigr):
+            G_{a'}c\longrightarrow G_ac.</md>
+          Equivalently, <m>G(u,-)</m> is the conjugate of <m>F(u,-):F_a\Rightarrow F_{a'}</m>, and it is characterized by
+          <md number="no">\varepsilon^a_cF(a,G(u,c))
+            =\varepsilon^{a'}_cF(u,G_{a'}c).</md>
+          If each <m>F(-,b)</m> also admits a chosen right adjoint, those adjoints assemble in the same manner and give a two-variable adjunction.</p>
+      </statement>
+      <proof>
+        <p>Conjugation makes <m>G(u,-)</m> a natural transformation <m>G_{a'}\Rightarrow G_a</m>. Its identity and reversed composition laws follow from <xref ref="cat-c05-prop-mate-composition"/>. Naturality in <m>c</m> says that for <m>v:c\to c'</m>,
+          <md number="no">G_a(v)G(u,c)=G(u,c')G_{a'}(v).</md>
+          These equations define the bifunctor: its map from <m>(a',c)</m> to <m>(a,c')</m> is either composite in this equation.</p>
+        <p>To verify naturality of the correspondence in the parameter, let <m>q:F(a',b)\to c</m>. The transpose under <m>F_a\dashv G_a</m> of <m>G(u,c)\Phi^{a'}(q)</m> is
+          <md number="no">\begin{aligned}
+            \varepsilon^a_cF\bigl(a,G(u,c)\Phi^{a'}(q)\bigr)
+              &amp;=\varepsilon^{a'}_cF(u,G_{a'}c)F(a,\Phi^{a'}(q))\\
+              &amp;=\varepsilon^{a'}_cF(a',\Phi^{a'}(q))F(u,b)\\
+              &amp;=qF(u,b).
+          \end{aligned}</md>
+          The middle equality is naturality of <m>F(u,-)</m>. Hence
+          <md number="no">\Phi^a\bigl(qF(u,b)\bigr)
+            =G(u,c)\Phi^{a'}(q),</md>
+          as required. Naturality in <m>b,c</m> is part of each chosen adjunction.</p>
+        <p>Conversely, this last equation with <m>b=G_{a'}c</m> and <m>q=\varepsilon^{a'}_c</m> forces the displayed formula for <m>G(u,c)</m>, since <m>\Phi^{a'}(\varepsilon^{a'}_c)=\id</m>. This proves uniqueness. Applying the same construction with the two arguments of <m>F</m> exchanged proves the final assertion.</p>
+      </proof>
+    </proposition>
+    <p>This is <xref ref="bib-cat-riehl" detail="Proposition 4.4.6(i)–(ii) and Definition 4.4.7"/>. If only existence of the individual adjoints is assumed, ordinary choice selects their adjunction data over the set <m>\Ob(\mathcal A)</m>. The uniqueness concerns the specified correspondences as well as the specified functors. Other choices give compatible natural isomorphisms by <xref ref="cat-c05-prop-calculus"/>; naturality in the parameter follows because both comparisons conjugate the same transformation <m>F(u,-)</m>.</p>
+    <p>The parameter equation for units can be read by taking <m>q=\id_{F(a',b)}</m>:
+      <md number="no">G(u,F(a',b))\eta^{a'}_b
+        =G_a(F(u,b))\eta^a_b.</md>
+      Together with the counit equation in the proposition, this specifies how the individual adjunctions vary. These are equations involving the opposite parameter variances, not a claim that the diagonal assignment <m>a\mapsto G_aF_a</m> is a covariant functor.<fn>Cartesian exponentials in <xref ref="cat-cartesian-closure"/> and the left and right internal Hom objects in <xref ref="cat-c17-closed"/> are instances. Their concrete evaluation formulas are established in those chapters. The result here explains why the adjoints first chosen at individual parameters have a forced action on all parameter maps.</fn></p>
+    <p>For a two-variable adjunction and fixed <m>c</m>, its last two Hom sets give natural bijections
+      <md number="no">\Hom_{\mathcal B}(b,G(a,c))
+        \cong\Hom_{\mathcal A}(a,H(b,c)).</md>
+      Thus the two contravariant functors <m>G(-,c):\mathcal A^\op\to\mathcal B</m> and <m>H(-,c):\mathcal B^\op\to\mathcal A</m> are mutually right adjoint in the sense of <xref ref="bib-cat-riehl" detail="Definition 4.4.1"/>. This assertion is precisely the displayed natural correspondence.</p>
+  </section>
+
+  <section xml:id="cat-c05-full-faithful">
+    <title>Fully faithful adjoints and reflective subcategories</title>
+    <p>The unit and counit measure two different failures of invertibility. One comparison being an isomorphism identifies a fully faithful side of an adjunction; both comparisons being isomorphisms gives an equivalence.</p>
+    <proposition xml:id="cat-c05-prop-fully-faithful">
+      <statement>
+        <p>For an adjunction <m>F\dashv G</m>, the following assertions hold.</p>
+        <p><ol>
+          <li><p>The functor <m>F</m> is fully faithful if and only if every <m>\eta_X</m> is invertible.</p></li>
+          <li><p>The functor <m>G</m> is fully faithful if and only if every <m>\varepsilon_Y</m> is invertible.</p></li>
+          <li><p>The adjunction is an <term>adjoint equivalence</term> if both its unit and counit are natural isomorphisms. Every equivalence functor can be equipped with such an adjunction structure with a quasi-inverse.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>The composite of the map on hom-sets induced by <m>F</m> with the adjunction correspondence is
+          <md number="no">\Hom_{\mathcal C}(X,X')\longrightarrow\Hom_{\mathcal C}(X,GFX'),\qquad a\longmapsto\eta_{X'}a.</md>
+          Indeed, <m>\Phi(F(a))=GF(a)\eta_X=\eta_{X'}a</m>. Since <m>\Phi</m> is bijective, full faithfulness of <m>F</m> is equivalent to bijectivity of all these postcomposition maps. Testing an arrow by all objects, as in the Yoneda discussion, says exactly that <m>\eta_{X'}</m> is invertible. The second assertion is dual.</p>
+        <p>Invertible unit and counit exhibit quasi-inverse functors. Conversely, suppose <m>F</m> is an equivalence, and choose a quasi-inverse <m>G</m> and a natural isomorphism <m>\eta:\id_{\mathcal C}\Rightarrow GF</m>. The functor <m>G</m> is fully faithful. Thus applying <m>G</m>, followed by precomposition with <m>\eta_X</m>, gives natural bijections
+          <md number="no">\Hom_{\mathcal D}(FX,Y)\cong\Hom_{\mathcal C}(GFX,GY)\cong\Hom_{\mathcal C}(X,GY).</md>
+          These define an adjunction whose unit is the chosen <m>\eta</m>. Its counit is invertible by the second assertion, since <m>G</m> is fully faithful.</p>
+      </proof>
+    </proposition>
+    <p>An arbitrary pair of comparison isomorphisms for quasi-inverse functors need not satisfy the triangle identities. The last proof constructs a compatible counit from the chosen unit. It therefore upgrades an equivalence to an adjoint equivalence by supplying the missing compatibility, rather than treating it as an automatic property of any originally chosen comparisons.</p>
+    <definition xml:id="cat-c05-def-reflective">
+      <title>Reflective and coreflective subcategories</title>
+      <idx>Reflective subcategory</idx><idx>Coreflective subcategory</idx>
+      <statement>
+        <p>A full subcategory <m>\mathcal A\subseteq\mathcal C</m>, with inclusion <m>J</m>, is <term>reflective</term> if <m>J</m> has a left adjoint <m>L</m>, and <term>coreflective</term> if <m>J</m> has a right adjoint <m>R</m>. For a reflection <m>L\dashv J</m>, the counit <m>LJ\Rightarrow\id_{\mathcal A}</m> is invertible. An object <m>X\in\mathcal C</m> is isomorphic to an object of <m>\mathcal A</m> if and only if its unit <m>X\to JLX</m> is invertible. The coreflective statement is dual.</p>
+      </statement>
+    </definition>
+    <p>The counit assertion follows from full faithfulness of the inclusion. At an object <m>JA</m>, the triangle identity makes its unit the inverse of <m>J(\varepsilon_A)</m>; naturality carries this property across any isomorphism to <m>JA</m>. The converse follows from the unit itself. This characterizes the essential image of <m>J</m>; membership in a nonreplete full subcategory still depends on the chosen object names.</p>
+    <p>The fixed-point subposet of a closure operator is a reflective subcategory, by <xref ref="cat-c05-prop-order-closure"/>. Its reflection replaces an element by the least fixed point above it. The example illustrates the universal comparison map without requiring a theory of additional algebraic structure.<fn>For the fully faithful criteria compare the discussion after <xref ref="bib-cat-li1" detail="Proposition 2.6.5"/> and <xref ref="bib-cat-riehl" detail="Lemma 4.5.11 and Definition 4.5.12"/>. A reflection is an adjunction with a fully faithful right adjoint; it is usually far from an equivalence.</fn></p>
+  </section>
+
+  <section xml:id="cat-c05-limits">
+    <title>Preservation of limits and colimits</title>
+    <p>The adjunction correspondence identifies cones into the image of a diagram with cones from the corresponding left-adjoint object into that diagram. This proves preservation of limits by right adjoints; reversing arrows gives preservation of colimits by left adjoints.</p>
+    <proposition xml:id="cat-c05-prop-preservation">
+      <statement>
+        <p><ol>
+          <li><p>A right adjoint preserves every existing small limit. A left adjoint preserves every existing small colimit. Neither assertion requires all diagrams of that shape to have a limit or colimit.</p></li>
+          <li><p>If <m>\mathcal C</m> has all <m>\mathcal J</m>-shaped limits, a chosen limit functor is right adjoint to the diagonal functor. If it has all <m>\mathcal J</m>-shaped colimits, a chosen colimit functor is left adjoint to the diagonal:
+            <md number="no">\operatorname{colim}_{\mathcal J}\dashv\Delta_{\mathcal J}\dashv\lim_{\mathcal J},</md>
+            with each adjunction asserted when its indicated functor exists.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>Let <m>D:\mathcal J\to\mathcal D</m> have limit cone <m>L\to D_j</m>. For each <m>X\in\mathcal C</m>, the adjunction and that limit give natural bijections
+          <md number="no">\Hom_{\mathcal C}(X,GL)\cong\Hom_{\mathcal D}(FX,L)
+            \cong\lim_{j\in\mathcal J}\Hom_{\mathcal D}(FX,D_j)
+            \cong\lim_{j\in\mathcal J}\Hom_{\mathcal C}(X,GD_j).</md>
+          Under these bijections, an arrow <m>X\to GL</m> goes to its composites with the transported cone maps. This proves that the transported cone is a limit cone, not merely that its vertex is isomorphic to some limit object. The colimit statement follows by passing to opposite categories.</p>
+        <p>For the second assertion, the limit correspondence is
+          <md number="no">\Hom_{\Fun(\mathcal J,\mathcal C)}(\Delta_{\mathcal J}X,D)
+            \cong\Hom_{\mathcal C}(X,\lim_{\mathcal J}D).</md>
+          A map on the left is exactly a cone with vertex <m>X</m>. Its universal factorization is natural in both <m>X</m> and <m>D</m>, by the construction of the limit functor. The colimit correspondence is dual.</p>
+      </proof>
+    </proposition>
+    <p>The smallness condition controls which diagrams are available at the chosen scale. If an adjunction is stated between more general set-encoded categories, the same cone argument proves preservation for any set-encoded diagram for which the relevant limit exists; the displayed hom-bijections are then read as ordinary set bijections. No inference about strict membership in <m>\U</m> follows just from a bijection.<fn>Compare <xref ref="bib-cat-riehl" detail="Section 4.5"/> and <xref ref="bib-cat-stacks" detail="Section 4.24, Tag 0036"/>. The adjunction with the diagonal provides a common explanation of the cone and representability descriptions of limits from <xref ref="cat-limits"/>.</fn></p>
+    <example xml:id="cat-c05-example-obstruction">
+      <title>An empty diagram detects a missing adjoint</title>
+      <p>The forgetful functor <m>U:\Grp\to\Set</m> cannot itself be a left adjoint. A left adjoint would preserve the initial object. The initial group is the trivial group, whose underlying set is a singleton, whereas the initial set is empty. This obstruction is consistent with the existence of a free-group left adjoint to <m>U</m>: having a left adjoint and being a left adjoint are different assertions.</p>
+    </example>
+  </section>
+
+  <section xml:id="cat-c05-weak-initial">
+    <title>From a family of candidates to an initial object</title>
+    <p>Preservation alone gives no list of possible universal objects. The existence theorem below requires a small family through which all proposed solutions factor. The initial-object lemma constructs a universal solution from that family, using a product and equations on its endomorphisms.</p>
+    <definition xml:id="cat-c05-def-weak-initial">
+      <title>Weakly initial families</title>
+      <idx>Weakly initial family</idx>
+      <statement>
+        <p>A family <m>(A_i)_{i\in I}</m> in a category <m>\mathcal E</m> is <term>weakly initial</term> if, for every <m>B\in\mathcal E</m>, there are an <m>i\in I</m> and an arrow <m>A_i\to B</m>. A single object with this property is <term>weakly initial</term>. For a small weakly initial family we require <m>I\in\U</m>; the object labels <m>A_i</m> need not belong to <m>\U</m>.</p>
+      </statement>
+    </definition>
+    <lemma xml:id="cat-c05-lemma-initial-object">
+      <statement>
+        <p>A locally <m>\U</m>-small category with all <m>\U</m>-small limits and a weakly initial family indexed by an element of <m>\U</m> has an initial object.</p>
+      </statement>
+      <proof>
+        <p>Form <m>P=\prod_{i\in I}A_i</m>. It is weakly initial, because a projection followed by a suitable <m>A_i\to B</m> gives an arrow <m>P\to B</m>. Local smallness gives <m>\End(P)\in\U</m>. Form the equalizer
+          <md number="no">e:Q\longrightarrow P\rightrightarrows\prod_{h\in\End(P)}P,</md>
+          where the two maps have components <m>h</m> and <m>\id_P</m>. Thus <m>he=e</m> for every endomorphism <m>h</m> of <m>P</m>, and <m>e</m> is monic. Composing <m>Q\to P</m> with arrows from the weakly initial object <m>P</m> shows that at least one arrow <m>Q\to B</m> exists for every <m>B</m>.</p>
+        <p>To prove uniqueness, let <m>r,s:Q\to B</m> and let <m>a:Z\to Q</m> be their equalizer. Weak initiality of <m>P</m> gives <m>b:P\to Z</m>. The endomorphism <m>h=eab</m> of <m>P</m> satisfies <m>he=e</m>, hence <m>eabe=e</m>. Canceling the monomorphism <m>e</m> gives <m>abe=\id_Q</m>. Therefore <m>a</m> is both monic and split epic, hence invertible by <xref ref="cat-prop-cancellation"/>. Since <m>ra=sa</m>, we conclude <m>r=s</m>. The object <m>Q</m> is initial.</p>
+      </proof>
+    </lemma>
+    <p>The product gives one weakly initial object. The equalizer of its endomorphisms then gives an object with a unique map to each target. Completeness allows these constructions, while local smallness makes the endomorphism equations small enough to impose simultaneously.<fn>The proof follows <xref ref="bib-cat-li2" detail="Lemmas 1.11.3 and 1.11.5"/>. Li describes the second step as a limit over the one-object full subcategory on <m>P</m>; the equalizer displayed here expresses the same simultaneous endomorphism equations. <xref ref="bib-cat-riehl" detail="Lemma 4.7.5"/> gives a different proof using the full subcategory on a weakly initial family. Our requirement concerns a small indexing set, so it does not impose an unintended restriction on external object names.</fn></p>
+  </section>
+
+  <section xml:id="cat-c05-existence">
+    <title>The general adjoint functor theorem</title>
+    <p>The following theorem allows the codomain to be an arbitrary set-encoded category. Its domain must be locally small at the scale at which completeness and the solution family are required. This distinction isolates the size hypothesis that the proof actually uses.</p>
+    <definition xml:id="cat-c05-def-solution-set">
+      <title>Solution-set condition</title>
+      <idx>Solution-set condition</idx>
+      <statement>
+        <p>A functor <m>G:\mathcal A\to\mathcal B</m> satisfies the <term><m>\U</m>-solution-set condition</term> if for every <m>B\in\mathcal B</m> there are a set <m>I\in\U</m>, objects <m>A_i\in\mathcal A</m>, and arrows <m>u_i:B\to GA_i</m>, such that each arrow <m>u:B\to GA</m> factors as
+          <md number="no">u=G(a)u_i\qquad\text{for some }i\in I\text{ and }a:A_i\to A.</md>
+          Equivalently, <m>(B\downarrow G)</m> has a weakly initial family indexed by <m>I\in\U</m>. The index set and the chosen arrows may depend on <m>B</m>.</p>
+      </statement>
+    </definition>
+    <theorem xml:id="cat-c05-thm-general-aft">
+      <title>Freyd's general adjoint functor theorem</title>
+      <idx>General adjoint functor theorem</idx>
+      <statement>
+        <p>Let <m>\mathcal A</m> be set-encoded, locally <m>\U</m>-small, and complete for <m>\U</m>-small diagrams. Let <m>\mathcal B</m> be any set-encoded category. A functor <m>G:\mathcal A\to\mathcal B</m> has a left adjoint if and only if it preserves <m>\U</m>-small limits and satisfies the <m>\U</m>-solution-set condition.</p>
+      </statement>
+      <proof>
+        <p>If <m>F\dashv G</m>, preservation follows from <xref ref="cat-c05-prop-preservation"/>. For <m>B</m>, the single universal arrow <m>B\to GFB</m> is a solution family.</p>
+        <p>Conversely, fix <m>B\in\mathcal B</m>. The comma category <m>\mathcal E=(B\downarrow G)</m> is locally <m>\U</m>-small: its morphisms between two fixed objects form a subset of a hom-set in <m>\mathcal A</m>. It is also complete for <m>\U</m>-small diagrams. Indeed, take such a diagram of pairs <m>(A_j,u_j:B\to GA_j)</m> and form its limit <m>L</m> in <m>\mathcal A</m>. Since <m>G</m> preserves that limit, the compatible arrows <m>u_j</m> induce a unique <m>u:B\to GL</m>. The resulting pair <m>(L,u)</m> is a limit in the comma category: the required map between vertices is first determined in <m>\mathcal A</m>, and the defining equation involving <m>u</m> follows by composing with the limit projections in <m>\mathcal B</m>.</p>
+        <p>The solution-set condition supplies a small weakly initial family in <m>\mathcal E</m>. The initial-object lemma therefore gives an initial object of <m>\mathcal E</m>. This holds for every <m>B</m>, so <xref ref="cat-c05-prop-universal-criterion"/> constructs a left adjoint. The collection of input objects is a set; making these choices does not require a separate global choice principle.</p>
+      </proof>
+    </theorem>
+    <p>Compare <xref ref="bib-cat-li2" detail="Theorem 1.11.6"/> and <xref ref="bib-cat-riehl" detail="Theorem 4.7.3"/>. No strict <m>\U</m>-smallness of <m>\Ob(\mathcal A)</m> or <m>\Ob(\mathcal B)</m> is required. Conversely, the fact that both are ordinary sets does not make the solution-set condition automatic at the <m>\U</m> scale: a family indexed by a much larger set would not suffice for the product used in the proof.</p>
+    <example xml:id="cat-c05-example-universe-obstruction">
+      <title>Limit preservation with no solution family</title>
+      <p>The inclusion <m>\Set_{\U}\to\Set_{\V}</m> preserves all <m>\U</m>-small limits, by their compatible-family construction. It has no left adjoint. If <m>L</m> were a left adjoint, apply the hom-bijection to the object <m>\U\in\Set_{\V}</m> and a two-element set <m>2\in\U</m>. It would identify
+        <md number="no">\Hom_{\Set_{\U}}(L\U,2)\quad\text{with}\quad\Hom_{\Set_{\V}}(\U,2).</md>
+        The first set belongs to <m>\U</m> and has cardinality less than <m>|\U|</m>; the second has cardinality <m>2^{|\U|}&gt;|\U|</m>. This contradicts the existence of a bijection. The cardinal bound for members of <m>\U</m> was explained in <xref ref="cat-conventions-functor-size"/>. Thus the solution-set hypothesis in the theorem has real content even though the categories are set-encoded.</p>
+    </example>
+    <example xml:id="cat-c05-example-free-group">
+      <title>Constructing a free group from a bound on candidates</title>
+      <p>The category <m>\Grp_{\U}</m> has all <m>\U</m>-small limits and its forgetful functor to <m>\Set_{\U}</m> preserves them. To check this directly, form the compatible tuples in the product of the underlying sets. Componentwise multiplication, identity, and inverse preserve compatibility. A compatible family of homomorphisms into the diagram induces the unique function into this set of tuples, and that function is a homomorphism because every component is one. This gives the required group limit and its underlying set limit.</p>
+      <p>Fix <m>S\in\U</m>. Let <m>W</m> be the set of finite words in formal positive and negative copies of elements of <m>S</m>, including the empty word. Then <m>W\in\U</m>. For any function <m>S\to UG</m>, its image generates a subgroup <m>H\subseteq G</m>. Every element of <m>H</m> is an evaluation of a word in <m>W</m>, so <m>|H|\le |W|</m>. By choice, <m>H</m> can be relabeled as a group whose underlying set is a subset of <m>W</m>.</p>
+      <p>Consider all group structures on subsets of <m>W</m>, together with all functions from <m>S</m> to their underlying sets. These data can be indexed by a set in <m>\U</m>, using power sets and function sets. The preceding relabeling factors every function <m>S\to UG</m> through one of these candidates and a homomorphism into <m>G</m>. Hence the solution-set condition holds, and the theorem supplies a free-group left adjoint.</p>
+      <p>This argument bounds a family of possible solutions and then enforces the universal property. It does not require a normal form for reduced words. Such a normal form answers a further computational question, whereas the adjoint functor theorem establishes existence and the mapping correspondence.<fn>This application and the distinction between an explicit word construction and the existence argument are discussed in <xref ref="bib-cat-li2" detail="Example 1.11.7 and the following paragraph"/> and <xref ref="bib-cat-riehl" detail="Example 4.7.6"/>. The argument here makes the small bound explicit using the set <m>W</m>.</fn></p>
+    </example>
+    <corollary xml:id="cat-c05-cor-representability">
+      <statement>
+        <p>Let <m>\mathcal C</m> be set-encoded, locally <m>\U</m>-small, and complete for <m>\U</m>-small diagrams. A covariant functor <m>H:\mathcal C\to\Set_{\U}</m> is representable if and only if it preserves <m>\U</m>-small limits and there are <m>I\in\U</m>, objects <m>C_i</m>, and elements <m>x_i\in H(C_i)</m> such that every <m>x\in H(C)</m> is <m>H(f)(x_i)</m> for some <m>i</m> and some <m>f:C_i\to C</m>.</p>
+      </statement>
+      <proof>
+        <p>The element condition supplies a small weakly initial family in <m>(1\downarrow H)</m>, the category of elements of the covariant functor. Limit preservation makes this category complete by the comma-category argument just used. Its initial object is a universal element, hence a representation by <xref ref="cat-yoneda"/>. Conversely, for <m>H\cong\Hom_{\mathcal C}(C_0,-)</m>, the image of <m>\id_{C_0}</m> gives a singleton universal family, and representables preserve existing limits.</p>
+      </proof>
+    </corollary>
+    <p>The representability criterion uses a covariant functor; the contravariant version is obtained by applying the statement to <m>\mathcal C^{\op}</m>, which requires cocompleteness of <m>\mathcal C</m>. Keeping that direction explicit avoids exchanging the roles of universal elements and their duals. See <xref ref="bib-cat-riehl" detail="Theorem 4.7.15"/>.</p>
+  </section>
+  <section xml:id="cat-c05-subobjects-generators">
+    <title>Subobjects and families that distinguish maps</title>
+    <p>The solution-set condition is specific to a functor and to each object on its target side. Another existence criterion uses structural properties of the domain: a small family of objects distinguishing maps into them, together with control over subobjects. We spell out both size conditions, since set encoding alone does not give smallness relative to <m>\U</m>.</p>
+    <definition xml:id="cat-c05-def-subobject">
+      <title>Subobjects, quotients, and well-poweredness</title>
+      <idx>Subobject</idx><idx>Quotient object</idx><idx>Well-powered category</idx><idx>Co-well-powered category</idx>
+      <statement>
+        <p><ol>
+          <li><p>A subobject of <m>X</m> is a monomorphism <m>m:A\rightarrowtail X</m>, considered up to an isomorphism of its source commuting with the map to <m>X</m>. We put <m>[m]\leq[n]</m> when <m>m</m> factors through <m>n</m>; the factorization is then unique. The resulting partially ordered set is <m>\operatorname{Sub}(X)</m>.</p></li>
+          <li><p>A quotient of <m>X</m> is an epimorphism <m>q:X\twoheadrightarrow A</m> up to an isomorphism of its target commuting with <m>q</m>. It is a subobject of <m>X</m> in the opposite category. We use that dual order: <m>[q]\preceq[q']</m> means <m>q=hq'</m> for a comparison <m>h</m>, so <m>q</m> is the coarser quotient. We call <m>\mathcal C</m> <m>\U</m>-well-powered if every <m>\operatorname{Sub}(X)</m> has representatives indexed by a set in <m>\U</m>, and <m>\U</m>-co-well-powered if the dual condition holds for quotients.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <p>Mutual factorization of two monomorphisms gives inverse comparison maps by cancellation, which proves antisymmetry on equivalence classes. The quotient convention includes all epimorphisms, not just coequalizers of relations or surjections of a chosen underlying set. It will matter when comparing co-well-poweredness with algebraic examples. Since our entire category is set-encoded, the raw collection of subobjects is an ordinary set; well-poweredness requires the stronger bound at the fixed universe.</p>
+    <p>An intersection of a family of subobjects is their greatest lower bound, with its monomorphism to <m>X</m>. If the family is small and the relevant limit exists, take the limit of the diagram consisting of all its monomorphisms and their common codomain <m>X</m>. Its map to <m>X</m> is monic: equality after this map implies equality after each leg by cancellation, and then equality by the limit property. Its factorization property gives exactly the greatest lower bound. The empty intersection is <m>\id_X</m>. Thus a complete well-powered category has the intersection of every collection of subobjects of a fixed object, computed from a small family of representatives.<fn>Compare <xref ref="bib-cat-li2" detail="Definition 1.11.11"/> and <xref ref="bib-cat-riehl" detail="Definitions 4.7.8–4.7.9"/>. Here well-poweredness is a bound up to isomorphism and relabeling. We do not require the literal set of equivalence classes, whose representatives may have external object names, to be an element of <m>\U</m>.</fn></p>
+    <definition xml:id="cat-c05-def-generating">
+      <title>Generating and cogenerating families</title>
+      <idx>Generator</idx><idx>Cogenerator</idx><idx>Separating family</idx><idx>Coseparating family</idx>
+      <statement>
+        <p>A small family <m>(Q_s)_{s\in S}</m> is cogenerating if, for every parallel pair <m>f,g:X\rightrightarrows Y</m>, the equations <m>af=ag</m> for every <m>s</m> and every <m>a:Y\to Q_s</m> imply <m>f=g</m>. It is generating if it is cogenerating in the opposite category, equivalently if all maps from its objects distinguish parallel arrows by precomposition. These families are also called coseparating and separating, respectively. A single-object family is a cogenerator or a generator.</p>
+      </statement>
+    </definition>
+    <p>For these conventions and synonyms, see <xref ref="bib-cat-riehl" detail="Definition 4.7.7"/> and <xref ref="bib-cat-li2" detail="Definition 1.11.8"/>. We allow an empty family: it has the property exactly when there is at most one arrow between each pair of objects. Li requires a nonempty family, which can always be arranged in a nonempty such category by choosing one object. The hypotheses below already supply a terminal object and hence nonemptiness.</p>
+    <p xml:id="cat-c05-isomorphism-detecting"><idx>Isomorphism-detecting family</idx>A different condition on a family <m>(G_s)</m> is that a map <m>f:X\to Y</m> must be invertible whenever every <m>\Hom(G_s,f)</m> is bijective. We call this an isomorphism-detecting family. The corrected definition of a system of generators in <xref ref="bib-cat-ks" detail="Definition 5.2.1(i), as corrected in the author's errata, item (ii), page 2"/> uses this condition. It should not be substituted for our separating condition without checking the hypotheses of the result being used.</p>
+    <p>For a concrete distinction, in the category of small posets and monotone maps a singleton is a generator in our sense, since its maps select elements and therefore distinguish functions. But it does not detect isomorphisms. The identity function from the discrete two-element poset to the two-element chain is a monotone bijection and induces a bijection on singleton tests; its inverse function is not monotone. Also, a condition imposed on every Hom component is not generally equivalent to one imposed on their product as a single set-valued functor: an empty factor can hide the other components. For example, in the disjoint union of <m>[1]</m> and a separate one-object category, tests by all three objects detect the sole noninvertible arrow, whereas the product of all three Hom functors is constantly empty. This is the empty-factor issue highlighted in the same erratum.</p>
+    <proposition xml:id="cat-c05-prop-generator-tests">
+      <statement>
+        <p>Let <m>(G_s)_{s\in S}</m> be a small family in <m>\mathcal C</m>.</p>
+        <p><ol>
+          <li><p>If the family is generating and every <m>\Hom(G_s,f)</m> is bijective, then <m>f</m> is both monic and epic. Thus a generating family detects isomorphisms whenever <m>\mathcal C</m> is balanced.</p></li>
+          <li><p>If <m>\mathcal C</m> has equalizers, every isomorphism-detecting family is generating.</p></li>
+        </ol></p>
+        <p>In a balanced category with equalizers, the two conditions on the family therefore agree. Balancedness is the condition of <xref ref="cat-def-invertibility-cancellation"/>; it does not follow just from the existence of equalizers.</p>
+      </statement>
+      <proof>
+        <p>For the first part, suppose <m>fa=fb</m> for <m>a,b:T\to X</m>. Testing on <m>t:G_s\to T</m> and using injectivity of <m>\Hom(G_s,f)</m> gives <m>at=bt</m>. Generation yields <m>a=b</m>, so <m>f</m> is monic. If <m>cf=df</m> for <m>c,d:Y\to Z</m>, every <m>v:G_s\to Y</m> lifts to <m>u:G_s\to X</m> by surjectivity. Then <m>cv=cfu=dfu=dv</m>; generation gives <m>c=d</m>, proving epicity. Balancedness now gives invertibility.</p>
+        <p>For the second part, let <m>a,b:X\rightrightarrows Y</m> agree after every map from a family member, and take their equalizer <m>e:E\to X</m>. Every map <m>G_s\to X</m> factors uniquely through <m>e</m>, so every <m>\Hom(G_s,e)</m> is bijective. Detection makes <m>e</m> invertible, and <m>ae=be</m> then implies <m>a=b</m>.</p>
+      </proof>
+    </proposition>
+    <p>In <m>\Set_\U</m>, a singleton is a generator and a two-element set is a cogenerator. Distinct functions differ at some element, and a characteristic function on their target distinguishes the two differing values. A singleton is not a cogenerator: all functions into it agree. In the presheaf category on a small category, the representables form a small generating family by Yoneda. More generally, if every object is a colimit of members of a family, the family is generating, since maps out of a colimit are determined by the colimit legs. The dual statement holds for limits and cogenerators.</p>
+    <proposition xml:id="cat-c05-prop-cogenerator-mono">
+      <statement>
+        <p>Suppose <m>\mathcal C</m> has small products and <m>(Q_s)_{s\in S}</m> is a small cogenerating family. For every <m>Y</m>, let
+          <md number="no">T_Y=\prod_{s\in S}\prod_{a\in\Hom(Y,Q_s)}Q_s.</md>
+          The canonical map <m>\nu_Y:Y\to T_Y</m>, whose <m>(s,a)</m>-component is <m>a</m>, is monic. Conversely, monicity of all these maps implies that the family is cogenerating.</p>
+      </statement>
+      <proof>
+        <p>The equation <m>\nu_Yf=\nu_Yg</m> is equivalent to all equations <m>af=ag</m>, by the product property. The cogenerating condition therefore gives exactly left cancellation by <m>\nu_Y</m>. The index set of the product is small because <m>S\in\U</m> and all its indicated Hom sets belong to <m>\U</m>.</p>
+      </proof>
+    </proposition>
+    <p>The construction embeds an object into a product of tests without requiring a set of its elements. It is the dual counterpart of maps from a coproduct of generating objects. It asserts monicity, not that the embedding has a retraction or that the object is itself one of the tests.</p>
+  </section>
+
+  <section xml:id="cat-c05-special-initial">
+    <title>An initial object from intersections</title>
+    <lemma xml:id="cat-c05-lemma-special-initial">
+      <statement>
+        <p>Let <m>\mathcal C</m> be complete for small diagrams, <m>\U</m>-well-powered, and equipped with a small cogenerating family <m>(Q_s)_{s\in S}</m>. Put <m>P=\prod_sQ_s</m>. The intersection <m>m:I\rightarrowtail P</m> of all subobjects of <m>P</m> has initial domain <m>I</m>.</p>
+      </statement>
+      <proof>
+        <p>Completeness and well-poweredness give the intersection. Any subobject <m>j:J\rightarrowtail I</m> is an isomorphism: its composite <m>mj</m> is a subobject of <m>P</m>, so minimality gives a factorization <m>m=mjr</m>. Canceling <m>m</m> yields <m>jr=\id_I</m>, and monicity of <m>j</m> gives <m>rj=\id_J</m>. In particular, the equalizer of any two maps <m>I\rightrightarrows Y</m> is invertible. Such maps are therefore equal.</p>
+        <p>To construct a map from <m>I</m> to an arbitrary <m>Y</m>, use the monomorphism <m>\nu_Y:Y\rightarrowtail T_Y</m> of the preceding proposition. There is a map <m>d_Y:P\to T_Y</m> whose every <m>(s,a)</m>-component is the projection <m>P\to Q_s</m>. Form the pullback of <m>\nu_Y</m> along <m>d_Y</m>. Its projection <m>Z_Y\to P</m> is monic, since a pullback of a monomorphism is monic. Thus <m>m</m> factors through it, and the composite <m>I\to Z_Y\to Y</m> is the required map. Existence and the uniqueness proved in the first paragraph make <m>I</m> initial.</p>
+      </proof>
+    </lemma>
+    <p>The construction follows <xref ref="bib-cat-li2" detail="Lemma 1.11.12"/> and <xref ref="bib-cat-riehl" detail="Lemma 4.7.11"/>. The intersection has no proper subobject, so equalizers prove uniqueness of maps from it. The cogenerator embedding and its pullback prove existence of a map to every target. The first property alone would not establish initiality.</p>
+    <p>Well-poweredness is sufficient because it makes the one intersection used in the proof a small limit. More generally, the lemma only needs that particular intersection to exist, together with the small products, pullbacks, and equalizers appearing in the proof. This form can be useful when a large subobject collection has an intersection for independent reasons. When applying it to a comma category, existence and preservation of the corresponding intersections must also be justified at the chosen universe.</p>
+  </section>
+
+  <section xml:id="cat-c05-special-aft">
+    <title>The special adjoint functor theorem</title>
+    <theorem xml:id="cat-c05-thm-special-aft">
+      <title>Freyd's special adjoint functor theorem</title>
+      <idx>Special adjoint functor theorem</idx>
+      <statement>
+        <p>Let <m>G:\mathcal C\to\mathcal B</m> be a functor between set-encoded, locally <m>\U</m>-small categories. Suppose <m>\mathcal C</m> is complete, <m>\U</m>-well-powered, and has a small cogenerating family. Then <m>G</m> has a left adjoint if and only if it preserves all small limits. Dually, a small-colimit-preserving functor from a cocomplete, <m>\U</m>-co-well-powered category with a small generating family has a right adjoint.</p>
+      </statement>
+      <proof>
+        <p>Necessity is preservation by right adjoints. For sufficiency, fix <m>B\in\mathcal B</m> and consider <m>\mathcal E=(B\downarrow G)</m>. As in the general theorem, its projection to <m>\mathcal C</m> creates small limits and reflects isomorphisms. It is faithful, so its Hom sets are small. We verify the remaining two hypotheses of the preceding initial-object lemma.</p>
+        <p>If <m>(Q_s)</m> cogenerates <m>\mathcal C</m>, take every pair <m>(Q_s,u:B\to GQ_s)</m> in the comma category. This is a small family. To distinguish two comma arrows <m>f,g:(X,x)\rightrightarrows(Y,y)</m>, choose <m>a:Y\to Q_s</m> with <m>af\ne ag</m>. The same arrow <m>a</m> is a comma map from <m>(Y,y)</m> to <m>(Q_s,G(a)y)</m>, which belongs to the chosen family. Thus this family cogenerates <m>\mathcal E</m>.</p>
+        <p>Monomorphisms in <m>\mathcal E</m> are exactly the arrows whose projections are monic in <m>\mathcal C</m>. One implication follows from faithfulness. For the other, a monomorphism has an invertible diagonal into its self-pullback. The projection creates that pullback and preserves its isomorphisms, so the projected diagonal is invertible. In any category with pullbacks, this characterizes a monomorphism: two maps with equal composites induce a map to the self-pullback, whose two projections then coincide.</p>
+        <p>Now fix <m>(X,x)</m>. A subobject projects to a subobject <m>m:Y\rightarrowtail X</m>. Its structure map <m>y:B\to GY</m> must satisfy <m>G(m)y=x</m>. The functor <m>G</m> preserves monomorphisms by the same self-pullback criterion, so there is at most one such <m>y</m> for a fixed representative <m>m</m>. Compatible isomorphisms between subobjects also lift uniquely. Consequently subobjects of <m>(X,x)</m> inject into the small-indexed collection of subobjects of <m>X</m>, proving well-poweredness of <m>\mathcal E</m>. The initial-object lemma now gives an initial object in every <m>(B\downarrow G)</m>. The universal-arrow criterion supplies the left adjoint. Reversing arrows proves the dual assertion.</p>
+      </proof>
+    </theorem>
+    <p>This is <xref ref="bib-cat-li2" detail="Theorem 1.11.13"/>. In <xref ref="bib-cat-riehl" detail="Theorem 4.7.10"/>, the structural condition is phrased using intersections of subobjects. Our well-powered version ensures that all required intersection diagrams are small at the fixed universe. A larger-index version is valid if the relevant intersections exist as limit cones of the families of monomorphisms and these cones are preserved by <m>G</m>: the projection from each comma category then creates the needed intersections, and the same proof applies. Preservation of a meet merely as an element of a subobject poset is not the condition used here. Preservation of only <m>\U</m>-small limits should not silently be used for an intersection whose index has not been shown small; the source's continuity hypothesis must be translated together with its ambient size convention.</p>
+    <corollary xml:id="cat-c05-cor-structural-completeness">
+      <statement>
+        <p>A complete, <m>\U</m>-well-powered category with a small cogenerating family is cocomplete. Dually, a cocomplete, <m>\U</m>-co-well-powered category with a small generating family is complete.</p>
+      </statement>
+      <proof>
+        <p>For each small <m>J</m>, the diagonal <m>\Delta:\mathcal C\to\Fun(J,\mathcal C)</m> preserves small limits, computed pointwise. The special adjoint theorem gives a left adjoint to <m>\Delta</m>, hence all <m>J</m>-shaped colimits by <xref ref="cat-c05-prop-preservation"/>. The functor category is locally small because <m>J</m> is small. The second assertion is dual.</p>
+      </proof>
+    </corollary>
+    <p>Compare <xref ref="bib-cat-li2" detail="Corollary 1.11.14"/>. The theorem replaces a separate search for each solution family by uniform structural information about the domain. It does not say that limit preservation alone creates an adjoint, and it does not require the domain's whole object set to be small.</p>
+    <example xml:id="cat-c05-example-large-intersections">
+      <title>Why the size of an intersection matters</title>
+      <p>Let <m>\mathcal P</m> be the poset of all subsets of <m>\U</m>, ordered by reverse inclusion, and let <m>\mathbf2=\{0\lt1\}</m>. Use small singleton or empty local Hom labels. Both are set-encoded and locally <m>\U</m>-small; the whole encoding of <m>\mathcal P</m> belongs to <m>\V</m>. Define
+        <md number="no">G:\mathcal P\to\mathbf2,\qquad
+          G(S)=\begin{cases}1,&amp;S\in\U,\\0,&amp;S\notin\U.\end{cases}</md>
+        This is monotone: a subset of a member of <m>\U</m> also belongs to <m>\U</m>. Limits in <m>\mathcal P</m> are unions of the sets at the diagram's objects, including the empty union. A union indexed by a member of <m>\U</m> belongs to <m>\U</m> exactly when every summand does. The forward implication uses closure under subsets, and the reverse implication uses the universe's indexed-union axiom. Hence <m>G</m> preserves every <m>\U</m>-small limit.</p>
+      <p>The poset has intersections of all ordinary-set-indexed families of subobjects, since it has all ordinary-set-indexed unions. Any one object is a cogenerator, because parallel arrows in a poset are already equal. Nevertheless <m>G</m> has no left adjoint. The comma category <m>(1\downarrow G)</m> is the reverse-inclusion poset of subsets <m>S\subseteq\U</m> with <m>S\in\U</m>. An initial object would be a largest such subset. It would contain each singleton <m>\{u\}</m>, for <m>u\in\U</m>, hence be <m>\U</m> itself. This is impossible because <m>\U\notin\U</m>.</p>
+      <p>Thus existence of all intersections cannot replace well-poweredness while preservation is restricted to small limits. Indeed, <m>\operatorname{Sub}_{\mathcal P}(\varnothing)</m> consists of all subsets of <m>\U</m>, so it has no small family of representatives. The proof of the special theorem needs precisely the intersection whose size this example leaves uncontrolled.</p>
+    </example>
+  </section>
+</chapter>

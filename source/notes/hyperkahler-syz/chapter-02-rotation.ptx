@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="hks-rotation">
+  <title>Special Lagrangian tori and rotation</title>
+  <introduction>
+    <p>A special Lagrangian submanifold is defined by a metric and a holomorphic volume form. A holomorphic Lagrangian submanifold is defined by a complex structure and a holomorphic symplectic form. For a hyperkähler metric these conditions can be related by rotating the complex structure. The proof of semiampleness uses a cohomological criterion that forces this rotation, rather than assuming that every special Lagrangian submanifold has the required property.</p>
+  </introduction>
+  <section xml:id="hks-calibrations">
+    <title>Calibrations and the volume inequality</title>
+    <definition xml:id="hks-def-calibration">
+      <idx>Calibration</idx>
+      <statement><p>A <em>calibration</em> on a Riemannian manifold is a closed real <m>r</m>-form <m>\varphi</m> such that <m>\varphi(v_1,\ldots,v_r)\leq1</m> for every positively oriented orthonormal <m>r</m>-frame. An oriented <m>r</m>-dimensional submanifold <m>F</m> is <em>calibrated</em> by <m>\varphi</m> if <m>\varphi|_F=\vol_F</m>.</p></statement>
+    </definition>
+    <p>If <m>F</m> is compact and calibrated and <m>F'</m> is a homologous oriented submanifold, then
+      <md number="no">\vol(F)=\int_F\varphi=\int_{F'}\varphi\leq\vol(F').</md>
+      The equality of the integrals uses closedness and Stokes' theorem. This is the volume-minimizing property of a calibration; see <xref ref="hks-bib-harvey-lawson"/>.</p>
+    <p>Let <m>(Y,g,J,\omega,\Omega)</m> be a Ricci-flat Kähler manifold of dimension <m>d</m>, with a parallel holomorphic volume form normalized to be <m>dz_1\wedge\cdots\wedge dz_d</m> in a unitary coframe <m>dz_j=dx_j+i\,dy_j</m>. Then <m>\operatorname{Re}(e^{-i\theta}\Omega)</m> is a calibration for every real <m>\theta</m>.</p>
+    <definition xml:id="hks-def-special-lagrangian">
+      <idx>Special Lagrangian submanifold</idx>
+      <statement><p>An oriented real <m>d</m>-dimensional submanifold <m>F\subset Y</m> is <em>special Lagrangian of phase <m>\theta</m></em> if
+        <md number="no">\omega|_F=0,\qquad
+          \operatorname{Im}(e^{-i\theta}\Omega)|_F=0,\qquad
+          \operatorname{Re}(e^{-i\theta}\Omega)|_F=\vol_F.</md>
+        The phase is taken modulo <m>2\pi</m> with this orientation.</p></statement>
+    </definition>
+    <lemma xml:id="hks-slag-calibration">
+      <statement><p>A real oriented <m>d</m>-plane is calibrated by <m>\operatorname{Re}(e^{-i\theta}\Omega)</m> if and only if it is Lagrangian and <m>\Omega</m> has positive phase <m>\theta</m> on it.</p></statement>
+      <proof><p>Choose a real orthonormal basis <m>v_1,\ldots,v_d</m> of the plane. The Hermitian Gram matrix of these vectors is <m>I-iA</m>, where <m>A_{jk}=\omega(v_j,v_k)</m>, up to the harmless choice of sign in the Hermitian convention. The skew-symmetric real matrix <m>A</m> has eigenvalue pairs <m>\pm i a_j</m>, with <m>|a_j|\leq1</m>, and possibly a zero eigenvalue. The square of the complex determinant is
+        <md number="no">|\Omega(v_1,\ldots,v_d)|^2=\det(I-iA)=\prod_j(1-a_j^2)\leq1.</md>
+        Equality holds exactly when <m>A=0</m>, which is the Lagrangian condition. The real part after multiplication by <m>e^{-i\theta}</m> is one exactly when the complex number itself is <m>e^{i\theta}</m>. This proves the assertion and the calibration bound.</p></proof>
+    </lemma>
+    <lemma xml:id="hks-wirtinger">
+      <idx>Wirtinger inequality</idx>
+      <statement><p>Let <m>\omega_I</m> be a Kähler form on a Hermitian vector space. On every real oriented <m>2m</m>-plane <m>P</m>,
+        <md number="no">\left|\frac{\omega_I^m}{m!}\bigg|_P\right|\leq\vol_P.</md>
+        Equality holds exactly when <m>P</m> is invariant under <m>I</m>. For the complex orientation, the equality has positive sign.</p></statement>
+      <proof><p>The orthogonal projection of <m>I|_P</m> to <m>P</m> is skew-adjoint. Choose an orthonormal basis in which its two-dimensional blocks have coefficients <m>a_1,\ldots,a_m</m>, each of absolute value at most one. The coefficient of <m>\omega_I^m/m!</m> on the volume form is <m>\prod_j a_j</m>. Its absolute value is at most one. Equality means that the projection preserves the length of every vector in <m>P</m>, so <m>I(P)\subset P</m>. The converse follows from a unitary basis of a complex plane.</p></proof>
+    </lemma>
+    <p>The same argument on tangent spaces gives the Wirtinger inequality for a submanifold. If a smooth compact submanifold attains equality between the absolute value of its Kähler volume integral and its Riemannian volume, both pointwise inequalities in
+      <md number="no">\left|\int_F\frac{\omega_I^m}{m!}\right|
+        \leq\int_F\left|\frac{\omega_I^m}{m!}\bigg|_F\right|
+        \leq\vol(F)</md>
+      are equalities. The continuous nonnegative difference in the second inequality has zero integral, hence vanishes everywhere. All tangent planes are complex. An embedded submanifold with complex tangent bundle in a complex manifold is a complex submanifold, by the local holomorphic submanifold criterion.</p>
+  </section>
+  <section xml:id="hks-cohomological-rotation">
+    <title>A cohomological criterion for rotation</title>
+    <p>Fix a hyperkähler metric <m>g</m> on a real <m>4n</m>-manifold <m>M</m> and a quaternionic triple <m>I,J,K</m>. Recall that <m>\sigma_J=\omega_K+i\omega_I</m> and <m>\Omega_J=\sigma_J^n/n!</m>. In a quaternionic orthonormal frame this is the normalized holomorphic volume form used in <xref ref="hks-def-special-lagrangian"/>.</p>
+    <p>If <m>F</m> is <m>I</m>-holomorphic Lagrangian, then <m>\omega_J|_F=\omega_K|_F=0</m>. Consequently
+      <md number="no">\Omega_J|_F=i^n\frac{\omega_I^n|_F}{n!}=i^n\vol_F</md>
+      for its complex orientation. Thus it is special Lagrangian for <m>J</m>, of phase <m>n\pi/2</m>. The converse uses the following additional condition, as in <xref ref="hks-bib-engel-mauri" detail="Proposition 2.2"/>.</p>
+    <theorem xml:id="hks-thm-cohomological-rotation">
+      <idx>Hyperkähler rotation</idx>
+      <statement><p>Let <m>F\subset(M,J)</m> be a compact connected special Lagrangian submanifold. The following conditions are equivalent:
+        <ol marker="(i)">
+          <li><p>The underlying submanifold is <m>I</m>-holomorphic Lagrangian.</p></li>
+          <li><p>The restricted class <m>[\omega_K|_F]</m> vanishes in <m>H^2(F,\R)</m>.</p></li>
+          <li><p>With the calibration orientation,
+            <md number="no">\int_F(\omega_K+i\omega_I)^n=i^n\int_F\omega_I^n.</md></p></li>
+        </ol></p></statement>
+      <proof><p>If <m>F</m> is <m>I</m>-holomorphic Lagrangian, then <m>\omega_K|_F=0</m>, giving (ii). If (ii) holds, every term containing a factor <m>\omega_K</m> in the expansion of the left side of (iii) integrates to zero: the other factors are closed, and the restriction of <m>\omega_K</m> is exact. Thus (ii) implies (iii).</p>
+        <p>Suppose (iii) holds. Calibration gives
+          <md number="no">\vol(F)=\left|\int_F\Omega_J\right|
+            =\left|\int_F\frac{\omega_I^n}{n!}\right|\leq\vol(F).</md>
+          Equality in the Wirtinger inequality implies that every tangent space of <m>F</m> is <m>I</m>-invariant. Thus <m>F</m> is an <m>I</m>-complex submanifold. Since <m>F</m> was Lagrangian for <m>\omega_J</m>, and
+          <md number="no">\omega_K(v,w)=-\omega_J(Iv,w),</md>
+          the form <m>\omega_K</m> also vanishes on its tangent bundle. Hence <m>\sigma_I|_F=(\omega_J+i\omega_K)|_F=0</m>, proving (i).</p></proof>
+    </theorem>
+    <p xml:id="hks-rotation-orientation">The criterion uses only an equality of integrals, even though its conclusion concerns every tangent plane. The reason is the equality case of a pointwise volume bound. The calibration orientation and the <m>I</m>-complex orientation may initially differ; the use of absolute values in the proof allows either choice, and the resulting complex submanifold is then given its complex orientation.</p>
+    <aside xml:id="margin-hks-rotation-orientation">
+      <p>The forward rotation has phase <m>n\pi/2</m> under our conventions. Replacing <m>\sigma_J</m> by <m>-\sigma_J</m>, or reversing the sign convention for <m>\omega_A</m>, changes the displayed phase. The equality of integrals and the complex submanifold obtained after rotation are unaffected if all conventions are changed together.</p>
+    </aside>
+    <p>A special Lagrangian torus produced by a metric existence theorem is not automatically known to satisfy (ii) for a predetermined rotation. In <xref ref="hks-main-proof"/> this condition follows from monodromy. An alternative argument establishes (iii) from the Poincaré dual class of the torus. We prove that calculation next.</p>
+  </section>
+  <section xml:id="hks-fujiki-rotation">
+    <title>The class of the torus and the isotropic ray</title>
+    <lemma xml:id="hks-lemma-fujiki-on-torus">
+      <statement><p>Let <m>X</m> be an IHS <m>2n</m>-fold and let <m>F</m> be an oriented smooth real <m>2n</m>-dimensional submanifold. Suppose
+        <md number="no">\operatorname{PD}[F]=c\lambda^n,\qquad q_X(\lambda)=0,</md>
+        with <m>\lambda\in H^2(X,\R)</m> and <m>c\in\R</m>. Then, for every <m>\alpha\in H^2(X,\C)</m>,
+        <md xml:id="hks-eq-fujiki-on-torus" number="yes">\int_F\alpha^n=
+          c\,\frac{2^nc_X}{\binom{2n}{n}}q_X(\lambda,\alpha)^n.</md></p></statement>
+      <proof><p>Take the coefficient of <m>t^n</m> in
+        <md number="no">\int_X(\alpha+t\lambda)^{2n}
+          =c_X\bigl(q_X(\alpha)+2tq_X(\lambda,\alpha)\bigr)^n.</md>
+        The coefficient on the left is <m>\binom{2n}{n}\int_X\lambda^n\alpha^n</m>; the coefficient on the right is <m>2^nc_Xq_X(\lambda,\alpha)^n</m>. Multiply by <m>c</m> and use Poincaré duality. The identity for complex classes follows by complexifying the polynomial identity for real classes.</p></proof>
+    </lemma>
+    <proposition xml:id="hks-prop-isotropic-rotation">
+      <statement><p>Let <m>(M,g,I,J,K)</m> be a compact hyperkähler manifold such that <m>(M,J)</m> is IHS. Let <m>F\subset(M,J)</m> be a compact connected special Lagrangian submanifold. Suppose its Poincaré dual, with the calibration orientation, is <m>c\lambda^n</m>, where <m>c\in\R</m>, <m>\lambda\in H^2(M,\R)</m>, and <m>q_M(\lambda)=0</m>. Then <m>q_M(\lambda,\sigma_J)\ne0</m>. Write
+        <md number="no">q_M(\lambda,\sigma_J)=\rho e^{i\phi},\qquad \rho&gt;0,</md>
+        and put <m>I'=\sin\phi\, I+\cos\phi\, K</m> and <m>K'=I'J</m>. The submanifold <m>F</m> is <m>I'</m>-holomorphic Lagrangian. The class <m>\lambda</m> has type <m>(1,1)</m> for <m>I'</m> and satisfies <m>q_M(\lambda,\omega_{I'})=\rho&gt;0</m>.</p></statement>
+      <proof><p>Since <m>F</m> is calibrated, <m>\int_F\sigma_J^n\ne0</m>. Formula <xref ref="hks-eq-fujiki-on-torus"/> implies that <m>c\ne0</m> and <m>q_M(\lambda,\sigma_J)\ne0</m>. The restriction of <m>\omega_J</m> to <m>F</m> vanishes, so the same formula gives <m>q_M(\lambda,\omega_J)=0</m>.</p>
+        <p>The quaternionic relations give
+          <md number="no">K'=\sin\phi\,K-\cos\phi\,I.</md>
+          If <m>\psi=\pi/2-\phi</m>, then the normalized symplectic form for the unchanged complex structure <m>J</m>, expressed in the rotated triple, is
+          <md number="no">\sigma'_J=\omega_{K'}+i\omega_{I'}=e^{i\psi}\sigma_J.</md>
+          Thus <m>F</m> is still special Lagrangian for <m>J</m>, with its phase changed by <m>n\psi</m>. Its volume and orientation do not change.</p>
+        <p>The choice of <m>\phi</m> gives <m>q_M(\lambda,\omega_{K'})=0</m> and <m>q_M(\lambda,\omega_{I'})=\rho</m>. Apply <xref ref="hks-eq-fujiki-on-torus"/> to <m>\sigma'_J</m> and <m>\omega_{I'}</m>. Since <m>q_M(\lambda,\sigma'_J)=i\rho</m>, it follows that
+          <md number="no">\int_F(\omega_{K'}+i\omega_{I'})^n=i^n\int_F\omega_{I'}^n.</md>
+          Condition (iii) of <xref ref="hks-thm-cohomological-rotation"/>, applied to <m>I',J,K'</m>, makes <m>F</m> an <m>I'</m>-holomorphic Lagrangian submanifold.</p>
+        <p>The holomorphic symplectic form for <m>I'</m> is <m>\sigma_{I'}=\omega_J+i\omega_{K'}</m>. We have proved <m>q_M(\lambda,\sigma_{I'})=0</m>. The BBF Hodge decomposition identifies the real classes orthogonal to <m>\sigma_{I'}</m> and its conjugate with <m>H^{1,1}(M,I';\R)</m>. Hence <m>\lambda</m> has the required type and positive Kähler pairing.</p></proof>
+    </proposition>
+    <p>The proof follows <xref ref="hks-bib-engel-mauri" detail="Lemma 2.4 and Proposition 2.5"/>, with the Fujiki normalization written explicitly. The hypothesis <m>\operatorname{PD}[F]\in\R\lambda^n</m> will come from the lowest monodromy weight in a degeneration. It is stronger than knowing only that <m>F</m> is a torus.</p>
+    <p xml:id="hks-rotation-nefness">The conclusion that <m>\lambda</m> has type <m>(1,1)</m> and positive Kähler pairing does not by itself prove nefness. In <xref ref="hks-main-proof"/>, the arithmetic choice of the rotated period makes <m>\Q\lambda</m> the only rational isotropic line in <m>H^{1,1}</m>. The Lagrangian torus gives a fibration on that nonprojective manifold. Its pullback class is then identified with a positive multiple of <m>\lambda</m>, which proves semiampleness on the rotated manifold.</p>
+    <aside xml:id="margin-hks-rotation-nefness">
+      <p>A positive BBF pairing selects one of the two directions on an isotropic line. It does not say that the line avoids walls of the Kähler cone. The rotated manifold in the proof can have negative-square rational <m>(1,1)</m> classes; no rank-one Picard assertion is needed there.</p>
+    </aside>
+  </section>
+  <section xml:id="hks-monodromy-restriction">
+    <title>Restriction and monodromy</title>
+    <p>There is another way to establish the vanishing required for rotation. The local tori near a deepest stratum of a semistable degeneration can be transported around a loop in the parameter. When this transport gives a family of parametrized tori, restriction kills the image of monodromy minus the identity.</p>
+    <lemma xml:id="hks-lemma-monodromy-restriction">
+      <statement><p>Let <m>\pi:\mathcal Y\to S^1</m> be a smooth fiber bundle with compact fibers, and let <m>F</m> be a compact smooth manifold. Suppose there is a smooth map <m>j:F\times S^1\to\mathcal Y</m> over <m>S^1</m> whose restriction to each fiber is an embedding. Fix a base point, write <m>Y</m> for its fiber, <m>i:F\hookrightarrow Y</m> for the embedding, and <m>T</m> for the cohomological monodromy. Then
+        <md number="no">i^*\circ T=i^*,\qquad
+          \operatorname{im}(T-\id)\subset\ker\bigl(i^*:H^k(Y,\R)\to H^k(F,\R)\bigr)</md>
+        for every <m>k</m>. If <m>T</m> is unipotent, then <m>\operatorname{im}(\log T)=\operatorname{im}(T-\id)</m>.</p></statement>
+      <proof><p>Pullback along <m>j</m> is a map from the local system <m>R^k\pi_*\R</m> to the constant local system <m>H^k(F,\R)</m>. It commutes with transport around the circle, and transport in the target is the identity. Thus <m>i^*T=i^*</m>. This argument can also be seen by trivializing the bundle over an interval: the two endpoint embeddings differ by the bundle monodromy and are homotopic through the given parametrized embeddings.</p>
+        <p>Put <m>U=T-\id</m>. If <m>U</m> is nilpotent, then
+          <md number="no">\log T=U\left(\id-\frac{U}{2}+\frac{U^2}{3}-\cdots\right).</md>
+          The second factor is a finite polynomial in <m>U</m> with constant term one. It is invertible and commutes with <m>U</m>, proving equality of the two images.</p></proof>
+    </lemma>
+    <p>In particular, if <m>[\omega_K]\in\operatorname{im}(T-\id)</m>, then <m>[\omega_K|_F]=0</m>. For a special Lagrangian <m>F\subset(M,J)</m>, <xref ref="hks-thm-cohomological-rotation"/> gives holomorphicity for <m>I</m>. The OpenAI argument uses this restriction calculation; the Engel–Mauri argument uses the Poincaré dual calculation in <xref ref="hks-prop-isotropic-rotation"/>.</p>
+    <p xml:id="hks-parameterized-monodromy">The parametrization in the lemma is a substantive hypothesis. Invariance of the homology class <m>[F]</m> would only control integrals against that class. It would not imply that the entire map <m>H^2(Y)\to H^2(F)</m> is monodromy invariant. The metric theorem in <xref ref="hks-thm-metric-torus"/> supplies an isotopy to the local coordinate torus for which this transport is available.</p>
+    <aside xml:id="margin-hks-parameterized-monodromy">
+      <p>If transport acts nontrivially on <m>H^k(F)</m>, restriction intertwines two monodromy operators instead. The conclusion of the lemma uses trivial transport on the parametrized torus. This is why the local isotopy class is retained in the metric existence statement.</p>
+    </aside>
+  </section>
+  <section xml:id="hks-slag-deformations">
+    <title>Deformations of a special Lagrangian torus</title>
+    <p>A single special Lagrangian torus has a local family of deformations. This local assertion is useful for understanding the metric existence theorem, but it does not extend that family over an entire compact base.</p>
+    <theorem xml:id="hks-mclean-deformations">
+      <title>(McLean)</title>
+      <idx>McLean's theorem</idx>
+      <statement><p>Let <m>F</m> be a compact embedded special Lagrangian submanifold in a Calabi–Yau manifold. Its nearby special Lagrangian deformations, modulo reparametrization, form a smooth manifold. The tangent space is naturally the space of harmonic real one-forms on <m>F</m>, so its dimension is <m>b_1(F)</m>.</p></statement>
+    </theorem>
+    <p>We quote the unobstructedness assertion from <xref ref="hks-bib-mclean" detail="Theorem 3.6"/>. The infinitesimal identification can be derived as follows. A normal vector field <m>V</m> determines the one-form <m>\alpha=(\iota_V\omega)|_F</m>; the Lagrangian condition makes this a bundle isomorphism from the normal bundle to <m>T^*F</m>. Let <m>\beta=\operatorname{Im}(e^{-i\theta}\Omega)</m>. Cartan's formula, using <m>d\omega=d\beta=0</m>, gives the first variations
+      <md number="no">\frac{d}{ds}\bigg|_{s=0}f_s^*\omega=d\alpha,\qquad
+        \frac{d}{ds}\bigg|_{s=0}f_s^*\beta=d\bigl((\iota_V\beta)|_F\bigr).</md>
+      A unitary frame along <m>F</m> gives <m>(\iota_V\beta)|_F=-*\alpha</m> with the conventions above. Thus the linearized equations are <m>d\alpha=0</m> and <m>d^*\alpha=0</m>. Hodge theory identifies their kernel with <m>H^1(F,\R)</m>.</p>
+    <p>On the orthogonal complement of harmonic one-forms the linearization is invertible onto exact two-forms and functions whose integral on each connected component is zero. If <m>G</m> is the Green operator for the Hodge Laplacian, an explicit inverse is
+      <md number="no">(\eta,f)\longmapsto d^*G\eta+dGf,\qquad
+        d\eta=0,\quad [\eta]=0.</md>
+      Indeed, <m>dd^*G\eta=\eta</m> because <m>\eta</m> is exact and closed, while <m>d^*dGf=f</m>. The other two compositions vanish because <m>d^2=(d^*)^2=0</m>. Elliptic estimates give the bounded inverse in the corresponding Hölder or Sobolev spaces. For a nearby embedding, the pulled-back closed forms <m>\omega</m> and <m>\beta</m> remain exact on <m>F</m>, since their cohomology classes are unchanged by isotopy. The implicit function theorem on this complement therefore produces a smooth local family parametrized by the harmonic forms. This is the analytic argument in the quoted theorem; the same inverse is used for a perturbation of the ambient forms when their restricted cohomology classes still vanish.</p>
+    <example xml:id="hks-flat-special-lagrangian">
+      <statement><p>On <m>Y=(\R^d/\Z^d)_x\times\R^d_y</m>, set <m>z_j=x_j+i y_j</m>, <m>\omega=\sum_jdx_j\wedge dy_j</m>, and <m>\Omega=dz_1\wedge\cdots\wedge dz_d</m>. Each torus <m>y=\text{constant}</m> is special Lagrangian of phase zero. The graph of a one-form <m>\alpha=\sum_j a_j(x)dx_j</m> is Lagrangian exactly when <m>d\alpha=0</m>. Locally write <m>\alpha=df</m>. The special Lagrangian equation on its graph is
+        <md number="no">\operatorname{Im}\det(I+i\operatorname{Hess}f)=0,\qquad
+          \operatorname{Re}\det(I+i\operatorname{Hess}f)&gt;0.</md>
+        Its linearization at <m>f=0</m> is <m>\Delta f=0</m>. The harmonic one-forms on the flat torus are the constant forms, and their graphs are precisely the small translations in <m>y</m>. This is the flat model that appears, after rescaling, in <xref ref="hks-metric-syz"/>.</p></statement>
+    </example>
+  </section>
+</chapter>

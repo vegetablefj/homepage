@@ -1,0 +1,106 @@
+<chapter xml:id="ha-c09">
+  <title>Derived categories</title>
+  <introduction><p>The derived category makes quasi-isomorphisms invertible while retaining extension classes as morphisms. Its construction is a Verdier quotient of the homotopy category. The distinction between homotopy equivalence and quasi-isomorphism is precisely the distinction between the two categories. Main references are <xref ref="bib-ha-gm" detail="Chapter III"/>, <xref ref="bib-ha-ks" detail="Chapter 13"/>, and <xref ref="bib-ha-li2" detail="Sections 4.4–4.6"/>.</p></introduction>
+  <section xml:id="ha-c09-construction">
+    <title>Inverting quasi-isomorphisms</title>
+    <definition xml:id="ha-c09-def-derived">
+      <title>Derived categories and boundedness</title><idx>Derived category</idx><idx>Acyclic complex</idx><idx>Quasi-isomorphism</idx>
+      <statement><p>Let <m>\mathcal A</m> be abelian. Write <m>\operatorname{Ac}(\mathcal A)</m> for the strictly full subcategory of acyclic complexes in <m>\K(\mathcal A)</m>. The derived category is
+        <md number="no">\D(\mathcal A)=\K(\mathcal A)/\operatorname{Ac}(\mathcal A).</md>
+        Its full subcategories <m>\D^+(\mathcal A)</m>, <m>\D^-(\mathcal A)</m>, and <m>\D^b(\mathcal A)</m> consist respectively of objects with cohomology bounded below, above, and on both sides.</p></statement>
+    </definition>
+    <proposition xml:id="ha-c09-prop-quotient">
+      <statement><p>The acyclic complexes form a thick triangulated subcategory. The maps inverted by the quotient are exactly the quasi-isomorphisms. Cohomology descends to <m>\D(\mathcal A)</m>, and a morphism of <m>\D(\mathcal A)</m> is invertible if and only if it induces isomorphisms on every cohomology object.</p></statement>
+      <proof><p>The cone long exact sequence proves closure under cones and translations; cohomology preserves finite direct sums, so it also proves closure under summands. The same sequence says that a chain map is a quasi-isomorphism exactly when its cone is acyclic. The quotient theorem applies. For an arbitrary derived morphism, complete it to a distinguished triangle. Its cone is zero exactly when all its cohomology objects vanish, which gives the last assertion.</p></proof>
+    </proposition>
+    <p>The phrase quasi-isomorphic complexes may mean that there is a single quasi-isomorphism between them, or that they are joined by a zigzag of quasi-isomorphisms. We use the latter meaning when no arrow is displayed. It is equivalent to their being isomorphic in the derived category.<fn>A roof representing an isomorphism has both legs quasi-isomorphisms, by the preceding proposition. Thus the zigzag can be shortened to a span. This does not assert that a quasi-isomorphism exists in either prescribed direction.</fn></p>
+    <p>For a large <m>\mathcal A</m>, local smallness of <m>\D(\mathcal A)</m> is not automatic. If every target has a K-injective replacement, derived morphisms can be calculated in the locally small homotopy category. This applies to Grothendieck categories by <xref ref="ha-c10"/>. The size issue and the convention of working first at a larger universe are discussed in <xref ref="bib-ha-stacks" detail="Tag 05RR"/>.</p>
+  </section>
+  <section xml:id="ha-c09-bounded">
+    <title>Bounded models and short exact sequences</title>
+    <proposition xml:id="ha-c09-prop-bounded">
+      <statement><p><ol>
+        <li><p>An object with cohomology zero below <m>a</m> has a bounded below representative, and one with cohomology zero above <m>b</m> has a bounded above representative. If both conditions hold it has a bounded representative.</p></li>
+        <li><p>Localization of <m>\K^+(\mathcal A)</m>, <m>\K^-(\mathcal A)</m>, or <m>\K^b(\mathcal A)</m> at quasi-isomorphisms identifies with the corresponding full subcategory of <m>\D(\mathcal A)</m>.</p></li>
+        <li><p>Every short exact sequence of complexes <m>0\to X\xrightarrow{i}Y\to Z\to0</m> defines a distinguished triangle <m>X\to Y\to Z\to X[1]</m> in <m>\D(\mathcal A)</m>.</p></li>
+      </ol></p></statement>
+      <proof><p>For the first assertion use smart truncations. When both bounds are present, the zigzag from <m>X</m> to <m>\tau_{\leq b}\tau_{\geq a}X</m> consists of quasi-isomorphisms. To prove full faithfulness in the second assertion, truncate the middle objects of roofs and common refinements outside the cohomological bounds; the fraction equivalence is preserved. This standard fraction argument is given in <xref ref="bib-ha-stacks" detail="Tag 05RR"/>. For the last assertion the map <m>\Cone(i)\to Z</m> sending <m>(y,x)</m> to the image of <m>y</m> is a quasi-isomorphism: its kernel is the cone of <m>\id_X</m>. Replace the cone by <m>Z</m> in its triangle.</p></proof>
+    </proposition>
+    <p>The cohomological bounds in the definition concern the object of the derived category, not each chosen complex representing it. A bounded object can have unbounded injective or projective resolutions. We also distinguish <m>\D^b(\mathcal B)</m> from the full subcategory of <m>\D^b(\mathcal A)</m> whose cohomology lies in an abelian subcategory <m>\mathcal B</m>: their equivalence requires additional hypotheses.</p>
+    <proposition xml:id="ha-c09-prop-objects">
+      <statement><p>The functor <m>\mathcal A\to\D(\mathcal A)</m> placing objects in degree zero is fully faithful. For <m>A,B\in\mathcal A</m>,
+        <md number="no">\Hom_{\D(\mathcal A)}(A,B[n])=0\quad(n&lt;0).</md>
+        If <m>\mathcal A</m> has enough injectives or enough projectives, the nonnegative groups are naturally <m>\Ext^n_{\mathcal A}(A,B)</m>, with composition corresponding to Yoneda product.</p></statement>
+      <proof><p>For a roof from <m>A</m> to <m>B</m>, truncate its middle complex above degree zero. The target map then factors through its degree-zero cohomology; the quasi-isomorphism to <m>A</m> identifies that cohomology with <m>A</m>. This gives the full faithfulness assertion and its uniqueness by the roof equivalence. The same truncation gives the negative-degree vanishing. Under an injective hypothesis choose <m>B\to I</m> with <m>I</m> bounded below and injective. Then
+        <md number="no">\Hom_{\D(\mathcal A)}(A,B[n])=H^n\underline{\Hom}^{\bullet}(A,I),</md>
+        which is the classical definition of Ext. The comparison with extensions identifies the connecting morphism of a short exact sequence with its degree-one class; splicing and composition give the general product. The projective proof is dual. The replacement calculation is proved in <xref ref="ha-c10"/>; the quotient and truncation arguments do not depend on these existence hypotheses.</p></proof>
+    </proposition>
+  </section>
+  <section xml:id="ha-c09-examples">
+    <title>What derived morphisms retain</title>
+    <example xml:id="ha-c09-example-not-homotopy">
+      <p>The exact complex <m>0\to\Z\xrightarrow{2}\Z\to\Z/2\Z\to0</m> is zero in <m>\D(\Ab)</m> but is not contractible. A contracting homotopy would split the surjection <m>\Z\to\Z/2\Z</m>, which has no section. Thus a quasi-isomorphism need not be a homotopy equivalence.</p>
+    </example>
+    <example xml:id="ha-c09-example-extension">
+      <p>The short exact sequence <m>0\to\Z\xrightarrow{2}\Z\to\Z/2\Z\to0</m> gives a nonzero morphism <m>\Z/2\Z\to\Z[1]</m>. Its class generates <m>\Ext^1_{\Z}(\Z/2\Z,\Z)\simeq\Z/2\Z</m>. No chain map from the stalk complex <m>\Z/2\Z</m> to the stalk complex <m>\Z[1]</m> represents this nonzero morphism: such a chain map is zero. A roof or a resolution supplies the additional morphism.</p>
+    </example>
+    <p>Over a field, every complex is isomorphic in the derived category to its graded cohomology with zero differential. Choose complements to boundaries inside cycles and to cycles inside each term; the remaining pieces form contractible two-term complexes. The splitting generally depends on choices. Over a general ring, a complex need not split into its cohomology objects: connecting maps between truncations retain extension data.</p>
+    <p>For a ring <m>R</m>, the homotopy category of bounded complexes of finitely generated projective modules embeds fully faithfully in <m>\D(R)</m>. Its essential image is the perfect complexes. A bounded complex of finitely generated modules need not be perfect: over <m>k[\epsilon]/(\epsilon^2)</m>, the residue field has an infinite projective resolution with repeated multiplication by <m>\epsilon</m>. These distinctions will also separate boundedness from compactness.</p>
+  </section>
+  <section xml:id="ha-c09-morphism-models">
+    <title>Morphism calculations and resolution models</title>
+    <p>The localization describes a morphism by a roof, but a roof is not always the best way to calculate it. A resolution replaces one variable by an object orthogonal to every acyclic complex. The orthogonal calculation of <xref ref="ha-c08"/> then removes the denominators.</p>
+    <proposition xml:id="ha-c09-prop-resolution-models">
+      <statement><p>Assume the indicated replacements exist.<ol>
+        <li><p>If <m>Y\to I</m> is a quasi-isomorphism with K-injective target, then <m>\Hom_{\D(\mathcal A)}(X,Y[n])\simeq\Hom_{\K(\mathcal A)}(X,I[n])</m> for every <m>X,n</m>.</p></li>
+        <li><p>If <m>P\to X</m> is a quasi-isomorphism with K-projective source, then <m>\Hom_{\D(\mathcal A)}(X,Y[n])\simeq\Hom_{\K(\mathcal A)}(P,Y[n])</m> for every <m>Y,n</m>.</p></li>
+        <li><p>If <m>\mathcal A</m> has enough injectives, then <m>\K^+(\operatorname{Inj}\mathcal A)\to\D^+(\mathcal A)</m> is an equivalence. If it has enough projectives, then <m>\K^-(\operatorname{Proj}\mathcal A)\to\D^-(\mathcal A)</m> is an equivalence.</p></li>
+      </ol></p></statement>
+      <proof><p>The first two statements are the orthogonal calculation; their definitions and existence hypotheses are developed in <xref ref="ha-c10"/>. For the bounded below case, resolve a bounded below representative by a bounded below complex of injectives. Such complexes are K-injective, so the displayed functor is fully faithful as well as essentially surjective. The projective case is dual. This proof indicates the dependency: the construction of <m>\D</m> does not require resolutions, while a resolution model requires the relevant existence theorem.</p></proof>
+    </proposition>
+    <p>The numerator of a morphism into <m>I</m> is an actual chain map into <m>I</m>, up to chain homotopy. A morphism into the original <m>Y</m> need not be an actual chain map into <m>Y</m>. Similarly, a morphism between two chosen injective models lifts uniquely only as a homotopy class. This supplies a functor on homotopy categories; it is not a strictly unique map of complexes.</p>
+    <p>Bounded cohomology does not mean a bounded injective resolution exists. An object of <m>\D^b(\mathcal A)</m> may be represented by a complex of injectives extending indefinitely to the right. Thus <m>\K^b(\operatorname{Inj}\mathcal A)</m> need not model all of <m>\D^b(\mathcal A)</m>. A finite injective dimension hypothesis would have to be supplied. These boundedness distinctions also matter for total derived functors.</p>
+    <proposition xml:id="ha-c09-prop-hom-bound">
+      <statement><p>If <m>H^i(X)=0</m> for <m>i&gt;a</m> and <m>H^i(Y)=0</m> for <m>i&lt;b</m>, then
+        <md number="no">\Hom_{\D(\mathcal A)}(X,Y[n])=0\quad\text{for }n&lt;b-a.</md>
+        At the boundary there is a natural isomorphism
+        <md number="no">\Hom_{\D(\mathcal A)}(X,Y[b-a])\simeq\Hom_{\mathcal A}(H^aX,H^bY).</md>
+        No injective or projective hypothesis is required.</p></statement>
+      <proof><p>Choose a representative of <m>Y</m> vanishing below <m>b</m>. For a roof from <m>X</m> to <m>Y[n]</m>, truncate its middle complex above <m>a</m>; the denominator remains a quasi-isomorphism. If <m>n&lt;b-a</m>, the numerator has disjoint source and target degree supports, so is zero. For the boundary case, the truncation triangles remove cohomology of <m>X</m> below <m>a</m> and of <m>Y</m> above <m>b</m>; the just-proved vanishing shows that these removals do not change Hom. The remaining calculation is full faithfulness of stalk complexes.</p></proof>
+    </proposition>
+    <p>This is an orthogonality statement about cohomological ranges. It does not bound positive Ext groups between two stalk complexes. Such a bound is a homological-dimension assertion, which is additional information.</p>
+  </section>
+  <section xml:id="ha-c09-cohomological-filtration">
+    <title>Cohomology layers and extension data</title>
+    <proposition xml:id="ha-c09-prop-truncation-layers">
+      <statement><p>Smart truncations define natural triangles
+        <md number="no">\tau_{\leq n}X\longrightarrow X\longrightarrow\tau_{\geq n+1}X\longrightarrow(\tau_{\leq n}X)[1]</md>
+        and
+        <md number="no">\tau_{\leq n-1}X\longrightarrow\tau_{\leq n}X\longrightarrow H^n(X)[-n]\longrightarrow(\tau_{\leq n-1}X)[1].</md>
+        If <m>X</m> has cohomology in <m>[a,b]</m>, these triangles give a finite construction of <m>X</m> by extensions of its cohomology objects in their prescribed degrees.</p></statement>
+      <proof><p>The cone of <m>\tau_{\leq n}X\to X</m> maps by a quasi-isomorphism to <m>\tau_{\geq n+1}X</m>; this follows either by the cone cohomology sequence or by the explicit smart-truncation complexes. The second triangle follows by comparing successive upper truncations: the cone has only <m>H^n(X)</m> in degree <m>n</m> and hence is quasi-isomorphic to its stalk there. These triangles are natural in the derived category by the upper/lower range orthogonality. Iteration between <m>a</m> and <m>b</m> gives the finite construction.</p></proof>
+    </proposition>
+    <p>The successive objects are called the cohomology layers, or the Postnikov layers, of <m>X</m>. Their connecting maps record information lost by the graded object <m>H^*(X)</m>.<fn>This use of a Postnikov tower concerns truncation triangles. No topological Postnikov construction is needed. The abstract treatment of truncation by a t-structure appears in <xref ref="ha-c13"/>.</fn></p>
+    <example xml:id="ha-c09-example-two-layers">
+      <p>Suppose that <m>X</m> has just <m>H^0(X)=A</m> and <m>H^1(X)=B</m>. Its truncation triangle has the form
+        <md number="no">A\longrightarrow X\longrightarrow B[-1]\xrightarrow{\kappa}A[1].</md>
+        Thus the interaction between the two cohomology objects is measured by <m>\kappa\in\Hom_{\D(\mathcal A)}(B,A[2])</m>. Conversely, any such morphism gives a triangle whose middle object has precisely these two cohomology objects. The split-triangle criterion says that <m>\kappa=0</m> precisely when this triangle splits, giving <m>X\simeq A\oplus B[-1]</m>. Nonzero degree-two extension classes therefore give complexes which are not isomorphic to their graded cohomology.</p>
+    </example>
+    <p>For an unbounded complex there is an infinite truncation tower. The finite-layer argument by itself does not identify the complex with a homotopy limit or homotopy colimit of that tower. Such a conclusion requires the relevant limits, exactness, and convergence conditions. In particular, exact filtered colimits in a Grothendieck category give no automatic exactness of infinite products.</p>
+  </section>
+  <section xml:id="ha-c09-yoneda-and-subcategories">
+    <title>Yoneda extensions and full subcategories</title>
+    <proposition xml:id="ha-c09-prop-yoneda-general">
+      <statement><p>For every abelian category <m>\mathcal A</m> and <m>n\geq1</m>, Yoneda <m>n</m>-extensions of <m>B</m> by <m>A</m> correspond naturally to morphisms <m>B\to A[n]</m> in <m>\D(\mathcal A)</m>. Equivalence of extensions corresponds to equality of morphisms, and splicing corresponds to shifted composition. This assertion is made at a universe scale where the relevant extension classes or derived morphisms are sets.</p></statement>
+      <proof><p>For an exact sequence <m>0\to A\to E_{n-1}\to\cdots\to E_0\to B\to0</m>, form the complex with <m>A</m> in degree <m>-n</m>, <m>E_0</m> in degree zero, and no final term <m>B</m>. Its augmentation to <m>B</m> is a quasi-isomorphism, and its projection to <m>A[n]</m> gives a roof representing the extension. Conversely, a roof from <m>B</m> to <m>A[n]</m> can be truncated to these degrees; kernels and cokernels at the ends turn it into an exact sequence of this form. The fraction-equivalence relation gives precisely Yoneda equivalence. This construction, including the endpoint modification, is proved in <xref ref="bib-ha-stacks" detail="Tag 06XP"/>.</p></proof>
+    </proposition>
+    <p>Thus Ext can be defined by derived morphisms or by Yoneda extensions even when there are not enough injectives or projectives. Resolutions provide a calculation of these groups under additional hypotheses. The comparison in the earlier stalk-complex proposition concerns that calculation; its hypotheses do not restrict the Yoneda statement.</p>
+    <proposition xml:id="ha-c09-prop-subcategory-criterion">
+      <statement><p>Let <m>\mathcal B\subset\mathcal A</m> be a full abelian subcategory whose inclusion is exact and whose image is a Serre subcategory. Assume that for all <m>B,C\in\mathcal B</m> and <m>n\geq0</m> the comparison <m>\Ext^n_{\mathcal B}(B,C)\to\Ext^n_{\mathcal A}(B,C)</m> is an isomorphism, using Yoneda Ext. Then
+        <md number="no">\D^b(\mathcal B)\longrightarrow\D^b(\mathcal A)</md>
+        is fully faithful, with essential image the objects whose cohomology lies in <m>\mathcal B</m>.</p></statement>
+      <proof><p>The inclusion preserves quasi-isomorphisms and gives the displayed functor. By the Yoneda comparison it is fully faithful on all shifts of stalk objects. Use the finite cohomology-layer construction and the five lemma, first in one variable and then in the other, to obtain full faithfulness on bounded complexes. Its essential image is therefore triangulated: a map between two objects in the image lifts to <m>\D^b(\mathcal B)</m>, and its cone lifts as well. Every bounded object with cohomology in <m>\mathcal B</m> is an iterated extension of such stalks, proving essential surjectivity onto the asserted subcategory. The Serre condition ensures that this cohomological condition is stable under triangles.</p></proof>
+    </proposition>
+    <p>The Ext comparison is a genuine hypothesis. Exactness and full faithfulness of the original abelian inclusion only control degree zero. The criterion explains what must be checked before replacing the phrase <em>derived complexes with cohomology in <m>\mathcal B</m></em> by <em>the derived category of <m>\mathcal B</m></em>.</p>
+  </section>
+</chapter>

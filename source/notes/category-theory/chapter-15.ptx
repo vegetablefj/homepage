@@ -1,0 +1,373 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="cat-images-regular">
+  <title>Images, quotients, and regular categories</title>
+  <introduction>
+    <p>A function factors through its image, and an equivalence relation on a set has a quotient with exactly the prescribed identifications. These familiar statements combine several different properties. Cancellation defines monomorphisms and epimorphisms; a coequalizer makes specified identifications universal; a lifting property controls comparisons between factorizations. Regular categories isolate the conditions that make image factorizations behave well under pullback. Barr-exact categories add the effectiveness of every internal equivalence relation. Lifting against a specified class of arrows also defines projective and injective objects.</p>
+    <p>Categories are ordinary, set-encoded, and locally <m>\U</m>-small. No additive structure is assumed. Initial definitions apply in any such category; finite completeness is imposed when required. We use subobjects and quotients from <xref ref="cat-c05-def-subobject"/>, the kernel-pair discussion in <xref ref="bib-cat-riehl" detail="Example 3.6.11"/>, the foundational account in <xref ref="bib-cat-barr-exact" detail="Chapter I, Sections 1–2"/>, and orthogonal factorization systems from <xref ref="bib-cat-riehl-factorization" detail="Section 1"/>. All existence assertions below concern the specified universal constructions, rather than a chosen underlying-set presentation.</p>
+  </introduction>
+
+  <section xml:id="cat-c15-subobjects">
+    <title>Subobjects and the direction of quotient maps</title>
+    <p>A subobject of <m>X</m> is represented by a monomorphism <m>m:A\rightarrowtail X</m>. Two representatives define the same subobject when an isomorphism between their sources commutes with their maps to <m>X</m>. We write <m>[m]\leq[n]</m> if <m>m</m> factors through <m>n</m>. Monicity makes the comparison unique and monic. If comparisons exist in both directions, cancellation shows that they are inverse. Passing to these equivalence classes therefore gives the poset <m>\operatorname{Sub}(X)</m>.</p>
+    <p>A quotient is dually represented by an epimorphism <m>q:X\twoheadrightarrow Q</m>. We keep the opposite-category order of <xref ref="cat-c05-def-subobject"/>: <m>[q]\preceq[q']</m> means <m>q=hq'</m> for a comparison <m>h</m>. A smaller quotient in this order makes at least the identifications made by a larger one; the identity quotient is greatest. We shall distinguish regular quotients, represented by regular epimorphisms, from arbitrary quotient objects.<fn>This ordering agrees with the dual subobject convention in <xref ref="bib-cat-li2" detail="Definition 1.1.3"/>. Other accounts order quotients by increasing coarseness and reverse it. The equation specifying the factorization, rather than the inequality alone, determines the intended direction.</fn></p>
+    <p>Subobjects can be tested by generalized elements. Regard <m>\Hom(T,A)</m> as a subset of <m>\Hom(T,X)</m> through postcomposition with <m>m</m>. Then <m>[m]\leq[n]</m> exactly when the first such subset is contained in the second for every <m>T</m>. The forward implication uses composition; conversely take <m>T=A</m> and the element <m>m:A\to X</m>. Its asserted factorization gives the comparison. This is <xref ref="bib-cat-li2" detail="Lemma 1.1.4"/>. Testing only ordinary points is not enough in an arbitrary category.</p>
+    <proposition xml:id="cat-c15-prop-subobject-pullback">
+      <statement>
+        <p>Pullback of subobjects, whenever it exists, defines a monotone map <m>f^*:\operatorname{Sub}(Y)\to\operatorname{Sub}(X)</m> for <m>f:X\to Y</m>. In a finitely complete category, binary intersections are pullbacks of the two subobjects over their common codomain, and the largest subobject is the identity. Inverse image preserves these intersections and the largest subobject.</p>
+      </statement>
+      <proof>
+        <p>A pullback of a monomorphism is monic: two maps with equal composites to the new codomain have equal composites to the old subobject by monicity, and are equal by the pullback property. A comparison of subobjects induces a comparison of their pullbacks, uniquely, so the assignment is independent of representatives and monotone. A map into the pullback of two subobjects is precisely a map factoring through both. This gives their greatest lower bound. Iterating pullback in either order gives the same universal problem, proving preservation of intersections; pulling back an identity gives an identity.</p>
+      </proof>
+    </proposition>
+    <p>The subobject and quotient collections are ordinary sets because the whole category is set-encoded. They need not belong to <m>\U</m>, even if every Hom set does. Neither well-poweredness nor a least subobject is assumed here. Finite intersections only require the indicated finite limits; a least subobject would be an additional assertion.</p>
+  </section>
+
+  <section xml:id="cat-c15-epimorphisms">
+    <title>Regular and strong epimorphisms</title>
+    <definition xml:id="cat-c15-def-regular-strong">
+      <title>Universal quotients and unique lifting</title>
+      <idx>Regular epimorphism</idx><idx>Strong epimorphism</idx><idx>Orthogonality</idx>
+      <statement>
+        <p><ol>
+          <li><p>An arrow <m>e:A\to B</m> is a regular epimorphism if it is a coequalizer of some parallel pair <m>a,b:R\rightrightarrows A</m>.</p></li>
+          <li><p>For arrows <m>e:A\to B</m> and <m>m:C\to D</m>, write <m>e\perp m</m> if every pair <m>u:A\to C</m>, <m>v:B\to D</m> satisfying <m>mu=ve</m> has a unique diagonal <m>d:B\to C</m> with <m>de=u</m> and <m>md=v</m>.</p></li>
+          <li><p>A strong epimorphism is an epimorphism <m>e</m> such that <m>e\perp m</m> for every monomorphism <m>m</m>. When <m>m</m> is monic, a diagonal, if it exists, is automatically unique.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <p>The diagonal must solve both triangle equations. Merely extending a map across <m>e</m> does not state its required compatibility with the prescribed bottom arrow. If the category has equalizers, the epimorphism condition in the last definition follows already from the lifting property: when <m>se=te</m>, factor <m>e</m> through the equalizer <m>j</m> of <m>s,t</m>. Lifting against <m>j</m>, with bottom map the identity of <m>B</m>, makes <m>j</m> split epic and hence invertible. Thus <m>s=t</m>. We retain the explicit epicity condition so that the definition also applies before assuming equalizers.<fn>Our notation for orthogonality follows <xref ref="bib-cat-riehl-factorization" detail="Definition 1.3"/>. The word strong concerns lifting, whereas regular concerns being a coequalizer. It does not mean split, nor does it refer to the cardinality of an underlying set.</fn></p>
+    <proposition xml:id="cat-c15-prop-epi-comparisons">
+      <statement>
+        <p><ol>
+          <li><p>Every split epimorphism is regular, every regular epimorphism is strong, and every strong epimorphism is epic.</p></li>
+          <li><p>A strong epimorphism that is monic is an isomorphism. More generally, if a strong epimorphism factors through a monomorphism, that monomorphism is invertible.</p></li>
+          <li><p>If a regular epimorphism has a kernel pair, it is the coequalizer of that kernel pair.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>If <m>e:A\to B</m> has section <m>s</m>, it coequalizes <m>se,\id_A</m>. A map <m>h:A\to Z</m> with <m>hse=h</m> factors as <m>(hs)e</m>, uniquely because <m>e</m> is epic. Hence <m>e</m> is their coequalizer.</p>
+        <p>Suppose <m>e</m> coequalizes <m>a,b</m> and <m>mu=ve</m> with <m>m</m> monic. Then <m>mua=mub</m>, so <m>ua=ub</m>. There is a unique <m>d</m> with <m>de=u</m>. The equation <m>mde=ve</m> and epicity of a coequalizer give <m>md=v</m>. Thus <m>e\perp m</m>.</p>
+        <p>If <m>e=mh</m> with <m>m</m> monic and <m>e</m> strong, apply lifting to top map <m>h</m> and bottom identity. It gives <m>d</m> with <m>md=\id</m>. Monicity also gives <m>dm=\id</m>, so <m>m</m> is invertible. Taking <m>m=e</m> proves the special case.</p>
+        <p>Finally write <m>R\rightrightarrows A</m> for the kernel pair of <m>e</m>. Any original pair coequalized by <m>e</m> factors through this pair by pullback. Therefore a map coequalizing the kernel pair coequalizes the original pair and factors uniquely through <m>e</m>, as required.</p>
+      </proof>
+    </proposition>
+    <p>These implications do not turn every categorical epimorphism into a quotient of a relation. The monic, epic, noninvertible ring inclusion of <xref ref="cat-example-epi-not-surjective"/> is already an obstruction: by the proposition it cannot be strong or regular. We will prove equality of the regular and strong classes under the regular-category hypotheses, rather than using those adjectives interchangeably in advance.</p>
+  </section>
+
+  <section xml:id="cat-c15-relations">
+    <title>Kernel pairs and internal equivalence relations</title>
+    <definition xml:id="cat-c15-def-relation">
+      <title>Relations expressed by finite limits</title>
+      <idx>Kernel pair</idx><idx>Internal equivalence relation</idx>
+      <statement>
+        <p>Suppose <m>\mathcal C</m> is finitely complete.</p>
+        <p><ol>
+          <li><p>The kernel pair of <m>f:X\to Y</m> is <m>\operatorname{Eq}(f)=X\times_YX</m>, with projections <m>r_0,r_1</m> to <m>X</m>.</p></li>
+          <li><p>An internal relation on <m>X</m> is a subobject <m>(r_0,r_1):R\rightarrowtail X\times X</m>. It is an internal equivalence relation if there are maps
+            <md number="no">d:X\to R,\qquad s:R\to R,\qquad t:R\times_XR\to R</md>
+            satisfying <m>r_0d=r_1d=\id_X</m>, <m>r_0s=r_1</m>, <m>r_1s=r_0</m>, and <m>r_0t=r_0\pi_1</m>, <m>r_1t=r_1\pi_2</m>. In the last fiber product, <m>r_1\pi_1=r_0\pi_2</m>.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <p>The transitivity object parametrizes composable pairs: their middle entries agree. A map from it to <m>R</m> supplies the relation between the first and last entries. Since <m>(r_0,r_1)</m> is monic, all three structure maps, if they exist, are unique. Equivalently, for every test object <m>T</m>, the subset <m>\Hom(T,R)\subseteq\Hom(T,X)^2</m> is an equivalence relation. One direction applies Hom to the structure maps. For the other, test reflexivity on <m>T=X</m>, symmetry on <m>T=R</m>, and transitivity on <m>T=R\times_XR</m>. The indicated pairs then factor through the relation, supplying the required maps.</p>
+    <proposition xml:id="cat-c15-prop-kernel-pair">
+      <statement>
+        <p>A kernel pair defines an internal equivalence relation. For generalized elements <m>x,x':T\to X</m>, its relation is exactly <m>fx=fx'</m>. Moreover, <m>f</m> is monic if and only if its kernel pair is the diagonal relation, equivalently if the diagonal <m>X\to X\times_YX</m> is invertible.</p>
+      </statement>
+      <proof>
+        <p>The pullback identifies maps <m>T\to X\times_YX</m> with pairs having equal composites under <m>f</m>. The associated map to <m>X\times X</m> is monic because its two projections determine each map into the pullback. Equality after <m>f</m> is reflexive, symmetric, and transitive, and the preceding test constructs the three internal maps. Its relation is equality for every <m>T</m> precisely when <m>f</m> is monic. In that case the diagonal and either projection are inverse; the converse follows by testing any pair with equal images.</p>
+      </proof>
+    </proposition>
+    <p>These constructions are those of <xref ref="bib-cat-riehl" detail="Example 3.6.11"/> and <xref ref="bib-cat-barr-exact" detail="Chapter I, paragraph (1.2)"/>. Their equations concern all generalized elements. An underlying set, when present, can help describe them, but does not replace the joint monomorphism or the pullback specifying composability. Associativity of the transitivity map needs no additional choice: both composites on triples have the same first and last projections, hence agree by monicity.</p>
+  </section>
+
+  <section xml:id="cat-c15-regularity">
+    <title>Regularity and image factorizations</title>
+    <definition xml:id="cat-c15-def-regular-category">
+      <title>Regular category</title>
+      <idx>Regular category</idx>
+      <statement>
+        <p>A regular category is a finitely complete category in which every kernel pair has a coequalizer and regular epimorphisms are stable under pullback. Stability means that the pullback of any regular epimorphism along any arrow is again a regular epimorphism.</p>
+      </statement>
+    </definition>
+    <p>Finite limits provide the relations and their pullbacks; the coequalizer makes the identifications universal; stability makes the quotient compatible with change of base. No arbitrary coproducts or arbitrary coequalizers are required.<fn>Barr's original <xref ref="bib-cat-barr-exact" detail="Chapter I, paragraph (1.3)"/> imposes weaker existence assumptions: kernel pairs and the relevant quotient pullbacks, rather than all finite limits. For example, his list includes nonempty sets and arbitrary posets. We adopt the finite-limit convention throughout this chapter, so those examples require an additional finite-limit check. The factorization mechanism is his Theorem I.(2.3).</fn></p>
+    <theorem xml:id="cat-c15-thm-regular-factorization">
+      <statement>
+        <p>For a finitely complete category the following are equivalent:</p>
+        <p><ol>
+          <li><p>It is regular as just defined.</p></li>
+          <li><p>Every arrow factors as a regular epimorphism followed by a monomorphism, and regular epimorphisms are stable under pullback.</p></li>
+        </ol></p>
+        <p>In a regular category, the regular epimorphisms are exactly the strong epimorphisms. In the factorization <m>f=me</m>, the map <m>e</m> is a coequalizer of the kernel pair of <m>f</m>.</p>
+      </statement>
+      <proof>
+        <p>Assume the first condition. For <m>f:X\to Y</m>, coequalize its kernel pair by <m>e:X\to I</m>. There is a unique <m>m:I\to Y</m> with <m>me=f</m>. To prove monicity, form <m>I\times_YI</m>. The map
+          <md number="no">X\times_YX\longrightarrow I\times_YX\longrightarrow I\times_YI</md>
+          applies <m>e</m> in the first and then the second variable. Each map is a pullback of <m>e</m>, so each is regular epic, and their composite <m>p</m> is epic. The two projections <m>v_0,v_1:I\times_YI\rightrightarrows I</m> satisfy <m>v_0p=e r_0=e r_1=v_1p</m>. Thus <m>v_0=v_1</m>, and the kernel-pair criterion proves <m>m</m> monic. This gives the second condition without assuming beforehand that composites of regular epimorphisms are regular.</p>
+        <p>Conversely factor <m>f=me</m> as in the second condition. Monicity of <m>m</m> identifies the kernel pairs of <m>f</m> and <m>e</m>: they test exactly the same equality. Since a regular epimorphism coequalizes its own kernel pair universally, <m>e</m> is the required coequalizer for that of <m>f</m>. Pullback stability is already assumed.</p>
+        <p>Every regular epimorphism is strong. If <m>f</m> is strong, its regular-epi/mono factorization forces the monomorphism to be invertible by <xref ref="cat-c15-prop-epi-comparisons"/>. Composing a coequalizer with an isomorphism is again a coequalizer. Thus <m>f</m> is regular, proving the remaining assertion.</p>
+      </proof>
+    </theorem>
+    <p>The subobject represented by <m>m</m> is called the image of <m>f</m> and written <m>\operatorname{im}(f)\rightarrowtail Y</m>. Its existence here is a theorem, not a consequence of having finite limits alone. Coequalizing a kernel pair in an arbitrary finitely complete category does produce a candidate <m>I\to Y</m> when that coequalizer exists; the proof explains exactly where stability is used to make the candidate monic.</p>
+  </section>
+
+  <section xml:id="cat-c15-image-comparisons">
+    <title>Minimality, uniqueness, and maps between images</title>
+    <proposition xml:id="cat-c15-prop-images">
+      <idx>Image factorization</idx><idx>Image</idx>
+      <statement>
+        <p>In a regular category:</p>
+        <p><ol>
+          <li><p>The image of <m>f:X\to Y</m> is the least subobject of <m>Y</m> through which <m>f</m> factors.</p></li>
+          <li><p>Two regular-epi/mono factorizations are related by a unique isomorphism commuting with both factors.</p></li>
+          <li><p>A commuting square <m>bf=ga</m> induces a unique map <m>\operatorname{im}(f)\to\operatorname{im}(g)</m> commuting with the induced maps from the sources and to the targets. Chosen factorizations therefore give a functor from the arrow category to <m>\mathcal C</m>.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>Write <m>f=me</m>. If <m>f=nh</m> with <m>n</m> monic, orthogonality of <m>e</m> and <m>n</m> gives a comparison <m>d</m> with <m>de=h</m> and <m>nd=m</m>. This proves minimality. Applying this to two factorizations gives comparisons both ways. Their composites have the same two triangles as the identity, so uniqueness of the diagonal makes them inverse.</p>
+        <p>For <m>f=m_fe_f</m> and <m>g=m_ge_g</m>, use the lifting square with left arrow <m>e_f</m>, right arrow <m>m_g</m>, top arrow <m>e_ga</m>, and bottom arrow <m>bm_f</m>. Its unique diagonal <m>h</m> satisfies <m>he_f=e_ga</m> and <m>m_gh=bm_f</m>. The identity and composition laws follow because the corresponding composites solve the same lifting problems. A choice of one factorization for each arrow is indexed by a set, so ordinary choice suffices.</p>
+      </proof>
+    </proposition>
+    <p>Minimality is about subobjects of the fixed codomain, with their structure maps retained. It need not make the image monomorphism a regular monomorphism, namely an equalizer of some pair. Image is also used with other definitions: <xref ref="bib-cat-li2" detail="Definition 1.2.1"/> defines an image by an equalizer of the cokernel pair when that construction exists. We use the regular-epi/mono image established here; identifying another formula with it requires its own hypotheses.</p>
+    <p>The induced map of images need not be monic or epic merely because it exists. Its purpose is to make comparisons canonical once the two factorizations are fixed. Changing those choices changes the resulting image functor by the unique compatible natural isomorphism, rather than by an equality of formulas.</p>
+  </section>
+  <section xml:id="cat-c15-factorization-systems">
+    <title>Orthogonal factorization systems</title>
+    <p>The unique-diagonal argument applies beyond images. Its abstract form specifies both which factorizations exist and which lifting problems characterize their two factors. The factors need not be epimorphisms and monomorphisms in this general definition.</p>
+    <definition xml:id="cat-c15-def-factorization-system">
+      <title>Orthogonal factorization system</title>
+      <idx>Orthogonal factorization system</idx>
+      <statement>
+        <p>For a collection <m>\mathcal M</m> of arrows, let <m>{}^\perp\mathcal M</m> be all arrows orthogonal on the left to every member of <m>\mathcal M</m>; define <m>\mathcal E^\perp</m> dually. An orthogonal factorization system is a pair <m>(\mathcal E,\mathcal M)</m> such that
+          <md number="no">\mathcal E={}^\perp\mathcal M,\qquad \mathcal M=\mathcal E^\perp,</md>
+          and every arrow admits a factorization <m>f=me</m> with <m>e\in\mathcal E</m>, <m>m\in\mathcal M</m>.</p>
+      </statement>
+    </definition>
+    <p>This is <xref ref="bib-cat-riehl-factorization" detail="Definition 1.9"/>; her Lemma 1.8 compares equivalent formulations. Merely naming two classes whose arrows sometimes give unique lifts does not assert the two displayed equalities. They require each class to consist of all arrows satisfying its prescribed orthogonality condition.</p>
+    <proposition xml:id="cat-c15-prop-factorization-stability">
+      <statement>
+        <p><ol>
+          <li><p>Factorizations in an orthogonal factorization system are unique up to unique compatible isomorphism, and choices give a functorial middle object.</p></li>
+          <li><p>Both classes contain isomorphisms and are closed under composition and retracts in the arrow category. Their intersection consists exactly of the isomorphisms.</p></li>
+          <li><p>The right class is stable under existing pullbacks, and the left class under existing pushouts.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>For the first assertion apply the same two diagonal comparisons as in <xref ref="cat-c15-prop-images"/>. For a commuting square between arrows, the top map followed by the second left factor and the first right factor followed by the bottom map give a lifting square. Its diagonal is the unique comparison between the middle objects. Uniqueness gives identities and composition.</p>
+        <p>Isomorphisms have unique lifts against every arrow. If an arrow is in both classes, lift it against itself with identity top and bottom maps; the diagonal is its inverse. To see composition closure on the left, a lifting problem against a composite of two left arrows is solved successively against its first and second factors. A competing diagonal would give the same first lift, and then the same second lift, proving uniqueness. The right-class assertion is dual.</p>
+        <p>For retract closure on the right, write an arrow <m>m:A\to B</m> as a retract of <m>n:C\to D</m> using commuting squares <m>(a,b):m\to n</m> and <m>(r,s):n\to m</m>, with <m>ra=\id_A</m>, <m>sb=\id_B</m>. Given a lifting square with right arrow <m>m</m>, compose its top and bottom maps with <m>a,b</m>. The unique lift <m>l</m> against <m>n</m> gives a lift <m>rl</m> against <m>m</m>. If <m>d</m> is another lift, <m>ad</m> solves the first problem, so <m>ad=l</m> and <m>d=rl</m>. This proves right-class retract closure; passing to opposites proves the left-class version.</p>
+        <p>Finally pull back <m>m:C\to D</m> along <m>v:D'\to D</m>. A lifting problem against the new projection gives one against <m>m</m> by composing with the pullback maps. Its diagonal, together with the prescribed bottom arrow to <m>D'</m>, gives a unique map into the pullback. This is the required unique diagonal. Pushout stability follows by reversing arrows.</p>
+      </proof>
+    </proposition>
+    <proposition xml:id="cat-c15-prop-regular-system">
+      <statement>
+        <p>In a regular category, regular epimorphisms and monomorphisms form an orthogonal factorization system. In particular, composites of regular epimorphisms are regular. Their pullback stability is the additional property imposed by regularity, not a general consequence for the left class of every orthogonal factorization system.</p>
+      </statement>
+      <proof>
+        <p>Factorizations and orthogonality have been proved. Since equalizers exist, <m>{}^\perp\operatorname{Mono}</m> consists exactly of strong epimorphisms, hence of regular epimorphisms. Conversely suppose <m>f</m> is right orthogonal to every regular epimorphism, and factor <m>f=me</m>. Lifting <m>e</m> against <m>f</m>, with top identity and bottom <m>m</m>, gives <m>d</m> with <m>de=\id</m> and <m>fd=m</m>. Thus <m>med=m</m>, and monicity of <m>m</m> implies <m>ed=\id</m>. Hence <m>e</m> is invertible and <m>f</m> is monic. This proves the second orthogonality equality; composition closure follows from the preceding proposition.</p>
+      </proof>
+    </proposition>
+    <p>A weak factorization system replaces unique diagonals by existence of diagonals and uses the resulting left and right lifting classes. The word weak does not merely mean that the middle object was chosen noncanonically: in the orthogonal case different choices are already controlled by unique compatible isomorphisms. Nonunique lifts are the relevant change; see <xref ref="bib-cat-riehl-factorization" detail="Definition 2.2"/>. We do not use weak factorization systems or their existence constructions here.</p>
+  </section>
+
+  <section xml:id="cat-c15-images-base-change">
+    <title>Images under change of base</title>
+    <proposition xml:id="cat-c15-prop-image-base-change">
+      <idx>Direct image of a subobject</idx>
+      <statement>
+        <p>In a regular category, image factorizations are stable under pullback. For each <m>f:X\to Y</m>, the assignment
+          <md number="no">\exists_f:\operatorname{Sub}(X)\to\operatorname{Sub}(Y),\qquad [m]\longmapsto[\operatorname{im}(fm)]</md>
+          is left adjoint to inverse image: <m>\exists_f(A)\leq B</m> if and only if <m>A\leq f^*(B)</m>.</p>
+      </statement>
+      <proof>
+        <p>Write <m>f:X\xrightarrow{e}I\xrightarrow{m}Y</m>. On pulling back along <m>g:Y'\to Y</m>, its factorization becomes
+          <md number="no">X\times_YY'\longrightarrow I\times_YY'\longrightarrow Y'.</md>
+          The first map is a pullback of <m>e</m>, by pullback pasting, and the second a pullback of <m>m</m>. They are therefore regular epic and monic. Uniqueness identifies this factorization with the image factorization of the pulled-back map.</p>
+        <p>For a subobject <m>A\rightarrowtail X</m>, minimality of the image says that <m>\exists_f(A)\leq B</m> exactly when its composite with <m>f</m> factors through <m>B\rightarrowtail Y</m>. The pullback property translates this into <m>A\leq f^*(B)</m>. These are precisely the order-adjunction inequalities. They also show monotonicity and independence of representatives.</p>
+      </proof>
+    </proposition>
+    <p>The direct image of a subobject can thus be characterized without choosing elements or representatives of equivalence classes. The symbol <m>\exists</m> reflects its behavior for sets: membership in the image means that a suitable element of the source exists. In the general category, the order adjunction and the image factorization are the definition and proof of this behavior.</p>
+    <p>For a pullback square with top arrow <m>g':X'\to X</m>, bottom arrow <m>g:Y'\to Y</m>, and vertical arrows <m>f':X'\to Y'</m>, <m>f:X\to Y</m>, one obtains
+      <md number="no">g^*\exists_f=\exists_{f'}(g')^*.</md>
+      Indeed, pulling back the image of <m>fm</m> is the image of its pulled-back arrow, whose domain is the inverse image of the subobject <m>m</m> along <m>g'</m>. The equality is in the subobject posets; chosen representative diagrams need only be canonically isomorphic. This is the image form of base-change compatibility.</p>
+    <p>A functor between regular categories is called regular if it preserves finite limits and regular epimorphisms. It then preserves images: finite-limit preservation preserves monomorphisms by their self-pullback criterion, and the transported regular-epi/mono factorization is again an image factorization. It also preserves kernel pairs and their quotient forks. Preservation of arbitrary coequalizers need not follow.<fn>Compare <xref ref="bib-cat-barr-exact" detail="Chapter I, paragraphs (2.10) and (2.14)"/>. Barr uses exact functor for the corresponding preservation conditions in his exact-category setting. Here regular functor names the finite-limit and regular-epimorphism conditions explicitly; an unqualified assertion of exactness in another kind of category must be interpreted with its own conventions.</fn></p>
+  </section>
+
+  <section xml:id="cat-c15-effective-relations">
+    <title>Effective relations and Barr exactness</title>
+    <definition xml:id="cat-c15-def-effective-exact">
+      <title>Effectiveness and exact category</title>
+      <idx>Effective equivalence relation</idx><idx>Barr-exact category</idx>
+      <statement>
+        <p><ol>
+          <li><p>An internal equivalence relation on <m>X</m> is effective if it is isomorphic, as a relation over <m>X\times X</m>, to the kernel pair of some arrow out of <m>X</m>.</p></li>
+          <li><p>A Barr-exact category is a regular category in which every internal equivalence relation is effective.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <p>Exact in this chapter always means Barr-exact, in the finite-limit convention. It does not mean a Quillen exact category, whose definition belongs to an additive theory with additional specified data. Effectiveness here concerns whether an internal relation is precisely the equality relation induced by a quotient, with neither missing nor additional identifications. Compare <xref ref="bib-cat-barr-exact" detail="Chapter I, paragraphs (1.2)–(1.3)"/>.</p>
+    <proposition xml:id="cat-c15-prop-effective-quotients">
+      <statement>
+        <p>In a regular category:</p>
+        <p><ol>
+          <li><p>A relation <m>R\rightrightarrows X</m> is effective exactly when it has a coequalizer <m>q:X\to Q</m> and the induced map <m>R\to X\times_QX</m> is invertible.</p></li>
+          <li><p>Kernel pair gives a bijection between regular quotients of <m>X</m> up to compatible isomorphism and effective equivalence relations on <m>X</m> as subobjects. For regular quotients <m>q_1,q_2</m>,
+            <md number="no">q_2=hq_1\text{ for some }h\quad\Longleftrightarrow\quad\operatorname{Eq}(q_1)\subseteq\operatorname{Eq}(q_2).</md>
+            Thus the correspondence reverses the quotient order fixed earlier.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>If <m>R=\operatorname{Eq}(f)</m>, factor <m>f=me</m> regularly. Its relation equals <m>\operatorname{Eq}(e)</m>, and <m>e</m> is its coequalizer. This proves the first condition for an effective relation. The converse follows directly from the asserted kernel-pair identification. In particular, every regular quotient is recovered from its kernel pair by taking a coequalizer, so the correspondence is injective as well as surjective.</p>
+        <p>If <m>q_2=hq_1</m>, every pair identified by <m>q_1</m> is identified by <m>q_2</m>, and the pullback property gives the inclusion of relations. Conversely, such an inclusion makes <m>q_2</m> coequalize the kernel pair of <m>q_1</m>, so universality supplies <m>h</m>. It is unique because <m>q_1</m> is epic. This also verifies the order assertion.</p>
+      </proof>
+    </proposition>
+    <p>If a relation merely has a coequalizer, there is always a comparison to the kernel pair of that coequalizer. Nothing in the coequalizer universal property alone makes this comparison invertible. The quotient might impose more identifications than the given relation; the next examples make this distinction explicit. Regularity only requires quotients of relations already arising as kernel pairs. Barr exactness requires every internal equivalence relation to arise that way.</p>
+    <p>Inverse image of an effective relation is effective: for <m>u:Y\to X</m>, pulling back <m>\operatorname{Eq}(q)</m> along <m>u\times u</m> gives <m>\operatorname{Eq}(qu)</m>. This follows from the same pair-of-maps test and needs only finite limits. It concerns inverse image of a relation, not a claim that every arbitrary relation has an effective quotient.</p>
+  </section>
+
+  <section xml:id="cat-c15-sets-groups">
+    <title>Quotients of sets and groups</title>
+    <example xml:id="cat-c15-example-sets-groups">
+      <title>Two Barr-exact categories</title>
+      <p><ol>
+        <li><p>In <m>\Set_\U</m>, every surjection <m>q:X\to Q</m> coequalizes its kernel pair universally. If a function <m>a:X\to Z</m> is constant on its fibers, define <m>b(qx)=a(x)</m>; this is well-defined and uniquely determines <m>b</m>. Conversely, factor any regular epimorphism through its set-theoretic image. The first factor is surjective and the second injective. Since regular epimorphisms are strong, the second factor is invertible, so the original map is surjective. Thus regular epimorphisms are exactly surjections.</p></li>
+        <li><p>For an equivalence relation <m>R\subseteq X\times X</m>, take the set of its equivalence classes. The quotient map is surjective, coequalizes the two projections universally, and has kernel pair exactly <m>R</m>. All sets used belong to <m>\U</m>: the quotient is a subset of <m>\mathcal P(X)</m>. Finite limits exist in sets, and pullbacks of surjections are surjective: over an element of the new target choose a preimage of its image in the old target. These facts prove regularity and effectiveness, hence Barr exactness. They include the empty set and its empty equivalence relation.</p></li>
+        <li><p>In <m>\Grp_\U</m>, finite limits are computed on the underlying sets with componentwise group operations. A homomorphism is monic exactly when it is injective. For the nontrivial direction, if an element <m>g\ne1</m> lies in its kernel, the homomorphisms from the infinite cyclic group sending its generator to <m>g</m> and to <m>1</m> are distinct but become equal. Every homomorphism factors through its image subgroup as a surjection followed by an injection.</p></li>
+        <li><p>A surjective homomorphism is the coequalizer of its kernel pair: the fiberwise descent formula from sets gives a function on its target, and evaluating products and inverses on preimages proves that function a homomorphism. The image factorization and the strong-epimorphism argument then show that regular epimorphisms are exactly surjective homomorphisms. Their pullbacks are surjective, by the same preimage argument. For any homomorphism, its surjection onto its image subgroup is the coequalizer of its kernel pair. Thus groups form a regular category.</p></li>
+        <li><p>Finally an internal equivalence relation in groups can be identified with a subgroup <m>R\leq G\times G</m> whose underlying relation is an equivalence relation. On its class set define <m>[g][h]=[gh]</m> and <m>[g]^{-1}=[g^{-1}]</m>. These are well-defined because the corresponding pairs multiply and invert in the subgroup <m>R</m>. The group laws descend, the quotient map is a surjective homomorphism, and a homomorphism constant on relation classes descends uniquely as a homomorphism. Its kernel pair is precisely the given subgroup relation. Hence groups are Barr-exact as well.</p></li>
+      </ol></p>
+    </example>
+    <p>The group argument uses the equivalence relation together with its subgroup structure. It does not assert that an arbitrary set-theoretic equivalence relation on a group admits compatible multiplication on its quotient. Internalness supplies that compatibility. Nor did the proof need a characterization of all categorical epimorphisms of groups: identifying regular epimorphisms and proving their stability was enough.</p>
+  </section>
+
+  <section xml:id="cat-c15-non-effective-example">
+    <title>A regular category with a noneffective relation</title>
+    <p>For a counterexample within ordinary group theory, let <m>\mathcal T</m> be the full category of torsion-free groups in <m>\Grp_\U</m>. A group is torsion-free when <m>g^n=1</m>, for a positive integer <m>n</m>, implies <m>g=1</m>. Products and subgroups of torsion-free groups are torsion-free, so the trivial group, products, and equalizers give finite limits in <m>\mathcal T</m>. Image subgroups also remain in <m>\mathcal T</m>.</p>
+    <proposition xml:id="cat-c15-prop-torsion-free-example">
+      <statement>
+        <p>The category <m>\mathcal T</m> is regular but not Barr-exact.</p>
+      </statement>
+      <proof>
+        <p>Monomorphisms in <m>\mathcal T</m> are exactly injective homomorphisms, using the infinite cyclic test group as before. Surjective homomorphisms between its objects are coequalizers of their kernel pairs by the same descent argument. Conversely, a regular epimorphism factors through its image subgroup in <m>\mathcal T</m>, and strong epicity makes the inclusion invertible. Thus its regular epimorphisms are precisely surjections. The image surjection of any map coequalizes its kernel pair, and pullback preserves surjectivity. These facts verify the definition of a regular category.</p>
+        <p>Let <m>G=\langle z\rangle</m> be infinite cyclic and let <m>R\leq G\times G</m> consist of pairs <m>(z^a,z^b)</m> with <m>a-b</m> even. It is a subgroup and an equivalence relation on the underlying set; its reflexivity, symmetry, and transitivity maps are the group homomorphisms obtained by restricting the appropriate coordinate maps. Since it is a subgroup of a torsion-free group, <m>R</m> is an object of <m>\mathcal T</m>. Thus this is an internal equivalence relation in <m>\mathcal T</m>.</p>
+        <p>If <m>u:G\to H</m> with <m>H</m> torsion-free coequalizes its projections, then <m>u(z)^2=u(z^2)=1</m>, so <m>u(z)=1</m>. Hence every such map is trivial, and <m>G\to1</m> is the coequalizer in <m>\mathcal T</m>. Its kernel pair is all of <m>G\times G</m>, strictly larger than <m>R</m>: for example <m>(z,1)</m> is not in <m>R</m>. By <xref ref="cat-c15-prop-effective-quotients"/>, the relation is not effective. This proves failure of Barr exactness.</p>
+      </proof>
+    </proposition>
+    <p>The ordinary group quotient for this relation has two elements, and so leaves the category of torsion-free groups. Its coequalizer inside that category is instead the map to the trivial group, whose kernel pair strictly contains the given relation. Regular images exist and are stable under pullback although this equivalence relation is not effective.</p>
+    <p>The inclusion <m>\mathcal T\to\Grp_\U</m> is a regular functor: it preserves finite limits and surjective homomorphisms. It does not preserve the coequalizer just constructed, since the corresponding group quotient has two elements. Thus even a regular fully faithful inclusion need not preserve every existing coequalizer.</p>
+    <p>The example parallels the torsion-free abelian-group example in <xref ref="bib-cat-barr-exact" detail="Chapter I, paragraph (3.12)"/>, but its verification here uses only the stated elementary properties of groups. It imposes no additive background. Together with the set and group examples, it locates the extra exactness condition in the relation-to-quotient correspondence, rather than in the cancellation properties of individual arrows.</p>
+  </section>
+
+  <section xml:id="cat-c15-projective-injective">
+    <title>Projective and injective objects</title>
+    <p>An object can satisfy an existence property for lifts without making those lifts unique. The class of arrows against which one lifts must be specified, particularly when epimorphisms and regular epimorphisms differ.</p>
+    <definition xml:id="cat-c15-def-relative-projective">
+      <title>Relative projectivity and injectivity</title>
+      <idx>Projective object</idx><idx>Injective object</idx><idx>Relative projective object</idx><idx>Relative injective object</idx><idx>Regular projective object</idx>
+      <statement>
+        <p>Let <m>\mathcal E,\mathcal M</m> be collections of arrows of <m>\mathcal C</m>.</p>
+        <p><ol>
+          <li><p>An object <m>P</m> is <m>\mathcal E</m>-projective if, for every <m>e:A\to B</m> in <m>\mathcal E</m>, the map
+            <md number="no">\Hom(P,A)\xrightarrow{e\circ-}\Hom(P,B)</md>
+            is surjective. Thus every <m>u:P\to B</m> has a lift <m>v:P\to A</m> with <m>ev=u</m>.</p></li>
+          <li><p>An object <m>I</m> is <m>\mathcal M</m>-injective if, for every <m>m:A\to B</m> in <m>\mathcal M</m>, the map
+            <md number="no">\Hom(B,I)\xrightarrow{-\circ m}\Hom(A,I)</md>
+            is surjective. Thus every <m>u:A\to I</m> extends to <m>v:B\to I</m> with <m>vm=u</m>.</p></li>
+          <li><p>Unqualified projective means projective against all epimorphisms, and unqualified injective means injective against all monomorphisms. Regular projective means projective against all regular epimorphisms.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <p>These are the relative definitions of <xref ref="bib-cat-ks" detail="Definition 9.5.1"/>. They apply without an initial or terminal object. When an initial object exists, projectivity against <m>\mathcal E</m> is the existence of diagonals for <m>0\to P</m> against <m>\mathcal E</m>; injectivity has the dual interpretation using <m>I\to1</m>. Orthogonality in <xref ref="cat-c15-def-regular-strong"/> requires uniqueness in addition to existence.<fn>Stacks <xref ref="bib-cat-stacks" detail="Definitions 12.27.1 and 12.28.1, Tags 0134 and 013A"/> gives the unqualified definitions in abelian categories. Here only the lifting conditions are used, so no additive structure is needed. In other literature, projective may mean regular projective; the chosen arrow class determines the assertion.</fn></p>
+    <p>Shrinking the arrow class weakens projectivity or injectivity. By <xref ref="cat-c15-prop-epi-comparisons"/>, every projective object is projective against strong epimorphisms, and every object with the latter property is regular projective. In a regular category, projectivity against strong and regular epimorphisms agrees by <xref ref="cat-c15-thm-regular-factorization"/>. The condition against all epimorphisms can still be stronger.</p>
+    <proposition xml:id="cat-c15-prop-projective-closure">
+      <statement>
+        <p><ol>
+          <li><p>Retracts of <m>\mathcal E</m>-projective objects are <m>\mathcal E</m>-projective. Existing set-indexed coproducts of such objects are <m>\mathcal E</m>-projective.</p></li>
+          <li><p>Retracts of <m>\mathcal M</m>-injective objects are <m>\mathcal M</m>-injective. Existing set-indexed products of such objects are <m>\mathcal M</m>-injective.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>Let <m>P\xrightarrow{s}Q\xrightarrow{r}P</m> satisfy <m>rs=\id_P</m>, with <m>Q</m> projective against <m>\mathcal E</m>. For <m>u:P\to B</m> and <m>e:A\to B</m> in <m>\mathcal E</m>, lift <m>ur</m> to <m>w:Q\to A</m>. Then <m>ws</m> lifts <m>u</m>. A map from a coproduct is a family of maps from its summands. Choose a lift on each summand and use the coproduct property. This uses ordinary choice on the given set of summands and includes the empty coproduct. Passage to opposite categories proves the injective assertions.</p>
+      </proof>
+    </proposition>
+    <proposition xml:id="cat-c15-prop-projective-splitting">
+      <statement>
+        <p>Every arrow in <m>\mathcal E</m> with target an <m>\mathcal E</m>-projective object <m>P</m> splits. The converse holds if pullbacks of members of <m>\mathcal E</m> along arrows with source <m>P</m> exist and belong to <m>\mathcal E</m>. Dually, every arrow in <m>\mathcal M</m> with <m>\mathcal M</m>-injective source <m>I</m> has a retraction; the converse holds if pushouts of members of <m>\mathcal M</m> along arrows with target <m>I</m> exist and belong to <m>\mathcal M</m>.</p>
+      </statement>
+      <proof>
+        <p>Lift <m>\id_P</m> through an arrow <m>e:A\to P</m> in <m>\mathcal E</m> to obtain its section. For the converse, pull back <m>e:A\to B</m> along any <m>u:P\to B</m>. The projection <m>A\times_BP\to P</m> belongs to <m>\mathcal E</m> and has a section; its composite with the other projection lifts <m>u</m>. Reverse arrows for injectivity.</p>
+      </proof>
+    </proposition>
+    <p>In a regular category, an object is regular projective exactly when every regular epimorphism onto it splits. The pullback assumption in this criterion is supplied by regularity. Applying the same converse to arbitrary epimorphisms requires their pullback stability, which has not been assumed.</p>
+  </section>
+
+  <section xml:id="cat-c15-enough-projectives">
+    <title>Enough objects, generators, and free objects</title>
+    <definition xml:id="cat-c15-def-enough">
+      <title>Enough projectives and injectives</title>
+      <idx>Enough projectives</idx><idx>Enough injectives</idx><idx>Enough regular projectives</idx>
+      <statement>
+        <p>The category has enough <m>\mathcal E</m>-projectives if every object <m>X</m> admits an arrow <m>P\to X</m> in <m>\mathcal E</m> with <m>P</m> <m>\mathcal E</m>-projective. It has enough <m>\mathcal M</m>-injectives if every <m>X</m> admits an arrow <m>X\to I</m> in <m>\mathcal M</m> with <m>I</m> <m>\mathcal M</m>-injective. Unqualified enough projectives and enough injectives use all epimorphisms and all monomorphisms, respectively; enough regular projectives uses regular epimorphisms.</p>
+      </statement>
+    </definition>
+    <proposition xml:id="cat-c15-prop-projective-generators">
+      <statement>
+        <p>A small generating family of projective objects in a category with small coproducts gives enough projectives. Dually, a small cogenerating family of injective objects in a category with small products gives enough injectives.</p>
+      </statement>
+      <proof>
+        <p>For a generating family <m>(G_s)_{s\in S}</m>, form
+          <md number="no">q_X:\coprod_{(s,u),\ u:G_s\to X}G_s\longrightarrow X</md>
+          with component <m>u</m> on its labelled summand. Its index is small because <m>S\in\U</m> and each indicated Hom set belongs to <m>\U</m>. If <m>fq_X=gq_X</m>, then <m>fu=gu</m> for every generator test, so <m>f=g</m>. Thus <m>q_X</m> is epic, and its source is projective by the preceding closure result. The dual proof uses the canonical monomorphism into cogenerator powers of <xref ref="cat-c05-prop-cogenerator-mono"/>.</p>
+      </proof>
+    </proposition>
+    <p>Conversely, enough projectives imply that maps from projective objects together distinguish parallel arrows: precompose unequal arrows from <m>X</m> with a projective epimorphism onto <m>X</m>. This does not bound the required testing objects by one small family. Also, the generating condition by itself proves only that <m>q_X</m> is epic. A claim about regular quotients requires additional information about this map.</p>
+    <proposition xml:id="cat-c15-prop-adjoint-projectives">
+      <statement>
+        <p>Let <m>F:\mathcal C\rightleftarrows\mathcal D:G</m> be an adjunction, with <m>F\dashv G</m>. If <m>G</m> sends a collection <m>\mathcal E</m> of arrows of <m>\mathcal D</m> into a collection <m>\mathcal E'</m> of arrows of <m>\mathcal C</m>, then <m>F</m> sends <m>\mathcal E'</m>-projective objects to <m>\mathcal E</m>-projective objects. Dually, let <m>\mathcal M'</m> be a collection of arrows of <m>\mathcal C</m> and <m>\mathcal M</m> a collection of arrows of <m>\mathcal D</m>. If <m>F(\mathcal M')\subseteq\mathcal M</m>, then <m>G</m> sends <m>\mathcal M</m>-injective objects to <m>\mathcal M'</m>-injective objects.</p>
+      </statement>
+      <proof>
+        <p>For <m>e:A\to B</m> in <m>\mathcal E</m>, naturality of adjunction identifies <m>\Hom(FP,e)</m> with <m>\Hom(P,G(e))</m>. The latter map is surjective when <m>P</m> is <m>\mathcal E'</m>-projective. The injective assertion follows from the same bijection in the other variable.</p>
+      </proof>
+    </proposition>
+    <p>For <m>F:\Set_\U\rightleftarrows\mathcal D:U</m>, let <m>\mathcal E_U</m> consist of arrows whose underlying functions are surjective. Every set is projective in <m>\Set_\U</m>: choice provides preimages for any prescribed function through a surjection. Hence every free object <m>F(S)</m> is <m>\mathcal E_U</m>-projective. The counit <m>FU(A)\to A</m> belongs to <m>\mathcal E_U</m>, since its underlying function has section <m>\eta_{U(A)}</m> by the triangle identity. It follows that <m>\mathcal D</m> has enough <m>\mathcal E_U</m>-projectives, and that these objects are precisely retracts of free objects: lift the identity through this counit for one direction, and use retract closure for the other.</p>
+    <example xml:id="cat-c15-example-projective-sets-rings">
+      <title>Sets and polynomial rings</title>
+      <p><ol>
+        <li><p>Every nonempty set is injective in <m>\Set_\U</m>: extend a function across an injection by assigning one chosen value on its complement. The empty set is not injective, as the extension problem for <m>\varnothing\to1</m> shows. Thus sets have enough injectives, using <m>X\to X\amalg1</m>, as well as enough projectives.</p></li>
+        <li><p>The ring <m>\Z[t]</m> is projective against surjective maps in <m>\CRing_\U</m>. Lift the image of <m>t</m> through the surjection and evaluate polynomials at that lift. But <m>\Z[t]</m> is not projective against all epimorphisms: the epimorphism <m>\Z\to\Q</m> of <xref ref="cat-example-epi-not-surjective"/> does not admit a lift of the map <m>\Z[t]\to\Q</m> sending <m>t</m> to <m>1/2</m>.</p></li>
+      </ol></p>
+    </example>
+    <p>In commutative rings, regular epimorphisms are exactly surjections. A surjection coequalizes its kernel pair by descent on fibers, and the descended map preserves the ring operations. Conversely, factor a regular epimorphism through its image subring. Strong epicity makes the injective second factor invertible, so the original map is surjective. Thus the polynomial example separates regular projectivity from our unqualified projectivity.<fn>A free-forgetful adjunction transfers lifting against arrows preserved by the forgetful functor into the specified base class. It does not identify that class with all categorical epimorphisms. The ring example shows why the class must be retained when stating that free algebras are projective.</fn></p>
+  </section>
+
+  <section xml:id="cat-c15-presheaf-projectives">
+    <title>Projectives and injectives in a presheaf category</title>
+    <p>Let <m>\mathcal A</m> be small and put <m>\widehat{\mathcal A}=\Fun(\mathcal A^\op,\Set_\U)</m>. Limits and colimits are pointwise. The lifting definitions give explicit existence and classification results in this category.</p>
+    <proposition xml:id="cat-c15-prop-presheaf-epis">
+      <statement>
+        <p>An arrow of <m>\widehat{\mathcal A}</m> is epic if and only if all its components are surjective, and monic if and only if all its components are injective.</p>
+      </statement>
+      <proof>
+        <p>Componentwise surjectivity gives epicity by testing equality of natural transformations. For an epimorphism <m>e:P\to Q</m>, form its pushout with itself. Its two maps <m>Q\rightrightarrows Q\amalg_PQ</m> agree after <m>e</m>, so they agree. The pushout is pointwise. If some <m>e_a</m> omitted an element of <m>Q(a)</m>, its two copies in that set pushout would remain distinct, contradicting equality of these maps. This proves surjectivity. Componentwise injectivity gives monicity; conversely Yoneda tests a monomorphism on <m>\Hom(h_a,-)</m>, giving injectivity at each <m>a</m>.</p>
+      </proof>
+    </proposition>
+    <proposition xml:id="cat-c15-prop-presheaf-projectives">
+      <statement>
+        <p>The projective presheaves are exactly retracts of small coproducts of representables. The presheaf category has enough projectives and enough injectives.</p>
+      </statement>
+      <proof>
+        <p>Each representable <m>h_a</m> is projective, since its Hom functor is evaluation and epimorphisms are componentwise surjective. For any presheaf <m>P</m>, Yoneda gives an epimorphism
+          <md number="no">\coprod_{(a,x),\ x\in P(a)}h_a\longrightarrow P.</md>
+          Its index is small. Surjectivity at <m>a</m> follows because <m>x\in P(a)</m> is the image of <m>\id_a</m> in the summand labelled by <m>(a,x)</m>. Its source is projective, proving enough projectives. When <m>P</m> is projective this epimorphism splits, so <m>P</m> is a retract of that coproduct. Conversely, coproducts of representables and their retracts are projective.</p>
+        <p>For injectives, fix <m>a\in\mathcal A</m> and <m>S\in\U</m>. Define a presheaf
+          <md number="no">R_a(S)(b)=\Set_\U\bigl(\Hom_{\mathcal A}(a,b),S\bigr),</md>
+          with restriction by precomposition. There is a natural bijection <m>\Nat(P,R_a(S))\cong\Set_\U(P(a),S)</m>. It sends a transformation to evaluation at <m>\id_a</m>; the inverse sends <m>v:P(a)\to S</m> to the transformation taking <m>x\in P(b)</m> to the function <m>(u:a\to b)\mapsto v(P(u)(x))</m>. If <m>S</m> is nonempty, its injectivity as a set and the componentwise monomorphism test show that <m>R_a(S)</m> is injective.</p>
+        <p>Take <m>S_a=P(a)\amalg1</m>. The injections <m>P(a)\to S_a</m> induce a map
+          <md number="no">P\longrightarrow\prod_{a\in\mathcal A}R_a(S_a).</md>
+          It is monic: its component at <m>b</m>, followed by the factor <m>a=b</m> and evaluation at <m>\id_b</m>, is the injection <m>P(b)\to S_b</m>. The target is injective by product closure. All its indices and values belong to <m>\U</m>, proving enough injectives with the stated size convention.</p>
+      </proof>
+    </proposition>
+    <p>Small projectivity in <xref ref="cat-c11-def-small-projective"/> requires preservation of every small colimit through Hom, and <xref ref="cat-c11-thm-small-projectives"/> characterizes it by retracts of a single representable. Ordinary projectivity here permits a coproduct of representables before taking a retract. In <m>\Set_\U</m>, every set is projective, whereas only singleton sets are small projective.</p>
+    <p>If <m>\mathcal A</m> is empty, its presheaf category is terminal. Its unique object is projective and injective, and is the empty coproduct of representables. It is not small projective, since its Hom functor does not preserve the empty colimit. Thus the classification includes the empty source without changing the convention of <xref ref="cat-c11-thm-small-projectives"/>.</p>
+  </section>
+</chapter>

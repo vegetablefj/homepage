@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette: blue-red                     *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">9.22</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The covariant powerset monad.</span>
+</h2>
+<div class="para">Let <span class="process-math">\(P\)</span> send a set to its powerset and a function to direct image. Its unit is <span class="process-math">\(x\mapsto\{x\}\text{,}\)</span> and its multiplication sends a set of subsets to their union. Direct images commute with unions, proving naturality; the monad laws are the singleton and iterated-union identities. This is a covariant monad. The inverse-image powerset functor discussed with representability has a different variance and is not this endofunctor.<details class="ptx-footnote" aria-live="polite" id="cat-c09-example-powerset-2-3"><summary class="ptx-footnote__number" title="Footnote 9.11"><sup> 11 </sup></summary>
+<div class="ptx-footnote__contents" id="cat-c09-example-powerset-2-3">The monad data are <a href="cat-references.html#Rie" class="xref" data-knowl="./knowl/xref/bib-cat-riehl.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Rie">[Rie, Example 5.1.5(i)]</a>. We identify its algebras directly below, including the order and the empty join, rather than importing a separate theory of lattices.
+</div></details><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#cat-c09-example-powerset-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">For an algebra <span class="process-math">\(a:P(A)\to A\text{,}\)</span> the laws say <span class="process-math">\(a(\{x\})=x\)</span> and</div>
+<div class="displaymath process-math">
+\begin{equation*}
+a\left(\bigcup\mathcal S\right)=a\bigl(\{a(S):S\in\mathcal S\}\bigr)\qquad(\mathcal S\subseteq P(A)).
+\end{equation*}
+</div>
+<div class="para">Define <span class="process-math">\(x\le y\)</span> by <span class="process-math">\(a(\{x,y\})=y\text{.}\)</span> Reflexivity and antisymmetry follow from the singleton identity and symmetry of the pair. For transitivity, the displayed law computes <span class="process-math">\(a(\{x,y,z\})\)</span> both as <span class="process-math">\(a(\{a(\{x,y\}),z\})\)</span> and as <span class="process-math">\(a(\{x,a(\{y,z\})\})\text{.}\)</span> If <span class="process-math">\(x\le y\le z\text{,}\)</span> these expressions give <span class="process-math">\(z=a(\{x,z\})\text{.}\)</span>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#cat-c09-example-powerset-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">For <span class="process-math">\(x\in S\text{,}\)</span> applying the law to <span class="process-math">\(\{\{x\},S\}\)</span> shows <span class="process-math">\(x\le a(S)\text{.}\)</span> If every element of <span class="process-math">\(S\)</span> is below <span class="process-math">\(y\text{,}\)</span> apply it to <span class="process-math">\(\{\{x,y\}:x\in S\}\cup\{\{y\}\}\)</span> to obtain <span class="process-math">\(a(S\cup\{y\})=y\text{,}\)</span> including when <span class="process-math">\(S\)</span> is empty. Applying it to <span class="process-math">\(\{S,\{y\}\}\)</span> now gives <span class="process-math">\(a(\{a(S),y\})=y\text{.}\)</span> Thus <span class="process-math">\(a(S)\)</span> is precisely the least upper bound of <span class="process-math">\(S\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#cat-c09-example-powerset-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">Conversely, in a complete join-semilattice, assigning each subset its join satisfies the algebra laws: the upper bounds of a union are exactly the common upper bounds of the individual joins. Algebra morphisms are exactly maps preserving all joins, including the empty join. This identifies the Eilenberg–Moore category with complete join-semilattices on small sets and join-preserving maps. In the Kleisli category, a map <span class="process-math">\(X\to P(Y)\)</span> is a relation from <span class="process-math">\(X\)</span> to <span class="process-math">\(Y\text{,}\)</span> and the union in the composition formula is exactly relational composition. The same monad therefore describes both relations and evaluation by joins, in two different categories.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#cat-c09-example-powerset-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">The completeness qualification is essential: the operation here is defined on every subset, not just on pairs or finite subsets. Its value on the empty set is the least element of the resulting order. Consequently an algebra morphism must preserve that least element as well as all other joins. A map preserving binary joins alone need not satisfy the algebra-morphism equation. All subsets of a fixed small underlying set remain small in our universe, so the example does not require a new universe to express the joins. This is an algebra of a covariant endofunctor, entirely separate from a statement that the contravariant powerset functor is monadic.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#cat-c09-example-powerset-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">The free algebra on <span class="process-math">\(X\)</span> is the powerset ordered by inclusion, whose joins are unions. Its universal property can also be seen directly. A function <span class="process-math">\(f:X\to L\)</span> into a complete join-semilattice extends to <span class="process-math">\(S\mapsto\bigvee_{x\in S}f(x)\text{.}\)</span> This extension preserves arbitrary unions as joins, including the empty one. Conversely, every subset is the union of its singleton subsets, so a join-preserving map is forced by its values on those singletons. Thus the abstract free-algebra correspondence becomes the familiar assertion that a powerset is freely generated by its singletons under arbitrary joins. The generators are elements of <span class="process-math">\(X\text{;}\)</span> the subsets, including the empty subset, are the resulting formal joins.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#cat-c09-example-powerset-7" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 9.22: The covariant powerset monad"><a tabindex="-1" href="#cat-c09-example-powerset" title="Copy heading and permalink for Example 9.22: The covariant powerset monad" aria-label="Copy heading and permalink for Example 9.22: The covariant powerset monad">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="cat-monads.html#cat-c09-example-powerset">In Context</a></span>
+</body>
+</html>

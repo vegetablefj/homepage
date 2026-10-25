@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="hkg-deformations">
+  <title>Deformations and periods</title>
+  <introduction>
+    <p>Let <m>X</m> be IHS of dimension <m>2n</m>, and let <m>b=b_2(X)</m>. A deformation varies its complex structure while keeping its differentiable topology locally fixed. The line spanned by the holomorphic symplectic form gives local coordinates on the deformation space; orthogonality to fixed classes describes where line bundles persist.</p>
+    <p>References for the local theory are <xref ref="hkg-bib-beauville"/>, <xref ref="hkg-bib-huybrechts" detail="§1.12–1.16"/>, and <xref ref="hkg-bib-huybrechts-torelli" detail="§4.1"/>.</p>
+  </introduction>
+  <section xml:id="hkg-deformation-families">
+    <title>Families, markings, and first-order deformations</title>
+    <definition xml:id="hkg-definition-deformation">
+      <statement>
+        <p>A <em>smooth family</em> of compact complex manifolds over a complex manifold <m>S</m> is a proper holomorphic submersion <m>\pi:\mathcal X\to S</m>, with fibers <m>X_s=\pi^{-1}(s)</m>. A <em>deformation of <m>X</m></em> over a pointed complex analytic base <m>(S,0)</m> is a proper flat holomorphic family together with an isomorphism <m>X\cong X_0</m>. Over a smooth base, a deformation of a smooth compact manifold becomes a smooth family after shrinking around <m>0</m>.</p>
+      </statement>
+    </definition>
+    <p xml:id="hkg-def-deformation-equivalence">Two IHS manifolds are <em>deformation equivalent</em> if they can be joined by a finite chain of smooth families of IHS manifolds over connected bases, where successive families have an isomorphic fiber. An equivalence class is a <em>deformation type</em>. Projectivity of the intermediate fibers is not required.</p>
+    <p>Infinitesimal deformation theory permits nonreduced analytic bases, including the first-order base with ring <m>\mathbb C[\varepsilon]/(\varepsilon^2)</m>. The topological and Hodge-theoretic arguments below concern actual smooth families over complex manifolds.</p>
+    <p>Ehresmann's theorem says that a proper differentiable submersion is locally a differentiable fiber bundle. Consequently, <m>R^k\pi_*\mathbb Z</m> is a local system with fiber <m>H^k(X_s,\mathbb Z)</m>. Transport along a path identifies the cohomology of its endpoint fibers. This identification depends only on the homotopy class of the path with fixed endpoints. On a simply connected sufficiently small base, the central-fiber identification therefore gives identifications
+      <md number="no">H^k(X_s,\mathbb Z)\cong H^k(X,\mathbb Z).</md>
+      Cup product and integration are preserved. These assertions concern topological cohomology; the Hodge decomposition changes with <m>s</m>.</p>
+    <p>A <em>lattice</em> is a finitely generated free abelian group with a nondegenerate integral symmetric bilinear form.</p>
+    <definition xml:id="hkg-definition-marking">
+      <statement>
+        <p>Let <m>\Lambda</m> be an integral lattice isometric to <m>(H^2(X,\mathbb Z),q_X)</m>. A <em>marking</em> of <m>X</m> is a lattice isometry <m>\eta:H^2(X,\mathbb Z)\to\Lambda</m>. A <em>marked family</em> is a smooth family of IHS manifolds together with an isometry of local systems
+          <md number="no">\eta:R^2\pi_*\mathbb Z\longrightarrow \underline\Lambda_S.</md>
+          Here <m>\underline\Lambda_S</m> is the constant local system with fiber <m>\Lambda</m>. In particular, a marking of a central fiber extends uniquely over a simply connected small base by parallel transport.</p>
+      </statement>
+    </definition>
+    <p>We use <m>q_\Lambda</m> for the lattice pairing and its scalar extensions, and let <m>q_\Lambda(v)=q_\Lambda(v,v)</m>. Its signature is <m>(3,b-3)</m>. No choice of basis of <m>\Lambda</m> is part of a marking.</p>
+    <p>The <em>Kuranishi space</em> <m>\operatorname{Def}(X)</m> is an analytic germ with a semiuniversal deformation of <m>X</m>. Its Zariski tangent space is
+      <md number="no">T_0\operatorname{Def}(X)\cong H^1(X,T_X).</md>
+      Obstructions lie in <m>H^2(X,T_X)</m>. If <m>H^0(X,T_X)=0</m>, the deformation is universal as a germ with identified central fiber. We quote these facts from <xref ref="hkg-bib-huybrechts" detail="§1.12"/>.</p>
+    <p xml:id="hkg-obstruction-space-anchor">An obstruction space contains the obstruction classes, which need not exhaust the space.</p>
+    <aside xml:id="margin-hkg-obstruction-space">
+      <p>The vanishing <m>H^2(X,T_X)=0</m> is sufficient for unobstructedness; it is not necessary.</p>
+    </aside>
+    <p>A tangent vector <m>v\in T_0S</m> of a family has a <em>Kodaira–Spencer class</em> <m>\kappa(v)\in H^1(X,T_X)</m>. It measures the first-order change of complex structure in the direction <m>v</m>. The Kodaira–Spencer map of the Kuranishi family is the displayed tangent-space identification.</p>
+  </section>
+  <section xml:id="hkg-deformation-unobstructedness">
+    <title>Unobstructedness and the symplectic form</title>
+    <theorem xml:id="hkg-theorem-unobstructedness">
+      <title>(Bogomolov–Tian–Todorov)</title>
+      <statement>
+        <p>The Kuranishi space of a compact Kähler manifold with trivial canonical bundle is smooth. In particular, if <m>X</m> is IHS, then <m>\operatorname{Def}(X)</m> is smooth of dimension <m>b-2</m>, and its sufficiently small fibers are again IHS.</p>
+      </statement>
+    </theorem>
+    <p>We quote smoothness from Bogomolov in the symplectic case and Tian–Todorov for the stated Kähler case. Stability of the IHS condition is explained in <xref ref="hkg-bib-huybrechts" detail="§1.12"/>.</p>
+    <proposition xml:id="hkg-proposition-deformation-tangent">
+      <statement>
+        <p>Choose a generator <m>\sigma\in H^0(X,\Omega_X^2)</m>. Contraction with <m>\sigma</m> induces isomorphisms
+          <md number="no">T_X\xrightarrow{\ \iota_\sigma\ }\Omega_X^1,\qquad H^1(X,T_X)\xrightarrow{\ \iota_\sigma\ }H^{1,1}(X).</md>
+          Moreover, <m>H^0(X,T_X)=0</m> and <m>h^1(X,T_X)=b-2</m>.</p>
+      </statement>
+      <proof>
+        <p>At a point <m>x\in X</m>, nondegeneracy means exactly that the map <m>v\mapsto\sigma_x(v,-)</m> from <m>T_{X,x}</m> to its dual is an isomorphism. The local maps vary holomorphically, so they give an isomorphism of holomorphic vector bundles. Taking cohomology and using the Dolbeault isomorphism gives the second displayed isomorphism. Since <m>X</m> is simply connected, <m>H^1(X,\mathbb C)=0</m>; the Kähler Hodge decomposition then gives <m>H^0(X,\Omega_X^1)=0</m>. Thus <m>H^0(X,T_X)=0</m>. Finally,
+          <md number="no">b=h^{2,0}(X)+h^{1,1}(X)+h^{0,2}(X)=h^{1,1}(X)+2.</md>
+          This proves the dimension assertion.</p>
+      </proof>
+    </proposition>
+    <p>Replacing <m>\sigma</m> by <m>c\sigma</m> scales the contraction isomorphism by <m>c</m>.</p>
+    <p>Small deformations of a compact Kähler manifold remain Kähler. In a small smooth Kähler family the Hodge numbers are constant. A relative two-form extending <m>\sigma</m> remains nondegenerate after shrinking: its top exterior power is nonzero on the compact central fiber, and nonvanishing is open. Differentiable triviality preserves simple connectedness. Thus the small fibers remain IHS.</p>
+    <p xml:id="hkg-universal-family-anchor">Universality refers to the pointed germ with identified central fiber, rather than to a global moduli space.</p>
+    <aside xml:id="margin-hkg-universal-family">
+      <p>The vanishing <m>H^0(X,T_X)=0</m> excludes infinitesimal automorphisms. Discrete automorphisms can still affect gluing and the existence of a global universal family.</p>
+    </aside>
+  </section>
+  <section xml:id="hkg-period-domain">
+    <title>The period domain</title>
+    <definition xml:id="hkg-definition-period-domain">
+      <statement>
+        <p>Let <m>\Lambda</m> have signature <m>(3,b-3)</m>, and let <m>\Lambda_\mathbb C=\Lambda\otimes_\mathbb Z\mathbb C</m>. Its <em>period domain</em> is
+          <md xml:id="hkg-equation-period-domain" number="yes">\Omega_\Lambda=\{[z]\in\mathbb P(\Lambda_\mathbb C):q_\Lambda(z)=0,\ q_\Lambda(z,\bar z)&gt;0\}.</md>
+          The period of a marked IHS manifold <m>(X,\eta)</m> is <m>\operatorname{Per}(X,\eta)=[\eta(\sigma)]</m>.</p>
+      </statement>
+    </definition>
+    <p>Both conditions are independent of the choice of a nonzero representative of <m>[z]</m>. The first condition is a homogeneous quadratic equation; the second is a strict real inequality. The BBF relations for <m>\sigma</m> show that the period of an IHS manifold belongs to <m>\Omega_\Lambda</m>.</p>
+    <proposition xml:id="hkg-proposition-period-domain-planes">
+      <statement>
+        <p>The space <m>\Omega_\Lambda</m> is a smooth complex manifold of dimension <m>b-2</m>. Its underlying real manifold is naturally the space of oriented positive definite two-planes in <m>\Lambda_\mathbb R</m>. It is connected and has the homotopy type of a two-sphere.</p>
+      </statement>
+      <proof>
+        <p>Write <m>z=x+iy</m> with <m>x,y\in\Lambda_\mathbb R</m>. Then
+          <md number="no">q_\Lambda(z)=q_\Lambda(x)-q_\Lambda(y)+2i q_\Lambda(x,y).</md>
+          Thus the period conditions are equivalent to <m>q_\Lambda(x)=q_\Lambda(y)&gt;0</m> and <m>q_\Lambda(x,y)=0</m>. In particular, <m>x,y</m> are linearly independent and span a positive definite plane, oriented by the ordered basis <m>(x,y)</m>. Multiplying <m>z</m> by a nonzero complex scalar changes this basis by a positive scalar times a rotation, and hence preserves its orientation. Conversely, an oriented positive plane has an oriented orthogonal basis of equal length; all such bases give the same projective line <m>[x+iy]</m>. These constructions are inverse and smooth.</p>
+        <p>The projective quadric <m>Q_\Lambda=\{[z]:q_\Lambda(z)=0\}</m> is smooth because the pairing is nondegenerate. At a nonzero isotropic vector <m>z</m>, the differential of the equation on the affine cone is the nonzero linear functional <m>2q_\Lambda(z,-)</m>. Hence the quadric has dimension <m>b-2</m>. The inequality in <xref ref="hkg-equation-period-domain"/> defines an open subset of this quadric.</p>
+        <p>For the topology, choose an orthogonal decomposition <m>\Lambda_\mathbb R=P\oplus N</m>, with <m>P</m> positive definite of dimension three and <m>N</m> negative definite. Projection of a positive two-plane to <m>P</m> is injective. Such a plane is therefore the graph of a linear map <m>A:E\to N</m>, where <m>E\subset P</m> is an oriented two-plane and <m>\|A\|&lt;1</m>, using the positive definite norms on <m>P</m> and <m>-q_\Lambda|_N</m>. Replacing <m>A</m> by <m>tA</m>, for <m>0\leq t\leq1</m>, preserves positivity and defines a deformation retraction onto the oriented two-planes in <m>P</m>. After choosing an orientation of <m>P</m>, these planes correspond to their unit normal vectors and form <m>S^2</m>. The conclusion follows.</p>
+      </proof>
+    </proposition>
+    <p xml:id="hkg-period-domain-components-anchor">Fixing a positive polarization class instead gives a signature-<m>(2,b-3)</m> orthogonal complement, whose oriented positive two-plane domain has two components.</p>
+    <aside xml:id="margin-hkg-period-domain-type-iv">
+      <p>A <em>type IV domain</em> usually has signature <m>(2,t)</m>. The unpolarized domain here has signature <m>(3,b-3)</m> and contains compact twistor conics.</p>
+    </aside>
+    <proposition xml:id="hkg-proposition-period-hodge-structure">
+      <statement>
+        <p>A point <m>p=[z]\in\Omega_\Lambda</m> determines the weight-two Hodge decomposition
+          <md number="no">\Lambda_\mathbb C=\mathbb Cz\oplus\bigl(\mathbb Cz\oplus\mathbb C\bar z\bigr)^\perp\oplus\mathbb C\bar z.</md>
+          The summands have types <m>(2,0)</m>, <m>(1,1)</m>, and <m>(0,2)</m>, respectively. For <m>\lambda\in\Lambda_\mathbb R</m>, being of type <m>(1,1)</m> is equivalent to <m>q_\Lambda(\lambda,z)=0</m>.</p>
+      </statement>
+      <proof>
+        <p>The pairing on <m>\mathbb Cz\oplus\mathbb C\bar z</m> is nondegenerate because <m>q_\Lambda(z,\bar z)&gt;0</m> and the two diagonal entries vanish. The asserted direct sum follows. Complex conjugation interchanges the first and third summands and preserves the middle one, so this is a real Hodge structure. A real vector orthogonal to <m>z</m> is also orthogonal to <m>\bar z</m>; the last assertion follows.</p>
+      </proof>
+    </proposition>
+  </section>
+  <section xml:id="hkg-local-torelli">
+    <title>Local Torelli</title>
+    <p>Take a sufficiently small simply connected representative <m>U</m> of <m>\operatorname{Def}(X)</m>, and extend a marking <m>\eta</m> over the Kuranishi family. The Hodge lines <m>H^{2,0}(X_t)</m> form a holomorphic line subbundle of the flat complex cohomology bundle. Hence they define a holomorphic map
+      <md number="no">\operatorname{Per}:U\longrightarrow\Omega_\Lambda,\qquad t\longmapsto\eta_t(H^{2,0}(X_t)).</md>
+      Holomorphicity follows from variation of Hodge structure for smooth proper Kähler families.</p>
+    <lemma xml:id="hkg-lemma-period-tangent">
+      <statement>
+        <p>At <m>p=[z]\in\Omega_\Lambda</m>, the tangent space of the period domain is
+          <md number="no">T_p\Omega_\Lambda\cong\operatorname{Hom}\bigl(\mathbb Cz,z^\perp/\mathbb Cz\bigr).</md>
+          If <m>p=\operatorname{Per}(X,\eta)</m>, then <m>z^\perp/\mathbb Cz</m> is identified by the marking with <m>H^{1,1}(X)</m>.</p>
+      </statement>
+      <proof>
+        <p>A first-order change of a line <m>\mathbb Cz\subset\Lambda_\mathbb C</m> is represented by <m>z+\varepsilon w</m>, with <m>w</m> taken modulo <m>\mathbb Cz</m>. Differentiating the isotropy equation gives <m>q_\Lambda(z,w)=0</m>. This proves the first description; equivalently, a tangent vector is a homomorphism sending <m>z</m> to the class of <m>w</m>. In the Hodge decomposition, <m>z^\perp=\mathbb Cz\oplus H^{1,1}(X)</m>, because the pairing of <m>z</m> with the nonzero <m>(0,2)</m> direction is nonzero. Quotienting gives the second assertion.</p>
+      </proof>
+    </lemma>
+    <theorem xml:id="hkg-theorem-local-torelli">
+      <title>(Beauville)</title>
+      <statement>
+        <p>The period map of the Kuranishi family of an IHS manifold is a local biholomorphism. After shrinking <m>U</m>, it identifies <m>U</m> with an open neighborhood of <m>\operatorname{Per}(X,\eta)</m> in <m>\Omega_\Lambda</m>.</p>
+      </statement>
+      <proof>
+        <p>The source is smooth by <xref ref="hkg-theorem-unobstructedness"/>. Let <m>v\in T_0U</m>, and let <m>\kappa(v)\in H^1(X,T_X)</m> be its Kodaira–Spencer class. Using the marking, identify the target tangent space with <m>\operatorname{Hom}(\mathbb C\sigma,H^{1,1}(X))</m>. The infinitesimal variation formula says
+          <md xml:id="hkg-equation-period-derivative" number="yes">d\operatorname{Per}_0(v)(\sigma)=\kappa(v)\mathbin{\lrcorner}\sigma\in H^{1,1}(X).</md>
+          This fixes our Kodaira–Spencer sign convention; the opposite convention changes only the sign of the derivative.</p>
+        <p>The Kodaira–Spencer map of the Kuranishi family is an isomorphism. Contraction with <m>\sigma</m> is an isomorphism by <xref ref="hkg-proposition-deformation-tangent"/>. Evaluating a homomorphism on the chosen generator <m>\sigma</m> identifies the tangent space in <xref ref="hkg-lemma-period-tangent"/> with <m>H^{1,1}(X)</m>. Thus the differential of the period map is an isomorphism. The holomorphic inverse function theorem proves the assertion at <m>0</m>. Shrinking the family, or applying the same argument at nearby fibers, gives the stated local biholomorphism.</p>
+      </proof>
+    </theorem>
+    <p>Represent a first-order deformation by a Čech cocycle of vector fields <m>\theta_{ij}</m> on chart overlaps. Comparing local symplectic forms uses their Lie derivatives. Cartan's formula and <m>d\sigma=0</m> give
+      <md number="no">\mathcal L_{\theta_{ij}}\sigma=d(\theta_{ij}\mathbin{\lrcorner}\sigma).</md>
+      The <m>\Omega_X^1</m> component in the Čech–de Rham description is represented by <m>\theta_{ij}\mathbin{\lrcorner}\sigma</m>. Its Dolbeault class gives <xref ref="hkg-equation-period-derivative"/>.</p>
+    <p xml:id="hkg-local-global-anchor">Local Torelli concerns one pointed deformation. The gluing of period charts and global period fibers are treated in <xref ref="hkg-torelli"/>.</p>
+    <aside xml:id="margin-hkg-local-torelli-scope">
+      <p>The phrase <em>local Torelli</em> can also mean only injectivity of the period derivative. Here the equal dimensions give a local analytic isomorphism.</p>
+    </aside>
+  </section>
+  <section xml:id="hkg-hodge-loci-degree-two">
+    <title>Line bundles and Noether–Lefschetz loci</title>
+    <definition xml:id="hkg-definition-degree-two-hodge-locus">
+      <statement>
+        <p>For <m>0\ne\lambda\in\Lambda_\mathbb Q</m>, its degree-two <em>Hodge locus</em> is defined by <m>q_\Lambda(\lambda,z)=0</m>:
+          <md number="no">\Omega_{\Lambda,\lambda}:=\Omega_\Lambda\cap\mathbb P(\lambda^\perp_\mathbb C).</md>
+          For a rational subspace <m>N_\mathbb Q\subset\Lambda_\mathbb Q</m>, let <m>\Omega_{\Lambda,N}=\bigcap_{\lambda\in N_\mathbb Q\setminus\{0\}}\Omega_{\Lambda,\lambda}</m>. An empty intersection of conditions means <m>\Omega_{\Lambda,0}=\Omega_\Lambda</m>.</p>
+      </statement>
+    </definition>
+    <p>The locus <m>\Omega_{\Lambda,N}</m> consists exactly of periods at which every class in <m>N_\mathbb Q</m> has type <m>(1,1)</m>. Only the rational span matters. In particular, a class and any nonzero rational multiple define the same locus. An integral sublattice and its saturation in <m>\Lambda</m> also define the same locus.</p>
+    <proposition xml:id="hkg-proposition-hodge-loci-codimension">
+      <statement>
+        <p>Let <m>r=\dim_\mathbb Q N_\mathbb Q</m>. If <m>\Omega_{\Lambda,N}</m> is nonempty, it is a smooth complex submanifold of <m>\Omega_\Lambda</m> of codimension <m>r</m>, hence of dimension <m>b-r-2</m>. In particular, a nonempty <m>\Omega_{\Lambda,\lambda}</m> is a smooth hypersurface. The assertion does not require the form on <m>N_\mathbb Q</m> to be nondegenerate.</p>
+      </statement>
+      <proof>
+        <p>Take <m>[z]\in\Omega_{\Lambda,N}</m>. Every vector in <m>N_\mathbb C</m> belongs to the <m>(1,1)</m> subspace <m>H_z=(\mathbb Cz\oplus\mathbb C\bar z)^\perp</m>. This subspace is nondegenerate for <m>q_\Lambda</m>. In the tangent-space description obtained by evaluating on <m>z</m>, the differential of the equation associated to <m>\lambda</m> is the functional <m>w\mapsto q_\Lambda(\lambda,w)</m> on <m>H_z</m>. Linearly independent vectors in <m>N_\mathbb C</m> give linearly independent functionals, since the form on <m>H_z</m> is nondegenerate. Thus the <m>r</m> equations have independent differentials. The holomorphic implicit function theorem gives the assertion at every point.</p>
+      </proof>
+    </proposition>
+    <p>The locus is nonempty precisely when <m>N_\mathbb R^\perp</m> contains a positive two-plane. If <m>N_\mathbb R</m> itself contains a positive two-plane, its orthogonal complement has positive index at most one, so the locus is empty. If <m>N</m> is negative definite of rank <m>r</m>, the complement has signature <m>(3,b-3-r)</m>, so the locus is nonempty.</p>
+    <p>Under the local period isomorphism, these are the loci on which selected topological degree-two classes remain of type <m>(1,1)</m>. By <xref ref="hkg-picard-identification"/>, an integral class is the first Chern class of a unique isomorphism class of line bundles exactly when it has type <m>(1,1)</m>. Recall that these classes identify <m>\operatorname{NS}(X)</m>, whose rank is the Picard number <m>\rho(X)</m>. Thus these period equations are precisely the conditions for selected line-bundle classes to persist.</p>
+    <proposition xml:id="hkg-proposition-line-bundle-deformations">
+      <statement>
+        <p>Let <m>L</m> be a line bundle on <m>X</m> with <m>\lambda=\eta(c_1(L))\ne0</m>. Its local extension locus is the smooth hypersurface
+          <md number="no">\operatorname{Def}(X,L)=\operatorname{Per}^{-1}(\Omega_{\Lambda,\lambda})\subset\operatorname{Def}(X).</md>
+          Its dimension is <m>b-3</m>. More generally, if the first Chern classes of <m>r</m> line bundles are independent over <m>\mathbb Q</m>, their simultaneous extension locus is smooth of codimension <m>r</m>.</p>
+      </statement>
+      <proof>
+        <p>The deformation theory of the pair <m>(X,L)</m> identifies its image in <m>\operatorname{Def}(X)</m> with the locus on which the flat class <m>c_1(L)</m> has type <m>(1,1)</m>; the line bundle extends locally over that locus. We use this extension statement from <xref ref="hkg-bib-huybrechts" detail="§1.14"/>. The type condition is precisely the orthogonality equation defining the displayed locus. Its smoothness and codimension now follow from local Torelli and <xref ref="hkg-proposition-hodge-loci-codimension"/>. Applying the same extension statement to finitely many line bundles proves the last assertion.</p>
+      </proof>
+    </proposition>
+    <p xml:id="hkg-line-bundle-extension-anchor">Twisting an extension by a bundle from the base preserves its fiber restrictions. Scalar automorphisms of the bundle also remain. Neither ambiguity changes its extension locus.</p>
+    <aside xml:id="margin-hkg-line-bundle-extension">
+      <p>Holomorphicity gives a period hyperplane. Ampleness gives an additional open Kähler-cone condition.</p>
+    </aside>
+    <p>The <em>Noether–Lefschetz locus</em> in an unpolarized local deformation space usually means the locus <m>\rho(X_t)&gt;0</m>. It is the union of the loci associated with nonzero integral classes. In a family where a fixed lattice of line-bundle classes is already present, the same name usually means the locus where the Picard number exceeds that prescribed rank. The ambient family is therefore part of the meaning of this term.</p>
+  </section>
+  <section xml:id="hkg-very-general-deformations">
+    <title>Very general periods and projective deformations</title>
+    <definition xml:id="hkg-definition-very-general">
+      <statement>
+        <p>A property holds for a <em>very general</em> point of a connected complex manifold <m>S</m> if it holds outside a countable union of proper closed analytic subsets of <m>S</m>. In an algebraic family one often requires the exceptional subsets to be algebraic; that stronger convention will be stated when needed.</p>
+      </statement>
+    </definition>
+    <p>Proper closed analytic subsets of a connected complex manifold have empty interior. By the Baire category theorem, their countable unions contain no nonempty open set. Thus a very general set is dense, though it need not be open.</p>
+    <proposition xml:id="hkg-proposition-generic-picard-zero">
+      <statement>
+        <p>In the full local deformation space of an IHS manifold, a very general fiber satisfies <m>\operatorname{NS}(X_t)=0</m>. More generally, on each nonempty connected component of <m>\Omega_{\Lambda,N}</m>, a very general period has rational <m>(1,1)</m> subspace exactly <m>N_\mathbb Q</m>. Its integral <m>(1,1)</m> lattice is then <m>N_\mathbb Q\cap\Lambda</m>.</p>
+      </statement>
+      <proof>
+        <p>The lattice <m>\Lambda</m> is countable. For every nonzero <m>\lambda\in\Lambda</m>, the set <m>\Omega_{\Lambda,\lambda}</m> is either empty or a proper analytic hypersurface by <xref ref="hkg-proposition-hodge-loci-codimension"/>. The complement of their union consists precisely of periods with no nonzero integral <m>(1,1)</m> classes. A rational class is a rational multiple of an integral class, so the same complement has no nonzero rational <m>(1,1)</m> classes. Pulling back by local Torelli proves the first assertion.</p>
+        <p>Let <m>r=\dim_\mathbb Q N_\mathbb Q</m> and <m>\lambda\in\Lambda_\mathbb Q\setminus N_\mathbb Q</m>. Its additional type condition on <m>\Omega_{\Lambda,N}</m> is <m>\Omega_{\Lambda,N_\mathbb Q+\mathbb Q\lambda}</m>. If nonempty, this locus has dimension <m>b-r-3</m> by <xref ref="hkg-proposition-hodge-loci-codimension"/>, whereas every component of <m>\Omega_{\Lambda,N}</m> has dimension <m>b-r-2</m>. It is therefore a proper closed analytic subset of each component. Excluding these loci for the countably many rational <m>\lambda</m> outside <m>N_\mathbb Q</m> proves the assertion. Intersecting the rational subspace with <m>\Lambda</m> gives the integral lattice.</p>
+      </proof>
+    </proposition>
+    <proposition xml:id="hkg-proposition-projective-deformations-dense">
+      <statement>
+        <p>Projective fibers with Picard number one are dense in every full local deformation space of an IHS manifold.</p>
+      </statement>
+      <proof>
+        <p>By <xref ref="hkg-projectivity-criterion"/> and <xref ref="hkg-picard-identification"/>, it suffices to approximate every period by periods admitting an integral <m>(1,1)</m> class of positive BBF square.</p>
+        <p>Let <m>p=[x+iy]\in\Omega_\Lambda</m>, with <m>x,y</m> orthogonal of equal positive square. The orthogonal complement of their plane has signature <m>(1,b-3)</m>, so choose a vector <m>\kappa</m> in it with <m>q_\Lambda(\kappa)&gt;0</m>. Choose rational vectors <m>\alpha_j\to\kappa</m>. For large <m>j</m>, their squares are positive. Define
+          <md number="no">\begin{aligned}x_j&amp;=x-\frac{q_\Lambda(x,\alpha_j)}{q_\Lambda(\alpha_j)}\alpha_j,\\ y_j&amp;=y-\frac{q_\Lambda(y,\alpha_j)}{q_\Lambda(\alpha_j)}\alpha_j.\end{aligned}</md>
+          Then <m>x_j,y_j\in\alpha_j^\perp</m> and <m>x_j\to x</m>, <m>y_j\to y</m>. Their plane is positive for large <m>j</m>. Within that plane, orthogonalize and rescale the ordered pair continuously so that its two vectors have equal positive length. The corresponding period <m>p_j</m> tends to <m>p</m> and is orthogonal to <m>\alpha_j</m>.</p>
+        <p>Local Torelli realizes all sufficiently close <m>p_j</m> by fibers of the given local family. Multiplying <m>\alpha_j</m> by a positive integer gives an integral class of positive square without changing its Hodge locus. The projectivity criterion makes these fibers projective. By <xref ref="hkg-proposition-generic-picard-zero"/> with <m>N_\mathbb Q=\mathbb Q\alpha_j</m>, periods with rational <m>(1,1)</m> subspace exactly <m>\mathbb Q\alpha_j</m> are dense in this hyperplane. Perturb <m>p_j</m> within that hyperplane and within the local period image to such a period. The resulting fiber is projective with Picard number one, and these perturbations can still tend to <m>p</m>.</p>
+      </proof>
+    </proposition>
+    <p>Projective fibers lie in a countable dense union of proper hypersurfaces whose complement is also dense.</p>
+  </section>
+  <section xml:id="hkg-persistent-hodge-classes">
+    <title>Hodge classes in higher degree</title>
+    <p>Degree-two Hodge loci are hyperplane sections because the period is a line and the BBF form identifies its orthogonal complement. In higher degree there is still an analytic type condition, but it need not be one equation and need not be smooth.</p>
+    <proposition xml:id="hkg-proposition-local-hodge-locus">
+      <statement>
+        <p>Let <m>\pi:\mathcal X\to S</m> be a smooth proper family of compact Kähler manifolds over a simply connected complex manifold. Fix a real flat cohomology class <m>\gamma</m> of degree <m>2p</m>. The set
+          <md number="no">Z_\gamma=\{s\in S:\gamma_s\in H^{p,p}(X_s)\}</md>
+          is a closed analytic subset of <m>S</m>.</p>
+      </statement>
+      <proof>
+        <p>The Hodge filtration <m>F^p</m> is a holomorphic subbundle of the holomorphic flat cohomology bundle <m>\mathcal H^{2p}=(R^{2p}\pi_*\mathbb C)\otimes\mathcal O_S</m>. A flat class gives a holomorphic section of this bundle. Its image in the quotient bundle <m>\mathcal H^{2p}/F^p</m> is holomorphic, so its zero locus is closed analytic.</p>
+        <p>For a real class of weight <m>2p</m>, belonging to <m>F^p</m> is equivalent to having type <m>(p,p)</m>. Indeed, membership in <m>F^p</m> allows only components <m>H^{a,2p-a}</m> with <m>a\geq p</m>. Reality then allows only components with <m>2p-a\geq p</m> as well. Both inequalities force <m>a=p</m>. Thus the zero locus is exactly <m>Z_\gamma</m>.</p>
+      </proof>
+    </proposition>
+    <definition xml:id="hkg-definition-persistent-hodge-class">
+      <statement>
+        <p>A rational class <m>\gamma\in H^{2p}(X,\mathbb Q)</m> is <em>persistent of type <m>(p,p)</m></em> if its parallel transport has type <m>(p,p)</m> on every sufficiently small deformation of <m>X</m>.</p>
+      </statement>
+    </definition>
+    <p>Persistence concerns Hodge type along local deformations. Monodromy invariance concerns a global group action; a relation between the two requires an additional theorem.</p>
+    <corollary xml:id="hkg-corollary-generic-persistent-classes">
+      <statement>
+        <p>In a connected simply connected local deformation space, outside a countable union of proper closed analytic subsets, every rational Hodge class is of Hodge type throughout the entire base.</p>
+      </statement>
+      <proof>
+        <p>Trivialize each rational cohomology local system. There are countably many rational classes in the finitely many cohomological degrees. For each such class, its Hodge locus is analytic by <xref ref="hkg-proposition-local-hodge-locus"/>. Discard those loci that equal the whole connected base, and take the union of the remaining proper loci. Outside this union, a rational class can be a Hodge class only if its Hodge locus was the entire base.</p>
+      </proof>
+    </corollary>
+    <p>Chern classes of the tangent bundle give examples of persistent classes: the relative holomorphic tangent bundle restricts to <m>T_{X_s}</m>, its topological Chern classes are flat, and <m>c_i(T_{X_s})</m> has type <m>(i,i)</m> on every fiber. By contrast, the class of an individual divisor is generally not persistent; its type condition is the proper hypersurface calculated above. This distinction is the hypothesis that appears in generalized Fujiki formulas for higher-degree classes.</p>
+  </section>
+</chapter>

@@ -1,0 +1,105 @@
+<chapter xml:id="ha-c10">
+  <title>Unbounded resolutions</title>
+  <introduction><p>Injective terms suffice for bounded below resolutions, but not for arbitrary unbounded complexes. The replacement must be insensitive to acyclic complexes in every degree. This is the purpose of K-injective, K-projective, and K-flat complexes. Main references are <xref ref="bib-ha-ks" detail="Chapter 14"/>, <xref ref="bib-ha-li2" detail="Sections 3.15 and 4.11–4.12"/>, <xref ref="bib-ha-yekutieli" detail="Chapters 10–11"/>, and <xref ref="bib-ha-spaltenstein"/>.</p></introduction>
+  <section xml:id="ha-c10-homological">
+    <title>Homotopically injective and projective complexes</title>
+    <definition xml:id="ha-c10-def-k">
+      <title>K-injective and K-projective complexes</title><idx>K-injective complex</idx><idx>K-projective complex</idx><idx>Homotopically injective complex</idx>
+      <statement><p>A complex <m>I</m> is K-injective if <m>\Hom_{\K(\mathcal A)}(N,I)=0</m> for every acyclic complex <m>N</m>. A complex <m>P</m> is K-projective if <m>\Hom_{\K(\mathcal A)}(P,N)=0</m> for every acyclic <m>N</m>. Equivalently, the complexes <m>\underline{\Hom}^{\bullet}(N,I)</m> and <m>\underline{\Hom}^{\bullet}(P,N)</m>, respectively, are acyclic for all such <m>N</m>. A K-injective replacement is a quasi-isomorphism <m>X\to I</m> with <m>I</m> K-injective; a K-projective replacement is a quasi-isomorphism <m>P\to X</m> with <m>P</m> K-projective.</p></statement>
+    </definition>
+    <p>The equivalence uses translations of the acyclic test complex, so a condition on degree-zero homotopy classes controls every cohomology group of the Hom complex. The definitions do not require that the terms themselves be injective or projective.<fn>Homotopically injective and homotopically projective are frequent alternative names. Some definitions of a resolution additionally require injective or projective terms. We specify those terms separately when they are needed.</fn></p>
+    <proposition xml:id="ha-c10-prop-calculation">
+      <statement><p><ol>
+        <li><p>If <m>I</m> is K-injective, the natural map <m>\Hom_{\K(\mathcal A)}(X,I)\to\Hom_{\D(\mathcal A)}(X,I)</m> is a bijection for every <m>X</m>.</p></li>
+        <li><p>If <m>P</m> is K-projective, the natural map <m>\Hom_{\K(\mathcal A)}(P,Y)\to\Hom_{\D(\mathcal A)}(P,Y)</m> is a bijection for every <m>Y</m>.</p></li>
+        <li><p>A quasi-isomorphism between K-injective complexes, or between K-projective complexes, is a homotopy equivalence. An acyclic complex of either type is contractible.</p></li>
+      </ol></p></statement>
+      <proof><p>If <m>s:X'\to X</m> is a quasi-isomorphism, its cone is acyclic. The Hom sequence of its triangle says that precomposition gives a bijection <m>\Hom_{\K}(X,I)\to\Hom_{\K}(X',I)</m>. Every roof ending at <m>I</m> therefore has a unique numerator descending to <m>X</m>, which proves the first assertion. The second is dual, using roofs with denominators on the target side. A quasi-isomorphism of replacements has an inverse in the derived category, and these bijections lift that inverse and its two equations to the homotopy category. If a complex is acyclic, apply its defining vanishing to its identity map to obtain a contracting homotopy.</p></proof>
+    </proposition>
+    <proposition xml:id="ha-c10-prop-bounded">
+      <statement><p>A bounded below complex of injective objects is K-injective. A bounded above complex of projective objects is K-projective.</p></statement>
+      <proof><p>For the first assertion let <m>f:N\to I</m> have acyclic source, and let <m>I^n=0</m> for <m>n&lt;a</m>. Construct a homotopy <m>h^n:N^n\to I^{n-1}</m> with <m>f^n=d_Ih^n+h^{n+1}d_N</m>. Start with zero below <m>a</m>. If <m>h^n</m> is constructed, the map <m>f^n-d_Ih^n</m> kills <m>\ker d_N^n=\im d_N^{n-1}</m> by the preceding equation and the chain-map identity. It factors through <m>\im d_N^n\subset N^{n+1}</m>. Injectivity of <m>I^n</m> extends that factor to <m>h^{n+1}</m>. Induction gives a null-homotopy. Reverse arrows and degrees for the projective assertion.</p></proof>
+    </proposition>
+    <proposition xml:id="ha-c10-prop-invariance">
+      <statement><p>For a complex <m>I</m>, the K-injective condition is equivalent to either of the following conditions.<ol>
+        <li><p>For every quasi-isomorphism <m>s:X\to Y</m>, the map <m>\underline{\Hom}^{\bullet}(Y,I)\to\underline{\Hom}^{\bullet}(X,I)</m> is a quasi-isomorphism.</p></li>
+        <li><p>For every <m>X</m>, localization induces a bijection <m>\Hom_{\K}(X,I)\to\Hom_{\D}(X,I)</m>.</p></li>
+      </ol>There are dual characterizations of K-projective complexes, with <m>\underline{\Hom}^{\bullet}(P,-)</m> and maps out of <m>P</m>.</p></statement>
+      <proof><p>The cone of <m>s</m> is acyclic, and applying the Hom complex identifies the cone of the displayed comparison, up to a shift, with Hom from that acyclic cone. This proves the first equivalence by also testing <m>0\to N</m> for an acyclic <m>N</m>. The calculation proposition gives the second condition from K-injectivity. Conversely, that condition applied to an acyclic <m>X</m> makes <m>\Hom_{\K}(X,I)=0</m>, since <m>X=0</m> in <m>\D</m>.</p></proof>
+    </proposition>
+    <p>These characterizations distinguish two uses of the word <em>acyclic</em>. The complex <m>N</m> used in a K-condition is acyclic before applying any functor. A complex called acyclic for a particular functor need only satisfy the vanishing needed by that functor. That relative condition can be useful for one derived functor without making the complex K-injective or K-projective for all Hom tests.</p>
+    <proposition xml:id="ha-c10-prop-closure">
+      <statement><p>The K-injective and K-projective objects form thick triangulated subcategories of <m>\K(\mathcal A)</m>. A product of K-injective complexes is K-injective whenever the termwise product exists. A coproduct of K-projective complexes is K-projective whenever the termwise coproduct exists.</p></statement>
+      <proof><p>These subcategories are the right and left orthogonals of the acyclic complexes. The orthogonal argument of <xref ref="ha-c08"/> proves closure under shifts, cones, and homotopy retracts. For products, the natural identity of complexes
+        <md number="no">\underline{\Hom}^{\bullet}(N,\prod_iI_i)\simeq\prod_i\underline{\Hom}^{\bullet}(N,I_i)</md>
+        and exactness of products of abelian groups prove K-injectivity. The coproduct assertion uses <m>\underline{\Hom}^{\bullet}(\bigoplus_iP_i,N)\simeq\prod_i\underline{\Hom}^{\bullet}(P_i,N)</m>. These identities concern Hom complexes of abelian groups; they do not require that products in <m>\mathcal A</m> be exact.</p></proof>
+    </proposition>
+    <p>Direct sums of K-injective complexes and products of K-projective complexes are not supplied by this argument. Moving a coproduct or product through the wrong Hom variable would assert a preservation property that has not been assumed. Likewise, a quasi-isomorphic complex need not inherit a K-property. It does inherit the property under a homotopy equivalence; replacing a K-injective target by an arbitrary quasi-isomorphic target can lose the Hom calculation.</p>
+  </section>
+  <section xml:id="ha-c10-existence">
+    <title>Existence and its hypotheses</title>
+    <theorem xml:id="ha-c10-thm-existence">
+      <statement><p><ol>
+        <li><p>In a Grothendieck abelian category every complex has a functorial K-injective replacement whose terms are injective.</p></li>
+        <li><p>Over any ring, every complex of modules has a K-projective replacement, which can be chosen to have free terms.</p></li>
+        <li><p>An abelian category with enough injectives has bounded below injective resolutions for bounded below complexes. The dual assertion holds for bounded above complexes and enough projectives.</p></li>
+      </ol></p></statement>
+    </theorem>
+    <p>The first assertion is the general existence theorem of <xref ref="bib-ha-stacks" detail="Tag 079P"/>; its proof uses the generator and exact filtered colimits. The module version of the second assertion follows from semi-free resolutions; see <xref ref="bib-ha-yekutieli" detail="Chapter 11"/>. Such a resolution has an exhaustive increasing filtration with graded-free successive quotients and controlled differential. The filtration supplies the lifting homotopies that freeness of separate terms alone does not provide. The third assertion is the classical complex-resolution construction, combined with <xref ref="ha-c10-prop-bounded"/>.</p>
+    <p>We use these existence theorems with their stated hypotheses. In particular, the K-projective assertion for modules is not inferred merely from the Grothendieck property. For a general abelian category, enough projective objects by itself is used here only for bounded above complexes.</p>
+    <proposition xml:id="ha-c10-prop-equivalence">
+      <statement><p>If every complex in <m>\mathcal A</m> has a K-injective replacement, the full subcategory <m>\K_{\mathrm{inj}}(\mathcal A)</m> of K-injective complexes maps equivalently to <m>\D(\mathcal A)</m>. With K-projective replacements there is the analogous equivalence from <m>\K_{\mathrm{proj}}(\mathcal A)</m>. In either case derived morphisms are sets at the original local size scale.</p></statement>
+      <proof><p>The calculation proposition gives full faithfulness, and the replacement hypothesis gives essential surjectivity. Local smallness follows from the corresponding hom-set in <m>\K(\mathcal A)</m>. A chosen inverse equivalence is a replacement functor up to natural isomorphism; it is not a claim that independently chosen resolutions are equal as complexes.</p></proof>
+    </proposition>
+  </section>
+  <section xml:id="ha-c10-towers">
+    <title>Compatible towers of injective models</title>
+    <p>Bounded below truncations suggest resolving an unbounded complex by an inverse tower. Three issues must be separated: producing compatible maps between the resolutions, proving that the limit is K-injective, and proving that the limit remains quasi-isomorphic to the original complex. The last issue involves exactness of limits and cannot be inferred from eventual stabilization of cohomology without further hypotheses.</p>
+    <proposition xml:id="ha-c10-prop-split-tower">
+      <statement><p>Assume <m>\mathcal A</m> has countable products. Let <m>\cdots\to I_2\to I_1\to I_0</m> be a tower of K-injective complexes whose transition maps are split epimorphisms in each degree. Its termwise inverse limit is K-injective and represents the homotopy inverse limit of the tower in <m>\K(\mathcal A)</m>.</p></statement>
+      <proof><p>For <m>Q=\prod_{n\geq0}I_n</m>, let <m>s:Q\to Q</m> have <m>n</m>-th component the transition map applied to the <m>(n+1)</m>-st component. The sequence
+        <md number="no">0\longrightarrow\lim_nI_n\longrightarrow Q\xrightarrow{1-s}Q\longrightarrow0</md>
+        is split exact in every degree. To construct a graded section of <m>1-s</m>, choose sections of the transition maps, set the first coordinate to zero, and solve the subsequent coordinates recursively. Thus <m>\lim I_n</m> is isomorphic in the homotopy category to <m>\Cone(1-s)[-1]</m>. The product closure and triangle closure of K-injectives prove the assertion. This limit argument is also used in <xref ref="bib-ha-stacks" detail="Section 13.31"/>.</p></proof>
+    </proposition>
+    <proposition xml:id="ha-c10-prop-tower-quasiisomorphism">
+      <statement><p>In the preceding proposition assume additionally that countable products in <m>\mathcal A</m> are exact. Let <m>X\to I_n</m> be compatible maps such that, for each <m>q</m>, the induced map <m>H^qX\to H^qI_n</m> is an isomorphism for all sufficiently large <m>n</m>. Then <m>X\to\lim I_n</m> is a quasi-isomorphism.</p></statement>
+      <proof><p>Exactness of products identifies <m>H^q(Q)</m> with <m>\prod_nH^q(I_n)</m>. The long exact sequence of the split-degreewise sequence gives
+        <md number="no">\begin{aligned}0\to\operatorname{coker}(1-s:H^{q-1}Q\to H^{q-1}Q)&amp;\to H^q(\lim I_n)\\&amp;\to\ker(1-s:H^qQ\to H^qQ)\to0.\end{aligned}</md>
+        For each of these cohomology towers the transition maps are eventually isomorphisms, by compatibility with <m>X</m>. Recursive solution in the constant tail makes <m>1-s</m> surjective, and its kernel is the stable value <m>H^qX</m>. The left cokernel vanishes and the right kernel gives the claimed comparison.</p></proof>
+    </proposition>
+    <p>One may apply this criterion to compatible resolutions of <m>\tau_{\geq-n}X</m> when such a split tower has been constructed. Independently choosing resolutions does not construct its transition maps with the required splittings. A general Grothendieck category also need not have exact products. Its K-injective existence theorem therefore remains the theorem cited above, rather than a consequence of an unqualified inverse-limit argument.<fn>The kernel and cokernel of <m>1-s</m> are often written <m>\lim</m> and <m>\lim^1</m> for countable towers. Using this short exact formula for a general abelian category requires precisely the product and tower hypotheses used in the proof.</fn></p>
+  </section>
+  <section xml:id="ha-c10-flat">
+    <title>K-flat complexes and a failure of termwise arguments</title>
+    <definition xml:id="ha-c10-def-flat">
+      <title>K-flat complexes</title><idx>K-flat complex</idx>
+      <statement><p>A complex <m>F</m> of left <m>R</m>-modules is K-flat if <m>N\otimes_R F</m> is acyclic for every acyclic complex <m>N</m> of right <m>R</m>-modules. Use direct-sum totalization in this tensor product. The definition for right modules is obtained by reversing the sides.</p></statement>
+    </definition>
+    <proposition xml:id="ha-c10-prop-flat">
+      <statement><p>Bounded above complexes of flat modules are K-flat. Every complex of modules has a K-flat replacement. Tensoring a quasi-isomorphism with a K-flat complex preserves quasi-isomorphisms. A tensor product of K-flat complexes over a commutative ring is K-flat.</p></statement>
+      <proof><p>A bounded complex of flat modules is K-flat by its finite filtration by stalks and the cone sequence. A bounded above complex is the filtered union of its finite brutal truncations from below. These inclusions are chain maps, and exact filtered colimits of modules prove the first assertion. A semi-free resolution, as in the preceding existence theorem, is K-flat: its filtration reduces the assertion to sums of shifts of the ring, and then uses exact filtered colimits. For the third assertion tensor the acyclic cone of the given quasi-isomorphism. For the final assertion, apply the two K-flat conditions successively and use associativity of direct-sum tensor totalization.</p></proof>
+    </proposition>
+    <p>K-flat complexes are closed under shifts, cones, homotopy retracts, arbitrary direct sums, and filtered colimits of complexes of modules. For the first three assertions tensor with a fixed acyclic complex and use triangles and homotopies. For sums and filtered colimits, direct-sum tensor totalization commutes with the indicated colimits, and those colimits of modules are exact. This last use of exactness is specific to the stated category; it must be supplied again in another monoidal abelian category.</p>
+    <example xml:id="ha-c10-example-periodic">
+      <p>Let <m>R=k[\epsilon]/(\epsilon^2)</m> for a field <m>k</m>, and let <m>T</m> have <m>R</m> in every degree and differential multiplication by <m>\epsilon</m>. Since <m>\ker(\epsilon)=\im(\epsilon)=(\epsilon)</m>, the complex is acyclic. It is not contractible: every term of <m>dh+hd</m> has image in <m>(\epsilon)</m>, whereas an identity map does not. Its terms are free, so a termwise projective unbounded complex need not be K-projective.</p>
+      <p>The terms are also injective. Indeed the coefficient-of-<m>\epsilon</m> pairing gives <m>R\simeq\Hom_k(R,k)</m> as <m>R</m>-modules, and the latter is injective because <m>\Hom_R(-,\Hom_k(R,k))\simeq\Hom_k(-,k)</m> is exact. Thus termwise injectivity does not imply K-injectivity either.</p>
+      <p>Finally <m>k\otimes_R T</m> has zero differential and is nonzero in every degree. If the acyclic complex <m>T</m> were K-flat, take a bounded above free resolution <m>P\to k</m> of right modules. K-flatness of <m>P</m> makes <m>P\otimes_R T</m> acyclic, and K-flatness of <m>T</m> would make <m>P\otimes_R T\to k\otimes_R T</m> a quasi-isomorphism, a contradiction. This gives a termwise flat complex which is not K-flat.<fn>The same example isolates three distinct failures using one acyclic complex. Its unboundedness in both directions is essential to the failures of the bounded criteria.</fn></p>
+    </example>
+    <p>In a general monoidal Grothendieck category, the existence of K-flat replacements requires additional assumptions on its tensor product and flat objects. The module theorem must not be used there without checking an applicable version.</p>
+  </section>
+  <section xml:id="ha-c10-semi-free">
+    <title>A filtered construction of a replacement</title>
+    <p>For complexes of modules the unbounded projective replacement can be constructed by an increasing filtration, so that induction is on generators rather than on cohomological degree. We give the construction to explain the extra condition behind the module existence theorem. It is not a claim that an arbitrary abelian category has the requisite free objects or exact colimits.</p>
+    <definition xml:id="ha-c10-def-semi-free">
+      <title>Semi-free complexes</title><idx>Semi-free complex</idx>
+      <statement><p>A semi-free complex of <m>R</m>-modules is a complex with an exhaustive filtration <m>0=P_{-1}\subset P_0\subset P_1\subset\cdots</m> by subcomplexes such that the inclusions split as maps of graded modules and each quotient <m>P_r/P_{r-1}</m> is a direct sum of shifts of <m>R</m> with zero differential. Equivalently, a graded basis can be assigned stages so that the differential of each basis vector is a finite combination of vectors from earlier stages.</p></statement>
+    </definition>
+    <proposition xml:id="ha-c10-prop-semi-free">
+      <statement><p>Every complex <m>X</m> of modules admits a quasi-isomorphism <m>P\to X</m> with <m>P</m> semi-free. A semi-free complex is K-projective and K-flat. Consequently every K-projective complex of modules is K-flat.</p></statement>
+      <proof><p>Start with a free graded complex <m>P_0</m> with one cycle generator for each cycle of <m>X</m>, in its degree, and send that generator to the corresponding cycle. This gives surjectivity on cohomology. At a stage <m>P_r\to X</m>, for every cycle <m>z\in P_r^n</m> whose image is a boundary <m>d_Xy</m>, attach a generator <m>e</m> in degree <m>n-1</m> with <m>de=z</m> and send <m>e</m> to <m>y</m>. Take all such pairs <m>(z,y)</m> and repeat. In the union <m>P</m>, each cohomology class in the kernel appears at a finite stage and is killed at the next one. Exact filtered colimits prove that <m>P\to X</m> is a quasi-isomorphism.</p>
+      <p>Let <m>u:P\to N</m> have acyclic target. Suppose a null-homotopy has been constructed on earlier-stage generators. For a new generator <m>e</m>, the element <m>u(e)-h(de)</m> is a cycle, since the homotopy equation already holds on <m>de</m>. Acyclicity allows a choice of <m>h(e)</m> with <m>d_Nh(e)=u(e)-h(de)</m>. This extends the homotopy to that stage. The filtration induction proves K-projectivity without a bound on the degrees of the generators.</p>
+      <p>After tensoring with an acyclic complex, the filtration quotients are sums of shifts of that complex. Degreewise splitting and exact filtered colimits show the tensor product acyclic, proving K-flatness. Finally resolve a K-projective complex <m>Q</m> by a semi-free <m>P\to Q</m>. Since both are K-projective, that map is a homotopy equivalence. K-flatness is invariant under homotopy equivalence, so <m>Q</m> is K-flat.</p></proof>
+    </proposition>
+    <p>Termwise freeness has been supplemented by a filtration that directs each differential toward earlier stages. The periodic acyclic free complex above has no such structure: if it did, its K-projectivity would make it contractible. This explains the role of the filtration without confusing a degreewise projective object with a projective replacement in the homotopy category.</p>
+  </section>
+</chapter>

@@ -1,0 +1,643 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="toric-affine">
+  <title>From a cone to an affine toric variety</title>
+
+  <introduction>
+    <p>A rational cone records inequalities on the exponents of monomials. Keeping exactly the monomials that satisfy those inequalities produces a finitely generated normal domain, and its spectrum contains a torus as a dense open subset. This construction is the local foundation of toric geometry. The task of this chapter is to establish each part of that sentence, including what happens when the cone has smaller dimension than its ambient lattice.</p>
+    <p>The main references are <xref ref="bib-toric-cls" detail="Sections 1.2–1.3"/> and <xref ref="bib-toric-fulton" detail="Chapter 1"/>. Our proofs keep the lattice visible throughout: changing the lattice can change the variety even when the real cone stays the same. The algebraic arguments work over any field <m>k</m>; no restriction on the characteristic is needed for the constructions or the examples below. We use the standard facts that a Laurent polynomial ring over a field is integrally closed, and that the dimension of a finitely generated domain over a field equals the transcendence degree of its fraction field.</p>
+  </introduction>
+
+  <section xml:id="toric-affine-lattices">
+    <title>Lattices, monomials, and the direction of the construction</title>
+
+    <p>Let <m>N</m> be a lattice of rank <m>n</m>, and let <m>M=\Hom_{\Z}(N,\Z)</m> be its dual. We write <m>N_{\R}=N\otimes_{\Z}\R</m>, <m>M_{\R}=M\otimes_{\Z}\R</m>, and <m>\langle m,v\rangle</m> for their perfect pairing. A cone will live in <m>N_{\R}</m>, whereas the exponents of functions will live in <m>M</m>. This separation is essential: inequalities are tested on vectors in <m>N</m>, while multiplication adds vectors in <m>M</m>.</p>
+    <definition xml:id="toric-def-group-algebra">
+      <title>Characters and the group algebra</title>
+      <statement>
+        <p>The group algebra <m>k[M]</m> has a <m>k</m>-basis consisting of formal symbols <m>\chi^m</m>, one for each <m>m\in M</m>, with multiplication
+          <md number="no">\chi^m\chi^{m'}=\chi^{m+m'},\qquad \chi^0=1.</md>
+          The split torus with character lattice <m>M</m> is
+          <md number="no">T_N=\Spec k[M].</md>
+          An element <m>m\in M</m> gives a character <m>\chi^m:T_N\to\Gm</m>. An element <m>v\in N</m> gives a one-parameter subgroup <m>\lambda_v:\Gm\to T_N</m>, characterized by
+          <md number="no">\chi^m(\lambda_v(t))=t^{\langle m,v\rangle}.</md>
+        </p>
+      </statement>
+    </definition>
+    <p>After choosing a basis <m>e_1,\ldots,e_n</m> of <m>N</m> and its dual basis <m>e_1^*,\ldots,e_n^*</m>, the character <m>\chi^{a_1e_1^*+\cdots+a_ne_n^*}</m> becomes <m>t_1^{a_1}\cdots t_n^{a_n}</m>. Thus
+      <md number="no">k[M]\cong k[t_1^{\pm1},\ldots,t_n^{\pm1}],\qquad T_N\cong\Gm^n.</md>
+      The identifications depend on the basis; the group algebra and its characters do not.</p>
+    <p xml:id="toric-affine-direction-anchor">For a cone <m>\sigma\subseteq N_{\R}</m>, the condition <m>\langle m,v\rangle\geq0</m> for all <m>v\in\sigma</m> selects the characters that will remain regular on the affine variety. The resulting direction is
+      <md number="no">\sigma\subseteq N_{\R}\quad\longmapsto\quad
+        S_\sigma=\sigma^\vee\cap M\quad\longmapsto\quad
+        k[S_\sigma]\quad\longmapsto\quad U_\sigma=\Spec k[S_\sigma].</md>
+      The dual cone, rather than the original cone, contains the exponents.</p>
+    <aside xml:id="margin-toric-affine-direction">
+      <p>The formula for <m>\lambda_v</m> explains the sign convention. Pulling <m>\chi^m</m> back along <m>\lambda_v</m> gives a monomial in <m>t</m> that extends across <m>t=0</m> exactly when <m>\langle m,v\rangle\geq0</m>. This is a useful check on duals and signs.</p>
+    </aside>
+  </section>
+
+  <section xml:id="toric-affine-cones">
+    <title>Rational polyhedral cones and duality</title>
+
+    <definition xml:id="toric-def-cone">
+      <title>Polyhedral cones</title>
+      <statement>
+        <p>A polyhedral cone in a finite-dimensional real vector space is a set of the form
+          <md number="no">\Cone(v_1,\ldots,v_r)
+            =\left\{\sum_{i=1}^r a_iv_i:a_i\in\R_{\geq0}\right\}.</md>
+          The empty list generates <m>\{0\}</m>. A cone in <m>N_{\R}</m> is rational if its generators may be chosen in <m>N</m>, or equivalently in <m>N\otimes_{\Z}\Q</m>. Its dimension is the dimension of its real linear span. Its lineality space is <m>\sigma\cap(-\sigma)</m>; it is strongly convex, or pointed, if this space is <m>\{0\}</m>.</p>
+        <p>The dual cone and the annihilator are
+          <md number="no">\sigma^\vee=\{m\in M_{\R}:\langle m,v\rangle\geq0
+            \text{ for all }v\in\sigma\},\qquad
+            \sigma^\perp=\{m\in M_{\R}:\langle m,v\rangle=0
+            \text{ for all }v\in\sigma\}.</md>
+          The relative interior of a cone is its interior in its real linear span.</p>
+      </statement>
+    </definition>
+    <p>Polyhedral does not by itself mean strongly convex, and strongly convex does not mean full-dimensional. A ray in <m>\R^2</m> is strongly convex and one-dimensional. A line is polyhedral but not strongly convex. We temporarily allow cones with lines in the convex-geometric statements; the cones used to construct <m>n</m>-dimensional affine toric varieties with torus <m>T_N</m> will be strongly convex.</p>
+
+    <lemma xml:id="toric-lem-rational-halfspaces">
+      <title>Finite inequalities and finite generators</title>
+      <statement>
+        <p>A cone is rational polyhedral if and only if it is the intersection of finitely many homogeneous rational closed half-spaces. The dual of a rational polyhedral cone is rational polyhedral, and
+          <md number="no">(\sigma^\vee)^\vee=\sigma.</md>
+        </p>
+      </statement>
+      <proof>
+        <p>First consider intersecting a finitely generated cone <m>C=\Cone(w_1,\ldots,w_s)</m> with one half-space <m>\ell\geq0</m>. It is generated by the <m>w_i</m> with <m>\ell(w_i)\geq0</m>, together with the vectors
+          <md number="no">\ell(w_i)w_j-\ell(w_j)w_i
+            \quad\text{for }\ell(w_i)\gt0,\ \ell(w_j)\lt0.</md>
+          These vectors belong to <m>C\cap\ker\ell</m>. To see that they suffice, write a vector in the intersection as a nonnegative combination of the <m>w_i</m>. The total positive <m>\ell</m>-weight is at least the absolute value of the total negative weight. Distribute the negative weight among the positive terms. Pairing an amount <m>c</m> of positive weight from <m>w_i</m> with the same amount of negative weight from <m>w_j</m> produces
+          <md number="no">\frac{c}{\ell(w_i)(-\ell(w_j))}
+            \bigl(\ell(w_i)w_j-\ell(w_j)w_i\bigr).</md>
+          The unused terms have nonnegative <m>\ell</m>-weight. Such a distribution exists, for example by assigning amounts proportional to the positive weights. This proves the generating assertion.</p>
+        <p>The whole vector space is generated as a cone by the positive and negative vectors of a basis. Repeatedly applying the preceding construction proves that an intersection of finitely many homogeneous rational half-spaces is a rational polyhedral cone. If <m>\sigma=\Cone(v_1,\ldots,v_r)</m>, then
+          <md number="no">\sigma^\vee=\bigcap_{i=1}^r
+            \{m:\langle m,v_i\rangle\geq0\},</md>
+          so the dual is rational polyhedral.</p>
+        <p>We also need the bipolar assertion. A finitely generated cone is closed: every vector in it admits a representation using a linearly independent subcollection of its generators. Indeed, a linear dependence among an active collection allows one to vary the coefficients along a relation until one nonnegative coefficient becomes zero, without making any coefficient negative. Repetition reduces the active collection. The cone is consequently a finite union of cones generated by linearly independent vectors, each of which is closed in its span and hence in the ambient space.</p>
+        <p>The finite-dimensional separation theorem now shows that a vector outside <m>\sigma</m> is separated from it by a linear functional nonnegative on <m>\sigma</m> and negative on that vector. One can obtain this functional by choosing an inner product and taking a nearest point of the closed convex cone. It follows that every vector of <m>(\sigma^\vee)^\vee</m> lies in <m>\sigma</m>; the other inclusion follows directly from the definition. Finally, apply the already proved finite generation of <m>\sigma^\vee</m> and take the dual again to express <m>\sigma</m> by finitely many rational inequalities.</p>
+      </proof>
+    </lemma>
+    <p>The proof gives two different roles to rationality. Real polyhedral duality is a convex statement. Rationality ensures that the inequalities and generators can be chosen in the lattices after denominators are cleared. The second role is what makes the semigroup algebra finitely generated.</p>
+
+    <proposition xml:id="toric-prop-pointed-dual">
+      <title>Strong convexity and positive functionals</title>
+      <statement>
+        <p>For a rational polyhedral cone <m>\sigma\subseteq N_{\R}</m>, the following are equivalent:</p>
+        <p><ol>
+          <li><p><m>\sigma</m> is strongly convex.</p></li>
+          <li><p><m>\sigma^\vee</m> spans <m>M_{\R}</m>.</p></li>
+          <li><p>There exists <m>m_0\in M</m> such that <m>\langle m_0,v\rangle\gt0</m> for every nonzero <m>v\in\sigma</m>.</p></li>
+        </ol></p>
+        <p>The functional in the third assertion can be chosen in the ordinary interior of <m>\sigma^\vee</m>. Also,
+          <md number="no">\sigma^\vee\cap(-\sigma^\vee)=\sigma^\perp.</md>
+        </p>
+      </statement>
+      <proof>
+        <p>By bipolarity, the annihilator in <m>N_{\R}</m> of the linear span of <m>\sigma^\vee</m> is exactly <m>\sigma\cap(-\sigma)</m>. Thus the first two assertions are equivalent. A full-dimensional rational cone has a rational point in its ordinary interior; multiply it by a positive integer to obtain <m>m_0\in M</m>. An interior point of <m>\sigma^\vee</m> cannot vanish on a nonzero <m>v\in\sigma</m>, since a sufficiently small perturbation in a direction negative on <m>v</m> would then leave the dual cone. This proves the third assertion. Conversely, a functional strictly positive on nonzero vectors cannot be nonnegative on both a nonzero <m>v</m> and its negative in <m>\sigma</m>. The last equality follows by requiring both <m>\langle m,v\rangle\geq0</m> and its negative to be nonnegative.</p>
+      </proof>
+    </proposition>
+    <p>For the zero cone the positivity condition is vacuous, and its dual is all of <m>M_{\R}</m>. No separate exception to the equivalence is needed.</p>
+  </section>
+
+  <section xml:id="toric-affine-faces">
+    <title>Faces and integral exposing functionals</title>
+
+    <definition xml:id="toric-def-face">
+      <title>Faces and rays</title>
+      <statement>
+        <p>A face of a polyhedral cone <m>\sigma</m> is a cone
+          <md number="no">\tau=\sigma\cap m^\perp
+            \quad\text{for some }m\in\sigma^\vee.</md>
+          We write <m>\tau\preceq\sigma</m>. The cone <m>\sigma</m> itself is a face, exposed by <m>m=0</m>. A ray is a one-dimensional strongly convex cone; a ray of <m>\sigma</m> means a face that is a ray. A rational ray has a unique primitive generator <m>u_\rho\in N</m>, characterized by
+          <md number="no">\rho\cap N=\N u_\rho.</md>
+          A strongly convex cone is simplicial if its primitive ray generators are linearly independent over <m>\R</m>.</p>
+      </statement>
+    </definition>
+    <p>This is the exposed-face definition. For polyhedral cones it agrees with the usual convex definition of a face. For a strongly convex cone, <m>\{0\}</m> is a face by <xref ref="toric-prop-pointed-dual"/>. If the cone has lines, every face contains its lineality space, so <m>\{0\}</m> need not be a face.</p>
+    <lemma xml:id="toric-lem-integral-face">
+      <title>Faces can be exposed by characters</title>
+      <statement>
+        <p>Let <m>\sigma=\Cone(v_1,\ldots,v_r)</m> be rational polyhedral with <m>v_i\in N</m>, and let <m>\tau\preceq\sigma</m>. Then <m>\tau</m> is generated by the <m>v_i</m> that lie in <m>\tau</m>, and there exists <m>m_\tau\in\sigma^\vee\cap M</m> satisfying
+          <md number="no">\tau=\sigma\cap m_\tau^\perp.</md>
+          There are finitely many faces. Intersections of faces are faces, and a face of a face is a face of <m>\sigma</m>.</p>
+      </statement>
+      <proof>
+        <p>If a nonnegative sum <m>\sum a_iv_i</m> has pairing zero with an exposing functional, every active term has pairing zero. This proves the generating assertion and finiteness. To choose an integral exposing functional, start with a real one. Impose the rational linear equations that it vanish on the generators of <m>\tau</m>. In the rational linear subspace defined by these equations, rational points are dense. Approximate the original functional while preserving the finitely many strict positive inequalities on the remaining generators, and then clear denominators.</p>
+        <p>If two faces are exposed by <m>m</m> and <m>m'</m>, their intersection is exposed by <m>m+m'</m>, since both pairings are nonnegative on <m>\sigma</m>. Finally let <m>\gamma\preceq\tau\preceq\sigma</m>. Choose a linear functional <m>u</m> nonnegative on <m>\tau</m> that exposes <m>\gamma</m> there, and let <m>m</m> expose <m>\tau</m> in <m>\sigma</m>. For a sufficiently large positive real number <m>c</m>, the functional <m>u+cm</m> is strictly positive on every chosen generator outside <m>\tau</m>. On <m>\tau</m> its zeros are exactly <m>\gamma</m>. Thus it exposes <m>\gamma</m> in <m>\sigma</m>.</p>
+      </proof>
+    </lemma>
+    <proposition xml:id="toric-prop-dual-faces">
+      <title>Dual faces</title>
+      <statement>
+        <p>The assignment
+          <md number="no">\tau\longmapsto\tau^*
+            :=\sigma^\vee\cap\tau^\perp</md>
+          reverses inclusion and gives a bijection between faces of <m>\sigma</m> and faces of <m>\sigma^\vee</m>. Its inverse is <m>\gamma\mapsto\sigma\cap\gamma^\perp</m>. For every face,
+          <md number="no">\dim\tau+\dim\tau^*=n.</md>
+        </p>
+      </statement>
+      <proof>
+        <p>Choose generators of <m>\tau</m> and let <m>v</m> be their sum. The nonnegative pairings show that <m>\tau^*=\sigma^\vee\cap v^\perp</m>, so <m>\tau^*</m> is a face. If <m>m_\tau</m> exposes <m>\tau</m>, it belongs to <m>\tau^*</m>, and hence
+          <md number="no">\sigma\cap(\tau^*)^\perp=\tau.</md>
+          Applying the same argument to <m>\sigma^\vee</m> and using bipolarity proves that the two assignments are inverse. Inclusion reversal is immediate.</p>
+        <p>Inside the vector space <m>\tau^\perp</m>, a sufficiently small neighborhood of <m>m_\tau</m> still has positive pairing with the finitely many generators of <m>\sigma</m> outside <m>\tau</m>. It therefore lies in <m>\tau^*</m>. Thus <m>\tau^*</m> spans <m>\tau^\perp</m>, whose dimension is <m>n-\dim\tau</m>.</p>
+      </proof>
+    </proposition>
+    <p>The dimension formula uses the rank of the ambient lattice, even when <m>\sigma</m> is not full-dimensional. For example, a ray in <m>N_{\R}\cong\R^2</m> has a one-dimensional dual face, while its zero face corresponds to the whole two-dimensional dual cone. This is one reason to retain the ambient lattice in the notation.</p>
+    <proposition xml:id="toric-prop-ray-generation"><title>The primitive rays generate the cone</title><statement><p>A strongly convex rational polyhedral cone is generated by its finitely many primitive ray generators. Its zero cone has the empty generating list.</p></statement>
+      <proof><p>For a nonzero cone, discard zero vectors from an integral generating list <m>v_1,\ldots,v_s</m> and choose <m>m_0\in M</m> strictly positive on them. Its section by <m>\langle m_0,v\rangle=1</m> is exactly
+        <md number="no">P=\conv\left\{\frac{v_i}{\langle m_0,v_i\rangle}:1\leq i\leq s\right\}.</md>
+        Indeed normalizing a nonnegative conical combination gives a convex combination of these normalized vectors, and the converse is immediate. A finite convex hull is the convex hull of its vertices: remove a listed point whenever it is a convex combination of the others, until no such point remains.</p>
+      <p>Each remaining vertex is strictly separated from the convex hull of the other remaining points. Subtracting its value times <m>m_0</m> from the separating linear functional makes the functional zero at that vertex and positive at every other vertex. It is consequently nonnegative on the whole cone, and its zero face is precisely the ray through the chosen vertex. When the section has only one vertex, the original cone is itself that ray. Thus the cone is generated by these rays. Conversely, an exposed one-dimensional face can contain only one of the section vertices and must contain one, by the face property for a generating sum. These are all its rays. Their rational directions have primitive lattice generators; replacing a nonzero rational generator by its primitive one leaves the cone unchanged.</p></proof>
+    </proposition>
+  </section>
+
+  <section xml:id="toric-affine-semigroups">
+    <title>Semigroups and Gordan's lemma</title>
+
+    <definition xml:id="toric-def-semigroup-algebra">
+      <title>Additive semigroups in a lattice</title>
+      <statement>
+        <p>A semigroup <m>S</m> in a lattice <m>M</m> means a subset containing <m>0</m> and closed under addition. Its group of differences is
+          <md number="no">\operatorname{gp}(S)=S-S\subseteq M.</md>
+          It is finitely generated if <m>S=\N u_1+\cdots+\N u_r</m> for finitely many elements <m>u_i</m>. Its semigroup algebra is the subalgebra
+          <md number="no">k[S]=\bigoplus_{u\in S}k\chi^u\subseteq k[M].</md>
+          A finitely generated semigroup in a lattice is also called an affine semigroup.</p>
+      </statement>
+    </definition>
+    <p>The word semigroup sometimes does not require an identity. Here <m>0\in S</m> is always part of the definition, so the same object may be called a commutative monoid. Addition is the operation in <m>S</m>; multiplication is the corresponding operation on the monomials of <m>k[S]</m>. Since the monomials are a basis, distinct exponents remain linearly independent over every field.</p>
+    <proposition xml:id="toric-prop-semigroup-algebra">
+      <title>Algebra detected by exponents</title>
+      <statement>
+        <p>Let <m>S\subseteq M</m> be a semigroup and <m>L=\operatorname{gp}(S)</m>.</p>
+        <p><ol>
+          <li><p><m>k[S]</m> is an integral domain, and its fraction field is the fraction field of <m>k[L]</m>.</p></li>
+          <li><p><m>k[S]</m> is a finitely generated <m>k</m>-algebra if and only if <m>S</m> is finitely generated.</p></li>
+          <li><p>If these finite generation conditions hold, <m>\dim k[S]=\rk L</m>.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>The embedding in the Laurent polynomial ring <m>k[L]</m> proves that <m>k[S]</m> is a domain. Every <m>u\in L</m> is <m>a-b</m> with <m>a,b\in S</m>, so <m>\chi^u=\chi^a/\chi^b</m> belongs to its fraction field. This proves the first assertion.</p>
+        <p>Semigroup generators give algebra generators. Conversely, suppose that finitely many polynomials generate <m>k[S]</m> as an algebra. Let <m>F\subseteq S</m> be the finite union of their supports. All polynomials in these generators have support in <m>\N F</m>. Since each <m>\chi^u</m>, <m>u\in S</m>, must be such a polynomial, linear independence of Laurent monomials implies <m>u\in\N F</m>. Thus <m>S=\N F</m>. The final assertion follows from the first, because the fraction field of <m>k[L]</m> is a rational function field of transcendence degree <m>\rk L</m>.</p>
+      </proof>
+    </proposition>
+
+    <theorem xml:id="toric-thm-gordan">
+      <title>Gordan's lemma</title>
+      <statement>
+        <p>If <m>C</m> is a rational polyhedral cone in <m>M_{\R}</m>, then <m>C\cap M</m> is a finitely generated semigroup. The cone may have lineality and may have smaller dimension than <m>M_{\R}</m>.</p>
+      </statement>
+      <proof>
+        <p>Choose integral generators <m>w_1,\ldots,w_r</m> of <m>C</m>. The bounded set
+          <md number="no">P=\left\{\sum_{i=1}^r t_iw_i:0\leq t_i\leq1\right\}</md>
+          has only finitely many lattice points. Given <m>u\in C\cap M</m>, choose an expression <m>u=\sum a_iw_i</m> with <m>a_i\geq0</m> and put <m>b_i=\lfloor a_i\rfloor</m>. Then
+          <md number="no">u=\sum_{i=1}^r b_iw_i+w,\qquad
+            w=\sum_{i=1}^r(a_i-b_i)w_i\in P\cap M.</md>
+          The remainder belongs to the lattice because <m>u</m> and all <m>b_iw_i</m> do. It belongs to <m>C</m> because the remaining coefficients are nonnegative. Consequently the finite set consisting of the <m>w_i</m> and the lattice points of <m>P</m> generates <m>C\cap M</m>. If <m>C=\{0\}</m>, the semigroup is simply <m>\{0\}</m>.</p>
+      </proof>
+    </theorem>
+    <p>This proof does not require a simplicial cone or a unique expression for <m>u</m>. It gives a finite generating set, which is often much larger than a minimal one. In particular, generators of the real cone need not generate its lattice-point semigroup. Lattice points between the rays can supply indispensable algebra generators.</p>
+    <definition xml:id="toric-def-hilbert-basis">
+      <title>Hilbert basis in the pointed case</title>
+      <statement>
+        <p>For a strongly convex rational polyhedral cone <m>C\subseteq M_{\R}</m>, the Hilbert basis of <m>C\cap M</m> is the set of its nonzero elements that cannot be written as a sum of two nonzero elements of <m>C\cap M</m>.</p>
+      </statement>
+    </definition>
+    <p>The Hilbert basis is finite, generates the semigroup, and is contained in every semigroup generating set. For finiteness, an indecomposable element must occur in any finite generating set supplied by Gordan's lemma. For generation, choose an integral linear functional strictly positive on <m>C\setminus\{0\}</m> and induct on its positive integer value. Every decomposition into two nonzero elements lowers that value. Thus in the pointed case the Hilbert basis is the unique minimal generating set. When the semigroup has nonzero units, this argument and this definition of a minimal generating set require modification; we will not use the pointed terminology in that situation.</p>
+
+    <proposition xml:id="toric-prop-full-difference-group">
+      <title>The full character lattice is recovered</title>
+      <statement>
+        <p>If <m>\sigma\subseteq N_{\R}</m> is strongly convex and rational polyhedral, then
+          <md number="no">S_\sigma=\sigma^\vee\cap M,\qquad
+            \operatorname{gp}(S_\sigma)=M.</md>
+          No full-dimensionality assumption on <m>\sigma</m> is needed.</p>
+      </statement>
+      <proof>
+        <p>Choose <m>m_0\in M</m> strictly positive on the nonzero vectors of <m>\sigma</m>, using <xref ref="toric-prop-pointed-dual"/>. For any <m>u\in M</m>, the inequalities
+          <md number="no">\langle u+qm_0,v_i\rangle\geq0</md>
+          hold on every nonzero generator <m>v_i</m> of <m>\sigma</m> once the integer <m>q\geq0</m> is sufficiently large. Thus both <m>u+qm_0</m> and <m>qm_0</m> lie in <m>S_\sigma</m>, and their difference is <m>u</m>. For <m>\sigma=\{0\}</m>, one already has <m>S_\sigma=M</m>.</p>
+      </proof>
+    </proposition>
+    <p>Strong convexity is doing exactly the work of ensuring enough characters. For example, if <m>\sigma=\R e_1\subseteq\R^2</m> is a line, then <m>S_\sigma=\Z e_2^*</m>. The resulting algebra is a one-variable Laurent polynomial ring and cannot contain a dense two-dimensional torus.</p>
+  </section>
+
+  <section xml:id="toric-affine-normality">
+    <title>Saturation and normality</title>
+
+    <p>Finite generation gives an affine variety. Normality is controlled by whether a missing exponent can acquire a positive multiple inside the semigroup. The relevant lattice is its group of differences.</p>
+    <definition xml:id="toric-def-saturation">
+      <title>Saturation in the intrinsic lattice</title>
+      <statement>
+        <p>Let <m>S</m> be an affine semigroup and <m>L=\operatorname{gp}(S)</m>. Its saturation is
+          <md number="no">\overline S=\{u\in L:ru\in S
+            \text{ for some integer }r\geq1\}.</md>
+          The semigroup is saturated if <m>S=\overline S</m>.</p>
+      </statement>
+    </definition>
+    <p>Specifying <m>L</m> prevents a misleading normality test. The semigroup <m>2\N\subseteq\Z</m> is saturated in its group of differences <m>2\Z</m>, and <m>k[2\N]=k[t^2]</m> is a polynomial ring. The exponent <m>1</m> does not belong to the fraction-field lattice of that algebra; adjoining <m>t</m> changes its fraction field.</p>
+
+    <lemma xml:id="toric-lem-saturation-cone">
+      <title>Saturation fills the lattice points of the cone</title>
+      <statement>
+        <p>For <m>S=\N u_1+\cdots+\N u_r</m>, with <m>L=\operatorname{gp}(S)</m> and <m>C=\Cone(u_1,\ldots,u_r)\subseteq L_{\R}</m>, one has
+          <md number="no">\overline S=C\cap L.</md>
+        </p>
+      </statement>
+      <proof>
+        <p>If <m>ru\in S</m>, then <m>u\in C</m>. Conversely, a lattice point <m>u\in C</m> has a nonnegative real expression in the <m>u_i</m>. As in the closedness argument in <xref ref="toric-lem-rational-halfspaces"/>, remove linear dependences until the active generators are linearly independent. The coefficients in the resulting expression are rational: they solve a linear system with rational coefficients and a unique solution on its column span. Clearing their denominators gives <m>ru\in S</m> for some positive integer <m>r</m>.</p>
+      </proof>
+    </lemma>
+    <lemma xml:id="toric-lem-cone-ring-normal">
+      <title>Lattice-point algebras are integrally closed</title>
+      <statement>
+        <p>Let <m>C\subseteq L_{\R}</m> be a rational polyhedral cone spanning the real vector space of a lattice <m>L</m>. Then <m>k[C\cap L]</m> is integrally closed in the fraction field of <m>k[L]</m>.</p>
+      </statement>
+      <proof>
+        <p>Write <m>C</m> using finitely many integral linear inequalities <m>\ell_j\geq0</m>. For a nonzero Laurent polynomial define
+          <md number="no">\nu_j\left(\sum a_u\chi^u\right)
+            =\min_{a_u\ne0}\ell_j(u).</md>
+          Lowest-weight terms in a product multiply without annihilating each other, since their product is nonzero in the Laurent polynomial domain. Therefore <m>\nu_j(fg)=\nu_j(f)+\nu_j(g)</m>. Extending by <m>\nu_j(f/g)=\nu_j(f)-\nu_j(g)</m> gives a valuation on the fraction field.</p>
+        <p>Suppose that <m>f</m> in that field is integral over <m>k[C\cap L]</m>. Its monic equation also has coefficients in the integrally closed Laurent polynomial ring <m>k[L]</m>, so <m>f\in k[L]</m>. For each <m>j</m>, the coefficients of the equation have nonnegative <m>\nu_j</m>-value. If <m>\nu_j(f)\lt0</m>, the leading term <m>f^d</m> has strictly smaller value than every other term of the equation, which is impossible for a sum equal to zero. Thus all <m>\nu_j(f)</m> are nonnegative. Every exponent in the Laurent support of <m>f</m> consequently satisfies every inequality for <m>C</m>. Hence <m>f\in k[C\cap L]</m>.</p>
+      </proof>
+    </lemma>
+    <theorem xml:id="toric-thm-normal-semigroup">
+      <title>Normalization of an affine semigroup algebra</title>
+      <statement>
+        <p>Let <m>S</m> be an affine semigroup and <m>L=\operatorname{gp}(S)</m>. The integral closure of <m>k[S]</m> in its fraction field is
+          <md number="no">k[\overline S]=k[\Cone(S)\cap L].</md>
+          It is finite as a <m>k[S]</m>-module. In particular, <m>k[S]</m> is normal if and only if <m>S</m> is saturated in <m>L</m>.</p>
+      </statement>
+      <proof>
+        <p>The cone <m>C=\Cone(S)</m> spans <m>L_{\R}</m>. The preceding two lemmas show that <m>k[\overline S]</m> is normal and has the same fraction field as <m>k[S]</m>. Every monomial <m>\chi^u</m> with <m>u\in\overline S</m> is integral over <m>k[S]</m>, since it satisfies
+          <md number="no">X^r-\chi^{ru}=0</md>
+          for some <m>ru\in S</m>. By Gordan's lemma, <m>\overline S</m> has finitely many semigroup generators. Thus <m>k[\overline S]</m> is generated over <m>k[S]</m> by finitely many integral elements, and so is a finite integral algebra.</p>
+        <p>Any element integral over <m>k[S]</m> is also integral over this larger normal ring, using the same monic equation, and hence belongs to it. This identifies the integral closure. If <m>S</m> is not saturated, a missing monomial <m>\chi^u</m> is integral and belongs to the common fraction field, but is absent from <m>k[S]</m> by linear independence of monomials. This proves the criterion.</p>
+      </proof>
+    </theorem>
+    <p>The normality criterion is <xref ref="bib-toric-cls" detail="Theorem 1.3.5"/>; the normalization by the saturated semigroup is <xref ref="bib-toric-cls" detail="Proposition 1.3.8"/>. The valuation argument above supplies the integrally closed step directly and makes its independence of the characteristic explicit.</p>
+    <corollary xml:id="toric-cor-affine-ring-normal">
+      <title>Normality of the cone algebra</title>
+      <statement>
+        <p>For a strongly convex rational polyhedral cone <m>\sigma\subseteq N_{\R}</m>, the algebra <m>k[S_\sigma]</m> is a finitely generated normal domain of dimension <m>n</m>.</p>
+      </statement>
+      <proof>
+        <p>Gordan's lemma gives finite generation. The group of differences is <m>M</m> by <xref ref="toric-prop-full-difference-group"/>. If <m>ru\in\sigma^\vee</m> for <m>r\geq1</m>, then <m>u\in\sigma^\vee</m>, so <m>S_\sigma</m> is saturated in <m>M</m>. Apply <xref ref="toric-thm-normal-semigroup"/> and <xref ref="toric-prop-semigroup-algebra"/>.</p>
+      </proof>
+    </corollary>
+    <p xml:id="toric-normality-boundary-anchor">Normality does not assert smoothness. It says that rational functions integral over the coordinate ring are already regular there. A cone can produce a normal variety with a singular vertex; a two-dimensional example will make this distinction explicit in <xref ref="toric-affine-quadratic-example"/>.</p>
+    <aside xml:id="margin-toric-normality-characteristic">
+      <p>The proof uses lattice inequalities and monic equations, so it works in positive characteristic as well. It does not use diagonalization of a finite group action or division by a group order.</p>
+    </aside>
+  </section>
+  <section xml:id="toric-affine-construction">
+    <title>The affine variety and its dense torus</title>
+
+    <definition xml:id="toric-def-affine-chart">
+      <title>The affine chart of a cone</title>
+      <statement>
+        <p>For a strongly convex rational polyhedral cone <m>\sigma\subseteq N_{\R}</m>, set
+          <md number="no">U_\sigma=\Spec k[S_\sigma],
+            \qquad S_\sigma=\sigma^\vee\cap M.</md>
+          The inclusion <m>k[S_\sigma]\hookrightarrow k[M]</m> defines a morphism <m>T_N\to U_\sigma</m>.</p>
+      </statement>
+    </definition>
+    <p>We have proved that <m>U_\sigma</m> is an integral normal affine scheme of finite type and dimension <m>n</m>. It remains to prove that the displayed morphism is an open immersion and that multiplication on the torus extends to an action. Both statements have explicit algebraic descriptions.</p>
+    <lemma xml:id="toric-lem-torus-localization">
+      <title>Inverting the generators recovers the group algebra</title>
+      <statement>
+        <p>Let <m>S=\N u_1+\cdots+\N u_r</m> be any affine semigroup, let <m>L=\operatorname{gp}(S)</m>, and set <m>h=u_1+\cdots+u_r</m>. Then
+          <md number="no">k[S]_{\chi^h}=k[L]</md>
+          as subrings of their common fraction field. In particular, <m>\Spec k[L]</m> is a dense principal open subset of <m>\Spec k[S]</m>.</p>
+      </statement>
+      <proof>
+        <p>Inverting <m>\chi^h</m> makes each generator <m>\chi^{u_i}</m> invertible, because
+          <md number="no">(\chi^{u_i})^{-1}
+            =\frac{\chi^{h-u_i}}{\chi^h}</md>
+          and <m>h-u_i\in S</m>. Thus the localization contains all characters with exponents in <m>L</m>, and is contained in <m>k[L]</m>. Its spectrum is <m>D(\chi^h)</m>. This open set is dense because <m>k[S]</m> is a domain and <m>\chi^h\ne0</m>. For the zero semigroup one may take the empty generating list and <m>h=0</m>; the assertion then reads <m>k=k_1</m>.</p>
+      </proof>
+    </lemma>
+    <p>Apply this lemma to <m>S_\sigma</m> and use <m>\operatorname{gp}(S_\sigma)=M</m>. The morphism <m>T_N\to U_\sigma</m> is a dense open immersion. The particular equation <m>D(\chi^h)</m> depends on a generating list; the open immersion induced by the inclusion of algebras does not.</p>
+
+    <proposition xml:id="toric-prop-torus-action">
+      <title>The action is encoded by a coaction</title>
+      <statement>
+        <p>There is an action <m>T_N\times U_\sigma\to U_\sigma</m> whose comorphism is
+          <md number="no">\delta:k[S_\sigma]\longrightarrow k[M]\otimes_k k[S_\sigma],
+            \qquad \chi^u\longmapsto\chi^u\otimes\chi^u.</md>
+          Its restriction to <m>T_N\times T_N</m> is multiplication on the torus.</p>
+      </statement>
+      <proof>
+        <p>The formula is multiplicative because exponents add, and it sends <m>1</m> to <m>1\otimes1</m>. On a basis character, the two comorphisms expressing associativity both give
+          <md number="no">\chi^u\longmapsto\chi^u\otimes\chi^u\otimes\chi^u.</md>
+          The comorphism of the torus identity sends every <m>\chi^u</m> in the first factor to <m>1</m>, so the identity axiom follows as well. After the localization of <xref ref="toric-lem-torus-localization"/>, this is precisely the usual comultiplication of <m>k[M]</m>.</p>
+      </proof>
+    </proposition>
+    <p>For a commutative <m>k</m>-algebra <m>A</m>, an <m>A</m>-point of <m>U_\sigma</m> is equivalently a multiplicative map
+      <md number="no">p:S_\sigma\longrightarrow A,\qquad
+        p(0)=1,\quad p(u+u')=p(u)p(u').</md>
+      Here <m>A</m> is viewed as a multiplicative monoid, so some values may be zero or nonunits. A torus point is a group homomorphism <m>t:M\to A^\times</m>. The action reads
+      <md number="no">(t\cdot p)(u)=t(u)p(u).</md>
+      This description distinguishes a boundary point from a torus point without choosing coordinates.</p>
+    <theorem xml:id="toric-thm-affine-cone">
+      <title>The affine cone construction</title>
+      <statement>
+        <p>A strongly convex rational polyhedral cone <m>\sigma\subseteq N_{\R}</m> determines a normal affine toric variety <m>U_\sigma</m> of dimension <m>\rk N</m>, with specified dense torus <m>T_N</m> and specified extension of its multiplication action.</p>
+      </statement>
+      <proof>
+        <p>Finite generation, integrality, normality, and dimension are <xref ref="toric-cor-affine-ring-normal"/>. The open immersion is <xref ref="toric-lem-torus-localization"/>, and the action is <xref ref="toric-prop-torus-action"/>.</p>
+      </proof>
+    </theorem>
+    <p>The source statements are <xref ref="bib-toric-cls" detail="Proposition 1.2.17 and Theorem 1.2.18"/>. The theorem here includes the action explicitly and works over the fixed field <m>k</m>. In these notes, normality is part of the convention for a toric variety. A nonnormal affine variety may also have a dense torus and an extending action; <xref ref="toric-example-cusp"/> will show why these conditions alone do not force normality.</p>
+
+    <proposition xml:id="toric-prop-affine-converse">
+      <title>Recovering the cone from a normal affine embedding</title>
+      <statement>
+        <p>Let <m>X</m> be a normal integral affine variety containing the specified split torus <m>T_N</m> as a dense open subset, and suppose that its multiplication action extends to <m>X</m>. Then there is a unique strongly convex rational polyhedral cone <m>\sigma\subseteq N_{\R}</m> for which the restriction map identifies
+          <md number="no">k[X]=k[\sigma^\vee\cap M]\subseteq k[M].</md>
+          Consequently <m>X\cong U_\sigma</m> compatibly with the specified torus and its action.</p>
+      </statement>
+      <proof>
+        <p>Restricting functions to the dense open torus embeds <m>R=k[X]</m> in <m>k[M]</m>. The action makes <m>R</m> stable under the torus coaction. If <m>f=\sum a_u\chi^u</m> belongs to <m>R</m>, its coaction in <m>k[M]\otimes k[M]</m> is
+          <md number="no">\sum \chi^u\otimes a_u\chi^u.</md>
+          Since it lies in <m>k[M]\otimes R</m>, taking the coefficient of the basis element <m>\chi^u</m> in the first factor shows that <m>a_u\chi^u\in R</m>. Thus <m>R=k[S]</m> for the semigroup of exponents whose characters belong to <m>R</m>. Finite generation of <m>R</m> implies finite generation of <m>S</m> by <xref ref="toric-prop-semigroup-algebra"/>.</p>
+        <p>The dense open immersion identifies the function fields. For any <m>m\in M</m>, express <m>\chi^m=f/g</m> with nonzero <m>f,g\in k[S]</m>. Comparing a nonzero monomial of <m>g</m> with the corresponding monomial in <m>f=\chi^m g</m> writes <m>m</m> as a difference of two elements of <m>S</m>. Hence <m>\operatorname{gp}(S)=M</m>. Normality and <xref ref="toric-thm-normal-semigroup"/> now give
+          <md number="no">S=C\cap M,\qquad C=\Cone(S).</md>
+          The cone <m>C</m> spans <m>M_{\R}</m>, so <m>\sigma=C^\vee</m> is strongly convex. Rational polyhedral duality gives <m>\sigma^\vee=C</m>. Finally the subalgebra determines <m>S</m>, then <m>C</m>, and then <m>\sigma</m>, proving uniqueness. The character formulas show that the identification respects the action.</p>
+      </proof>
+    </proposition>
+    <p>The specified torus matters in this uniqueness statement. It fixes the character lattice and how its monomials are identified with rational functions on <m>X</m>. An abstract isomorphism of affine varieties need not preserve that additional data.</p>
+  </section>
+
+  <section xml:id="toric-affine-units-factors">
+    <title>Units, zero cones, and torus factors</title>
+
+    <proposition xml:id="toric-prop-units">
+      <title>Invertible regular functions</title>
+      <statement>
+        <p>The units of the coordinate ring of <m>U_\sigma</m> are
+          <md number="no">k[S_\sigma]^\times
+            =\{c\chi^u:c\in k^\times,\ u\in\sigma^\perp\cap M\}.</md>
+          Thus all units are constant if and only if <m>\sigma</m> is full-dimensional.</p>
+      </statement>
+      <proof>
+        <p>A unit in <m>k[S_\sigma]</m> is a unit in <m>k[M]</m>. Units of a Laurent polynomial ring over a field are scalar monomials: this follows successively from the highest and lowest degrees in each Laurent variable. The monomial <m>\chi^u</m> and its inverse both belong to <m>k[S_\sigma]</m> exactly when <m>u,-u\in\sigma^\vee</m>, or equivalently <m>u\in\sigma^\perp</m>. If <m>\sigma</m> has smaller dimension, its rational annihilator has a nonzero lattice point; if it has full dimension, its annihilator is zero.</p>
+      </proof>
+    </proposition>
+    <example xml:id="toric-example-standard-affines">
+      <title>Affine space with invertible coordinates</title>
+      <p>Let <m>e_1,\ldots,e_n</m> be a basis of <m>N</m>, and let <m>\sigma=\Cone(e_1,\ldots,e_r)</m> for <m>0\leq r\leq n</m>. In the dual basis,
+        <md number="no">S_\sigma=\N e_1^*+\cdots+\N e_r^*
+          +\Z e_{r+1}^*+\cdots+\Z e_n^*,</md>
+        so
+        <md number="no">U_\sigma\cong
+          \Spec k[x_1,\ldots,x_r,x_{r+1}^{\pm1},\ldots,x_n^{\pm1}]
+          \cong\A^r\times\Gm^{\,n-r}.</md>
+        At <m>r=n</m> this is affine space; at <m>r=0</m> it is the torus itself. The zero cone is therefore an essential chart, not an empty geometric object.</p>
+      <p>For the ray <m>\sigma=\R_{\geq0}e_1</m> in a rank-two lattice, the chart is <m>\A^1\times\Gm</m>. The exponent <m>e_2^*</m> is unrestricted in sign, so its character remains invertible everywhere. The dimension of the chart is two even though the cone has dimension one.</p>
+    </example>
+
+    <proposition xml:id="toric-prop-torus-factor">
+      <title>Separating the directions perpendicular to the cone</title>
+      <statement>
+        <p>Let <m>d=\dim\sigma</m> and
+          <md number="no">N_\sigma=N\cap\operatorname{span}_{\R}(\sigma).</md>
+          The group <m>N_\sigma</m> is a saturated rank-<m>d</m> sublattice of <m>N</m>. A choice of complement <m>N=N_\sigma\oplus N'</m> yields a product decomposition
+          <md number="no">U_\sigma\cong
+            U_{\sigma,N_\sigma}\times T_{N'}
+            \cong U_{\sigma,N_\sigma}\times\Gm^{\,n-d}.</md>
+          Here <m>U_{\sigma,N_\sigma}</m> uses the same cone in the smaller lattice <m>N_\sigma</m>, where it is full-dimensional. The product decomposition depends on the complement.</p>
+      </statement>
+      <proof>
+        <p>If a positive multiple of a lattice vector lies in <m>N_\sigma</m>, then that vector lies in the same real span, so it also lies in <m>N_\sigma</m>. Thus <m>N/N_\sigma</m> is torsion-free and hence free, and a complement exists. The dual decomposition is
+          <md number="no">M=\Hom(N_\sigma,\Z)\oplus\Hom(N',\Z).</md>
+          The cone inequalities involve only the first factor. Consequently its lattice-point semigroup is the direct sum of the dual-cone semigroup in the first factor and the entire lattice in the second. Taking semigroup algebras turns this direct sum into a tensor product, giving the stated product of spectra.</p>
+      </proof>
+    </proposition>
+    <p>This reduction is often useful for proofs, but it should not silently change the lattice. The original variety still has dense torus <m>T_N</m> and dimension <m>n</m>. The smaller full-dimensional cone describes one factor after a choice of splitting.</p>
+  </section>
+
+  <section xml:id="toric-affine-face-localization">
+    <title>A face gives a distinguished open subset</title>
+
+    <p>Faces describe how the affine charts will fit together. Passing to a face weakens the inequalities on characters, so more monomials become regular. Algebraically, the extra monomials are obtained by inverting one character.</p>
+    <theorem xml:id="toric-thm-face-localization">
+      <title>Face localization</title>
+      <statement>
+        <p>Let <m>\tau\preceq\sigma</m> and choose <m>m\in S_\sigma</m> with <m>\tau=\sigma\cap m^\perp</m>. Then
+          <md xml:id="toric-eq-face-semigroup" number="yes">S_\tau=S_\sigma+\N(-m).</md>
+          The associated inclusion of coordinate rings identifies
+          <md xml:id="toric-eq-face-open" number="yes">k[S_\tau]=k[S_\sigma]_{\chi^m},
+            \qquad U_\tau\cong D(\chi^m)\subseteq U_\sigma.</md>
+          This open immersion restricts to the identity on the common dense torus and is equivariant for <m>T_N</m>.</p>
+      </statement>
+      <proof>
+        <p>Every element of <m>S_\sigma+\N(-m)</m> pairs nonnegatively with <m>\tau</m>, since <m>m</m> vanishes there. For the reverse inclusion, choose integral generators <m>v_1,\ldots,v_r</m> of <m>\sigma</m> and let <m>u\in S_\tau</m>. On the generators lying in <m>\tau</m> one has <m>\langle u,v_i\rangle\geq0</m> and <m>\langle m,v_i\rangle=0</m>. On every remaining generator, <m>\langle m,v_i\rangle\gt0</m>. A sufficiently large integer <m>q\geq0</m> therefore satisfies
+          <md number="no">\langle u+qm,v_i\rangle\geq0
+            \quad\text{for every }i.</md>
+          Hence <m>u+qm\in S_\sigma</m> and <m>u=(u+qm)-qm</m>, proving the semigroup equality.</p>
+        <p>Localizing a semigroup algebra at <m>\chi^m</m> permits precisely the exponents <m>u-qm</m> with <m>u\in S_\sigma</m>, <m>q\in\N</m>. This proves the ring equality and the principal-open description. The action coactions agree on every character, and both ring maps to <m>k[M]</m> are the original inclusions. Thus the open immersion has the stated compatibility with the torus and its action.</p>
+      </proof>
+    </theorem>
+    <p>The algebraic formula can also be written <m>S_\tau=S_\sigma+\Z(-m)</m>, because <m>m\in S_\sigma</m>. The version with <m>\N(-m)</m> displays what localization does: it adjoins nonnegative powers of the single inverse character. The source is <xref ref="bib-toric-cls" detail="Proposition 1.3.16"/>.</p>
+    <corollary xml:id="toric-cor-face-overlaps">
+      <title>Intersections of face charts</title>
+      <statement>
+        <p>For faces <m>\tau,\gamma\preceq\sigma</m>, their open subsets in <m>U_\sigma</m> satisfy
+          <md number="no">U_\tau\cap U_\gamma=U_{\tau\cap\gamma}.</md>
+          If <m>\gamma\preceq\tau\preceq\sigma</m>, the composite open immersion <m>U_\gamma\to U_\tau\to U_\sigma</m> is the open immersion given directly by the face <m>\gamma\preceq\sigma</m>.</p>
+      </statement>
+      <proof>
+        <p>If <m>m,m'</m> expose <m>\tau,\gamma</m>, their sum exposes <m>\tau\cap\gamma</m>. The intersection of the two principal opens is
+          <md number="no">D(\chi^m)\cap D(\chi^{m'})
+            =D(\chi^{m+m'}).</md>
+          This proves the first assertion. In the second, all three coordinate maps are inclusions of the respective character subalgebras in <m>k[M]</m>, so their composites agree.</p>
+      </proof>
+    </corollary>
+    <p>Taking <m>\tau=\{0\}</m> gives another proof that the torus is principal open. Choose any integral functional strictly positive on <m>\sigma\setminus\{0\}</m>; then
+      <md number="no">T_N=U_{\{0\}}=D(\chi^m)\subseteq U_\sigma.</md>
+      For the standard orthant <m>\sigma=\Cone(e_1,\ldots,e_n)</m> and the face generated by <m>e_1,\ldots,e_r</m>, one may take <m>m=e_{r+1}^*+\cdots+e_n^*</m>. Its chart is obtained from <m>\A^n</m> by inverting <m>x_{r+1}\cdots x_n</m>, hence by making each of those coordinates invertible.</p>
+    <p>These compatibilities are exactly what is needed when affine charts are glued along common faces. The construction of a fan will add a condition ensuring that intersections of cones really are common faces; the local algebra needed for that gluing has already been established here.</p>
+  </section>
+
+  <section xml:id="toric-affine-quadratic-example">
+    <title>A normal singular surface</title>
+
+    <example xml:id="toric-example-quadratic-cone">
+      <title>The cone generated by <m>(1,0)</m> and <m>(1,2)</m></title>
+      <p>Take <m>N=\Z^2</m> and
+        <md number="no">\sigma=\Cone((1,0),(1,2)).</md>
+        Writing <m>(a,b)</m> for an element of the dual lattice <m>M=\Z^2</m>, the dual inequalities are
+        <md number="no">a\geq0,\qquad a+2b\geq0.</md>
+        The dual cone has primitive ray generators <m>(0,1)</m> and <m>(2,-1)</m>, but these do not generate all its lattice points as a semigroup. The additional vector <m>(1,0)</m> is indispensable.</p>
+      <p>In fact,
+        <md number="no">S_\sigma=\N(0,1)+\N(1,0)+\N(2,-1).</md>
+        If <m>b\geq0</m>, write <m>(a,b)=a(1,0)+b(0,1)</m>. If <m>b=-c\lt0</m>, the inequalities give <m>a\geq2c</m>, and
+        <md number="no">(a,b)=c(2,-1)+(a-2c)(1,0).</md>
+        Each of the three displayed generators is indecomposable: the two extremal ones are primitive on extremal rays, and <m>(1,0)</m> cannot be a sum of the other two. Thus they form the Hilbert basis.</p>
+      <p>Set
+        <md number="no">x=\chi^{(0,1)},\qquad
+          y=\chi^{(1,0)},\qquad z=\chi^{(2,-1)}.</md>
+        The relation of exponents gives <m>xz=y^2</m>, and the resulting surjection is an isomorphism:
+        <md number="no">k[S_\sigma]\cong k[x,y,z]/(xz-y^2).</md>
+        To check that no relations are missing, reduce a monomial containing both <m>x</m> and <m>z</m> by replacing a factor <m>xz</m> with <m>y^2</m>. The quotient is spanned by
+        <md number="no">x^iy^j\quad(i,j\geq0),\qquad
+          y^jz^c\quad(j\geq0,\ c\geq1).</md>
+        Their exponent vectors are respectively <m>(j,i)</m> and <m>(j+2c,-c)</m>. They are pairwise distinct, so their images in the semigroup algebra are linearly independent. This proves injectivity.</p>
+      <p>The ring is normal by the cone construction. Nevertheless the point with maximal ideal <m>\mathfrak m=(x,y,z)</m> is singular. Its local dimension is two: the whole ring has dimension two, and the chain of prime ideals
+        <md number="no">(0)\subsetneq(x,y)\subsetneq(x,y,z)</md>
+        has length two. Its cotangent space <m>\mathfrak m/\mathfrak m^2</m> has dimension three over <m>k</m>, since the defining equation has no linear term. Hence the local ring is not regular.</p>
+      <p>Every other point is smooth. Indeed the complement of the vertex is covered by <m>D(x)</m> and <m>D(z)</m>, because a prime containing <m>x,z</m> must contain <m>y</m>. On these opens the coordinate rings are
+        <md number="no">k[S_\sigma]_x\cong k[x^{\pm1},y],\qquad
+          k[S_\sigma]_z\cong k[z^{\pm1},y].</md>
+        These are smooth over <m>k</m>. Thus the underlying nonsmooth locus consists of the vertex in every characteristic, including characteristic two.</p>
+    </example>
+    <figure xml:id="toric-figure-cone-and-dual">
+      <caption>The singular cone and its dual. Primitive generators of the original rays do not form a lattice basis; the dual semigroup needs the additional generator <m>(1,0)</m> between its extremal rays.</caption>
+      <image source="cone-and-dual.svg" width="100%"><description><p>The cone generated by (1,0) and (1,2) in the cocharacter lattice, beside its dual cone with Hilbert basis (0,1), (1,0), and (2,-1).</p></description></image>
+    </figure>
+    <p xml:id="toric-quadratic-char-anchor">The tangent-space computation is characteristic independent. In characteristic two, the partial derivative with respect to <m>y</m> vanishes, so the Jacobian subscheme can have a different scheme structure even though its support is still the vertex. One should distinguish this scheme structure from the assertion about which points are smooth.</p>
+    <aside xml:id="margin-toric-quadratic-quotient">
+      <p>If <m>\operatorname{char}k\ne2</m>, the same ring is <m>k[p,q]^{\{\pm1\}}</m> under simultaneous sign change, generated by <m>p^2,pq,q^2</m>. In characteristic two, that ordinary sign-change action is trivial, so this particular finite-group explanation cannot be used. The semigroup calculation remains valid.</p>
+    </aside>
+    <p>The original cone is simplicial: its two rays are linearly independent. Their primitive generators, however, span an index-two sublattice of <m>N=\Z^2</m>. If the same real cone is instead placed in the lattice generated by those two vectors, they form a basis, and the corresponding affine variety is <m>\A^2</m>. The dual character lattice changes as well. This example demonstrates both that simplicial need not mean smooth and that the real picture alone does not determine the variety.</p>
+  </section>
+
+  <section xml:id="toric-affine-smoothness">
+    <title>The lattice-basis criterion for smoothness</title>
+
+    <p>The preceding example suggests the right condition. Primitivity is a condition on each ray separately; smoothness requires a simultaneous lattice-basis condition.</p>
+    <definition xml:id="toric-def-regular-cone">
+      <title>Regular cones</title>
+      <statement>
+        <p>A strongly convex rational polyhedral cone is regular, or smooth, if it is generated by a subset of a basis of <m>N</m>. The zero cone is regular, generated by the empty subset.</p>
+      </statement>
+    </definition>
+    <theorem xml:id="toric-thm-affine-smoothness">
+      <title>Smoothness is a basis condition</title>
+      <statement>
+        <p>The affine toric variety <m>U_\sigma</m> is smooth over <m>k</m> if and only if <m>\sigma</m> is regular.</p>
+      </statement>
+      <proof>
+        <p>If <m>\sigma</m> is generated by a subset of a basis, <xref ref="toric-example-standard-affines"/> identifies <m>U_\sigma</m> with <m>\A^d\times\Gm^{n-d}</m>, which is smooth.</p>
+        <p>For the converse, first suppose that <m>\sigma</m> has dimension <m>n</m>. Its dual cone is strongly convex, so <m>S=S_\sigma</m> has no units other than <m>0</m>. There is a <m>k</m>-point with maximal ideal
+          <md number="no">\mathfrak m=(\chi^u:u\in S\setminus\{0\}).</md>
+          This is an ideal because a sum of two semigroup elements can be zero only when both are zero. The nonzero monomials that survive in <m>\mathfrak m/\mathfrak m^2</m> are exactly the indecomposable elements of <m>S</m>. Their residue classes are linearly independent, so the dimension of this cotangent space is the size of the Hilbert basis.</p>
+        <p>If <m>U_\sigma</m> is smooth, its tangent space at this point has dimension <m>n</m>. The Hilbert basis consequently consists of <m>n</m> elements <m>u_1,\ldots,u_n</m>. They generate <m>S</m> as a semigroup and <m>M</m> as a group. A generating set of <m>n</m> elements of a rank-<m>n</m> free abelian group is a basis: the surjection <m>\Z^n\to M</m> has a rank-zero kernel, which must be zero. Hence
+          <md number="no">S=\N u_1+\cdots+\N u_n.</md>
+          Its real cone is the positive orthant in this basis, and duality shows that <m>\sigma</m> is generated by the dual basis of <m>N</m>.</p>
+        <p>For a cone of dimension <m>d\lt n</m>, use the product decomposition of <xref ref="toric-prop-torus-factor"/>. Let <m>H</m> be the Hilbert basis of the dual semigroup for the full-dimensional factor <m>U_{\sigma,N_\sigma}</m>. At the point consisting of its monomial point and the identity of the torus factor, the cotangent space is the direct sum of the two cotangent spaces, and has dimension
+          <md number="no">|H|+(n-d).</md>
+          Smoothness of the <m>n</m>-dimensional product forces this to equal <m>n</m>, so <m>|H|=d</m>. The preceding basis argument in <m>N_\sigma</m> makes <m>\sigma</m> regular there. As <m>N_\sigma</m> is a saturated direct summand, its basis extends to a basis of <m>N</m>. This proves regularity in the original lattice.</p>
+      </proof>
+    </theorem>
+    <p>The Hilbert-basis description of the cotangent space and the smoothness criterion are <xref ref="bib-toric-cls" detail="Lemma 1.3.10 and Theorem 1.3.12"/>. The proof includes the reduction for cones of smaller dimension in their original lattice.</p>
+    <p>Regular implies simplicial, but the converse fails in <xref ref="toric-example-quadratic-cone"/>. For a full-dimensional simplicial cone with primitive ray generators <m>v_1,\ldots,v_n</m>, the criterion is equivalent to
+      <md number="no">|\det(v_1,\ldots,v_n)|=1</md>
+      in any lattice basis. For a smaller-dimensional cone, one first works in the saturated lattice <m>N\cap\operatorname{span}_{\R}(\sigma)</m>. An index computed in a nonsaturated sublattice can conceal the obstruction to smoothness. The terminology regular, smooth, and simplicial is compared in <xref ref="bib-toric-cls" detail="Definition 1.2.16"/> and <xref ref="bib-toric-oda" detail="Chapter 1"/>.</p>
+  </section>
+  <section xml:id="toric-affine-presentations">
+    <title>Generators, binomial relations, and a finite calculation</title>
+
+    <p>The construction by a semigroup algebra is intrinsic. To give equations in affine space, one chooses semigroup generators and computes their additive relations. This is an effective passage from lattice data to a presentation of the coordinate ring. The underlying algebra is developed systematically in <xref ref="bib-toric-sturmfels" detail="Chapters 4 and 13"/>; here we isolate the part needed for explicit affine examples.</p>
+    <proposition xml:id="toric-prop-toric-ideal">
+      <title>The kernel is generated by binomials</title>
+      <statement>
+        <p>Let <m>S=\N u_1+\cdots+\N u_r</m> in a lattice <m>M</m>. For <m>a=(a_1,\ldots,a_r)\in\N^r</m>, put <m>x^a=x_1^{a_1}\cdots x_r^{a_r}</m>. The kernel of the surjection
+          <md number="no">\varphi:k[x_1,\ldots,x_r]\longrightarrow k[S],
+            \qquad x_i\longmapsto\chi^{u_i}</md>
+          is
+          <md number="no">I_S=
+            \left(x^a-x^b:\ a,b\in\N^r,\
+              \sum a_iu_i=\sum b_iu_i\right).</md>
+          It is a prime ideal, called the toric ideal of this generating list, and it admits a finite binomial generating set.</p>
+      </statement>
+      <proof>
+        <p>Every displayed binomial maps to zero. Conversely, group the monomials in a polynomial of the kernel by their common image exponent in <m>S</m>. In each group the coefficients sum to zero, because the target monomials are linearly independent. Choose one monomial in the group. Subtracting its appropriate multiples expresses the group as a <m>k</m>-linear combination of differences of monomials with the same exponent. Thus the displayed binomials generate the entire kernel. Primality follows because the quotient is a domain. The polynomial ring is noetherian, so a finite subcollection of these binomials generates their ideal.</p>
+      </proof>
+    </proposition>
+    <p xml:id="toric-presentation-lattice-anchor">An additive relation of exponents therefore gives an equation. A basis of the abelian group of relations, however, need not generate the polynomial ideal. In a Laurent polynomial ring variables can be cancelled; on affine coordinate hyperplanes those cancellations can lose equations.</p>
+    <aside xml:id="margin-toric-presentation-intrinsic">
+      <p>The presentation depends on a generating list, while <m>k[S]</m> does not. Adding a redundant semigroup generator adds a coordinate and a corresponding binomial relation without changing the variety.</p>
+    </aside>
+    <proposition xml:id="toric-prop-lattice-ideal-saturation">
+      <title>From a relation lattice to the toric ideal</title>
+      <statement>
+        <p>Let <m>A:\Z^r\to M</m> send the <m>i</m>-th standard basis vector to <m>u_i</m>, and let <m>\ell_1,\ldots,\ell_s</m> be a <m>\Z</m>-basis of <m>\ker A</m>. Write <m>\ell_j=\ell_j^+-\ell_j^-</m> with disjoint nonnegative parts, and set
+          <md number="no">J=(x^{\ell_j^+}-x^{\ell_j^-}:1\leq j\leq s),
+            \qquad p=x_1\cdots x_r.</md>
+          Then
+          <md number="no">I_S=J:p^\infty
+            :=\{f:p^qf\in J\text{ for some }q\geq0\}.</md>
+        </p>
+      </statement>
+      <proof>
+        <p>After inverting all the variables, the binomial for <m>\ell_j</m> is a unit multiple of <m>x^{\ell_j}-1</m>. The identities
+          <md number="no">x^{a+b}-1=x^a(x^b-1)+(x^a-1),\qquad
+            x^{-a}-1=-x^{-a}(x^a-1)</md>
+          show that the basis relations generate all relations <m>x^\ell-1</m>, <m>\ell\in\ker A</m>, in the Laurent ring. The corresponding quotient is the group algebra of <m>\Z^r/\ker A\cong\operatorname{gp}(S)</m>. Thus <m>J</m> and <m>I_S</m> have the same extension to <m>k[x_1^{\pm1},\ldots,x_r^{\pm1}]</m>.</p>
+        <p>Contracting a localized ideal from this Laurent ring gives precisely saturation by <m>p</m>. The ideal <m>I_S</m> is already saturated by <m>p</m>, because it is prime and contains no variable: their images in <m>k[S]</m> are nonzero monomials. The asserted equality follows.</p>
+      </proof>
+    </proposition>
+    <p>The saturation here is saturation of an ideal by a multiplicative set. It is different from saturation of a semigroup in its group of differences. The two operations answer different questions: the former recovers polynomial equations from Laurent equations, while the latter computes normalization.</p>
+
+    <example xml:id="toric-example-cubic-presentation">
+      <title>A relation lattice needs saturation</title>
+      <p>Consider the semigroup generated in <m>\Z^2</m> by
+        <md number="no">u_0=(3,0),\quad u_1=(2,1),\quad
+          u_2=(1,2),\quad u_3=(0,3).</md>
+        Its algebra is <m>k[s^3,s^2t,st^2,t^3]</m>. The relation lattice has basis
+        <md number="no">(1,-2,1,0),\qquad(0,1,-2,1).</md>
+        Indeed every relation is of the form <m>(a,b-2a,a-2b,b)</m>. The two basis binomials are
+        <md number="no">x_0x_2-x_1^2,\qquad x_1x_3-x_2^2.</md>
+        They do not generate the toric ideal. At the point <m>(1,0,0,1)</m> both vanish, whereas the further relation <m>x_0x_3-x_1x_2</m> does not.</p>
+      <p>The full kernel is
+        <md number="no">I_S=(x_0x_2-x_1^2,\ x_0x_3-x_1x_2,\
+          x_1x_3-x_2^2).</md>
+        Here is a direct verification. Replace a factor <m>x_ix_j</m> with <m>x_{i+1}x_{j-1}</m> whenever <m>j-i\geq2</m>. These are exactly the three displayed relations. For a monomial of fixed degree, each replacement decreases the sum of the squares of its variable indices, so the reduction terminates. A reduced monomial has its indices in at most two consecutive values.</p>
+      <p>If a monomial has total degree <m>d\gt0</m> and sum of indices <m>j</m>, write <m>j=ad+q</m> with <m>0\leq q\lt d</m>. Unless <m>j=3d</m>, its unique reduced form is
+        <md number="no">x_a^{d-q}x_{a+1}^q;</md>
+        the endpoint <m>j=3d</m> gives <m>x_3^d</m>. Its image is <m>s^{3d-j}t^j</m>. Distinct pairs <m>(d,j)</m> give distinct monomials, so the reduced forms are linearly independent in the image. This proves that the three relations give the entire kernel in every characteristic.</p>
+      <p>The intrinsic lattice is
+        <md number="no">L=\operatorname{gp}(S)
+          =\{(a,b)\in\Z^2:a+b\equiv0\pmod3\}.</md>
+        To see equality, the generators lie in this subgroup, and <m>u_0</m> together with <m>u_1-u_0=(-1,1)</m> generate it. Every nonnegative pair of total degree <m>3d</m> is a sum of <m>d</m> of the four generators, for example by choosing indices with sum equal to its second coordinate. Hence
+        <md number="no">S=\R_{\geq0}^2\cap L.</md>
+        It is saturated in <m>L</m>, so the algebra is normal. It would be incorrect to test its normality using saturation in the larger lattice <m>\Z^2</m>. To realize this presentation by the cone construction, the cocharacter lattice is <m>\Hom(L,\Z)</m>.</p>
+    </example>
+    <p>A practical calculation can now follow a finite sequence: dualize the cone inequalities, compute lattice generators using Gordan's lemma or a Hilbert-basis algorithm, compute the integer relation lattice, and obtain the polynomial toric ideal by saturation or elimination. A final normal-form check, as in the two surface examples, can establish the presentation without assuming that a list of plausible binomials is complete.</p>
+  </section>
+
+  <section xml:id="toric-affine-boundaries">
+    <title>What the hypotheses exclude</title>
+
+    <example xml:id="toric-example-cusp">
+      <title>A dense torus without normality</title>
+      <p>Let <m>S=2\N+3\N\subseteq\Z</m>. Its group of differences is <m>\Z</m>, but it is not saturated: <m>1\notin S</m> and <m>2\cdot1\in S</m>. The associated algebra is
+        <md number="no">k[S]=k[t^2,t^3]\cong k[a,b]/(b^2-a^3).</md>
+        To verify the kernel, reduce a polynomial modulo <m>b^2-a^3</m> to a sum of monomials <m>a^i</m> and <m>a^ib</m>. Their images are <m>t^{2i}</m> and <m>t^{2i+3}</m>, which have distinct exponents. This proves the presentation over every field.</p>
+      <p>The torus is still dense open:
+        <md number="no">k[t^2,t^3]_{t^5}=k[t,t^{-1}].</md>
+        The character coaction extends its multiplication action. The ring is nevertheless not normal, because <m>t=t^3/t^2</m> lies in the fraction field, satisfies <m>X^2-t^2=0</m> over the ring, and does not lie in the ring. Its normalization is <m>k[t]</m>, since <m>\overline S=\N</m>. The normalization map <m>\A^1\to\Spec k[t^2,t^3]</m> is given by <m>t\mapsto(t^2,t^3)</m>.</p>
+      <p>Replacing <m>S</m> by the lattice points of its cone would fill the missing exponent and change the ring. Thus the normal cone construction classifies normal affine torus embeddings, while arbitrary affine semigroups also describe nonnormal embeddings. Terminology differs between references, so the normality convention must be checked when a statement is imported.</p>
+    </example>
+    <example xml:id="toric-example-irrational-cone">
+      <title>Rationality and finite generation</title>
+      <p>In <m>\R^2</m>, let
+        <md number="no">C=\{(a,b):a\geq0,\ 0\leq b\leq\sqrt2\,a\}.</md>
+        The semigroup <m>C\cap\Z^2</m> is not finitely generated. If it were, its real cone would be generated by finitely many lattice vectors, and their finitely many slopes would have a largest value strictly less than <m>\sqrt2</m>. But the lattice points <m>(q,\lfloor\sqrt2\,q\rfloor)</m> lie in <m>C</m>, and their slopes approach <m>\sqrt2</m>. This is a contradiction. The rationality hypothesis in Gordan's lemma cannot simply be removed.</p>
+    </example>
+    <p>The examples separate three conditions. Rational polyhedrality supplies finite generation. Strong convexity ensures that the group of character differences is the whole specified lattice and hence that the intended torus occurs. Saturation supplies normality. Smoothness then imposes the additional lattice-basis condition of <xref ref="toric-thm-affine-smoothness"/>. These conditions concern different parts of the construction and should be checked separately.</p>
+  </section>
+
+  <section xml:id="toric-affine-reading-use">
+    <title>How this local dictionary will be used</title>
+
+    <p>The output of the chapter is a local dictionary with specified maps. A cone gives a normal affine chart, a lattice point of its dual gives a regular character, and a face gives an equivariant open immersion by localization. These are the ingredients for the construction of a toric variety from a fan. The units formula also predicts which directions contribute torus factors, and the basis criterion detects the smooth charts before any gluing is attempted.</p>
+    <p>For calculation, it is useful to keep four pieces of data together: the ambient lattice, the cone inequalities, a semigroup generating list, and the relations among the corresponding monomials. A drawing of the cone records only the real geometry; the Hilbert basis and the index of ray generators retain arithmetic information absent from that drawing. The quadratic surface and the cubic presentation illustrate two different failures of a shortcut: ray generators may miss algebra generators, and a basis of exponent relations may miss polynomial equations.</p>
+    <p>The valuation proof of normality also points toward a later use of toric geometry. Pairing a character with an integral vector measures an order of vanishing. Here that pairing served to recognize which Laurent polynomials belong to an affine chart. Along torus-invariant divisors it will become the coefficient in the divisor of a character. Developing divisors from this same pairing keeps the local algebra and the global geometry connected.</p>
+    <p>A further direction begins with the same affine semigroup algebras and their monomial ideals: filtrations and initial degenerations can replace a more complicated algebra by a toric one. Such constructions need additional hypotheses to ensure finite generation and to control the resulting family. They belong after the basic fan and divisor theory, where the toric special fiber can be understood in its own right. At this stage the complete local construction, rather than a general theory of degenerations, is the result being retained for later use.</p>
+  </section>
+</chapter>

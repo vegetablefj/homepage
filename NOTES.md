@@ -7,21 +7,31 @@ These instructions apply to the production project at `D:\homepage`. Paths below
 | File | Purpose |
 | --- | --- |
 | `source/notes/fujita/fujita.ptx`, `source/notes/nagata/nagata.ptx`, `source/notes/cubic-fourfolds/cubic-fourfolds.ptx` | The three notes' book roots, macros, and includes |
-| `source/notes/category-theory/category-theory.ptx`, `chapter-00.ptx`, `chapter-01.ptx`, and `references.ptx` | The ordinary category theory draft, its conventions and first chapter, and bibliography |
+| `source/notes/category-theory/category-theory.ptx`, `chapter-*.ptx`, and `references.ptx` | The 1-category theory note, its chapter sources, and bibliography |
+| `source/notes/toric-geometry/toric-geometry.ptx`, `chapter-*.ptx`, and `references.ptx` | The toric geometry note, overall contents, English chapters, and bibliography |
+| `source/notes/hyperkahler/hyperkahler.ptx` and its includes | The hyperkähler geometry note |
+| `source/notes/cubic-k3/cubic-k3.ptx`, `source/notes/homological-algebra/homological-algebra.ptx`, `source/notes/hyperkahler-syz/hyperkahler-syz.ptx` and their includes | Cubic fourfolds and K3 structures, homological algebra, and hyperkähler SYZ |
 | `source/notes/fujita/chapter-01.ptx` through `chapter-09.ptx` | The Fujita note's nine chapters |
 | `source/notes/fujita/references.ptx` | The Fujita note's bibliography |
 | `publication/fujita.ptx`, `publication/nagata.ptx`, `publication/cubic-fourfolds.ptx` | Search, contents, numbering, proofs, and reference previews for each note |
 | `publication/category-theory.ptx` | Category theory settings, including chapter numbering beginning at zero |
+| `publication/toric-geometry.ptx` | Toric geometry settings, including chapter numbering beginning at zero |
+| `publication/hyperkahler.ptx` | Hyperkähler geometry publication settings |
 | `publication/note-settings.json` | Footnote presentation, review status, and update dates by target |
 | `source/layout.css` and `source/layout.js` | Shared layout and responsive margin notes |
 | `project.ptx` | Active build targets |
-| `source/notes-list.ptx` | Shared Notes and Home listing links |
+| `source/notes-list.ptx` | Visible entries on the Notes page |
+| `source/selected-notes-list.ptx` | Separate Home selection, currently empty |
 
-The active targets are `web` for the homepage, and `note-fujita`, `note-nagata`, `note-cubic-fourfolds`, and `note-category-theory` for the notes. All four notes appear in the shared Home and Notes listing. Edit the sources, then run `.\Rebuild.ps1`. Published HTML and shared static assets are generated at the project root. The ignored `.build/cache`, `.build/tmp`, and `.build/reports` directories hold runtime files and reports. See [README.md](README.md) for setup and publishing.
+The active targets are `web` for the homepage, and nine independent `note-*` targets listed in `project.ptx`. Only category theory, cubic fourfold rationality, Nagata, and Fujita currently have entries on the Notes page. Toric geometry, hyperkähler geometry, cubic fourfolds and K3 structures, homological algebra, and hyperkähler SYZ are built and uploaded but temporarily unlisted. Home's Selected Notes selection remains empty. Each note uses the shared `note-html.xsl`, layout, header, and navigation. Edit the sources, then run `.\Rebuild.ps1`. Generated HTML and shared static assets are written at the project root. The ignored `.build/cache`, `.build/tmp`, and `.build/reports` directories hold runtime files and reports. See [README.md](README.md) for setup and the current visibility choices.
 
 The four examples `source/notes/affine-basics.ptx`, `divisors-p1.ptx`, `finite-maps.ptx`, and `projective-line.ptx` remain available to copy. They are absent from the production targets and public listings. The three older PDF notes remain in `pdfs/`, without listing entries.
 
 ## Add an independent note
+
+After content edits, `Rebuild.ps1` first runs `tools/validate_sources.py` with local Jing on every active content target. See [README.md](README.md) for one-time validator setup, pinned versions, and download checksums. Invalid content or an unavailable engine stops the build; neither is treated as success or a skipped check. `tools/test_validation.py` provides real positive and negative regression controls.
+
+Observe the native container rules: put ordinary lists inside paragraphs, such as `<p><ol>…</ol></p>`; use `<description><p>…</p></description>` for image descriptions; and place a multiline equation's cross-reference ID on its corresponding `<mrow>`, rather than the enclosing `<md>`. Book frontmatter requires `<bibinfo>`, which may be empty as `<bibinfo/>`. Container repairs that preserve prose and mathematics must also pass formal validation before rebuilding.
 
 1. Copy an example source, or create `source/notes/my-note/` for a longer note. Copy `publication/demo-affine.ptx`, `demo-divisors.ptx`, or `demo-finite.ptx` to `publication/my-note.ptx`. These publication templates provide search, reference previews, and initially folded proofs.
 2. Update the title, book ID, macros, and any author metadata or source acknowledgement. In the copied publication, set `<index-page ref="my-note"/>` to the book's actual ID.
@@ -36,7 +46,9 @@ The four examples `source/notes/affine-basics.ptx`, `divisors-p1.ptx`, `finite-m
 
 The source, publication, and stylesheet paths are relative to the corresponding directories declared in `project.ptx`. The target name begins with `note-` so that the build applies the note layout.
 
-4. Add an entry to `source/notes-list.ptx`, which is currently shared by Notes and Home's selected notes. For a different selection on Home, replace its include in `source/sections/home.ptx` with a separate list:
+4. Add an entry to `source/notes-list.ptx` for the full Notes page. Home's Selected Notes is maintained separately in `source/selected-notes-list.ptx`, which is currently empty. Add an entry there only when it is deliberately selected for Home:
+
+The empty Home selection is an empty `<p>` with an XML comment, included directly by the Home section. To add selections, place a `<ul>` containing the selected `<li>` entries inside that paragraph; do not insert a bare `<li>` into `<p>`.
 
 ~~~xml
 <li>
@@ -44,7 +56,7 @@ The source, publication, and stylesheet paths are relative to the corresponding 
 </li>
 ~~~
 
-The entry filename follows the book's `xml:id`. For example, the existing Fujita entry is `notes/fujita/fujita-notes.html`. A target alone does not add a public listing entry.
+The entry filename follows the book's `xml:id`. For example, the existing Fujita entry is `notes/fujita/fujita-notes.html`. A target alone does not add a listing entry, and adding a note to the Notes list does not select it for Home. Preserve the owner's visibility choices recorded in [README.md](README.md).
 
 For a long note, use one file per chapter:
 
@@ -180,6 +192,22 @@ Keep essential hypotheses, estimates, existence choices, and limiting arguments 
 
 Anchor each note to the passage it explains. Notes may contain inline or displayed mathematics and linked references. Keep them focused: if a supplementary argument becomes long, write it as a lemma, remark, subsection, or appendix and link to it from the margin.
 
+## Concept index
+
+Use native `idx` entries and an `index-list` to make definitions and alternate names findable. For a grouped definition or theorem, put its index entries after the title, before the statement. The index preview then contains the entire entry, including every part:
+
+```xml
+<definition xml:id="my-note-definition">
+  <title>Related concepts</title>
+  <idx>First concept</idx><idx>Second concept</idx>
+  <statement>...</statement>
+</definition>
+```
+
+An index entry inside the first list item can instead preview only that item. Put an index entry beside the actual definition when it occurs in a separate paragraph, and give that paragraph a stable `xml:id`. Check that aliases indexed at a definition are explained inside the same container. See the category theory note for examples.
+
+Add an `index` division to native `backmatter`, with its title and an empty `index-list` child. The build preserves the native index and converts alphabet jumps without a corresponding letter group into plain text. Rebuild, then check both the destination and the expandable preview of representative entries.
+
 ## Linked references with alphabetic labels
 
 Use an actual bibliography ID in a citation:
@@ -208,6 +236,14 @@ The stylesheet displays the supplied `label`, such as `How01`, rather than a num
 Keep bibliography sources inside native `backmatter`. When the back matter contains only the bibliography, the shared note template automatically presents **References** directly in the contents and navigation, without a redundant **Back Matter** level. If it contains other divisions, retain the normal back-matter structure.
 
 Check the source's version, hypotheses, and exact theorem or definition used. A bibliographical link or a successful build does not verify the mathematical claim. Use “see also” for supplementary sources.
+
+## Important ideas from the source literature
+
+Actively look for important ideas in the original literature and incorporate them selectively. These may include motivations for a definition, geometric intuition, proof strategies, the role of hypotheses, connections between results, revealing examples, limitations, and research questions. Select material that helps the intended reader follow the note's main argument or understand why its results matter.
+
+Restate these ideas in the note's own language, preserving the source's scope, qualifications, and distinction between proved results, conjectures, analogies, and explanatory viewpoints. Attribute the idea where it is used and, when possible, cite the relevant section, page, or remark. Distinguish the source authors' views from the note writer's interpretation and later developments. For research questions, record the source's historical context and check subsequent progress.
+
+Place ideas central to the argument in the body. Use margin notes for short explanations and related observations, and a remark, subsection, or appendix for longer discussions. Each addition should have a clear role in the exposition and fit the note's organization.
 
 ## Shared note header
 
@@ -272,3 +308,5 @@ The imported PTX is editable. Normal rebuilding does **not** synchronize it from
 ~~~
 
 The optional `--compare PATH` requests a comparison report. The importer is specific to the current Fujita manuscript and supports its limited set of TeX constructs; it is not a general TeX converter. Reimporting regenerates the Fujita PTX files, so preserve or merge subsequent PTX edits before doing so. Review the report and rebuilt pages after an intentional import.
+
+The homological algebra note uses `source/notes/homological-algebra/`, `publication/homological-algebra.ptx`, and the target `note-homological-algebra`. Its chapter structure and bibliography are maintained in that source directory.

@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="ha-c17">
+  <title>Monoidal adjunctions and formal duality</title>
+  <introduction>
+    <p>We fix two closed symmetric monoidal categories <m>\mathcal C</m> and <m>\mathcal D</m>. A strong symmetric monoidal functor <m>f^*:\mathcal D\to\mathcal C</m> with a right adjoint already determines several comparison maps. A second adjoint pair supplies further comparisons only after an additional relation to tensor products has been given. We prove the formal implications and keep existence hypotheses separate.</p>
+    <p>The main sources are <xref ref="bib-ha-fhm" detail="Sections 3–5 and 7–8"/> and <xref ref="bib-ha-lipman" detail="Sections 3.3–3.5"/>. Most statements initially concern closed symmetric monoidal categories without triangulations. Exactness is required when we use triangles or coproducts to extend a result from generators.</p>
+  </introduction>
+  <section xml:id="ha-c17-mates">
+    <title>Adjoint transposition of natural transformations</title>
+    <p>Before comparing the six functors, we record the transposition operation used to construct their maps. Let <m>F:\mathcal A\rightleftarrows\mathcal B:G</m> and <m>F':\mathcal A'\rightleftarrows\mathcal B':G'</m> be adjunctions, and let <m>H:\mathcal A\to\mathcal A'</m> and <m>K:\mathcal B\to\mathcal B'</m>. Their units and counits are denoted <m>\eta,\epsilon</m> and <m>\eta',\epsilon'</m>.</p>
+    <definition xml:id="ha-c17-definition-mate">
+      <title>Mates</title><idx>Mate of a natural transformation</idx><idx>Adjoint transposition</idx>
+      <statement><p>The mate of <m>\alpha:F'H\to KF</m> is the transformation
+        <md number="no">\alpha^\flat:HG\xrightarrow{\eta'}G'F'HG\xrightarrow{G'\alpha G}G'KFG\xrightarrow{G'K\epsilon}G'K.</md>
+        Conversely, the mate of <m>\beta:HG\to G'K</m> is
+        <md number="no">\beta^\sharp:F'H\xrightarrow{F'H\eta}F'HGF\xrightarrow{F'\beta F}F'G'KF\xrightarrow{\epsilon'}KF.</md>
+      </p></statement>
+    </definition>
+    <proposition xml:id="ha-c17-proposition-mates">
+      <statement><p>These constructions give inverse bijections between the natural transformations of the two displayed types. They respect pasting of adjunction squares: the mate of a pasted square equals the corresponding pasted composite of mates, after inserting the indicated identity functors and adjunction comparisons.</p></statement>
+      <proof><p>Substitute the formula for <m>\alpha^\flat</m> into the second construction. Move the units and counits through the transformation by naturality. The two adjacent unit–counit pairs cancel by the triangle identities, leaving <m>\alpha</m>. The calculation starting from <m>\beta</m> is the same with the two adjunctions interchanged. For pasting, the formulas for the units and counits of a composite adjunction are precisely the composites obtained by performing the two transpositions successively; substitution gives the stated compatibility.</p></proof>
+    </proposition>
+    <p>An invertible transformation need not have an invertible mate in this general square. This operation moves only part of each composite across an adjunction. The ordinary base-change comparison in <xref ref="ha-c18"/> is a mate of an isomorphism of pullbacks, yet needs a base-change theorem to be invertible. There is a different special case: if <m>L,L'</m> are two left adjoints with right adjoints <m>R,R'</m>, an isomorphism <m>L\simeq L'</m> induces an isomorphism <m>R'\simeq R</m> between their entire right adjoints. Its inverse is obtained by transposing the inverse isomorphism.<fn>Both constructions are often called taking mates. Distinguishing an entire adjoint functor from one side of an adjunction square prevents an incorrect inference that every exchange map is invertible.</fn></p>
+    <p>When all functors carry exact structures, the transformations used below are required to commute with their suspension comparisons. Adjoint transposition preserves this compatibility. The unit and counit identities then verify naturality, signs, and pasting for one specified construction, rather than permitting arbitrary isomorphisms with the same source and target.</p>
+  </section>
+  <section xml:id="ha-c17-one-pair">
+    <title>One monoidal adjunction</title>
+    <p>Fix <m>f^*\dashv f_*</m>, with unit <m>\eta:\id_{\mathcal D}\to f_*f^*</m> and counit <m>\epsilon:f^*f_*\to\id_{\mathcal C}</m>. Internal Hom in the two categories is denoted by the same bracket, with its containing category determined by the arguments.</p>
+    <proposition xml:id="ha-c17-proposition-one-pair">
+      <statement>
+        <p>For <m>A,B\in\mathcal D</m> and <m>M,N\in\mathcal C</m>, there are canonical natural maps</p>
+        <p><md number="no">
+          <mrow>f_*M\otimes f_*N\longrightarrow f_*(M\otimes N),</mrow>
+          <mrow>\pi_{A,M}:A\otimes f_*M\longrightarrow f_*(f^*A\otimes M),</mrow>
+          <mrow>\alpha_{A,B}:f^*[A,B]\longrightarrow[f^*A,f^*B].</mrow>
+        </md></p>
+        <p>The first makes <m>f_*</m> lax symmetric monoidal. There is always a natural isomorphism</p>
+        <p><md number="no">f_*[f^*A,M]\simeq[A,f_*M].</md></p>
+        <p>If <m>A</m> is dualizable, then <m>f^*A</m> is dualizable, and <m>\pi_{A,M}</m> and <m>\alpha_{A,B}</m> are isomorphisms for all <m>M,B</m>.</p>
+      </statement>
+      <proof>
+        <p>The first map is adjoint to the tensor product of the two counits. The map <m>\pi</m> is adjoint to</p>
+        <p><md number="no">f^*(A\otimes f_*M)\simeq f^*A\otimes f^*f_*M\xrightarrow{\id\otimes\epsilon}f^*A\otimes M.</md></p>
+        <p>The map <m>\alpha</m> is adjoint, within <m>\mathcal C</m>, to the image under <m>f^*</m> of evaluation. Associativity, unit, and symmetry for the lax structure follow by taking adjoints and using these properties for <m>f^*</m> and the triangle identities.</p>
+        <p>To prove the internal Hom isomorphism, test against <m>T\in\mathcal D</m>:</p>
+        <p><md number="no">
+          <mrow>\Hom(T,f_*[f^*A,M])\simeq\Hom(f^*T\otimes f^*A,M)</mrow>
+          <mrow>\simeq\Hom(f^*(T\otimes A),M)\simeq\Hom(T\otimes A,f_*M).</mrow>
+        </md></p>
+        <p>A strong symmetric monoidal functor takes evaluation, coevaluation, and their triangle identities to a dual pair. Thus <m>f^*DA\simeq D(f^*A)</m>. For dualizable <m>A</m>, the tensor–Hom descriptions of <xref ref="ha-c16"/> identify <m>\alpha</m> with this isomorphism tensored with <m>f^*B</m>. For <m>\pi</m>, the same duality adjunctions give</p>
+        <p><md number="no">
+          <mrow>\Hom(T,A\otimes f_*M)\simeq\Hom(DA\otimes T,f_*M)</mrow>
+          <mrow>\simeq\Hom(f^*DA\otimes f^*T,M)\simeq\Hom(T,f_*(f^*A\otimes M)).</mrow>
+        </md></p>
+        <p>Following a morphism through these bijections gives the map <m>\pi</m> constructed from the counit. Yoneda proves its invertibility.</p>
+      </proof>
+    </proposition>
+    <p>We say that the projection formula for <m>f_*</m> holds when <m>\pi_{A,M}</m> is invertible for all its arguments. This property is stronger than the existence of the adjunction.<fn>The notation resembles a direct-image functor, but no map of spaces is being assumed. The symbols name a specified adjoint pair. Assertions about base change require a system of such pairs and comparison data, introduced in <xref ref="ha-c18"/>.</fn></p>
+    <example xml:id="ha-c17-example-hom-comparison">
+      <p>Let <m>k\subset K=k(t)</m> be a field extension, and take <m>f^*=K\otimes_k-</m> on derived categories. For <m>A=\bigoplus_{n\geq0}k</m> and <m>B=k</m>, the degree-zero instance of <m>\alpha</m> is</p>
+      <p><md number="no">K\otimes_k k^{\N}\longrightarrow K^{\N}.</md></p>
+      <p>Every sequence in the image has all its coordinates in a finite-dimensional <m>k</m>-subspace of <m>K</m>: a tensor is a finite sum. The sequence <m>(1,t,t^2,\ldots)</m> has no such property. Thus <m>\alpha</m> is not an isomorphism. A strong monoidal left adjoint need not preserve internal Hom.</p>
+    </example>
+  </section>
+  <section xml:id="ha-c17-second-pair">
+    <title>The second adjunction and the projection isomorphism</title>
+    <definition xml:id="ha-c17-definition-second-pair">
+      <title>Fixed-functor duality data</title>
+      <idx>Projection formula</idx><idx>Verdier–Grothendieck context</idx><idx>Grothendieck context</idx><idx>Wirthmüller context</idx>
+    <statement>
+      <p>In addition to <m>f^*\dashv f_*</m>, suppose that <m>f_!:\mathcal C\to\mathcal D</m> has a right adjoint <m>f^!:\mathcal D\to\mathcal C</m>. We specify a natural isomorphism</p>
+      <p><md number="no">\pi^!_{A,M}:A\otimes f_!M\xrightarrow{\sim}f_!(f^*A\otimes M).</md></p>
+      <p>It must respect the unit and associativity of the tensor action. Explicitly, start with <m>A\otimes(B\otimes f_!M)</m>. Apply <m>\id_A\otimes\pi^!_{B,M}</m> and then <m>\pi^!_{A,f^*B\otimes M}</m>. After the monoidal identifications, this composite must agree with <m>\pi^!_{A\otimes B,M}</m>. Its unit instance is the unit isomorphism. When the categories are triangulated, exact fixed-functor data also require these comparisons to respect the specified suspension isomorphisms in both variables.</p>
+    </statement>
+    </definition>
+    <p>The specified projection isomorphism is additional data. The two adjunctions alone do not construct it. This is the fixed-functor Verdier–Grothendieck context of <xref ref="bib-ha-fhm" detail="Section 4"/>. The separate condition <m>f_!=f_*</m>, up to a specified compatible isomorphism, is called the Grothendieck context there; the condition <m>f^!=f^*</m> leads to a Wirthmüller context.</p>
+    <proposition xml:id="ha-c17-proposition-internal-duality">
+      <statement>
+        <p>The data of <xref ref="ha-c17-definition-second-pair"/> give natural isomorphisms</p>
+        <p><md number="no">
+          <mrow>f_*[M,f^!A]\simeq[f_!M,A],</mrow>
+          <mrow>[f^*A,f^!B]\simeq f^![A,B].</mrow>
+        </md></p>
+      </statement>
+      <proof>
+        <p>For the first isomorphism, test against <m>T\in\mathcal D</m>:</p>
+        <p><md number="no">
+          <mrow>\Hom(T,f_*[M,f^!A])\simeq\Hom(f^*T\otimes M,f^!A)</mrow>
+          <mrow>\simeq\Hom(f_!(f^*T\otimes M),A)\simeq\Hom(T\otimes f_!M,A).</mrow>
+        </md></p>
+        <p>For the second, test against <m>N\in\mathcal C</m> and move tensor with <m>f^*A</m> across <m>f_!</m> by the projection isomorphism. Both sides then represent <m>\Hom(f_!N\otimes A,B)</m>. These bijections are natural, so Yoneda provides the stated isomorphisms.</p>
+      </proof>
+    </proposition>
+    <p>The first isomorphism is an internal version of the adjunction <m>f_!\dashv f^!</m>. It is stronger than a bijection of morphism sets because it is an isomorphism of objects of <m>\mathcal D</m>. Its proof records precisely where the projection formula is used.</p>
+    <proposition xml:id="ha-c17-proposition-projection-equivalences">
+      <statement><p>Start with the two adjunctions, before imposing a projection isomorphism. A natural family of maps
+        <md number="no">A\otimes f_!M\longrightarrow f_!(f^*A\otimes M)</md>
+        determines by adjoint transposition natural families
+        <md number="no">f_*[M,f^!B]\longrightarrow[f_!M,B],\qquad[f^*A,f^!B]\longrightarrow f^![A,B].</md>
+        Specifying any one of these families specifies the other two. One family is invertible for every choice of its arguments if and only if the other two are invertible for every choice of their arguments.</p></statement>
+      <proof><p>Apply <m>\Hom_{\mathcal D}(-,B)</m> to the first map. The source and target of the induced map can be rewritten, by the two adjunctions and the tensor–Hom adjunction, as
+        <md number="no">\Hom_{\mathcal D}(A,f_*[M,f^!B])\longrightarrow\Hom_{\mathcal D}(A,[f_!M,B]).</md>
+        Naturality in <m>A</m> and Yoneda give the first transposed family. Rewriting those same groups with <m>M</m> as the testing object gives the second family. The inverse transposition reconstructs the original family. Invertibility for all testing objects is equivalent by Yoneda to invertibility of the corresponding object map. This proves the assertion about whole families; it does not claim that an arbitrary single component remains invertible under partial transposition. Compare <xref ref="bib-ha-fhm" detail="Proposition 4.4"/>.</p></proof>
+    </proposition>
+    <p>The module-action coherence in the definition has corresponding internal Hom coherence after transposition. For example, moving <m>A\otimes B</m> across the exceptional functor agrees with moving <m>B</m> and then <m>A</m>. This is checked by applying the mate bijection to the tensor-action associativity diagram. It is not an extra choice of an unrelated isomorphism for each pair of objects.</p>
+    <proposition xml:id="ha-c17-proposition-twist">
+      <statement>
+        <p>Let <m>v:f_!f^!\to\id_{\mathcal D}</m> be the counit. There is a natural map</p>
+        <p><md number="no">\phi_{A,B}:f^*A\otimes f^!B\longrightarrow f^!(A\otimes B)</md></p>
+        <p>adjoint to the composite</p>
+        <p><md number="no">f_!(f^*A\otimes f^!B)\xrightarrow{(\pi^!)^{-1}}A\otimes f_!f^!B\xrightarrow{\id\otimes v}A\otimes B.</md></p>
+        <p>If <m>A</m> is dualizable, then <m>\phi_{A,B}</m> is an isomorphism. In particular, with <m>\omega_f=f^!\mathbf1</m>, there is a natural isomorphism <m>f^*A\otimes\omega_f\simeq f^!A</m> for dualizable <m>A</m>.</p>
+      </statement>
+      <proof>
+        <p>For <m>N\in\mathcal C</m>, duality and the two adjunctions give</p>
+        <p><md number="no">
+          <mrow>\Hom(N,f^!(A\otimes B))\simeq\Hom(f_!N,A\otimes B)</mrow>
+          <mrow>\simeq\Hom(DA\otimes f_!N,B)\simeq\Hom(f_!(f^*DA\otimes N),B)</mrow>
+          <mrow>\simeq\Hom(f^*DA\otimes N,f^!B)\simeq\Hom(N,f^*A\otimes f^!B).</mrow>
+        </md></p>
+        <p>The inverse bijection is induced by the stated counit composite. This identifies its representing isomorphism with <m>\phi_{A,B}</m>.</p>
+      </proof>
+    </proposition>
+    <p>The object <m>\omega_f</m> need not be invertible and need not be dualizing for the whole category. Even when it is known, the formula for <m>f^!A</m> has just been proved for dualizable <m>A</m>. Removing that restriction requires another hypothesis.</p>
+  </section>
+  <section xml:id="ha-c17-generation">
+    <title>Representability and extension from generators</title>
+    <proposition xml:id="ha-c17-proposition-brown">
+      <statement>
+        <p>Suppose that <m>\mathcal C</m> is a compactly generated triangulated category, <m>\mathcal D</m> is triangulated with small coproducts, and <m>f_!:\mathcal C\to\mathcal D</m> is exact and preserves small coproducts. Then <m>f_!</m> has a right adjoint. This conclusion does not provide a projection isomorphism.</p>
+      </statement>
+      <proof>
+        <p>For each <m>A\in\mathcal D</m>, the functor <m>\Hom_{\mathcal D}(f_!(-),A)</m> is cohomological and takes coproducts to products. Brown representability, in the form stated in <xref ref="ha-c14"/>, represents it. The representing objects and uniqueness of representing morphisms give the right adjoint; see also <xref ref="bib-ha-fhm" detail="Theorems 8.2–8.3"/>.</p>
+      </proof>
+    </proposition>
+    <proposition xml:id="ha-c17-proposition-extension">
+      <statement>
+        <p>Assume the fixed-functor data are exact monoidal triangulated data, <m>\mathcal D</m> is compactly generated by dualizable objects, and <m>f^!</m> preserves small coproducts. Then <m>\phi_{A,B}</m> is an isomorphism for every <m>A,B\in\mathcal D</m>.</p>
+      </statement>
+      <proof>
+        <p>Fix <m>B</m>. The objects <m>A</m> on which <m>\phi_{A,B}</m> is invertible form a triangulated subcategory by exactness and the five lemma. They form a localizing subcategory because both functors in this comparison preserve coproducts. The preceding proposition about dualizable arguments places all the stated generators in that subcategory. Generation proves the assertion.</p>
+      </proof>
+    </proposition>
+    <p>A right adjoint does not in general preserve coproducts. Its preservation can be checked by compactness criteria from <xref ref="ha-c14"/>. Likewise, existence on an unbounded category does not imply preservation of a chosen bounded subcategory. These questions remain separate from the formal isomorphisms.</p>
+  </section>
+  <section xml:id="ha-c17-dualizing-subcategories">
+    <title>Descriptions using dualizing objects</title>
+    <p>Choose <m>\omega\in\mathcal D</m> and set <m>\omega'=f^!\omega</m>. The second isomorphism of <xref ref="ha-c17-proposition-internal-duality"/> gives</p>
+    <p><md number="no">D_{\omega'}f^*A\simeq f^!D_\omega A.</md></p>
+    <p>If <m>D_\omega</m> and <m>D_{\omega'}</m> are dualities on specified full subcategories, and the displayed functors preserve those subcategories, this gives <m>f^!\simeq D_{\omega'}f^*D_\omega</m> there. The first isomorphism similarly gives <m>f_!\simeq D_\omega f_*D_{\omega'}</m>, provided the objects involved remain in the subcategories on which biduality holds. Thus the exceptional functors can sometimes be described using ordinary adjoints and duality.<fn>These formulas are conditional descriptions. Defining <m>D_\omega f_*D_{\omega'}</m> on arbitrary objects does not establish an adjunction unless the required biduality and preservation statements have been proved.</fn></p>
+    <proposition xml:id="ha-c17-proposition-dualizing-restrictions">
+      <statement><p>More explicitly, let <m>\mathcal D_0\subset\mathcal D</m> and <m>\mathcal C_0\subset\mathcal C</m> be full subcategories, preserved by their dualities <m>D_\omega,D_{\omega'}</m>. Assume <m>f^*,f^!</m> take <m>\mathcal D_0</m> into <m>\mathcal C_0</m> and <m>f_!,f_*</m> take <m>\mathcal C_0</m> into <m>\mathcal D_0</m>. Then on these subcategories there are natural isomorphisms
+        <md number="no">f^!\simeq D_{\omega'}f^*D_\omega,\qquad f_!\simeq D_\omega f_*D_{\omega'}.</md>
+      </p></statement>
+      <proof><p>Apply <m>D_{\omega'}f^*A\simeq f^!D_\omega A</m> to <m>D_\omega A</m> and use biduality in <m>\mathcal D_0</m>. For the second formula apply <m>f_*D_{\omega'}M\simeq D_\omega f_!M</m>, then <m>D_\omega</m> and biduality. The preservation hypotheses place every term of these substitutions in the stated biduality subcategory.</p></proof>
+    </proposition>
+    <example xml:id="ha-c17-example-finite-family">
+      <p>Let <m>S</m> be a finite set, <m>\mathcal D=\D(k)</m>, and <m>\mathcal C=\D(k)^S</m>. Take <m>f^*</m> to be the constant-family functor. Its right adjoint is product; finite product is finite sum, which is also its left adjoint. Set <m>f_!=\bigoplus_{s\in S}</m> and <m>f^!=f^*</m>. The projection isomorphism follows from distributivity over finite sums. All the fixed-functor data therefore exist, including when <m>S</m> is empty. This model uses no sheaf theory.</p>
+    </example>
+  </section>
+  <section xml:id="ha-c17-contexts">
+    <title>Grothendieck and Wirthmüller comparisons</title>
+    <p>There are two different ways for the four intercategory functors to coincide in pairs. The direction of the resulting twist changes. We keep these cases separate, following <xref ref="bib-ha-fhm" detail="Sections 4–6"/>.</p>
+    <definition xml:id="ha-c17-definition-contexts">
+      <title>Two special adjoint configurations</title>
+      <statement><p><ol>
+        <li><p>In a Grothendieck configuration, <m>f^*\dashv f_*\dashv f^!</m>, and the canonical projection formula for <m>f_*</m> holds. Thus take <m>f_!=f_*</m> in the fixed-functor data.</p></li>
+        <li><p>In a Wirthmüller configuration, <m>f_!\dashv f^*\dashv f_*</m>, and <m>f^*</m> is closed symmetric monoidal: its internal Hom comparison <m>\alpha</m> is invertible for all arguments. Its adjoint projection comparison is then invertible; equivalently, the fixed-functor data may be taken with <m>f^!=f^*</m>.</p></li>
+      </ol></p></statement>
+    </definition>
+    <p>In the Grothendieck case, the previous theorem gives <m>f^!A\simeq f^*A\otimes f^!\mathbf1</m> for dualizable <m>A\in\mathcal D</m>. The twist occurs after pullback, in <m>\mathcal C</m>. If the right adjoint <m>f^!</m> preserves coproducts and <m>\mathcal D</m> is generated by dualizable objects, the generation argument extends the formula to all <m>A</m>. Neither invertibility of the twisting object nor its biduality on a chosen subcategory follows from this formula.</p>
+    <p>In the Wirthmüller case, that particular formula merely recovers <m>f^*=f^!</m>. A different question asks whether the ordinary right adjoint can be expressed using the left adjoint, after a twist before applying it. Choose <m>C\in\mathcal C</m> and an isomorphism <m>\chi:f_*\mathbf1_{\mathcal C}\xrightarrow{\sim}f_!C</m>. Define <m>\tau:\mathbf1_{\mathcal D}\to f_!C</m> by the unit <m>\mathbf1_{\mathcal D}\to f_*\mathbf1_{\mathcal C}</m> followed by <m>\chi</m>. This gives a specified comparison</p>
+    <p><md number="no">w_M:f_*M\xrightarrow{\id\otimes\tau}f_*M\otimes f_!C\xrightarrow{\pi^!}f_!(f^*f_*M\otimes C)\xrightarrow{f_!(\epsilon_M\otimes\id)}f_!(M\otimes C).</md></p>
+    <p>The object <m>C</m> and the isomorphism <m>\chi</m> are extra hypotheses. The map <m>w_M</m> need not be invertible merely because <m>M</m> is dualizable. This is one of the distinctions between the two configurations stressed in <xref ref="bib-ha-fhm" detail="Section 6"/>.</p>
+    <proposition xml:id="ha-c17-proposition-wirthmuller">
+      <statement><p>In this Wirthmüller configuration, <m>w_M</m> is invertible if <m>M</m> is a retract of <m>f^*A</m> and either <m>A</m> or <m>f_!\mathbf1_{\mathcal C}</m> is dualizable. If, in addition, both functors <m>f_*(-)</m> and <m>f_!(-\otimes C)</m> are exact and preserve coproducts, invertibility on a localizing generating set implies invertibility on all objects.</p></statement>
+      <proof><p>For <m>M=f^*A</m>, internal adjunction gives <m>f_*f^*A\simeq[f_!\mathbf1_{\mathcal C},A]</m>. The internal adjunction at the unit identifies <m>f_*\mathbf1_{\mathcal C}</m> with <m>D(f_!\mathbf1_{\mathcal C})</m>. The projection formula and <m>\chi</m> identify the other side of <m>w_{f^*A}</m> with <m>A\otimes D(f_!\mathbf1_{\mathcal C})</m>. Under these identifications the reverse comparison is the tensor–Hom evaluation comparison. It is invertible when either indicated object is dualizable. The unit–counit identities make it inverse to <m>w_{f^*A}</m>; this is verified in <xref ref="bib-ha-fhm" detail="Proposition 6.13"/>. Retracts preserve invertibility. The last assertion is the natural-transformation test of <xref ref="ha-c14"/>.</p></proof>
+    </proposition>
+    <p>This theorem twists an object of <m>\mathcal C</m> before direct image. The Grothendieck comparison twists the pullback of an object of <m>\mathcal D</m>. The two formulas therefore do not express the same theorem with exclamation marks moved between positions.</p>
+  </section>
+  <section xml:id="ha-c17-traces">
+    <title>Counits and their compatibility with composition</title>
+    <p>The counit <m>v_A:f_!f^!A\to A</m> is the trace associated with this adjunction. It corresponds to <m>\id_{f^!A}</m>, so it is determined once the adjunction is fixed. For composable exceptional functors <m>f_!</m> and <m>g_!</m>, the counit of their composite is</p>
+    <p><md number="no">g_!f_!f^!g^!A\xrightarrow{g_!v_{g^!A}}g_!g^!A\xrightarrow{v_A}A.</md></p>
+    <p>This formula follows from the composite adjunction, independently of any geometric interpretation. The unit has the reverse nested form. Taking these as the comparison conventions proves transitivity of traces and compatibility with the mate isomorphisms.</p>
+    <p>Setting <m>\omega'=f^!\omega</m> gives in particular the trace <m>f_!\omega'\to\omega</m>. It need not be an isomorphism. Nor is it a numerical trace of an endomorphism from <xref ref="ha-c16"/>: it is a natural transformation between intercategory functors. A numerical pairing or integration formula results only after specifying a suitable base category, a coefficient object, and additional identifications.</p>
+  </section>
+</chapter>

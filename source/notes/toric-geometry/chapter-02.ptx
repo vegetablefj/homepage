@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="toric-fans">
+  <title>Fans, orbits, and toric morphisms</title>
+  <introduction>
+    <p>This chapter assembles affine toric charts into global varieties and translates their geometry into the incidence relations of cones. Its starting point is the face-localization construction in <xref ref="toric-affine"/>. The main references are <xref ref="bib-toric-cls" detail="Chapter 3"/> and <xref ref="bib-toric-fulton" detail="Chapters 1–2"/>.</p>
+    <p>We prove the chart construction, separatedness, the orbit description, and the criterion for extending a homomorphism of tori. The general properness and classification theorems are stated with precise references; the elementary calculations that explain their content are given here.</p>
+  </introduction>
+  <section xml:id="toric-fans-gluing">
+    <title>Fans and gluing affine charts</title>
+    <definition xml:id="toric-def-fan">
+      <title>A finite fan</title>
+      <statement><p>A <term>fan</term> <m>\Sigma</m> in <m>N_{\R}</m> is a finite set of strongly convex rational polyhedral cones such that every face of a cone in <m>\Sigma</m> belongs to <m>\Sigma</m>, and the intersection of any two cones is a face of each. Its <term>support</term> is <m>|\Sigma|=\bigcup_{\sigma\in\Sigma}\sigma</m>. The set of its <m>d</m>-dimensional cones is written <m>\Sigma(d)</m>. A fan is <term>complete</term> when <m>|\Sigma|=N_{\R}</m>.</p></statement>
+    </definition>
+    <p>A nonempty fan contains the zero cone. Its maximal cones need not have the same dimension. A ray is a one-dimensional cone; its generator always means the primitive lattice generator. The fan consisting of all faces of one cone <m>\sigma</m> will recover <m>U_\sigma</m>.</p>
+    <lemma xml:id="toric-lemma-common-face-separation">
+      <title>Separating cones along a common face</title>
+      <statement><p>If <m>\sigma,\sigma'</m> are rational polyhedral cones and <m>\delta=\sigma\cap\sigma'</m> is a face of each, there is <m>m\in M</m> such that <m>m\geq0</m> on <m>\sigma</m>, <m>m\leq0</m> on <m>\sigma'</m>, and <m>\sigma\cap m^\perp=\delta=\sigma'\cap m^\perp</m>.</p></statement>
+      <proof><p>Put <m>C=\sigma-\sigma'</m>. Its largest vector subspace is <m>\delta-\delta</m>. Indeed, if <m>v=a-b=b'-a'</m>, with <m>a,a'\in\sigma</m> and <m>b,b'\in\sigma'</m>, then <m>a+a'=b+b'\in\delta</m>. Since <m>\delta</m> is a face of both cones, all four summands belong to <m>\delta</m>. The reverse inclusion is immediate. Thus the image of <m>C</m> in the quotient by <m>\operatorname{span}_{\R}\delta</m> is a pointed rational polyhedral cone. Choose a rational functional strictly positive on its nonzero elements, pull it back, and clear denominators. The resulting <m>m</m> is nonnegative on <m>C</m> and vanishes there exactly on <m>\operatorname{span}_{\R}\delta</m>. Since <m>\sigma\cap\operatorname{span}_{\R}\delta=\delta</m> and similarly for <m>\sigma'</m>, this gives the claim.</p></proof>
+    </lemma>
+    <p>The separation lemma is <xref ref="bib-toric-cls" detail="Lemma 1.2.13"/>. Its role here is algebraic: it lets functions from two charts generate all functions on their overlap.</p>
+    <proposition xml:id="toric-prop-fan-overlap">
+      <title>The coordinate ring of an overlap</title>
+      <statement><p>For cones <m>\sigma,\sigma'</m> of a fan and <m>\delta=\sigma\cap\sigma'</m>, multiplication induces a surjection
+        <md number="no">k[S_\sigma]\otimes_k k[S_{\sigma'}]\longrightarrow k[S_\delta].</md>
+        Equivalently, <m>S_\delta=S_\sigma+S_{\sigma'}</m> as submonoids of <m>M</m>.</p></statement>
+      <proof><p>Choose <m>m</m> as in <xref ref="toric-lemma-common-face-separation"/>. Face localization gives <m>S_\delta=S_\sigma+\N(-m)</m>, and <m>-m\in S_{\sigma'}</m>. This proves one inclusion; the other follows because both <m>S_\sigma</m> and <m>S_{\sigma'}</m> lie in <m>S_\delta</m>. The monomials form a basis, so the semigroup equality gives the asserted surjectivity.</p></proof>
+    </proposition>
+    <theorem xml:id="toric-thm-fan-construction">
+      <title>The variety of a fan</title>
+      <statement><p>For a nonempty finite fan <m>\Sigma</m>, the affine varieties <m>U_\sigma=\Spec k[S_\sigma]</m> glue along the canonical open charts <m>U_{\sigma\cap\sigma'}</m> to a normal separated variety <m>X_\Sigma</m> of dimension <m>\rk N</m>. The torus <m>T_N=\Spec k[M]</m> is a common dense open subset, its actions on the charts glue, and
+        <md number="no">U_\sigma\cap U_{\sigma'}=U_{\sigma\cap\sigma'}.</md>
+        The chart of a face is identified by the identity on <m>T_N</m>, so no choice of coordinates enters the gluing.</p></statement>
+      <proof><p>Face localizations are compatible with further localization. Inside <m>U_\sigma</m>, the open charts of two faces intersect in the chart of their intersection: if exposing characters are <m>m_1,m_2</m>, the intersection is <m>D(\chi^{m_1+m_2})</m>, and the vanishing face is the intersection of the two vanishing faces. Consequently the prescribed overlap identifications satisfy the cocycle condition. The gluing theorem for schemes constructs <m>X_\Sigma</m> with the stated chart intersections; see <xref ref="bib-toric-stacks" detail="Tag 01JA"/>.</p>
+      <p>Normality and finite type follow on the finite affine cover. All charts contain the same dense torus, so the glued scheme is irreducible and reduced, and has dimension <m>\rk N</m>. For separatedness, each pairwise intersection is affine, and its coordinate ring is generated by the two chart rings by <xref ref="toric-prop-fan-overlap"/>. The affine-overlap criterion for separatedness therefore applies <xref ref="bib-toric-stacks" detail="Tag 01KP"/>. Finally, the chart actions agree on their invariant face opens, giving the global action.</p></proof>
+    </theorem>
+    <example xml:id="toric-example-projective-line">
+      <title>The projective line and the doubled origin</title>
+      <p>For <m>N=\Z</m>, the fan with cones <m>\{0\},\R_{\geq0},\R_{\leq0}</m> glues <m>\Spec k[t]</m> and <m>\Spec k[t^{-1}]</m> along <m>\Spec k[t,t^{-1}]</m>. The result is <m>\P^1</m>.</p>
+      <p>Gluing two copies of <m>\Spec k[t]</m> along the same punctured line instead gives the line with doubled origin. Its overlap is affine, but the map <m>k[t]\otimes_k k[t]\to k[t,t^{-1}]</m> has image <m>k[t]</m> and is not surjective. Thus it is not separated. A fan is a set of cones, so it cannot contain two separately labelled copies of the same positive ray; the fan conditions encode more than the instruction to identify dense tori.</p>
+    </example>
+    <example xml:id="toric-example-projective-plane-charts">
+      <title>Three charts for the projective plane</title>
+      <p>Let <m>N=\Z^2</m>, put <m>v_1=e_1</m>, <m>v_2=e_2</m>, and <m>v_0=-e_1-e_2</m>, and take the three cones spanned by pairs of these vectors, together with their faces. Write <m>x=\chi^{(1,0)}</m> and <m>y=\chi^{(0,1)}</m>. The maximal-cone chart rings are
+        <md number="no"><mrow>k[x,y],\qquad k[x^{-1},y/x],\qquad k[y^{-1},x/y].</mrow></md>
+        These are exactly the charts <m>X_0\ne0</m>, <m>X_1\ne0</m>, and <m>X_2\ne0</m> of <m>\P^2</m>, with <m>x=X_1/X_0</m> and <m>y=X_2/X_0</m>. Their monomial transition maps recover the ordinary projective-coordinate transitions.</p>
+    </example>
+    <figure xml:id="toric-figure-projective-plane-fan">
+      <caption>The fan of <m>\P^2</m>. Its maximal cones correspond to the three affine coordinate charts, while its rays correspond to coordinate divisors.</caption>
+      <image source="projective-plane-fan.svg" width="66%"><description><p>The complete fan with rays (1,0), (0,1), and (-1,-1), and the three cones generated by pairs of adjacent rays.</p></description></image>
+    </figure>
+    <remark xml:id="toric-remark-classification-input">
+      <title>Construction and classification</title>
+      <p>The construction just proved does not show that every normal toric variety has an invariant affine cover. That direction uses the affine-neighborhood theorem for normal torus actions, followed by the affine cone description and separatedness. We use the standard classification theorem in the following form: every toric variety under the conventions of <xref ref="toric-conventions"/> is equivariantly isomorphic to <m>X_\Sigma</m> for a unique fan in its specified one-parameter-subgroup lattice. For the invariant affine cover and classification over our field, see <xref ref="bib-toric-perrin" detail="Theorem 3.3.2 and Corollary 3.3.3"/>; compare <xref ref="bib-toric-cls" detail="Section 3.1"/> and <xref ref="bib-toric-fulton" detail="Section 1.4"/>. Normality is essential to this formulation.</p>
+    </remark>
+  </section>
+  <section xml:id="toric-fans-orbits">
+    <title>The orbit<ndash/>cone correspondence</title>
+    <p>Cones label locally closed orbits, with dimensions reversed. To avoid a scheme-theoretic ambiguity, a statement about the orbit of a point below concerns geometric points. The orbit strata themselves are locally closed subschemes; arbitrary scheme points are not all <m>T_N(k)</m>-translates of closed points.</p>
+    <definition xml:id="toric-def-distinguished-point">
+      <title>The distinguished point of a cone</title>
+      <statement><p>For <m>\tau\in\Sigma</m>, define <m>x_\tau\in U_\tau(k)</m> by the algebra homomorphism
+        <md number="no">\chi^m\longmapsto\begin{cases}1&amp;m\in\tau^\perp,\\0&amp;m\notin\tau^\perp.\end{cases}</md>
+        The nonnegative pairing on <m>\tau</m> makes this assignment multiplicative. Its torus orbit is denoted <m>O(\tau)</m>.</p></statement>
+    </definition>
+    <lemma xml:id="toric-lemma-monoid-face">
+      <title>Faces detected by nonvanishing</title>
+      <statement><p>For a geometric point <m>p</m> of <m>U_\sigma</m>, there is a unique face <m>\tau\preceq\sigma</m> such that
+        <md number="no">\{m\in S_\sigma:\chi^m(p)\ne0\}=S_\sigma\cap\tau^\perp.</md></p></statement>
+      <proof><p>The nonvanishing set <m>F</m> is a submonoid and has the face property: if <m>a+b\in F</m>, then <m>a,b\in F</m>. All units of the semigroup belong to <m>F</m>, since <m>\chi^a\chi^{-a}=1</m>. Fix finite generators <m>g_1,\ldots,g_s</m> of <m>S_\sigma</m>, and sum those generators that belong to <m>F</m> to obtain <m>u</m>. Let <m>\eta</m> be the smallest face of <m>\sigma^\vee</m> containing those generators. Then <m>u\in\relint(\eta)</m>: a nonnegative supporting functional vanishes on their sum exactly when it vanishes on each summand. This also covers the case in which <m>\eta</m> is the lineality space and <m>u=0</m>.</p>
+      <p>If a generator <m>g_j</m> lies in <m>\eta</m>, choose a small rational <m>\epsilon&gt;0</m> with <m>u-\epsilon g_j\in\eta</m>. Express this rational point as a rational nonnegative combination of the <m>g_i</m>, by the independent-generator argument of <xref ref="toric-lem-saturation-cone"/>, and clear denominators. The resulting relation has the form <m>q u=r g_j+s</m>, with positive integers <m>q,r</m> and <m>s\in S_\sigma</m>. Its left side belongs to <m>F</m>; the face property forces <m>g_j\in F</m>. Thus precisely the generators in <m>\eta</m> belong to <m>F</m>. Since a sum lying in a face has all its summands in that face, it follows that <m>F=S_\sigma\cap\eta</m>. Duality of faces gives a unique <m>\tau\preceq\sigma</m> with <m>\eta=\sigma^\vee\cap\tau^\perp</m>, proving the assertion.</p></proof>
+    </lemma>
+    <theorem xml:id="toric-thm-orbit-cone">
+      <title>Orbits and their closures</title>
+      <statement><p>For the variety of a fan, the following assertions hold.</p><p><ol>
+        <li><p>The orbit <m>O(\tau)</m> is a torus with character lattice <m>M\cap\tau^\perp</m>. In particular, <m>\dim O(\tau)=\rk N-\dim\tau</m>.</p></li>
+        <li><p>The affine chart <m>U_\sigma</m> is the disjoint union of <m>O(\tau)</m> for faces <m>\tau\preceq\sigma</m>. It has a unique closed orbit, namely <m>O(\sigma)</m>.</p></li>
+        <li><p>Writing <m>V(\tau)=\overline{O(\tau)}</m> with its reduced induced structure, one has
+          <md number="no">V(\tau)=\coprod_{\gamma\in\Sigma,\ \tau\preceq\gamma}O(\gamma).</md>
+          Hence <m>O(\gamma)\subseteq V(\tau)</m> exactly when <m>\tau\preceq\gamma</m>.</p></li>
+      </ol></p></statement>
+      <proof><p>On <m>U_\sigma</m> with <m>\tau\preceq\sigma</m>, set all monomials outside <m>\tau^\perp</m> equal to zero and invert the monomials in <m>S_\sigma\cap\tau^\perp</m>. This gives the locally closed subscheme with ring <m>k[M\cap\tau^\perp]</m>. To see the asserted group of exponents, apply the group-generation argument of the affine chapter to the full-dimensional dual cone of the image of <m>\sigma</m> in <m>N_{\R}/\operatorname{span}_{\R}\tau</m>. The inclusion <m>M\cap\tau^\perp\subseteq M</m> is saturated, so it splits as an inclusion of abelian groups. Thus <m>T_N\to\Spec k[M\cap\tau^\perp]</m> is a surjective homomorphism of tori, and the displayed subscheme is exactly the orbit of <m>x_\tau</m>.</p>
+      <p>For any geometric point, <xref ref="toric-lemma-monoid-face"/> identifies its zero and nonzero monomials. Its nonzero values extend to a character on <m>M\cap\tau^\perp</m>, and then to <m>M</m> by the splitting. A torus translation therefore carries <m>x_\tau</m> to that point. This proves the decomposition and its uniqueness.</p>
+      <p>The closure of <m>O(\tau)</m> in a chart containing it has the prime monomial ideal generated by <m>\chi^m</m> with <m>m\notin\tau^\perp</m>. The point <m>x_\gamma</m> satisfies all these equations precisely when <m>\tau\preceq\gamma</m>, by dual face inclusion. If an invariant chart meets the closure, its openness implies that it meets the dense orbit <m>O(\tau)</m>; invariance then puts the entire orbit in that chart. Thus the calculation covers every chart that meets the closure and proves the asserted global relation. In particular the only orbit closed in <m>U_\sigma</m> is <m>O(\sigma)</m>.</p></proof>
+    </theorem>
+    <p>The reference form of this theorem is <xref ref="bib-toric-cls" detail="Theorem 3.2.6"/>. The stabilizer of <m>x_\tau</m> is the subtorus with one-parameter-subgroup lattice <m>N_\tau=N\cap\operatorname{span}_{\R}\tau</m>. In particular, torus-fixed points correspond exactly to full-dimensional cones; a maximal cone of smaller dimension gives a positive-dimensional closed orbit.</p>
+    <proposition xml:id="toric-prop-star-fan">
+      <title>The toric variety of an orbit closure</title>
+      <statement><p>Let <m>\overline N=N/N_\tau</m>. The images <m>\overline\gamma</m> of cones <m>\gamma\in\Sigma</m> containing <m>\tau</m> form a fan <m>\operatorname{Star}(\tau)</m> in <m>\overline N_{\R}</m>, and
+        <md number="no">V(\tau)\cong X_{\operatorname{Star}(\tau)}.</md>
+        Its dense torus is <m>O(\tau)</m>, with dual lattice <m>\overline M=M\cap\tau^\perp</m>.</p></statement>
+      <proof><p>The quotient of a cone by the span of one of its faces is strongly convex. Indeed, if <m>v,w\in\gamma</m> have opposite images in the quotient, then <m>v+w\in\gamma\cap\operatorname{span}_{\R}\tau=\tau</m>. The face property forces both <m>v,w</m> into <m>\tau</m>, so their quotient images are zero. The faces and intersections of the quotient cones correspond to the faces and intersections containing <m>\tau</m>, so they satisfy the fan axioms. In a chart <m>U_\gamma</m> with <m>\tau\preceq\gamma</m>, the orbit closure has ring
+        <md number="no">k[S_\gamma\cap\tau^\perp]=k[\overline\gamma^{\,\vee}\cap\overline M].</md>
+        These identifications respect face localization, and hence glue. They cover the closure by <xref ref="toric-thm-orbit-cone"/>.</p></proof>
+    </proposition>
+    <example xml:id="toric-example-plane-orbits"><title>The strata of the projective plane</title><p>In <xref ref="toric-example-projective-plane-charts"/>, the zero cone gives the dense torus, the three rays give the three coordinate lines with their intersection points removed, and the maximal cones give the three coordinate points. The star of <m>\R_{\geq0}e_1</m> is the complete one-dimensional fan: modulo <m>\Z e_1</m>, the other adjacent rays have generators <m>1</m> and <m>-1</m>. Its orbit closure is consequently <m>\P^1</m>, as expected for a coordinate line.</p></example>
+  </section>
+  <section xml:id="toric-fans-maps">
+    <title>Lattice maps and toric morphisms</title>
+    <definition xml:id="toric-def-fan-map"><title>A map of fans</title><statement><p>A lattice homomorphism <m>\varphi:N\to N'</m> is <term>compatible</term> with fans <m>\Sigma,\Sigma'</m> if, for every <m>\sigma\in\Sigma</m>, there exists <m>\sigma'\in\Sigma'</m> with <m>\varphi_{\R}(\sigma)\subseteq\sigma'</m>. There is no requirement that a cone map onto a cone, or that its image be a face.</p></statement></definition>
+    <theorem xml:id="toric-thm-fan-morphisms">
+      <title>Extending a homomorphism of tori</title>
+      <statement><p>The homomorphism <m>T_N\to T_{N'}</m> induced by <m>\varphi</m> extends to a toric morphism <m>X_\Sigma\to X_{\Sigma'}</m> if and only if <m>\varphi</m> is compatible with the fans. The extension is unique. For any cones with <m>\varphi_{\R}(\sigma)\subseteq\sigma'</m>, its map on the corresponding chart is induced by
+        <md number="no">k[S_{\sigma'}]\longrightarrow k[S_\sigma],\qquad\chi^{m'}\longmapsto\chi^{\varphi^*m'}.</md></p></statement>
+      <proof><p>Duality gives <m>\varphi_{\R}(\sigma)\subseteq\sigma'</m> exactly when <m>\varphi^*(S_{\sigma'})\subseteq S_\sigma</m>. Thus compatibility gives the displayed affine maps. On any common source chart they agree on the dense torus and therefore agree as maps to the separated target: the equalizer is closed and its defining ideal vanishes on a dense open of a reduced scheme. Hence they glue. The same argument proves uniqueness.</p>
+      <p>Conversely, let <m>f</m> be an extension, choose <m>\sigma\in\Sigma</m>, and let <m>O(\tau')</m> contain <m>f(x_\sigma)</m>. The invariant open <m>f^{-1}(U_{\tau'})\cap U_\sigma</m> contains the whole closed orbit <m>O(\sigma)</m>. It must be all of <m>U_\sigma</m>: otherwise its invariant closed complement contains an orbit, whose closure also contains <m>O(\sigma)</m>. We consequently have a map <m>U_\sigma\to U_{\tau'}</m>. On the dense torus its pullback is <m>\chi^{m'}\mapsto\chi^{\varphi^*m'}</m>, so regularity implies <m>\varphi^*S_{\tau'}\subseteq S_\sigma</m>. Duality yields <m>\varphi_{\R}(\sigma)\subseteq\tau'</m>.</p></proof>
+    </theorem>
+    <p>This is <xref ref="bib-toric-cls" detail="Theorem 3.3.4"/>. Composition is ordinary composition of lattice homomorphisms; the pullbacks on character lattices and coordinate rings run in the opposite direction. Together with the classification theorem, it identifies the category of normal toric varieties with specified dense tori and toric morphisms with the category of nonempty finite fans in lattices.</p>
+    <example xml:id="toric-example-toric-map-boundaries"><title>Extension, contraction, and characteristic</title><p>The identity of <m>\Z</m> extends the open inclusion <m>\A^1\to\P^1</m>, because its positive ray belongs to the complete fan. It does not extend a morphism <m>\P^1\to\A^1</m> restricting to the identity on <m>\Gm</m>, since the negative ray has no compatible target cone. Multiplication by a positive integer <m>d</m> on the lattice of the torus gives <m>t\mapsto t^d</m>; in characteristic <m>p</m>, the case <m>d=p</m> is inseparable. The fan criterion controls extension, and does not assert separability.</p></example>
+  </section>
+  <section xml:id="toric-fans-finite-morphisms">
+    <title>Finite covers and a change of lattice</title>
+    <p>A finite-index change of lattice keeps the real fan while changing its integral geometry. It also separates three properties of a morphism: its degree, its separability, and its flatness. We establish this case directly, including in positive characteristic; compare <xref ref="bib-toric-cls" detail="Propositions 1.3.18 and 3.3.7"/>, where the finite groups are considered over <m>\C</m>.</p>
+    <theorem xml:id="toric-thm-finite-lattice-cover"><title>Normalizing along an isogeny</title><statement><p>Let <m>\varphi:N\hookrightarrow N'</m> be injective with finite cokernel, and let <m>\Sigma'</m> be a nonempty fan in <m>N'_\R</m>. Define the inverse-image fan
+      <md number="no">\widetilde\Sigma=\{\varphi_\R^{-1}(\sigma'):\sigma'\in\Sigma'\}.</md>
+      Then <m>X_{\widetilde\Sigma}\to X_{\Sigma'}</m> is finite and surjective, has degree <m>[N':\varphi(N)]</m>, and is the normalization of <m>X_{\Sigma'}</m> in the function field of <m>T_N</m>. More generally, a toric extension of this isogeny <m>X_\Sigma\to X_{\Sigma'}</m> is finite if and only if <m>\Sigma=\widetilde\Sigma</m>.</p></statement>
+      <proof><p>The real map <m>\varphi_\R</m> is an isomorphism, so inverse images preserve all fan axioms. On corresponding charts the character inclusion is
+        <md number="no">R'=k[\sigma'^{\vee}\cap M']\ \hookrightarrow\ R=k[(\varphi_\R^{-1}\sigma')^\vee\cap M].</md>
+        The dual map <m>\varphi^*:M'\hookrightarrow M</m> has finite cokernel. For every exponent <m>m</m> in the second semigroup, some positive multiple <m>am</m> equals <m>\varphi^*m'</m>. Its nonnegative pairings imply <m>m'\in\sigma'^\vee</m>. Thus <m>\chi^m</m> satisfies the monic equation <m>T^a-\chi^{m'}=0</m> over <m>R'</m>. The finitely generated algebra <m>R</m> is integral over <m>R'</m> and hence finite. The character formulas send the orbit of a cone onto the orbit of its image cone; faces correspond under <m>\varphi_\R</m>. Thus the inverse image of <m>U_{\sigma'}</m> is exactly its corresponding source chart. Finiteness is local on the target, so the glued map is finite. Its image is closed and contains the dense target torus, so it is surjective.</p>
+      <p>The ring <m>R</m> is normal and has fraction field <m>k(T_N)</m>. Any element of that field integral over <m>R'</m> is integral over <m>R</m>, using the same equation, and hence belongs to <m>R</m>. Therefore <m>R</m> is exactly the integral closure of <m>R'</m>. These identifications agree on open subsets and establish the normalization statement.</p>
+      <p>Conversely, for a finite extension <m>f:X_\Sigma\to X_{\Sigma'}</m>, the inverse image of an affine target chart is affine and normal, with function field <m>k(T_N)</m>, and its ring is integral over the target chart ring. The same argument makes it that ring's integral closure. Uniqueness of normalization consequently identifies <m>f</m> with the constructed map, identically on the source torus. The classification by fans then gives <m>\Sigma=\widetilde\Sigma</m>.</p>
+      <p>Finally choose lattice bases putting <m>\varphi^*</m> in Smith normal form with positive diagonal entries <m>d_1,\ldots,d_n</m>. On the tori the coordinate map becomes <m>s_i\mapsto t_i^{d_i}</m>. The source Laurent algebra is free over the target Laurent algebra, with basis the monomials <m>\prod t_i^{a_i}</m>, <m>0\leq a_i&lt;d_i</m>. Localizing at the target function field gives a field extension of degree <m>\prod_i d_i=[N':\varphi(N)]</m>, as asserted.</p></proof>
+    </theorem>
+    <p>In characteristic <m>p&gt;0</m>, write <m>d_i=p^{e_i}d'_i</m> with <m>p\nmid d'_i</m>. The same coordinates give inseparable degree <m>p^{\sum_i e_i}</m> and separable degree <m>\prod_i d'_i</m>. In characteristic zero the full degree is separable. The map on tori is finite flat, and is étale precisely when the characteristic does not divide the index: this follows from the free basis and the one-variable derivatives <m>d_it_i^{d_i-1}</m>. These assertions about the dense tori do not assert flatness on the compactified charts.</p>
+    <example xml:id="toric-example-finite-cover-nonflat"><title>A smooth cover of the quadratic cone</title><p>Let the target lattice be <m>N'=\Z^2</m> and its cone have primitive generators <m>(1,0),(1,2)</m>. In the index-two sublattice they generate, the same cone is smooth. Its cover is therefore
+      <md number="no">\A^2\longrightarrow\Spec k[x,y,z]/(xz-y^2),\qquad(p,q)\longmapsto(q^2,pq,p^2),</md>
+      of degree two. Pairing the target Hilbert basis <m>(0,1),(1,0),(2,-1)</m> with the source ray basis gives the exponents <m>(0,2),(1,1),(2,0)</m>, which verifies the coordinate formulas.</p>
+      <p>The fiber over the vertex has coordinate ring
+        <md number="no">k[p,q]/(p^2,pq,q^2),</md>
+        with basis <m>1,p,q</m> and length three. A finite flat map of generic degree two over the connected target would have every fiber of length two. Thus this cover is not flat, in any characteristic. In characteristic two its torus isogeny is purely inseparable of degree two; in other characteristics it is étale on the torus. The map and the length-three vertex fiber remain valid in both cases.</p>
+      <p>The kernel on the torus is the diagonalizable group scheme <m>\mu_2</m>. When the characteristic is two it is not an étale two-element group. The lattice and integral-closure construction describe the cover without replacing this group scheme by its set of rational points. Compare the complex quotient calculation in <xref ref="bib-toric-cls" detail="Example 1.3.19"/>; the fiber-length and characteristic calculations here use the displayed rings directly.</p></example>
+  </section>
+  <section xml:id="toric-fans-properness">
+    <title>Completeness and properness</title>
+    <proposition xml:id="toric-prop-one-parameter-limit">
+      <title>Limits in affine charts</title>
+      <statement><p>For <m>v\in N</m>, the one-parameter subgroup <m>\lambda_v:\Gm\to T_N</m> extends to <m>\A^1\to U_\sigma</m> precisely when <m>v\in\sigma</m>. If <m>v\in\relint(\tau)</m> for a face <m>\tau\preceq\sigma</m>, then its value at zero is <m>x_\tau</m>.</p></statement>
+      <proof><p>The pullback sends <m>\chi^m</m> to <m>t^{\langle m,v\rangle}</m>. This is regular at zero for all <m>m\in S_\sigma</m> precisely when the pairings are nonnegative, which by cone duality is <m>v\in\sigma</m>. For <m>v\in\relint(\tau)</m>, the exponent is zero exactly when <m>m\in\tau^\perp</m>; evaluating at zero gives the distinguished point.</p></proof>
+    </proposition>
+    <theorem xml:id="toric-thm-properness"><title>The support criterion</title><statement><p>A toric morphism <m>f_\varphi:X_\Sigma\to X_{\Sigma'}</m> is proper if and only if
+      <md number="no">|\Sigma|=\varphi_{\R}^{-1}(|\Sigma'|).</md>
+      In particular, <m>X_\Sigma</m> is complete, meaning proper over <m>k</m>, if and only if its fan is complete.</p></statement></theorem>
+    <p>We use the full properness theorem as an external input. A valuative proof over an algebraically closed field of arbitrary characteristic is given in <xref ref="bib-toric-perrin" detail="Theorem 3.4.3"/>; compare <xref ref="bib-toric-cls" detail="Theorems 3.4.6 and 3.4.11"/> and <xref ref="bib-toric-fulton" detail="Section 2.4"/>. The valuative argument uses more than the visible limits of torus points. In particular, checking the preceding proposition is an explanation of the support condition, not by itself a proof of sufficiency for arbitrary valuative diagrams.</p>
+    <p>For completeness, necessity is already visible in one-parameter subgroups. Properness supplies a limit for every <m>\lambda_v</m>. A chart around that limit contains the rest of the curve because it contains the entire dense torus, and the pullback computation forces <m>v\in|\Sigma|</m>. Thus every lattice point must lie in the support. A finite union of rational closed cones that misses a point misses a rational point, so this forces <m>|\Sigma|=N_{\R}</m>.</p>
+    <example xml:id="toric-example-complete-not-affine"><title>Support is not a polarization</title><p>The projective-line and projective-plane fans are complete; the fan of one nonzero cone is not complete in its lattice space. Completeness should not be read as projectivity. A projective toric variety needs compatible strictly convex support-function data, which will be treated in <xref ref="toric-polytopes"/>; the support criterion alone does not provide such data.</p></example>
+  </section>
+  <section xml:id="toric-fans-modifications">
+    <title>Subdivisions and geometric modifications</title>
+    <definition xml:id="toric-def-subdivision"><title>A subdivision</title><statement><p>A fan <m>\widetilde\Sigma</m> <term>subdivides</term> <m>\Sigma</m> if their supports agree and every cone of <m>\widetilde\Sigma</m> is contained in a cone of <m>\Sigma</m>. The identity lattice map gives a proper birational toric morphism <m>X_{\widetilde\Sigma}\to X_\Sigma</m>: properness follows from <xref ref="toric-thm-properness"/>, and birationality follows because it is the identity on the dense torus.</p></statement></definition>
+    <example xml:id="toric-example-blowup-affine-plane"><title>Blowing up the affine plane</title><p>Subdivide <m>\Cone(e_1,e_2)</m> by the ray generated by <m>e_1+e_2</m>. The two new maximal cones have coordinate rings
+      <md number="no"><mrow>k[x,t],\quad t=y/x;\qquad k[s,y],\quad s=x/y.</mrow></md>
+      Their morphisms to <m>\A^2</m> are <m>(x,t)\mapsto(x,xt)</m> and <m>(s,y)\mapsto(sy,y)</m>. On their common chart <m>t</m> is invertible, <m>s=t^{-1}</m>, and <m>y=xt</m>. These are the two standard charts of
+      <md number="no">\operatorname{Bl}_{(x,y)}\A^2=\{((x,y),[a:b])\in\A^2\times\P^1:xb=ya\}.</md>
+      Thus this subdivision is the ordinary blowup of the origin. The exceptional curve is given by <m>x=0</m> in the first chart and <m>y=0</m> in the second; the reciprocal coordinate transition identifies it with <m>\P^1</m>. Its fan is also the star fan of the new ray, in agreement with <xref ref="toric-prop-star-fan"/>.</p></example>
+    <figure xml:id="toric-figure-blowup-subdivision">
+      <caption>Adding the ray <m>\R_{\geq0}(e_1+e_2)</m> subdivides the affine-plane cone. The two new affine charts are the usual charts of the blowup at the origin.</caption>
+      <image source="blowup-subdivision.svg" width="100%"><description><p>The first quadrant before and after adding its diagonal ray, with coordinate rings of the two blowup charts.</p></description></image>
+    </figure>
+    <p>The example proves an ordinary blowup statement by matching coordinate rings. For a general monomial ideal, the fan description naturally describes the normalized blowup; normality of the ordinary blowup requires a separate check. We will return to this issue in <xref ref="toric-birational"/> rather than use the words subdivision and blowup interchangeably.</p>
+    <p xml:id="toric-anchor-fans-general-geometry">The passage from a subdivision to a proper birational map is a basic toric mechanism used in toroidal geometry. A toroidal structure supplies local toric boundary models with compatibility data. In weak factorization, constructing that compatibility is a substantive step; a collection of unrelated toric-looking charts is insufficient. The precise global theorem and its hypotheses will be discussed in <xref ref="toric-birational-toroidal"/>.</p>
+    <aside xml:id="margin-toric-fans-general-geometry"><p>The role of toric geometry here is a local model for a proof about general varieties. It differs from a degeneration to a toric special fiber, and from a generalization of the lattice-point dictionary. Keeping these mechanisms separate makes the eventual transfer to non-toric geometry checkable.</p></aside>
+  </section>
+</chapter>

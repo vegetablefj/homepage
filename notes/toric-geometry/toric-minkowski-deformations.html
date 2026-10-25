@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-darkmode="disabled">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette: blue-red                     *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Minkowski decompositions and deformations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Notes on toric geometry">
+<meta property="og:title" content="Notes on toric geometry">
+<meta property="book:title" content="Notes on toric geometry">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.53"></script><script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="../../vendor/lunr/lunr.min.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+<link rel="stylesheet" href="../../layout.css?v=fee08a8c1c">
+<script src="../../layout.js?v=e9391a21a7" defer></script><link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"C": "\\mathbb{C}", "Pone": "\\mathbb{P}^1_{\\mathbb{C}}", "cO": "\\mathcal{O}", "ord": "\\operatorname{ord}", "lt": "<", "gt": ">", "amp": "&", "Z": "\\mathbb{Z}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "N": "\\mathbb{N}", "A": "\\mathbb{A}", "P": "\\mathbb{P}", "Gm": "\\mathbb{G}_m", "id": "\\mathrm{id}", "Spec": "\\operatorname{Spec}", "Proj": "\\operatorname{Proj}", "Hom": "\\operatorname{Hom}", "Cl": "\\operatorname{Cl}", "Pic": "\\operatorname{Pic}", "Cone": "\\operatorname{Cone}", "conv": "\\operatorname{conv}", "rk": "\\operatorname{rk}", "divisor": "\\operatorname{div}", "gp": "\\operatorname{gp}", "relint": "\\operatorname{relint}", "codim": "\\operatorname{codim}", "vol": "\\operatorname{vol}", "Frac": "\\operatorname{Frac}", "im": "\\operatorname{im}"}}, "options": {"ignoreHtmlClass": "ignore-math", "processHtmlClass": "process-math", "enableMenu": false}};</script><script src="../../vendor/mathjax/tex-chtml.js" defer></script>
+</head>
+<body class="pretext book ignore-math note-page" data-page-format="note">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner"><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="toric-geometry-notes.html"><span class="title">Notes on toric geometry</span></a></div>
+<p class="byline"><a href="../../home.html">Jie Fu</a>'s <a href="../../notes.html">Notes</a></p>
+<p class="note-metadata"><span class="note-review-status">Under review and improvement</span> · <span class="note-last-updated">Last updated: <time datetime="2026-10-24">2026-10-24</time></span></p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Contents</span></button><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true"></span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="treebuttons"><a class="previous-button button" href="toric-fano-metrics.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="up-button button" href="toric-geometry-notes.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Up</span></a><a class="next-button button" href="toric-ehrhart.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a></span>
+</div></nav><div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth4 focused" data-preexpanded-levels="1" data-max-levels="4"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-conventions.html" class="internal"><span class="codenumber">0</span> <span class="title">Scope, conventions, and reading routes</span></a></div>
+<ul id="ptx-toc-group-toric-conventions" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-conventions.html#toric-conventions-scope" class="internal"><span class="codenumber">0.1</span> <span class="title">Questions, background, and dependencies</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-conventions.html#toric-conventions-varieties" class="internal"><span class="codenumber">0.2</span> <span class="title">The ground field and the objects under study</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-conventions.html#toric-conventions-tori" class="internal"><span class="codenumber">0.3</span> <span class="title">The chosen torus and its morphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-conventions.html#toric-conventions-lattices" class="internal"><span class="codenumber">0.4</span> <span class="title">Characters, one-parameter subgroups, and variance</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-conventions.html#toric-conventions-cones" class="internal"><span class="codenumber">0.5</span> <span class="title">Cones, fans, and their ambient lattices</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-conventions.html#toric-conventions-divisors" class="internal"><span class="codenumber">0.6</span> <span class="title">Divisor signs and polyhedral inequalities</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-conventions.html#toric-conventions-volume" class="internal"><span class="codenumber">0.7</span> <span class="title">Lattice volume and lattice-point counting</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-conventions.html#toric-conventions-reading" class="internal"><span class="codenumber">0.8</span> <span class="title">Reading routes and the use of sources</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-affine.html" class="internal"><span class="codenumber">1</span> <span class="title">From a cone to an affine toric variety</span></a></div>
+<ul id="ptx-toc-group-toric-affine" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-lattices" class="internal"><span class="codenumber">1.1</span> <span class="title">Lattices, monomials, and the direction of the construction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-cones" class="internal"><span class="codenumber">1.2</span> <span class="title">Rational polyhedral cones and duality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-faces" class="internal"><span class="codenumber">1.3</span> <span class="title">Faces and integral exposing functionals</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-semigroups" class="internal"><span class="codenumber">1.4</span> <span class="title">Semigroups and Gordan’s lemma</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-normality" class="internal"><span class="codenumber">1.5</span> <span class="title">Saturation and normality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-construction" class="internal"><span class="codenumber">1.6</span> <span class="title">The affine variety and its dense torus</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-units-factors" class="internal"><span class="codenumber">1.7</span> <span class="title">Units, zero cones, and torus factors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-face-localization" class="internal"><span class="codenumber">1.8</span> <span class="title">A face gives a distinguished open subset</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-quadratic-example" class="internal"><span class="codenumber">1.9</span> <span class="title">A normal singular surface</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-smoothness" class="internal"><span class="codenumber">1.10</span> <span class="title">The lattice-basis criterion for smoothness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-presentations" class="internal"><span class="codenumber">1.11</span> <span class="title">Generators, binomial relations, and a finite calculation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-boundaries" class="internal"><span class="codenumber">1.12</span> <span class="title">What the hypotheses exclude</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-reading-use" class="internal"><span class="codenumber">1.13</span> <span class="title">How this local dictionary will be used</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-fans.html" class="internal"><span class="codenumber">2</span> <span class="title">Fans, orbits, and toric morphisms</span></a></div>
+<ul id="ptx-toc-group-toric-fans" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fans.html#toric-fans-gluing" class="internal"><span class="codenumber">2.1</span> <span class="title">Fans and gluing affine charts</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fans.html#toric-fans-orbits" class="internal"><span class="codenumber">2.2</span> <span class="title">The orbit–cone correspondence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fans.html#toric-fans-maps" class="internal"><span class="codenumber">2.3</span> <span class="title">Lattice maps and toric morphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fans.html#toric-fans-finite-morphisms" class="internal"><span class="codenumber">2.4</span> <span class="title">Finite covers and a change of lattice</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fans.html#toric-fans-properness" class="internal"><span class="codenumber">2.5</span> <span class="title">Completeness and properness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fans.html#toric-fans-modifications" class="internal"><span class="codenumber">2.6</span> <span class="title">Subdivisions and geometric modifications</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-divisors.html" class="internal"><span class="codenumber">3</span> <span class="title">Divisors and line bundles</span></a></div>
+<ul id="ptx-toc-group-toric-divisors" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-divisors.html#toric-divisors-background" class="internal"><span class="codenumber">3.1</span> <span class="title">The normal-scheme interface</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-divisors.html#toric-divisors-invariant" class="internal"><span class="codenumber">3.2</span> <span class="title">Boundary divisors and character valuations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-divisors.html#toric-divisors-class-groups" class="internal"><span class="codenumber">3.3</span> <span class="title">The class group and the missing left-hand zero</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-divisors.html#toric-divisors-cartier" class="internal"><span class="codenumber">3.4</span> <span class="title">Cartier equations and support functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-divisors.html#toric-divisors-canonical" class="internal"><span class="codenumber">3.5</span> <span class="title">The canonical divisor and the Gorenstein condition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-divisors.html#toric-divisors-examples" class="internal"><span class="codenumber">3.6</span> <span class="title">Four computations of classes and local equations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-divisors.html#toric-divisors-working-route" class="internal"><span class="codenumber">3.7</span> <span class="title">Using the dictionary</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-polytopes.html" class="internal"><span class="codenumber">4</span> <span class="title">Polyhedra, sections, and positivity</span></a></div>
+<ul id="ptx-toc-group-toric-polytopes" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-sections" class="internal"><span class="codenumber">4.1</span> <span class="title">Divisor polyhedra and section bases</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-positivity" class="internal"><span class="codenumber">4.2</span> <span class="title">Global generation, nefness, and ampleness</span></a></div>
+<ul id="ptx-toc-group-toric-polytopes-positivity" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-generation" class="internal"><span class="codenumber">4.2.1</span> <span class="title">Local frames and global generators</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-concavity" class="internal"><span class="codenumber">4.2.2</span> <span class="title">The sign of the support function</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-nef" class="internal"><span class="codenumber">4.2.3</span> <span class="title">Nefness and wall degrees</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-ample" class="internal"><span class="codenumber">4.2.4</span> <span class="title">Strict concavity produces an embedding</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-examples" class="internal"><span class="codenumber">4.3</span> <span class="title">Triangles, rectangles, and Hirzebruch trapezoids</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-projectivity" class="internal"><span class="codenumber">4.4</span> <span class="title">Polarized varieties and normal fans</span></a></div>
+<ul id="ptx-toc-group-toric-polytopes-projectivity" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-normal-fan-construction" class="internal"><span class="codenumber">4.4.1</span> <span class="title">The fan and its polarization</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-normal-generation" class="internal"><span class="codenumber">4.4.2</span> <span class="title">Normality of the variety and of the section algebra</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-ehrhart" class="internal"><span class="codenumber">4.5</span> <span class="title">Lattice counting and asymptotic volume</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-valuations" class="internal"><span class="codenumber">4.6</span> <span class="title">From weight semigroups to valuations</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-intersection.html" class="internal"><span class="codenumber">5</span> <span class="title">Intersection theory and cohomology</span></a></div>
+<ul id="ptx-toc-group-toric-intersection" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-intersection.html#toric-intersection-cycles" class="internal"><span class="codenumber">5.1</span> <span class="title">Invariant cycles and Chow groups</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-intersection.html#toric-intersection-ring" class="internal"><span class="codenumber">5.2</span> <span class="title">The Chow ring of a smooth toric variety</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-intersection.html#toric-intersection-products" class="internal"><span class="codenumber">5.3</span> <span class="title">Surface products and the volume comparison</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-intersection.html#toric-intersection-bernstein" class="internal"><span class="codenumber">5.4</span> <span class="title">Bernstein’s theorem for Laurent polynomial systems</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-intersection.html#toric-intersection-singular" class="internal"><span class="codenumber">5.5</span> <span class="title">What changes for a singular complete variety</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-intersection.html#toric-intersection-matroids" class="internal"><span class="codenumber">5.6</span> <span class="title">An interface: the Chow ring of a matroid</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-intersection.html#toric-intersection-line-bundle-cohomology" class="internal"><span class="codenumber">5.7</span> <span class="title">A finite complex for each character</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-intersection.html#toric-intersection-vanishing" class="internal"><span class="codenumber">5.8</span> <span class="title">Convexity and Demazure vanishing</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-intersection.html#toric-intersection-equivariant" class="internal"><span class="codenumber">5.9</span> <span class="title">Complex topology and fixed-point calculations</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-cox-git.html" class="internal"><span class="codenumber">6</span> <span class="title">Cox coordinates and toric GIT</span></a></div>
+<ul id="ptx-toc-group-toric-cox-git" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-cox-git.html#toric-cox-ring" class="internal"><span class="codenumber">6.1</span> <span class="title">The graded ring and irrelevant ideal</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-cox-git.html#toric-cox-quotient" class="internal"><span class="codenumber">6.2</span> <span class="title">The quotient construction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-cox-git.html#toric-cox-secondary" class="internal"><span class="codenumber">6.3</span> <span class="title">Secondary fans and variation of GIT</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-cox-git.html#toric-cox-mori-dream" class="internal"><span class="codenumber">6.4</span> <span class="title">The interface with Mori dream spaces</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-cox-git.html#toric-cox-torus-factors" class="internal"><span class="codenumber">6.5</span> <span class="title">Restoring torus factors</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-birational.html" class="internal"><span class="codenumber">7</span> <span class="title">Toric surfaces, singularities, and birational geometry</span></a></div>
+<ul id="ptx-toc-group-toric-birational" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-birational.html#toric-birational-surfaces" class="internal"><span class="codenumber">7.1</span> <span class="title">Complete smooth toric surfaces</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="toric-birational.html#toric-birational-resolutions" class="internal"><span class="codenumber">7.2</span> <span class="title">Resolutions and discrepancies</span></a></div>
+<ul id="ptx-toc-group-toric-birational-resolutions" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-birational.html#toric-birational-resolution-algorithm" class="internal"><span class="codenumber">7.2.1</span> <span class="title">A terminating resolution algorithm in dimension two</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-birational.html#toric-birational-continued-fractions" class="internal"><span class="codenumber">7.2.2</span> <span class="title">Hirzebruch–Jung continued fractions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-birational.html#toric-birational-higher-resolution" class="internal"><span class="codenumber">7.2.3</span> <span class="title">What is required in higher dimension</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-birational.html#toric-birational-monomial-blowups" class="internal"><span class="codenumber">7.2.4</span> <span class="title">Normalized blowups of monomial ideals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-birational.html#toric-birational-discrepancies" class="internal"><span class="codenumber">7.2.5</span> <span class="title">The height of an exceptional ray</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-birational.html#toric-birational-singularity-criteria" class="internal"><span class="codenumber">7.2.6</span> <span class="title">Canonical and terminal lattice-point criteria</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-birational.html#toric-birational-mmp" class="internal"><span class="codenumber">7.3</span> <span class="title">Curves, contractions, and the toric MMP</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="toric-birational.html#toric-birational-atiyah-flop" class="internal"><span class="codenumber">7.4</span> <span class="title">The conifold and the Atiyah flop</span></a></div>
+<ul id="ptx-toc-group-toric-birational-atiyah-flop" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-birational.html#toric-conifold-git-chambers" class="internal"><span class="codenumber">7.4.1</span> <span class="title">Two chambers and two incidence varieties</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-birational.html#toric-conifold-fans-flop" class="internal"><span class="codenumber">7.4.2</span> <span class="title">The diagonals, divisor degrees, and the flop</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-birational.html#toric-birational-toroidal" class="internal"><span class="codenumber">7.5</span> <span class="title">Toroidal models and factorization</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-birational.html#toric-birational-boundaries" class="internal"><span class="codenumber">7.6</span> <span class="title">Toric boundaries and log Calabi–Yau surfaces</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-interfaces.html" class="internal"><span class="codenumber">8</span> <span class="title">Selected interfaces with enumerative and mirror geometry</span></a></div>
+<ul id="ptx-toc-group-toric-interfaces" class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-reflexive" class="internal"><span class="codenumber">8.1</span> <span class="title">Reflexive polytopes and Calabi–Yau hypersurfaces</span></a></div>
+<ul id="ptx-toc-group-toric-interfaces-reflexive" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-polarity" class="internal"><span class="codenumber">8.1.1</span> <span class="title">Polarity at lattice distance one</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-batyrev" class="internal"><span class="codenumber">8.1.2</span> <span class="title">Anticanonical hypersurfaces and the polar construction</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-quantum" class="internal"><span class="codenumber">8.2</span> <span class="title">Fixed-point data and toric mirror theorems</span></a></div>
+<ul id="ptx-toc-group-toric-interfaces-quantum" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-fixed-points" class="internal"><span class="codenumber">8.2.1</span> <span class="title">The tangent representation comes from the affine chart</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-p2-mirror" class="internal"><span class="codenumber">8.2.2</span> <span class="title">A normalized genus-zero mirror theorem for <span class="process-math">\(\P^2\)</span></span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-local-cy" class="internal"><span class="codenumber">8.3</span> <span class="title">Local Calabi–Yau threefolds</span></a></div>
+<ul id="ptx-toc-group-toric-interfaces-local-cy" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-height-one" class="internal"><span class="codenumber">8.3.1</span> <span class="title">A common height-one plane</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-local-p2" class="internal"><span class="codenumber">8.3.2</span> <span class="title">The total space of <span class="process-math">\(K_{\P^2}\)</span></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-resolved-conifold" class="internal"><span class="codenumber">8.3.3</span> <span class="title">A triangulated square</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-local-invariants" class="internal"><span class="codenumber">8.3.4</span> <span class="title">Equivariant invariants and the vertex</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-degeneration" class="internal"><span class="codenumber">8.4</span> <span class="title">Toric degenerations and general targets</span></a></div>
+<ul id="ptx-toc-group-toric-interfaces-degeneration" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-transfer" class="internal"><span class="codenumber">8.4.1</span> <span class="title">What is needed to leave the toric category</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-pp" class="internal"><span class="codenumber">8.4.2</span> <span class="title">A curve-counting correspondence for the quintic</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-cusp" class="internal"><span class="codenumber">8.4.3</span> <span class="title">Toric models and the smoothing of cusp singularities</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-vector-bundles.html" class="internal"><span class="codenumber">9</span> <span class="title">Toric vector bundles and filtrations</span></a></div>
+<ul id="ptx-toc-group-toric-vector-bundles" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-vector-bundles.html#toric-vector-bundles-linearizations" class="internal"><span class="codenumber">9.1</span> <span class="title">The action is part of the bundle</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-vector-bundles.html#toric-vector-bundles-classification" class="internal"><span class="codenumber">9.2</span> <span class="title">Boundary filtrations and cone compatibility</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-vector-bundles.html#toric-vector-bundles-modules" class="internal"><span class="codenumber">9.3</span> <span class="title">Graded modules, gluing, and sections</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-vector-bundles.html#toric-vector-bundles-operations" class="internal"><span class="codenumber">9.4</span> <span class="title">Tensor operations and two filtrations on the projective line</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-vector-bundles.html#toric-vector-bundles-tangent-plane" class="internal"><span class="codenumber">9.5</span> <span class="title">The tangent bundle of the projective plane</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-vector-bundles.html#toric-vector-bundles-scope" class="internal"><span class="codenumber">9.6</span> <span class="title">What makes the dictionary possible</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-tropical-compactification.html" class="internal"><span class="codenumber">10</span> <span class="title">Tropicalization and toric compactifications</span></a></div>
+<ul id="ptx-toc-group-toric-tropical-compactification" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-tropical-compactification.html#toric-tropical-initial-ideals" class="internal"><span class="codenumber">10.1</span> <span class="title">Initial ideals and directions of escape</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-tropical-compactification.html#toric-tropical-orbit-criterion" class="internal"><span class="codenumber">10.2</span> <span class="title">Which boundary orbits does a closure meet?</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-tropical-compactification.html#toric-tropical-flat-compactifications" class="internal"><span class="codenumber">10.3</span> <span class="title">Proper closure and flat multiplication</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-tropical-compactification.html#toric-tropical-schon" class="internal"><span class="codenumber">10.4</span> <span class="title">Smooth multiplication and normal crossings</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-tropical-compactification.html#toric-tropical-pair-of-pants" class="internal"><span class="codenumber">10.5</span> <span class="title">A three-punctured line in a toric surface</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-groebner.html" class="internal"><span class="codenumber">11</span> <span class="title">Gröbner degenerations and toric special fibers</span></a></div>
+<ul id="ptx-toc-group-toric-groebner" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-groebner.html#toric-groebner-weighted-families" class="internal"><span class="codenumber">11.1</span> <span class="title">Weights and the flat family</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-groebner.html#toric-groebner-computation" class="internal"><span class="codenumber">11.2</span> <span class="title">Computing the family and identifying its special fiber</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-groebner.html#toric-groebner-triangulations" class="internal"><span class="codenumber">11.3</span> <span class="title">Regular triangulations and multiplicities</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="toric-groebner.html#toric-groebner-grassmannian" class="internal"><span class="codenumber">11.4</span> <span class="title">A Grassmannian with a normal toric special fiber</span></a></div>
+<ul id="ptx-toc-group-toric-groebner-grassmannian" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-groebner.html#toric-groebner-plucker-quadric" class="internal"><span class="codenumber">11.4.1</span> <span class="title">The Plücker equation and its charts</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-groebner.html#toric-groebner-grassmannian-semigroup" class="internal"><span class="codenumber">11.4.2</span> <span class="title">The special algebra and its intrinsic lattice</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-groebner.html#toric-groebner-grassmannian-geometry" class="internal"><span class="codenumber">11.4.3</span> <span class="title">Degree is preserved while smoothness changes</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-groebner.html#toric-groebner-transfer" class="internal"><span class="codenumber">11.5</span> <span class="title">The scope of the transfer</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-multiplier-ideals.html" class="internal"><span class="codenumber">12</span> <span class="title">Monomial ideals, toric resolutions, and multiplier ideals</span></a></div>
+<ul id="ptx-toc-group-toric-multiplier-ideals" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-multiplier-ideals.html#toric-multiplier-newton-data" class="internal"><span class="codenumber">12.1</span> <span class="title">The Newton polyhedron and its lower support function</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-multiplier-ideals.html#toric-multiplier-log-resolution" class="internal"><span class="codenumber">12.2</span> <span class="title">A toric log resolution and its two coefficients</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-multiplier-ideals.html#toric-multiplier-howald" class="internal"><span class="codenumber">12.3</span> <span class="title">Multiplier ideals as shifted interior lattice points</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-multiplier-ideals.html#toric-multiplier-threshold" class="internal"><span class="codenumber">12.4</span> <span class="title">The log canonical threshold</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-multiplier-ideals.html#toric-multiplier-examples" class="internal"><span class="codenumber">12.5</span> <span class="title">Rounding, jumping, and explicit ideals</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-multiplier-ideals.html#toric-multiplier-scope" class="internal"><span class="codenumber">12.6</span> <span class="title">What the monomial calculation does and does not retain</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-hodge-inequalities.html" class="internal"><span class="codenumber">13</span> <span class="title">Hodge index and mixed-volume inequalities</span></a></div>
+<ul id="ptx-toc-group-toric-hodge-inequalities" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-hodge-inequalities.html#toric-hodge-surfaces" class="internal"><span class="codenumber">13.1</span> <span class="title">The signature of a surface intersection form</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-hodge-inequalities.html#toric-hodge-mixed-intersections" class="internal"><span class="codenumber">13.2</span> <span class="title">Cutting higher-dimensional intersections down to a surface</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-hodge-inequalities.html#toric-hodge-toric-transfer" class="internal"><span class="codenumber">13.3</span> <span class="title">From toric divisors to Alexandrov–Fenchel</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-hodge-inequalities.html#toric-hodge-convex-limits" class="internal"><span class="codenumber">13.4</span> <span class="title">Continuity and the removal of lattice assumptions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-hodge-inequalities.html#toric-hodge-volume-consequences" class="internal"><span class="codenumber">13.5</span> <span class="title">Log-concavity, Minkowski’s inequality, and Brunn–Minkowski</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-hodge-inequalities.html#toric-hodge-scope" class="internal"><span class="codenumber">13.6</span> <span class="title">Which Hodge theory has been used</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-fano-metrics.html" class="internal"><span class="codenumber">14</span> <span class="title">Toric Fano polytopes and canonical metrics</span></a></div>
+<ul id="ptx-toc-group-toric-fano-metrics" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fano-metrics.html#toric-metrics-canonical-polytope" class="internal"><span class="codenumber">14.1</span> <span class="title">The preferred anticanonical polytope</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fano-metrics.html#toric-metrics-boundary-measure" class="internal"><span class="codenumber">14.2</span> <span class="title">Lattice boundary measure and a divergence identity</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fano-metrics.html#toric-metrics-convex-functional" class="internal"><span class="codenumber">14.3</span> <span class="title">A boundary functional on convex functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fano-metrics.html#toric-metrics-existence" class="internal"><span class="codenumber">14.4</span> <span class="title">The metric existence theorem</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fano-metrics.html#toric-metrics-examples" class="internal"><span class="codenumber">14.5</span> <span class="title">Two balanced polytopes and the first Hirzebruch surface</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="toric-minkowski-deformations.html" class="internal"><span class="codenumber">15</span> <span class="title">Minkowski decompositions and deformations</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-toric-minkowski-deformations">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-minkowski-deformations.html#toric-minkowski-cayley-cone" class="internal"><span class="codenumber">15.1</span> <span class="title">A Minkowski sum and its Cayley cone</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-minkowski-deformations.html#toric-minkowski-central-fiber" class="internal"><span class="codenumber">15.2</span> <span class="title">The exact central-fiber calculation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-minkowski-deformations.html#toric-minkowski-flatness" class="internal"><span class="codenumber">15.3</span> <span class="title">Flatness and the meaning of a toric deformation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-minkowski-deformations.html#toric-minkowski-examples" class="internal"><span class="codenumber">15.4</span> <span class="title">A smoothing, a quadratic base change, and a product</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-minkowski-deformations.html#toric-minkowski-comparison" class="internal"><span class="codenumber">15.5</span> <span class="title">What the construction establishes</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-ehrhart.html" class="internal"><span class="codenumber">16</span> <span class="title">Lattice-point enumeration and Hilbert series</span></a></div>
+<ul id="ptx-toc-group-toric-ehrhart" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-ehrhart.html#toric-ehrhart-algebra" class="internal"><span class="codenumber">16.1</span> <span class="title">The intrinsic lattice and the Ehrhart algebra</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-ehrhart.html#toric-ehrhart-half-open" class="internal"><span class="codenumber">16.2</span> <span class="title">A disjoint half-open cone decomposition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-ehrhart.html#toric-ehrhart-polynomial-reciprocity" class="internal"><span class="codenumber">16.3</span> <span class="title">Polynomiality and reciprocity</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-ehrhart.html#toric-ehrhart-examples" class="internal"><span class="codenumber">16.4</span> <span class="title">Simplices, boxes, and the Reeve tetrahedron</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-ehrhart.html#toric-ehrhart-reflexive" class="internal"><span class="codenumber">16.5</span> <span class="title">A reciprocity consequence for reflexive polytopes</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-riemann-roch.html" class="internal"><span class="codenumber">17</span> <span class="title">Riemann–Roch, duality, and lattice points</span></a></div>
+<ul id="ptx-toc-group-toric-riemann-roch" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-riemann-roch.html#toric-rr-euler" class="internal"><span class="codenumber">17.1</span> <span class="title">The tangent bundle and the boundary divisors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-riemann-roch.html#toric-rr-todd" class="internal"><span class="codenumber">17.2</span> <span class="title">Euler characteristics from the Chow ring</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-riemann-roch.html#toric-rr-duality" class="internal"><span class="codenumber">17.3</span> <span class="title">Serre duality and interior points</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-riemann-roch.html#toric-rr-surfaces" class="internal"><span class="codenumber">17.4</span> <span class="title">Surface formulas and two calculations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-riemann-roch.html#toric-rr-pick" class="internal"><span class="codenumber">17.5</span> <span class="title">Pick’s formula for an arbitrary lattice polygon</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="toric-references.html" class="internal"><span class="title">References</span></a></div></li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="chapter" id="toric-minkowski-deformations">
+<h1 class="heading">
+<span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">15</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Minkowski decompositions and deformations</span>
+</h1>
+<section class="introduction" id="toric-minkowski-deformations-2">
+<div class="para" id="toric-minkowski-deformations-2-1">Minkowski addition has already described products of sections and intersection volumes. It also produces families that deform affine toric singularities. Starting from an integral decomposition of a height section of a cone, we construct a larger cone, take the difference of two characters as a parameter, and identify its zero fiber exactly. Three examples show how this can give a smoothing, a smoothing with trivial first-order variation, or a completely trivial family.</div>
+<div class="para" id="toric-minkowski-deformations-2-2">Work over <span class="process-math">\(\C\text{.}\)</span> The source is Altmann’s framework of homogeneous toric deformations, especially <a href="toric-references.html#Alt95" class="xref" data-knowl="./knowl/xref/bib-toric-altmann95.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Alt95">[Alt95, Definition (2.1), Construction (3.4), and Theorem (3.5)]</a>. We prove only the integral two-summand construction below, including its flatness and its scheme-theoretic central fiber. No classification of all deformations, or assertion of versality, is used. The needed algebra is the affine semigroup dictionary of <a href="toric-affine.html" class="internal" title="Chapter 1: From a cone to an affine toric variety">Chapter 1</a>.</div></section>
+<section class="section" id="toric-minkowski-cayley-cone">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">15.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">A Minkowski sum and its Cayley cone</span>
+</h2>
+<div class="para" id="toric-minkowski-cayley-cone-2">Let <span class="process-math">\(N_0\)</span> be a lattice of rank <span class="process-math">\(r\geq1\text{,}\)</span> with dual <span class="process-math">\(M_0\text{.}\)</span> Take nonempty lattice polytopes <span class="process-math">\(Q_0,Q_1\subseteq(N_0)_\R\)</span> and assume that <span class="process-math">\(Q=Q_0+Q_1\)</span> is full-dimensional. The summands themselves can have smaller dimension. Here a lattice polytope has vertices in the stated lattice.</div>
+<div class="para" id="toric-minkowski-cayley-cone-3">These polytopes live in a one-parameter-subgroup lattice. They are height sections used to construct affine cones, unlike the divisor polytope <span class="process-math">\(P_D\text{,}\)</span> which lives in a character lattice. Keeping this distinction prevents the same drawing from being assigned the wrong affine algebra.</div>
+<article class="definition definition-like" id="toric-def-minkowski-cayley-cones"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">15.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The original and enlarged cones.</span>
+</h3>
+<div class="para logical" id="toric-def-minkowski-cayley-cones-2-1">
+<div class="para">In <span class="process-math">\(N=N_0\oplus\Z\)</span> and <span class="process-math">\(\widetilde N=N_0\oplus\Z^2\text{,}\)</span> define</div>
+<div class="displaymath process-math" id="toric-def-minkowski-cayley-cones-2-1-3">
+\begin{gather*}
+\sigma=\Cone\{(q,1):q\in Q\},\\
+\widetilde\sigma=\Cone\bigl(\{(q_0,1,0):q_0\in Q_0\}
+\cup\{(q_1,0,1):q_1\in Q_1\}\bigr).
+\end{gather*}
+</div>
+<div class="para">The second is the Cayley cone of the decomposition. Put</div>
+<div class="displaymath process-math" id="toric-def-minkowski-cayley-cones-2-1-4">
+\begin{equation*}
+S=\sigma^\vee\cap(M_0\oplus\Z),\qquad
+\widetilde S=\widetilde\sigma^\vee\cap(M_0\oplus\Z^2),
+\end{equation*}
+</div>
+<div class="para">and let <span class="process-math">\(Y=\Spec\C[S]\text{,}\)</span> <span class="process-math">\(\widetilde Y=\Spec B\)</span> with <span class="process-math">\(B=\C[\widetilde S]\text{.}\)</span>
+</div>
+</div>
+</article>
+<div class="para logical" id="toric-minkowski-cayley-cone-5">
+<div class="para">Both cones are rational and strongly convex. On the original cone the last coordinate is strictly positive away from zero; on the enlarged cone the sum of the last two coordinates has that property. The original cone is full-dimensional because <span class="process-math">\(Q\)</span> is. For the enlarged cone, the differences within its two sets of generators span</div>
+<div class="displaymath process-math" id="toric-minkowski-cayley-cone-5-2">
+\begin{equation*}
+\operatorname{span}_\R(Q_0-Q_0)+\operatorname{span}_\R(Q_1-Q_1)=(N_0)_\R.
+\end{equation*}
+</div>
+<div class="para">Adjoining one generator from each set supplies the two independent last coordinates. Thus <span class="process-math">\(\dim\widetilde\sigma=r+2\text{.}\)</span> The affine cone construction gives normal finite-type varieties of dimensions <span class="process-math">\(r+1\)</span> and <span class="process-math">\(r+2\text{.}\)</span>
+</div>
+</div>
+<div class="para" id="toric-minkowski-cayley-cone-6">The primitive rays of <span class="process-math">\(\sigma\)</span> are the vectors <span class="process-math">\((q,1)\)</span> for vertices of <span class="process-math">\(Q\text{.}\)</span> Their height is one, so they are primitive in <span class="process-math">\(N\text{.}\)</span> The character <span class="process-math">\(\eta=(0,1)\)</span> pairs to one with every ray. Therefore <span class="process-math">\(K_Y=-\divisor(\chi^\eta)\)</span> is principal, and <span class="process-math">\(Y\)</span> is Gorenstein by <a href="toric-divisors.html#toric-cor-gorenstein-criterion" class="xref" data-knowl="./knowl/xref/toric-cor-gorenstein-criterion.html" data-reveal-label="Reveal" data-close-label="Close" title="Corollary 3.14: Height-one hyperplanes">Corollary 3.14</a>. This uses the normal-semigroup Cohen–Macaulay input already stated there, rather than treating a principal canonical Weil divisor alone as the definition of Gorenstein.</div>
+<div class="para" id="toric-minkowski-cayley-cone-7">The listed cone generators are not automatically algebra generators for <span class="process-math">\(B\text{:}\)</span> the cone lives in <span class="process-math">\(\widetilde N\text{,}\)</span> while the exponents of functions live in its dual. Only when the cone is generated by a lattice basis does the dual algebra immediately become a polynomial ring. This distinction will separate the smooth enlarged space of the square example from the singular enlarged space of the interval example.</div>
+</section>
+<section class="section" id="toric-minkowski-central-fiber">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">15.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The exact central-fiber calculation</span>
+</h2>
+<div class="para logical" id="toric-minkowski-central-fiber-2">
+<div class="para">For <span class="process-math">\(m\in M_0\text{,}\)</span> set</div>
+<div class="displaymath process-math" id="toric-minkowski-central-fiber-2-2">
+\begin{equation*}
+c_i(m)=-\min_{q\in Q_i}\langle m,q\rangle\quad(i=0,1).
+\end{equation*}
+</div>
+<div class="para">These are integers: a linear functional attains its minimum at a lattice vertex. The dual-cone inequalities become</div>
+<div class="displaymath process-math" id="toric-minkowski-central-fiber-2-3">
+\begin{gather}
+\widetilde S=\{(m,b_0,b_1):b_0\geq c_0(m),\ b_1\geq c_1(m)\},\tag{15.1}\\
+S=\{(m,b):b\geq c_0(m)+c_1(m)\}.\tag{15.2}
+\end{gather}
+</div>
+<div class="para">The second formula uses additivity of the minimum under Minkowski sums. All coordinates in these descriptions are integral.</div>
+</div>
+<div class="para logical" id="toric-minkowski-central-fiber-3">
+<div class="para">The lattice embedding</div>
+<div class="displaymath process-math" id="toric-minkowski-central-fiber-3-1">
+\begin{equation*}
+j:N\longrightarrow\widetilde N,\qquad(n,s)\longmapsto(n,s,s)
+\end{equation*}
+</div>
+<div class="para">has <span class="process-math">\(j(\sigma)=\widetilde\sigma\cap j(N_\R)\text{.}\)</span> Indeed a point of the enlarged cone with last coordinates <span class="process-math">\((s,s)\text{,}\)</span> for <span class="process-math">\(s&gt;0\text{,}\)</span> is exactly <span class="process-math">\((s(q_0+q_1),s,s)\text{;}\)</span> for <span class="process-math">\(s=0\)</span> it is zero. The dual restriction map on semigroups is</div>
+<div class="displaymath process-math" id="toric-minkowski-central-fiber-3-7">
+\begin{equation*}
+p:\widetilde S\longrightarrow S,\qquad(m,b_0,b_1)\longmapsto(m,b_0+b_1).
+\end{equation*}
+</div>
+<div class="para">It is surjective: for <span class="process-math">\(b\geq c_0(m)+c_1(m)\text{,}\)</span> take <span class="process-math">\(b_0=c_0(m)\text{,}\)</span> <span class="process-math">\(b_1=b-c_0(m)\text{.}\)</span>
+</div>
+</div>
+<div class="para logical" id="toric-minkowski-central-fiber-4">
+<div class="para">In <span class="process-math">\(B\)</span> the two characters</div>
+<div class="displaymath process-math" id="toric-minkowski-central-fiber-4-2">
+\begin{equation*}
+T_0=\chi^{(0,1,0)},\qquad T_1=\chi^{(0,0,1)}
+\end{equation*}
+</div>
+<div class="para">are regular and algebraically independent. Their exponents are independent lattice vectors, so distinct polynomial monomials in them are distinct characters. The map induced by <span class="process-math">\(p\)</span> sends both to <span class="process-math">\(U=\chi^{(0,1)}\)</span> in <span class="process-math">\(\C[S]\text{.}\)</span>
+</div>
+</div>
+<article class="theorem theorem-like" id="toric-thm-minkowski-central-fiber"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">15.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The central fiber needs no normalization.</span>
+</h3>
+<div class="para logical" id="toric-thm-minkowski-central-fiber-2-1">
+<div class="para">The semigroup restriction map induces an isomorphism</div>
+<div class="displaymath process-math" id="toric-eq-minkowski-central-fiber">
+\begin{equation}
+B/(T_0-T_1)\cong\C[S].\tag{15.3}
+\end{equation}
+</div>
+<div class="para">Consequently the fiber of <span class="process-math">\(\pi:\widetilde Y\to\A^1\text{,}\)</span> with parameter <span class="process-math">\(t=T_0-T_1\text{,}\)</span> over zero is exactly the normal toric variety <span class="process-math">\(Y\text{.}\)</span>
+</div>
+</div>
+</article>
+<details id="toric-thm-minkowski-central-fiber-3" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="toric-thm-minkowski-central-fiber-3-1">
+<div class="para">Grade both algebras by <span class="process-math">\(M_0\text{.}\)</span> For each <span class="process-math">\(m\text{,}\)</span> put <span class="process-math">\(e_m=\chi^{(m,c_0(m),c_1(m))}\text{.}\)</span> Its exponents may have negative last entries; the inequalities show that it is nevertheless a regular character on <span class="process-math">\(\widetilde Y\text{.}\)</span> The corresponding component is the free rank-one module</div>
+<div class="displaymath process-math" id="toric-thm-minkowski-central-fiber-3-1-5">
+\begin{equation*}
+B_m=e_m\C[T_0,T_1].
+\end{equation*}
+</div>
+<div class="para">Every permitted exponent differs from that of <span class="process-math">\(e_m\)</span> by unique nonnegative multiples of the last two basis vectors.</div>
+</div>
+<div class="para" id="toric-thm-minkowski-central-fiber-3-2">The component of <span class="process-math">\(\C[S]\)</span> is <span class="process-math">\(v_m\C[U]\text{,}\)</span> where <span class="process-math">\(v_m=\chi^{(m,c_0(m)+c_1(m))}\text{.}\)</span> Restriction sends <span class="process-math">\(e_mF(T_0,T_1)\)</span> to <span class="process-math">\(v_mF(U,U)\text{.}\)</span> Polynomial division by <span class="process-math">\(T_0-T_1\)</span> proves that this vanishes exactly when <span class="process-math">\(F\)</span> is divisible by that difference. Thus the component kernel is <span class="process-math">\((T_0-T_1)B_m\text{.}\)</span> Summing the components proves that the entire kernel is the principal ideal <span class="process-math">\((T_0-T_1)\text{.}\)</span> Surjectivity was established on semigroups, so the first isomorphism theorem gives the assertion.</div>
+</article></details>
+<div class="para" id="toric-minkowski-central-fiber-6">Since <span class="process-math">\(B\)</span> is a domain and <span class="process-math">\(T_0,T_1\)</span> are distinct characters, their difference is a nonzero nonzerodivisor. The central embedding is therefore an effective Cartier hypersurface of the total space. Its codimension one agrees with the dimensions computed from the cones. This is the single-equation instance of the regular sequences in Altmann’s construction.</div>
+<div class="para" id="toric-minkowski-central-fiber-7">Integrality has a specific role here: it gives integral endpoints <span class="process-math">\(c_i(m)\)</span> and permits the split of every integral <span class="process-math">\(b\)</span> into the required integral pair. If the summands are merely rational, rounding their separate minima need not commute with adding them. The same proof cannot then be invoked without additional admissibility conditions; those conditions belong to the broader construction in <a href="toric-references.html#Alt95" class="xref" data-knowl="./knowl/xref/bib-toric-altmann95.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Alt95">[Alt95, Section (3.3)]</a>.</div>
+</section>
+<section class="section" id="toric-minkowski-flatness">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">15.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Flatness and the meaning of a toric deformation</span>
+</h2>
+<article class="proposition theorem-like" id="toric-prop-minkowski-flatness"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">15.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The parameter defines a flat family.</span>
+</h3>
+<div class="para" id="toric-prop-minkowski-flatness-2-1">The morphism <span class="process-math">\(\pi:\widetilde Y\to\A^1\)</span> is of finite type and flat. In fact <span class="process-math">\(B\)</span> is free as a <span class="process-math">\(\C[t]\)</span>-module, possibly of infinite rank.</div>
+</article>
+<details id="toric-prop-minkowski-flatness-3" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="toric-prop-minkowski-flatness-3-1">
+<div class="para">The component calculation gives</div>
+<div class="displaymath process-math" id="toric-prop-minkowski-flatness-3-1-1">
+\begin{equation*}
+B=\bigoplus_{m\in M_0}e_m\C[T_0,T_1].
+\end{equation*}
+</div>
+<div class="para">Since <span class="process-math">\(\C[T_0,T_1]=\C[t,T_1]\)</span> under <span class="process-math">\(t=T_0-T_1\text{,}\)</span> a <span class="process-math">\(\C[t]\)</span>-basis is formed by <span class="process-math">\(e_mT_1^a\)</span> for <span class="process-math">\(m\in M_0\text{,}\)</span> <span class="process-math">\(a\geq0\text{.}\)</span> A free module is flat. Finite generation as an algebra follows from Gordan’s lemma; infinite module rank does not contradict that assertion.</div>
+</div>
+</article></details>
+<div class="para" id="toric-minkowski-flatness-3">The same basis describes every fiber as a vector space: after setting <span class="process-math">\(t=\tau\text{,}\)</span> the images of <span class="process-math">\(e_mT_1^a\)</span> remain a <span class="process-math">\(\C\)</span>-basis. In particular every fiber is nonempty. The multiplication constants, however, now contain powers of <span class="process-math">\(T_1+\tau\text{.}\)</span> A fixed module basis across the parameter therefore gives no isomorphism between the resulting algebras. The distinction is already visible before examining any singularity or computing any tangent space.</div>
+<div class="para logical" id="toric-minkowski-flatness-4">
+<div class="para">This module decomposition does not assert that the family is a product as an algebra. For example, with</div>
+<div class="displaymath process-math" id="toric-minkowski-flatness-4-1">
+\begin{equation*}
+d_i=c_i(m)+c_i(m')-c_i(m+m')\geq0,
+\end{equation*}
+</div>
+<div class="para">multiplication has the form <span class="process-math">\(e_me_{m'}=e_{m+m'}T_0^{d_0}T_1^{d_1}\text{.}\)</span> Replacing <span class="process-math">\(T_0\)</span> by <span class="process-math">\(T_1+t\)</span> makes its dependence on the parameter visible. Flatness concerns the module; triviality of a family concerns its algebra structure.</div>
+</div>
+<div class="para" id="toric-minkowski-flatness-5">Altmann’s Definition (2.1) calls a deformation toric when its total space is affine toric, its central embedding is a toric morphism, and that embedding identifies the closed torus orbits. All three conditions hold here. The central embedding is induced by <span class="process-math">\(j\text{.}\)</span> Both cones are full-dimensional, so both closed orbits are fixed points. A nonzero exponent of <span class="process-math">\(\widetilde S\)</span> cannot restrict to zero: if <span class="process-math">\(m=0\text{,}\)</span> then <span class="process-math">\(b_0,b_1\geq0\text{,}\)</span> and <span class="process-math">\(b_0+b_1=0\)</span> forces both to vanish. Thus the distinguished fixed point maps to the distinguished fixed point.</div>
+<div class="para" id="toric-minkowski-flatness-6">The projection <span class="process-math">\(\pi\)</span> itself is not a toric morphism with the standard dense torus <span class="process-math">\(\Gm\subset\A^1\text{.}\)</span> On the dense total-space torus, <span class="process-math">\(T_0=T_1\)</span> can hold, giving <span class="process-math">\(t=0\text{;}\)</span> at its identity both characters equal one. The map therefore does not send this whole torus into <span class="process-math">\(\Gm\text{.}\)</span> Nor does the full total-space torus act within each general fiber. The terminology describes the total space and central embedding, not a claim that the family is a toric fibration.</div>
+<article class="proposition theorem-like" id="toric-prop-minkowski-translation"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">15.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Moving a lattice translation between summands.</span>
+</h3>
+<div class="para" id="toric-prop-minkowski-translation-2-1">Replacing the decomposition by <span class="process-math">\((Q_0+v)+(Q_1-v)\text{,}\)</span> for <span class="process-math">\(v\in N_0\text{,}\)</span> gives an isomorphic family, compatibly with the identity on its central variety.</div>
+</article>
+<details id="toric-prop-minkowski-translation-3" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="toric-prop-minkowski-translation-3-1">
+<div class="para">The lattice automorphism</div>
+<div class="displaymath process-math" id="toric-prop-minkowski-translation-3-1-1">
+\begin{equation*}
+(n,s_0,s_1)\longmapsto(n+(s_0-s_1)v,s_0,s_1)
+\end{equation*}
+</div>
+<div class="para">sends the original Cayley generators to the translated ones. It fixes the diagonal sublattice <span class="process-math">\(j(N)\)</span> pointwise, and its dual pullback fixes the last-coordinate characters <span class="process-math">\(T_0,T_1\text{.}\)</span> The resulting toric isomorphism therefore preserves <span class="process-math">\(t\)</span> and restricts to the identity on <span class="process-math">\(Y\text{.}\)</span> Thus this redistribution of a lattice translation does not create a new deformation.</div>
+</div>
+</article></details></section>
+<section class="section" id="toric-minkowski-examples">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">15.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">A smoothing, a quadratic base change, and a product</span>
+</h2>
+<article class="example example-like" id="toric-example-minkowski-conifold"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">15.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The unit square smooths the conifold.</span>
+</h3>
+<div class="para logical" id="toric-example-minkowski-conifold-2">
+<div class="para">In <span class="process-math">\(N_0=\Z^2\text{,}\)</span> take <span class="process-math">\(Q_0=[0,e_1]\)</span> and <span class="process-math">\(Q_1=[0,e_2]\text{.}\)</span> Their sum is the unit square. The enlarged cone has four primitive generators</div>
+<div class="displaymath process-math" id="toric-example-minkowski-conifold-2-4">
+\begin{gather*}
+v_1=(0,0,1,0),\quad v_2=(1,0,1,0),\\
+v_3=(0,0,0,1),\quad v_4=(0,1,0,1).
+\end{gather*}
+</div>
+<div class="para">They form a lattice basis: their differences give the first two coordinate directions, and <span class="process-math">\(v_1,v_3\)</span> give the last two. Hence <span class="process-math">\(\widetilde Y\cong\A^4\text{.}\)</span> Let <span class="process-math">\(a,b,c,d\)</span> be the characters dual to this ordered basis. The exponent of <span class="process-math">\(T_0\)</span> pairs as <span class="process-math">\((1,1,0,0)\)</span> with these generators, and that of <span class="process-math">\(T_1\)</span> pairs as <span class="process-math">\((0,0,1,1)\text{.}\)</span> Thus</div>
+<div class="displaymath process-math" id="toric-example-minkowski-conifold-2-12">
+\begin{equation*}
+T_0=ab,\qquad T_1=cd,\qquad\pi(a,b,c,d)=ab-cd.
+\end{equation*}
+</div>
+<div class="para">The family is the explicit hypersurface family</div>
+<div class="displaymath process-math" id="toric-eq-conifold-minkowski-smoothing">
+\begin{equation}
+ab-cd=t.\tag{15.4}
+\end{equation}
+</div>
+</div>
+<div class="para" id="toric-example-minkowski-conifold-3">The zero fiber is the affine conifold of <a href="toric-interfaces.html#toric-example-resolved-conifold" class="xref" data-knowl="./knowl/xref/toric-example-resolved-conifold.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 8.13: The total space of \mathcal O_{\P^1}(-1)^{\oplus2}">Example 8.13</a>. For a nonzero parameter <span class="process-math">\(\tau\text{,}\)</span> its partial derivatives are <span class="process-math">\(b,a,-d,-c\text{.}\)</span> Simultaneous vanishing would force all four coordinates to vanish, which is incompatible with <span class="process-math">\(ab-cd=\tau\text{.}\)</span> Thus every nonzero fiber is smooth, whereas the central fiber has its singular point at the origin. This is a smoothing obtained from a decomposition into two segments, even though neither segment is full-dimensional in <span class="process-math">\(\R^2\text{.}\)</span>
+</div>
+<div class="para" id="toric-example-minkowski-conifold-4">The small toric resolutions calculated in <a href="toric-birational.html#toric-birational-atiyah-flop" class="internal" title="Section 7.4: The conifold and the Atiyah flop">Section 7.4</a> perform a different operation: a proper birational morphism from a smooth variety to the fixed singular central fiber. Here the parameter changes the fiber itself. The smooth total space <span class="process-math">\(\A^4\)</span> in this construction is one dimension larger than that central threefold; it is not one of its small resolutions.</div>
+</article>
+<article class="example example-like" id="toric-example-minkowski-a1-base-change"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">15.6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">An interval gives a quadratic reparametrization.</span>
+</h3>
+<div class="para logical" id="toric-example-minkowski-a1-base-change-2">
+<div class="para">In <span class="process-math">\(N_0=\Z\text{,}\)</span> decompose <span class="process-math">\([0,2]=[0,1]+[0,1]\text{.}\)</span> The four generators of the enlarged cone are</div>
+<div class="displaymath process-math" id="toric-example-minkowski-a1-base-change-2-3">
+\begin{equation*}
+(0,1,0),\ (1,1,0),\ (0,0,1),\ (1,0,1).
+\end{equation*}
+</div>
+<div class="para">Its dual semigroup consists of integer triples with</div>
+<div class="displaymath process-math" id="toric-example-minkowski-a1-base-change-2-4">
+\begin{equation*}
+b_0,b_1\geq\max(0,-m).
+\end{equation*}
+</div>
+<div class="para">It is generated by the character exponents</div>
+<div class="displaymath process-math" id="toric-example-minkowski-a1-base-change-2-5">
+\begin{equation*}
+x=(1,0,0),\quad y=(-1,1,1),\quad
+z=(0,1,0),\quad w=(0,0,1).
+\end{equation*}
+</div>
+<div class="para">For <span class="process-math">\(m\geq0\text{,}\)</span> use <span class="process-math">\(m\)</span> copies of <span class="process-math">\(x\text{,}\)</span> followed by <span class="process-math">\(z,w\text{.}\)</span> For <span class="process-math">\(m&lt;0\text{,}\)</span> use <span class="process-math">\(-m\)</span> copies of <span class="process-math">\(y\text{;}\)</span> the two remaining last coordinates are nonnegative and are supplied by <span class="process-math">\(z,w\text{.}\)</span> The sole primitive relation is <span class="process-math">\(x+y=z+w\text{.}\)</span> Cancelling common factors in any binomial relation reduces it to a difference of equal powers of <span class="process-math">\(xy\)</span> and <span class="process-math">\(zw\text{,}\)</span> so the toric ideal is generated by <span class="process-math">\(xy-zw\text{.}\)</span> Consequently</div>
+<div class="displaymath process-math" id="toric-example-minkowski-a1-base-change-2-18">
+\begin{equation*}
+B=\C[x,y,z,w]/(xy-zw),\qquad T_0=z,\quad T_1=w.
+\end{equation*}
+</div>
+</div>
+<div class="para logical" id="toric-example-minkowski-a1-base-change-3">
+<div class="para">Eliminate <span class="process-math">\(w=z-t\text{.}\)</span> The resulting flat family is</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/toric-example-quadratic-cone.html" id="toric-example-minkowski-a1-base-change-3-2">
+\begin{equation*}
+xy=z(z-t).
+\end{equation*}
+</div>
+<div class="para">At zero it is the <span class="process-math">\(A_1\)</span> surface <span class="process-math">\(xy=z^2\text{,}\)</span> another form of the normal quadratic surface in <a href="toric-affine.html#toric-example-quadratic-cone" class="xref" data-knowl="./knowl/xref/toric-example-quadratic-cone.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 1.29: The cone generated by (1,0) and (1,2)">Example 1.29</a>. For <span class="process-math">\(t=\tau\ne0\text{,}\)</span> a singular point would have <span class="process-math">\(x=y=0\)</span> and <span class="process-math">\(2z=\tau\text{.}\)</span> Substitution gives <span class="process-math">\(z(z-\tau)=-\tau^2/4\ne0\text{,}\)</span> a contradiction. Hence the nonzero fibers are smooth.</div>
+</div>
+<div class="para logical" id="toric-example-minkowski-a1-base-change-4">
+<div class="para">Completing the square with <span class="process-math">\(z'=z-t/2\)</span> gives</div>
+<div class="displaymath process-math" id="toric-eq-a1-quadratic-base-change">
+\begin{equation}
+xy=(z')^2-\frac{t^2}{4}.\tag{15.5}
+\end{equation}
+</div>
+<div class="para">Thus this family is obtained from the familiar family <span class="process-math">\(xy=(z')^2+s\)</span> by the quadratic base change <span class="process-math">\(s=-t^2/4\text{.}\)</span> The new parameter moves only to second order at the origin.</div>
+</div>
+<div class="para" id="toric-example-minkowski-a1-base-change-5">This has a precise first-order meaning without developing a deformation functor. Restrict to the dual-number ring <span class="process-math">\(\C[\epsilon]/(\epsilon^2)\)</span> by setting <span class="process-math">\(t=\epsilon\text{.}\)</span> The coordinate change <span class="process-math">\(z'=z-\epsilon/2\text{,}\)</span> equal to the identity modulo <span class="process-math">\(\epsilon\text{,}\)</span> turns the equation into <span class="process-math">\(xy=(z')^2\text{.}\)</span> The restricted family is therefore the product of the central surface with the dual numbers. It has trivial first-order variation even though the full family has smooth general fibers.</div>
+<div class="para" id="toric-example-minkowski-a1-base-change-6">Flatness has consequently not singled out an effective first-order parameter, much less established a miniversal description. Determining which parameters induce independent first-order deformations is an additional problem. The quadratic base change is already enough to show why a smoothing calculation and a claim about a universal or miniversal family must be kept separate.</div>
+</article>
+<article class="example example-like" id="toric-example-minkowski-trivial-summand"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">15.7</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">A point summand gives a trivial family.</span>
+</h3>
+<div class="para logical" id="toric-example-minkowski-trivial-summand-2">
+<div class="para">Let <span class="process-math">\(Q_1=\{0\}\)</span> and let <span class="process-math">\(Q_0\)</span> be any full-dimensional lattice polytope. The enlarged cone is the product of the cone over <span class="process-math">\(Q_0\)</span> with a nonnegative ray, so</div>
+<div class="displaymath process-math" id="toric-example-minkowski-trivial-summand-2-4">
+\begin{equation*}
+B=\C[S_{Q_0}][T_1].
+\end{equation*}
+</div>
+<div class="para">Here <span class="process-math">\(S_{Q_0}\)</span> denotes the dual semigroup of the cone over <span class="process-math">\(Q_0\text{,}\)</span> and <span class="process-math">\(T_0\)</span> is its regular height character. Substituting <span class="process-math">\(T_1=T_0-t\)</span> identifies this algebra with <span class="process-math">\(\C[S_{Q_0}][t]\)</span> as a <span class="process-math">\(\C[t]\)</span>-algebra. Thus the family is isomorphic to <span class="process-math">\(Y\times\A^1\to\A^1\text{.}\)</span> Its original central embedding is a character graph, but after this algebraic change of coordinates the family is a product. A Minkowski decomposition by itself need not yield a nontrivial deformation.</div>
+</div>
+</article></section>
+<section class="section" id="toric-minkowski-comparison">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">15.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">What the construction establishes</span>
+</h2>
+<div class="para" id="toric-minkowski-comparison-2">The input here is a decomposition of a cocharacter-lattice height section. The output is an enlarged normal affine semigroup algebra with two distinguished characters. A componentwise calculation identifies the central quotient, and the same component decomposition proves flatness. This is a direct special case of Altmann’s <a href="toric-references.html#Alt95" class="xref" data-knowl="./knowl/xref/bib-toric-altmann95.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Alt95">[Alt95, Construction (3.4) and Theorem (3.5)]</a>, whose more general admissibility conditions are not needed for our integral summands.</div>
+<div class="para" id="toric-minkowski-comparison-3">The weighted initial families of <a href="toric-groebner.html" class="internal" title="Chapter 11: Gröbner degenerations and toric special fibers">Chapter 11</a> begin instead with an ideal and a weight vector. Their central fiber is an initial algebra, and checking that it is toric or normal is an additional step. Here the central toric variety is specified first, and a Minkowski decomposition builds an ambient toric variety in which it is cut out by a character difference. The two methods use the same affine semigroup tools but organize their inputs differently.</div>
+<div class="para" id="toric-minkowski-comparison-4">The examples also separate three questions. Is the family flat? Is a general fiber smooth? Does the parameter detect first-order deformations effectively? The module theorem answers the first, the explicit Jacobian calculations answer the second in our two singular examples, and the quadratic base change shows that the third has an independent answer. No transfer of enumerative invariants or classification of all smoothings follows merely from the existence of this family.</div>
+</section></section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="toric-fano-metrics.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Top</span></a><a class="next-button button" href="toric-ehrhart.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a>
+</div></main>
+</div>
+<footer id="site-copyright" class="site-copyright"><p>© 2026 Jie Fu. All rights reserved.</p></footer>
+</body>
+</html>

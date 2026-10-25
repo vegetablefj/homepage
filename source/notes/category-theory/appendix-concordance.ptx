@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<appendix xml:id="cat-concordance">
+  <title>Notation, terminology, and construction guide</title>
+  <introduction>
+    <p>This appendix collects conventions that are easy to confuse when moving between the chapters or their sources. The linked definitions give the full hypotheses and remain the reference for each term. The construction guide records the universal problem being solved, so that similar-looking enlargements of a category can be distinguished.</p>
+  </introduction>
+
+  <section xml:id="cat-a-size">
+    <title>Size and basic notation</title>
+    <p><dl>
+      <li><title><m>\U\in\V</m>; small, locally small, essentially small</title>
+        <p>Small sets are actual members of <m>\U</m>. A small category has its object set and total arrow set in <m>\U</m>; local smallness concerns its actual local Hom labels. Essentially small means equivalent to a small category. A bijection with a small set gives a cardinality bound, but does not put externally named elements inside <m>\U</m>. Relabeling must be stated when it is needed. All categories remain set-encoded; a larger universe controls an entire encoding only when the relevant assumption is made. See <xref ref="cat-size-conventions"/> and <xref ref="cat-functor-size-bound"/>.</p>
+      </li>
+      <li><title><m>=</m>, <m>\cong</m>, and <m>\simeq</m></title>
+        <p>These indicate equality, isomorphism of objects, and equivalence of categories, respectively. Uniqueness up to unique isomorphism includes compatibility with the specified universal structure. Forgetting that structure can leave many automorphisms; see <xref ref="cat-conventions-language"/>.</p>
+      </li>
+      <li><title><m>\N</m>, <m>[n]</m>, and <m>\underline n</m></title>
+        <p>We take <m>\N=\{0,1,\ldots\}</m>. The ordinal category <m>[n]</m> has objects <m>0,\ldots,n</m>, with one arrow from a smaller object to a larger one, including identities. Thus <m>[1]</m> is the walking arrow. The finite cardinal <m>\underline n=\{0,\ldots,n-1\}</m> has <m>n</m> elements, and <m>\underline0=\varnothing</m>. All functions between these finite sets form the category <m>\mathsf{Fin}</m> of <xref ref="cat-c12-finite-sets"/>.</p>
+      </li>
+    </dl></p>
+  </section>
+
+  <section xml:id="cat-a-variance">
+    <title>Variance and adjoint notation</title>
+    <p><dl>
+      <li><title><m>h_X</m> and <m>h^X</m></title>
+        <p>The representables are <m>h_X=\Hom_{\mathcal C}(-,X)</m> and <m>h^X=\Hom_{\mathcal C}(X,-)</m>. Their test-object variances are opposite. In the representing object, <m>X\mapsto h_X</m> is covariant and <m>X\mapsto h^X</m> is contravariant. Presheaf means a functor <m>\mathcal C^\op\to\Set_\U</m>; <m>\widehat{\mathcal C}</m> denotes their category when <m>\mathcal C</m> is small. See <xref ref="cat-c03-def-hom-presheaf"/>.</p>
+      </li>
+      <li><title><m>\operatorname{el}(P)</m></title>
+        <p>For a presheaf, an arrow <m>(c,x)\to(d,y)</m> is an <m>f:c\to d</m> satisfying <m>P(f)y=x</m>. A universal element is terminal in this element category. For a covariant set-valued functor the condition becomes <m>P(f)x=y</m>, and a universal element is initial. Both conventions and their slice descriptions occur in <xref ref="cat-c03-def-category-elements"/> and <xref ref="cat-c03-prop-elements-universal"/>.</p>
+      </li>
+      <li><title><m>F\dashv G</m></title>
+        <p>The functor on the left is the left adjoint. For <m>F:\mathcal C\to\mathcal D</m>, its unit is <m>\id_{\mathcal C}\Rightarrow GF</m> and its counit is <m>FG\Rightarrow\id_{\mathcal D}</m>; see <xref ref="cat-c05-def-adjunction"/>. In particular, free algebras satisfy <m>F^T\dashv U^T</m>, while cofree coalgebras satisfy <m>U_K\dashv R_K</m>.</p>
+      </li>
+      <li><title>Mates and conjugates</title>
+        <p>With <m>F\dashv G</m> and <m>F'\dashv G'</m>, the specified connecting functors give <m>\Nat(FH,KF')\cong\Nat(HG',GK)</m>. We write <m>\alpha^\sharp</m> for the mate towards the right adjoints; its typed source and target determine the convention. Conjugation is the case where the connecting functors are identities and reverses composition. General mates need not preserve invertibility. See <xref ref="cat-c05-def-mates"/> and <xref ref="cat-c05-example-noninvertible-mate"/>.</p>
+      </li>
+      <li><title><m>u_!\dashv u^*\dashv u_*</m></title>
+        <p>For ordinary diagrams, <m>u^*</m> is precomposition with <m>u</m>, and its two adjoints are left and right Kan extension when they exist. For presheaves on <m>\mathcal A,\mathcal B</m>, where <m>u:\mathcal A\to\mathcal B</m>, restriction instead uses <m>u^\op</m>. Consequently the left-extension formula uses <m>(b\downarrow u)^\op</m>, and the right-extension formula uses <m>(u\downarrow b)^\op</m>. See <xref ref="cat-c07-def-kan"/> and <xref ref="cat-c07-set-formulas-variance"/>.</p>
+      </li>
+      <li><title><m>\Sigma_f\dashv f^*\dashv\Pi_f</m></title>
+        <p>These functors act between slices. For <m>f:A\to B</m>, composition <m>\Sigma_f</m> and dependent product <m>\Pi_f</m> go from <m>\mathcal C/A</m> to <m>\mathcal C/B</m>; pullback <m>f^*</m> goes back. Pullbacks supply the first adjunction; the second requires an additional existence condition. This use of a star has a different typed domain from restriction of diagrams. See <xref ref="cat-c14-def-base-change"/> and <xref ref="cat-c14-def-dependent-product"/>.</p>
+      </li>
+      <li><title><m>\int_c</m> and <m>\int^c</m></title>
+        <p>For a bifunctor with opposite variances, a subscript denotes an end and a superscript a coend. They impose compatibility between those variances; the diagonal assignment need not itself be a functor. Ends describe compatible families, including natural transformations; coends describe identifications, including density presentations. See <xref ref="cat-c08-def-wedge"/>. The notation <m>\int_{\mathcal B}F</m> for an indexed family of categories in <xref ref="cat-c16-prop-strict-grothendieck"/> instead denotes its Grothendieck construction. Its input and universal problem are different.</p>
+      </li>
+    </dl></p>
+  </section>
+
+  <section xml:id="cat-a-terms">
+    <title>Terminology across sources</title>
+    <p><dl>
+      <li><title>Final, cofinal, and initial</title>
+        <p>Here final and cofinal are synonyms: <m>(i\downarrow u)</m> must be nonempty and connected. Final functors reindex colimits. Initial, or coinitial, uses <m>(u\downarrow i)</m> and reindexes limits. Kashiwara–Schapira call the latter co-cofinal. Translate the comma condition and the domain of the diagram together; see <xref ref="cat-c06-def-final-initial"/>.</p>
+      </li>
+      <li><title>Filtered, filtrant, and directed</title>
+        <p>Filtrant is another name for filtered. Our definition includes nonemptiness, common receiving objects, and eventual equalization of parallel arrows. Directed posets are special cases; passing to a directed replacement is a theorem, not part of the definition. Cofiltered means that the opposite category is filtered. See <xref ref="cat-c06-def-filtered"/>.</p>
+      </li>
+      <li><title>Presentable and compact</title>
+        <p>A <m>\kappa</m>-presentable object preserves small <m>\kappa</m>-filtered colimits through its Hom functor. Li calls this <m>\kappa</m>-compact, and calls the finite case compact. Our terminology keeps the particular preservation condition visible; see <xref ref="cat-c13-def-presentable"/>. The ambient category is essential data.</p>
+      </li>
+      <li><title>Sifted, filtered, and reflexive</title>
+        <p>Siftedness requires commutation of colimits with finite products of sets. Filteredness gives the stronger commutation with all finite limits. The indexing category of a reflexive coequalizer is sifted but not filtered. Reflexive means that the two arrows have a common section; it does not mean that their coequalizer has the splitting data of <xref ref="cat-c09-def-split"/>. See <xref ref="cat-c06-sifted-def"/> and <xref ref="cat-c06-sifted-prop-reflexive"/>.</p>
+      </li>
+      <li><title>Small projective and projective</title>
+        <p>Small projective means preservation of every small colimit through Hom, including the empty colimit. Unqualified projective means existence of lifts against every epimorphism. Regular projective restricts the test to regular epimorphisms, while relative projectivity specifies an arrow class. Finite presentability tests preservation of filtered colimits. See <xref ref="cat-c11-def-small-projective"/>, <xref ref="cat-c15-def-relative-projective"/>, and the comparison below.</p>
+      </li>
+      <li><title>Finitary and finitely presentable</title>
+        <p>A finitary functor preserves small filtered colimits. An object is finitely presentable when its Hom functor has this property; finite presentability concerns that object inside a specified category. Finite accessibility of a category additionally requires a small family giving filtered presentations. On sets, a finitary endofunctor also preserves sifted colimits, by <xref ref="cat-c09-colim-prop-finitary-sets"/>. The proof uses finite powers of sets and does not establish that equivalence for arbitrary ambient categories.</p>
+      </li>
+      <li><title>Lawvere theories and algebraic theories</title>
+        <p>Our Lawvere theories are single-sorted and have operations with finitely many arguments, including constants. Neither the set of operations nor a presentation by symbols and equations is required to be finite. Models preserve finite products by comparison isomorphisms; their values need not literally be chosen powers of one set. Many-sorted theories and finite-limit theories impose different categorical structure. See <xref ref="cat-c18-def-theory-model"/> and <xref ref="cat-c18-thm-correspondence"/>.</p>
+      </li>
+      <li><title>Generating, separating, and detecting isomorphisms</title>
+        <p>Our generating families separate parallel arrows by their Hom tests; cogenerating families do so dually. Riehl calls them separating and coseparating. Kashiwara–Schapira's corrected system of generators instead requires its Hom tests jointly to detect isomorphisms. A bijective monotone map need not be a poset isomorphism, so singleton tests separate maps of posets without detecting all isomorphisms. Nor can componentwise tests automatically be replaced by their product: an empty factor can hide the others. See <xref ref="cat-c05-def-generating"/> and the source comparison and counterexamples immediately following it.</p>
+      </li>
+      <li><title>Two meanings of idempotent</title>
+        <p>An idempotent endomorphism satisfies <m>e^2=e</m>. An idempotent monad has invertible multiplication <m>T^2\Rightarrow T</m>, with its specified monad laws. The latter need not be a literal equality of endofunctors. See <xref ref="cat-c11-def-splitting"/> and <xref ref="cat-c09-def-idempotent"/>.</p>
+      </li>
+      <li><title>Right and left fractions</title>
+        <p>Our right multiplicative systems follow Stacks and give roofs <m>X\leftarrow A\to Y</m>, with the left leg inverted. Li and Kashiwara–Schapira call this handedness left. The roof and its axioms determine the translation; see <xref ref="cat-c10-def-right-fractions"/>.</p>
+      </li>
+      <li><title>Monad algebra and module</title>
+        <p>Our <m>T</m>-algebras are Li's <m>T</m>-modules. The structure is a map <m>TA\to A</m> satisfying two laws, without an implicit scalar action or additive structure. Coalgebras reverse the structure map and the laws. See <xref ref="cat-c09-def-algebra"/> and <xref ref="cat-c09-def-comonad"/>.</p>
+      </li>
+      <li><title>Cartesian closed and locally cartesian closed</title>
+        <p>Cartesian closure requires finite products and exponentials. Local cartesian closure here requires finite limits and cartesian closure of every slice. The slice criterion itself only needs pullbacks; the global terminal object is a separate condition. See <xref ref="cat-c14-def-cartesian-closed"/> and <xref ref="cat-c14-thm-local-closure"/>.</p>
+      </li>
+      <li><title>Regular, strong, and effective</title>
+        <p>A regular epimorphism is a coequalizer; a strong epimorphism has a unique lifting property against monomorphisms. They agree in a regular category, whose finite limits and stable image factorizations are additional hypotheses. An effective equivalence relation is a kernel pair, whereas an arbitrary internal equivalence relation need not be effective. Barr exactness requires every such relation to be effective. These uses of regular and exact do not assume additive structure; see <xref ref="cat-c15-def-regular-strong"/> and <xref ref="cat-c15-def-effective-exact"/>.</p>
+      </li>
+      <li><title>Fibration, cleavage, and indexed category</title>
+        <p>A fibration is a functor with specified cartesian lifting properties. A cleavage chooses lifts; it produces restriction functors with coherent comparison isomorphisms. A split cleavage makes those comparisons identities. Coherent indexing data recover a category over the base by the Grothendieck construction. Equality of restrictions, natural isomorphism between restrictions, and equivalence of total categories over the base are different assertions. See <xref ref="cat-c16-def-fibration-cleavage"/>, <xref ref="cat-c16-def-split"/>, and <xref ref="cat-c16-prop-coherent-recovery"/>.</p>
+      </li>
+      <li><title>Monoidal, tensor, and closed</title>
+        <p>Monoidal here includes a unit and specified associativity and unit constraints. Tensor category has additional or different requirements in some sources. A closed structure supplies adjoints to tensoring, whereas a dual object supplies those adjoints by tensoring with a fixed object. For lax and oplax functors, the displayed direction of the comparison maps fixes the meaning. For left and right internal Hom objects, the side of the fixed tensor factor fixes it. See <xref ref="cat-c17-def-monoidal"/>, <xref ref="cat-c17-def-monoidal-functor"/>, <xref ref="cat-c17-def-closed"/>, and <xref ref="cat-c17-def-dual-pair"/>.</p>
+      </li>
+    </dl></p>
+  </section>
+
+  <section xml:id="cat-a-constructions">
+    <title>Choosing a construction</title>
+    <p><dl>
+      <li><title>Presheaves: freely add small colimits</title>
+        <p>For small <m>\mathcal C</m>, Yoneda embeds it into the locally small, generally larger category <m>\widehat{\mathcal C}</m>. Every presheaf is a small colimit of representables. Functors to a cocomplete target extend essentially uniquely to colimit-preserving functors; see <xref ref="cat-c08-thm-free-cocompletion"/>.</p>
+      </li>
+      <li><title>Karoubi completion: split idempotents</title>
+        <p><m>\operatorname{Kar}(\mathcal C)</m> adjoins splittings of idempotent endomorphisms. Local smallness is preserved, and a small source gives a small completion. Its universal targets are idempotent-complete categories, without a general cocompleteness assumption. See <xref ref="cat-c11-def-envelope"/> and <xref ref="cat-c11-thm-universal-property"/>.</p>
+      </li>
+      <li><title>Ind and Pro: add filtered or cofiltered constructions</title>
+        <p>For small <m>\mathcal C</m>, <m>\operatorname{Ind}_{\U}(\mathcal C)</m> freely adds small filtered colimits; its opposite counterpart <m>\operatorname{Pro}_{\U}(\mathcal C)</m> freely adds small cofiltered limits. Both are locally small and generally larger than their source. They solve these particular extension problems, rather than automatically adding all colimits or all limits. See <xref ref="cat-c12-thm-universal-property"/> and <xref ref="cat-c12-prop-pro-hom-universal"/>. A pro object is a formal inverse system; maps between realized limits need not come from pro maps.</p>
+      </li>
+      <li><title>Localization and reflection</title>
+        <p>Localization makes specified arrows invertible, universally. It always has a set-encoded path model, but local smallness needs care for a source that is only locally small. A reflection instead provides a universal arrow into a full subcategory. It yields a localization at the arrows the reflector inverts; a general localization need not be a reflection inside its original category. See <xref ref="cat-c10-def-localization"/>, <xref ref="cat-c10-prop-size"/>, and <xref ref="cat-c10-prop-reflective-localization"/>.</p>
+      </li>
+    </dl></p>
+  </section>
+
+  <section xml:id="cat-a-finiteness">
+    <title>Tests involving representables</title>
+    <p>For a small category <m>\mathcal C</m>, the following statements concern different ambient categories. Their similar conclusions should not be substituted for one another.</p>
+    <p><dl>
+      <li><title>Small projectives in <m>\widehat{\mathcal C}</m></title>
+        <p>These are precisely retracts of a single representable, by <xref ref="cat-c11-thm-small-projectives"/>.</p>
+      </li>
+      <li><title>Projectives in <m>\widehat{\mathcal C}</m></title>
+        <p>These are precisely retracts of small coproducts of representables, by <xref ref="cat-c15-prop-presheaf-projectives"/>. The lifting test allows such a coproduct; preservation of every small colimit by Hom forces a retract of one representable.</p>
+      </li>
+      <li><title>Finitely presentable objects in <m>\operatorname{Ind}(\mathcal C)</m></title>
+        <p>These are again retracts of a single representable, now because only filtered colimits within Ind are tested; see <xref ref="cat-c12-prop-finitely-presentable"/>.</p>
+      </li>
+      <li><title>Finitely presentable objects in <m>\widehat{\mathcal C}</m></title>
+        <p>These are precisely finite colimits of representables, including the empty finite colimit. Allowing retracts gives the same class, since a retract is obtained by one more finite coequalizer; see <xref ref="cat-c13-thm-presheaf"/>. An inclusion of full subcategories does not by itself identify their internal presentability conditions.</p>
+      </li>
+    </dl></p>
+  </section>
+
+  <section xml:id="cat-a-reading">
+    <title>Reading paths</title>
+    <p>The foundational chapters run from <xref ref="cat-conventions"/> through <xref ref="cat-adjunctions"/>: categories, universal constructions, Yoneda, limits, and adjunctions. Then <xref ref="cat-filtered-cofinal"/>, <xref ref="cat-kan"/>, and <xref ref="cat-ends-density"/> develop reindexing, extension, and density.</p>
+    <p>For reconstruction from operations, continue to <xref ref="cat-monads"/>. The optional chapter <xref ref="cat-lawvere-theories"/> connects finitary monads on sets with finite operations and equations; it can be read after <xref ref="cat-monads"/>, independently of the intervening chapters. For inversion of arrows, use <xref ref="cat-localization"/>. For completions and finiteness, follow <xref ref="cat-idempotents"/>, <xref ref="cat-ind-pro"/>, and <xref ref="cat-presentability"/>. For function objects and families over varying bases, use <xref ref="cat-cartesian-closure"/> and <xref ref="cat-fibrations"/>. For images and quotients, use <xref ref="cat-images-regular"/>. For multiplication, its constraints, and internal function objects, use <xref ref="cat-monoidal"/>. Each chapter states its dependencies and size assumptions.</p>
+    <p>When checking whether a hypothesis can be dropped, use <xref ref="cat-hypotheses"/> to locate representative obstructions. Its entries lead back to the full constructions. The index locates definitions and results, including alternate names recorded in these notes.</p>
+  </section>
+
+  <section xml:id="cat-a-references">
+    <title>Using the references</title>
+    <p>The references serve different purposes. The chapter introductions identify the principal sources; citations beside a definition or proof identify the particular comparison being made. The following guide groups the reading by the question under study. It does not assert that the sources use identical hypotheses or terminology.</p>
+    <p><dl>
+      <li><title>Language, universal properties, and adjunctions</title>
+        <p>For <xref ref="cat-language"/> through <xref ref="cat-adjunctions"/>, read <xref ref="bib-cat-li1" detail="Sections 2.1–2.7"/> alongside <xref ref="bib-cat-riehl" detail="Chapters 1–4"/>. <xref ref="bib-cat-ks" detail="Chapters 1–2"/> supplies a systematic universe-based comparison. The adjoint existence theorems also use <xref ref="bib-cat-li2" detail="Section 1.11"/> and Riehl Section 4.7. Keep the actual Hom-label convention and the corrected KS generator definition in view when translating.</p>
+      </li>
+      <li><title>Reindexing, extension, and density</title>
+        <p>For <xref ref="cat-filtered-cofinal"/> and <xref ref="cat-kan"/>, use <xref ref="bib-cat-li2" detail="Sections 1.6–1.8"/>; compare Riehl Sections 3.8 and 6.1–6.3. For <xref ref="cat-ends-density"/>, use <xref ref="bib-cat-loregian" detail="Sections 1.1–1.4 and 2.2"/>, Riehl Section 6.5, and LiII Appendix A.1. These last comparisons use ordinary set-valued weights only; their more general settings need not be developed to use the stated results.</p>
+      </li>
+      <li><title>Algebras, inversion, and completions</title>
+        <p>For <xref ref="cat-monads"/>, use Riehl Chapter 5 and LiII Section 7.6. For <xref ref="cat-localization"/>, compare LiII Section 1.9, KS Section 7.1, and <xref ref="bib-cat-stacks" detail="Section 4.27"/>, translating the handedness of fractions. For <xref ref="cat-ind-pro"/>, use LiII Appendix B and KS Chapter 6; Stacks Section 4.22 gives diagram formulas. The ordinary idempotent-completion arguments in <xref ref="cat-idempotents"/> are proved here, including their universal properties, without importing the additive setting of LiII's corresponding exercise.</p>
+      </li>
+      <li><title>Presentability, images, and categories over a base</title>
+        <p>For <xref ref="cat-presentability"/>, LiII Appendix A.2 provides a concise entry to the structural results, with <xref ref="bib-cat-ar"/> as the specialized reference. For <xref ref="cat-images-regular"/>, use <xref ref="bib-cat-barr-exact" detail="Chapter I"/> and <xref ref="bib-cat-riehl-factorization" detail="Section 1"/>. For <xref ref="cat-fibrations"/>, use Stacks Sections 4.33, 4.36, and 4.38. Each of these branches requires its own structural hypotheses; a statement about one class of categories should not be transferred to another merely because the examples overlap.</p>
+      </li>
+      <li><title>Function objects and multiplication</title>
+        <p>For <xref ref="cat-cartesian-closure"/>, compare Riehl Sections 4.4 and 4.6. For <xref ref="cat-monoidal"/>, use LiI Sections 3.1–3.3, LiII Section 7.1, and KS Section 4.2; monoidal coherence is also referenced to <xref ref="bib-cat-maclane" detail="Chapter VII, Section 2"/>. The displayed comparison maps fix the conventions when strong, lax, and oplax structures are discussed.</p>
+      </li>
+      <li><title>Finite operations and equations</title>
+        <p>For <xref ref="cat-lawvere-theories"/>, use <xref ref="bib-cat-borceux2" detail="Chapter 3"/> for algebraic theories and <xref ref="bib-cat-garner-lawvere" detail="Sections 4–6"/> for the correspondence with finitary monads and its interpretation in categories with finite powers. The constructions in the chapter use ordinary categories and the colimit results already established in these notes.</p>
+      </li>
+    </dl></p>
+  </section>
+</appendix>

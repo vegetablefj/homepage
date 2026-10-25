@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="hkg-singularities">
+  <title>Symplectic singularities and resolutions</title>
+  <introduction>
+    <p>Contractions and moduli spaces naturally produce singular varieties. The symplectic form on the smooth part can still extend to a resolution, but it may become degenerate there. Beauville's notion of symplectic singularities records the extension property; a symplectic resolution requires the stronger nondegeneracy property. This distinction explains both the success of O'Grady's construction and the obstructions to repeating it for other Mukai vectors.</p>
+    <p>We work with normal algebraic varieties over <m>\mathbb C</m>, without assuming projectivity except where stated. A symplectic variety has dimension <m>2n</m>. Resolutions of singularities and the basic properties of proper birational morphisms and reflexive sheaves are assumed.</p>
+  </introduction>
+  <section xml:id="hkg-reflexive-symplectic-forms">
+    <title>Forms on the smooth locus</title>
+    <p>A variety <m>Z</m> is <em>normal</em> if its local rings are integrally closed domains. Write <m>U=Z_{\mathrm{reg}}</m> for its smooth locus and <m>j:U\hookrightarrow Z</m> for the inclusion. Normality implies that <m>Z\setminus U</m> has codimension at least two. Regular functions, and more generally sections of a reflexive sheaf, are determined across such a subset by their restrictions to its complement.</p>
+    <definition xml:id="hkg-def-reflexive-forms">
+      <statement><p>For a coherent sheaf <m>\mathcal F</m>, let <m>\mathcal F^*=\mathcal Hom_{\mathcal O_Z}(\mathcal F,\mathcal O_Z)</m>. It is <em>reflexive</em> if its natural map to <m>\mathcal F^{**}</m> is an isomorphism. The sheaf of <em>reflexive <m>p</m>-forms</em> on a normal variety is
+        <md number="no">\Omega_Z^{[p]}:=(\Omega_Z^p)^{**}
+          =\left(\bigwedge^p\Omega_Z^1\right)^{**}
+          \cong j_*\Omega_U^p.</md>
+        In particular, <m>H^0(Z,\Omega_Z^{[p]})=H^0(U,\Omega_U^p)</m>.</p></statement>
+    </definition>
+    <p>The double dual replaces Kähler differentials by the reflexive extension of their restriction to <m>U</m>. The last isomorphism is the extension property of reflexive sheaves on a normal variety; see <xref ref="hkg-bib-gkp-trivial-canonical" detail="Definition 2.1"/>. A reflexive form is an ordinary differential form on <m>U</m>. It need not be represented by a section of <m>\Omega_Z^p</m>, and its definition alone does not assert extension to a resolution.</p>
+    <definition xml:id="hkg-def-symplectic-singularity">
+      <title>(Beauville)</title>
+      <statement><p>A <em>symplectic variety</em> is a pair <m>(Z,\sigma)</m> such that <m>Z</m> is normal, <m>\sigma\in H^0(U,\Omega_U^2)</m> is closed and everywhere nondegenerate on <m>U=Z_{\mathrm{reg}}</m>, and for a resolution <m>f:Y\to Z</m> the form <m>f^*\sigma</m> extends to a regular two-form <m>\widetilde\sigma</m> on <m>Y</m>. Here a resolution is a proper birational morphism from a smooth variety, chosen to be an isomorphism over <m>U</m>. We also say that <m>Z</m> has <em>symplectic singularities</em>.</p></statement>
+    </definition>
+    <p>This is a local condition on <m>Z</m>. It allows noncompact varieties and spaces with several independent global two-forms. The extension <m>\widetilde\sigma</m> may degenerate on the exceptional locus; a symplectic resolution requires nondegeneracy there as well.</p>
+    <proposition xml:id="hkg-resolution-extension-independent">
+      <statement><p>The extension condition can be checked on one resolution. If it holds there, it holds on every resolution. Each extension is unique and closed.</p></statement>
+      <proof><p>Let <m>f_i:Y_i\to Z</m> be two resolutions, and take a smooth common resolution <m>W</m> of the component of <m>Y_1\times_ZY_2</m> dominating <m>Z</m>. Write <m>r_i:W\to Y_i</m> for its two morphisms. An extension on <m>Y_1</m> pulls back to a regular form on <m>W</m>. Regard the form from <m>U</m> as a rational two-form on <m>Y_2</m>. A proper birational morphism to a smooth variety is an isomorphism over an open set containing every codimension-one point of the target. Thus this rational form is regular in codimension one on <m>Y_2</m>, because its pullback to <m>W</m> is regular. Since <m>\Omega_{Y_2}^2</m> is locally free and hence reflexive, it extends regularly over the remaining subset of codimension at least two.</p>
+        <p>Two extensions agree on the dense open set above <m>U</m> and therefore agree everywhere. The exterior derivative of an extension vanishes on that dense open set, so it vanishes on the smooth variety <m>Y_i</m>.</p></proof>
+    </proposition>
+    <p>This is the resolution-independence argument in <xref ref="hkg-bib-beauville-singularities" detail="§1.2"/>. We used the existence of a common resolution in characteristic zero; no nondegeneracy assertion follows from that argument.</p>
+  </section>
+  <section xml:id="hkg-symplectic-crepant-resolutions">
+    <title>Symplectic and crepant resolutions</title>
+    <definition xml:id="hkg-def-symplectic-resolution">
+      <statement><p>A <em>symplectic resolution</em> of <m>(Z,\sigma)</m> is a resolution <m>f:Y\to Z</m> such that the extension <m>\widetilde\sigma</m> is everywhere nondegenerate on <m>Y</m>. A <em>projective symplectic resolution</em> additionally requires the morphism <m>f</m> to be projective. The target and source need not be projective over <m>\mathbb C</m>.</p></statement>
+    </definition>
+    <example xml:id="hkg-blowup-degenerate-extension">
+      <p>The surface <m>\mathbb C^2/\{\pm1\}</m> has a symplectic minimal resolution, as in <xref ref="hkg-hilbert-square-local"/>. Blow up a point on its exceptional curve. This is still a resolution of the same singular surface, and the form still extends. In local symplectic coordinates <m>(x,y)</m> around the point being blown up, one blowup chart has <m>x=u</m>, <m>y=uv</m>, and
+        <md number="no">dx\wedge dy=u\,du\wedge dv.</md>
+        The extension degenerates along the new exceptional curve <m>u=0</m>. A symplectic singularity therefore need not have a symplectic form on every resolution, even when it has one symplectic resolution.</p>
+    </example>
+    <theorem xml:id="hkg-symplectic-rational-gorenstein">
+      <title>(Beauville)</title>
+      <statement><p>A symplectic variety has rational Gorenstein singularities. Its dualizing sheaf is a line bundle, and <m>\sigma^n</m> extends as a nowhere-vanishing generator of <m>\omega_Z</m>. In particular <m>K_Z</m> is Cartier and can be chosen to be the zero divisor.</p></statement>
+    </theorem>
+    <p>See <xref ref="hkg-bib-beauville-singularities" detail="Proposition 1.3"/>. Here <em>rational singularities</em> means that <m>R^if_*\mathcal O_Y=0</m> for <m>i&gt;0</m> on a resolution and <m>f_*\mathcal O_Y=\mathcal O_Z</m>; <em>Gorenstein</em> includes the Cohen–Macaulay property and invertibility of the dualizing sheaf. These are consequences of the theorem, not additional hypotheses in <xref ref="hkg-def-symplectic-singularity"/>. The top form trivializes the reflexive canonical sheaf because it already does so on <m>U</m>; the theorem identifies that sheaf with the invertible dualizing sheaf.</p>
+    <p>For a normal variety whose canonical divisor is <m>\mathbb Q</m>-Cartier, a resolution is <em>crepant</em> if
+      <md number="no">K_Y=f^*K_Z</md>
+      as canonical divisors identified by a rational top form on the common function field. This keeps track of the natural identification over the smooth locus. It is stronger than merely comparing two unspecified numerical canonical classes.</p>
+    <proposition xml:id="hkg-crepant-iff-symplectic">
+      <statement><p>A resolution of a symplectic variety is symplectic if and only if it is crepant.</p></statement>
+      <proof><p>The extension <m>\widetilde\sigma</m> exists by definition. The rational top form determining <m>K_Z=0</m> is <m>\sigma^n</m>, and the corresponding form on <m>Y</m> is <m>\widetilde\sigma^n</m>. Its divisor is supported on the exceptional locus, since it is nonvanishing above <m>U</m>. Thus
+        <md number="no">K_Y-f^*K_Z=\operatorname{div}(\widetilde\sigma^n).</md>
+        A two-form on a <m>2n</m>-dimensional vector space is nondegenerate exactly when its <m>n</m>-th exterior power is nonzero. Therefore <m>\widetilde\sigma</m> is everywhere nondegenerate exactly when the displayed divisor is zero. Indeed a nonzero section of a line bundle on a smooth variety has a divisor of zeros; it cannot vanish only in codimension at least two. This is exactly crepancy.</p></proof>
+    </proposition>
+    <corollary xml:id="hkg-trivial-canonical-resolution">
+      <statement><p>For a resolution <m>f:Y\to Z</m> of a symplectic variety, the following are equivalent: <m>f</m> is symplectic; <m>f</m> is crepant; and <m>K_Y\cong\mathcal O_Y</m>.</p></statement>
+      <proof><p>A symplectic form trivializes <m>K_Y</m>, and the previous proposition gives the first equivalence. Conversely, choose a nowhere-vanishing top form <m>\eta</m> trivializing <m>K_Y</m>. Write <m>\widetilde\sigma^n=h\eta</m> for a regular function <m>h</m> on <m>Y</m>. Properness, birationality, and normality give <m>f_*\mathcal O_Y=\mathcal O_Z</m>, so <m>h=f^*a</m> for a regular function <m>a</m> on <m>Z</m>. It has no zeros on <m>U</m>. Normality extends the regular function <m>1/a</m> from <m>U</m> across its complement of codimension at least two. Hence <m>a</m> and <m>h</m> are units, and <m>\widetilde\sigma^n</m> is nowhere zero.</p></proof>
+    </corollary>
+    <p>The two cotangent resolutions of the rank-one nilpotent cone described in <xref ref="hkg-cones-flops"/> are local models of this situation. Their source <m>T^*\mathbb P^n</m> has its canonical symplectic form; the zero section is contracted to the vertex. The two resolutions can differ by a Mukai flop. The symplectic form and the two contractions are given explicitly in that example.</p>
+  </section>
+  <section xml:id="hkg-symplectic-quotients">
+    <title>Finite quotients and symplectic reflections</title>
+    <p>Let <m>(V,\sigma_V)</m> be a symplectic vector space of dimension <m>2n</m>, and let <m>G\subset\operatorname{Sp}(V,\sigma_V)</m> be finite. Its affine quotient is
+      <md number="no">Z=V/G=\operatorname{Spec}\mathbb C[V]^G.</md>
+      Finite-group invariant theory gives a finite quotient morphism <m>q:V\to Z</m>.</p>
+    <proposition xml:id="hkg-finite-quotient-normal-form">
+      <statement><p>The variety <m>Z</m> is normal. Every nonidentity element of <m>G</m> has fixed subspace of even codimension at least two. The form <m>\sigma_V</m> descends over the free locus and determines a unique reflexive two-form on <m>Z</m>.</p></statement>
+      <proof><p>Set <m>A=\mathbb C[V]</m> and <m>B=A^G</m>. If <m>b\in\operatorname{Frac}(B)</m> is integral over <m>B</m>, its monic equation also makes it integral over <m>A</m>. The polynomial ring <m>A</m> is integrally closed, so <m>b\in A</m>. Since it is invariant, it belongs to <m>B</m>. Thus <m>B</m> is integrally closed.</p>
+        <p>A finite-order linear transformation is diagonalizable. Its eigenspaces of eigenvalues <m>\lambda,\mu</m> are symplectically orthogonal unless <m>\lambda\mu=1</m>. In particular its eigenvalue-one subspace is nondegenerate: a vector in that subspace orthogonal to it is orthogonal to every eigenspace, hence is zero. The fixed space and its symplectic orthogonal therefore both have even dimension. For a nonidentity element the latter is nonzero.</p>
+        <p>The union of the nontrivial fixed spaces has codimension at least two. On its complement <m>V^\circ</m>, the quotient is finite étale, so the invariant form descends to <m>V^\circ/G</m>. Its complement in <m>Z</m> also has codimension at least two. The characterization <m>\Omega_Z^{[2]}=j_*\Omega_{Z_{\mathrm{reg}}}^2</m> extends that form uniquely as a reflexive form. On the smooth locus its top exterior power has no zeros: any zero divisor would have to be supported on the omitted subset of codimension at least two. Closedness extends by density as well. Thus it is symplectic on the whole smooth locus.</p></proof>
+    </proposition>
+    <theorem xml:id="hkg-beauville-quotient-singularities">
+      <title>(Beauville)</title>
+      <statement><p>The quotient of a symplectic variety by a finite group preserving its symplectic form has symplectic singularities. In particular, <m>V/G</m> above is a symplectic variety.</p></statement>
+    </theorem>
+    <p>This is <xref ref="hkg-bib-beauville-singularities" detail="Proposition 2.4"/>. The extension to a resolution is the additional content beyond the normality and descent calculation just given. A finite symplectic quotient need not admit a symplectic resolution.</p>
+    <definition xml:id="hkg-def-symplectic-reflection">
+      <statement><p>An element <m>s\in G</m> is a <em>symplectic reflection</em> if
+        <md number="no">\operatorname{rank}(s-\operatorname{id}_V)=2,
+          \qquad\text{equivalently}\qquad
+          \operatorname{codim}_V V^s=2.</md></p></statement>
+    </definition>
+    <theorem xml:id="hkg-verbitsky-reflection-obstruction">
+      <title>(Verbitsky)</title>
+      <statement><p>If <m>V/G</m> admits a symplectic resolution, then <m>G</m> is generated by symplectic reflections.</p></statement>
+    </theorem>
+    <p>We cite <xref ref="hkg-bib-verbitsky-orbifold" detail="Theorem 3.2"/>. Projectivity of the resolution is not needed for this necessary condition.</p>
+    <corollary xml:id="hkg-sign-quotient-obstruction">
+      <statement><p>The quotient <m>\mathbb C^2/\{\pm1\}</m> admits a symplectic resolution, whereas <m>\mathbb C^{2n}/\{\pm1\}</m> has none when <m>n\geq2</m>.</p></statement>
+      <proof><p>In dimension two, the quotient is the surface <m>xy=z^2</m>, and the two charts of its minimal resolution carry the nondegenerate extended form calculated in <xref ref="hkg-hilbert-square-local"/>. In dimension <m>2n\geq4</m>, the only nonidentity element is <m>-\operatorname{id}</m>, whose fixed space is zero and whose rank difference from the identity is <m>2n</m>. There are no symplectic reflections in the group, so <xref ref="hkg-verbitsky-reflection-obstruction"/> excludes a symplectic resolution.</p></proof>
+    </corollary>
+    <p>Being generated by symplectic reflections is not sufficient for existence of a projective symplectic resolution. For example, let <m>W</m> be the Weyl group of type <m>D_4</m> on its reflection representation <m>\mathfrak h</m>. On <m>\mathfrak h\oplus\mathfrak h^*</m>, each ordinary reflection has a codimension-two fixed space, so <m>W</m> is generated by symplectic reflections. Nevertheless <m>(\mathfrak h\oplus\mathfrak h^*)/W</m> has no projective symplectic resolution, by <xref ref="hkg-bib-bellamy-calogero" detail="Corollary 1.2"/>.</p>
+  </section>
+  <section xml:id="hkg-semismall-terminal">
+    <title>Fibre dimensions and terminal singularities</title>
+    <definition xml:id="hkg-def-semismall">
+      <statement><p>A proper surjective morphism <m>f:Y\to Z</m> between varieties of the same dimension is <em>semismall</em> if, for every integer <m>k\geq1</m>, the closed subset
+        <md number="no">Z_k:=\{z\in Z:\dim f^{-1}(z)\geq k\}</md>
+        satisfies <m>\operatorname{codim}_Z Z_k\geq2k</m>. The codimension of an empty set is understood to be infinite. Equivalently,
+        <m>\dim(Y\times_ZY)=\dim Y</m>.</p></statement>
+    </definition>
+    <p>For a stratum of codimension <m>c</m> on which the fibre dimension is <m>k</m>, the inequality is <m>2k\leq c</m>. It concerns the codimension of the locus where fibres of that size occur, not only the dimension of a single fibre.</p>
+    <theorem xml:id="hkg-kaledin-semismall">
+      <title>(Kaledin)</title>
+      <statement><p>Every projective symplectic resolution is semismall.</p></statement>
+    </theorem>
+    <p>The projective version used here is <xref ref="hkg-bib-kaledin-poisson" detail="Lemma 2.11"/>. It applies to a projective morphism over an affine or nonprojective target as well.</p>
+    <proposition xml:id="hkg-semismall-exceptional-divisors">
+      <statement><p>Let <m>f:Y\to Z</m> be a projective symplectic resolution. Every exceptional prime divisor has image of codimension two. In particular, if <m>\operatorname{codim}_Z\operatorname{Sing}(Z)\geq4</m>, the resolution has no exceptional divisors.</p></statement>
+      <proof><p>Let <m>E</m> be an exceptional prime divisor and let <m>C=f(E)</m>, of codimension <m>c</m>. A birational morphism to a normal variety is an isomorphism at the generic points of divisors on the target, so <m>c\geq2</m>. Since <m>\dim E=\dim Z-1</m>, the generic fibre of <m>E\to C</m> has dimension <m>c-1</m>. Semismallness gives <m>2(c-1)\leq c</m>, hence <m>c\leq2</m>. Thus <m>c=2</m>. A resolution chosen to be an isomorphism over <m>Z_{\mathrm{reg}}</m> maps every exceptional divisor into the singular locus; the final assertion follows.</p></proof>
+    </proposition>
+    <p>For comparison, the cotangent resolution <m>T^*\mathbb P^n\to Z</m> of <xref ref="hkg-cones-flops"/> has a fibre <m>\mathbb P^n</m> over the vertex, whose codimension is <m>2n</m>. It attains equality in the semismall inequality. For <m>n\geq2</m> its exceptional locus has codimension <m>n</m>, so semismallness permits a resolution without exceptional divisors.</p>
+    <p>We recall only the singularity terminology needed for the next obstruction. A normal variety is <em><m>\mathbb Q</m>-factorial</em> if every Weil divisor has a positive multiple that is Cartier locally; it is <em>locally factorial</em> if every Weil divisor is Cartier locally. For <m>K_Z</m> <m>\mathbb Q</m>-Cartier, write on a resolution
+      <md number="no">K_Y=f^*K_Z+\sum_E a(E,Z)E.</md>
+      The coefficients are discrepancies. The singularities are <em>canonical</em> if all exceptional divisorial discrepancies on all resolutions are nonnegative, and <em>terminal</em> if they are strictly positive. These are definitions from birational geometry; we use their basic invariance properties as external facts.</p>
+    <theorem xml:id="hkg-namikawa-terminal-criterion">
+      <title>(Namikawa)</title>
+      <statement><p>A symplectic variety has terminal singularities if and only if its singular locus has codimension at least four.</p></statement>
+    </theorem>
+    <p>This is <xref ref="hkg-bib-namikawa-note" detail="Corollary 1"/>.<fn>The criterion applies without a <m>\mathbb Q</m>-factoriality hypothesis. That additional condition is used in <xref ref="hkg-qfactorial-terminal-no-resolution"/> to exclude small projective resolutions.</fn> In particular, a terminal symplectic singularity has no exceptional divisor of discrepancy zero on a crepant resolution. A resolution could still be small, meaning that its exceptional locus has codimension at least two in its source. The following argument explains where <m>\mathbb Q</m>-factoriality obstructs that possibility.</p>
+    <proposition xml:id="hkg-qfactorial-terminal-no-resolution">
+      <statement><p>A singular <m>\mathbb Q</m>-factorial terminal symplectic variety admits no projective symplectic resolution.</p></statement>
+      <proof><p>Suppose <m>f:Y\to Z</m> were such a resolution. It is crepant by <xref ref="hkg-crepant-iff-symplectic"/>. Terminality excludes every exceptional divisor, so <m>f</m> is small. Choose an <m>f</m>-ample Cartier divisor <m>D</m> on <m>Y</m>, and let <m>D_Z=f_*D</m> be its pushforward Weil divisor. Since <m>Z</m> is <m>\mathbb Q</m>-factorial, after restricting to a neighbourhood and taking a positive multiple, <m>mD_Z</m> is Cartier. The divisors <m>mD</m> and <m>f^*(mD_Z)</m> agree away from the exceptional locus. A difference of divisors is supported in codimension one; there is no exceptional divisor on which it could be supported. They are therefore equal.</p>
+        <p>A nonisomorphic proper birational morphism to a normal variety has a positive-dimensional fibre: otherwise it would be finite and hence an isomorphism. Projectivity gives a complete curve <m>C</m> in such a fibre. The equality of divisors gives <m>mD\cdot C=0</m>, whereas relative ampleness gives <m>mD\cdot C&gt;0</m>. This contradiction proves the assertion.</p></proof>
+    </proposition>
+    <p>Projectivity of the morphism is used to obtain a relatively ample divisor and a curve to test it on. We retain that hypothesis in applications. Terminality alone would not exclude the cotangent examples with small resolutions; their targets need not be <m>\mathbb Q</m>-factorial.</p>
+  </section>
+  <section xml:id="hkg-kls-moduli-singularities">
+    <title>Nonprimitive Mukai vectors</title>
+    <p>Let <m>S</m> be a projective K3 or abelian surface. Retain the Mukai pairing of <xref ref="hkg-mukai-lattice"/> and the corresponding abelian-surface convention of <xref ref="hkg-abelian-moduli"/>. Write
+      <md number="no">v=mw,\qquad
+        w=(r,c,s)\text{ primitive},\qquad
+        m\geq2,\qquad d:=\langle w,w\rangle\geq2.</md>
+      Thus <m>d</m> is a positive even integer. Let <m>M_H^{\mathrm{ss}}(v)</m> be the coarse moduli space of Gieseker-semistable sheaves.</p>
+    <p>For the theorems below, impose the following hypotheses. The vector <m>w</m> is algebraic; either <m>r&gt;0</m>, or <m>r=0</m>, <m>c</m> is effective, and <m>s\ne0</m>. The polarization <m>H</m> is <m>v</m>-general in the wall sense: it lies outside the walls for <m>v</m>, so every stable summand of a polystable sheaf of vector <m>v</m> has Mukai vector in <m>\mathbb Qv</m>. Finally, assume <m>M_H(w)</m> is nonempty. These are the hypotheses <m>(*)</m>, <m>(**)</m>, and §2.4 of <xref ref="hkg-bib-kls-moduli"/>. They imply that a stable factor has vector <m>kw</m> for a positive integer <m>k</m>.</p>
+    <aside xml:id="margin-hkg-kls-rank-zero">
+      <p>For rank zero, <m>s=\chi(E)</m>. The condition <m>s\ne0</m> is part of the cited theorem's range. Genericity of a polarization cannot simply be used to eliminate persistent decompositions when <m>s=0</m>. The nonemptiness assumption is also kept explicit; for ample <m>c</m> it is covered by the existence theorems of <xref ref="hkg-sheaf-moduli"/>.</p>
+    </aside>
+    <p>A <m>v</m>-general polarization does not make all semistable sheaves of vector <m>v</m> stable when <m>m&gt;1</m>. If <m>E</m> is stable with vector <m>w</m>, the sheaf <m>E^{\oplus m}</m> remains strictly semistable for that polarization. Genericity controls the vectors of the factors; it does not remove factors forced by divisibility.</p>
+    <theorem xml:id="hkg-kls-singular-moduli">
+      <title>(Kaledin–Lehn–Sorger; Lehn–Sorger)</title>
+      <statement><p>Under the hypotheses just stated, <m>M=M_H^{\mathrm{ss}}(mw)</m> is a normal irreducible projective variety of dimension <m>m^2d+2</m>, with symplectic singularities. There are two cases:</p>
+        <p><ol>
+          <li><p>If <m>m=2</m> and <m>d=2</m>, the blowup of the reduced singular locus is a projective symplectic resolution.</p></li>
+          <li><p>If <m>m\geq3</m>, or <m>m=2</m> and <m>d\geq4</m>, the variety <m>M</m> is singular and locally factorial, and its singular locus has codimension at least four. No Zariski open neighbourhood of a singular point admits a projective symplectic resolution.</p></li>
+        </ol></p>
+      </statement>
+    </theorem>
+    <p>Normality and irreducibility are <xref ref="hkg-bib-kls-moduli" detail="Theorem 4.4"/>; the nonexistence assertion and local factoriality are its Theorems 5.3 and 6.2. The exceptional blowup construction is <xref ref="hkg-bib-lehn-sorger-ogrady" detail="Theorem 1.1"/>.<fn>The Zariski qualification matters. Local factoriality here concerns algebraic local rings, and it can fail after completion; <xref ref="hkg-bib-kls-moduli" detail="Remark 6.3(1)"/> exhibits precisely this phenomenon in these moduli spaces. The stated obstruction does not exclude a resolution of every sufficiently small analytic neighbourhood.</fn></p>
+    <proposition xml:id="hkg-semistable-boundary-codimension">
+      <statement><p>In this setting, the strictly semistable locus has codimension at least
+        <md number="no">2(m-1)d-2.</md>
+        For <m>(m,d)=(2,2)</m> it has codimension two. In all other cases in the theorem, the displayed lower bound is at least six.</p></statement>
+      <proof><p>A polystable sheaf is a direct sum of stable factors. Counting a repeated factor with its multiplicity, their vectors are <m>k_1w,\ldots,k_\ell w</m>, where <m>k_i\geq1</m>, <m>\sum_i k_i=m</m>, and <m>\ell\geq2</m>. A moduli space of stable factors of vector <m>kw</m> is smooth of dimension <m>k^2d+2</m>, by the Ext-and-trace calculation of <xref ref="hkg-stable-smooth-dimension"/>. The same calculation applies to an abelian surface, whose Picard scheme is smooth. The locus of direct sums therefore has dimension at most
+        <md number="no">d\sum_{i=1}^{\ell}k_i^2+2\ell.</md>
+        Permuting factors gives a finite identification; imposing coincidences among factors can only decrease the dimension.</p>
+        <p>Merging two positive parts <m>a,b</m> increases this upper bound by <m>2dab-2&gt;0</m>. Among partitions with at least two parts, its maximum is consequently attained with two parts. For <m>a+b=m</m>, the sum <m>a^2+b^2</m> is largest at <m>(a,b)=(1,m-1)</m>. Thus the boundary has dimension at most <m>d(1+(m-1)^2)+4</m>. Subtracting from <m>\dim M=m^2d+2</m> gives the claimed lower bound.</p>
+        <p>When <m>m=d=2</m>, the stable moduli space <m>M_H(w)</m> has dimension four. Direct sums of two distinct such sheaves form an eight-dimensional locus, parametrized generically finitely by unordered pairs. Since <m>\dim M=10</m>, the codimension is exactly two. Otherwise <m>2(m-1)d-2\geq6</m>.</p></proof>
+    </proposition>
+    <p>The stable locus is smooth, so the singular locus lies in this boundary. For the nonexceptional cases, the dimension estimate explains the large codimension needed in the obstruction. Kaledin–Lehn–Sorger prove normality, extension of the form, nonemptiness of the singular locus, and local factoriality. Namikawa's criterion then makes the singularities terminal, and <xref ref="hkg-qfactorial-terminal-no-resolution"/> proves the obstruction to a projective symplectic resolution.</p>
+    <p>In the exceptional case <m>(m,d)=(2,2)</m>, the dimension is ten for both kinds of surface. For a K3 surface, O'Grady's original choice <m>w=(1,0,-1)</m> gives the ten-dimensional IHS resolution of <xref ref="hkg-ogrady-existence"/>. On an abelian surface the full moduli space also has dimension ten; the six-dimensional IHS example comes from the appropriate fibre of its determinant-and-Albanese map. The full moduli space and that fibre must be distinguished. The theorem above is stated for the full moduli space.</p>
+    <p>The assumption <m>d&gt;0</m> excludes another source of symplectic resolutions. For instance, zero-dimensional sheaves of length <m>m</m> have coarse moduli space <m>S^{(m)}</m>, and the Hilbert–Chow map <m>S^{[m]}\to S^{(m)}</m> is a symplectic resolution. The positive-square assumption distinguishes this example from the nonexistence cases above.</p>
+  </section>
+  <section xml:id="hkg-singular-global-terminology">
+    <title>Primitive and irreducible symplectic varieties</title>
+    <p>For a global counterpart of an IHS manifold, we distinguish two definitions. The first also applies to compact normal Kähler spaces.</p>
+    <definition xml:id="hkg-def-primitive-symplectic">
+      <statement><p>A <em>primitive symplectic variety</em> is a compact normal Kähler symplectic variety <m>(Z,\sigma)</m> satisfying
+        <md number="no">H^1(Z,\mathcal O_Z)=0,\qquad
+          H^0(Z,\Omega_Z^{[2]})=\mathbb C\sigma.</md></p></statement>
+    </definition>
+    <p>This is the convention of <xref ref="hkg-bib-bakker-lehn-moduli" detail="Definition 3.1"/>. In particular it applies to projective varieties. For the next definition we restrict to the projective setting of the original reference.</p>
+    <definition xml:id="hkg-def-singular-irreducible-symplectic">
+      <statement><p>Let <m>Z</m> be a normal projective variety of dimension <m>2n</m> with canonical singularities and <m>\omega_Z\cong\mathcal O_Z</m>. It is an <em>irreducible symplectic variety</em> if it has a reflexive two-form <m>\sigma</m> nondegenerate on <m>Z_{\mathrm{reg}}</m>, and for every finite surjective morphism <m>g:Z'\to Z</m> from a normal connected variety that is étale in codimension one,
+        <md number="no">\bigoplus_{p=0}^{2n}H^0(Z',\Omega_{Z'}^{[p]})
+          =\mathbb C[g^{[*]}\sigma]</md>
+        as an algebra under exterior product. Such a finite morphism is called <em>quasi-étale</em>. The reflexive pullback <m>g^{[*]}\sigma</m> is ordinary pullback on the smooth étale locus above <m>Z_{\mathrm{reg}}</m>, extended as a reflexive form across its complement, which has codimension at least two in <m>Z'</m>.</p></statement>
+    </definition>
+    <p>This is <xref ref="hkg-bib-gkp-trivial-canonical" detail="Definition 8.16(2)"/>. Generation by one two-form means that every global form of even degree is a scalar multiple of its appropriate exterior power and every odd-degree form vanishes, on every such cover. The condition controls forms on covers as well as forms on <m>Z</m> itself.</p>
+    <example xml:id="hkg-symmetric-square-primitive-not-irreducible">
+      <p>For a projective K3 surface <m>S</m>, its symmetric square <m>Z=S^{(2)}</m> is primitive symplectic but is not irreducible symplectic in the preceding sense. Indeed, it is a symplectic quotient of <m>S\times S</m>. The finite quotient map <m>q:S\times S\to S^{(2)}</m> is étale off the diagonal, whose codimension is two. It is therefore quasi-étale.</p>
+      <p>Let <m>\sigma_i=\operatorname{pr}_i^*\sigma_S</m>. The invariant subspace of <m>H^0(S\times S,\Omega^2)=\mathbb C\sigma_1\oplus\mathbb C\sigma_2</m> under exchange of factors is <m>\mathbb C(\sigma_1+\sigma_2)</m>. Descent on the free locus and extension of reflexive forms identify it with <m>H^0(Z,\Omega_Z^{[2]})</m>. Also
+        <m>H^1(Z,\mathcal O_Z)=H^1(S\times S,\mathcal O_{S\times S})^{\mathfrak S_2}=0</m>:
+        finite pushforward is exact, taking invariants is exact in characteristic zero, and the Künneth formula gives the vanishing. These facts prove primitivity.</p>
+      <p>On the quasi-étale cover <m>S\times S</m>, the two independent forms <m>\sigma_1,\sigma_2</m> are not both generated in degree two by <m>q^{[*]}\sigma=\sigma_1+\sigma_2</m>. Hence the condition for irreducible symplectic varieties fails. Its Hilbert–Chow resolution is an IHS manifold. Having an IHS resolution, being primitive symplectic, and satisfying the condition on forms on all quasi-étale covers are distinct assertions.</p>
+    </example>
+    <p>The quasi-étale-cover condition is the additional requirement that distinguishes irreducible symplectic varieties from primitive symplectic varieties. The symmetric-square example shows why it is necessary even for varieties admitting an IHS resolution.</p>
+  </section>
+</chapter>

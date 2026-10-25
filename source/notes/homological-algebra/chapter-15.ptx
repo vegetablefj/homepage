@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="ha-c15">
+  <title>Localization and recollement</title>
+  <introduction>
+    <p>A Verdier quotient formally annihilates a triangulated subcategory. When that quotient has a fully faithful right adjoint, it can instead be represented by a category of local objects inside the original category. A recollement adds another adjoint and two compatible decompositions. These distinctions determine which gluing arguments are available.</p>
+    <p>We use <xref ref="bib-ha-krause" detail="Sections 4–5"/> for localization and <xref ref="bib-ha-bbd" detail="Section 1.4"/> for recollement and gluing of t-structures. The construction of Verdier quotients is given in <xref ref="ha-c08"/>.</p>
+  </introduction>
+  <section xml:id="ha-c15-reflective">
+    <title>Local objects and localization triangles</title>
+    <definition xml:id="ha-c15-definition-localization">
+      <title>Exact localization</title>
+      <idx>Exact localization</idx><idx>Local object</idx><idx>Acyclic object</idx><idx>Bousfield localization</idx>
+    <statement>
+      <p>An exact localization on <m>\mathcal T</m> is an exact endofunctor <m>L</m> with a natural transformation <m>\eta:\id\to L</m> such that <m>L\eta=\eta L</m> and this common map is an isomorphism. An object is local if <m>\eta_X</m> is invertible, and acyclic if <m>LX=0</m>. Write <m>\mathcal S=\ker L</m> and <m>\mathcal S^\perp=\{Y:\Hom(S,Y[n])=0\text{ for all }S\in\mathcal S,n\in\Z\}</m>.</p>
+    </statement>
+    </definition>
+    <proposition xml:id="ha-c15-proposition-localization">
+      <statement>
+        <p>For an exact localization, the local objects form <m>\mathcal S^\perp</m>. The corestriction <m>\mathcal T\to\mathcal S^\perp</m> of <m>L</m> is left adjoint to inclusion. There is a functorial distinguished triangle</p>
+        <p><md number="no">\Gamma X\longrightarrow X\xrightarrow{\eta_X}LX\longrightarrow(\Gamma X)[1],</md></p>
+        <p>with <m>\Gamma X\in\mathcal S</m>; the corestriction of <m>\Gamma</m> is right adjoint to inclusion <m>\mathcal S\to\mathcal T</m>. The Verdier quotient is locally small and its quotient functor induces an equivalence <m>\mathcal T/\mathcal S\simeq\mathcal S^\perp</m>.</p>
+      </statement>
+      <proof>
+        <p>For a local object <m>Y</m>, the maps <m>\Hom(LX,Y)\to\Hom(X,Y)</m> given by <m>\eta_X</m> are bijective: an inverse sends <m>a:X\to Y</m> to <m>\eta_Y^{-1}L(a)</m>. Thus local objects are right orthogonal to acyclic objects. Complete <m>\eta_X</m> to a triangle; applying <m>L</m> makes its first object acyclic. The Hom sequence shows that maps from any <m>S\in\mathcal S</m> to that first object are the same as maps to <m>X</m>. This proves representability and functoriality of <m>\Gamma</m>.</p>
+        <p>If <m>X\in\mathcal S^\perp</m>, apply that universal property with <m>S=\Gamma X</m>. The identity of <m>\Gamma X</m> is zero, so <m>\Gamma X=0</m> and <m>X</m> is local. Finally, a map whose cone lies in <m>\mathcal S</m> induces an isomorphism on Hom into a local object. The quotient universal property, together with the reflection, gives the stated equivalence and local smallness.</p>
+      </proof>
+    </proposition>
+    <p>Conversely, if a Verdier quotient by a thick subcategory is locally small and has a right adjoint, that right adjoint is fully faithful and its composite with the quotient is an exact localization. A quotient by itself need not have such an adjoint. Similarly, the localization triangle supplies a right adjoint for the acyclic inclusion, but does not supply a left adjoint for it.<fn>The term <em>Bousfield localization</em> is often used for this reflective exact localization. It records more structure than the formal inversion defining a Verdier quotient.</fn></p>
+    <proposition xml:id="ha-c15-proposition-local-tests">
+      <statement><p>For an exact localization <m>L</m> with kernel <m>\mathcal S</m>:</p><p><ol>
+        <li><p>A morphism <m>f</m> becomes an isomorphism under <m>L</m> if and only if its cone belongs to <m>\mathcal S</m>. An object <m>Y</m> is local if and only if precomposition with every such <m>f</m> gives a bijection on Hom into <m>Y</m>.</p></li>
+        <li><p>The subcategory <m>\mathcal S</m> is thick and closed under all ambient coproducts that exist. The local subcategory is triangulated and closed under all ambient products that exist.</p></li>
+        <li><p>There are natural isomorphisms <m>\Gamma^2\simeq\Gamma</m>, and <m>L\Gamma=\Gamma L=0</m>. Moreover <m>\mathcal S={}^{\perp}(\mathcal S^\perp)</m>, where the left orthogonal also tests all shifts.</p></li>
+      </ol></p></statement>
+      <proof><p>Apply the exact functor <m>L</m> to a triangle of <m>f</m>; a triangle has invertible first map exactly when its third object vanishes. The Hom sequence and <m>\mathcal S^\perp</m> give the local-object test; its converse can be tested on <m>0\to S</m> with <m>S\in\mathcal S</m>. Both orthogonals are closed under triangles and retracts. Hom out of a coproduct is a product, so the left orthogonal is closed under coproducts. Hom into a product gives the dual assertion for local objects. If <m>X</m> is left orthogonal to local objects, the adjunction gives <m>\Hom(LX,LX)\simeq\Hom(X,LX)=0</m>, so <m>LX=0</m>. This proves the orthogonal equality and the coproduct assertion for the kernel. Applying the localization triangle to an acyclic or a local object proves the identities involving <m>\Gamma</m>.</p></proof>
+    </proposition>
+    <p>The functoriality of <m>\Gamma</m> comes from its adjunction, rather than from a generally functorial cone. For example, a map <m>X\to X'</m> has a unique induced map between the acyclic terms compatible with their maps to <m>X,X'</m>, since maps from acyclic objects to local objects vanish. The adjunction likewise determines the connecting maps in the localization triangles. These universal properties justify using the triangle as a natural construction.</p>
+    <p>The localization is determined, up to its unique compatible isomorphism, by its local objects or by its kernel. If <m>\mathcal S=\Loc(G)</m>, testing locality against <m>G</m> and all its shifts already suffices: the objects <m>S</m> for which <m>\Hom(S,Y[n])=0</m> form a localizing subcategory. This reduction does not require <m>G</m> to be compact. Compactness enters the existence theorem and the claim that local objects are closed under coproducts.</p>
+  </section>
+  <section xml:id="ha-c15-compact-localization">
+    <title>Localization generated by compact objects</title>
+    <theorem xml:id="ha-c15-theorem-compact-localization">
+      <statement>
+        <p>Let <m>\mathcal T</m> be compactly generated and let <m>G</m> be a small set of compact objects. For <m>\mathcal S=\Loc(G)</m>, there is an exact localization with kernel <m>\mathcal S</m>. Its endofunctor preserves small coproducts. The quotient is compactly generated by the images of compact generators of <m>\mathcal T</m>. Its compact objects are retracts of images of objects of <m>\mathcal T^c</m>; the possible need to take retracts cannot be omitted.</p>
+      </statement>
+    </theorem>
+    <p>This is the compactly generated localization theorem of <xref ref="bib-ha-krause" detail="Section 5.6"/>. To explain the existence argument, <m>\mathcal S</m> is itself compactly generated by <m>G</m>, so Brown representability gives a right adjoint <m>\Gamma</m> to its inclusion. The counit triangle has third term in <m>\mathcal S^\perp</m>, which constructs the reflection. That orthogonal subcategory is closed under ambient coproducts because its defining tests use compact objects. This proves the coproduct assertion. The finite factorization theorem for compact objects gives the final assertion.</p>
+    <p>A localization preserving coproducts is called smashing. Its kernel need not be generated by compact objects in an arbitrary compactly generated category; the converse of the theorem is an extra assertion, not part of the definition.<fn>The reflector, viewed as a functor into its category of local objects, is a left adjoint and preserves coproducts there. Smashing asks that its endofunctor on the ambient category preserve coproducts. The distinction is whether inclusion of local objects preserves those coproducts.</fn></p>
+    <p>The finite part of the localization theorem has a precise quotient formulation. Let <m>\mathcal S^c=\mathcal S\cap\mathcal T^c=\thick(G)</m>. There is a fully faithful exact functor
+      <md number="no">\mathcal T^c/\mathcal S^c\longrightarrow(\mathcal T/\mathcal S)^c,</md>
+      and every object on the right is a retract of one in its image. Thus the right side is obtained from the left side by splitting idempotents. This is <xref ref="bib-ha-krause" detail="Theorem 5.6.1"/>. Taking the quotient and taking compact objects commute only with this qualification. The quotient of the compact subcategories alone need not already contain every retract that exists in the large quotient.</p>
+    <p>Smashing, as defined here, asks for preservation of coproducts. It does not by definition assert a formula <m>LX\simeq X\otimes L\mathbf1</m>; that expression requires a monoidal structure and compatibility with the kernel. A sufficient set of such assumptions is given in <xref ref="ha-c16"/>. The additional tensor assertion should be distinguished from the triangulated localization statement.</p>
+    <example xml:id="ha-c15-example-arithmetic">
+      <p>In <m>\D(\Z)</m>, fix a prime <m>p</m> and let <m>LX=X\Ltensor_{\Z}\Z[1/p]</m>, viewed again as a complex of abelian groups. Flatness and <m>\Z[1/p]\otimes_{\Z}\Z[1/p]\simeq\Z[1/p]</m> give a localization. Its local objects have multiplication by <m>p</m> invertible on every cohomology group. Its acyclic objects have cohomology groups in which each element is killed by some power of <m>p</m>; the exponent may depend on the element.</p>
+      <p>The acyclic subcategory is <m>\Loc(\Z/p)</m>. Indeed, orthogonality to every shift of <m>\Z/p</m>, using the triangle <m>\Z\xrightarrow{p}\Z\to\Z/p\to\Z[1]</m>, is precisely invertibility of multiplication by <m>p</m> on cohomology. The localization theorem therefore gives the same local objects, and uniqueness of reflection gives the same kernel. This localization inverts <m>p</m>; it is not derived <m>p</m>-adic completion.</p>
+    </example>
+  </section>
+  <section xml:id="ha-c15-recollement">
+    <title>Recollement data</title>
+    <definition xml:id="ha-c15-definition-recollement">
+      <title>Recollement</title>
+      <idx>Recollement</idx>
+    <statement>
+      <p>A recollement of <m>\mathcal T</m> by triangulated categories <m>\mathcal Z</m> and <m>\mathcal U</m> consists of exact functors in adjoint triples</p>
+      <p><md number="no">i^*\dashv i_*\dashv i^!,\qquad j_!\dashv j^*\dashv j_*,</md></p>
+      <p>where <m>i_*:\mathcal Z\to\mathcal T</m> and <m>j^*:\mathcal T\to\mathcal U</m>, satisfying:</p>
+      <p><ol>
+        <li><p>The functors <m>i_*,j_!,j_*</m> are fully faithful.</p></li>
+        <li><p><m>j^*i_*=0</m>.</p></li>
+        <li><p>The units and counits occur in functorial distinguished triangles</p>
+          <p><md>
+            <mrow>j_!j^*X\longrightarrow X\longrightarrow i_*i^*X\longrightarrow(j_!j^*X)[1],</mrow>
+            <mrow>i_*i^!X\longrightarrow X\longrightarrow j_*j^*X\longrightarrow(i_*i^!X)[1].</mrow>
+          </md></p>
+        </li>
+      </ol></p>
+    </statement>
+    </definition>
+    <p>These axioms imply <m>\ker j^*=\im i_*</m> and an equivalence <m>\mathcal T/\im i_*\simeq\mathcal U</m>. For an object in the kernel, either triangle identifies it with an object from <m>\mathcal Z</m>. The two embeddings of the quotient are generally different: adjunction gives <m>\im j_*=(\im i_*)^\perp</m> and <m>\im j_!={}^{\perp}(\im i_*)</m>. Recollement is therefore more than a single reflective localization. For an exact localization, it is enough additionally that the acyclic inclusion admit a left adjoint to complete the corresponding localization diagram to a recollement; see <xref ref="bib-ha-krause" detail="Section 4.13"/>.</p>
+    <proposition xml:id="ha-c15-proposition-recollement-identities">
+      <statement><p>In a recollement the adjunction maps give isomorphisms
+        <md number="no">i^*i_*\simeq\id_{\mathcal Z}\simeq i^!i_*,\qquad j^*j_!\simeq\id_{\mathcal U}\simeq j^*j_*.</md>
+        Also <m>i^*j_!=0</m> and <m>i^!j_*=0</m>. The functors <m>j_*j^*</m> and <m>i_*i^*</m> are exact localizations, with kernels <m>\im i_*</m> and <m>\im j_!</m>, respectively. Their associated acyclic functors are <m>i_*i^!</m> and <m>j_!j^*</m>.</p></statement>
+      <proof><p>A fully faithful right adjoint has invertible counit and a fully faithful left adjoint has invertible unit. Apply this to the four adjunctions involving an embedding. For <m>A\in\mathcal U</m> and <m>B\in\mathcal Z</m>,
+        <md number="no">\Hom(i^*j_!A,B)\simeq\Hom(j_!A,i_*B)\simeq\Hom(A,j^*i_*B)=0.</md>
+        Taking <m>B=i^*j_!A</m> gives the first vanishing, and the second is dual. Each localization is the composite of a reflection and its fully faithful inclusion; the two recollement triangles identify its kernel and acyclic functor.</p></proof>
+    </proposition>
+    <p>There is a natural map <m>j_!A\to j_*A</m> corresponding to <m>\id_A</m> under either adjunction. Applying <m>j^*</m> makes it an isomorphism, so its cone belongs to <m>\im i_*</m>. The obstruction to the two extensions agreeing is supported in the third category. The other mixed composites, <m>i^*j_*</m> and <m>i^!j_!</m>, need not vanish; they describe how the two parts interact.<fn>Recollement supplies two ordered orthogonal decompositions. It need not express <m>\mathcal T</m> as a product, since the vanishing is in specified directions and does not remove all morphisms between the pieces.</fn></p>
+    <example xml:id="ha-c15-example-product">
+      <p>For <m>\mathcal T=\mathcal Z\times\mathcal U</m>, use the two inclusions and projections. Both adjoints of either inclusion are the corresponding projection, and both triangles split. A ring product <m>R=R_1\times R_2</m> gives this example with <m>\D(R)\simeq\D(R_1)\times\D(R_2)</m>. The general axioms do not require a splitting; maps between the two components in the opposite orthogonality directions can carry extension data.</p>
+    </example>
+  </section>
+  <section xml:id="ha-c15-gluing">
+    <title>Gluing t-structures</title>
+    <theorem xml:id="ha-c15-theorem-gluing">
+      <statement>
+        <p>Given a recollement and t-structures on <m>\mathcal Z</m> and <m>\mathcal U</m>, there is a t-structure on <m>\mathcal T</m> defined by</p>
+        <p><md>
+          <mrow>\mathcal T^{\leq0}=\{X:j^*X\in\mathcal U^{\leq0},\ i^*X\in\mathcal Z^{\leq0}\},</mrow>
+          <mrow>\mathcal T^{\geq0}=\{X:j^*X\in\mathcal U^{\geq0},\ i^!X\in\mathcal Z^{\geq0}\}.</mrow>
+        </md></p>
+        <p>The functors <m>i_*</m> and <m>j^*</m> are t-exact. The functors <m>i^*,j_!</m> are right t-exact, while <m>i^!,j_*</m> are left t-exact. If both given t-structures are bounded, the glued t-structure is bounded.</p>
+      </statement>
+    </theorem>
+    <p>For the construction of truncation triangles, we use the gluing theorem of <xref ref="bib-ha-bbd" detail="Section 1.4"/>. Its orthogonality has a short direct proof. For <m>X\in\mathcal T^{\leq0}</m> and <m>Y\in\mathcal T^{\geq1}</m>, the first recollement triangle for <m>X</m> reduces <m>\Hom(X,Y)=0</m> to</p>
+    <p><md number="no">\Hom(j^*X,j^*Y)=0,\qquad\Hom(i^*X,i^!Y)=0.</md></p>
+    <p>Both vanish by the t-structures on the two pieces. The truncation construction first truncates <m>j^*X</m>, lifts its two parts using the two adjoints, and then truncates the remaining object supported in <m>\im i_*</m>. The octahedral axiom assembles the triangles. This is the part of the proof for which both adjoints and both recollement triangles are needed. Boundedness follows by choosing common bounds for <m>j^*X,i^*X,i^!X</m>.</p>
+    <p>On hearts, <m>i_*</m> is an exact fully faithful functor and <m>j^*</m> is an exact quotient onto the heart on <m>\mathcal U</m>, with kernel the image of the heart on <m>\mathcal Z</m>. The other four original functors need not take hearts to hearts; one uses their degree-zero cohomology when a heart-valued functor is required. Thus a triangulated recollement and a recollement of abelian categories should not be identified merely by suppressing truncation functors.</p>
+    <definition xml:id="ha-c15-definition-intermediate-extension">
+      <title>Intermediate extension in the glued heart</title><idx>Intermediate extension</idx>
+      <statement><p>Write <m>H_t^0</m> for degree-zero cohomology in the glued t-structure. For an object <m>A</m> of the heart of <m>\mathcal U</m>, its intermediate extension is the image in the heart of <m>\mathcal T</m>,
+        <md number="no">j_{!*}A=\im\bigl(H_t^0j_!A\longrightarrow H_t^0j_*A\bigr),</md>
+        using the natural comparison just constructed.</p></statement>
+    </definition>
+    <p>The image construction is functorial, since it is taken in an abelian category. One has <m>j^*j_{!*}A\simeq A</m>. It is characterized among extensions of <m>A</m> by having no nonzero subobject or quotient belonging to the image of the heart of <m>\mathcal Z</m>. Indeed the adjunctions make <m>H_t^0j_!A</m> have no such quotient and <m>H_t^0j_*A</m> have no such subobject. Their image has both properties. Conversely the two adjunction maps to and from any extension with these properties force it to be that image. This characterization also proves full faithfulness of <m>j_{!*}</m>; see <xref ref="bib-ha-bbd" detail="Section 1.4"/>.</p>
+    <p>Intermediate extension need not be exact. It is an image of a natural comparison between a right exact heart-valued functor and a left exact one, and those two exactness properties do not force their image functor to preserve all short exact sequences. The definition applies to any recollement with glued t-structures and uses no geometric interpretation of the symbols <m>i,j</m>.</p>
+    <p>The six functors displayed in a recollement are not Grothendieck's six operations. A recollement concerns two embeddings and a quotient among three categories. It does not include a tensor product, an internal Hom, or base change over an arbitrary base category. Those require the additional indexed structure of <xref ref="ha-c18"/>.</p>
+  </section>
+</chapter>

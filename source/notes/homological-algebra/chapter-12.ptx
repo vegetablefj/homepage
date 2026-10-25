@@ -1,0 +1,104 @@
+<chapter xml:id="ha-c12">
+  <title>Derived tensor and Hom</title>
+  <introduction><p>We derive Hom and tensor while keeping three constructions distinct: a complex of abelian groups recording derived morphisms, an internal Hom object of a derived category, and a derived tensor product. The first is available in general abelian categories with suitable resolutions. The other two need monoidal structure and additional existence hypotheses. Ring modules provide explicit models for these constructions; the categorical statements are the main concern.</p><p>Main references are <xref ref="bib-ha-li2" detail="Sections 4.9 and 4.12"/>, <xref ref="bib-ha-yekutieli" detail="Chapters 9–12"/>, and <xref ref="bib-ha-lipman" detail="Sections 2.4–2.6"/>. The universal derived-functor constructions of <xref ref="ha-c11"/> and the closed structures of <xref ref="ha-c03"/> will be used separately.</p></introduction>
+  <section xml:id="ha-c12-abstract-hom">
+    <title>Derived morphism complexes in an abelian category</title>
+    <definition xml:id="ha-c12-external-hom">
+      <title>Derived Hom with values in complexes of abelian groups</title><idx>External derived Hom</idx>
+      <statement><p>Let <m>\mathcal A</m> be an abelian category in which every complex admits a K-injective replacement. For <m>X,Y\in\D(\mathcal A)</m>, choose <m>Y\to I</m> K-injective and put
+        <md number="no">\RHom_{\mathcal A}(X,Y)=\underline{\Hom}_{\mathcal A}^{\bullet}(X,I)\quad\text{in }\D(\Ab).</md>
+        This is the <em>external</em> derived Hom. The adjective specifies its target and will be omitted when there is no risk of confusing it with an internal Hom.</p></statement>
+    </definition>
+    <proposition xml:id="ha-c12-external-hom-properties">
+      <statement><p>The construction gives a bifunctor <m>\D(\mathcal A)^\op\times\D(\mathcal A)\to\D(\Ab)</m>, independent of representatives and K-injective replacements up to the natural comparison isomorphisms. It is exact in either variable, with the first variable contravariant. There are natural isomorphisms
+        <md number="no">H^n\RHom_{\mathcal A}(X,Y)\simeq\Hom_{\D(\mathcal A)}(X,Y[n]).</md>
+        In particular, on objects of <m>\mathcal A</m> this recovers classical Ext whenever an injective resolution computes it.</p></statement>
+      <proof><p>By K-injectivity, <m>\underline{\Hom}^{\bullet}(-,I)</m> sends a quasi-isomorphism to a quasi-isomorphism. A morphism between two K-injective complexes in the derived category is represented uniquely up to homotopy by a complex morphism. In particular, the comparison between two replacements of <m>Y</m> is a homotopy equivalence, and applying <m>\underline{\Hom}^{\bullet}(X,-)</m> preserves that equivalence. These facts define the bifunctor on localized categories and give its independence. The degree-<m>n</m> Hom identification from <xref ref="ha-c04-homotopy"/> and the computation of morphisms into a K-injective complex give the displayed formula. Hom sends cone sequences to cone sequences, with the translation sign in the contravariant argument; this proves exactness.</p></proof>
+    </proposition>
+    <p>No tensor product, generator, or module embedding is required in this construction. The products in the Hom complex are products of abelian groups. In a Grothendieck category the necessary K-injectives exist by <xref ref="ha-c10"/>. With only enough injectives the same formula is available for bounded below <m>Y</m>, using a bounded below complex of injectives, while <m>X</m> may be unbounded. Without such a resolution theorem the derived morphism groups can still make sense, but the present formula is not being asserted.</p>
+    <p>The identity above describes the graded cohomology groups. A list of those groups does not itself construct the derived Hom bifunctor, its comparisons, or its connecting maps; these are supplied by the resolution construction. Nor does the formula produce an object of <m>\D(\mathcal A)</m>: that would require an internal construction with a different target.</p>
+  </section>
+  <section xml:id="ha-c12-abstract-tensor">
+    <title>Deriving a monoidal structure</title>
+    <p>Let <m>\mathcal A</m> be an abelian closed symmetric monoidal category with countable coproducts. Its tensor product is additive in each variable. Form the sum-total tensor of complexes with the signs of <xref ref="ha-c04-totalization"/>. The unit is <m>\mathbf1[0]</m>, and the symmetry on homogeneous components includes the Koszul sign. Existence of this tensor on complexes does not yet give a tensor on <m>\D(\mathcal A)</m>.</p>
+    <definition xml:id="ha-c12-monoidal-k-flat">
+      <title>K-flat replacements for an abstract tensor product</title><idx>K-flat complex</idx>
+      <statement><p>A complex <m>P</m> is <em>K-flat</em> for this tensor product if <m>P\otimes E</m> is acyclic for every acyclic complex <m>E</m>. Symmetry makes the analogous condition in the other argument equivalent. A K-flat replacement is a quasi-isomorphism <m>P\to X</m> with <m>P</m> K-flat.</p></statement>
+    </definition>
+    <proposition xml:id="ha-c12-abstract-derived-monoidal">
+      <statement><p>Assume that every complex in <m>\mathcal A</m> has a K-flat replacement. Then
+        <md number="no">X\Ltensor Y=P\otimes Q</md>
+        for K-flat replacements <m>P\to X</m> and <m>Q\to Y</m> defines a symmetric monoidal structure on <m>\D(\mathcal A)</m>, exact in each variable. Its unit is <m>\mathbf1[0]</m>. Replacing either one of the two arguments by a K-flat complex suffices for a computation. No closed structure on the derived category is included in this assertion.</p></statement>
+      <proof><p>K-flatness is equivalent to preserving quasi-isomorphisms under tensoring, by applying the tensor functor to a cone. The K-flat complexes are closed under shifts and cones, and <m>P\otimes Q</m> is K-flat when <m>P,Q</m> are: apply <m>Q\otimes-</m>, then <m>P\otimes-</m>, to an acyclic complex. The unit complex is K-flat because tensoring with it is the identity. The full homotopy category of K-flat complexes therefore localizes to <m>\D(\mathcal A)</m>. To see the morphism assertion, replace the source of a roof by a K-flat complex; the same replacement of common refinements proves faithfulness. The tensor functor sends a quasi-isomorphism between K-flat complexes to a quasi-isomorphism after tensoring with another K-flat complex, so descends in both variables. Associativity, unit, and symmetry descend from complexes, including their coherence equations. Comparing <m>P\otimes Q</m> with <m>P\otimes Y</m> and with <m>X\otimes Q</m> proves the one-variable formulas. Tensor preserves cone sequences at the complex level, proving exactness.</p></proof>
+    </proposition>
+    <p>A theorem supplying K-flat replacements has to be checked in the category under consideration. In particular, the Grothendieck property supplies K-injectives but does not by itself supply K-flat replacements for an arbitrarily specified tensor. A bounded above complex of flat objects is K-flat when the tensor and coproduct exactness hypotheses used in the usual totalization proof hold; the unbounded statement needs further arguments. These requirements concern the construction of the tensor, independently of any desired base-change or projection formula.</p>
+    <proposition xml:id="ha-c12-derived-closed-brown">
+      <statement><p>Suppose the preceding derived tensor has been constructed, that <m>\D(\mathcal A)</m> has small coproducts and is compactly generated, and that <m>-\Ltensor X</m> preserves coproducts for every <m>X</m>. Then each <m>-\Ltensor X</m> has a right adjoint, denoted <m>[X,-]_{\D(\mathcal A)}</m>. These adjoints give a closed symmetric monoidal structure, with natural isomorphisms
+        <md number="no"><mrow>\Hom_{\D(\mathcal A)}(Z\Ltensor X,Y)\simeq\Hom_{\D(\mathcal A)}(Z,[X,Y]_{\D(\mathcal A)}),</mrow><mrow>[Z\Ltensor X,Y]_{\D(\mathcal A)}\simeq[Z,[X,Y]_{\D(\mathcal A)}]_{\D(\mathcal A)}.</mrow></md>
+      </p></statement>
+      <proof><p>For fixed <m>X,Y</m>, the functor <m>Z\mapsto\Hom(Z\Ltensor X,Y)</m> is cohomological and takes coproducts to products. Brown representability in <xref ref="ha-c14"/> represents it; uniqueness makes the representing objects functorial in <m>X,Y</m> and gives the right adjunction. Testing the second formula against an arbitrary object and applying the adjunction twice proves it by Yoneda. The right adjoint is exact with its specified translation comparison by <xref ref="ha-c11"/>.</p></proof>
+    </proposition>
+    <p>This is one sufficient existence theorem for internal derived Hom. Other settings construct it directly from compatible tensor and internal-Hom resolutions without compact generation. These approaches must prove that the internal Hom complexes used in the formula send the required quasi-isomorphisms to quasi-isomorphisms. Ordinary K-injectivity, defined using complexes of morphism groups, should not silently be substituted for such an internal condition.<fn>The external object <m>\RHom_{\mathcal A}(X,Y)</m> lies in <m>\D(\Ab)</m>; the internal object <m>[X,Y]_{\D(\mathcal A)}</m> lies in <m>\D(\mathcal A)</m>. An identification between their presentations requires its own adjunction or enrichment argument. In module categories the formulas below make this relation explicit.</fn></p>
+    <p>Once closedness is established, the evaluation map, the tensor–Hom adjunction, and the exponential law are formal categorical constructions. Whether the canonical map <m>[X,\mathbf1]\Ltensor Y\to[X,Y]</m> is invertible is a further question: it is the dualizability criterion of <xref ref="ha-c16"/>. Perfect complexes over a ring give one finite-resolution instance; their ring-theoretic description is not part of the abstract definition of a dualizable object.</p>
+  </section>
+  <section xml:id="ha-c12-constructions">
+    <title>Module models and replacement formulas</title>
+    <definition xml:id="ha-c12-def-tensor-hom">
+      <title>Derived tensor and derived Hom</title><idx>Derived tensor product</idx><idx>Derived Hom</idx>
+      <statement><p><ol>
+        <li><p>For a complex <m>M</m> of right <m>R</m>-modules and a complex <m>N</m> of left <m>R</m>-modules, choose K-flat replacements <m>P\to M</m> and <m>Q\to N</m>. Their derived tensor product is the object <m>M\Ltensor_R N=P\otimes_R Q</m> of <m>\D(\Ab)</m>. A specified central base ring can be retained in the target.</p></li>
+        <li><p>For complexes <m>M,N</m> of left <m>R</m>-modules choose a K-projective replacement <m>P\to M</m> and a K-injective replacement <m>N\to I</m>. Define <m>\RHom_R(M,N)</m> by the complex <m>\underline{\Hom}_R^{\bullet}(P,I)</m>, viewed in <m>\D(\Ab)</m>.</p></li>
+      </ol></p></statement>
+    </definition>
+    <proposition xml:id="ha-c12-prop-one-variable">
+      <statement><p>These constructions are independent of replacements up to their natural derived isomorphisms. A K-flat replacement of either tensor factor suffices. Derived Hom can be computed by <m>\underline{\Hom}_R^{\bullet}(P,N)</m> or by <m>\underline{\Hom}_R^{\bullet}(M,I)</m>. In particular,
+        <md number="no">H^n\RHom_R(M,N)\simeq\Hom_{\D(R)}(M,N[n]).</md>
+        For modules in degree zero, <m>H^{-n}(M\Ltensor_R N)=\Tor_n^R(M,N)</m>.</p></statement>
+      <proof><p>Tensor a quasi-isomorphism with a K-flat factor and apply the defining acyclicity criterion to its cone. This compares the two-replacement formula with each one-replacement formula. For Hom, the K-projective condition makes <m>\underline{\Hom}(P,N)\to\underline{\Hom}(P,I)</m> a quasi-isomorphism, while the K-injective condition does the same for <m>\underline{\Hom}(M,I)\to\underline{\Hom}(P,I)</m>. Degree-zero homotopy classes and their translations give the displayed equality. The Tor assertion uses a bounded above free resolution and the grading convention of <xref ref="ha-c00"/>.</p></proof>
+    </proposition>
+    <p>The objects <m>\RHom_R(M,N)</m> and <m>\Hom_{\D(R)}(M,N)</m> therefore have different types: the former is a derived complex, the latter an abelian group. The latter is the degree-zero cohomology of the former. When <m>R</m> is commutative, the Hom complex has its natural <m>R</m>-action and represents an internal Hom in <m>\D(R)</m>.<fn>For noncommutative <m>R</m>, two left <m>R</m>-modules do not naturally give an <m>R</m>-module <m>\Hom_R(M,N)</m>. Bimodule structures or a central coefficient ring can supply additional actions; they must be specified.</fn></p>
+  </section>
+  <section xml:id="ha-c12-closed">
+    <title>The closed structure over a commutative ring</title>
+    <theorem xml:id="ha-c12-thm-closed">
+      <statement><p>For a commutative ring <m>R</m>, the derived tensor product, with unit <m>R[0]</m>, and the internal derived Hom make <m>\D(R)</m> a closed symmetric monoidal category. The symmetry is induced by the Koszul sign. There are natural isomorphisms
+        <md number="no"><mrow>(L\Ltensor_R M)\Ltensor_R N\simeq L\Ltensor_R(M\Ltensor_R N),</mrow><mrow>\Hom_{\D(R)}(L\Ltensor_R M,N)\simeq\Hom_{\D(R)}(L,\RHom_R(M,N)),</mrow><mrow>\RHom_R(L\Ltensor_R M,N)\simeq\RHom_R(L,\RHom_R(M,N)).</mrow></md>
+        Tensor is exact in each variable. Derived Hom is exact covariantly in its second variable and contravariantly in its first, with the triangulated sign conventions.</p></statement>
+      <proof><p>Use K-flat resolutions for associativity and symmetry; the tensor of K-flat complexes is K-flat. The coherence maps are induced by the corresponding maps on complexes, where their required equations hold. To prove the adjunction choose K-projective resolutions <m>P\to L</m> and <m>Q\to M</m>, and a K-injective replacement <m>N\to I</m>. The ordinary tensor–Hom adjunction is an isomorphism of complexes
+        <md number="no">\underline{\Hom}^{\bullet}_R(P\otimes_R Q,I)\simeq\underline{\Hom}^{\bullet}_R(P,\underline{\Hom}^{\bullet}_R(Q,I)).</md>
+        K-projective complexes of modules are K-flat; moreover <m>\underline{\Hom}^{\bullet}_R(Q,I)</m> is K-injective because its Hom from an acyclic <m>A</m> is <m>\underline{\Hom}^{\bullet}_R(A\otimes_R Q,I)</m>, which is acyclic. Taking degree-zero cohomology proves the derived adjunction. The internal formula follows by Yoneda, or by the same calculation with a further test complex. Cone formulas give exactness, including the sign for the contravariant variable.</p></proof>
+    </theorem>
+    <p>For an arbitrary closed monoidal abelian category, the same conclusion needs a specified compatible supply of tensor-acyclic replacements and control of internal Hom. Sufficient hypotheses may be checked by a resolving subcategory and the tensor–Hom calculation just used. We do not infer these hypotheses from the Grothendieck property alone.</p>
+    <example xml:id="ha-c12-example-tor">
+      <p>Let <m>n\geq2</m>. The resolution <m>[\Z\xrightarrow{n}\Z]</m> of <m>\Z/n\Z</m>, placed in degrees <m>-1,0</m>, gives
+        <md number="no">(\Z/n\Z)\Ltensor_{\Z}(\Z/n\Z)\simeq[\Z/n\Z\xrightarrow{0}\Z/n\Z].</md>
+        Ordinary tensor detects only degree zero. Degree <m>-1</m> retains <m>\Tor_1</m>. Applying Hom to the same resolution gives <m>\RHom_{\Z}(\Z/n\Z,\Z)</m> with its nonzero cohomology in degree <m>1</m>.</p>
+    </example>
+  </section>
+  <section xml:id="ha-c12-base">
+    <title>Change of rings and tensor comparisons</title>
+    <proposition xml:id="ha-c12-prop-base">
+      <statement><p>Let <m>R\to S</m> be a map of commutative rings. Extension of scalars <m>S\Ltensor_R-</m> is left adjoint to restriction. It is strong symmetric monoidal: for <m>M,N\in\D(R)</m>,
+        <md number="no">(S\Ltensor_R M)\Ltensor_S(S\Ltensor_R N)\simeq S\Ltensor_R(M\Ltensor_R N).</md>
+        For <m>Y\in\D(S)</m> there is a projection isomorphism
+        <md number="no">\operatorname{Res}(Y)\Ltensor_R M\simeq\operatorname{Res}\bigl(Y\Ltensor_S(S\Ltensor_R M)\bigr).</md>
+      </p></statement>
+      <proof><p>If <m>P</m> is K-flat over <m>R</m>, the complex <m>S\otimes_R P</m> is K-flat over <m>S</m>: tensoring it with an acyclic right <m>S</m>-complex is the same as tensoring that complex, restricted to <m>R</m>, with <m>P</m>. Compute the formulas using such replacements and ordinary associativity of tensor products. The adjunction is the derived extension–restriction adjunction of <xref ref="ha-c11"/>.</p></proof>
+    </proposition>
+    <p>For bimodule calculations, keep the outer module actions throughout a replacement. Over a field <m>k</m>, semi-free resolutions of bimodules over <m>k</m>-algebras give the familiar associative derived tensor calculus. Over a general base ring, a projective resolution over an ordinary tensor-product algebra need not remain flat after restricting one action. A statement about bimodule associativity must use replacements suitable for the intermediate ring actions, or a derived algebra construction that retains them.<fn>This is a source of hidden flatness hypotheses in formulas written only as <m>M\otimes_R^{\mathbf L}N\otimes_S^{\mathbf L}P</m>. The parenthesized functors and their actions should be established before omitting the parentheses.</fn></p>
+  </section>
+  <section xml:id="ha-c12-perfect">
+    <title>Finite resolutions and evaluation</title>
+    <definition xml:id="ha-c12-def-perfect">
+      <title>Perfect complexes</title><idx>Perfect complex</idx>
+      <statement><p>A complex over a ring is perfect if it is isomorphic in the derived category to a bounded complex of finitely generated projective modules.</p></statement>
+    </definition>
+    <proposition xml:id="ha-c12-prop-evaluation">
+      <statement><p>Let <m>R</m> be commutative and let <m>P</m> be perfect. Write <m>P^{\vee}=\RHom_R(P,R)</m>. Evaluation induces a natural isomorphism for every <m>X\in\D(R)</m>,
+        <md number="no">P^{\vee}\Ltensor_R X\simeq\RHom_R(P,X).</md>
+        The bidual map <m>P\to(P^{\vee})^{\vee}</m> is an isomorphism.</p></statement>
+      <proof><p>Represent <m>P</m> by a bounded complex of finitely generated projectives. For a finitely generated projective module the ordinary evaluation map <m>\Hom_R(P,R)\otimes_R X\to\Hom_R(P,X)</m> is an isomorphism: it is so for finite free modules and passes to direct summands. Apply this fact termwise. Boundedness makes each diagonal finite, so the finite direct sums in tensor and products in Hom agree. The resulting map of complexes has the Koszul signs required by the Hom differential. Double duality follows by applying the finite projective bidual isomorphism in each degree.</p></proof>
+    </proposition>
+    <p>The boundedness and finite generation in this proof have distinct roles. Infinite free modules generally fail the evaluation formula because Hom introduces products. A merely bounded complex need not be perfect. In <xref ref="ha-c16"/> this formula becomes the abstract criterion for dualizability, while <xref ref="ha-c14"/> characterizes the same perfect complexes by compactness in <m>\D(R)</m>.</p>
+  </section>
+</chapter>

@@ -1,0 +1,295 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="toric-birational">
+  <title>Toric surfaces, singularities, and birational geometry</title>
+  <introduction>
+    <p>A subdivision changes a toric variety while keeping its dense torus. In dimension two, the new rays record exceptional curves, continued fractions describe resolutions, and adjacent-ray relations compute self-intersections. In higher dimensions, the same lattice data calculate discrepancies and control extremal modifications. This chapter develops those calculations before explaining their use in toroidal factorization and boundary geometry.</p>
+    <p>The fan, divisor, and intersection dictionaries are prerequisites. The surface calculations, normalized monomial blowup construction, and discrepancy formula work over the fixed algebraically closed field of arbitrary characteristic. For the general canonical/terminal interpretation and the quoted MMP theorems, we explicitly work over <m>\C</m>. The main sources are <xref ref="bib-toric-cls" detail="Chapters 10–11 and Sections 15.3–15.4"/> and <xref ref="bib-toric-fulton" detail="Chapter 2"/>.</p>
+  </introduction>
+  <section xml:id="toric-birational-surfaces">
+    <title>Complete smooth toric surfaces</title>
+    <p>Let <m>\Sigma</m> be a smooth complete fan in a rank-two lattice. Choose an orientation and list its primitive ray generators <m>u_1,\ldots,u_r</m> cyclically, so <m>\det(u_i,u_{i+1})=1</m>. Indices are taken cyclically. Its invariant divisors <m>D_i</m> are projective lines, and adjacent divisors meet transversely at one fixed point.</p>
+    <proposition xml:id="toric-prop-surface-self-intersection">
+      <title>The adjacent-ray relation</title>
+      <statement><p>There is a unique integer <m>b_i</m> such that
+        <md xml:id="toric-eq-surface-ray-relation" number="yes">u_{i-1}+u_{i+1}=b_i u_i.</md>
+        The invariant curve satisfies <m>D_i^2=-b_i</m>. Distinct adjacent boundary curves have intersection <m>1</m>; distinct nonadjacent boundary curves have intersection <m>0</m>.</p></statement>
+      <proof>
+        <p>Write <m>u_{i+1}=c u_{i-1}+b_i u_i</m> in the lattice basis <m>u_{i-1},u_i</m>. The determinant equation <m>\det(u_i,u_{i+1})=1</m> forces <m>c=-1</m>. This gives the unique relation. Intersections of distinct curves follow from the smooth affine coordinates at a fixed point and the orbit closure incidence relations.</p>
+        <p>Choose <m>m\in M</m> with <m>\langle m,u_i\rangle=1</m>. A principal divisor has degree zero on <m>D_i</m>, so
+          <md number="no">0=\divisor(\chi^m)\cdot D_i=\langle m,u_{i-1}\rangle+D_i^2+\langle m,u_{i+1}\rangle=b_i+D_i^2.</md>
+          This also works on a noncomplete smooth toric surface when the ray has two neighboring two-dimensional cones and its orbit closure is complete.</p>
+      </proof>
+    </proposition>
+    <p>This is <xref ref="bib-toric-cls" detail="Theorem 10.4.4"/>. It extends <xref ref="toric-example-hirzebruch-intersection"/>: adjacent rays now compute every entry of the boundary intersection matrix.</p>
+    <proposition xml:id="toric-prop-surface-blowup">
+      <title>A fixed-point blowup in the fan</title>
+      <statement><p>For a smooth cone <m>\Cone(u,v)</m>, inserting the ray <m>w=u+v</m> gives the blowup of its fixed point. Its exceptional divisor has square <m>-1</m>, and the squares of its two adjacent strict transforms decrease by one. Conversely, an invariant curve of square <m>-1</m> can be removed from the fan to give a smooth toric contraction.</p></statement>
+      <proof>
+        <p>The blowup is the coordinate calculation of <xref ref="toric-example-blowup-affine-plane"/> in the basis <m>u,v</m>. The new ray has neighbors satisfying <m>u+v=w</m>, so its square is <m>-1</m>. Replacing the neighbor <m>v</m> of <m>u</m> by <m>u+v</m> increases <m>b_u</m> by one, and similarly for <m>v</m>, giving the change of squares.</p>
+        <p>Conversely, square <m>-1</m> gives <m>u_{\mathrm{prev}}+u_{\mathrm{next}}=u</m>. The determinant of the two neighbors is <m>1</m>, since they are <m>u_{\mathrm{prev}}</m> and <m>u-u_{\mathrm{prev}}</m> in an adjacent lattice basis. Their cone is strongly convex. Merging the two original cones therefore gives a smooth fan, and the coordinate calculation identifies the inverse modification.</p>
+      </proof>
+    </proposition>
+    <p>Every smooth complete toric surface is obtained by finitely many fixed-point blowups from <m>\P^2</m>, <m>\P^1\times\P^1</m>, or a Hirzebruch surface <m>\mathbb F_a</m> with <m>a\geq2</m>. We invoke <xref ref="bib-toric-cls" detail="Theorem 10.4.3"/> for this global classification of smooth complete two-dimensional fans. It is combinatorial, so the fan statement and constructions apply over our field. In particular these surfaces are projective, since the starting surfaces and point blowups are projective. Minimal smooth complete toric surfaces are exactly the starting list; <m>\mathbb F_1</m> is omitted because its negative section is a <m>(-1)</m>-curve.</p>
+    <example xml:id="toric-example-surface-hirzebruch-contractions">
+      <title>The two extremal directions on a Hirzebruch surface</title>
+      <p>For the rays of <xref ref="toric-example-hirzebruch-divisors"/>, the adjacent-ray coefficients are <m>0,a,0,-a</m>. Hence
+        <md number="no">F^2=0,\quad S^2=-a,\quad(S+aF)^2=a,\quad S\cdot F=1,\qquad K\cdot F=-2,\quad K\cdot S=a-2.</md>
+        Here <m>K=-2S-(a+2)F</m>. At <m>a=1</m>, deleting the section ray gives the blowdown to <m>\P^2</m>. For <m>a\geq2</m> the same deletion has a singular target: the merged cone <m>\Cone((1,0),(-1,a))</m> has determinant <m>a</m>. Its complete fan gives <m>\P(1,1,a)</m>, since the remaining primitive rays satisfy <m>u_1+u_3+a u_4=0</m>.</p>
+      <p>These contractions are not all <m>K</m>-negative MMP steps. The section has zero <m>K</m>-degree at <m>a=2</m> and positive degree for <m>a&gt;2</m>. The ruling, whose fibers have negative <m>K</m>-degree, is a different extremal direction.</p>
+    </example>
+  </section>
+  <section xml:id="toric-birational-resolutions">
+    <title>Resolutions and discrepancies</title>
+    <subsection xml:id="toric-birational-resolution-algorithm">
+      <title>A terminating resolution algorithm in dimension two</title>
+      <p>Let <m>\sigma=\Cone(u,v)</m> have primitive edges ordered so <m>d=\det(u,v)&gt;0</m>. It is smooth exactly when <m>d=1</m>. Suppose <m>d&gt;1</m>. The half-open parallelogram
+        <md number="no">\{s u+t v:0\leq s,t&lt;1\}</md>
+        represents the <m>d</m> cosets of <m>N/(\Z u+\Z v)</m>, so contains a nonzero lattice point <m>w</m>. Its two coefficients are strictly positive: a lattice point strictly between <m>0</m> and either primitive edge vector is impossible.</p>
+      <p>Replace <m>w</m> by the primitive generator <m>w_0</m> of its ray. Writing <m>w_0=s_0u+t_0v</m>, one has <m>0&lt;s_0,t_0&lt;1</m>. The new determinants are
+        <md number="no">\det(u,w_0)=t_0d,\qquad\det(w_0,v)=s_0d.</md>
+        Both are positive integers smaller than <m>d</m>. Recursively subdivide every nonsmooth resulting cone. On every branch the determinant strictly decreases, and the branching is finite, so the process terminates. The new rays lie inside the old two-dimensional cones, so subdivisions in different sectors agree on their boundary rays.</p>
+      <p>This gives a smooth refinement of a surface fan and a proper birational toric resolution, since the support and dense torus have not changed. It need not be the minimal resolution: unnecessary <m>(-1)</m>-curves can remain.</p>
+    </subsection>
+    <subsection xml:id="toric-birational-continued-fractions">
+      <title>Hirzebruch<ndash/>Jung continued fractions</title>
+      <p>A singular two-dimensional cone with primitive edges can, after a lattice basis change and ordering, be written
+        <md number="no">\sigma=\Cone((1,0),(-q,r)),\qquad0&lt;q&lt;r,\quad\gcd(q,r)=1.</md>
+        Its determinant is <m>r</m>. Write its negative continued fraction as
+        <md number="no">\frac rq=b_1-\frac1{b_2-\dfrac1{\cdots-\dfrac1{b_s}}}=:[b_1,\ldots,b_s],\qquad b_i\geq2.</md>
+        The ceiling Euclidean algorithm chooses <m>b_1=\lceil r/q\rceil</m>, replaces <m>(r,q)</m> by <m>(q,b_1q-r)</m>, and continues until the second entry is zero. Its nonzero second entries strictly decrease.</p>
+      <p>Set <m>u_0=(1,0)</m>, <m>u_1=(0,1)</m>, and
+        <md number="no">u_{i+1}=b_i u_i-u_{i-1}\qquad(1\leq i\leq s).</md>
+        The final vector is <m>u_{s+1}=(-q,r)</m>, and adjacent vectors have determinant one. To check the endpoint, let <m>p_i/q_i=[b_1,\ldots,b_i]</m>, with <m>(p_0,q_0)=(1,0)</m> and <m>(p_1,q_1)=(b_1,1)</m>. The numerator and denominator recurrences give <m>u_{i+1}=(-q_i,p_i)</m>. The truncated fractions decrease to <m>r/q</m>, ordering the rays inside the original cone; the determinant identity follows directly from the vector recurrence.</p>
+      <p>The inserted rays give a smooth resolution with exceptional chain <m>E_1,\ldots,E_s</m> and
+        <md number="no">E_i^2=-b_i,\qquad E_iE_{i+1}=1,\qquad E_iE_j=0\ (|i-j|&gt;1).</md>
+        The recurrence and the self-intersection formula prove the diagonal entries. Since <m>b_i\geq2</m>, there is no exceptional <m>(-1)</m>-curve. This is the minimal surface resolution; see <xref ref="bib-toric-cls" detail="Theorems 10.2.3 and 10.2.5, and Corollary 10.4.9"/> for the construction and minimality criterion.</p>
+      <p>The notation <m>\frac1r(1,q)</m> describes the same toric singularity. Before the basis change its cocharacter lattice is <m>\Z^2+\Z(1/r,q/r)</m> with the positive quadrant as cone. In the basis <m>(0,1),(1/r,q/r)</m>, its two original edge vectors become <m>(1,0),(-q,r)</m>. The invariant monomials for the <m>\mu_r</m> action of weights <m>(1,q)</m> satisfy <m>a+qb\equiv0\pmod r</m>. If the characteristic divides <m>r</m>, this is a diagonalizable group-scheme action, not an étale constant cyclic group. The cone calculation does not require the quotient description.</p>
+      <example xml:id="toric-example-five-halves-resolution">
+        <title>The fraction <m>5/2</m></title>
+        <p>Here <m>5/2=[3,2]</m>, giving the ordered rays
+          <md number="no">(1,0),\quad(0,1),\quad(-1,3),\quad(-2,5).</md>
+          Adjacent determinants are one. The exceptional intersection matrix is
+          <md number="no">\begin{pmatrix}-3&amp;1\\1&amp;-2\end{pmatrix}.</md>
+          Its determinant is <m>5</m> and its trace is negative, so it is negative definite. The chain has no exceptional <m>(-1)</m>-curve, whereas further point blowups would produce a nonminimal resolution.</p>
+      </example>
+      <figure xml:id="toric-figure-five-halves-resolution">
+        <caption>The minimal subdivision of the <m>5/2</m> cone. The inserted rays give <m>E_1^2=-3</m> and <m>E_2^2=-2</m>, and every adjacent determinant is <m>1</m>.</caption>
+        <image source="five-halves-resolution.svg" width="100%"><description><p>The cone between (1,0) and (-2,5), subdivided by the rays (0,1) and (-1,3). The three consecutive cones have determinant one, and the two exceptional curves have self-intersections minus three and minus two.</p></description></image>
+      </figure>
+    </subsection>
+    <subsection xml:id="toric-birational-higher-resolution">
+      <title>What is required in higher dimension</title>
+      <p>In arbitrary dimension we use the following combinatorial theorem: every finite rational fan has a smooth refinement obtained by finitely many star subdivisions and preserving its smooth cones; the induced resolution is projective over the original variety. One can further arrange that the exceptional locus is a divisor with simple normal crossings. These are <xref ref="bib-toric-cls" detail="Theorems 11.1.9 and 11.2.2"/>. Their constructions use lattice subdivisions, so give the same toric resolutions over our field.</p>
+      <p>The theorem contains compatibility work absent from the surface argument. One needs a compatible simplicial refinement, rather than independent triangulations of intersecting cones. Subsequent multiplicity reductions must control every cone affected by a star subdivision. We invoke the theorem for these steps; the two-dimensional determinant argument is not a proof of higher-dimensional resolution.</p>
+    </subsection>
+    <subsection xml:id="toric-birational-monomial-blowups">
+      <title>Normalized blowups of monomial ideals</title>
+      <p>Let <m>R=k[S_\sigma]</m> and <m>I=(\chi^{m_1},\ldots,\chi^{m_s})</m>, with <m>m_i\in S_\sigma</m>. The blowup is <m>\Proj R[It]</m>. Its <m>i</m>-th standard chart is
+        <md number="no">R[\chi^{m_j-m_i}:1\leq j\leq s].</md>
+        These characters are the Rees-algebra ratios <m>(\chi^{m_j}t)/(\chi^{m_i}t)</m>.</p>
+      <proposition xml:id="toric-prop-normalized-monomial-blowup">
+        <title>The fan of the normalized blowup</title>
+        <statement><p>The normalization of this blowup has subdivision cones
+          <md number="no">\sigma_i=\{v\in\sigma:\langle m_i,v\rangle\leq\langle m_j,v\rangle\text{ for every }j\}</md>
+          and their faces: the domains on which a chosen exponent realizes the minimum pairing.</p></statement>
+        <proof><p>The chart semigroup is generated by <m>S_\sigma</m> and the differences <m>m_j-m_i</m>, and its group of differences is <m>M</m>. Its cone has dual <m>\sigma_i</m>. The affine semigroup normalization theorem therefore gives normal ring <m>k[\sigma_i^\vee\cap M]</m>. The cones cover <m>\sigma</m> because a finite list of pairings always has a minimum. Their intersections are common faces defined by equalities of competing minima. The chart normalizations agree under the corresponding character localizations and glue. Their finiteness follows from the semigroup normalization theorem, identifying the glued variety with the normalization of the blowup.</p></proof>
+      </proposition>
+      <p>The subdivision is also described by the lower support function of the Newton polyhedron <m>\operatorname{conv}(m_1,\ldots,m_s)+\sigma^\vee</m>. This is a coherent subdivision, with its defining function part of the data. It does not follow that every proper toric subdivision is the blowup of one ordinary ideal. Both normalization and projectivity matter; compare <xref ref="bib-toric-cls" detail="Section 11.3"/>.</p>
+      <example xml:id="toric-example-weighted-monomial-blowup">
+        <title>A weighted ray from two generators</title>
+        <p>For <m>I=(x^b,y^a)</m> on <m>\A^2</m>, with positive coprime <m>a,b</m>, equality of pairings is <m>b v_1=a v_2</m>, giving the primitive ray <m>(a,b)</m>. The normalized blowup is the star subdivision at that ray. The choice <m>a=b=1</m> gives the ordinary blowup. Other weights can leave singular new cones; inserting a ray is not automatically resolving a singularity.</p>
+      </example>
+    </subsection>
+    <subsection xml:id="toric-birational-discrepancies">
+      <title>The height of an exceptional ray</title>
+      <p>Let <m>f:Y=X_{\Sigma'}\to X_\Sigma</m> be a subdivision, and assume <m>X</m> is <m>\Q</m>-Gorenstein. On each original cone choose <m>m_\sigma\in M_\Q</m> with <m>\langle m_\sigma,u_\rho\rangle=1</m> on its rays. These are the local linear functions of <m>\psi_{K_X}</m> in our convention, and agree on overlaps.</p>
+      <proposition xml:id="toric-prop-discrepancy-formula">
+        <title>The discrepancy coefficient</title>
+        <statement><p>A new primitive ray <m>v</m> in an original cone <m>\sigma</m> gives
+          <md xml:id="toric-eq-discrepancy-height" number="yes">\operatorname{coeff}_{E_v}(K_Y-f^*K_X)=\langle m_\sigma,v\rangle-1.</md>
+          The expression is independent of the cone containing <m>v</m>. A smooth subdivision is crepant exactly when all new primitive rays have height one.</p></statement>
+        <proof><p>The coefficient in <m>K_Y</m> is <m>-1</m>. Rational Cartier pullback gives coefficient <m>-\psi_{K_X}(v)=-\langle m_\sigma,v\rangle</m> in <m>f^*K_X</m>. Subtraction proves the formula; overlap agreement proves independence. Coefficients on original rays vanish, so equality of the canonical divisors is exactly height one on every new ray.</p></proof>
+      </proposition>
+      <p>This is the discrepancy <m>a(E_v;X)</m>. The log discrepancy is <m>a(E_v;X)+1=\langle m_\sigma,v\rangle</m>. The calculation is valid in arbitrary characteristic under the rational Cartier assumption. Without that assumption, the rational Cartier pullback used in the formula is not defined.</p>
+      <example xml:id="toric-example-surface-discrepancies">
+        <title>Noncrepant and crepant chains</title>
+        <p>For the <m>5/2</m> cone the height functional is <m>(1,3/5)</m>. Its exceptional heights are <m>3/5</m> and <m>4/5</m>, so
+          <md number="no">K_Y-f^*K_X=-\frac25E_1-\frac15E_2.</md>
+          The resolution is not crepant. By contrast, <m>\Cone((1,0),(-(r-1),r))</m> has continued fraction <m>[2,\ldots,2]</m> with <m>r-1</m> entries. Its interior rays <m>(0,1),(-1,2),\ldots,(-(r-2),r-1)</m> all have height one for <m>(1,1)</m>. The resulting <m>(-2)</m>-chain is crepant.</p>
+        <p>For <m>\mathbb F_a\to\P(1,1,a)</m>, <m>a\geq1</m>, the merged cone has height functional <m>(1,2/a)</m>. The section ray <m>(0,1)</m> has discrepancy <m>2/a-1</m>: it is the ordinary blowup coefficient <m>1</m> for <m>a=1</m>, zero for <m>a=2</m>, and negative for <m>a&gt;2</m>. Multiplication by <m>S^2=-a</m> recovers <m>K_{\mathbb F_a}\cdot S=a-2</m>, checking both signs.</p>
+      </example>
+    </subsection>
+    <subsection xml:id="toric-birational-singularity-criteria">
+      <title>Canonical and terminal lattice-point criteria</title>
+      <p>Work over <m>\C</m> in this subsection and assume <m>\Q</m>-Gorenstein. Canonical and terminal refer to all exceptional divisorial valuations, with discrepancies respectively nonnegative and strictly positive. The general resolution criterion and its toric application are the input in <xref ref="bib-toric-cls" detail="Definition 11.4.9 and Proposition 11.4.12"/>.</p>
+      <proposition xml:id="toric-prop-lattice-singularities">
+        <title>Points below the height-one slice</title>
+        <statement>
+          <p>For <m>h(v)=\langle m_\sigma,v\rangle</m>, the affine chart is canonical exactly when
+            <md number="no">\{v\in\sigma\cap N:0&lt;h(v)&lt;1\}=\varnothing.</md>
+            It is terminal exactly when
+            <md number="no">\{v\in\sigma\cap N:0&lt;h(v)\leq1\}=\{u_\rho:\rho\in\sigma(1)\}.</md>
+            Equivalently, in <m>\Pi_\sigma=\operatorname{conv}(0,u_\rho:\rho\in\sigma(1))</m>, canonicality permits nonzero lattice points only on the height-one face, and terminality permits only the ray vertices and the origin.</p>
+        </statement>
+        <proof>
+          <p>The height is positive on nonzero vectors of the cone, since it is one on every ray. Any new primitive lattice ray can be extracted by a star subdivision and included in a smooth refinement. Its discrepancy is its height minus one. A forbidden lattice point, divided to its primitive generator, therefore violates the corresponding discrepancy condition. The generator is not an original ray, whose primitive height is already one.</p>
+          <p>Conversely, the lattice condition supplies the inequality on every new ray of a toric resolution. The cited resolution criterion then gives canonical or terminal singularities, including non-toric valuations above the smooth resolution. Without that last input, a list of ray discrepancies alone would only test the chosen toric valuations. Finally, <m>\Pi_\sigma=\{v\in\sigma:h(v)\leq1\}</m>, giving the equivalent bounded-polytope description.</p>
+        </proof>
+      </proposition>
+      <p>Terminal toric surface singularities are smooth. If <m>\det(u,v)&gt;1</m>, take <m>w=s u+t v</m> in the fundamental parallelogram with <m>0&lt;s,t&lt;1</m>. One of <m>w</m> and <m>u+v-w</m> has height at most one; neither is a ray vertex. This violates terminality. A smooth cone satisfies the condition directly. In higher dimensions this conclusion fails.</p>
+      <example xml:id="toric-example-reeve-no-crepant">
+        <title>A Gorenstein cone without a crepant toric resolution</title>
+        <p>For <m>r\geq2</m>, let
+          <md number="no">P=\operatorname{conv}((0,0,0),(1,0,0),(0,1,0),(1,1,r)).</md>
+          Its only lattice points are its vertices. Indeed, at integral height <m>0&lt;z&lt;r</m> a point has coefficient <m>t=z/r</m> at the last vertex. Its integral coordinates <m>x,y</m> must be at least one, while the barycentric sum condition says <m>x+y-t\leq1</m>, impossible for <m>t&lt;1</m>. The height-zero base is a unimodular triangle, and height <m>r</m> contains only the top vertex.</p>
+        <p>The cone over <m>P\times\{1\}</m> in <m>\Z^4</m> is Gorenstein, with height the last coordinate, and terminal by the criterion. Its four ray vectors have determinant of absolute value <m>r</m>, so it is singular. A crepant toric resolution could insert only height-one rays, but no further such lattice point exists. A simplicial cone cannot be subdivided using only its original rays. Thus no crepant toric resolution exists. This is a statement about toric resolutions; no assertion about arbitrary nontoric resolutions is needed.</p>
+      </example>
+    </subsection>
+  </section>
+  <section xml:id="toric-birational-mmp">
+    <title>Curves, contractions, and the toric MMP</title>
+    <p>First consider the wall calculation over our original field. Let <m>X_\Sigma</m> be projective and simplicial of dimension <m>n</m>. A wall <m>\tau</m> with rays <m>u_1,\ldots,u_{n-1}</m> has two adjacent maximal cones adding <m>u_n,u_{n+1}</m>. Its rational relation, unique up to scale, is
+      <md number="no">c_1u_1+\cdots+c_{n-1}u_{n-1}+c_nu_n+c_{n+1}u_{n+1}=0,\qquad c_n,c_{n+1}&gt;0.</md>
+      The signs follow by projecting to the one-dimensional quotient by the wall span, where the extra rays point in opposite directions.</p>
+    <proposition xml:id="toric-prop-wall-curve-pairing">
+      <title>A wall relation gives a curve functional</title>
+      <statement><p>For <m>C=V(\tau)</m>, the vector <m>(D_\rho\cdot C)_\rho</m> is a positive rational multiple of this relation, with zero entries on other rays. Consequently
+        <md number="no">D\cdot C=\lambda\sum_\rho a_\rho c_\rho,\qquad D=\sum_\rho a_\rho D_\rho,\quad\lambda&gt;0.</md>
+        If both adjacent cones are smooth, normalize <m>c_n=c_{n+1}=1</m>; then <m>\lambda=1</m>. For singular cones, lattice indices determine the factor and it must not be omitted.</p></statement>
+      <proof><p>Divisors outside the two adjacent cones are disjoint from <m>C</m>. Intersecting principal character divisors with <m>C</m> gives a relation among the remaining ray vectors. This relation space is one dimensional. Each extra divisor meets <m>C</m> at its corresponding endpoint without containing the curve. A positive Cartier multiple therefore restricts to a nonzero effective divisor, giving positive intersection and fixing the sign of proportionality. In smooth coordinates each endpoint intersection is transverse with multiplicity one, proving that normalization.</p></proof>
+    </proposition>
+    <p>For the contraction and MMP results in the rest of this section, work over <m>\C</m>. The effective curve cone of a projective toric variety is rational polyhedral and generated by invariant curves. A projective simplicial variety is <m>\Q</m>-factorial. Every extremal ray has a projective toric contraction with connected fibers, contracting exactly the curves of that ray. These are the projective cases of the toric cone and contraction theorems; see <xref ref="bib-toric-cls" detail="Theorem 6.3.20 and Proposition 15.4.1"/>.</p>
+    <p>The mechanism is visible in the divisor dictionary. Choose a rational nef class supporting the extremal ray and positive on the other rays, and clear denominators to obtain a Cartier divisor. Toric nefness on a complete fan gives global generation, so a sufficiently divisible multiple defines its contraction. The polytope can have lower dimension; then the target fan lies in a quotient lattice. A fiber-type contraction cannot simply be represented by strongly convex cones in the unchanged ambient lattice.</p>
+    <p>A birational contraction is divisorial when it contracts a divisor and small when its exceptional locus has codimension at least two. In the small case the toric flip exists; the other model is again simplicial and projective over the target, by <xref ref="bib-toric-cls" detail="Theorem 15.4.11"/>. The sign of the chosen divisor distinguishes the flip from its inverse.</p>
+    <p>The projective toric <m>D</m>-MMP terminates. To apply the Mori dream space result rather than only quote its conclusion, note that on a projective toric variety numerical and linear equivalence of Cartier divisors coincide, by <xref ref="bib-toric-cls" detail="Proposition 6.3.15"/>. Hence <m>\Pic(X)_\Q=N^1(X)_\Q</m>. Simpliciality supplies rational factoriality, and the Cox ring is polynomial and finitely generated. These check the hypotheses of <xref ref="toric-cox-mori-dream"/>. The resulting termination statement is <xref ref="bib-toric-hu-keel" detail="Proposition 1.11"/>.</p>
+    <p>Thus a secondary-fan wall can encode a divisorial contraction, a flip, or fiber-type boundary behavior, and is not synonymous with a flip. The wall in <xref ref="toric-example-cox-f1-wall"/> is divisorial. The Hirzebruch calculation also distinguishes a <m>K</m>-negative contraction from one selected by another divisor. The polyhedral model is useful because it retains those signs and actual morphisms.</p>
+  </section>
+  <section xml:id="toric-birational-atiyah-flop">
+    <title>The conifold and the Atiyah flop</title>
+    <introduction>
+      <p>Work over <m>\C</m>. The affine threefold
+      <md number="no">X_0=\Spec\C[x,y,z,w]/(xy-zw)</md>
+      has an isolated singularity at the origin. We calculate two small resolutions of <m>X_0</m> as quotients of the same graded polynomial ring, identify their fans, and compare their divisor degrees. This gives a wall crossing for which the canonical divisor has degree zero on the contracted curve. The toric resolutions and their common refinement are the example in <xref ref="bib-toric-cls" detail="Example 11.1.12"/>; the general relation with wall crossings is developed in its <xref ref="bib-toric-cls" detail="Section 15.3"/>.</p>
+    </introduction>
+
+    <subsection xml:id="toric-conifold-git-chambers">
+      <title>Two chambers and two incidence varieties</title>
+      <p>Let <m>S=\C[p_1,p_2,q_1,q_2]</m>, with the action
+        <md number="no">\lambda\cdot(p_1,p_2,q_1,q_2)
+          =(\lambda p_1,\lambda p_2,\lambda^{-1}q_1,\lambda^{-1}q_2).</md>
+        Give <m>p_1,p_2</m> degree <m>1</m> and <m>q_1,q_2</m> degree <m>-1</m>. Use the GIT convention of <xref ref="toric-cox-secondary"/>, in which semistable sections have degree a positive multiple of the chosen character <m>\theta\in\Z</m>. For <m>\theta=1,0,-1</m>, write the corresponding quotients as <m>X_+,X_0,X_-</m>. The degree-zero algebra is generated by
+        <md xml:id="toric-eq-conifold-invariants" number="yes">(x,y,z,w)=(p_1q_1,p_2q_2,p_2q_1,p_1q_2).</md>
+        The balanced-monomial argument of <xref ref="toric-example-cox-nonsimplicial"/> gives <m>S_0=\C[x,y,z,w]/(xy-zw)</m>.</p>
+      <p xml:id="toric-conifold-character-sign">The semistable sets are
+        <md number="no"><mrow>U_+=\{(p_1,p_2)\ne(0,0)\},</mrow>
+          <mrow>U_0=\A^4,</mrow>
+          <mrow>U_-=\{(q_1,q_2)\ne(0,0)\}.</mrow></md>
+        A positive-degree monomial contains a <m>p_i</m>, and a nonzero <m>p_i</m> itself is a semistable section for <m>\theta=1</m>. The negative chamber follows from the same argument with the <m>q_j</m>. At <m>\theta=0</m>, the section <m>1</m> occurs in positive summand degree, so every point is semistable and the quotient is <m>\Spec S_0</m>.</p>
+      <aside xml:id="margin-toric-conifold-sign">
+        <p>The signs <m>+</m> and <m>-</m> refer to the character of a semi-invariant section. They do not refer to a positive or negative canonical degree: both exceptional curves will have canonical degree zero. At the wall, the summand grading gives <m>R_0\cong S_0[T]</m> with <m>\deg T=1</m>, so <m>\Proj R_0=\Spec S_0</m>.</p>
+      </aside>
+      <p>The matrix of invariant functions factors as
+        <md number="no">A=\begin{pmatrix}x&amp;w\\z&amp;y\end{pmatrix}
+          =\begin{pmatrix}p_1\\p_2\end{pmatrix}
+             \begin{pmatrix}q_1&amp;q_2\end{pmatrix}.</md>
+        The quotient of <m>U_+</m> remembers its column line <m>[p_1:p_2]</m>, including when <m>A=0</m>. The quotient of <m>U_-</m> instead remembers its row line <m>[q_1:q_2]</m>.</p>
+      <proposition xml:id="toric-prop-conifold-small-resolutions">
+        <statement>
+          <p>The chamber quotients are the incidence varieties
+            <md number="no"><mrow>X_+=\{(x,y,z,w,[s:t])\in X_0\times\P^1:
+              tx=sz,\ tw=sy\},</mrow>
+              <mrow>X_-=\{(x,y,z,w,[u:v])\in X_0\times\P^1:
+              vx=uw,\ vz=uy\}.</mrow></md>
+            Each is isomorphic to <m>\operatorname{Tot}(\mathcal O_{\P^1}(-1)^{\oplus2})</m>. The projections <m>f_\pm:X_\pm\to X_0</m> are projective birational morphisms, are isomorphisms away from the origin, and have scheme-theoretic fiber <m>C_\pm\cong\P^1</m> over the origin. Their exceptional curves have codimension two and normal bundle <m>\mathcal O_{\P^1}(-1)^{\oplus2}</m>.</p>
+        </statement>
+        <proof>
+          <p>On <m>D(p_1)\subset U_+</m>, normalizing <m>p_1=1</m> leaves invariant coordinates <m>\alpha=p_2/p_1</m>, <m>a=p_1q_1=x</m>, and <m>b=p_1q_2=w</m>. Thus this quotient chart is <m>\A^3</m>, and its map to <m>X_0</m> is
+            <md number="no">(\alpha,a,b)\longmapsto(a,\alpha b,\alpha a,b).</md>
+            The coordinates are listed in the order <m>(x,y,z,w)</m>. On <m>D(p_2)</m>, use <m>\beta=p_1/p_2</m>, <m>c=p_2q_1=z</m>, and <m>d=p_2q_2=y</m>. The overlap is
+            <md xml:id="toric-eq-conifold-bundle-transition" number="yes">(\beta,c,d)=(\alpha^{-1},\alpha a,\alpha b).</md>
+            These are the transition functions of two copies of the tautological line bundle on <m>\P^1</m>. They also describe the charts <m>s\ne0</m> and <m>t\ne0</m> of the stated incidence variety, proving the quotient identification scheme-theoretically.</p>
+          <p>For <m>U_-</m>, the charts <m>q_1\ne0</m> and <m>q_2\ne0</m> have base coordinates <m>v/u=q_2/q_1</m> and <m>u/v=q_1/q_2</m>. Their fiber coordinates are <m>(x,z)</m> and <m>(w,y)</m>, with the same transition as in <xref ref="toric-eq-conifold-bundle-transition"/>. This proves the assertions about <m>X_-</m> and its incidence equations.</p>
+          <p>Both incidence varieties are closed in <m>X_0\times\P^1</m>, so their projections to <m>X_0</m> are projective and hence proper. A nonzero matrix of rank one has a unique column line and a unique row line. The lines depend regularly on the matrix on each open set where one of its entries is nonzero. Consequently each projection is an isomorphism away from the origin. Over the origin, the incidence equations impose no condition on the projective coordinate. In the affine charts, the fiber is defined by the two fiber coordinates, so it is the reduced zero section <m>\P^1</m>. Each total space is smooth of dimension three. The normal bundle of the zero section in the total space of a vector bundle is that vector bundle, giving the asserted normal bundle and codimension.</p>
+        </proof>
+      </proposition>
+      <p xml:id="toric-conifold-relative-projectivity">Projectivity here is relative to <m>X_0</m>. Each <m>X_\pm</m> is noncomplete: the fiber of its vector bundle projection over a point of <m>\P^1</m> is a closed copy of <m>\A^2</m>. The proper maps are the contractions <m>f_\pm</m>, whose fibers are points or the exceptional projective line.</p>
+      <aside xml:id="margin-toric-conifold-two-bases">
+        <p>There are two projections on each incidence variety. The map to <m>\P^1</m> makes it a vector bundle with affine-plane fibers. The map to <m>X_0</m> is the small resolution with one exceptional fiber <m>\P^1</m>. Properness of the latter does not imply properness over <m>\C</m>.</p>
+      </aside>
+    </subsection>
+
+    <subsection xml:id="toric-conifold-fans-flop">
+      <title>The diagonals, divisor degrees, and the flop</title>
+      <p>Use the square and lattice of <xref ref="toric-example-resolved-conifold"/>:
+        <md number="no"><mrow>v_1=(0,0,1),\quad v_2=(1,0,1),</mrow>
+          <mrow>v_3=(1,1,1),\quad v_4=(0,1,1).</mrow></md>
+        Let <m>\sigma=\Cone(v_1,v_2,v_3,v_4)</m>. In the character lattice <m>M=\Z^3</m>, the functions <m>x,y,z,w</m> have exponents <m>(1,0,0),(-1,0,1),(0,1,0),(0,-1,1)</m>. The semigroup calculation in that example identifies <m>U_\sigma</m> with <m>X_0</m>.</p>
+      <p xml:id="toric-conifold-cox-ray-order">The Cox variables <m>p_1,p_2,q_1,q_2</m> correspond to the rays <m>v_2,v_4,v_3,v_1</m>, in that order. Pairing the four character exponents with these rays gives exactly the four products in <xref ref="toric-eq-conifold-invariants"/>. The positive chamber has maximal cones
+        <md number="no">\Sigma_+:\quad\Cone(v_1,v_2,v_3),\quad\Cone(v_1,v_3,v_4),</md>
+        while the negative chamber has maximal cones
+        <md number="no">\Sigma_-:\quad\Cone(v_1,v_2,v_4),\quad\Cone(v_2,v_3,v_4).</md>
+        In each case include all faces. The Cox open for <m>\Sigma_+</m> is <m>D(p_2)\cup D(p_1)</m>, since its maximal cones omit <m>v_4</m> and <m>v_2</m>. The maximal cones of <m>\Sigma_-</m> omit <m>v_3</m> and <m>v_1</m>, giving the Cox open <m>D(q_1)\cup D(q_2)</m>. Thus these are the fans of the incidence quotients with the specified maps to <m>X_0</m>.</p>
+      <aside xml:id="margin-toric-conifold-ray-labels">
+        <p>The cyclic order <m>v_1,v_2,v_3,v_4</m> around the square differs from the order of the Cox variables. In cyclic order their degrees are <m>-1,1,-1,1</m>. Keeping this order explicit fixes which character chamber chooses which diagonal.</p>
+      </aside>
+      <figure xml:id="toric-figure-conifold-wall-crossing">
+        <caption>The two character chambers choose the two diagonals of the height-one square. Both subdivisions map to the unsplit cone of <m>X_0</m>; their internal edges give <m>C_+</m> and <m>C_-</m>.</caption>
+        <image source="conifold-wall-crossing.svg" width="100%"><description><p>Three copies of the unit square with cyclically labeled vertices v1, v2, v3, v4. On the left the positive character chamber uses diagonal v1 to v3. On the right the negative character chamber uses diagonal v2 to v4. Arrows from the two triangulated squares point to the unsplit central square, representing the two small contractions to X0.</p></description></image>
+      </figure>
+      <proposition xml:id="toric-prop-conifold-flop">
+        <statement>
+          <p>The contractions <m>f_\pm</m> are crepant. For the invariant divisors <m>D_i^\pm</m> corresponding to <m>v_i</m>, the degrees on their exceptional curves are
+            <md number="no"><mrow>(D_1^+\cdot C_+,D_2^+\cdot C_+,D_3^+\cdot C_+,D_4^+\cdot C_+)=(-1,1,-1,1),</mrow>
+              <mrow>(D_1^-\cdot C_-,D_2^-\cdot C_-,D_3^-\cdot C_-,D_4^-\cdot C_-)=(1,-1,1,-1).</mrow></md>
+            The induced birational map <m>X_+\dashrightarrow X_-</m> over <m>X_0</m> is the Atiyah flop. It is an isomorphism away from the exceptional curves and does not extend to a morphism <m>X_+\to X_-</m> over <m>X_0</m>.</p>
+        </statement>
+        <proof>
+          <p>The character <m>\eta=(0,0,1)</m> pairs to one with every ray. On all three varieties the canonical divisor is therefore the principal Cartier divisor <m>-\divisor(\chi^\eta)</m>. The contractions preserve the character and add no rays, so
+            <md number="no">K_{X_\pm}=f_\pm^*K_{X_0}.</md>
+            The Gorenstein assertion for <m>X_0</m> is the criterion of <xref ref="toric-cor-gorenstein-criterion"/>. Thus this equality gives crepancy, including at its singular point.</p>
+          <p>The curve <m>C_+</m> corresponds to the wall <m>\Cone(v_1,v_3)</m>. Its adjacent rays satisfy
+            <md number="no">v_2+v_4-v_1-v_3=0.</md>
+            Both adjacent cones are unimodular. The smooth wall calculation in the proof of <xref ref="toric-prop-wall-curve-pairing"/> consequently gives the first degree vector. That proof uses only the completeness of the curve and the two affine charts, so applies here without completeness of the threefold. For <m>C_-</m>, the wall is <m>\Cone(v_2,v_4)</m>, and the normalized relation is the negative of the displayed relation. This gives the second degree vector. Their coordinate sums are zero, also verifying <m>K_{X_\pm}\cdot C_\pm=0</m>.</p>
+          <p>Write <m>\pi_\pm:X_\pm\to\P^1</m> for the vector bundle projections. The equation <m>p_1=0</m> defines <m>D_2^+</m>, so <m>\mathcal O(D_2^+)=\pi_+^*\mathcal O(1)</m>, which is relatively very ample for <m>f_+</m> by the incidence embedding. On <m>X_-</m>, the local equations of its strict transform <m>D_2^-</m> are <m>x</m> on <m>q_1\ne0</m> and <m>w</m> on <m>q_2\ne0</m>. Since <m>w=(q_2/q_1)x</m>, the frames of <m>\mathcal O(D_2^-)</m> have the transitions of <m>\pi_-^*\mathcal O(-1)</m>. Hence <m>-D_2^-</m> is relatively very ample for <m>f_-</m>. The two small contractions are crepant and reverse the relative sign of this Cartier divisor. This is the flop in the statement.</p>
+          <p>On the chart <m>p_1=1</m> of <m>X_+</m>, the projective coordinate of the induced point of <m>X_-</m> is <m>[a:b]</m>. Fix <m>\alpha</m>. Along <m>(a,b)=(\epsilon,0)</m> it is <m>[1:0]</m>, and along <m>(a,b)=(0,\epsilon)</m> it is <m>[0:1]</m> for <m>\epsilon\ne0</m>. A morphism extending the birational map would give a morphism to <m>\P^1</m> on this chart. Its restrictions to these two affine lines would have the respective constant values also at <m>\epsilon=0</m>, since <m>\P^1</m> is separated. The common origin cannot have both values. No such extension exists.</p>
+        </proof>
+      </proposition>
+      <p xml:id="toric-conifold-isomorphism-over-base">Both <m>X_+</m> and <m>X_-</m> are total spaces of the same vector bundle up to isomorphism, but their contractions to the specified <m>X_0</m> differ. A putative isomorphism over <m>X_0</m> would have to agree with the induced birational map away from <m>C_+</m>, contradicting the proposition.</p>
+      <aside xml:id="margin-toric-conifold-base-identity">
+        <p>Transposing <m>A</m> exchanges the two factorizations and induces an isomorphism of the total spaces. On <m>X_0</m>, it exchanges <m>z</m> and <m>w</m>. This isomorphism covers that automorphism of <m>X_0</m>, whereas comparison of resolutions over <m>X_0</m> fixes its identity map.</p>
+      </aside>
+      <p>The flop also has a common blowup. Blowing up the zero section of <m>\mathcal O_{\P^1}(-1)^{\oplus2}</m> records a line in each two-dimensional fiber. Since both summands have the same twist, its exceptional divisor is <m>\P^1\times\P^1</m>. Over a column line <m>\ell_p\subset\C^2</m> and a row line <m>\ell_q\subset\C^2</m>, the fiber of the blowup is <m>\ell_p\otimes\ell_q</m>. These tensor products form the line bundle <m>\mathcal O(-1,-1)</m>, so the resulting threefold is
+        <md number="no">W\cong\operatorname{Tot}\mathcal O_{\P^1\times\P^1}(-1,-1).</md>
+        One factor records the column line and the other the row line. The maps <m>W\to X_+</m> and <m>W\to X_-</m> contract the exceptional divisor along its two different rulings. In the fans, both blowups insert the same primitive ray
+        <md number="no">v_0=v_1+v_3=v_2+v_4=(1,1,2).</md>
+        Star subdivision of either fan at the ray through <m>v_0</m> gives the same four maximal cones, one for each side of the square together with <m>v_0</m>. This agrees with the common refinement in <xref ref="bib-toric-cls" detail="Example 11.1.12"/>. The height of <m>v_0</m> is two, so the exceptional divisor of <m>W\to X_0</m> has discrepancy one by <xref ref="toric-prop-discrepancy-formula"/>. The two small resolutions are crepant; their common blowup has this additional discrepancy.</p>
+      <p xml:id="toric-conifold-resolution-smoothing">Finally, the two diagonal subdivisions resolve the fixed threefold <m>xy-zw=0</m>, whereas the family
+        <md number="no">xy-zw=t</md>
+        changes that threefold as <m>t</m> varies. Its nonzero fibers are smooth by the Jacobian criterion: all four partial derivatives can vanish only at the origin, which lies on the zero fiber. In <xref ref="toric-example-minkowski-conifold"/>, the same square decomposes as the sum of two lattice segments and produces this flat smoothing. A triangulation of the square and a Minkowski decomposition of the square therefore have different geometric meanings: the first gives a proper birational modification, and the second gives a deformation.</p>
+      <aside xml:id="margin-toric-conifold-three-operations">
+        <p>The two GIT chambers describe the two resolutions. Passing from one chamber to the other gives their flop through the fixed wall quotient <m>X_0</m>. Varying <m>t</m> in the smoothing changes the affine equation instead. The smooth total space of that family has dimension four; the resolving threefolds have dimension three.</p>
+      </aside>
+    </subsection>
+  </section>
+  <section xml:id="toric-birational-toroidal">
+    <title>Toroidal models and factorization</title>
+    <p>A toroidal embedding is a pair <m>U\subset X</m> locally modeled on a toric variety together with its dense torus and boundary. In the étale-chart version relevant here, local charts map étale to toric pairs and pull back the toric torus to <m>U</m>. The formal-local formulation and compatibility data are developed in <xref ref="bib-toric-kkms" detail="Chapter I"/>. A result about toroidal structures must fix its formulation; varieties merely resembling toric charts are not sufficient.</p>
+    <p>The cones now fit into a cone complex, not necessarily one fan in a global lattice. Subdivisions describe compatible modifications of the local boundary models. Producing a global morphism requires preserving the transition data and descending the modifications. A toric subdivision is therefore a local ingredient in general birational geometry, while the compatible toroidal structure is an additional construction.</p>
+    <p>The weak factorization theorem gives a precise result. Over an algebraically closed field of characteristic zero, a birational map between smooth complete varieties that is an isomorphism on a common open subset factors into blowups and blowdowns with smooth centers disjoint from that open subset. With normal crossings boundary, the centers can be arranged to meet its successive inverse images normally. The global theorem is <xref ref="bib-toric-akmw" detail="Theorem 0.1.1"/>; the boundary condition is its <xref ref="bib-toric-akmw" detail="Theorem 0.3.1(6)"/>.</p>
+    <p>The proof does more than factor independently in each toric chart. Torification supplies compatible boundary and group-action data; combinatorial modifications in that setting are then transferred back to the original map. Weak factorization intersperses blowups and blowdowns. No ordering of all blowups before all blowdowns is asserted here, and no positive-characteristic extension of the quoted general theorem is assumed.</p>
+  </section>
+  <section xml:id="toric-birational-boundaries">
+    <title>Toric boundaries and log Calabi<ndash/>Yau surfaces</title>
+    <p>The reduced toric boundary <m>B=\sum_\rho D_\rho</m> satisfies <m>K_X+B=0</m> as an invariant Weil divisor. For a smooth complete toric surface it is a cycle of rational curves with ordinary transverse boundary nodes, hence an anticanonical pair. The chosen boundary is part of this statement, not only the underlying surface.</p>
+    <p>Work over <m>\C</m> for the following mirror interface. A Looijenga pair, in <xref ref="bib-toric-ghk" detail="Definition 1.1"/>, consists of a smooth rational projective surface <m>Y</m> and a reduced nodal anticanonical curve <m>D</m> with at least one singular point. The boundary is an irreducible nodal rational curve or a cycle of smooth rational curves. Toric surfaces with their full boundaries are examples, but not the whole class.</p>
+    <proposition xml:id="toric-prop-boundary-blowups">
+      <title>Two boundary blowups with different meanings</title>
+      <statement><p>Blow up a point of a simple normal crossings anticanonical cycle <m>D</m>, with exceptional curve <m>E</m> and strict transform <m>D'</m>. At a node,
+        <md number="no">K_{Y'}+(D'+E)=\pi^*(K_Y+D).</md>
+        At a smooth boundary point, <m>K_{Y'}+D'=\pi^*(K_Y+D)</m>.</p></statement>
+      <proof><p>The point blowup gives <m>K_{Y'}=\pi^*K_Y+E</m>. The total transform of <m>D</m> is <m>D'+2E</m> at a node and <m>D'+E</m> at a smooth boundary point. Substitution proves both identities.</p></proof>
+    </proposition>
+    <p>At a toric boundary node, including <m>E</m> in the boundary gives a toric corner subdivision. At a smooth boundary point, leaving <m>E</m> out preserves the anticanonical condition but produces a different kind of pair. Even a toric underlying surface may carry a nontoric pair: blowing up a smooth point on a side of the boundary triangle of <m>\P^2</m> gives <m>\mathbb F_1</m>, but its strict-transform boundary has three components, whereas the toric boundary of <m>\mathbb F_1</m> has four.</p>
+    <p>Gross<ndash/>Hacking<ndash/>Keel use such pairs in mirror constructions through curve counts, scattering diagrams, and theta functions; see <xref ref="bib-toric-ghk" detail="Introduction and Sections 1–3"/>. The self-intersection data define an integral-affine model that need not be a single global fan. Curve-counting corrections and consistent gluing require additional arguments. The identity <m>K+D=0</m> alone supplies neither the counts nor a mirror theorem. Toric geometry here gives local models and a calculational language, while the passage to the broader problem needs further structure.</p>
+  </section>
+</chapter>

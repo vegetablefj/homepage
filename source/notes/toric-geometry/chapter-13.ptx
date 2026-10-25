@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="toric-hodge-inequalities">
+  <title>Hodge index and mixed-volume inequalities</title>
+  <introduction>
+    <p>The intersection form of a smooth projective surface has one positive direction. This signature statement produces an inequality for nef divisors. Cutting a higher-dimensional variety down to a surface gives a mixed intersection inequality, and the toric intersection<ndash/>volume dictionary converts it into the Alexandrov<ndash/>Fenchel inequality. Approximation then removes every lattice assumption from the convex-geometric conclusion.</p>
+    <p>All varieties in this chapter are over <m>\C</m>. Convex sets are real: we allow any nonempty compact convex subset of <m>\R^n</m>, including sets with empty interior. We use <xref ref="toric-thm-mixed-intersection"/> and the smooth projective refinement input of <xref ref="toric-birational-higher-resolution"/>. The new external geometric inputs are the surface Hodge index theorem, Bertini's theorem, and the characterization of nef classes as limits of ample classes. Their applications are stated explicitly. The overall toric approach to mixed-volume inequalities is treated in <xref ref="bib-toric-fulton" detail="Section 5.4"/>.</p>
+  </introduction>
+
+  <section xml:id="toric-hodge-surfaces">
+    <title>The signature of a surface intersection form</title>
+    <p>For a smooth projective variety <m>Y</m>, let <m>N^1(Y)_\R</m> be the finite-dimensional space of real Cartier divisor classes modulo numerical equivalence: two classes agree when their degrees on every integral curve agree. Its dimension is the Picard number <m>\rho(Y)</m>. On a surface, intersection gives a symmetric bilinear form on this space. Products such as <m>A^2</m> denote their intersection numbers, including the degree of the resulting zero-cycle.</p>
+    <theorem xml:id="toric-thm-hodge-index-input">
+      <title>The surface Hodge index theorem</title>
+      <statement><p>For a smooth projective surface <m>Y</m>, the intersection form on <m>N^1(Y)_\R</m> has signature <m>(1,\rho(Y)-1)</m>. If <m>H</m> is ample, then <m>H^2&gt;0</m> and the restriction of the form to <m>H^\perp</m> is negative definite.</p></statement>
+    </theorem>
+    <p>This is an external theorem, in the numerical-class formulation of <xref ref="bib-toric-hartshorne" detail="Chapter V, Theorem 1.9"/>. Negative definiteness is a statement about numerical classes; a numerically trivial divisor can of course have square zero before passing to the quotient.</p>
+    <p>The associated linear algebra is useful to make explicit. In coordinates with quadratic form <m>q(x)=x_0^2-\|x'\|^2</m>, let <m>A=(a_0,a')</m> have positive square. Then <m>a_0^2&gt;\|a'\|^2</m>. If <m>v=(v_0,v')</m> is orthogonal to <m>A</m>, the equation <m>a_0v_0=a'\cdot v'</m> gives
+      <md number="no">q(v)=\frac{(a'\cdot v')^2}{a_0^2}-\|v'\|^2\leq
+        \left(\frac{\|a'\|^2}{a_0^2}-1\right)\|v'\|^2.</md>
+      This is strictly negative unless <m>v=0</m>. Thus every positive class, not just the initially selected ample class, has negative-definite orthogonal complement. The ample cone lies in one of the two components of <m>q&gt;0</m>, since it is convex. After choosing the sign <m>x_0&gt;0</m> on that component, two ample vectors satisfy <m>a_0b_0&gt;\|a'\|\,\|b'\|</m>, so their intersection is positive. This explains both the direction of the inequality below and the sign in its equality statement.</p>
+    <p>We also use the standard positivity theorem
+      <md number="no">\operatorname{Nef}(Y)=\overline{\operatorname{Amp}(Y)}.</md>
+      A nef class means one having nonnegative degree on every curve. For a fixed ample class <m>H</m>, <m>A+\epsilon H</m> is ample whenever <m>A</m> is nef and <m>\epsilon&gt;0</m>. These are <xref ref="bib-toric-lazarsfeld-i" detail="Theorem 1.4.23 and Corollary 1.4.10"/>. In particular all intersections of nef classes are limits of the corresponding ample intersections. For toric varieties this approximation is also visible in support functions: adding a positive multiple of a strictly concave function to a concave function makes it strictly concave.</p>
+    <proposition xml:id="toric-prop-nef-surface-hodge">
+      <title>The nef surface inequality</title>
+      <statement><p>For nef real divisor classes <m>A,B</m> on a smooth projective surface,
+        <md xml:id="toric-eq-nef-surface-hodge" number="yes">(A\cdot B)^2\geq A^2B^2.</md>
+        For ample classes equality holds exactly when their numerical classes are positive scalar multiples of one another.</p></statement>
+      <proof><p>First suppose that <m>A</m> is ample. Decompose
+        <md number="no">B=cA+B_0,\qquad c=\frac{A\cdot B}{A^2},
+          \qquad A\cdot B_0=0.</md>
+        Negative definiteness gives
+        <md number="no">B^2=c^2A^2+B_0^2\leq\frac{(A\cdot B)^2}{A^2}.</md>
+        This proves the inequality, and equality is equivalent to <m>B_0=0</m> in <m>N^1(Y)_\R</m>. If <m>B</m> is ample as well, then <m>A\cdot B&gt;0</m>, so the scalar is positive.</p>
+        <p>For arbitrary nef <m>A,B</m>, apply the ample result to <m>A+\epsilon H,B+\epsilon H</m> and let <m>\epsilon</m> decrease to zero. Intersection numbers are polynomial, hence continuous, in these coefficients. This includes <m>A^2=0</m>, <m>B^2=0</m>, and numerically zero classes: there is no division by their squares in this limiting step.</p>
+        <p>More generally, signature <m>(1,\rho-1)</m> implies that the orthogonal complement of any class with positive square is negative definite. Thus, when a nef <m>A</m> has <m>A^2&gt;0</m>, the same direct decomposition is available even without ampleness. The limit argument is what avoids having to impose this positivity in the statement.</p></proof>
+    </proposition>
+    <p>The equality criterion was proved for ample classes. Passing to a limit preserves the weak inequality but need not preserve the same strictness argument: taking <m>A=0</m> gives equality for every <m>B</m>. We use the inequality for boundary classes without attaching a proportionality criterion to those cases.</p>
+    <example xml:id="toric-example-hodge-hirzebruch">
+      <title>The inequality on a Hirzebruch surface</title>
+      <p>On <m>\mathbb F_a</m> use <m>S^2=-a</m>, <m>S\cdot F=1</m>, and <m>F^2=0</m> from <xref ref="toric-example-hirzebruch-intersection"/>. Let
+        <md number="no">A=\alpha S+\beta F,\qquad B=\gamma S+\delta F.</md>
+        They are nef exactly when <m>\alpha,\gamma\geq0</m>, <m>\beta\geq a\alpha</m>, and <m>\delta\geq a\gamma</m>. The product and squares are
+        <md number="no"><mrow>A\cdot B=-a\alpha\gamma+\alpha\delta+\beta\gamma,</mrow>
+          <mrow>A^2=2\alpha\beta-a\alpha^2,\qquad B^2=2\gamma\delta-a\gamma^2.</mrow></md>
+        Direct expansion yields
+        <md number="no">(A\cdot B)^2-A^2B^2=(\alpha\delta-\beta\gamma)^2.</md>
+        For ample classes the strict nef inequalities hold, and equality forces proportional coefficient pairs, agreeing with the numerical statement. At the boundary a fiber class has square zero, and the inequality is still meaningful. The determinant of the intersection matrix in the basis <m>S,F</m> is <m>-1</m>, so this example also displays its one positive and one negative direction.</p>
+    </example>
+  </section>
+
+  <section xml:id="toric-hodge-mixed-intersections">
+    <title>Cutting higher-dimensional intersections down to a surface</title>
+    <p>For divisors on an <m>n</m>-fold, write <m>(D_1\cdots D_n)</m> for the degree of their top product. This is a symmetric multilinear function of numerical classes. We keep the parentheses when they make the two different products in an inequality easier to read.</p>
+    <theorem xml:id="toric-thm-mixed-hodge-inequality">
+      <title>The mixed nef intersection inequality</title>
+      <statement><p>Let <m>X</m> be a smooth projective variety of dimension <m>n\geq2</m>, and let <m>A,B,D_3,\ldots,D_n</m> be nef real divisor classes. Then
+        <md xml:id="toric-eq-mixed-hodge-inequality" number="yes">(AB D_3\cdots D_n)^2\geq
+          (A^2D_3\cdots D_n)(B^2D_3\cdots D_n).</md></p></statement>
+      <proof><p>Begin with ample rational classes. Choose positive integers <m>q_j</m> making <m>q_jD_j</m> very ample Cartier for <m>3\leq j\leq n</m>. Successive general members of these linear systems cut out a smooth connected projective surface <m>Y</m>. The external inputs here are Bertini smoothness and connectedness of an ample hyperplane section on a smooth connected projective variety of dimension at least two; see <xref ref="bib-toric-hartshorne" detail="Chapter II, Theorem 8.18; Chapter III, Corollary 7.9.1"/>. Apply them at each stage, restricting the remaining very ample systems to the smooth intersection already obtained. A smooth connected variety is irreducible, so the surface satisfies the Hodge theorem's hypotheses. For <m>n=2</m>, take <m>Y=X</m> with no cutting divisors.</p>
+        <p>Put <m>q=\prod_{j=3}^nq_j</m>, with empty product one. Restriction and the complete-intersection class give
+        <md number="no">(A|_Y\cdot B|_Y)=q(AB D_3\cdots D_n),\qquad
+          (A|_Y)^2=q(A^2D_3\cdots D_n),</md>
+        and similarly for <m>B</m>. The restrictions are ample. The surface inequality has a factor <m>q^2</m> on each side, which cancels, proving the rational ample case.</p>
+        <p>Ample rational classes are dense in the real ample cone, so continuity proves the real ample case. Finally fix an ample class <m>H</m> and replace every nef class in the inequality by its sum with <m>\epsilon H</m>. These classes are ample. Letting <m>\epsilon\to0</m> proves the asserted inequality for nef classes, including cases in which some top products vanish. Their nonnegativity follows at the same time from approximation by ample intersections.</p></proof>
+    </theorem>
+    <p>Nothing here asserts that the chosen surface is torus-invariant. General hyperplane sections supply smoothness and connectedness; the toric structure will enter in interpreting the intersection numbers on the original variety.</p>
+  </section>
+
+  <section xml:id="toric-hodge-toric-transfer">
+    <title>From toric divisors to Alexandrov<ndash/>Fenchel</title>
+    <p>Use the lattice <m>M=\Z^n</m> in <m>\R^n</m> and its covolume-one Lebesgue measure. Mixed volume is symmetric and multilinear under Minkowski addition and nonnegative scaling, with
+      <md number="no">V(K,\ldots,K)=\vol(K).</md>
+      Thus the coefficient of <m>t_1\cdots t_n</m> in <m>\vol(t_1K_1+\cdots+t_nK_n)</m> is <m>n!V(K_1,\ldots,K_n)</m>. This is the convention of <xref ref="toric-thm-mixed-intersection"/>.</p>
+    <theorem xml:id="toric-thm-alexandrov-fenchel">
+      <title>The Alexandrov<ndash/>Fenchel inequality</title>
+      <statement><p>For nonempty compact convex sets <m>K,L,K_3,\ldots,K_n\subseteq\R^n</m>, with <m>n\geq2</m>,
+        <md xml:id="toric-eq-alexandrov-fenchel" number="yes">V(K,L,K_3,\ldots,K_n)^2\geq
+          V(K,K,K_3,\ldots,K_n)V(L,L,K_3,\ldots,K_n).</md></p></statement>
+      <proof><p>First suppose all sets are full-dimensional lattice polytopes <m>P_i</m>. The normal fan of <m>P_1+\cdots+P_n</m> refines the normal fan of each summand. Choose a smooth refinement whose toric morphism is projective, using <xref ref="toric-birational-higher-resolution"/>. Its toric variety <m>X</m> is smooth and projective: the original normal-fan variety is projective, and the composite of projective morphisms is projective.</p>
+        <p>The minimum support function of each <m>P_i</m> is integral and linear on this common fan. It defines a globally generated, hence nef, Cartier divisor <m>D_i</m> on <m>X</m>, whose divisor polytope is exactly <m>P_i</m>. Refinement does not alter that function or its supporting inequalities. Apply the mixed intersection inequality to these divisors. Every top product equals <m>n!</m> times the corresponding mixed volume. Its square on the left and product on the right have the same factor <m>(n!)^2</m>, which cancels. This proves the lattice-polytope case.</p>
+        <p>For full-dimensional rational polytopes, scale all of them by one positive integer so their vertices become integral. Mixed volumes scale by its <m>n</m>-th power, and the inequality scales by its <m>2n</m>-th power. Cancelling proves the rational case. The remaining approximation steps, including sets of smaller dimension, are justified below and complete the proof.</p></proof>
+    </theorem>
+    <p>This is a proof of a statement about arbitrary real convex sets using a smooth projective toric model for rational data. It is not a claim about the historical route by which the inequality was first discovered. The common model is essential: one must put all divisor classes in a single intersection ring before applying Hodge index.</p>
+  </section>
+  <section xml:id="toric-hodge-convex-limits">
+    <title>Continuity and the removal of lattice assumptions</title>
+    <p>The needed limit is in the Hausdorff metric: <m>K_j\to K</m> means that, for numbers <m>\delta_j\to0</m>, each set lies in the other's <m>\delta_j</m>-neighborhood. This is stronger than convergence of volumes alone and controls every finite Minkowski sum occurring below.</p>
+    <lemma xml:id="toric-lem-mixed-volume-continuity">
+      <title>Mixed volumes are continuous under Hausdorff limits</title>
+      <statement><p>If <m>K_{i,j}\to K_i</m> are nonempty compact convex sets in <m>\R^n</m>, then
+        <md number="no">V(K_{1,j},\ldots,K_{n,j})\longrightarrow V(K_1,\ldots,K_n).</md>
+        This includes sets of smaller dimension.</p></statement>
+      <proof><p>First consider ordinary volume. Let <m>B</m> be the Euclidean closed unit ball. Hausdorff convergence gives <m>K_j\subseteq K+\delta_j B</m>. The volumes <m>\vol(K+\delta B)</m> decrease to <m>\vol(K)</m> as <m>\delta\downarrow0</m>, by continuity from above of Lebesgue measure on bounded measurable sets. This proves the upper bound for the limit. If <m>K</m> has empty interior, its volume is zero, and nonnegativity supplies the lower bound.</p>
+        <p>A convex set with empty interior is contained in a proper affine subspace: otherwise it contains the simplex on <m>n+1</m> affinely independent points and has interior. Such a subspace has zero <m>n</m>-dimensional measure, justifying the zero-volume case above. If <m>K</m> has interior, translate so that <m>rB\subseteq K</m> for some <m>r&gt;0</m>. Write <m>s_K(v)=\max_{x\in K}\langle x,v\rangle</m> for the maximum support function, with <m>\|v\|=1</m>. The Hausdorff bound implies <m>s_{K_j}(v)\geq s_K(v)-\delta_j</m>. Since <m>s_K(v)\geq r</m>, one obtains
+        <md number="no">(1-\delta_j/r)s_K(v)\leq s_{K_j}(v).</md>
+        For large <m>j</m> the scalar is positive. Support inequalities characterize containment of compact convex sets, hence <m>(1-\delta_j/r)K\subseteq K_j</m>. The resulting lower volume bound tends to <m>\vol(K)</m>, proving ordinary volume continuity.</p>
+        <p>Mixed volume is recovered by polarization:
+        <md xml:id="toric-eq-mixed-volume-polarization" number="yes">n!V(K_1,\ldots,K_n)=
+          \sum_{J\subseteq\{1,\ldots,n\}}(-1)^{n-|J|}
+          \vol\left(\sum_{j\in J}K_j\right).</md>
+        The empty sum is <m>\{0\}</m>. For polytopes, expand the Minkowski volume polynomial: the alternating sum kills every monomial missing a variable, and its total degree <m>n</m> leaves only the term containing every variable once. This proves the formula. Minkowski sums preserve Hausdorff convergence, so ordinary volume continuity proves continuity of the displayed expression. It therefore also constructs the mixed volume of general compact convex sets as the continuous extension from polytopes; its symmetry, multilinearity, and nonnegativity pass to the limit.</p></proof>
+    </lemma>
+    <p>We can now finish the approximation in <xref ref="toric-thm-alexandrov-fenchel"/>. For rational polytopes of arbitrary dimension, add <m>\epsilon Q</m> to each one, where <m>Q</m> is a fixed full-dimensional rational simplex and <m>\epsilon&gt;0</m> is rational. These sums are full-dimensional rational polytopes. Apply the proved case and let <m>\epsilon\downarrow0</m>.</p>
+    <p>Next approximate each vertex of a real polytope by rational points. Taking convex combinations shows that perturbing every vertex by at most <m>\delta</m> perturbs the convex hull by at most <m>\delta</m> in Hausdorff distance. Thus the rational-polytope inequality passes to real polytopes. Finally, a finite <m>\delta</m>-net of a compact convex set has a convex hull contained in that set and within Hausdorff distance <m>\delta</m> of it. These polytopes approximate every allowed convex set. Applying the continuity lemma to all entries proves the general inequality. No full-dimensionality or positive mixed volume is needed for this final passage.</p>
+    <p>The lattice used by the toric proof has disappeared from the final hypotheses. It supplied a dense class of computable approximations; Lebesgue measure remains the fixed covolume-one measure on the original <m>\R^n</m>. The limiting argument does not replace this measure by the intrinsic measure of a lower-dimensional set. Such a set has zero <m>n</m>-dimensional volume, while a mixed volume involving it can still be positive.</p>
+  </section>
+
+  <section xml:id="toric-hodge-volume-consequences">
+    <title>Log-concavity, Minkowski's inequality, and Brunn<ndash/>Minkowski</title>
+    <p>Write repeated entries in brackets and set
+      <md number="no">V_i=V(K[n-i],L[i]),\qquad0\leq i\leq n.</md>
+      Thus <m>V_0=\vol(K)</m> and <m>V_n=\vol(L)</m>. Alexandrov<ndash/>Fenchel, with background entries <m>K[n-i-1],L[i-1]</m>, gives
+      <md xml:id="toric-eq-mixed-sequence-logconcavity" number="yes">V_i^2\geq V_{i-1}V_{i+1}\qquad(1\leq i\leq n-1).</md>
+      These are the log-concavity inequalities for the mixed-volume sequence.</p>
+    <proposition xml:id="toric-prop-minkowski-first-inequality">
+      <title>Minkowski's first inequality</title>
+      <statement><p>For <m>n\geq2</m> and nonempty compact convex <m>K,L</m>,
+        <md number="no">V(K[n-1],L)^n\geq\vol(K)^{n-1}\vol(L).</md>
+        More generally, for <m>0&lt;i&lt;n</m>,
+        <md xml:id="toric-eq-mixed-volume-endpoint-bound" number="yes">V_i\geq
+          \vol(K)^{(n-i)/n}\vol(L)^{i/n}.</md></p></statement>
+      <proof><p>First assume every <m>V_i</m> is positive, and put <m>w_i=\log V_i</m>. Log-concavity says that the successive differences <m>w_i-w_{i-1}</m> are nonincreasing. The average of the first <m>i</m> differences is therefore at least the average of all <m>n</m> differences. Rearranging gives
+        <md number="no">w_i\geq\frac{n-i}{n}w_0+\frac{i}{n}w_n.</md>
+        Exponentiation proves the endpoint bound, and <m>i=1</m> followed by the <m>n</m>-th power gives the first inequality.</p>
+        <p>To justify positivity while also covering degenerate sets, replace <m>K,L</m> by <m>K+\epsilon Q,L+\epsilon Q</m> for a fixed full-dimensional compact convex <m>Q</m>. Multilinearity and nonnegativity show that every mixed entry is positive: its expansion contains <m>\epsilon^n\vol(Q)&gt;0</m>. Apply the proved inequalities and pass to the limit. This proves the positive-volume case and every zero-volume boundary case without taking a logarithm of zero.</p></proof>
+    </proposition>
+    <theorem xml:id="toric-thm-brunn-minkowski">
+      <title>The Brunn<ndash/>Minkowski inequality</title>
+      <statement><p>For nonempty compact convex sets in <m>\R^n</m>, with <m>n\geq1</m>,
+        <md number="no">\vol(K+L)^{1/n}\geq
+          \vol(K)^{1/n}+\vol(L)^{1/n}.</md></p></statement>
+      <proof><p>For <m>n\geq2</m>, the Minkowski volume polynomial and the endpoint bounds give
+        <md number="no"><mrow>\vol(K+L)=\sum_{i=0}^n\binom ni V_i</mrow>
+          <mrow>\geq\sum_{i=0}^n\binom ni
+            \vol(K)^{(n-i)/n}\vol(L)^{i/n}
+            =\bigl(\vol(K)^{1/n}+\vol(L)^{1/n}\bigr)^n.</mrow></md>
+        At the two endpoints use <m>V_0=\vol(K)</m>, <m>V_n=\vol(L)</m>, so no convention about <m>0^0</m> is required. Taking the nonnegative <m>n</m>-th root proves the assertion. For <m>n=1</m>, compact convex sets are closed intervals, possibly points, and lengths add under Minkowski addition. The assertion is then an equality. There is no two-slot Alexandrov<ndash/>Fenchel statement to apply in dimension one.</p></proof>
+    </theorem>
+    <example xml:id="toric-example-boxes-hodge-inequality">
+      <title>Rectangles check both the inequality and the factorial</title>
+      <p>Take <m>K=[0,a]\times[0,b]</m> and <m>L=[0,c]\times[0,d]</m>, with nonnegative side lengths. Then
+        <md number="no">\vol(tK+sL)=(ta+sc)(tb+sd),\qquad
+          2V(K,L)=ad+bc.</md>
+        Consequently
+        <md number="no">V(K,L)^2-\vol(K)\vol(L)=\frac{(ad-bc)^2}{4}\geq0.</md>
+        On the common toric model <m>\P^1\times\P^1</m>, the corresponding divisor classes have squares <m>2ab,2cd</m> and product <m>ad+bc</m>. Their Hodge difference is <m>(ad-bc)^2</m>, exactly <m>(2!)^2</m> times the mixed-area difference. This checks the transfer's normalization even when a rectangle degenerates to a segment. We do not infer an equality classification for arbitrary degenerate convex sets from this special computation.</p>
+    </example>
+  </section>
+
+  <section xml:id="toric-hodge-scope">
+    <title>Which Hodge theory has been used</title>
+    <p>The positive and negative directions above belong to the numerical divisor intersection form of a smooth projective variety. In the toric applications, a product of <m>n</m> divisor classes lies in algebraic Chow degree <m>n</m> and is evaluated by proper pushforward. Under the smooth complete complex toric comparison with singular cohomology, each divisor has cohomological degree two, so the corresponding top product has degree <m>2n</m>. These grading conventions describe the same calculation with different indices.</p>
+    <p>The matroid interface in <xref ref="toric-intersection-matroids"/> has a different input. Its generally noncomplete Bergman fan does not supply the smooth projective variety or proper degree map used here. The matroid Chow ring and its combinatorial degree require the additional Hodge<ndash/>Riemann theorem stated there. The common pattern of log-concavity does not allow one to substitute the projective Hodge index theorem for that result. Here the general convex-body theorem follows because rational polytopes admit a common smooth projective toric model and mixed volumes survive approximation.</p>
+  </section>
+</chapter>

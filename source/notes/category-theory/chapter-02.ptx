@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="cat-constructions">
+  <title>Constructions and universal properties</title>
+  <introduction>
+    <p>A useful way to organize a mathematical construction is to make its possible realizations into objects of a category. Morphisms then record which comparisons respect the prescribed data. This chapter develops the elementary categories needed for that method, and explains how an initial or terminal object expresses a universal property. The constructions use the set encodings and relative-size conventions of <xref ref="cat-conventions"/>.</p>
+  </introduction>
+
+  <section xml:id="cat-c02-products-coproducts">
+    <title>Products and coproducts of categories</title>
+    <p>Let <m>I</m> be a set and let <m>(\mathcal C_i)_{i\in I}</m> be a family of set-encoded categories. There are two elementary ways to assemble the family: choose an object in every component, or choose one component and an object in it.</p>
+    <definition xml:id="cat-c02-def-product-coproduct">
+      <title>Product and coproduct categories</title>
+      <idx>Product category</idx><idx>Coproduct category</idx>
+      <statement>
+        <p><ol>
+          <li><p>The product <m>\prod_{i\in I}\mathcal C_i</m> has object set <m>\prod_{i\in I}\Ob(\mathcal C_i)</m> and morphism sets
+            <md number="no">\Hom_{\prod_i\mathcal C_i}((X_i)_i,(Y_i)_i)=\prod_{i\in I}\Hom_{\mathcal C_i}(X_i,Y_i).</md>
+            Identities and composition are componentwise. Its projection functor <m>\pi_i</m> takes the <m>i</m>-th component of objects and arrows.</p></li>
+          <li><p>The coproduct <m>\coprod_{i\in I}\mathcal C_i</m>, also called the disjoint union, has objects <m>(i,X)</m> with <m>X\in\mathcal C_i</m>. Its morphism set from <m>(i,X)</m> to <m>(j,Y)</m> is empty when <m>i\ne j</m>, and is <m>\Hom_{\mathcal C_i}(X,Y)</m> when <m>i=j</m>. Identities and composition come from that component. The inclusion functor <m>\iota_i</m> sends <m>X</m> to <m>(i,X)</m>.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <p>The category axioms reduce to those in each <m>\mathcal C_i</m>. The empty product has one object, the empty family, and one arrow; it is identified with <m>\mathbf 1</m>. The empty coproduct is <m>\mathbf 0</m>. For two categories we write <m>\mathcal C\times\mathcal D</m> and <m>\mathcal C\amalg\mathcal D</m>. These are constructions on categories, and require no products or coproducts of objects inside the factors.<fn>The constructions are grouped in <xref ref="bib-cat-li1" detail="Definition 2.3.1"/>. For the binary product, compare <xref ref="bib-cat-stacks" detail="Tag 001K"/>. The same word product will later describe objects inside a fixed category; specifying the ambient category resolves the difference.</fn></p>
+    <p>Both constructions have sets of objects and arrows for every set <m>I</m>. If the factors are locally <m>\U</m>-small, their product is locally <m>\U</m>-small when <m>I\in\U</m>, by closure under such indexed products. Their coproduct is locally <m>\U</m>-small even for a larger set <m>I</m>: each local hom-set is one old hom-set or the empty set. If <m>I\in\U</m> and every factor is <m>\U</m>-small, both resulting categories are <m>\U</m>-small. The tags on objects are kept separate from local morphism labels.</p>
+    <proposition xml:id="cat-c02-prop-product-coproduct">
+      <statement>
+        <p>For every category <m>\mathcal E</m>, projection and restriction give bijections of sets
+          <md number="no"><mrow>\Ob\bigl(\Fun(\mathcal E,\prod_i\mathcal C_i)\bigr)\cong\prod_i\Ob\bigl(\Fun(\mathcal E,\mathcal C_i)\bigr),</mrow><mrow>\Ob\bigl(\Fun(\coprod_i\mathcal C_i,\mathcal E)\bigr)\cong\prod_i\Ob\bigl(\Fun(\mathcal C_i,\mathcal E)\bigr).</mrow></md>
+          Componentwise natural transformations extend these bijections to isomorphisms of categories. These object sets are ordinary sets; no assertion that they all belong to <m>\U</m> is required.</p>
+      </statement>
+      <proof>
+        <p>Given functors <m>F_i:\mathcal E\to\mathcal C_i</m>, set <m>F(X)=(F_iX)_i</m> and <m>F(f)=(F_if)_i</m>. The functor axioms hold in every component, and the projection requirements force these formulas. A transformation to another such functor is exactly a family of transformations in the factors, because its naturality equation is componentwise. For the coproduct, define a functor separately on each component using the given functor <m>\mathcal C_i\to\mathcal E</m>. No cross-component arrows require further choices or compatibility. The same observation treats transformations, identities, and their compositions.</p>
+      </proof>
+    </proposition>
+    <p>For example, the product of the one-object categories of monoids <m>M</m> and <m>N</m> is the one-object category of <m>M\times N</m>. Their coproduct as categories has two objects and no arrows between them. It is not the one-object category of the coproduct of monoids: disjoint category components create no mixed words. The ambient category and its morphisms are essential parts of a universal specification.</p>
+  </section>
+
+  <section xml:id="cat-c02-initial-terminal">
+    <title>Initial and terminal objects</title>
+    <p>The simplest universal requirement asks for exactly one comparison to or from every object. The requirement includes the candidate object itself, so it also controls its endomorphisms.</p>
+    <definition xml:id="cat-c02-def-initial-terminal">
+      <title>Initial, terminal, and zero objects</title>
+      <idx>Initial object</idx><idx>Terminal object</idx><idx>Zero object</idx><idx>Zero morphism</idx>
+      <statement>
+        <p>An object <m>0</m> of <m>\mathcal C</m> is initial if <m>\Hom_{\mathcal C}(0,X)</m> is a singleton for every <m>X</m>. An object <m>1</m> is terminal if <m>\Hom_{\mathcal C}(X,1)</m> is a singleton for every <m>X</m>. An object that is both initial and terminal is a zero object.</p>
+        <p>When a zero object is present, the composite <m>X\to0\to Y</m> is the zero morphism <m>0_{X,Y}:X\to Y</m>. It is independent of the chosen zero object, and composition with any arrow on either side gives the corresponding zero morphism.</p>
+      </statement>
+    </definition>
+    <p>These symbols denote chosen objects when they exist; existence is not part of the definition of a category. In particular, <m>\mathbf 0</m> has neither kind of object, whereas the sole object of <m>\mathbf 1</m> has both properties. Initiality in <m>\mathcal C</m> is terminality in <m>\mathcal C^{\op}</m>.<fn>Stacks uses final object for terminal object in <xref ref="bib-cat-stacks" detail="Tag 002C"/>. Li uses initial and terminal in <xref ref="bib-cat-li1" detail="Definition 2.4.1"/>. These are equivalent vocabularies for the same arrow directions.</fn></p>
+    <p>In <m>\Set</m>, the empty set is initial and every singleton is terminal. In <m>\Grp</m> and <m>\Mon</m>, the one-element object is a zero object. In <m>\Ring</m>, <m>\Z</m> is initial and the zero ring is terminal. The former assertion uses the unique unital map <m>n\mapsto n1_R</m>; the latter uses the unique function to a singleton. For a poset category, initial means least and terminal means greatest. In a preorder, different least elements can exist, but they are isomorphic.</p>
+    <p>The zero-morphism assertions follow from uniqueness of maps into and out of a zero object: an isomorphism between two choices carries both legs to the unique corresponding legs, and precomposition or postcomposition still factors through that object. No addition on Hom sets is implied. In groups the zero morphism is the trivial homomorphism. Conversely, absorbing zero morphisms may exist without a zero object: the one-object category of the monoid <m>\{1,0\}</m> has the absorbing arrow <m>0</m>, but its object has two endomorphisms and hence is neither initial nor terminal.</p>
+    <proposition xml:id="cat-c02-prop-initial-terminal">
+      <statement>
+        <p>Any two initial objects admit exactly one arrow between them, and that arrow is an isomorphism. The analogous statement holds for terminal objects. Equivalences of categories preserve and reflect both properties.</p>
+      </statement>
+      <proof>
+        <p>For initial objects <m>I,J</m>, let <m>a:I\to J</m> and <m>b:J\to I</m> be the unique arrows. The endomorphisms <m>ba</m> and <m>\id_I</m> coincide by initiality, and similarly <m>ab=\id_J</m>. Reversing arrows proves the terminal assertion. If <m>F:\mathcal C\to\mathcal D</m> is an equivalence, full faithfulness identifies hom-sets between image objects. Every object of <m>\mathcal D</m> is isomorphic to an image object, and composing with that isomorphism transfers the relevant hom-set bijection. Singleton hom-sets are therefore preserved; full faithfulness also reflects the singleton condition.</p>
+      </proof>
+    </proposition>
+    <p>This uniqueness argument is given in <xref ref="bib-cat-li1" detail="Proposition 2.4.2"/> and <xref ref="bib-cat-riehl" detail="Lemma 1.6.16"/>. It explains why universal properties can characterize a construction without choosing a preferred model. An arbitrary functor need not preserve these objects: the functor <m>\mathbf 1\to\Set</m> selecting a two-element set sends its sole object, which is both initial and terminal, to an object with neither property.</p>
+  </section>
+
+  <section xml:id="cat-c02-arrows-slices">
+    <title>Arrows, slices, and coslices</title>
+    <p>Recording an arrow as an object makes a commutative square into a morphism. Fixing one endpoint specializes the square to a triangle. These categories keep structure maps visible throughout a comparison.</p>
+    <definition xml:id="cat-c02-def-arrow-slice">
+      <title>Arrow, slice, and coslice categories</title>
+      <idx>Arrow category</idx><idx>Slice category</idx><idx>Coslice category</idx>
+      <statement>
+        <p><ol>
+          <li><p>The arrow category <m>\operatorname{Arr}(\mathcal C)=\Fun([1],\mathcal C)</m> has arrows <m>f:A\to B</m> as objects. A morphism from <m>f</m> to <m>f':A'\to B'</m> is a pair <m>(a:A\to A',b:B\to B')</m> satisfying <m>bf=f'a</m>. Composition is <m>(a',b')(a,b)=(a'a,b'b)</m>.</p></li>
+          <li><p>For <m>X\in\mathcal C</m>, the slice <m>\mathcal C/X</m>, or category over <m>X</m>, has objects <m>(A,p:A\to X)</m>. A morphism <m>(A,p)\to(B,q)</m> is an arrow <m>a:A\to B</m> with <m>qa=p</m>.</p></li>
+          <li><p>The coslice <m>X/\mathcal C</m>, or category under <m>X</m>, has objects <m>(A,i:X\to A)</m>. A morphism <m>(A,i)\to(B,j)</m> is an arrow <m>a:A\to B</m> with <m>ai=j</m>. In both slice constructions, identities and composition are inherited from <m>\mathcal C</m>.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <p>The square equation is stable under composition: <m>b'bf=b'f'a=f''a'a</m>. The triangle equations are stable for the same reason. The endpoint functors <m>\operatorname{dom},\operatorname{cod}:\operatorname{Arr}(\mathcal C)\to\mathcal C</m> select the source or target; the slice and coslice have forgetful functors sending a structured object to <m>A</m>. The latter functors are faithful, but generally not full, because an arbitrary arrow <m>A\to B</m> need not satisfy the triangle equation.</p>
+    <p>All three categories are locally <m>\U</m>-small when <m>\mathcal C</m> is: their local morphism sets are subsets of a product of two old hom-sets, or of one old hom-set. They are <m>\U</m>-small if <m>\mathcal C</m> is <m>\U</m>-small. The object <m>(X,\id_X)</m> is terminal in <m>\mathcal C/X</m> and initial in <m>X/\mathcal C</m>, since the required comparison is forced to be the given structure arrow. Reversing arrows gives a canonical isomorphism <m>(\mathcal C/X)^{\op}\cong X/(\mathcal C^{\op})</m>.<fn>The over and under constructions, including their triangle conditions, appear in <xref ref="bib-cat-stacks" detail="Tags 001G and 001H"/>. They are special cases of the categories associated to a functor in <xref ref="bib-cat-ks" detail="Section 1.2"/>. The slash records a fixed endpoint, not a quotient operation.</fn></p>
+    <p>For a poset <m>P</m>, the slice <m>P/x</m> is the down-set of elements below <m>x</m>, and <m>x/P</m> is the corresponding up-set. For sets, <m>X/\Set</m> records an <m>X</m>-indexed choice of elements in another set; these elements need not be distinct. In particular, <m>1/\Set</m> is the category of pointed sets.</p>
+    <p>The slice <m>\Set/X</m> has another useful description: it is equivalent to <m>\prod_{x\in X}\Set</m>. Send <m>p:A\to X</m> to its family of fibers <m>(p^{-1}(x))_x</m>; an arrow over <m>X</m> restricts to a function on each fiber. Conversely, a family <m>(A_x)_x</m> gives the projection <m>\coprod_x A_x\to X</m>. The maps <m>a\mapsto(p(a),a)</m> and <m>(x,a)\mapsto a</m>, with their fiberwise versions, give the natural comparison isomorphisms. Thus an object over a set is a family of sets, up to the tags used for the disjoint union.</p>
+    <p>If <m>R</m> is a commutative ring, <m>R/\CRing</m> is the category of commutative <m>R</m>-algebras with their specified structure homomorphisms. In <m>R/\Ring</m>, the target rings may be noncommutative and the image of <m>R</m> need not be central.<fn>For noncommutative target rings, the usual definition of an algebra over a commutative base often requires the base to map into the center. That is an extra condition on this coslice, not a consequence of being a ring under <m>R</m>.</fn></p>
+  </section>
+
+  <section xml:id="cat-c02-comma">
+    <title>Comma categories and compatible data</title>
+    <p>Let <m>F:\mathcal A\to\mathcal E</m> and <m>G:\mathcal B\to\mathcal E</m>. One can compare their values without requiring those values to be equal: include an arrow between them among the object data.</p>
+    <definition xml:id="cat-c02-def-comma">
+      <title>Comma category</title>
+      <idx>Comma category</idx>
+      <statement>
+        <p>The comma category <m>(F\downarrow G)</m> has objects <m>(A,B,u)</m> with <m>A\in\mathcal A</m>, <m>B\in\mathcal B</m>, and <m>u:F(A)\to G(B)</m>. A morphism
+          <md number="no">(a,b):(A,B,u)\longrightarrow(A',B',u')</md>
+          consists of <m>a:A\to A'</m> and <m>b:B\to B'</m> satisfying <m>G(b)u=u'F(a)</m>. Identities and composition are componentwise. The projection functors are <m>p(A,B,u)=A</m> and <m>q(A,B,u)=B</m>.</p>
+      </statement>
+    </definition>
+    <xi:include href="diagram-c02-comma.ptx"/>
+    <p>The category axioms follow by composing the square equations. The structure arrows form a natural transformation <m>\lambda:Fp\Rightarrow Gq</m>, with <m>\lambda_{(A,B,u)}=u</m>. Both parts of a morphism are needed; the projections together determine it, although either projection separately may forget information.<fn>Our <m>(F\downarrow G)</m> is Li's <m>(F/G)</m> in <xref ref="bib-cat-li1" detail="Definition 2.4.7"/>. Compare <xref ref="bib-cat-riehl" detail="Exercise 1.3.vi"/> for the comma construction and <xref ref="bib-cat-riehl" detail="Exercise 1.4.vii"/> for its structure transformation. The structure arrow points from the left functor's value to the right functor's value in both notations.</fn></p>
+    <p>The local hom-set is a subset of <m>\Hom_{\mathcal A}(A,A')\times\Hom_{\mathcal B}(B,B')</m>, so local <m>\U</m>-smallness of <m>\mathcal A,\mathcal B</m> suffices for local <m>\U</m>-smallness of the comma category. If both are <m>\U</m>-small and <m>\mathcal E</m> is locally <m>\U</m>-small, the whole comma category is <m>\U</m>-small: its object set is the indexed disjoint union of the sets <m>\Hom_{\mathcal E}(F(A),G(B))</m>. Our triple <m>(A,B,u)</m> does not attach the possibly larger labels <m>F(A),G(B)</m> to the local arrow label <m>u</m>.</p>
+    <p>Regard an object <m>X\in\mathcal C</m> as a functor <m>\mathbf 1\to\mathcal C</m>. Then <m>(\id_{\mathcal C}\downarrow X)</m> identifies with <m>\mathcal C/X</m>, and <m>(X\downarrow\id_{\mathcal C})</m> with <m>X/\mathcal C</m>, by omitting the unique object of <m>\mathbf 1</m>. Likewise <m>(\id_{\mathcal C}\downarrow\id_{\mathcal C})</m> is the arrow category. In general we use <m>(X\downarrow F)</m> and <m>(F\downarrow X)</m> for the corresponding one-sided comma categories.</p>
+    <p>For example, let <m>U_G:\Grp\to\Set</m> forget the group structure and let <m>1</m> be a singleton set. An object of <m>(1\downarrow U_G)</m> is a group with a chosen element; its morphisms must preserve that element, which need not be the identity. An object of <m>(U_G\downarrow1)</m> is a group with its unique function to a singleton, and every group homomorphism satisfies the comma condition. Omitting that unique function gives an isomorphism with <m>\Grp</m>. Swapping the sides of a comma construction changes the information being specified, even with the same two functors.</p>
+    <proposition xml:id="cat-c02-prop-comma-data">
+      <statement>
+        <p>For any category <m>\mathcal T</m>, functors <m>r:\mathcal T\to\mathcal A</m>, <m>s:\mathcal T\to\mathcal B</m>, and natural transformation <m>\alpha:Fr\Rightarrow Gs</m>, there is exactly one functor <m>H:\mathcal T\to(F\downarrow G)</m> satisfying <m>pH=r</m>, <m>qH=s</m>, and <m>\lambda H=\alpha</m>.</p>
+      </statement>
+      <proof>
+        <p>The requirements force <m>H(T)=(rT,sT,\alpha_T)</m> and <m>H(t)=(r(t),s(t))</m>. Naturality of <m>\alpha</m> is precisely the comma morphism condition for this pair. The identities and composition rules for <m>r,s</m> make <m>H</m> a functor. Every part of its data is forced, which proves uniqueness.</p>
+      </proof>
+    </proposition>
+    <p>This property explains the construction's usefulness: an entire compatible comparison becomes one ordinary functor. The structure arrow is arbitrary, not necessarily invertible. Thus a comma category neither asks for equality of <m>F(A)</m> and <m>G(B)</m> nor restricts to isomorphisms between them. An arrow <m>(a,b)</m> is invertible exactly when both <m>a</m> and <m>b</m> are invertible: necessity follows from the projections, and the square equation gives the inverse pair <m>(a^{-1},b^{-1})</m>.</p>
+  </section>
+
+  <section xml:id="cat-c02-induced-functors">
+    <title>Induced functors and their directions</title>
+    <p>The constructions also transport arrows and changes of data. A functor <m>K:\mathcal C\to\mathcal D</m> sends a square to its image square and induces <m>\operatorname{Arr}(K)</m>, <m>\mathcal C/X\to\mathcal D/KX</m>, and <m>X/\mathcal C\to KX/\mathcal D</m>. Each acts by <m>K</m> on the underlying objects and arrows. Functoriality follows by applying <m>K</m> to the defining equations.</p>
+    <p>An arrow <m>v:X\to Y</m> within a fixed category gives two further functors:
+      <md number="no"><mrow>v_*:\mathcal C/X\longrightarrow\mathcal C/Y,\qquad(A,p)\longmapsto(A,vp),</mrow><mrow>v^*:Y/\mathcal C\longrightarrow X/\mathcal C,\qquad(A,i)\longmapsto(A,iv).</mrow></md>
+      Both act as the identity on underlying comparison arrows. Their triangle equations follow by composing the old equation with <m>v</m>. For consecutive arrows <m>v,w</m>, these formulas give <m>(wv)_*=w_*v_*</m> and <m>(wv)^*=v^*w^*</m>, with identity arrows giving identity functors.<fn>These two functors appear in <xref ref="bib-cat-stacks" detail="Tags 001G and 001H"/>. Here <m>v^*</m> means precomposition on coslices. A functor <m>\mathcal C/Y\to\mathcal C/X</m> built by taking pullbacks would be a different construction and needs additional existence assumptions. No pullbacks have been assumed here.</fn></p>
+    <proposition xml:id="cat-c02-prop-induced-comma">
+      <statement>
+        <p>For <m>F:\mathcal A\to\mathcal E</m>, <m>G:\mathcal B\to\mathcal E</m>, the following formulas define functors.</p>
+        <p><ol>
+          <li><p>Functors <m>R:\mathcal A'\to\mathcal A</m> and <m>S:\mathcal B'\to\mathcal B</m> induce <m>(FR\downarrow GS)\to(F\downarrow G)</m>, sending <m>(A',B',u)</m> to <m>(RA',SB',u)</m> and <m>(a,b)</m> to <m>(R(a),S(b))</m>.</p></li>
+          <li><p>A functor <m>K:\mathcal E\to\mathcal E'</m> induces <m>(F\downarrow G)\to(KF\downarrow KG)</m>, sending <m>(A,B,u)</m> to <m>(A,B,K(u))</m> and sending each comparison pair <m>(a,b)</m> to itself.</p></li>
+          <li><p>For functors <m>F':\mathcal A\to\mathcal E</m>, <m>G':\mathcal B\to\mathcal E</m> and natural transformations <m>\alpha:F'\Rightarrow F</m>, <m>\beta:G\Rightarrow G'</m>, there is a functor
+            <md number="no">(F\downarrow G)\longrightarrow(F'\downarrow G'),\qquad(A,B,u)\longmapsto(A,B,\beta_Bu\alpha_A),</md>
+            with each comparison pair <m>(a,b)</m> sent to itself. If <m>\alpha,\beta</m> are natural isomorphisms, this last functor is an isomorphism of categories.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>In the first construction, substitute <m>R(a),S(b)</m> in the defining square. In the second, apply <m>K</m> to that square. For the third, naturality gives
+          <md number="no">G'(b)\beta_Bu\alpha_A=\beta_{B'}G(b)u\alpha_A=\beta_{B'}u'F(a)\alpha_A=\beta_{B'}u'\alpha_{A'}F'(a).</md>
+          This is the required new comma equation. Identities and composites follow from the componentwise rules; the object assignments and arrow assignments therefore define functors. In the final assertion, applying the formula with <m>\alpha^{-1},\beta^{-1}</m> gives a strict inverse on both objects and arrows.</p>
+      </proof>
+    </proposition>
+    <p>The displayed domains prevent a common direction error. In the third construction, the transformation on <m>F</m> must enter the old value <m>F(A)</m>, so its direction is <m>F'\Rightarrow F</m>. The transformation on <m>G</m> must leave <m>G(B)</m>, so its direction is <m>G\Rightarrow G'</m>. A transformation in the opposite direction cannot be inserted into this formula unless an inverse is available.</p>
+    <p>The target-change functor in the second part is always faithful: it sends each comparison pair <m>(a,b)</m> to itself. If <m>K</m> is faithful, it is also full, since the new square equation then implies the old one. If <m>K</m> is fully faithful, every possible new structure arrow between <m>KF(A)</m> and <m>KG(B)</m> lifts uniquely, so this induced functor is an isomorphism of categories. For an arbitrary <m>K</m>, distinct structure arrows can instead acquire the same image. The formulas define a functor regardless; the stronger comparison property requires the stronger hypothesis.</p>
+  </section>
+
+  <section xml:id="cat-c02-universal-arrows">
+    <title>Universal arrows and structural uniqueness</title>
+    <p>Let <m>F:\mathcal A\to\mathcal C</m> be a functor and <m>X\in\mathcal C</m>. An arrow between <m>X</m> and a value of <m>F</m> is universal when every arrow of the same kind factors uniquely through it, by a morphism in <m>\mathcal A</m>.</p>
+    <definition xml:id="cat-c02-def-universal-arrow">
+      <title>The two directions of universal arrows</title>
+      <idx>Universal arrow</idx>
+      <statement>
+        <p><ol>
+          <li><p>A universal arrow from <m>X</m> to <m>F</m> is a pair <m>(A,u:X\to F(A))</m> initial in <m>(X\downarrow F)</m>. Explicitly, for every <m>B\in\mathcal A</m> and <m>v:X\to F(B)</m>, there is exactly one <m>a:A\to B</m> with <m>F(a)u=v</m>.</p></li>
+          <li><p>A universal arrow from <m>F</m> to <m>X</m> is a pair <m>(A,u:F(A)\to X)</m> terminal in <m>(F\downarrow X)</m>. Explicitly, for every <m>B\in\mathcal A</m> and <m>v:F(B)\to X</m>, there is exactly one <m>a:B\to A</m> with <m>uF(a)=v</m>.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <xi:include href="diagram-c02-universal.ptx"/>
+    <p>Universality is a property of the pair, relative to the specified functor. Neither existence of an arrow <m>u</m> nor existence of an object <m>A</m> suffices. Existence of factorizations alone also omits the uniqueness requirement. When <m>\mathcal A</m> is empty, neither kind of pair exists.<fn>Mac Lane defines the pair and identifies the first direction with initiality in the comma category in <xref ref="bib-cat-maclane" detail="Section III.1"/>. He also uses universal arrow as shorthand for its structure map. Retaining the pair prevents loss of the comparison conditions; the second direction is its opposite-category formulation.</fn></p>
+    <p>The uniquely determined arrow is <m>a</m> in <m>\mathcal A</m>. The dashed arrow in the triangle is its image <m>F(a)</m>. The definition does not assert uniqueness among all arrows between those image objects in <m>\mathcal C</m>; some of those arrows may not come from <m>F</m> at all.</p>
+    <proposition xml:id="cat-c02-prop-universal-uniqueness">
+      <statement>
+        <p>If <m>(A,u)</m> and <m>(A',u')</m> are universal arrows from <m>X</m> to <m>F</m>, there is exactly one isomorphism <m>a:A\to A'</m> satisfying <m>F(a)u=u'</m>. For universal arrows from <m>F</m> to <m>X</m>, there is exactly one isomorphism <m>a:A\to A'</m> satisfying <m>u'F(a)=u</m>.</p>
+      </statement>
+      <proof>
+        <p>In the first case, universality gives unique arrows <m>a:A\to A'</m> and <m>b:A'\to A</m> preserving the structure maps. Their composites preserve those maps as well. Each is therefore the identity, by uniqueness applied to the universal pair itself. This proves invertibility and uniqueness of <m>a</m>. In the second case, use the unique arrows between the two terminal comma objects and the same composite argument.</p>
+      </proof>
+    </proposition>
+    <p>The conclusion is stronger than merely <m>A\cong A'</m> and more precise than saying there is only one isomorphism between the underlying objects. There may be other isomorphisms that do not preserve <m>u</m>. Universality does imply that the only automorphism of a universal pair is its identity. It also shows how to transfer the property: if <m>a:A\to A'</m> is an isomorphism, the transported structure map <m>F(a)u</m> gives another universal arrow from <m>X</m> to <m>F</m>. For the opposite direction the transported map is <m>uF(a^{-1})</m>.</p>
+    <p>For a fixed <m>X</m>, the first definition says that composition with <m>u</m> gives a bijection
+      <md number="no">\Hom_{\mathcal A}(A,B)\longrightarrow\Hom_{\mathcal C}(X,F(B)),\qquad a\longmapsto F(a)u</md>
+      for every <m>B</m>. These bijections respect postcomposition, since <m>F(ba)u=F(b)F(a)u</m>. This compatibility follows from the factorization formula itself; it is not a further choice of bijections. The dual formula respects precomposition. No choice of universal pairs for other objects of <m>\mathcal C</m> is part of the present definition.</p>
+  </section>
+
+  <section xml:id="cat-c02-universal-examples">
+    <title>Elementary universal specifications</title>
+    <introduction>
+      <p>The following examples illustrate what the category of candidates must remember. Each proof verifies existence and uniqueness of the required factorizations, using constructions from elementary algebra and order.</p>
+    </introduction>
+
+    <subsection xml:id="cat-c02-pairing-functions">
+      <title>A pair of maps and its common source</title>
+      <p>Fix sets <m>A,B</m>. Let <m>\Delta:\Set\to\Set\times\Set</m> send <m>C</m> to <m>(C,C)</m> and a function <m>h</m> to <m>(h,h)</m>. An object of <m>(\Delta\downarrow(A,B))</m> is a set <m>C</m> with a pair of functions <m>f:C\to A</m>, <m>g:C\to B</m>. A morphism to <m>(C',f',g')</m> is a function <m>h:C\to C'</m> satisfying both <m>f'h=f</m> and <m>g'h=g</m>. It is a comparison of pairs of maps, not just of their common sources.</p>
+      <p>The cartesian set <m>A\times B</m> with its two projections is terminal in this comma category. Given <m>(C,f,g)</m>, the function <m>h(c)=(f(c),g(c))</m> has the required composites with the projections. Conversely, the two prescribed coordinates determine its value at every element, so it is the unique comparison. This argument still applies when one factor or the candidate source is empty. Thus the projections give a universal arrow from <m>\Delta</m> to <m>(A,B)</m>.</p>
+      <p>A set bijective to <m>A\times B</m> acquires the same property when the projections are transported along the bijection. Keeping those projections fixed removes the freedom in that transport. For example, a permutation of <m>A\times B</m> preserving both projections fixes each ordered pair and is therefore the identity. The underlying set can have many other permutations, which do not define automorphisms of this structured object.</p>
+    </subsection>
+
+    <subsection xml:id="cat-c02-free-monoids">
+      <title>Words and the free monoid</title>
+      <p>Let <m>S\in\U</m>. The set <m>S^*=\coprod_{n\in\N}S^n</m> consists of finite words, with the empty word in length zero. Concatenation makes it a monoid; concatenating with the empty word changes nothing, and the two parenthesizations of three words have the same ordered sequence of letters. All this data belongs to <m>\U</m>. Let <m>j:S\to S^*</m> send a letter to its length-one word, and let <m>U:\Mon\to\Set</m> be the forgetful functor.</p>
+      <p>The pair <m>(S^*,j)</m> is initial in <m>(S\downarrow U)</m>. Indeed, an object of this comma category is a monoid <m>M</m> with a function <m>f:S\to U(M)</m>. Define
+        <md number="no">\overline f(s_1\cdots s_n)=f(s_1)\cdots f(s_n),\qquad \overline f(\text{empty word})=1_M.</md>
+        Associativity in <m>M</m> makes the formula compatible with concatenation, so it defines a monoid homomorphism. It satisfies <m>U(\overline f)j=f</m>. Conversely, a homomorphism extending <m>f</m> must have this value on every word, proving uniqueness. The function <m>f</m> need not be injective and its image need not generate <m>M</m>.<fn>The monoid example extends a map on generators without imposing relations or inverse letters. Riehl's free-group construction in <xref ref="bib-cat-riehl" detail="Example 4.2.4"/> has the corresponding universal property for groups. Here only the monoid construction is needed.</fn></p>
+    </subsection>
+
+    <subsection xml:id="cat-c02-quotient-groups">
+      <title>Quotients with a prescribed relation</title>
+      <p>Let <m>G</m> be a group and <m>N</m> a normal subgroup. Form the full subcategory of <m>G/\Grp</m> whose objects are homomorphisms <m>f:G\to H</m> satisfying <m>N\subseteq\ker f</m>. Its arrows are homomorphisms <m>b:H\to H'</m> with <m>bf=f'</m>. The quotient map <m>q:G\to G/N</m> is an initial object of this category.</p>
+      <p>To prove the assertion, given <m>f</m> define <m>\overline f(gN)=f(g)</m>. If two cosets agree, their representatives differ by an element of <m>N</m>, so their images agree. The quotient multiplication shows that <m>\overline f</m> is a homomorphism, and <m>\overline f q=f</m>. Every coset has a representative, so this equation forces every value of <m>\overline f</m>. The proof compares maps out of the quotient, not arbitrary maps between its underlying group and another group.</p>
+      <p>This specification includes all homomorphisms killing <m>N</m>, including nonsurjective ones. The structure map <m>q</m> is indispensable for the unique comparison between two quotient realizations.<fn>The allowed morphisms can change a universal property. In <xref ref="bib-cat-maclane" detail="Section III.1"/>, the field-of-fractions example uses injective maps of integral domains. Allowing every domain homomorphism would invalidate it: a map with nonzero kernel cannot extend to the fraction field. Thus a description such as smallest field or quotient by the relations must be completed by its actual comparison maps.</fn></p>
+    </subsection>
+
+    <subsection xml:id="cat-c02-order-approximations">
+      <title>Least and greatest approximations</title>
+      <p>Let <m>P</m> be a poset, let <m>S\subseteq P</m> carry the induced order, and let <m>J:S\to P</m> be the inclusion functor. For <m>x\in P</m>, a universal arrow from <m>x</m> to <m>J</m> is a least element of <m>\{s\in S:x\le s\}</m>. The structure arrow is the inequality <m>x\le s</m>. Its universal condition is <m>s\le t</m> for every competing <m>t</m>, since all available arrows are unique. Dually, a universal arrow from <m>J</m> to <m>x</m> is a greatest element of <m>\{s\in S:s\le x\}</m>.</p>
+      <p>For the inclusion of the even integers into <m>\Z</m>, these objects are <m>2\lceil x/2\rceil</m> and <m>2\lfloor x/2\rfloor</m>. Both directions therefore exist, but give different approximations when <m>x</m> is odd. In a partial order, a minimal eligible element need not be least: if two incomparable elements both lie above <m>x</m> and are the only elements of <m>S</m>, neither is initial in <m>(x\downarrow J)</m>. Existence of candidates alone gives no universal comparison between them.</p>
+    </subsection>
+  </section>
+</chapter>

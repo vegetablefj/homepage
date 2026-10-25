@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="hkg-torelli">
+  <title>Marked moduli and the Torelli theorems</title>
+  <introduction>
+    <p>Local Torelli gives a period chart near every IHS manifold. Global Torelli describes how these charts fit together: all allowed periods occur, and manifolds in one period fiber are bimeromorphic. To recover an isomorphism one must also compare Kähler cones. The cohomology isometries in the theorem are parallel-transport operators; an arbitrary lattice Hodge isometry need not have this property.</p>
+    <p>For the global theorems we assume <m>b_2\geq5</m>, covering the Hilbert-scheme, generalized Kummer, and O'Grady types. The local results of <xref ref="hkg-deformations"/> need no such restriction. We quote global Torelli in the marked formulation of <xref ref="hkg-bib-markman-survey" detail="Theorems 1.3 and 2.2"/>. For Teichmüller space, see <xref ref="hkg-bib-verbitsky-torelli"/> and its erratum <xref ref="hkg-bib-verbitsky-torelli-erratum"/>.</p>
+  </introduction>
+  <section xml:id="hkg-marked-moduli">
+    <title>The space of marked manifolds</title>
+    <p>Fix a lattice <m>\Lambda</m> occurring as the second cohomology lattice of an IHS manifold, with markings as in <xref ref="hkg-definition-marking"/>.</p>
+    <definition xml:id="hkg-definition-marked-isomorphism">
+      <statement>
+        <p>Marked manifolds <m>(X,\eta_X)</m> and <m>(Y,\eta_Y)</m> are <em>isomorphic</em> if there is a biholomorphism <m>f:X\to Y</m> such that
+          <md number="no">\eta_X\circ f^*=\eta_Y:H^2(Y,\mathbb Z)\longrightarrow\Lambda.</md>
+          The space of isomorphism classes of marked IHS manifolds with lattice <m>\Lambda</m> is denoted by <m>\mathfrak M_\Lambda</m>, with its analytic structure obtained from local deformation charts. We write <m>\mathfrak M_\Lambda^\circ</m> for one chosen connected component.</p>
+      </statement>
+    </definition>
+    <p>Pullback maps the cohomology of <m>Y</m> to that of <m>X</m>. Replacing <m>\eta_X</m> by <m>g\eta_X</m>, for <m>g\in O(\Lambda)</m>, generally changes the marked point.</p>
+    <p>Each sufficiently small Kuranishi family gives an open chart in <m>\mathfrak M_\Lambda</m> after extending its central marking. The existence and gluing of these charts are used here as the construction of the marked moduli space; see <xref ref="hkg-bib-huybrechts-torelli" detail="§4.2"/>. They make it a smooth complex manifold of dimension <m>b_2-2</m>, with the convention that a complex manifold in this discussion need not be Hausdorff. It is locally Hausdorff because every chart is an ordinary complex manifold.</p>
+    <p xml:id="hkg-moduli-no-universal-anchor">An automorphism acting trivially on <m>H^2</m> preserves every marking. Thus marked period charts need not glue to a global universal family on <m>\mathfrak M_\Lambda</m>.</p>
+    <aside xml:id="margin-hkg-moduli-fine">
+      <p>A fine moduli space represents the family-valued moduli functor and carries a universal family. Classification of isomorphism classes alone is weaker.</p>
+    </aside>
+    <p>The local period maps glue because the Hodge line is invariant under isomorphisms compatible with markings. Thus there is a global holomorphic map
+      <md xml:id="hkg-equation-global-period" number="yes">\operatorname{Per}:\mathfrak M_\Lambda\longrightarrow\Omega_\Lambda,\qquad (X,\eta)\longmapsto\eta(H^{2,0}(X)).</md>
+      It is a local biholomorphism by <xref ref="hkg-theorem-local-torelli"/>, without necessarily being injective or a covering map.</p>
+  </section>
+  <section xml:id="hkg-parallel-transport">
+    <title>Parallel transport and monodromy</title>
+    <definition xml:id="hkg-definition-parallel-transport">
+      <statement>
+        <p>A <em>parallel-transport operator</em> from <m>X</m> to <m>Y</m> is an isomorphism
+          <md number="no">\varphi:H^2(X,\mathbb Z)\longrightarrow H^2(Y,\mathbb Z)</md>
+          obtained by transport along a path in a smooth proper family of IHS manifolds, with its endpoint fibers identified with <m>X</m> and <m>Y</m>. We also allow finite compositions of these operators along a chain of families. The <em>degree-two monodromy group</em> <m>\operatorname{Mon}^2(X)</m> consists of parallel-transport operators from <m>X</m> to itself.</p>
+      </statement>
+    </definition>
+    <p>Chains give the usual definition over a connected analytic base by joining bases at endpoint fibers. Reversing paths gives inverses, and concatenating chains gives compositions. Thus transport operators form a groupoid, and <m>\operatorname{Mon}^2(X)</m> is a group.</p>
+    <p>Transport preserves the integral lattice and BBF form, and extends to total cohomology preserving cup product and topological characteristic classes.</p>
+    <p>The Hodge filtration is not flat in a varying family. Consequently, a monodromy operator on <m>H^2(X,\mathbb Z)</m> need not preserve the Hodge decomposition of <m>X</m>. We distinguish the subgroup
+      <md number="no">\operatorname{Mon}^2_{\mathrm{Hdg}}(X)=\operatorname{Mon}^2(X)\cap O_{\mathrm{Hdg}}(H^2(X,\mathbb Z),q_X),</md>
+      where <m>O_{\mathrm{Hdg}}</m> consists of isometries preserving the Hodge decomposition. A <em>parallel-transport Hodge isometry</em> between two manifolds satisfies both conditions.</p>
+    <proposition xml:id="hkg-proposition-transport-components">
+      <statement>
+        <p>Let <m>\eta_X:H^2(X,\mathbb Z)\to\Lambda</m> and <m>\eta_Y:H^2(Y,\mathbb Z)\to\Lambda</m> be markings. The marked pairs belong to the same connected component of <m>\mathfrak M_\Lambda</m> if and only if
+          <md number="no">\eta_Y^{-1}\eta_X:H^2(X,\mathbb Z)\longrightarrow H^2(Y,\mathbb Z)</md>
+          is a parallel-transport operator.</p>
+      </statement>
+      <proof>
+        <p>A connected complex manifold is locally path connected and therefore path connected. Cover a path between the marked points by finitely many Kuranishi charts. The markings are flat in each chart. Their overlap identifications therefore give a chain of transport operators whose composite is <m>\eta_Y^{-1}\eta_X</m>.</p>
+        <p>Conversely, take a chain of families realizing this operator. Extend the marking <m>\eta_X</m> along each path by flat transport. Each resulting path of marked fibers is continuous in the local deformation charts. At the endpoint the marking is <m>\eta_X\varphi^{-1}=\eta_Y</m>, where <m>\varphi=\eta_Y^{-1}\eta_X</m>. Concatenating the paths connects the two marked points.</p>
+      </proof>
+    </proposition>
+    <p>For a Kähler class <m>\omega</m>, the ordered triple
+      <md number="no">\bigl(\operatorname{Re}\sigma,\operatorname{Im}\sigma,\omega\bigr)</md>
+      orients a positive three-space in <m>H^2(X,\mathbb R)</m>. Changing the nonzero generator <m>\sigma</m> preserves the orientation of the first two vectors; varying <m>\omega</m> in the Kähler cone preserves the resulting component of the oriented positive three-space Grassmannian. This defines the natural positive orientation. Parallel transport preserves it; see <xref ref="hkg-bib-markman-survey" detail="§4"/>. The subgroup of lattice isometries preserving it is denoted by <m>O^+(H^2(X,\mathbb Z),q_X)</m>.</p>
+    <p xml:id="hkg-orientation-transport-anchor">Thus <m>\operatorname{Mon}^2(X)\subset O^+(H^2(X,\mathbb Z),q_X)</m>; the inclusion can be strict.</p>
+    <aside xml:id="margin-hkg-monodromy-lattice">
+      <p>For transport between two different manifolds of <m>\mathrm{K3}^{[n]}</m> type, one must also compare their monodromy orbits of embeddings into the Mukai lattice; see <xref ref="hkg-bib-markman-survey" detail="Theorem 9.8"/>.</p>
+    </aside>
+    <definition xml:id="hkg-def-discriminant-group">
+      <statement><p>For an integral lattice <m>L</m>, its dual lattice and discriminant group are
+        <md number="no">L^\vee=\{x\in L_\Q:q_L(x,L)\subset\Z\},\qquad A_L=L^\vee/L.</md>
+        The group is finite. An isometry <m>g\in O(L)</m> induces an automorphism <m>\bar g</m> of <m>A_L</m>. If <m>L</m> is even, the discriminant quadratic form is <m>\bar q_L:A_L\to\Q/2\Z</m>, <m>\bar q_L([x])=q_L(x)\bmod2\Z</m>. Write <m>O(A_L,\bar q_L)</m> for its group of form-preserving automorphisms.</p></statement>
+    </definition>
+    <theorem xml:id="hkg-k3-hilbert-monodromy">
+      <title>(Markman)</title>
+      <statement><p>If <m>X</m> is of <m>\mathrm{K3}^{[n]}</m> type with <m>n\geq2</m> and <m>L=H^2(X,\mathbb Z)</m>, then
+        <md number="no">\operatorname{Mon}^2(X)=\{g\in O^+(L):\bar g=\operatorname{id}_{A_L}\text{ or }\bar g=-\operatorname{id}_{A_L}\}.</md>
+      </p></statement>
+    </theorem>
+    <p>We quote <xref ref="hkg-bib-markman-survey" detail="Lemma 9.2"/>. Here <m>A_L\cong\mathbb Z/(2n-2)\mathbb Z</m>, by the lattice decomposition in <xref ref="hkg-eq-hilbert-lattice"/>. Thus membership in monodromy imposes an integral condition beyond positive orientation.<fn>For <m>n=2</m> the group <m>A_L\cong\mathbb Z/2\mathbb Z</m> has no nonidentity automorphism, so <m>\operatorname{Mon}^2(X)=O^+(L)</m>.</fn></p>
+  </section>
+  <section xml:id="hkg-teichmuller-space">
+    <title>Differentiable markings and Teichmüller space</title>
+    <p>The marked moduli space remembers an identification of second cohomology. Teichmüller space starts with more differentiable information. Fix an oriented differentiable manifold <m>M</m> underlying an IHS manifold. Let <m>\operatorname{Comp}_{\mathrm{IHS}}(M)</m> be the space of integrable complex structures <m>I</m> on <m>M</m> for which <m>(M,I)</m> is IHS. Its topology is induced from the smooth topology on tensor fields.</p>
+    <definition xml:id="hkg-definition-teichmuller">
+      <statement>
+        <p>The <em>Teichmüller space</em> of IHS complex structures on <m>M</m> is
+          <md number="no">\operatorname{Teich}(M)=\operatorname{Comp}_{\mathrm{IHS}}(M)/\operatorname{Diff}_0(M),</md>
+          where <m>\operatorname{Diff}_0(M)</m> is the subgroup of diffeomorphisms isotopic to the identity. The <em>mapping class group</em> is <m>\Gamma_M=\operatorname{Diff}^+(M)/\operatorname{Diff}_0(M)</m>, acting on this space.</p>
+      </statement>
+    </definition>
+    <p>The notation <m>\operatorname{Diff}^+(M)</m> means orientation-preserving diffeomorphisms. A point in Teichmüller space is a complex structure on the fixed smooth manifold, with two structures identified only when the comparison is isotopic to the identity. A differentiable identification of <m>M</m> with a fiber induces a cohomology marking after fixing one isometry <m>H^2(M,\mathbb Z)\cong\Lambda</m>. Forgetting the differentiable identification and retaining this cohomology marking relates Teichmüller space to <m>\mathfrak M_\Lambda</m>.</p>
+    <p>A diffeomorphism can act trivially on cohomology without being isotopic to the identity. Period comparisons use the image on second cohomology of the subgroup preserving the chosen component.</p>
+    <p xml:id="hkg-torelli-erratum-anchor">The marked formulation uses transport and requires no finiteness assertion about the kernel of the full mapping-class action on cohomology. See the correction in <xref ref="hkg-bib-verbitsky-torelli-erratum"/>.</p>
+    <aside xml:id="margin-hkg-teichmuller-terminology">
+      <p>The term <em>Torelli group</em> is used for a kernel of a mapping-class action on cohomology. Authors may mean the action on <m>H^2</m> or on total cohomology. It is different from the geometric Torelli theorem, which compares manifolds from Hodge and transport data.</p>
+    </aside>
+  </section>
+  <section xml:id="hkg-global-torelli">
+    <title>Global Torelli and inseparable points</title>
+    <definition xml:id="hkg-definition-inseparable">
+      <statement>
+        <p>Two points <m>x,y</m> of a topological space are <em>inseparable</em> if every open neighborhood of <m>x</m> meets every open neighborhood of <m>y</m>. A point is a <em>Hausdorff point</em> if it is inseparable from no other point.</p>
+      </statement>
+    </definition>
+    <p>Inseparability is reflexive and symmetric, but need not be transitive. Global Torelli makes it an equivalence relation on each component of marked IHS moduli.</p>
+    <theorem xml:id="hkg-theorem-global-torelli">
+      <title>(Huybrechts, Verbitsky)</title>
+      <statement>
+        <p>Assume <m>\operatorname{rk}\Lambda\geq5</m>, and let <m>\mathfrak M_\Lambda^\circ</m> be a nonempty connected component of the marked moduli space. The period map
+          <md number="no">\operatorname{Per}:\mathfrak M_\Lambda^\circ\longrightarrow\Omega_\Lambda</md>
+          is surjective. Every fiber consists of pairwise inseparable points. If two marked points are inseparable, their underlying manifolds are bimeromorphic.</p>
+      </statement>
+    </theorem>
+    <p>Surjectivity is due to Huybrechts; the description of the period fibers is the global Torelli theorem of Verbitsky, combined with Huybrechts' analysis of inseparability. We use these assertions without proof. Their precise marked formulation is <xref ref="hkg-bib-markman-survey" detail="Theorem 2.2(1)–(3)"/>; <xref ref="hkg-bib-huybrechts-torelli"/> gives an exposition of the twistor and separation arguments.</p>
+    <corollary xml:id="hkg-corollary-separated-period-moduli">
+      <statement>
+        <p>Within <m>\mathfrak M_\Lambda^\circ</m>, two points are inseparable if and only if they have the same period. Identifying inseparable points gives a Hausdorff complex manifold naturally isomorphic to <m>\Omega_\Lambda</m>.</p>
+      </statement>
+      <proof>
+        <p>A continuous map to a Hausdorff space sends inseparable points to the same point: if their images were distinct, disjoint neighborhoods of the images would pull back to disjoint neighborhoods. This applies to <m>\operatorname{Per}</m>, since <m>\Omega_\Lambda</m> is Hausdorff. The converse is part of <xref ref="hkg-theorem-global-torelli"/>. Thus inseparability is equality of periods and is an equivalence relation here.</p>
+        <p>The quotient map induced by <m>\operatorname{Per}</m> is bijective by surjectivity. It is also open: a local biholomorphism is open, so the image of every open subset of <m>\mathfrak M_\Lambda^\circ</m> is open in <m>\Omega_\Lambda</m>. Hence the induced bijection is a homeomorphism. The local period coordinates give the quotient its complex structure, and in those coordinates the map is the identity. It is therefore a biholomorphism.</p>
+      </proof>
+    </corollary>
+    <p>This is the <em>birational</em> or <em>separated</em> quotient of the chosen marked component.</p>
+    <p>The geometric proof uses chains of twistor conics connecting periods, control of their lifts, and the Kähler cone at periods with no integral <m>(1,1)</m> classes. These global results are quoted.</p>
+  </section>
+  <section xml:id="hkg-hodge-torelli">
+    <title>Birational and isomorphism criteria</title>
+    <p>A bimeromorphic map of IHS manifolds is an isomorphism in codimension one. Its graph induces a Hodge isometry on second cohomology, and Huybrechts' deformation theorem makes this a transport operator; see <xref ref="hkg-bib-markman-survey" detail="Theorem 3.1"/>.</p>
+    <theorem xml:id="hkg-theorem-birational-torelli">
+      <statement>
+        <p>Let <m>X,Y</m> be deformation-equivalent IHS manifolds with <m>b_2(X)\geq5</m>. They are bimeromorphic if and only if there is a parallel-transport Hodge isometry between <m>H^2(X,\mathbb Z)</m> and <m>H^2(Y,\mathbb Z)</m>.</p>
+      </statement>
+      <proof>
+        <p>A bimeromorphic map gives such an operator by the result just stated. Conversely, let <m>\varphi:H^2(X,\mathbb Z)\to H^2(Y,\mathbb Z)</m> be a parallel-transport Hodge isometry. Choose a marking <m>\eta_Y</m> and set <m>\eta_X=\eta_Y\varphi</m>. By <xref ref="hkg-proposition-transport-components"/>, the two marked pairs belong to the same connected component. Since <m>\varphi</m> preserves the <m>(2,0)</m> line,
+          <md number="no">\eta_X(H^{2,0}(X))=\eta_Y\varphi(H^{2,0}(X))=\eta_Y(H^{2,0}(Y)).</md>
+          Their periods are equal. Global Torelli makes them inseparable and hence makes <m>X</m> and <m>Y</m> bimeromorphic.</p>
+      </proof>
+    </theorem>
+    <p>The specified <m>\varphi</m> need not be induced by the resulting bimeromorphic map. Realizing that operator requires a Kähler-class condition.</p>
+    <theorem xml:id="hkg-theorem-strong-torelli">
+      <title>(Verbitsky, Markman)</title>
+      <statement>
+        <p>Let <m>X,Y</m> be deformation-equivalent IHS manifolds with <m>b_2(X)\geq5</m>, and let <m>\psi:H^2(Y,\mathbb Z)\to H^2(X,\mathbb Z)</m> be a parallel-transport Hodge isometry. There is a biholomorphism <m>f:X\to Y</m> with <m>f^*=\psi</m> if and only if <m>\psi</m> sends some Kähler class of <m>Y</m> to a Kähler class of <m>X</m>. In that case, <m>\psi(\mathcal K_Y)=\mathcal K_X</m>.</p>
+      </statement>
+    </theorem>
+    <p>See <xref ref="hkg-bib-markman-survey" detail="Theorem 1.3(2)"/>, in pullback convention. Existence from the Kähler-class condition is quoted; the converse follows by pulling back Kähler forms.</p>
+    <p xml:id="hkg-strong-torelli-uniqueness-anchor">Two such biholomorphisms differ by an automorphism of <m>X</m> acting trivially on <m>H^2(X,\mathbb Z)</m>. For K3 surfaces that action is faithful, giving uniqueness.</p>
+    <aside xml:id="margin-hkg-strong-torelli-direction">
+      <p>For <m>\varphi:H^2(X,\mathbb Z)\to H^2(Y,\mathbb Z)</m>, the geometric map <m>X\to Y</m> has pullback <m>\varphi^{-1}</m>.</p>
+    </aside>
+    <example xml:id="hkg-example-root-reflection">
+      <p>Let <m>S</m> be a K3 surface containing a smooth rational curve <m>C</m>, and let <m>\delta=[C]</m>. Adjunction gives <m>q_S(\delta)=-2</m>. The reflection
+        <md number="no">r_\delta(x)=x+q_S(x,\delta)\delta</md>
+        is an integral Hodge isometry: it fixes <m>\delta^\perp</m>, sends <m>\delta</m> to <m>-\delta</m>, and fixes the <m>(2,0)</m> line because <m>\delta</m> has type <m>(1,1)</m>. If <m>\omega</m> is Kähler, then
+        <md number="no">q_S(r_\delta(\omega),\delta)=-q_S(\omega,\delta)=-\int_C\omega&lt;0.</md>
+        Hence <m>r_\delta(\omega)</m> is not Kähler, so no automorphism induces <m>r_\delta</m>. This reflection is a K3 monodromy operator; see <xref ref="hkg-bib-markman-survey" detail="§9.1.1"/>.</p>
+    </example>
+    <p>In higher dimension there is a second issue before one reaches the cone condition: a Hodge isometry may fail to be a transport operator at all. Examples of nonbimeromorphic manifolds with Hodge-isometric second cohomology show that the naive Hodge-theoretic birational statement is false; see <xref ref="hkg-bib-huybrechts-torelli" detail="§1.1"/>. The hypotheses of <xref ref="hkg-theorem-birational-torelli"/> address that issue, while <xref ref="hkg-theorem-strong-torelli"/> then distinguishes isomorphism from bimeromorphism.</p>
+  </section>
+  <section xml:id="hkg-period-fibers-cones">
+    <title>Period fibers and Kähler chambers</title>
+    <p>Recall the Kähler cone <m>\mathcal K_X</m> and the positive cone <m>\mathcal C_X</m> from <xref ref="hkg-positive-cone"/>. The period and positive orientation select <m>\mathcal C_X</m>, but its subdivision into Kähler chambers requires further geometric information.</p>
+    <theorem xml:id="hkg-theorem-period-fiber-hausdorff">
+      <statement>
+        <p>A marked IHS manifold <m>(X,\eta)</m> is a Hausdorff point of <m>\mathfrak M_\Lambda</m> if and only if <m>\mathcal K_X=\mathcal C_X</m>. In that case it is the only point in its period fiber inside its connected component. In particular, this holds when <m>\operatorname{NS}(X)=0</m>, or when <m>\operatorname{NS}(X)</m> has rank one and is generated by a class of nonnegative square.</p>
+      </statement>
+    </theorem>
+    <p>See <xref ref="hkg-bib-markman-survey" detail="Theorem 2.2(4)–(5)"/>. Uniqueness in the period fiber also follows from global Torelli and the Hausdorff-point condition.</p>
+    <p>Periods with no integral <m>(1,1)</m> classes are very general by <xref ref="hkg-proposition-generic-picard-zero"/>. At special periods, such classes can define Kähler walls, and different chambers can give distinct marked points with the same period. For the description by Kähler-type chambers, see <xref ref="hkg-bib-markman-survey" detail="§5"/>.</p>
+    <p>The K3 reflection example also exhibits non-Hausdorff points without changing the underlying manifold. Give <m>S</m> a marking <m>\eta</m>. The pairs <m>(S,\eta)</m> and <m>(S,\eta r_\delta)</m> have the same period. They are distinct marked points because an isomorphism between them would induce <m>r_\delta</m>, which the preceding Kähler-class calculation excludes. They lie in the same component because <m>r_\delta</m> is a K3 monodromy operator. Global Torelli makes them inseparable. Thus distinct points in a period fiber need not even represent distinct unmarked isomorphism classes.</p>
+    <p xml:id="hkg-birational-marking-anchor">Conversely, if <m>f:X\dashrightarrow Y</m> is bimeromorphic and <m>\eta_X</m> is a marking, the compatible marking on <m>Y</m> is <m>\eta_Y=\eta_X f^*</m>. The induced Hodge transport makes these marked points belong to the same component and have the same period. Arbitrary independently chosen markings need not have this property.</p>
+    <aside xml:id="margin-hkg-birational-cohomology">
+      <p>The graph gives the second-cohomology isometry. On total cohomology, deformation transport can require additional correspondence components.</p>
+    </aside>
+  </section>
+  <section xml:id="hkg-polarized-periods">
+    <title>Polarized periods and arithmetic quotients</title>
+    <definition xml:id="hkg-definition-polarized-ihs">
+      <statement>
+        <p>A <em>polarized IHS manifold</em> is a pair <m>(X,L)</m> with <m>L</m> an ample line bundle. A <em>primitive polarization</em> means that <m>c_1(L)</m> is primitive in <m>H^2(X,\mathbb Z)</m>. For a fixed positive integral vector <m>h\in\Lambda</m>, a marked <m>h</m>-polarized pair also has a marking <m>\eta</m> satisfying <m>\eta(c_1(L))=h</m>. The vector <m>h</m> need not be primitive unless primitive polarizations are specified.</p>
+      </statement>
+    </definition>
+    <p>Fixing the polarization class restricts periods to
+      <md number="no">\Omega_{\Lambda,h}=\Omega_\Lambda\cap\mathbb P(h^\perp_\mathbb C).</md>
+      Since <m>q_\Lambda(h)&gt;0</m>, the real form on <m>h^\perp</m> has signature <m>(2,b_2-3)</m>. The domain has two connected components, each of dimension <m>b_2-3</m>. They correspond to the two orientation choices for maximal positive two-planes in a space of positive index two. We denote one component by <m>\Omega_{\Lambda,h}^+</m>.</p>
+    <p>Choose a positive two-space <m>P\subset h^\perp_\mathbb R</m> and a negative orthogonal complement. Projection of an oriented positive two-plane to <m>P</m> is an isomorphism. It preserves or reverses a chosen orientation of <m>P</m>; the sign is locally constant. For each sign, the plane is the graph of a linear map of norm less than one, a convex parameter space. This gives the two components, as in <xref ref="hkg-proposition-period-domain-planes"/>.</p>
+    <p>The period hyperplane says only that the class <m>h</m> is of type <m>(1,1)</m>. The line bundle with that class can fail to be ample. A marked polarized moduli space is the open part of this Hodge locus on which the corresponding class lies in the Kähler cone. Locally near a polarized pair, ampleness is open, so the deformation space of the pair is smooth of dimension <m>b_2-3</m>. This is the polarized form of <xref ref="hkg-proposition-line-bundle-deformations"/>.</p>
+    <p>Preserving the square <m>q_X(c_1(L))</m> alone does not in general specify the deformation type of a polarized pair. Divisibility, defined in <xref ref="hkg-polarization-topology-anchor"/>, is another invariant of transport. Numerical invariants need not by themselves determine the transport orbit. When discussing a component of polarized moduli, we fix the full polarization orbit appropriate to that component.</p>
+    <aside xml:id="margin-hkg-polarization-divisibility">
+      <p>The group realized by polarized transport must also be specified. Replacing it by every lattice isometry fixing <m>h</m> can change the resulting quotient.</p>
+    </aside>
+    <p>A parallel-transport operator between polarized pairs is called <em>polarized parallel transport</em> if it is realized by a smooth family carrying a flat degree-two integral section that is ample on every fibre and equals the two polarization classes at the endpoints. This definition requires an ample flat class throughout the family; a global relative line bundle is not part of the transport data. It is the definition in <xref ref="hkg-bib-markman-survey" detail="Definition 1.1(4)"/>.</p>
+    <p>Choose a polarized base pair <m>(X,L)</m> and a marking <m>\eta</m>, and set <m>h=\eta(c_1(L))</m>. For this marked deformation component and polarization, the group is
+      <md number="no">\Gamma_h=\eta\{g\in\operatorname{Mon}^2(X):g(c_1(L))=c_1(L)\}\eta^{-1}\subset O(\Lambda).</md>
+      Choose <m>\Omega_{\Lambda,h}^+</m> to contain the base period. Positive orientation and the fixed vector <m>h</m> make <m>\Gamma_h</m> preserve this component. It is the image of polarized monodromy, by <xref ref="hkg-bib-markman-survey" detail="Proposition 1.9 and Corollary 7.4"/>.</p>
+    <theorem xml:id="hkg-theorem-polarized-moduli-period">
+      <statement>
+        <p>Let <m>V</m> be an irreducible component of a coarse moduli space of polarized IHS manifolds with fixed polarization data and <m>b_2\geq5</m>. Choose a base pair in <m>V</m> and define <m>h,\Gamma_h,\Omega_{\Lambda,h}^+</m> as above. The period map identifies <m>V</m> with a Zariski open subset of the quasi-projective arithmetic quotient <m>\Omega_{\Lambda,h}^+/\Gamma_h</m>.</p>
+      </statement>
+    </theorem>
+    <p>We quote <xref ref="hkg-bib-markman-survey" detail="Theorems 1.10 and 8.4"/>. Strong Torelli gives injectivity. Proving that the period map is algebraic, and hence that its image is Zariski open, also uses the algebraic construction of polarized moduli and Borel's extension theorem.</p>
+  </section>
+  <section xml:id="hkg-torelli-applications">
+    <title>Applying Torelli</title>
+    <proposition xml:id="hkg-proposition-polarized-torelli-application">
+      <statement>
+        <p>Let <m>(X,L_X)</m> and <m>(Y,L_Y)</m> be polarized IHS manifolds with <m>b_2(X)\geq5</m>. If a parallel-transport Hodge isometry <m>\psi:H^2(Y,\mathbb Z)\to H^2(X,\mathbb Z)</m> satisfies <m>\psi(c_1(L_Y))=c_1(L_X)</m>, then there is a biholomorphism <m>f:X\to Y</m> with <m>f^*=\psi</m> and <m>f^*L_Y\cong L_X</m>.</p>
+      </statement>
+      <proof>
+        <p>An ample line bundle has a Kähler first Chern class. Thus <m>\psi</m> maps a Kähler class of <m>Y</m> to one of <m>X</m>, and <xref ref="hkg-theorem-strong-torelli"/> gives <m>f</m>. The bundles <m>f^*L_Y</m> and <m>L_X</m> have the same first Chern class. The injectivity of <m>c_1:\operatorname{Pic}(X)\to H^2(X,\mathbb Z)</m> proves their isomorphism.</p>
+      </proof>
+    </proposition>
+    <p>For a proposed automorphism of one manifold, the same criterion says that a Hodge monodromy operator preserving a Kähler class is induced by an automorphism. If one can prove that it preserves the Kähler cone, that stronger cone statement is sufficient. Preservation of the positive cone alone is weaker: the root reflection in <xref ref="hkg-example-root-reflection"/> preserves the positive-cone component but crosses a Kähler wall.</p>
+    <p>Here moduli spaces parametrize IHS manifolds. In <xref ref="hkg-sheaf-moduli"/> and <xref ref="hkg-derived-moduli"/>, the IHS manifolds themselves parametrize sheaves or stable objects.</p>
+  </section>
+</chapter>

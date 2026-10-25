@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-darkmode="disabled">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette: blue-red                     *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Cox coordinates and toric GIT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Notes on toric geometry">
+<meta property="og:title" content="Notes on toric geometry">
+<meta property="book:title" content="Notes on toric geometry">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.53"></script><script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="../../vendor/lunr/lunr.min.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+<link rel="stylesheet" href="../../layout.css?v=fee08a8c1c">
+<script src="../../layout.js?v=e9391a21a7" defer></script><link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"C": "\\mathbb{C}", "Pone": "\\mathbb{P}^1_{\\mathbb{C}}", "cO": "\\mathcal{O}", "ord": "\\operatorname{ord}", "lt": "<", "gt": ">", "amp": "&", "Z": "\\mathbb{Z}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "N": "\\mathbb{N}", "A": "\\mathbb{A}", "P": "\\mathbb{P}", "Gm": "\\mathbb{G}_m", "id": "\\mathrm{id}", "Spec": "\\operatorname{Spec}", "Proj": "\\operatorname{Proj}", "Hom": "\\operatorname{Hom}", "Cl": "\\operatorname{Cl}", "Pic": "\\operatorname{Pic}", "Cone": "\\operatorname{Cone}", "conv": "\\operatorname{conv}", "rk": "\\operatorname{rk}", "divisor": "\\operatorname{div}", "gp": "\\operatorname{gp}", "relint": "\\operatorname{relint}", "codim": "\\operatorname{codim}", "vol": "\\operatorname{vol}", "Frac": "\\operatorname{Frac}", "im": "\\operatorname{im}"}}, "options": {"ignoreHtmlClass": "ignore-math", "processHtmlClass": "process-math", "enableMenu": false}};</script><script src="../../vendor/mathjax/tex-chtml.js" defer></script>
+</head>
+<body class="pretext book ignore-math note-page" data-page-format="note">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner"><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="toric-geometry-notes.html"><span class="title">Notes on toric geometry</span></a></div>
+<p class="byline"><a href="../../home.html">Jie Fu</a>'s <a href="../../notes.html">Notes</a></p>
+<p class="note-metadata"><span class="note-review-status">Under review and improvement</span> · <span class="note-last-updated">Last updated: <time datetime="2026-10-24">2026-10-24</time></span></p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Contents</span></button><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true"></span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="treebuttons"><a class="previous-button button" href="toric-intersection.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="up-button button" href="toric-geometry-notes.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Up</span></a><a class="next-button button" href="toric-birational.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a></span>
+</div></nav><div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth4 focused" data-preexpanded-levels="1" data-max-levels="4"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-conventions.html" class="internal"><span class="codenumber">0</span> <span class="title">Scope, conventions, and reading routes</span></a></div>
+<ul id="ptx-toc-group-toric-conventions" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-conventions.html#toric-conventions-scope" class="internal"><span class="codenumber">0.1</span> <span class="title">Questions, background, and dependencies</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-conventions.html#toric-conventions-varieties" class="internal"><span class="codenumber">0.2</span> <span class="title">The ground field and the objects under study</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-conventions.html#toric-conventions-tori" class="internal"><span class="codenumber">0.3</span> <span class="title">The chosen torus and its morphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-conventions.html#toric-conventions-lattices" class="internal"><span class="codenumber">0.4</span> <span class="title">Characters, one-parameter subgroups, and variance</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-conventions.html#toric-conventions-cones" class="internal"><span class="codenumber">0.5</span> <span class="title">Cones, fans, and their ambient lattices</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-conventions.html#toric-conventions-divisors" class="internal"><span class="codenumber">0.6</span> <span class="title">Divisor signs and polyhedral inequalities</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-conventions.html#toric-conventions-volume" class="internal"><span class="codenumber">0.7</span> <span class="title">Lattice volume and lattice-point counting</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-conventions.html#toric-conventions-reading" class="internal"><span class="codenumber">0.8</span> <span class="title">Reading routes and the use of sources</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-affine.html" class="internal"><span class="codenumber">1</span> <span class="title">From a cone to an affine toric variety</span></a></div>
+<ul id="ptx-toc-group-toric-affine" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-lattices" class="internal"><span class="codenumber">1.1</span> <span class="title">Lattices, monomials, and the direction of the construction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-cones" class="internal"><span class="codenumber">1.2</span> <span class="title">Rational polyhedral cones and duality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-faces" class="internal"><span class="codenumber">1.3</span> <span class="title">Faces and integral exposing functionals</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-semigroups" class="internal"><span class="codenumber">1.4</span> <span class="title">Semigroups and Gordan’s lemma</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-normality" class="internal"><span class="codenumber">1.5</span> <span class="title">Saturation and normality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-construction" class="internal"><span class="codenumber">1.6</span> <span class="title">The affine variety and its dense torus</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-units-factors" class="internal"><span class="codenumber">1.7</span> <span class="title">Units, zero cones, and torus factors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-face-localization" class="internal"><span class="codenumber">1.8</span> <span class="title">A face gives a distinguished open subset</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-quadratic-example" class="internal"><span class="codenumber">1.9</span> <span class="title">A normal singular surface</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-smoothness" class="internal"><span class="codenumber">1.10</span> <span class="title">The lattice-basis criterion for smoothness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-presentations" class="internal"><span class="codenumber">1.11</span> <span class="title">Generators, binomial relations, and a finite calculation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-boundaries" class="internal"><span class="codenumber">1.12</span> <span class="title">What the hypotheses exclude</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-affine.html#toric-affine-reading-use" class="internal"><span class="codenumber">1.13</span> <span class="title">How this local dictionary will be used</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-fans.html" class="internal"><span class="codenumber">2</span> <span class="title">Fans, orbits, and toric morphisms</span></a></div>
+<ul id="ptx-toc-group-toric-fans" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fans.html#toric-fans-gluing" class="internal"><span class="codenumber">2.1</span> <span class="title">Fans and gluing affine charts</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fans.html#toric-fans-orbits" class="internal"><span class="codenumber">2.2</span> <span class="title">The orbit–cone correspondence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fans.html#toric-fans-maps" class="internal"><span class="codenumber">2.3</span> <span class="title">Lattice maps and toric morphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fans.html#toric-fans-finite-morphisms" class="internal"><span class="codenumber">2.4</span> <span class="title">Finite covers and a change of lattice</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fans.html#toric-fans-properness" class="internal"><span class="codenumber">2.5</span> <span class="title">Completeness and properness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fans.html#toric-fans-modifications" class="internal"><span class="codenumber">2.6</span> <span class="title">Subdivisions and geometric modifications</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-divisors.html" class="internal"><span class="codenumber">3</span> <span class="title">Divisors and line bundles</span></a></div>
+<ul id="ptx-toc-group-toric-divisors" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-divisors.html#toric-divisors-background" class="internal"><span class="codenumber">3.1</span> <span class="title">The normal-scheme interface</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-divisors.html#toric-divisors-invariant" class="internal"><span class="codenumber">3.2</span> <span class="title">Boundary divisors and character valuations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-divisors.html#toric-divisors-class-groups" class="internal"><span class="codenumber">3.3</span> <span class="title">The class group and the missing left-hand zero</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-divisors.html#toric-divisors-cartier" class="internal"><span class="codenumber">3.4</span> <span class="title">Cartier equations and support functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-divisors.html#toric-divisors-canonical" class="internal"><span class="codenumber">3.5</span> <span class="title">The canonical divisor and the Gorenstein condition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-divisors.html#toric-divisors-examples" class="internal"><span class="codenumber">3.6</span> <span class="title">Four computations of classes and local equations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-divisors.html#toric-divisors-working-route" class="internal"><span class="codenumber">3.7</span> <span class="title">Using the dictionary</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-polytopes.html" class="internal"><span class="codenumber">4</span> <span class="title">Polyhedra, sections, and positivity</span></a></div>
+<ul id="ptx-toc-group-toric-polytopes" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-sections" class="internal"><span class="codenumber">4.1</span> <span class="title">Divisor polyhedra and section bases</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-positivity" class="internal"><span class="codenumber">4.2</span> <span class="title">Global generation, nefness, and ampleness</span></a></div>
+<ul id="ptx-toc-group-toric-polytopes-positivity" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-generation" class="internal"><span class="codenumber">4.2.1</span> <span class="title">Local frames and global generators</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-concavity" class="internal"><span class="codenumber">4.2.2</span> <span class="title">The sign of the support function</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-nef" class="internal"><span class="codenumber">4.2.3</span> <span class="title">Nefness and wall degrees</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-ample" class="internal"><span class="codenumber">4.2.4</span> <span class="title">Strict concavity produces an embedding</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-examples" class="internal"><span class="codenumber">4.3</span> <span class="title">Triangles, rectangles, and Hirzebruch trapezoids</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-projectivity" class="internal"><span class="codenumber">4.4</span> <span class="title">Polarized varieties and normal fans</span></a></div>
+<ul id="ptx-toc-group-toric-polytopes-projectivity" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-normal-fan-construction" class="internal"><span class="codenumber">4.4.1</span> <span class="title">The fan and its polarization</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-normal-generation" class="internal"><span class="codenumber">4.4.2</span> <span class="title">Normality of the variety and of the section algebra</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-ehrhart" class="internal"><span class="codenumber">4.5</span> <span class="title">Lattice counting and asymptotic volume</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-polytopes.html#toric-polytopes-valuations" class="internal"><span class="codenumber">4.6</span> <span class="title">From weight semigroups to valuations</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-intersection.html" class="internal"><span class="codenumber">5</span> <span class="title">Intersection theory and cohomology</span></a></div>
+<ul id="ptx-toc-group-toric-intersection" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-intersection.html#toric-intersection-cycles" class="internal"><span class="codenumber">5.1</span> <span class="title">Invariant cycles and Chow groups</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-intersection.html#toric-intersection-ring" class="internal"><span class="codenumber">5.2</span> <span class="title">The Chow ring of a smooth toric variety</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-intersection.html#toric-intersection-products" class="internal"><span class="codenumber">5.3</span> <span class="title">Surface products and the volume comparison</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-intersection.html#toric-intersection-bernstein" class="internal"><span class="codenumber">5.4</span> <span class="title">Bernstein’s theorem for Laurent polynomial systems</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-intersection.html#toric-intersection-singular" class="internal"><span class="codenumber">5.5</span> <span class="title">What changes for a singular complete variety</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-intersection.html#toric-intersection-matroids" class="internal"><span class="codenumber">5.6</span> <span class="title">An interface: the Chow ring of a matroid</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-intersection.html#toric-intersection-line-bundle-cohomology" class="internal"><span class="codenumber">5.7</span> <span class="title">A finite complex for each character</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-intersection.html#toric-intersection-vanishing" class="internal"><span class="codenumber">5.8</span> <span class="title">Convexity and Demazure vanishing</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-intersection.html#toric-intersection-equivariant" class="internal"><span class="codenumber">5.9</span> <span class="title">Complex topology and fixed-point calculations</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="toric-cox-git.html" class="internal"><span class="codenumber">6</span> <span class="title">Cox coordinates and toric GIT</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-toric-cox-git">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-cox-git.html#toric-cox-ring" class="internal"><span class="codenumber">6.1</span> <span class="title">The graded ring and irrelevant ideal</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-cox-git.html#toric-cox-quotient" class="internal"><span class="codenumber">6.2</span> <span class="title">The quotient construction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-cox-git.html#toric-cox-secondary" class="internal"><span class="codenumber">6.3</span> <span class="title">Secondary fans and variation of GIT</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-cox-git.html#toric-cox-mori-dream" class="internal"><span class="codenumber">6.4</span> <span class="title">The interface with Mori dream spaces</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-cox-git.html#toric-cox-torus-factors" class="internal"><span class="codenumber">6.5</span> <span class="title">Restoring torus factors</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-birational.html" class="internal"><span class="codenumber">7</span> <span class="title">Toric surfaces, singularities, and birational geometry</span></a></div>
+<ul id="ptx-toc-group-toric-birational" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-birational.html#toric-birational-surfaces" class="internal"><span class="codenumber">7.1</span> <span class="title">Complete smooth toric surfaces</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="toric-birational.html#toric-birational-resolutions" class="internal"><span class="codenumber">7.2</span> <span class="title">Resolutions and discrepancies</span></a></div>
+<ul id="ptx-toc-group-toric-birational-resolutions" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-birational.html#toric-birational-resolution-algorithm" class="internal"><span class="codenumber">7.2.1</span> <span class="title">A terminating resolution algorithm in dimension two</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-birational.html#toric-birational-continued-fractions" class="internal"><span class="codenumber">7.2.2</span> <span class="title">Hirzebruch–Jung continued fractions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-birational.html#toric-birational-higher-resolution" class="internal"><span class="codenumber">7.2.3</span> <span class="title">What is required in higher dimension</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-birational.html#toric-birational-monomial-blowups" class="internal"><span class="codenumber">7.2.4</span> <span class="title">Normalized blowups of monomial ideals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-birational.html#toric-birational-discrepancies" class="internal"><span class="codenumber">7.2.5</span> <span class="title">The height of an exceptional ray</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-birational.html#toric-birational-singularity-criteria" class="internal"><span class="codenumber">7.2.6</span> <span class="title">Canonical and terminal lattice-point criteria</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-birational.html#toric-birational-mmp" class="internal"><span class="codenumber">7.3</span> <span class="title">Curves, contractions, and the toric MMP</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="toric-birational.html#toric-birational-atiyah-flop" class="internal"><span class="codenumber">7.4</span> <span class="title">The conifold and the Atiyah flop</span></a></div>
+<ul id="ptx-toc-group-toric-birational-atiyah-flop" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-birational.html#toric-conifold-git-chambers" class="internal"><span class="codenumber">7.4.1</span> <span class="title">Two chambers and two incidence varieties</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-birational.html#toric-conifold-fans-flop" class="internal"><span class="codenumber">7.4.2</span> <span class="title">The diagonals, divisor degrees, and the flop</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-birational.html#toric-birational-toroidal" class="internal"><span class="codenumber">7.5</span> <span class="title">Toroidal models and factorization</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-birational.html#toric-birational-boundaries" class="internal"><span class="codenumber">7.6</span> <span class="title">Toric boundaries and log Calabi–Yau surfaces</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-interfaces.html" class="internal"><span class="codenumber">8</span> <span class="title">Selected interfaces with enumerative and mirror geometry</span></a></div>
+<ul id="ptx-toc-group-toric-interfaces" class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-reflexive" class="internal"><span class="codenumber">8.1</span> <span class="title">Reflexive polytopes and Calabi–Yau hypersurfaces</span></a></div>
+<ul id="ptx-toc-group-toric-interfaces-reflexive" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-polarity" class="internal"><span class="codenumber">8.1.1</span> <span class="title">Polarity at lattice distance one</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-batyrev" class="internal"><span class="codenumber">8.1.2</span> <span class="title">Anticanonical hypersurfaces and the polar construction</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-quantum" class="internal"><span class="codenumber">8.2</span> <span class="title">Fixed-point data and toric mirror theorems</span></a></div>
+<ul id="ptx-toc-group-toric-interfaces-quantum" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-fixed-points" class="internal"><span class="codenumber">8.2.1</span> <span class="title">The tangent representation comes from the affine chart</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-p2-mirror" class="internal"><span class="codenumber">8.2.2</span> <span class="title">A normalized genus-zero mirror theorem for <span class="process-math">\(\P^2\)</span></span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-local-cy" class="internal"><span class="codenumber">8.3</span> <span class="title">Local Calabi–Yau threefolds</span></a></div>
+<ul id="ptx-toc-group-toric-interfaces-local-cy" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-height-one" class="internal"><span class="codenumber">8.3.1</span> <span class="title">A common height-one plane</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-local-p2" class="internal"><span class="codenumber">8.3.2</span> <span class="title">The total space of <span class="process-math">\(K_{\P^2}\)</span></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-resolved-conifold" class="internal"><span class="codenumber">8.3.3</span> <span class="title">A triangulated square</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-local-invariants" class="internal"><span class="codenumber">8.3.4</span> <span class="title">Equivariant invariants and the vertex</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-degeneration" class="internal"><span class="codenumber">8.4</span> <span class="title">Toric degenerations and general targets</span></a></div>
+<ul id="ptx-toc-group-toric-interfaces-degeneration" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-transfer" class="internal"><span class="codenumber">8.4.1</span> <span class="title">What is needed to leave the toric category</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-pp" class="internal"><span class="codenumber">8.4.2</span> <span class="title">A curve-counting correspondence for the quintic</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-interfaces.html#toric-interfaces-cusp" class="internal"><span class="codenumber">8.4.3</span> <span class="title">Toric models and the smoothing of cusp singularities</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-vector-bundles.html" class="internal"><span class="codenumber">9</span> <span class="title">Toric vector bundles and filtrations</span></a></div>
+<ul id="ptx-toc-group-toric-vector-bundles" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-vector-bundles.html#toric-vector-bundles-linearizations" class="internal"><span class="codenumber">9.1</span> <span class="title">The action is part of the bundle</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-vector-bundles.html#toric-vector-bundles-classification" class="internal"><span class="codenumber">9.2</span> <span class="title">Boundary filtrations and cone compatibility</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-vector-bundles.html#toric-vector-bundles-modules" class="internal"><span class="codenumber">9.3</span> <span class="title">Graded modules, gluing, and sections</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-vector-bundles.html#toric-vector-bundles-operations" class="internal"><span class="codenumber">9.4</span> <span class="title">Tensor operations and two filtrations on the projective line</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-vector-bundles.html#toric-vector-bundles-tangent-plane" class="internal"><span class="codenumber">9.5</span> <span class="title">The tangent bundle of the projective plane</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-vector-bundles.html#toric-vector-bundles-scope" class="internal"><span class="codenumber">9.6</span> <span class="title">What makes the dictionary possible</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-tropical-compactification.html" class="internal"><span class="codenumber">10</span> <span class="title">Tropicalization and toric compactifications</span></a></div>
+<ul id="ptx-toc-group-toric-tropical-compactification" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-tropical-compactification.html#toric-tropical-initial-ideals" class="internal"><span class="codenumber">10.1</span> <span class="title">Initial ideals and directions of escape</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-tropical-compactification.html#toric-tropical-orbit-criterion" class="internal"><span class="codenumber">10.2</span> <span class="title">Which boundary orbits does a closure meet?</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-tropical-compactification.html#toric-tropical-flat-compactifications" class="internal"><span class="codenumber">10.3</span> <span class="title">Proper closure and flat multiplication</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-tropical-compactification.html#toric-tropical-schon" class="internal"><span class="codenumber">10.4</span> <span class="title">Smooth multiplication and normal crossings</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-tropical-compactification.html#toric-tropical-pair-of-pants" class="internal"><span class="codenumber">10.5</span> <span class="title">A three-punctured line in a toric surface</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-groebner.html" class="internal"><span class="codenumber">11</span> <span class="title">Gröbner degenerations and toric special fibers</span></a></div>
+<ul id="ptx-toc-group-toric-groebner" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-groebner.html#toric-groebner-weighted-families" class="internal"><span class="codenumber">11.1</span> <span class="title">Weights and the flat family</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-groebner.html#toric-groebner-computation" class="internal"><span class="codenumber">11.2</span> <span class="title">Computing the family and identifying its special fiber</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-groebner.html#toric-groebner-triangulations" class="internal"><span class="codenumber">11.3</span> <span class="title">Regular triangulations and multiplicities</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="toric-groebner.html#toric-groebner-grassmannian" class="internal"><span class="codenumber">11.4</span> <span class="title">A Grassmannian with a normal toric special fiber</span></a></div>
+<ul id="ptx-toc-group-toric-groebner-grassmannian" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-groebner.html#toric-groebner-plucker-quadric" class="internal"><span class="codenumber">11.4.1</span> <span class="title">The Plücker equation and its charts</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-groebner.html#toric-groebner-grassmannian-semigroup" class="internal"><span class="codenumber">11.4.2</span> <span class="title">The special algebra and its intrinsic lattice</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="toric-groebner.html#toric-groebner-grassmannian-geometry" class="internal"><span class="codenumber">11.4.3</span> <span class="title">Degree is preserved while smoothness changes</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-groebner.html#toric-groebner-transfer" class="internal"><span class="codenumber">11.5</span> <span class="title">The scope of the transfer</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-multiplier-ideals.html" class="internal"><span class="codenumber">12</span> <span class="title">Monomial ideals, toric resolutions, and multiplier ideals</span></a></div>
+<ul id="ptx-toc-group-toric-multiplier-ideals" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-multiplier-ideals.html#toric-multiplier-newton-data" class="internal"><span class="codenumber">12.1</span> <span class="title">The Newton polyhedron and its lower support function</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-multiplier-ideals.html#toric-multiplier-log-resolution" class="internal"><span class="codenumber">12.2</span> <span class="title">A toric log resolution and its two coefficients</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-multiplier-ideals.html#toric-multiplier-howald" class="internal"><span class="codenumber">12.3</span> <span class="title">Multiplier ideals as shifted interior lattice points</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-multiplier-ideals.html#toric-multiplier-threshold" class="internal"><span class="codenumber">12.4</span> <span class="title">The log canonical threshold</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-multiplier-ideals.html#toric-multiplier-examples" class="internal"><span class="codenumber">12.5</span> <span class="title">Rounding, jumping, and explicit ideals</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-multiplier-ideals.html#toric-multiplier-scope" class="internal"><span class="codenumber">12.6</span> <span class="title">What the monomial calculation does and does not retain</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-hodge-inequalities.html" class="internal"><span class="codenumber">13</span> <span class="title">Hodge index and mixed-volume inequalities</span></a></div>
+<ul id="ptx-toc-group-toric-hodge-inequalities" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-hodge-inequalities.html#toric-hodge-surfaces" class="internal"><span class="codenumber">13.1</span> <span class="title">The signature of a surface intersection form</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-hodge-inequalities.html#toric-hodge-mixed-intersections" class="internal"><span class="codenumber">13.2</span> <span class="title">Cutting higher-dimensional intersections down to a surface</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-hodge-inequalities.html#toric-hodge-toric-transfer" class="internal"><span class="codenumber">13.3</span> <span class="title">From toric divisors to Alexandrov–Fenchel</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-hodge-inequalities.html#toric-hodge-convex-limits" class="internal"><span class="codenumber">13.4</span> <span class="title">Continuity and the removal of lattice assumptions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-hodge-inequalities.html#toric-hodge-volume-consequences" class="internal"><span class="codenumber">13.5</span> <span class="title">Log-concavity, Minkowski’s inequality, and Brunn–Minkowski</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-hodge-inequalities.html#toric-hodge-scope" class="internal"><span class="codenumber">13.6</span> <span class="title">Which Hodge theory has been used</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-fano-metrics.html" class="internal"><span class="codenumber">14</span> <span class="title">Toric Fano polytopes and canonical metrics</span></a></div>
+<ul id="ptx-toc-group-toric-fano-metrics" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fano-metrics.html#toric-metrics-canonical-polytope" class="internal"><span class="codenumber">14.1</span> <span class="title">The preferred anticanonical polytope</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fano-metrics.html#toric-metrics-boundary-measure" class="internal"><span class="codenumber">14.2</span> <span class="title">Lattice boundary measure and a divergence identity</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fano-metrics.html#toric-metrics-convex-functional" class="internal"><span class="codenumber">14.3</span> <span class="title">A boundary functional on convex functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fano-metrics.html#toric-metrics-existence" class="internal"><span class="codenumber">14.4</span> <span class="title">The metric existence theorem</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-fano-metrics.html#toric-metrics-examples" class="internal"><span class="codenumber">14.5</span> <span class="title">Two balanced polytopes and the first Hirzebruch surface</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-minkowski-deformations.html" class="internal"><span class="codenumber">15</span> <span class="title">Minkowski decompositions and deformations</span></a></div>
+<ul id="ptx-toc-group-toric-minkowski-deformations" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-minkowski-deformations.html#toric-minkowski-cayley-cone" class="internal"><span class="codenumber">15.1</span> <span class="title">A Minkowski sum and its Cayley cone</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-minkowski-deformations.html#toric-minkowski-central-fiber" class="internal"><span class="codenumber">15.2</span> <span class="title">The exact central-fiber calculation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-minkowski-deformations.html#toric-minkowski-flatness" class="internal"><span class="codenumber">15.3</span> <span class="title">Flatness and the meaning of a toric deformation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-minkowski-deformations.html#toric-minkowski-examples" class="internal"><span class="codenumber">15.4</span> <span class="title">A smoothing, a quadratic base change, and a product</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-minkowski-deformations.html#toric-minkowski-comparison" class="internal"><span class="codenumber">15.5</span> <span class="title">What the construction establishes</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-ehrhart.html" class="internal"><span class="codenumber">16</span> <span class="title">Lattice-point enumeration and Hilbert series</span></a></div>
+<ul id="ptx-toc-group-toric-ehrhart" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-ehrhart.html#toric-ehrhart-algebra" class="internal"><span class="codenumber">16.1</span> <span class="title">The intrinsic lattice and the Ehrhart algebra</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-ehrhart.html#toric-ehrhart-half-open" class="internal"><span class="codenumber">16.2</span> <span class="title">A disjoint half-open cone decomposition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-ehrhart.html#toric-ehrhart-polynomial-reciprocity" class="internal"><span class="codenumber">16.3</span> <span class="title">Polynomiality and reciprocity</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-ehrhart.html#toric-ehrhart-examples" class="internal"><span class="codenumber">16.4</span> <span class="title">Simplices, boxes, and the Reeve tetrahedron</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-ehrhart.html#toric-ehrhart-reflexive" class="internal"><span class="codenumber">16.5</span> <span class="title">A reciprocity consequence for reflexive polytopes</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="toric-riemann-roch.html" class="internal"><span class="codenumber">17</span> <span class="title">Riemann–Roch, duality, and lattice points</span></a></div>
+<ul id="ptx-toc-group-toric-riemann-roch" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-riemann-roch.html#toric-rr-euler" class="internal"><span class="codenumber">17.1</span> <span class="title">The tangent bundle and the boundary divisors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-riemann-roch.html#toric-rr-todd" class="internal"><span class="codenumber">17.2</span> <span class="title">Euler characteristics from the Chow ring</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-riemann-roch.html#toric-rr-duality" class="internal"><span class="codenumber">17.3</span> <span class="title">Serre duality and interior points</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-riemann-roch.html#toric-rr-surfaces" class="internal"><span class="codenumber">17.4</span> <span class="title">Surface formulas and two calculations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="toric-riemann-roch.html#toric-rr-pick" class="internal"><span class="codenumber">17.5</span> <span class="title">Pick’s formula for an arbitrary lattice polygon</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="toric-references.html" class="internal"><span class="title">References</span></a></div></li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="chapter" id="toric-cox-git">
+<h1 class="heading">
+<span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Cox coordinates and toric GIT</span>
+</h1>
+<section class="introduction" id="toric-cox-git-2">
+<div class="para" id="toric-cox-git-2-1">The fan construction builds a variety by gluing semigroup charts. Cox coordinates build the same variety by removing an explicitly specified coordinate locus from affine space and taking a quotient. The comparison is a calculation of invariant rings. Once that calculation is established, changing the grading character provides a concrete way to change the quotient and its birational model.</div>
+<div class="para" id="toric-cox-git-2-2">Throughout the main construction, <span class="process-math">\(X=X_\Sigma\)</span> is a normal toric variety and the rays of <span class="process-math">\(\Sigma\)</span> span <span class="process-math">\(N_\R\text{.}\)</span> This excludes torus factors and makes the character-to-divisor map injective. It does not assume completeness, simpliciality, or smoothness. The final section restores torus factors. The field remains algebraically closed of arbitrary characteristic. We use diagonalizable group schemes, rather than replacing them by their groups of <span class="process-math">\(k\)</span>-points. The general secondary-fan theorem is quoted in its classical complex setting; the explicit wall crossing is calculated directly over <span class="process-math">\(k\text{.}\)</span>
+</div>
+<div class="para" id="toric-cox-git-2-3">The main references are <a href="toric-references.html#CLS11" class="xref" data-knowl="./knowl/xref/bib-toric-cls.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry CLS11">[CLS11, Sections 5.1 and 5.3, and Chapters 14–15]</a>. The affine quotient input for diagonalizable groups is distinguished below from the toric invariant-ring calculations proved here.</div></section>
+<section class="section" id="toric-cox-ring">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The graded ring and irrelevant ideal</span>
+</h2>
+<div class="para logical" id="toric-cox-ring-2">
+<div class="para">List the rays as <span class="process-math">\(\rho_1,\ldots,\rho_r\text{,}\)</span> with primitive vectors <span class="process-math">\(u_i\)</span> and invariant divisors <span class="process-math">\(D_i\text{.}\)</span> Set <span class="process-math">\(A=\Cl(X)\text{.}\)</span> The class-group sequence of <a href="toric-divisors.html#toric-thm-class-group-sequence" class="xref" data-knowl="./knowl/xref/toric-thm-class-group-sequence.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.6: The toric divisor-class sequence">Theorem 3.6</a> becomes</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/toric-thm-class-group-sequence.html" id="toric-cox-ring-2-6">
+\begin{equation*}
+0\longrightarrow M\xrightarrow{\delta}\Z^r\xrightarrow{\deg}A\longrightarrow0,\qquad\delta(m)=(\langle m,u_1\rangle,\ldots,\langle m,u_r\rangle).
+\end{equation*}
+</div>
+<div class="para">Here the <span class="process-math">\(i\)</span>-th standard basis vector has image <span class="process-math">\([D_i]\text{.}\)</span> The group <span class="process-math">\(A\)</span> may have torsion.</div>
+</div>
+<article class="definition definition-like" id="toric-def-cox-ring"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Cox ring and characteristic group.</span>
+</h3>
+<div class="para logical" id="toric-def-cox-ring-2-1">
+<div class="para">The Cox ring in this toric presentation is</div>
+<div class="displaymath process-math" id="toric-def-cox-ring-2-1-1">
+\begin{equation*}
+S=k[x_1,\ldots,x_r],\qquad\deg(x_i)=[D_i]\in A.
+\end{equation*}
+</div>
+<div class="para">Its component of degree <span class="process-math">\(\alpha\)</span> is denoted by <span class="process-math">\(S_\alpha\text{.}\)</span> The associated diagonalizable group scheme is</div>
+<div class="displaymath process-math" id="toric-def-cox-ring-2-1-4">
+\begin{equation*}
+G=\operatorname{D}(A)=\Spec k[A].
+\end{equation*}
+</div>
+<div class="para">The grading defines its action on <span class="process-math">\(\A^r\)</span> by the coaction <span class="process-math">\(x_i\mapsto e^{[D_i]}\otimes x_i\text{,}\)</span> where <span class="process-math">\(e^\alpha\)</span> is the basis character in the group algebra <span class="process-math">\(k[A]\text{.}\)</span>
+</div>
+</div>
+</article>
+<div class="para logical" id="toric-cox-ring-4">
+<div class="para">Equivalently, for a <span class="process-math">\(k\)</span>-algebra <span class="process-math">\(R\text{,}\)</span> an element of <span class="process-math">\(G(R)\)</span> is a homomorphism <span class="process-math">\(g:A\to R^*\text{,}\)</span> acting by <span class="process-math">\(x_i\mapsto g([D_i])x_i\)</span> on coordinates. This describes an action on schemes, including nonreduced test algebras. If <span class="process-math">\(A\cong\Z^s\oplus\bigoplus_j\Z/d_j\Z\text{,}\)</span> then</div>
+<div class="displaymath process-math" id="toric-cox-ring-4-7">
+\begin{equation*}
+G\cong\Gm^s\times\prod_j\mu_{d_j}.
+\end{equation*}
+</div>
+<div class="para">This product decomposition depends on a decomposition of <span class="process-math">\(A\text{.}\)</span> When the characteristic divides a torsion order, the corresponding group scheme need not be smooth.</div>
+</div>
+<div class="para" id="toric-anchor-diagonalizable-invariants">A representation of <span class="process-math">\(\operatorname{D}(A)\)</span> is an <span class="process-math">\(A\)</span>-graded vector space. Its invariants are its degree-zero part, and taking degree zero is exact. Thus diagonalizable group schemes are linearly reductive in every characteristic. This assertion does not use averaging by a finite group order. For example, the scaling action of <span class="process-math">\(\mu_p\)</span> on <span class="process-math">\(\A^1\)</span> in characteristic <span class="process-math">\(p\)</span> has invariant ring <span class="process-math">\(k[x^p]\text{,}\)</span> although <span class="process-math">\(\mu_p(k)=\{1\}\text{.}\)</span> Invariance under the group of points would give the wrong answer.<a href="#margin-toric-cox-group-schemes" class="margin-note-marker" aria-label="Margin note 1">1</a>
+</div>
+<article class="proposition theorem-like" id="toric-prop-cox-graded-sections"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Sections are homogeneous polynomials.</span>
+</h3>
+<div class="para logical" id="toric-prop-cox-graded-sections-2-1">
+<div class="para">For an invariant Weil divisor <span class="process-math">\(D=\sum_i a_iD_i\text{,}\)</span> there is an isomorphism of vector spaces</div>
+<div class="displaymath process-math" id="toric-prop-cox-graded-sections-2-1-2">
+\begin{equation*}
+\Gamma(X,\mathcal O_X(D))\longrightarrow S_{[D]},\qquad\chi^m\longmapsto\prod_{i=1}^r x_i^{a_i+\langle m,u_i\rangle}.
+\end{equation*}
+</div>
+<div class="para">The formula is applied to the character basis satisfying all the inequalities <span class="process-math">\(a_i+\langle m,u_i\rangle\geq0\text{.}\)</span> These identifications respect multiplication when divisors are added.</div>
+</div>
+</article>
+<details id="toric-prop-cox-graded-sections-3" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="toric-prop-cox-graded-sections-3-1">Apply <a href="toric-divisors.html#toric-eq-local-divisor-sections" class="xref" data-knowl="./knowl/xref/toric-eq-local-divisor-sections.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 3.3">(3.3)</a> on the affine cover. A global section is a Laurent polynomial whose monomials satisfy the inequalities for every ray. The proposed exponent vector is nonnegative, and its class is <span class="process-math">\([D]\)</span> because its difference from <span class="process-math">\((a_i)\)</span> is <span class="process-math">\(\delta(m)\text{.}\)</span>
+</div>
+<div class="para" id="toric-prop-cox-graded-sections-3-2">Conversely, a monomial <span class="process-math">\(x^b\)</span> of degree <span class="process-math">\([D]\)</span> satisfies <span class="process-math">\(b-a\in\ker(\deg)=\delta(M)\text{.}\)</span> There is a unique <span class="process-math">\(m\)</span> with <span class="process-math">\(b-a=\delta(m)\text{,}\)</span> since <span class="process-math">\(\delta\)</span> is injective. This gives the inverse bijection of bases. Adding divisor coefficients and character exponents proves compatibility with multiplication.</div>
+</article></details>
+<div class="para" id="toric-cox-ring-8">The identification depends on the representative <span class="process-math">\(D\text{.}\)</span> Replacing it by <span class="process-math">\(D+\divisor(\chi^q)\)</span> identifies sections by multiplication by <span class="process-math">\(\chi^{-q}\)</span> and gives the same polynomial. Without such choices, writing a direct sum over divisor classes does not by itself define compatible multiplication. The polynomial ring with its specified grading avoids that ambiguity in the toric case. Also, <span class="process-math">\(S_\alpha\)</span> need not be finite dimensional when <span class="process-math">\(X\)</span> is noncomplete; degree-zero monomials can already give nonconstant regular functions.</div>
+<div class="para logical" id="toric-cox-ring-9">
+<div class="para">A small example shows how the grading changes a section calculation. On <span class="process-math">\(\mathbb F_a\text{,}\)</span> use the classes <span class="process-math">\(F,S\)</span> and variable weights computed below. For a class <span class="process-math">\(dF+eS\)</span> with <span class="process-math">\(e\geq0\text{,}\)</span> let <span class="process-math">\(j\)</span> be the exponent of <span class="process-math">\(x_4\text{.}\)</span> The exponent of <span class="process-math">\(x_2\)</span> is then <span class="process-math">\(e-j\text{,}\)</span> while the sum of the exponents of <span class="process-math">\(x_1,x_3\)</span> is <span class="process-math">\(d-aj\text{.}\)</span> Hence</div>
+<div class="displaymath process-math" id="toric-cox-ring-9-11">
+\begin{equation*}
+h^0(\mathbb F_a,\mathcal O(dF+eS))=\sum_{j=0}^e\max\{d-aj+1,0\}.
+\end{equation*}
+</div>
+<div class="para">If <span class="process-math">\(e&lt;0\text{,}\)</span> there are no monomials and no sections. At <span class="process-math">\(a=0\text{,}\)</span> this is the familiar bidegree count <span class="process-math">\((d+1)(e+1)\)</span> for <span class="process-math">\(d,e\geq0\)</span> on <span class="process-math">\(\P^1\times\P^1\text{.}\)</span> For <span class="process-math">\(a&gt;0\text{,}\)</span> the class <span class="process-math">\(S\)</span> has only its single boundary section. The formula counts the same data as the lattice polygon in the section dictionary, but uses homogeneous exponents instead of characters.</div>
+</div>
+<article class="definition definition-like" id="toric-def-irrelevant-ideal"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The irrelevant ideal.</span>
+</h3>
+<div class="para logical" id="toric-def-irrelevant-ideal-2-1">
+<div class="para">For a cone <span class="process-math">\(\sigma\text{,}\)</span> set</div>
+<div class="displaymath process-math" id="toric-def-irrelevant-ideal-2-1-2">
+\begin{equation*}
+x^{\widehat\sigma}=\prod_{\rho_i\notin\sigma(1)}x_i.
+\end{equation*}
+</div>
+<div class="para">The irrelevant ideal and Cox open set are</div>
+<div class="displaymath process-math" id="toric-def-irrelevant-ideal-2-1-3">
+\begin{equation*}
+B_\Sigma=(x^{\widehat\sigma}:\sigma\in\Sigma),\qquad\widehat X=\A^r\setminus V(B_\Sigma)=\bigcup_{\sigma\in\Sigma}D(x^{\widehat\sigma}).
+\end{equation*}
+</div>
+<div class="para">Maximal cones suffice as generators and as an open cover.</div>
+</div>
+</article>
+<div class="para" id="toric-cox-ring-11">Indeed, if <span class="process-math">\(\tau\)</span> is a face of <span class="process-math">\(\sigma\text{,}\)</span> then <span class="process-math">\(x^{\widehat\tau}\)</span> is divisible by <span class="process-math">\(x^{\widehat\sigma}\text{.}\)</span> A point belongs to <span class="process-math">\(\widehat X\)</span> precisely when its zero coordinates are indexed by a subset of the rays of some cone. Each chart is invariant because its defining monomial is homogeneous. The grading is determined by the rays and lattice; the irrelevant ideal also remembers which rays occur together in cones.</div>
+</section>
+<section class="section" id="toric-cox-quotient">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The quotient construction</span>
+</h2>
+<div class="para" id="toric-cox-quotient-2">Write <span class="process-math">\(\widehat U_\sigma=D(x^{\widehat\sigma})\text{.}\)</span> Inverting the product makes every coordinate outside <span class="process-math">\(\sigma(1)\)</span> invertible. The localization retains its <span class="process-math">\(A\)</span>-grading.</div>
+<article class="theorem theorem-like" id="toric-thm-cox-local-invariants"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The invariant ring of a coordinate chart.</span>
+</h3>
+<div class="para logical" id="toric-thm-cox-local-invariants-2-1">
+<div class="para">There is a canonical isomorphism</div>
+<div class="displaymath process-math" id="toric-eq-cox-chart-invariants">
+\begin{equation}
+(S_{x^{\widehat\sigma}})^G=(S_{x^{\widehat\sigma}})_0\cong k[\sigma^\vee\cap M],\tag{6.1}
+\end{equation}
+</div>
+<div class="para">given by <span class="process-math">\(\chi^m\mapsto x^{\delta(m)}\text{.}\)</span> These maps glue to a surjective morphism <span class="process-math">\(q:\widehat X\to X_\Sigma\)</span> with <span class="process-math">\(q^{-1}(U_\sigma)=\widehat U_\sigma\text{.}\)</span>
+</div>
+</div>
+</article>
+<details id="toric-thm-cox-local-invariants-3" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="toric-thm-cox-local-invariants-3-1">A Laurent monomial in the localized ring has exponents <span class="process-math">\(b_i\geq0\)</span> for rays in <span class="process-math">\(\sigma\text{,}\)</span> while the other exponents can be arbitrary integers. It has degree zero exactly when <span class="process-math">\(b=\delta(m)\)</span> for a unique <span class="process-math">\(m\in M\text{.}\)</span> Nonnegativity on the first coordinates is precisely <span class="process-math">\(m\in\sigma^\vee\text{.}\)</span> Monomial multiplication proves the ring isomorphism.</div>
+<div class="para" id="toric-thm-cox-local-invariants-3-2">For two cones, let <span class="process-math">\(\gamma=\sigma\cap\tau\)</span> and choose an integral functional exposing <span class="process-math">\(\gamma\)</span> in <span class="process-math">\(\sigma\text{.}\)</span> Its character pulls back to a monomial which is invertible exactly when the coordinates indexed by <span class="process-math">\(\sigma(1)\setminus\gamma(1)\)</span> are nonzero; the coordinates outside <span class="process-math">\(\sigma\)</span> are already invertible. Thus, within <span class="process-math">\(\widehat U_\sigma\text{,}\)</span> its principal open is <span class="process-math">\(\widehat U_\sigma\cap\widehat U_\tau\text{.}\)</span> Its degree-zero ring is the face localization <span class="process-math">\(k[\gamma^\vee\cap M]\text{.}\)</span> The affine morphisms therefore agree on overlaps and have the stated inverse-image charts.</div>
+<div class="para" id="toric-thm-cox-local-invariants-3-3">Surjectivity on each chart follows from the affine diagonalizable quotient theorem invoked below. It can also be checked algebraically: for a prime <span class="process-math">\(\mathfrak p\)</span> of the degree-zero ring, <span class="process-math">\((\mathfrak p S_{x^{\widehat\sigma}})_0=\mathfrak p\text{.}\)</span> The extended ideal remains proper after localization at the complement of <span class="process-math">\(\mathfrak p\text{,}\)</span> so a prime above it exists and contracts to <span class="process-math">\(\mathfrak p\text{.}\)</span>
+</div>
+</article></details>
+<div class="para" id="toric-cox-quotient-4">Here is the general quotient input we use. For a finitely generated graded algebra <span class="process-math">\(R\)</span> with diagonalizable group <span class="process-math">\(G\text{,}\)</span> the invariant map <span class="process-math">\(\Spec R\to\Spec R^G\)</span> is a scheme-theoretic good quotient: it is affine and surjective, the invariant structure sheaf is the structure sheaf of the target, invariant closed subsets have closed images, and disjoint invariant closed subsets have disjoint images. It is also categorical for invariant maps to algebraic spaces. This statement does not require <span class="process-math">\(G\)</span> to be smooth.</div>
+<div class="para" id="toric-cox-quotient-5">The invariant-sheaf assertion is the degree-zero operation. The closed-image assertions follow by applying the exact invariants functor to homogeneous ideals and their quotients. The general categorical assertion is the external quotient theorem being used here. A precise source is <a href="toric-references.html#Alp13" class="xref" data-knowl="./knowl/xref/bib-toric-alper.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Alp13">[Alp13, Example 8.3 and Theorems 4.16 and 6.6]</a>: its affine quotient-stack construction and universal property give these assertions in our Noetherian setting. Our use of scheme-theoretic good quotient includes nonsmooth diagonalizable groups; it is not a replacement of them by reduced groups.</div>
+<article class="corollary theorem-like" id="toric-cor-cox-good-quotient"><h3 class="heading">
+<span class="type">Corollary</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The Cox good quotient.</span>
+</h3>
+<div class="para" id="toric-cor-cox-good-quotient-2-1">The morphism <span class="process-math">\(q:\widehat X\to X_\Sigma\)</span> is a good quotient by <span class="process-math">\(G=\operatorname{D}(\Cl(X))\text{,}\)</span> and is categorical for invariant morphisms to algebraic spaces.</div>
+</article>
+<details id="toric-cor-cox-good-quotient-3" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="toric-cor-cox-good-quotient-3-1">The affine invariant quotients above agree on their saturated overlap opens. Their properties are local on the target and therefore glue. This proves the assertion. Over <span class="process-math">\(\C\text{,}\)</span> the corresponding classical Cox quotient is <a href="toric-references.html#CLS11" class="xref" data-knowl="./knowl/xref/bib-toric-cls.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry CLS11">[CLS11, Theorem 5.1.11]</a>; the local calculation and the diagonalizable quotient input explain the arbitrary-characteristic form used here.</div>
+</article></details>
+<article class="proposition theorem-like" id="toric-prop-cox-sheafification"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">From a degree shift to a divisorial sheaf.</span>
+</h3>
+<div class="para logical" id="toric-prop-cox-sheafification-2-1">
+<div class="para">For an <span class="process-math">\(A\)</span>-graded <span class="process-math">\(S\)</span>-module <span class="process-math">\(E\text{,}\)</span> the modules <span class="process-math">\((E_{x^{\widehat\sigma}})_0\)</span> glue to a quasi-coherent sheaf on <span class="process-math">\(X\text{.}\)</span> With the shift convention <span class="process-math">\(S(\alpha)_\beta=S_{\alpha+\beta}\text{,}\)</span> a chosen invariant divisor <span class="process-math">\(D\)</span> of class <span class="process-math">\(\alpha\)</span> identifies</div>
+<div class="displaymath process-math" id="toric-prop-cox-sheafification-2-1-9">
+\begin{equation*}
+\widetilde{S(\alpha)}\cong\mathcal O_X(D).
+\end{equation*}
+</div>
+</div>
+</article>
+<details id="toric-prop-cox-sheafification-3" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="toric-prop-cox-sheafification-3-1">The degree-zero rings on face overlaps are localizations by invariant characters, so the module localizations agree there as well. They therefore glue. To identify the shifted module, write <span class="process-math">\(D=\sum_i a_iD_i\text{.}\)</span> A localized monomial of degree <span class="process-math">\(\alpha\)</span> has exponent vector <span class="process-math">\(b=a+\delta(m)\)</span> for a unique <span class="process-math">\(m\in M\text{.}\)</span> On the chart, its nonnegative coordinates are precisely those indexed by <span class="process-math">\(\sigma(1)\text{,}\)</span> giving <span class="process-math">\(\langle m,u_i\rangle\geq-a_i\)</span> on those rays. Sending it to <span class="process-math">\(\chi^m\)</span> is thus an isomorphism onto the local section module of <span class="process-math">\(\mathcal O_X(D)\text{.}\)</span> The maps agree under face localization and glue.</div>
+</article></details>
+<div class="para" id="toric-cox-quotient-8">This construction is the local algebra underlying <a href="toric-references.html#CLS11" class="xref" data-knowl="./knowl/xref/bib-toric-cls.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry CLS11">[CLS11, Proposition 5.3.7]</a>. In particular, a degree shift need not give a line bundle: it gives a divisorial sheaf, and the Cartier criterion determines when it is invertible. The polynomial nature of the Cox ring does not turn all Weil classes on the quotient into Cartier classes.</div>
+<article class="proposition theorem-like" id="toric-prop-cox-stabilizers"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.7</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Stabilizers, geometric fibers, and smooth fans.</span>
+</h3>
+<div class="para logical" id="toric-prop-cox-stabilizers-2-1">
+<div class="para">At a geometric point whose nonzero-coordinate set is <span class="process-math">\(I\text{,}\)</span> the stabilizer group scheme is</div>
+<div class="displaymath process-math" id="toric-prop-cox-stabilizers-2-1-2">
+\begin{equation*}
+\operatorname{D}\!\left(A/\langle[D_i]:i\in I\rangle\right).
+\end{equation*}
+</div>
+<div class="para">The quotient is geometric, in the sense that each geometric fiber has a single orbit on geometric points, exactly when <span class="process-math">\(\Sigma\)</span> is simplicial. The action is scheme-theoretically free exactly when <span class="process-math">\(\Sigma\)</span> is smooth.</div>
+</div>
+</article>
+<details id="toric-prop-cox-stabilizers-3" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="toric-prop-cox-stabilizers-3-1">
+<div class="para">A group element fixes the point exactly when its characters <span class="process-math">\([D_i]\)</span> are <span class="process-math">\(1\)</span> for every nonzero coordinate. This proves the formula as a group scheme. At the point with zero coordinates precisely <span class="process-math">\(\sigma(1)\text{,}\)</span> its character group is</div>
+<div class="displaymath process-math" id="toric-prop-cox-stabilizers-3-1-4">
+\begin{equation*}
+A/\langle[D_i]:\rho_i\notin\sigma(1)\rangle\cong\operatorname{coker}\!\left(M\to\Z^{\sigma(1)}\right)=\Cl(U_\sigma).
+\end{equation*}
+</div>
+<div class="para">This is finite exactly when the cone is simplicial and zero exactly when its ray generators extend to a lattice basis, as in the divisor criteria. The character groups of stabilizers at other points of <span class="process-math">\(\widehat U_\sigma\)</span> are quotients of this group. Thus all stabilizer group schemes are trivial exactly in the smooth case.</div>
+</div>
+<div class="para" id="toric-prop-cox-stabilizers-3-2">For the fiber statement, a coordinate-torus orbit with zero-coordinate set <span class="process-math">\(J\subseteq\sigma(1)\)</span> maps to the orbit indexed by the smallest face of <span class="process-math">\(\sigma\)</span> containing those rays. This follows by evaluating the invariant monomials. If <span class="process-math">\(\sigma\)</span> is simplicial, its faces correspond to subsets of its rays, so each target orbit has only one such zero pattern. On that coordinate orbit, the exact sequence of character groups shows that the fibers are <span class="process-math">\(G\)</span>-orbits.</div>
+<div class="para" id="toric-prop-cox-stabilizers-3-3">If a cone is nonsimplicial, an interior vector can be written as a positive combination of at most <span class="process-math">\(\dim\sigma\)</span> of its rays, by removing linear dependences from a positive expression. These form a proper subset of its rays, with smallest containing face equal to <span class="process-math">\(\sigma\text{.}\)</span> This zero pattern and the full zero pattern consequently map to the same orbit <span class="process-math">\(O(\sigma)\text{.}\)</span> Both occur above each point of that orbit, because the induced maps of tori are surjective over an algebraically closed field. A diagonal action cannot change which coordinates are zero, so a fiber has distinct orbits. The quotient is not geometric.</div>
+</article></details>
+<div class="para logical" id="toric-cox-quotient-10">
+<div class="para">For a simplicial fan the finite stabilizers may be nonreduced in positive characteristic. For a smooth fan, the quotient is a principal <span class="process-math">\(G\)</span>-bundle in the fppf topology. One can see the torsor directly on a chart. The vanishing of <span class="process-math">\(\Cl(U_\sigma)\)</span> says that the classes of the inverted coordinates generate <span class="process-math">\(A\text{.}\)</span> Thus every degree occurs as the degree of a monomial unit in <span class="process-math">\(R=S_{x^{\widehat\sigma}}\text{.}\)</span> Multiplication by that unit identifies its component with <span class="process-math">\(R_0\text{;}\)</span> in particular, <span class="process-math">\(R\)</span> is a faithfully flat <span class="process-math">\(R_0\)</span>-module. The same units show that the coaction map</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/bib-toric-sga3.html" id="toric-cox-quotient-10-8">
+\begin{equation*}
+R\otimes_{R_0}R\longrightarrow R\otimes_k k[A]
+\end{equation*}
+</div>
+<div class="para">is an isomorphism: a unit of degree <span class="process-math">\(\alpha\)</span> supplies the basis character <span class="process-math">\(e^\alpha\text{.}\)</span> This is the affine torsor identity. The map is of finite presentation, so the faithfully flat cover is fppf. Compare the general free diagonalizable quotient theorem in <a href="toric-references.html#SGA3" class="xref" data-knowl="./knowl/xref/bib-toric-sga3.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry SGA3">[SGA3, Exposé VIII, Section 5]</a>.</div>
+</div>
+<div class="para" id="toric-cox-quotient-11">Neither finite stabilizers nor the torsor assertion says that the map is étale, or even smooth when <span class="process-math">\(G\)</span> is nonsmooth. In characteristic two, for instance, the smooth punctured quadric surface in <a href="toric-divisors.html#toric-example-quadric-class-group" class="xref" data-knowl="./knowl/xref/toric-example-quadric-class-group.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.16: A singular affine surface with two-torsion">Example 3.16</a> has Cox presentation <span class="process-math">\((\A^2\setminus\{0\})/\mu_2\text{,}\)</span> with scalar group-scheme action. Here both variables have the nonzero degree in <span class="process-math">\(\Z/2\Z\text{,}\)</span> and the irrelevant ideal is <span class="process-math">\((x_1,x_2)\text{.}\)</span> The action is free as a group-scheme action and the quotient is an fppf <span class="process-math">\(\mu_2\)</span>-torsor. Its acting group is not smooth, so this is not an étale finite-group quotient. The two-torsion is detected by the grading even though it is invisible in <span class="process-math">\(\mu_2(k)\text{.}\)</span>
+</div>
+<article class="example example-like" id="toric-example-cox-nonsimplicial"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.8</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">A good quotient whose fibers contain several orbits.</span>
+</h3>
+<div class="para" id="toric-example-cox-nonsimplicial-2">In <span class="process-math">\(N=\Z^3\text{,}\)</span> take the cone with rays <span class="process-math">\(e_1,e_2,e_3,e_1+e_2-e_3\text{.}\)</span> All have height one for the functional <span class="process-math">\((1,1,1)\text{;}\)</span> their height-one slice is a quadrilateral. The cone is nonsimplicial, and its class group is <span class="process-math">\(\Z\text{,}\)</span> with variable degrees <span class="process-math">\(1,1,-1,-1\text{.}\)</span> Since the fan has one maximal cone containing every ray, <span class="process-math">\(B_\Sigma=(1)\)</span> and the entire <span class="process-math">\(\A^4\)</span> is the Cox open set.</div>
+<div class="para logical" id="toric-example-cox-nonsimplicial-3">
+<div class="para">The four invariant products are</div>
+<div class="displaymath process-math" id="toric-example-cox-nonsimplicial-3-1">
+\begin{equation*}
+a=x_1x_3,\quad b=x_1x_4,\quad c=x_2x_3,\quad d=x_2x_4.
+\end{equation*}
+</div>
+<div class="para">They generate the invariant ring: a balanced monomial can be paired into products of a positive-weight and a negative-weight variable. Their relation is <span class="process-math">\(ad-bc=0\text{,}\)</span> and the invariant ring is <span class="process-math">\(k[a,b,c,d]/(ad-bc)\text{.}\)</span> For completeness, its fraction field is generated by the three algebraically independent monomials <span class="process-math">\(a,b,c\text{,}\)</span> with <span class="process-math">\(d=bc/a\text{.}\)</span> The prime kernel therefore has height one; the irreducible determinant relation generates it.</div>
+</div>
+<div class="para logical" id="toric-example-cox-nonsimplicial-4">
+<div class="para">Above the vertex <span class="process-math">\(a=b=c=d=0\text{,}\)</span> the fiber has underlying set</div>
+<div class="displaymath process-math" id="toric-example-cox-nonsimplicial-4-2">
+\begin{equation*}
+V(x_1,x_2)\cup V(x_3,x_4).
+\end{equation*}
+</div>
+<div class="para">The origin is a fixed point, and there are also nonzero orbits in each plane whose closures contain it. The good quotient identifies all of them at the vertex. This is the concrete information lost if a categorical quotient is described merely as a set of orbits.</div>
+</div>
+</article>
+<article class="example example-like" id="toric-example-cox-p2"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.9</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Projective space.</span>
+</h3>
+<div class="para logical" id="toric-example-cox-p2-2">
+<div class="para">For <span class="process-math">\(\P^2\text{,}\)</span> all three variables have degree <span class="process-math">\(H\text{,}\)</span> so <span class="process-math">\(G=\Gm\)</span> acts by scalar multiplication. The maximal cones omit one ray each:</div>
+<div class="displaymath process-math" id="toric-example-cox-p2-2-4">
+\begin{equation*}
+B_\Sigma=(x_1,x_2,x_3),\qquad\widehat X=\A^3\setminus\{0\}.
+\end{equation*}
+</div>
+<div class="para">The quotient is <span class="process-math">\([x_1:x_2:x_3]\text{.}\)</span> On <span class="process-math">\(D(x_3)\text{,}\)</span> the degree-zero ring is <span class="process-math">\(k[x_1/x_3,x_2/x_3]\text{.}\)</span> The piece <span class="process-math">\(S_{dH}\)</span> consists of ordinary homogeneous polynomials of degree <span class="process-math">\(d\text{,}\)</span> recovering sections of <span class="process-math">\(\mathcal O_{\P^2}(d)\text{.}\)</span>
+</div>
+</div>
+</article>
+<article class="example example-like" id="toric-example-cox-hirzebruch"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.10</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Products and Hirzebruch surfaces.</span>
+</h3>
+<div class="para logical" id="toric-example-cox-hirzebruch-2">
+<div class="para">Use the rays and divisor basis <span class="process-math">\(F,S\)</span> of <a href="toric-divisors.html#toric-example-hirzebruch-divisors" class="xref" data-knowl="./knowl/xref/toric-example-hirzebruch-divisors.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.18: Hirzebruch surfaces before intersection theory">Example 3.18</a>. The degree matrix, with columns indexed by the rays in their fixed order, is</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/toric-example-hirzebruch-divisors.html" id="toric-example-cox-hirzebruch-2-3">
+\begin{equation*}
+Q=\begin{pmatrix}1&amp;0&amp;1&amp;a\\0&amp;1&amp;0&amp;1\end{pmatrix}.
+\end{equation*}
+</div>
+<div class="para">Thus <span class="process-math">\((s,t)\in\Gm^2\)</span> acts on the four coordinates as</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/toric-example-hirzebruch-divisors.html" id="toric-example-cox-hirzebruch-2-5">
+\begin{equation*}
+(x_1,x_2,x_3,x_4)\longmapsto(sx_1,tx_2,sx_3,s^atx_4).
+\end{equation*}
+</div>
+<div class="para">The irrelevant ideal is</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/toric-example-hirzebruch-divisors.html" id="toric-example-cox-hirzebruch-2-6">
+\begin{equation*}
+B_\Sigma=(x_3x_4,x_1x_4,x_1x_2,x_2x_3)=(x_1,x_3)(x_2,x_4).
+\end{equation*}
+</div>
+<div class="para">Hence each of the pairs <span class="process-math">\((x_1,x_3)\)</span> and <span class="process-math">\((x_2,x_4)\)</span> must be nonzero.</div>
+</div>
+<div class="para logical" id="toric-example-cox-hirzebruch-3">
+<div class="para">At <span class="process-math">\(a=0\)</span> the two scalings are independent, and the quotient is <span class="process-math">\(\P^1\times\P^1\text{.}\)</span> At general <span class="process-math">\(a\text{,}\)</span> the same irrelevant ideal accompanies a different grading. For example, on the chart <span class="process-math">\(D(x_3x_4)\)</span> the two degree-zero coordinates</div>
+<div class="displaymath process-math" id="toric-example-cox-hirzebruch-3-5">
+\begin{equation*}
+x_1/x_3,\qquad x_2x_3^a/x_4
+\end{equation*}
+</div>
+<div class="para">freely generate its invariant ring, an affine plane. The factor <span class="process-math">\(x_3^a\)</span> records the twisting that distinguishes the Hirzebruch surfaces.</div>
+</div>
+</article></section>
+<section class="section" id="toric-cox-secondary">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Secondary fans and variation of GIT</span>
+</h2>
+<div class="para logical" id="toric-cox-secondary-2">
+<div class="para">The open set <span class="process-math">\(\widehat X\)</span> came from a chosen fan. GIT starts instead with the graded affine space and a character <span class="process-math">\(\theta\in A\text{.}\)</span> With our sign convention define</div>
+<div class="displaymath process-math" id="toric-cox-secondary-2-3">
+\begin{equation*}
+R_\theta=\bigoplus_{\ell\geq0}S_{\ell\theta},\qquad U_\theta=\bigcup_{\ell&gt;0,\ f\in S_{\ell\theta}}D(f),\qquad Y_\theta=\Proj R_\theta.
+\end{equation*}
+</div>
+<div class="para">The summand index <span class="process-math">\(\ell\)</span> is the grading used for <span class="process-math">\(\Proj\text{.}\)</span> Its degree-zero ring is <span class="process-math">\(S_0\text{,}\)</span> so this is a quotient projective over <span class="process-math">\(\Spec S_0\text{,}\)</span> rather than necessarily over <span class="process-math">\(k\text{.}\)</span> Our choice of semistable sections fixes the character sign independently of conventions for twisting a trivial line bundle.</div>
+</div>
+<div class="para" id="toric-cox-secondary-3">The ring <span class="process-math">\(R_\theta\)</span> is finitely generated. Its monomial exponents are pairs <span class="process-math">\((b,\ell)\)</span> with <span class="process-math">\(b\in\N^r\text{,}\)</span> <span class="process-math">\(\ell\in\N\text{,}\)</span> and <span class="process-math">\(\deg(b)=\ell\theta\text{.}\)</span> This is a rational polyhedral lattice-point semigroup, including the finite-index congruence conditions from torsion in <span class="process-math">\(A\text{.}\)</span> Gordan’s lemma applies. On a homogeneous principal open the quotient has invariant ring <span class="process-math">\((S_f)_0\text{,}\)</span> exactly as in the Cox charts; these charts give the good quotient <span class="process-math">\(U_\theta\to Y_\theta\text{.}\)</span>
+</div>
+<article class="proposition theorem-like" id="toric-prop-cox-orbit-cones"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.11</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Semistability from the nonzero coordinates.</span>
+</h3>
+<div class="para logical" id="toric-prop-cox-orbit-cones-2-1">
+<div class="para">Let <span class="process-math">\(w_i=[D_i]\otimes1\in A_\R\text{,}\)</span> and let a point have nonzero-coordinate set <span class="process-math">\(I\text{.}\)</span> Then</div>
+<div class="displaymath process-math" id="toric-prop-cox-orbit-cones-2-1-3">
+\begin{equation*}
+x\in U_\theta\quad\Longleftrightarrow\quad\theta\otimes1\in\Cone(w_i:i\in I).
+\end{equation*}
+</div>
+<div class="para">There are consequently only finitely many semistable loci as the character varies. Characters having the same semistable locus are called GIT equivalent.</div>
+</div>
+</article>
+<details id="toric-prop-cox-orbit-cones-3" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="toric-prop-cox-orbit-cones-3-1">A homogeneous polynomial nonzero at the point has a monomial nonzero there. Its exponents are supported in <span class="process-math">\(I\)</span> and its degree is a positive multiple of <span class="process-math">\(\theta\text{,}\)</span> giving the cone condition. Conversely, a rational cone expression can be cleared of denominators to give an equality of degrees modulo torsion. Multiplying once more kills the remaining torsion in the finitely generated group <span class="process-math">\(A\text{,}\)</span> producing the required monomial. Rational coefficients may be chosen because the weights and character are rational lattice data. Only finitely many subsets <span class="process-math">\(I\)</span> occur.</div>
+</article></details>
+<div class="para" id="toric-cox-secondary-5">Thus chamber structure can be found from the finite list of orbit cones. One must still establish its fan structure and its relation with the quotient fans. In the classical complex toric GIT setting, this is the secondary-fan theorem: the GIT equivalence regions are relative interiors of rational polyhedral GKZ cones, these cones form a fan supported on the cone generated by the weights, and the quotient is constant on each relative interior. The quotient fans and any unused coordinate indices determine the individual GKZ cones. We invoke <a href="toric-references.html#CLS11" class="xref" data-knowl="./knowl/xref/bib-toric-cls.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry CLS11">[CLS11, Theorem 14.4.7 and Propositions 14.4.9 and 14.4.14]</a> for this global statement, including its treatment of boundary and degenerate cases. Proposition 14.4.14 identifies the semistable-locus ideals, not merely the abstract quotients. The elementary membership test above and the example below do not depend on characteristic.</div>
+<article class="example example-like" id="toric-example-cox-f1-wall"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.12</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Crossing a wall from the first Hirzebruch surface.</span>
+</h3>
+<div class="para logical" id="toric-example-cox-f1-wall-2">
+<div class="para">Set <span class="process-math">\(a=1\)</span> in the previous example. The four weights are</div>
+<div class="displaymath process-math" id="toric-example-cox-f1-wall-2-2">
+\begin{equation*}
+w_1=w_3=(1,0),\qquad w_2=(0,1),\qquad w_4=(1,1).
+\end{equation*}
+</div>
+<div class="para">The effective quadrant has two full-dimensional chambers separated by the diagonal ray. Choose characters</div>
+<div class="displaymath process-math" id="toric-example-cox-f1-wall-2-3">
+\begin{equation*}
+\theta_+=(2,1),\qquad\theta_0=(1,1),\qquad\theta_-=(1,2).
+\end{equation*}
+</div>
+<div class="para">The plus sign names the chamber of the Hirzebruch surface; it is not a convention about a positive or negative divisor.</div>
+</div>
+<div class="para logical" id="toric-example-cox-f1-wall-3">
+<div class="para">The orbit-cone test gives</div>
+<div class="displaymath process-math" id="toric-example-cox-f1-wall-3-1">
+\begin{equation*}
+U_{\theta_+}=\{(x_1,x_3)\ne(0,0),\ (x_2,x_4)\ne(0,0)\}=\widehat{\mathbb F_1}.
+\end{equation*}
+</div>
+<div class="para">Hence <span class="process-math">\(Y_{\theta_+}=\mathbb F_1\text{.}\)</span> On the other side it gives</div>
+<div class="displaymath process-math" id="toric-example-cox-f1-wall-3-3">
+\begin{equation*}
+U_{\theta_-}=\{x_2\ne0,\ (x_1,x_3,x_4)\ne(0,0,0)\}.
+\end{equation*}
+</div>
+<div class="para">Normalize <span class="process-math">\(x_2=1\)</span> using the second scaling. The remaining scaling acts with weight one on <span class="process-math">\(x_1,x_3,x_4/x_2\text{,}\)</span> so its quotient is <span class="process-math">\(\P^2\text{.}\)</span> This normalization is an isomorphism of quotient constructions, not a division by a group order.</div>
+</div>
+<div class="para logical" id="toric-example-cox-f1-wall-4">
+<div class="para">At the wall,</div>
+<div class="displaymath process-math" id="toric-example-cox-f1-wall-4-1">
+\begin{equation*}
+U_{\theta_0}=D(x_4)\cup D(x_1x_2)\cup D(x_3x_2).
+\end{equation*}
+</div>
+<div class="para">The entire section ring is</div>
+<div class="displaymath process-math" id="toric-example-cox-f1-wall-4-2">
+\begin{equation*}
+R_{\theta_0}=k[x_1x_2,x_3x_2,x_4],
+\end{equation*}
+</div>
+<div class="para">a polynomial ring with its three displayed generators in summand degree one. Indeed, a monomial of class <span class="process-math">\((\ell,\ell)\)</span> satisfies <span class="process-math">\(b_1+b_3+b_4=\ell=b_2+b_4\text{,}\)</span> so <span class="process-math">\(b_2=b_1+b_3\text{.}\)</span> It is uniquely a product of the three displayed monomials. Thus <span class="process-math">\(Y_{\theta_0}=\P^2\text{.}\)</span>
+</div>
+</div>
+<div class="para logical" id="toric-example-cox-f1-wall-5">
+<div class="para">The inclusions of the two chamber opens into the wall open induce</div>
+<div class="displaymath process-math" id="toric-example-cox-f1-wall-5-1">
+\begin{equation*}
+\mathbb F_1\longrightarrow\P^2\longleftarrow\P^2.
+\end{equation*}
+</div>
+<div class="para">On the first Cox open, the left map is</div>
+<div class="displaymath process-math" id="toric-example-cox-f1-wall-5-2">
+\begin{equation*}
+(x_1,x_2,x_3,x_4)\longmapsto[x_1x_2:x_3x_2:x_4].
+\end{equation*}
+</div>
+<div class="para">These three expressions have the same class <span class="process-math">\(F+S\text{,}\)</span> and they never vanish simultaneously there. The divisor <span class="process-math">\(D_2\text{,}\)</span> given by <span class="process-math">\(x_2=0\text{,}\)</span> is contracted to <span class="process-math">\([0:0:1]\text{.}\)</span> Away from that divisor, <span class="process-math">\(x_2\)</span> is invertible and the expression agrees with the quotient coordinates on the other chamber. The right-hand arrow is an isomorphism.</div>
+</div>
+<div class="para" id="toric-example-cox-f1-wall-6">The fan confirms the modification. Removing the ray <span class="process-math">\(u_2=(0,1)\)</span> leaves the fan of <span class="process-math">\(\P^2\text{,}\)</span> and <span class="process-math">\(u_2=u_1+u_3\)</span> subdivides its smooth cone <span class="process-math">\(\Cone(u_1,u_3)\text{.}\)</span> By the affine blowup calculation in <a href="toric-fans.html#toric-example-blowup-affine-plane" class="xref" data-knowl="./knowl/xref/toric-example-blowup-affine-plane.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 2.23: Blowing up the affine plane">Example 2.23</a>, the left map is the blowup of that fixed point. This is a divisorial wall crossing, not a flip. The graded ring stayed fixed; the semistable set and quotient changed.</div>
+</article>
+<div class="para" id="toric-cox-secondary-7">The example also separates a chamber decomposition from a list of pairwise nonisomorphic varieties: a wall quotient and a neighboring chamber quotient can be isomorphic while their semistable loci differ. One must retain the quotient morphisms and the classes producing them.</div>
+</section>
+<section class="section" id="toric-cox-mori-dream">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The interface with Mori dream spaces</span>
+</h2>
+<div class="para" id="toric-cox-mori-dream-2">The toric Cox ring is polynomial, but its quotient mechanism does not require polynomiality. Suppose a variety has a finitely generated multisection or Cox ring, with its divisor grading. Choosing homogeneous generators realizes its spectrum as an invariant closed subscheme of affine space. Character quotients can then organize its birational models. The equations of that invariant subscheme affect semistability and can combine chambers that were distinct in the ambient toric problem.</div>
+<div class="para logical" id="toric-cox-mori-dream-3">
+<div class="para">Here is a precise setting in which that mechanism is a theorem. Over <span class="process-math">\(\C\text{,}\)</span> let <span class="process-math">\(Z\)</span> be a normal projective <span class="process-math">\(\Q\)</span>-factorial variety such that <span class="process-math">\(\Pic(Z)_\Q\to N^1(Z)_\Q\)</span> is an isomorphism. Choose line bundles <span class="process-math">\(L_1,\ldots,L_s\)</span> whose classes form a rational basis and form the full multisection ring</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/bib-toric-hu-keel.html" id="toric-cox-mori-dream-3-6">
+\begin{equation*}
+\bigoplus_{b\in\Z^s}H^0\!\left(Z,L_1^{b_1}\otimes\cdots\otimes L_s^{b_s}\right).
+\end{equation*}
+</div>
+<div class="para">This Cox ring for the chosen finite-index Picard lattice is finitely generated if and only if <span class="process-math">\(Z\)</span> is a Mori dream space. Taking all integer degrees is essential here; an arbitrary basis followed by only nonnegative degrees need not record the effective classes. Hu–Keel instead choose their basis so that its nonnegative cone contains the effective cone; for that choice, the full ring agrees with their nonnegative multisection ring. In the Mori dream setting, the nef cone is rational polyhedral and generated by semiample classes, finitely many small modifications cover the movable cone by their nef cones, and rational contractions arise from variation of GIT. The finite-generation characterization is <a href="toric-references.html#HK00" class="xref" data-knowl="./knowl/xref/bib-toric-hu-keel.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry HK00">[HK00, Definitions 2.5–2.6 and Proposition 2.9]</a>, together with its Definition 1.10 and Proposition 1.11.</div>
+</div>
+<div class="para" id="toric-cox-mori-dream-4">The ambient toric comparison is particularly concrete: <a href="toric-references.html#HK00" class="xref" data-knowl="./knowl/xref/bib-toric-hu-keel.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry HK00">[HK00, Proposition 2.11]</a> constructs an embedding into a projective toric variety so that the rational divisor spaces agree, Mori chambers are unions of ambient toric chambers, and rational contractions are induced by toric rational contractions. This is a transfer theorem with projectivity, rational factoriality, and finite-generation hypotheses. It does not say that an arbitrary variety has a finitely generated Cox ring, or that a calculation in affine space settles its birational geometry without those hypotheses.</div>
+<div class="para" id="toric-cox-mori-dream-5">The toric case makes the input unusually explicit: there are no defining equations for <span class="process-math">\(\Spec S=\A^r\text{,}\)</span> and the irrelevant ideal and weight matrix can be read from the fan. For a nontoric Mori dream space, the additional equations are essential data. The useful general lesson is the sequence of constructions—graded sections, a characteristic action, semistable loci, and quotient models—together with a theorem specifying when that sequence captures the intended geometry.</div>
+</section>
+<section class="section" id="toric-cox-torus-factors">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Restoring torus factors</span>
+</h2>
+<div class="para logical" id="toric-cox-torus-factors-2">
+<div class="para">If the rays do not span <span class="process-math">\(N_\R\text{,}\)</span> set <span class="process-math">\(N_0=N\cap\operatorname{span}_\R|\Sigma|\text{.}\)</span> This is a saturated sublattice, so choose a splitting <span class="process-math">\(N=N_0\oplus N'\text{.}\)</span> The fan lies in <span class="process-math">\((N_0)_\R\)</span> and gives</div>
+<div class="displaymath process-math" id="toric-cox-torus-factors-2-5">
+\begin{equation*}
+X_\Sigma\cong X_{\Sigma,N_0}\times T_{N'}.
+\end{equation*}
+</div>
+<div class="para">The splitting is a choice; the original lattice and torus remain specified data.</div>
+</div>
+<div class="para logical" id="toric-cox-torus-factors-3">
+<div class="para">The class group is computed by the same ray presentation, now using <span class="process-math">\(N_0\text{,}\)</span> and the Cox construction applies to that factor. If <span class="process-math">\(M'=\Hom(N',\Z)\text{,}\)</span> restore the full coordinate algebra and open set as</div>
+<div class="displaymath process-math" id="toric-cox-torus-factors-3-3">
+\begin{equation*}
+S'=S\otimes_k k[M'],\qquad\widehat X'=\widehat X_{\Sigma,N_0}\times T_{N'},
+\end{equation*}
+</div>
+<div class="para">with the Laurent factor in degree zero and the characteristic group acting trivially on it. Each invariant chart becomes <span class="process-math">\(k[\sigma^\vee\cap M_0]\otimes k[M']\text{,}\)</span> so its quotient is precisely the original product chart. The section components likewise acquire the Laurent factor. A polynomial ring formed solely from the rays would omit these invertible coordinates and lose the torus factor.</div>
+</div>
+<div class="para" id="toric-cox-torus-factors-4">Thus homogeneous coordinates provide the same local dictionary as fans, while preserving its integral and equivariant data. The quotient construction is usable because its invariant rings have been identified, and variation of the quotient is meaningful because its grading and semistable conditions have been specified.</div>
+</section></section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="toric-intersection.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Top</span></a><a class="next-button button" href="toric-birational.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a>
+</div></main>
+<div class="margin-notes" role="complementary" aria-label="Margin notes">
+<aside class="aside aside-like margin-note" id="margin-toric-cox-group-schemes" data-margin-anchor="toric-anchor-diagonalizable-invariants"><h3 class="heading"><a href="#toric-anchor-diagonalizable-invariants" class="margin-note-label">1</a></h3>
+<div class="para" id="margin-toric-cox-group-schemes-1">The representation statement, including nonsmooth diagonalizable groups, is <a href="toric-references.html#Alp13" class="xref" data-knowl="./knowl/xref/bib-toric-alper.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Alp13">[Alp13, Example 12.4(2)]</a>. Smoothness of the acting group, finite stabilizers, and freeness are three separate questions.</div>
+</aside>
+</div>
+</div>
+<footer id="site-copyright" class="site-copyright"><p>© 2026 Jie Fu. All rights reserved.</p></footer>
+</body>
+</html>

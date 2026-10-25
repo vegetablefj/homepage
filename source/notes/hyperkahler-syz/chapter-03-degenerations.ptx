@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="hks-degenerations">
+  <title>Degenerations with a prescribed isotropic class</title>
+  <introduction>
+    <p>Let <m>L</m> be the nef isotropic line bundle whose semiampleness we want to prove, and write <m>c_1(L)=\lambda=me</m>, where <m>e</m> is primitive and <m>m&gt;0</m>. The degeneration must retain this particular class. A degeneration with an unspecified isotropic monodromy class would not suffice to prove a statement about <m>L</m>.</p>
+    <p>We construct a projective degeneration in which <m>e</m> spans the image of the square of logarithmic monodromy on <m>H^2</m>. Its normalized period is an explicit quadratic polynomial in one upper half-plane coordinate. This formula determines the volume growth and produces a normal crossings chart containing a real torus. The analytic theorem in <xref ref="hks-metric-syz"/> makes a torus in this isotopy class special Lagrangian.</p>
+    <p>The construction follows <xref ref="hks-bib-openai-syz" detail="Section 4"/>. The description of the torus class follows <xref ref="hks-bib-engel-mauri" detail="Lemma 3.3"/> and <xref ref="hks-bib-harder-log" detail="Theorem 3.8"/>. General background on periods and monodromy is in <url href="/notes/hyperkahler/hkg-degenerations.html">Degenerations and monodromy in General HK</url>.</p>
+  </introduction>
+
+  <section xml:id="hks-degeneration-monodromy">
+    <title>Monodromy and the lowest weight</title>
+    <p>Let <m>\pi:\mathcal Y\to\Delta</m> be a proper degeneration, smooth over <m>\Delta^*=\Delta\setminus\{0\}</m>. We assume that it is the analytic restriction of a projective family over an algebraic curve. A <em>semistable model</em> has smooth total space and reduced simple normal crossings central fiber. Locally it has the form
+      <md number="no">t=z_0\cdots z_{r-1},\qquad 1\leq r\leq d+1,</md>
+      where <m>d</m> is the dimension of a smooth fiber. Finite base change and projective modification give such a model in characteristic zero; the modification is an isomorphism over the punctured disk. We use semistable reduction as an external theorem <xref ref="hks-bib-kkms" detail="Chapter II, Semi-stable Reduction Theorem"/>.</p>
+    <p>Choose a marking at a point of <m>\Delta^*</m>. Let <m>T_k</m> be the action on <m>H^k(Y_t)</m> obtained by transport around a positive loop. A finite base change makes every <m>T_k</m> unipotent. Set <m>N_k=\log T_k</m>. The monodromy theorem gives <m>N_k^{k+1}=0</m>; see <xref ref="hks-bib-schmid" detail="Lemma 4.5 and Theorem 6.1"/>. Changing to the inverse convention changes the sign of <m>N_k</m>. A positive base change of degree <m>b</m> replaces it by <m>bN_k</m>. Neither operation changes the image of any power.</p>
+    <definition xml:id="hks-def-type-three">
+      <idx>Type III monodromy</idx><idx>Maximally unipotent degeneration</idx>
+      <statement><p>A degeneration of IHS manifolds has <em>type III monodromy</em> if
+        <md number="no">N_2^2\ne0,\qquad N_2^3=0.</md>
+        It is <em>maximally unipotent</em> in dimension <m>2n</m> if <m>N_{2n}^{2n}\ne0</m>.</p></statement>
+    </definition>
+    <p>The logarithm on the whole cohomology ring is a derivation. To see this, <m>\exp(sN)</m> is polynomial in <m>s</m> and preserves cup product for every nonnegative integer <m>s</m>, since it equals <m>T^s</m> there. The resulting polynomial identity holds for every <m>s</m>. Differentiation at zero gives the derivation rule. The same argument applied to the BBF pairing gives
+      <md number="no">q_X(N_2x,y)+q_X(x,N_2y)=0.</md></p>
+    <p>The limit mixed Hodge structure has a weight filtration <m>W_\bullet H^k_{\lim}</m>, centered at the cohomological degree <m>k</m>. It is characterized by
+      <md number="no">N_kW_j\subseteq W_{j-2},\qquad
+        N_k^a:\Gr^W_{k+a}\xrightarrow{\ \sim\ }\Gr^W_{k-a}.</md>
+      We use existence, functoriality, compatibility with cup product, and strictness for this mixed Hodge structure as external results. The filtration is not the pure weight filtration of an individual smooth fiber. Its underlying rational vector space is identified with that fiber's cohomology by the chosen marking.</p>
+    <proposition xml:id="hks-lowest-weight-power">
+      <statement><p>Suppose that a projective degeneration of IHS manifolds of dimension <m>2n</m> has type III monodromy and
+        <md number="no">\operatorname{im}N_2^2=\Q e.</md>
+        Then <m>q_X(e)=0</m>, and
+        <md number="no">W_0H^2_{\lim}=\Q e,\qquad W_0H^{2n}_{\lim}=\Q e^n.</md></p></statement>
+      <proof>
+        <p>For a nilpotent operator with <m>N_2^3=0</m>, the monodromy filtration centered at two has <m>W_0=\operatorname{im}N_2^2</m>. Skew-adjointness gives
+          <md number="no">q_X(N_2^2x,N_2^2y)=q_X(x,N_2^4y)=0,</md>
+          so <m>e</m> is isotropic.</p>
+        <p>The cup-product theorem of Verbitsky identifies <m>\Sym^nH^2(Y_t)</m> with its image <m>\SH^{2n}(Y_t)\subseteq H^{2n}(Y_t)</m>; see <url href="/notes/hyperkahler/hkg-cohomology.html">The cohomology algebra in General HK</url>. This is an inclusion of variations of Hodge structure. Since the limiting <m>H^2</m> is effective and its weight-zero part is <m>\Q e</m>, the weight-zero part of its <m>n</m>th symmetric power is exactly <m>\Q e^n</m>.</p>
+        <p>A polarization splits off the subvariation <m>\SH^{2n}</m>. Its complement has no Hodge summands of type <m>(2n,0)</m> or <m>(0,2n)</m>: the line generated by the <m>n</m>th power of a holomorphic symplectic form already lies in <m>\SH^{2n}</m>. All Hodge bidegrees of the complement therefore have both coordinates at least one. Twisting this complement by <m>(1)</m> gives an effective variation. Its limit mixed Hodge structure remains effective, so its weights are nonnegative. Before this twist, the weights are at least two. The complement contributes nothing to <m>W_0H^{2n}_{\lim}</m>. This proves the assertion; compare <xref ref="hks-bib-engel-mauri" detail="Lemma 3.3"/>.</p>
+      </proof>
+    </proposition>
+    <p>Here effectiveness means that all Hodge bidegrees are nonnegative. For a limit mixed Hodge structure, it follows from <m>F^0=H_\C</m> and its conjugate. The argument only requires the lowest weight of middle cohomology; no general assertion about every Jordan block in higher cohomology is needed.</p>
+
+    <definition xml:id="hks-def-profound-torus">
+      <idx>Profound torus</idx>
+      <statement><p>At a point where <m>d+1</m> components of a semistable central fiber meet, choose coordinates with <m>t=z_0\cdots z_d</m>. A <em>profound torus</em> in <m>Y_t</m> is an embedded real <m>d</m>-torus in the isotopy class of
+        <md number="no">F_{t,o}=\{\,|z_j|=r_j\ (0\leq j\leq d),\ z_0\cdots z_d=t\,\},\qquad
+          \prod_{j=0}^d r_j=|t|,</md>
+        where all radii are small enough to stay in the coordinate chart.</p></statement>
+    </definition>
+    <p>The product equation imposes one angular relation on <m>d+1</m> circles. Thus <m>F_{t,o}</m> is a real <m>d</m>-torus, rather than a <m>(d+1)</m>-torus. Moving the radii within the logarithmic simplex gives isotopies in the smooth fiber. Tori belonging to different strata need not be isotopic on an arbitrary semistable model.</p>
+    <proposition xml:id="hks-profound-torus-class">
+      <statement><p>In the situation of <xref ref="hks-lowest-weight-power"/>, the Poincaré dual of every profound torus satisfies
+        <md number="no">\operatorname{PD}[F_{t,o}]\in W_0H^{2n}_{\lim}=\Q e^n.</md>
+        If <m>F_{t,o}</m> is isotopic to a special Lagrangian torus <m>F</m>, then
+        <md number="no">\operatorname{PD}[F]=c e^n\qquad\text{for some }c\in\Q\setminus\{0\}.</md></p></statement>
+      <proof>
+        <p>Let <m>S_d</m> be the logarithmic monodromy on <m>H_d(Y_t)</m>, where <m>d=2n</m>. The topological theorem of Clemens, in <xref ref="hks-bib-harder-log" detail="Theorems 3.5 and 3.8"/>, gives
+          <md number="no">\operatorname{im}S_d^d
+            =\operatorname{span}_\Q\{[F_{t,o}]:o\text{ is a maximal crossing}\}.</md>
+          In particular, each such torus class lies in this image. Poincaré duality intertwines the monodromy actions, up to taking the inverse, which does not change the image of a logarithmic power. It sends <m>\operatorname{im}S_d^d</m> to <m>\operatorname{im}N_d^d=W_0H^d_{\lim}</m>. Equivalently, its source has homological weight <m>-2d=-4n</m> and Poincaré duality shifts the weight by <m>4n</m>. Apply <xref ref="hks-lowest-weight-power"/>.</p>
+        <p>An isotopy preserves the homology class, up to the chosen orientation. For the positive calibration orientation of a compact special Lagrangian <m>F</m>,
+          <md number="no">\left|\int_F\Omega_J\right|=\vol_g(F)&gt;0.</md>
+          A null-homologous cycle would have zero integral against every closed form. Thus its class, and the coefficient <m>c</m>, are nonzero.</p>
+      </proof>
+    </proposition>
+    <p>The homology assertion just used holds for semistable degenerations. It does not require the canonical bundle of the total semistable model to be trivial. Stronger statements comparing tori on different strata require additional hypotheses and are not used here.</p>
+  </section>
+
+  <section xml:id="hks-prescribed-period">
+    <title>A period curve through the given rational boundary point</title>
+    <p>Fix the differentiable manifold <m>M</m> underlying <m>X</m> and a connected component of its marked Teichmüller space containing <m>X</m>. Write <m>\Lambda=H^2(M,\Z)</m>, and abbreviate its BBF form to <m>q</m>. Its signature is <m>(3,b_2-3)</m>. Let <m>e\in\Lambda</m> be the specified primitive nonzero isotropic vector. In the application its sign is fixed by <m>q(e,\kappa_X)&gt;0</m> for a Kähler class on <m>X</m>.</p>
+    <p>The quotient <m>e^\perp/\R e</m> has signature <m>(2,b_2-4)</m>. Choose a rational positive vector in <m>e^\perp</m> and rescale it to a primitive integral vector <m>h</m>. Let <m>V=h^\perp\subseteq\Lambda_\Q</m>. Its signature is <m>(2,b_2-3)</m>. The polarized period domain <m>D_h</m> is one component of
+      <md number="no">\{\,[p]\in\PP(V_\C):q(p)=0,\ q(p,\bar p)&gt;0\,\}.</md>
+      Equivalently, it parametrizes oriented positive two-planes in <m>V_\R</m>.</p>
+    <p>We will choose a rational subspace <m>P\subseteq V</m> of dimension three and signature <m>(2,1)</m>, containing the actual vector <m>e</m>. Choose rational vectors <m>f,v\in P</m> with
+      <md xml:id="hks-eq-cusp-basis" number="yes">
+        q(e)=q(f)=0,\qquad q(e,f)=1,\qquad
+        v\perp\langle e,f\rangle,\qquad a:=q(v)&gt;0.
+      </md>
+      Such an <m>f</m> is obtained from any rational <m>f_0</m> with <m>q(e,f_0)=1</m> by replacing it with <m>f_0-q(f_0)e/2</m>.</p>
+    <lemma xml:id="hks-cusp-calculation">
+      <statement><p>Every period in the upper half-plane component of <m>D_P\subseteq D_h</m> has a unique representative
+        <md xml:id="hks-eq-cusp-period" number="yes">p(\tau)=f+\tau v-\frac a2\tau^2 e,\qquad \Im\tau&gt;0,</md>
+        satisfying <m>q(p(\tau),e)=1</m>. It obeys
+        <md number="no">q(p(\tau),p(\tau))=0,\qquad q(p(\tau),\overline{p(\tau)})=2a(\Im\tau)^2.</md>
+        For <m>u\in\R</m>, the isometry <m>U_u</m> given by
+        <md xml:id="hks-eq-cusp-isometry" number="yes">
+          U_ue=e,\qquad U_uv=v-au e,\qquad
+          U_uf=f+uv-\frac{au^2}{2}e,\qquad U_u|_{P^\perp}=\operatorname{id}
+        </md>
+        satisfies <m>U_up(\tau)=p(\tau+u)</m> and <m>U_uU_{u'}=U_{u+u'}</m>.</p></statement>
+      <proof>
+        <p>A positive period plane cannot be perpendicular to the nonzero isotropic vector <m>e</m>: its perpendicular in the space of signature <m>(2,1)</m> is negative definite. Thus <m>q(p,e)\ne0</m>, and we can normalize it to one. Write <m>p=f+\tau v+\beta e</m>. Its square is <m>a\tau^2+2\beta</m>, which forces <m>\beta=-a\tau^2/2</m>. Pairing with the conjugate gives
+          <md number="no">q(p,\bar p)=a|\tau|^2-\frac a2(\tau^2+\bar\tau^2)=2a(\Im\tau)^2.</md>
+          Changing the sign of <m>v</m> chooses the component with positive imaginary part.</p>
+        <p>The images under <m>U_u</m> have the same pairings as <m>e,v,f</m>. For example,
+          <md number="no">q(U_uv,U_uf)=au-au=0,\qquad q(U_uf)=au^2-au^2=0.</md>
+          The pairings with <m>e</m> and the square of <m>v</m> are unchanged. Substituting these images in <m>p(\tau)</m> gives <m>p(\tau+u)</m>; substituting in the three basis vectors gives the group law.</p>
+      </proof>
+    </lemma>
+    <p>For <m>w\ne0</m>, let <m>T=U_w</m>. Its logarithm on <m>P</m> is
+      <md xml:id="hks-eq-cusp-log" number="yes">N_2e=0,\qquad N_2v=-aw e,\qquad N_2f=wv.</md>
+      Indeed, these formulas give <m>\exp(N_2)=U_w</m>. They imply
+      <md xml:id="hks-eq-cusp-images" number="yes">
+        \operatorname{im}(T-\operatorname{id})=\operatorname{im}N_2=\langle e,v\rangle_\Q,\qquad
+        N_2^2f=-aw^2e,\qquad N_2^3=0.
+      </md>
+      Thus the degeneration will have type III monodromy once this period curve is realized by an algebraic family with this actual monodromy.</p>
+    <p>On the cohomology ring, the derivation rule gives
+      <md number="no">N_{2n}^{2n}(f^n)=(2n)!\left(-\frac{aw^2}{2}\right)^n e^n\ne0.</md>
+      This follows by comparing the coefficient of <m>s^{2n}</m> in
+      <m>\exp(sN)(f^n)=(f+swv-aw^2s^2e/2)^n</m>. Verbitsky's cup-product theorem gives <m>e^n\ne0</m>. Consequently this degeneration is maximally unipotent in middle degree as well.</p>
+    <example xml:id="hks-small-betti-cusp">
+      <p>If <m>b_2=3</m>, the BBF form is positive definite, so no nonzero isotropic <m>e</m> exists. If <m>b_2=4</m>, then <m>V=h^\perp</m> already has dimension three and signature <m>(2,1)</m>; take <m>P=V</m>. Its rational null line <m>\Q e</m> gives the required rational boundary point. No existence theorem for an isotropic vector in an arbitrary lattice is needed. Meyer's theorem, used when one starts without <m>e</m>, has a different hypothesis and a different purpose.</p>
+    </example>
+  </section>
+
+  <section xml:id="hks-algebraic-realization">
+    <title>Realizing the period curve by an algebraic family</title>
+    <p>A holomorphic period map alone does not yet give the algebraic family required by metric SYZ. We explain the realization and the marking. The global theorems used here are the hyperkähler period and Kähler cone theorems, algebraicity of maps to arithmetic quotients, and semistable reduction. The curve selection and monodromy calculation are part of the proof.</p>
+    <theorem xml:id="hks-thm-prescribed-degeneration">
+      <title>(OpenAI)</title>
+      <statement><p>Let <m>M</m> be of IHS type, fix a connected component of its marked Teichmüller space, and let <m>e\in H^2(M,\Z)</m> be primitive, nonzero, and isotropic. There is a semistable projective degeneration <m>\pi:\mathcal Y\to\Delta</m> of IHS manifolds of dimension <m>d=2n</m>, obtained from a family over an algebraic curve, with the following properties.
+        <ol marker="(i)">
+          <li><p>Its smooth fibers belong to the chosen marked component. A line bundle <m>\mathcal A</m> on <m>\mathcal Y</m> restricts to an ample bundle of class <m>kh</m> on every smooth fiber, for a positive integer <m>k</m> and a positive integral <m>h\perp e</m>.</p></li>
+          <li><p>There are rational <m>P,e,f,v</m> as in <xref ref="hks-eq-cusp-basis"/>. The normalized marked period is <m>p(\tau)</m> in <xref ref="hks-eq-cusp-period"/>, and the full monodromy on <m>H^2(M,\Q)</m> is <m>U_w</m> in <xref ref="hks-eq-cusp-isometry"/> for some <m>w\in\Q_{&gt;0}</m>.</p></li>
+          <li><p>There is a single-valued relative holomorphic symplectic form <m>\sigma_t</m> with <m>q([\sigma_t],e)=1</m>. The form <m>\eta_t=\sigma_t^n</m> extends to the logarithmic relative canonical bundle of the semistable model. For <m>s=-\log|t|</m>, there are constants <m>0&lt;c\leq C</m> such that
+            <md number="no">c s^d\leq\int_{Y_t}|\eta_t|^2\leq C s^d</md>
+            for all sufficiently small <m>t\ne0</m>.</p></li>
+          <li><p>At some maximal crossing <m>o</m>, there are coordinates in which
+            <md xml:id="hks-eq-nonzero-residue-chart" number="yes">
+              t=z_0\cdots z_d,\qquad
+              \eta_t=G(z)\frac{dz_1}{z_1}\wedge\cdots\wedge\frac{dz_d}{z_d},
+              \qquad G(o)\ne0.
+            </md>
+            The functions <m>z_1,\ldots,z_d</m> can be taken to be restrictions of rational functions on the algebraic total space.</p></li>
+          <li><p>For any prescribed irrational <m>\alpha\in\R</m>, a path approaching the puncture can be chosen with <m>\tau=\alpha+iy</m> and <m>y\to+\infty</m>.</p></li>
+        </ol>
+      </p></statement>
+    </theorem>
+    <p>See <xref ref="hks-bib-openai-syz" detail="Proposition 4.1"/>. We prove the period realization here and the logarithmic assertions in <xref ref="hks-logarithmic-volume"/>.</p>
+    <proof>
+      <p>The period theorem gives polarized deformations in the chosen marked component. Choose a very general period perpendicular to <m>h</m> with Picard group <m>\Z h</m>. There are no negative integral <m>(1,1)</m>-classes there. The Kähler cone theorem makes one sign of <m>h</m> ample; choose this sign. Embed such a deformation by a sufficiently high power of the corresponding line bundle.</p>
+      <p>The smooth locus of the appropriate Hilbert scheme carries a projective algebraic family. After restricting to a smooth quasi-projective base <m>S</m>, its local marked period map is submersive. This is the polarized local Torelli theorem: polarized deformations are smooth, and choices of bases of the complete embedding linear system vary in a frame bundle. This use of Hilbert schemes is the realization statement in <xref ref="hks-bib-soldatenkov" detail="Lemma 4.5"/>. Global Torelli and the Kähler cone description are used as recalled in <url href="/notes/hyperkahler/hkg-torelli.html">Periods and Torelli in General HK</url>.</p>
+      <p>Let <m>G_h(\Z)</m> be the group of lattice isometries fixing <m>h</m> and preserving the chosen component <m>D_h</m>. Choose a torsion-free congruence subgroup <m>\Gamma</m> of finite index, contained in the determinant-one subgroup. The monodromy of the Hilbert family lies in <m>G_h(\Z)</m>. A finite étale cover of <m>S</m> makes it lie in <m>\Gamma</m>. This does not require the monodromy image itself to have finite index.</p>
+      <p>The action of <m>\Gamma</m> on <m>D_h</m> is free. An element fixing a positive oriented plane belongs to a compact stabilizer. Its intersection with the discrete lattice group is finite, and a torsion-free group has no nonidentity element in a finite subgroup. The quotient <m>Q_h=\Gamma\backslash D_h</m> is a smooth quasi-projective arithmetic quotient by the Baily–Borel theorem <xref ref="hks-bib-baily-borel"/>. The descended period map
+        <md number="no">\Phi:S\longrightarrow Q_h</md>
+        is algebraic by Borel's algebraicity theorem <xref ref="hks-bib-borel" detail="Theorem 3.10"/>. A local marked lift has image containing an analytic open subset <m>U\subseteq D_h</m>.</p>
+      <p>Choose a plane <m>W\in U</m>. Relative to <m>V_\R=W\oplus W^\perp</m>, write <m>e=e_W+e_-</m>. The vector <m>e_W</m> is nonzero, and
+        <md number="no">q(e_-)=-q(e_W)&lt;0.</md>
+        Thus <m>W+\R e</m> has signature <m>(2,1)</m>. Approximate an oriented basis of <m>W</m> by rational vectors <m>x,y\in V</m>. The plane they span remains positive and lies in <m>U</m> if the approximation is close enough, and
+        <md number="no">P=\langle e,x,y\rangle_\Q</md>
+        has signature <m>(2,1)</m>. The prescribed vector <m>e</m> was retained throughout this approximation.</p>
+      <p>A finite-index subgroup <m>\Gamma_P\subseteq O(P)</m> extends by the identity on <m>P^\perp</m> to a subgroup of <m>\Gamma</m>. To check the integrality assertion, let
+        <md number="no">\Lambda_0=(P\cap\Lambda)\oplus(P^\perp\cap\Lambda)\subseteq\Lambda</md>
+        and choose <m>b\Lambda\subseteq\Lambda_0</m>. If an isometry of <m>P\cap\Lambda</m> is congruent to the identity modulo <m>rb</m>, its extension satisfies <m>(g-\operatorname{id})\Lambda\subseteq r\Lambda_0\subseteq r\Lambda</m>. Apply the same statement to its inverse. Choosing the congruence level sufficiently large places the extension in <m>\Gamma</m>.</p>
+      <p>The arithmetic curve <m>C_P=\Gamma_P\backslash D_P</m> has an algebraic map to <m>Q_h</m>. Its compactification has a cusp represented by the rational null line <m>\Q e</m>. We retain the particular lift labelled by <m>e</m>; passing to the quotient must not replace it by an unrelated isotropic vector.</p>
+      <p>Form <m>S\times_{Q_h}C_P</m>. At a point where the local period lift meets <m>U\cap D_P</m>, its projection to <m>C_P</m> is submersive. Some irreducible component therefore dominates <m>C_P</m>. Intersect it with general hyperplanes transverse to a fiber to obtain an algebraic curve still dominating <m>C_P</m>, and normalize that curve to <m>B</m>. The pullback from <m>S</m> is the required algebraic family away from the boundary.</p>
+      <p>The map of compactified curves <m>\bar B\to\bar C_P</m> is finite and surjective. Remove finitely many branch values and images of omitted points in the interior of <m>C_P</m>. The resulting map is an unramified finite cover. In <m>D_P</m>, the preimages of those interior exceptional values form a locally finite discrete set. A path from the selected period lift to the particular cusp <m>\Q e</m> can avoid that set. Lift it to <m>B</m>; it approaches a point over the selected cusp.</p>
+      <p>Transport the original marking along this path. The marked family period and the chosen <m>D_P</m>-valued lift have the same projection to <m>Q_h</m> and agree at the initial point. They agree along the whole lifted path. For a loop near the puncture, let <m>T_B\in\Gamma</m> be the family's actual monodromy and let <m>\gamma_B\in\Gamma_P</m> be the deck transformation of its lifted period. Equivariance gives <m>T_Bp=\gamma_Bp</m>. Freeness of the <m>\Gamma</m>-action implies
+        <md number="no">T_B=\gamma_B\quad\text{on the full lattice }\Lambda.</md>
+        In particular, monodromy acts identically on <m>P^\perp</m>. Equality of the projective period points without this freeness argument would not prove this assertion about the full operator.</p>
+      <p>By <xref ref="hks-cusp-calculation"/>, the cusp stabilizer acts on the upper half-plane by translations. Its positive generator is <m>\tau\mapsto\tau+w_0</m> for some positive rational <m>w_0</m>. A local cusp coordinate is <m>u=\exp(2\pi i\tau/w_0)</m>. At the chosen point of <m>\bar B</m>, a local parameter satisfies <m>u=t^b\beta(t)</m>, with <m>b&gt;0</m> and <m>\beta(0)\ne0</m>. It follows that
+        <md xml:id="hks-eq-cusp-growth" number="yes">\Im\tau=\frac{bw_0}{2\pi}(-\log|t|)+O(1).</md>
+        A positive loop has monodromy <m>U_{bw_0}</m>. Semistable reduction replaces this by a positive power, so all assertions about its images survive. Because a small punctured cusp neighborhood avoids all interior exceptional values, its vertical ray <m>\tau=\alpha+iy</m> lifts to the chosen finite cover for any specified <m>\alpha</m>. The path in the final parameter need not be radial.</p>
+      <p>Semistable reduction gives a smooth total space, projective over the disk, with reduced normal crossings central fiber. The polarization on the punctured family extends to a line bundle: close the divisor of a rational section in the smooth total space, where every Weil divisor is Cartier. Its restriction to smooth fibers stays ample. Relative ampleness on this particular semistable model is not required. The remaining assertions are proved in <xref ref="hks-logarithmic-volume"/>.</p>
+    </proof>
+    <p>The rational ternary subspace makes both the monodromy and the later nonprojectivity argument explicit.<fn>Soldatenkov's <xref ref="hks-bib-soldatenkov" detail="Theorem 4.6"/> proves the existence of maximally unipotent degenerations under <m>b_2\geq5</m>. That existence statement does not by itself prescribe the image line <m>\Q e</m>. The period curve and curve-selection argument here retain the given line, including when <m>b_2=4</m>.</fn> No identification of the central fiber or classification of its components is necessary.</p>
+  </section>
+
+  <section xml:id="hks-logarithmic-volume">
+    <title>The logarithmic volume form and a nonzero residue</title>
+    <p>We prove the assertions about <m>\eta_t</m> in <xref ref="hks-thm-prescribed-degeneration"/>. The invariant class <m>e</m> is a single-valued flat section over <m>\Delta^*</m>. Pairing with <m>e</m> is nonzero on the Hodge line by <xref ref="hks-eq-cusp-period"/>. It trivializes that line, giving a unique holomorphic relative symplectic form <m>\sigma_t</m> normalized by <m>q([\sigma_t],e)=1</m>. Its marked cohomology class is exactly <m>p(\tau)</m>, including the scalar.</p>
+    <p>Let <m>\eta_t=\sigma_t^n</m>. Comparing the coefficient of <m>z^nw^n</m> in Fujiki's identity for <m>z[\sigma_t]+w[\bar\sigma_t]</m> gives
+      <md number="no">\binom{2n}{n}\int_{Y_t}\sigma_t^n\bar\sigma_t^n
+        =c_X\,2^nq([\sigma_t],[\bar\sigma_t])^n.</md>
+      With the positive volume convention, any fixed normalization factor is absorbed in a positive constant. Since <m>q(p,\bar p)=2a(\Im\tau)^2</m>, <xref ref="hks-eq-cusp-growth"/> gives
+      <md xml:id="hks-eq-volume-growth" number="yes">\int_{Y_t}|\eta_t|^2=C_0(\Im\tau)^{2n}\asymp s^d,\qquad
+        s=-\log|t|,\quad d=2n,\quad C_0&gt;0.</md></p>
+    <p>The logarithmic relative canonical bundle is
+      <md number="no">K_{\mathcal Y/\Delta}^{\log}
+        =\det\left(\Omega^1_{\mathcal Y}(\log Y_0)/
+          \pi^*\Omega^1_\Delta(\log\{0\})\right).</md>
+      The quotient is locally free of rank <m>d</m> in semistable coordinates. Over <m>\Delta^*</m> its determinant is the ordinary relative canonical bundle, so <m>\eta</m> is a section there.</p>
+    <p>At a point of <m>Y_0</m> on only one component, use product coordinates <m>(z_1,\ldots,z_d,t)</m> and write <m>\eta_t=G(z,t)\,dz_1\wedge\cdots\wedge dz_d</m>. The submean inequality in the fiber variables, followed by <xref ref="hks-eq-volume-growth"/>, bounds <m>|G(z,t)|^2</m> by <m>C s^d</m> on a smaller chart. For every integer <m>j&gt;0</m>, its negative Laurent coefficient in <m>t</m> satisfies
+      <md number="no">\left|\frac{1}{2\pi i}\int_{|t|=\rho}G(z,t)t^{j-1}\,dt\right|
+        \leq C'\rho^j|\log\rho|^{d/2}\longrightarrow0.</md>
+      All negative coefficients vanish. Thus <m>G</m> extends holomorphically across <m>t=0</m>. The crossings have codimension at least two in the smooth total space. Hartogs' theorem, applied in a local trivialization of <m>K_{\mathcal Y/\Delta}^{\log}</m>, extends <m>\eta</m> across them.</p>
+    <p>It remains to show that a maximal crossing exists and that its logarithmic coefficient is nonzero somewhere. Suppose <m>r</m> components meet in a chart, with <m>t=z_0\cdots z_{r-1}</m>. A logarithmic generator restricts to
+      <md number="no">\frac{dz_1}{z_1}\wedge\cdots\wedge\frac{dz_{r-1}}{z_{r-1}}
+        \wedge dz_r\wedge\cdots\wedge dz_d.</md>
+      Its coefficient is bounded on a smaller chart. In radial variables <m>x_j=-\log|z_j|</m>, the expanding part of the fiber is an <m>(r-1)</m>-simplex of size <m>s</m>. Angular integration and integration in the remaining ordinary coordinates give
+      <md number="no">\int_{Y_t\cap\text{chart}}|\eta_t|^2\leq C(1+s^{r-1}).</md>
+      If every chart had <m>r\leq d</m>, properness and a finite cover would give total growth <m>O(s^{d-1})</m>, contradicting <xref ref="hks-eq-volume-growth"/>.</p>
+    <p>At a maximal crossing <m>o</m>, let the extended coefficient be <m>G(z)</m>. Suppose <m>G(o)=0</m>. In a polydisk <m>|z_j|&lt;\delta&lt;1</m>, let <m>A=-\log\delta</m> and rescale
+      <md number="no">x_j=A+\bigl(s-(d+1)A\bigr)u_j,\qquad
+        u_j&gt;0,\quad \sum_{j=1}^d u_j&lt;1.</md>
+      For almost every point of this fixed simplex, all <m>d+1</m> coordinates tend to zero as <m>s\to\infty</m>, uniformly in their arguments. The bounded coefficient <m>|G|^2</m> tends to zero there. Dominated convergence, after the radial change of variables, shows that the chart contributes <m>o(s^d)</m>. If the coefficient vanished at every maximal crossing, their finitely many contributions, together with <m>O(s^{d-1})</m> from all other charts, would again contradict the lower bound in <xref ref="hks-eq-volume-growth"/>. Some maximal crossing has <m>G(o)\ne0</m>.</p>
+    <p>Choose algebraic local equations <m>z_1,\ldots,z_d</m> for <m>d</m> of the components at that point. They are rational functions on the algebraic total space. A unit in the product equation can be absorbed into <m>z_0</m>, so that <xref ref="hks-eq-nonzero-residue-chart"/> holds with those functions. This proves all parts of <xref ref="hks-thm-prescribed-degeneration"/>.</p>
+    <p>The residue has a topological interpretation. Expand <m>G</m> at the crossing. On the coordinate torus only monomials with equal exponents of <m>z_0,\ldots,z_d</m> survive angular integration. Thus, with the angular orientation,
+      <md number="no">\int_{F_{t,o}}\eta_t=(2\pi i)^d\bigl(G(o)+O(t)\bigr).</md>
+      In particular, this torus is not null-homologous for sufficiently small <m>t</m>. The metric theorem will replace its representative, while retaining this isotopy class. The exact restriction map on cohomology, rather than merely the nonzero top-degree period, will be used in <xref ref="hks-main-proof"/>.</p>
+  </section>
+</chapter>

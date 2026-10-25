@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="toric-polytopes">
+  <title>Polyhedra, sections, and positivity</title>
+  <introduction>
+    <p>An invariant divisor gives inequalities in the character lattice. A Cartier trivialization selects a distinguished lattice point on each cone. Global generation asks whether these local generators come from global sections. Ampleness asks whether the linear pieces fit together with strictly positive bends. The resulting polyhedron then records a projective model, its section counts, and its degree.</p>
+    <p>We use the character-divisor formula and Cartier criterion from <xref ref="toric-divisors"/>. Main references are <xref ref="bib-toric-cls" detail="Sections 4.3, 6.1, 6.3, and 9.4"/> and <xref ref="bib-toric-fulton" detail="Sections 3.4–3.5"/>. The section formula allows noncomplete varieties and unbounded or empty polyhedra. The comparisons with nefness and ampleness explicitly assume completeness. Divisors are integral Cartier when an associated line bundle is used, unless a rational multiple is explicitly introduced.</p>
+  </introduction>
+
+  <section xml:id="toric-polytopes-sections">
+    <title>Divisor polyhedra and section bases</title>
+    <definition xml:id="toric-def-divisor-polyhedron">
+      <title>The polyhedron of an invariant Weil divisor</title>
+      <statement>
+        <p>For an invariant Weil divisor <m>D=\sum_\rho a_\rho D_\rho</m> on <m>X_\Sigma</m>, set
+          <md number="no">P_D=\{m\in M_{\R}:\langle m,u_\rho\rangle\geq-a_\rho
+            \text{ for every }\rho\in\Sigma(1)\}.</md>
+          The sheaf <m>\mathcal O_X(D)</m> is the divisorial sheaf of rational functions satisfying <m>\divisor(f)+D\geq0</m> on the open set in question. It is reflexive of rank one; it is invertible when <m>D</m> is Cartier.</p>
+      </statement>
+    </definition>
+    <theorem xml:id="toric-thm-polyhedron-sections">
+      <title>Characters form a basis of sections</title>
+      <statement>
+        <p>For every invariant Weil divisor on a normal toric variety,
+          <md xml:id="toric-eq-polyhedron-section-basis" number="yes">H^0(X,\mathcal O_X(D))
+            =\bigoplus_{m\in P_D\cap M}k\chi^m\subseteq k[M].</md>
+          The index set may be infinite when <m>X</m> is noncomplete. Every individual section is a finite Laurent polynomial.</p>
+      </statement>
+      <proof>
+        <p>A global section is regular on the torus, where <m>D</m> restricts to zero, so it is a Laurent polynomial. For <m>f=\sum c_m\chi^m\ne0</m>, one has
+          <md number="no">\operatorname{ord}_{D_\rho}(f)
+            =\min_{c_m\ne0}\langle m,u_\rho\rangle.</md>
+          On the ray chart <m>U_\rho\cong\A^1\times\Gm^{n-1}</m>, choose its first coordinate as a uniformizer. The coefficient of the lowest power is a nonzero Laurent polynomial in the other coordinates, since the remaining exponents of terms of that weight are distinct. Thus lowest terms cannot cancel.</p>
+        <p>The order inequalities along the boundary hold exactly when each exponent in the support belongs to <m>P_D</m>. Every other prime divisor meets the torus, where a Laurent polynomial is already regular. The codimension-one criterion for the divisorial sheaf on a normal variety now gives the assertion. Independence of the characters gives the direct-sum basis.</p>
+      </proof>
+    </theorem>
+    <p>This is <xref ref="bib-toric-cls" detail="Proposition 4.3.3"/>; its affine version is <xref ref="toric-eq-local-divisor-sections"/>. It applies to Weil divisors without assuming that they are Cartier or effective.</p>
+    <example xml:id="toric-example-noncomplete-polyhedra">
+      <title>Unbounded and empty polyhedra</title>
+      <p>On <m>\A^1</m>, the divisor <m>a[0]</m> gives <m>P_D=[-a,\infty)</m> and <m>H^0(\mathcal O(D))=t^{-a}k[t]</m>, an infinite-dimensional space. On the torus there are no ray inequalities; the zero divisor gives <m>P_0=M_{\R}</m> and section space <m>k[M]</m>.</p>
+      <p>On <m>\P^1</m>, take rays <m>1,-1</m> and <m>D=a_+[0]+a_-[\infty]</m>. Then <m>P_D=[-a_+,a_-]</m>. It is empty if the degree is negative; otherwise its lattice-point count is <m>a_++a_-+1</m>.</p>
+    </example>
+    <p>The recession cone of a nonempty <m>P_D</m> is <m>\Cone(|\Sigma|)^\vee</m>. If the fan is complete, this is zero, so <m>P_D</m> is bounded whenever nonempty. It is then a rational polytope, whose vertices need not yet be integral. Completeness does not ensure nonemptiness.</p>
+    <p>For positive integral <m>q</m>, <m>P_{qD}=qP_D</m>. Replacing <m>D</m> by <m>D+\divisor(\chi^w)</m> replaces <m>P_D</m> by <m>P_D-w</m>. Multiplication by <m>\chi^w</m> identifies the corresponding rational-function section spaces. A translated polyhedron can thus represent the same line bundle with a different invariant representative.</p>
+  </section>
+
+  <section xml:id="toric-polytopes-positivity">
+    <title>Global generation, nefness, and ampleness</title>
+    <subsection xml:id="toric-polytopes-generation">
+      <title>Local frames and global generators</title>
+      <p>Let <m>D</m> be Cartier, with data <m>m_\sigma\in M</m> satisfying <m>\langle m_\sigma,u_\rho\rangle=-a_\rho</m> on rays of <m>\sigma</m>. The frame of <m>\mathcal O(D)</m> on <m>U_\sigma</m> is <m>\chi^{m_\sigma}</m>; the local equation of the divisor is its inverse. The support function is <m>\psi_D(v)=\langle m_\sigma,v\rangle</m> on <m>\sigma</m>. These conventions are those of <xref ref="toric-thm-cartier-criterion"/>.</p>
+      <theorem xml:id="toric-thm-global-generation">
+        <title>The monomial criterion for generation</title>
+        <statement>
+          <p>The divisor <m>D</m> is globally generated if and only if for each maximal cone <m>\sigma</m> there exists <m>u_\sigma\in P_D\cap M</m> such that
+            <md number="no">u_\sigma-m_\sigma\in\sigma^\perp\cap M.</md>
+            If all maximal cones are full-dimensional, this is equivalent to <m>m_\sigma\in P_D</m> for every maximal cone.</p>
+        </statement>
+        <proof>
+          <p>In the local frame, the global monomial sections have coefficients <m>\chi^{u-m_\sigma}</m>, <m>u\in P_D\cap M</m>. They generate precisely the corresponding monomial ideal of <m>k[S_\sigma]</m>. A coefficient is a unit exactly when <m>u-m_\sigma\in\sigma^\perp\cap M</m>, by <xref ref="toric-prop-units"/>.</p>
+          <p>If no coefficient is a unit, all belong to the ideal spanned by nonunit monomials. Its quotient is <m>k[\sigma^\perp\cap M]</m>, the coordinate ring of the closed orbit of <m>U_\sigma</m>. The ideal is proper, so the evaluation map cannot be surjective. Conversely a unit coefficient generates the line bundle on that chart. The charts cover <m>X</m>. For a full-dimensional cone, its annihilator is zero, giving the last assertion.</p>
+        </proof>
+      </theorem>
+      <p>The full-dimensional statement is <xref ref="bib-toric-cls" detail="Proposition 6.1.1"/>. On smaller-dimensional cones a chosen <m>m_\sigma</m> can be changed by a character unit. For example, on the fan consisting only of the rays <m>e_1,e_2</m> and the zero cone, <m>D=0</m> is globally generated, but the valid datum <m>m_{\rho_1}=(0,-1)</m> is outside <m>P_0=\R_{\geq0}^2</m>. The datum <m>0</m> differs from it by a unit and belongs to the polyhedron. On a complete fan, every maximal cone is full-dimensional and this ambiguity disappears.</p>
+    </subsection>
+
+    <subsection xml:id="toric-polytopes-concavity">
+      <title>The sign of the support function</title>
+      <definition xml:id="toric-def-support-concavity">
+        <title>Concavity with the chosen divisor sign</title>
+        <statement>
+          <p>For a complete fan, we call <m>\psi_D:N_{\R}\to\R</m> concave if
+            <md number="no">\psi_D(tv+(1-t)w)\geq t\psi_D(v)+(1-t)\psi_D(w)
+              \quad(0\leq t\leq1).</md>
+            It is strictly concave with respect to the fan if, for each maximal <m>\sigma</m>, equality with <m>\langle m_\sigma,\cdot\rangle</m> holds exactly on <m>\sigma</m>, and
+            <md number="no">\psi_D(v)\lt\langle m_\sigma,v\rangle\quad(v\notin\sigma).</md>
+          </p>
+        </statement>
+      </definition>
+      <p>Strict concavity here describes domains of linearity. It does not require strict inequality along segments inside one cone. With the ray values <m>-a_\rho</m>, the relevant function is a minimum of linear functions. Cox<ndash/>Little<ndash/>Schenck call this condition convex; upper convex is another common name. The displayed inequalities specify our meaning.</p>
+      <proposition xml:id="toric-prop-concavity-generation">
+        <title>Generation is concavity</title>
+        <statement>
+          <p>For an invariant Cartier divisor on a complete toric variety, global generation, the conditions <m>m_\sigma\in P_D</m>, and concavity of <m>\psi_D</m> are equivalent. They are also equivalent to
+            <md number="no">\psi_D(v)=\min_\sigma\langle m_\sigma,v\rangle.</md>
+            In that case
+            <md number="no">P_D=\operatorname{conv}\{m_\sigma:\sigma\text{ maximal}\},</md>
+            a nonempty lattice polytope, possibly of smaller dimension than <m>M_{\R}</m>.</p>
+        </statement>
+        <proof>
+          <p>The preceding theorem compares generation and the Cartier points. If every <m>m_\sigma</m> lies in <m>P_D</m>, its linear function is at least <m>\psi_D</m> on every ray and hence every cone. Equality on its own cone proves the minimum formula and therefore concavity.</p>
+          <p>Conversely a concave piecewise linear function lies below the linear extension of each full-dimensional piece. Fix an interior point of that piece and a segment toward any other vector. A short initial portion stays in the piece, and concavity bounds the later slope above by its initial slope. Thus <m>\psi_D(v)\leq\langle m_\sigma,v\rangle</m>; evaluation on rays puts <m>m_\sigma</m> in <m>P_D</m>.</p>
+          <p>The ray inequalities defining <m>P_D</m> are equivalent to <m>\langle u,v\rangle\geq\psi_D(v)</m> for every <m>v\in N_{\R}</m>. By the minimum formula these are exactly the lower supporting inequalities of the convex hull of the Cartier points. Separation from a compact convex set proves the final equality.</p>
+        </proof>
+      </proposition>
+      <p>See <xref ref="bib-toric-cls" detail="Theorem 6.1.7"/>. Different maximal cones can carry the same Cartier point. The function then has a larger domain of linearity, which permits a globally generated divisor to contract curves.</p>
+    </subsection>
+
+    <subsection xml:id="toric-polytopes-nef">
+      <title>Nefness and wall degrees</title>
+      <definition xml:id="toric-def-nef-ample">
+        <title>Nef and ample Cartier divisors</title>
+        <statement>
+          <p>On a complete variety, a Cartier divisor is nef if its line bundle has nonnegative degree on every integral complete curve, computed on the normalization. It is ample if some positive multiple defines a closed immersion into projective space by its complete linear system.</p>
+        </statement>
+      </definition>
+      <p>A wall of a complete rank-<m>n</m> fan, for <m>n\geq1</m>, is a cone <m>\tau</m> of dimension <m>n-1</m>. Its two neighboring maximal cones <m>\sigma_+,\sigma_-</m> map to the positive and negative rays of the quotient lattice <m>N/N_\tau</m>, with <m>N_\tau=N\cap\operatorname{span}_{\R}(\tau)</m>. The invariant curve <m>C_\tau=V(\tau)</m> is the toric variety of that complete one-dimensional fan, hence is <m>\P^1</m>.</p>
+      <lemma xml:id="toric-lem-wall-degree">
+        <title>The change of Cartier data is the degree</title>
+        <statement>
+          <p>Choose the primitive <m>\ell\in M\cap\tau^\perp</m> positive on <m>\sigma_+</m>, and write
+            <md number="no">m_{\sigma_-}-m_{\sigma_+}=d_\tau\ell.</md>
+            Then <m>d_\tau\in\Z</m> and <m>\deg(\mathcal O(D)|_{C_\tau})=d_\tau</m>.</p>
+        </statement>
+        <proof>
+          <p>The difference annihilates <m>\tau</m> because the linear pieces agree there, and <m>M\cap\tau^\perp=\Z\ell</m>. The ratio of the two Cartier frames restricts on the curve torus to <m>t^{d_\tau}</m>, where <m>t=\chi^\ell</m>. These are the transition functions for <m>\mathcal O_{\P^1}(d_\tau[0])</m>, with frames <m>t^{-d_\tau}</m> and <m>1</m>. This proves the degree formula.</p>
+        </proof>
+      </lemma>
+      <theorem xml:id="toric-thm-nef-generated">
+        <title>Nef equals globally generated in the complete case</title>
+        <statement>
+          <p>For an invariant Cartier divisor on a complete toric variety,
+            <md number="no">D\text{ nef}\ \Longleftrightarrow\
+              d_\tau\geq0\text{ for all walls}\
+              \Longleftrightarrow\ \psi_D\text{ concave}\
+              \Longleftrightarrow\ D\text{ globally generated}.</md>
+          </p>
+        </statement>
+        <proof>
+          <p>Nefness gives nonnegative invariant-curve degrees. Conversely, if every <m>d_\tau\geq0</m>, restrict <m>\psi_D</m> to a segment crossing walls transversely and avoiding cones of codimension at least two. Crossing from <m>\sigma_+</m> to <m>\sigma_-</m> changes its slope in direction <m>w</m> by <m>d_\tau\ell(w)\leq0</m>, since <m>\ell(w)\lt0</m>. Slopes are nonincreasing, so the restriction is concave. Approximation and continuity give concavity for arbitrary segments.</p>
+          <p>Concavity gives generation. A globally generated line bundle has nonnegative degree on every complete curve: pull back to the normalization and choose a section nonzero at some point. Its effective zero divisor has degree equal to the degree of the line bundle. This proves nefness. In rank zero, the variety is a point and all conditions hold without curves or walls.</p>
+        </proof>
+      </theorem>
+      <p>This complete case is <xref ref="bib-toric-cls" detail="Theorem 6.3.12"/>. The argument uses the transition functions on wall curves and does not assume a cone-of-curves theorem from the intersection chapter. The completeness hypothesis matters: on a nonproper variety a shortage of complete curves can make the curve-degree condition much weaker than generation.</p>
+    </subsection>
+
+    <subsection xml:id="toric-polytopes-ample">
+      <title>Strict concavity produces an embedding</title>
+      <theorem xml:id="toric-thm-ample-strict-concavity">
+        <title>The ample support-function criterion</title>
+        <statement>
+          <p>For an invariant Cartier divisor on a complete toric variety, ampleness is equivalent to strict concavity with respect to the fan. Equivalently, for every maximal cone,
+            <md number="no">\langle m_\sigma,u_\rho\rangle\gt-a_\rho
+              \quad\text{whenever }\rho\not\preceq\sigma,</md>
+            with the usual equalities on rays of <m>\sigma</m>.</p>
+        </statement>
+        <proof>
+          <p>The ray inequalities imply membership of every <m>m_\sigma</m> in <m>P_D</m>. In any cone, a nonnegative sum of ray vectors gives equality with this linear function only if every active ray belongs to <m>\sigma</m>. This gives strict concavity, and evaluation on rays gives the converse.</p>
+          <p>An ample divisor has positive degree on every invariant curve, so all wall bends are positive. The preceding segment proof first gives concavity. For a vector outside <m>\sigma</m>, draw a segment from a generic interior point of <m>\sigma</m> to it. At the first exit the slope decreases strictly, and later slopes cannot increase. The endpoint value is strictly less than the extension of the original linear piece. The starting point can avoid the finitely many conditions causing a crossing in codimension at least two; the endpoint itself is allowed on a smaller cone. This proves strict concavity.</p>
+          <p>For the converse, choose finite generators <m>u_{\sigma,j}</m> of each affine semigroup <m>S_\sigma</m>. For every sufficiently large integer <m>q</m>,
+            <md number="no">qm_\sigma+u_{\sigma,j}\in qP_D
+              \quad\text{for all }\sigma,j.</md>
+            On rays of <m>\sigma</m> this follows from semigroup membership. On every other ray, the strictly positive term <m>q(a_\rho+\langle m_\sigma,u_\rho\rangle)</m> eventually dominates the fixed pairing with <m>u_{\sigma,j}</m>. Finiteness permits one choice of <m>q</m>.</p>
+          <p>The complete system of <m>qD</m> is globally generated. The section <m>\chi^{qm_\sigma}</m> has nonvanishing locus exactly <m>U_\sigma</m>, since its effective zero divisor has coefficient zero on rays of <m>\sigma</m> and positive coefficient on all other rays. On this open the ratios of sections include the generators <m>\chi^{u_{\sigma,j}}</m>. The morphism into the corresponding standard affine open of projective space is consequently a closed immersion. These opens cover the source. They give a closed immersion into their union in projective space, and properness makes its image closed in the whole projective space. Thus <m>qD</m> is very ample. For rank zero this is simply the embedding of a point into <m>\P^0</m>.</p>
+        </proof>
+      </theorem>
+      <p>See <xref ref="bib-toric-cls" detail="Theorem 6.1.14"/>. The proof explains why an ample divisor may require a multiple before it is very ample: the differences of degree-one section weights must generate each local affine semigroup.</p>
+      <p>For a <m>\Q</m>-Cartier divisor, clear denominators and apply these tests to an integral Cartier multiple. Concavity, strict concavity, nefness, and ampleness are unaffected by positive scaling. A rational Cartier datum is not itself a frame of a line bundle; formulas for sections still refer to specified integral divisors.</p>
+    </subsection>
+  </section>
+  <section xml:id="toric-polytopes-examples">
+    <title>Triangles, rectangles, and Hirzebruch trapezoids</title>
+    <example xml:id="toric-example-p2-polytope">
+      <title>A triangle on <m>\P^2</m></title>
+      <p>For rays <m>(1,0),(0,1),(-1,-1)</m>, represent <m>dH</m> by <m>dD_3</m>. Then
+        <md number="no">P_D=\{(x,y):x\geq0,\ y\geq0,\ x+y\leq d\}.</md>
+        For <m>d\geq0</m> its lattice points give degree-at-most-<m>d</m> monomials on the first affine chart, and hence the familiar homogeneous degree-<m>d</m> basis after inserting the homogeneous frame. Thus
+        <md number="no">h^0(\P^2,\mathcal O(d))=\frac{(d+1)(d+2)}2.</md>
+        For <m>d=0</m> the polytope is a point and the line bundle is trivial, globally generated, and nef. For <m>d\gt0</m> the support function is strictly concave and the bundle is ample. For <m>d\lt0</m> the polyhedron is empty.</p>
+    </example>
+    <example xml:id="toric-example-product-polytope">
+      <title>A rectangle on <m>\P^1\times\P^1</m></title>
+      <p>Use rays <m>e_1,e_2,-e_1,-e_2</m> and representative <m>D=aD_{-e_1}+bD_{-e_2}</m>. The inequalities give
+        <md number="no">P_D=[0,a]\times[0,b].</md>
+        For <m>a,b\geq0</m> the section count is <m>(a+1)(b+1)</m>. The divisor is globally generated and nef exactly when <m>a,b\geq0</m>, and ample exactly when both are positive. If one is zero and the other positive, the segment polytope describes a projection to one factor: the section map contracts the other factor.</p>
+    </example>
+    <example xml:id="toric-example-hirzebruch-polytope">
+      <title>Keeping the negative section in the calculation</title>
+      <p>Use the convention of <xref ref="toric-example-hirzebruch-divisors"/>. The fan of <m>F_a</m>, for <m>a\geq0</m>, has cyclic rays
+        <md number="no">u_1=(1,0),\quad u_2=(0,1),\quad
+          u_3=(-1,a),\quad u_4=(0,-1),</md>
+        with consecutive pairs as maximal cones. Write <m>F=[D_1]=[D_3]</m> and <m>S=[D_2]</m>, so <m>[D_4]=S+aF</m>. For <m>bS+cF</m> choose <m>D=cD_1+bD_2</m>. Its polyhedron is
+        <md number="no">P_D=\{(x,y):-b\leq y\leq0,\ -c\leq x\leq ay\}.</md>
+        The Cartier points for cones <m>12,23,34,41</m> are, in order,
+        <md number="no">(-c,-b),\quad(-ab,-b),\quad(0,0),\quad(-c,0).</md>
+        They all lie in <m>P_D</m> exactly when <m>b\geq0</m> and <m>c\geq ab</m>. These are therefore precisely the nef and globally generated classes. The strict inequalities give <m>b\gt0</m> and <m>c\gt ab</m> as the ample condition.</p>
+      <p>The wall degrees on the fibers are <m>b</m>, and the degree on the section <m>S</m> is <m>c-ab</m>. For instance the wall <m>\rho_2</m> has neighboring data <m>(-c,-b)</m> and <m>(-ab,-b)</m>; their difference is <m>(c-ab,0)</m>, with the orientation in <xref ref="toric-lem-wall-degree"/>. Thus the support inequalities and curve degrees give the same test without assuming an intersection table.</p>
+      <p>For a nef divisor count the slices <m>y=-j</m>:
+        <md number="no">h^0(F_a,\mathcal O(bS+cF))
+          =\sum_{j=0}^{b}(c-aj+1)
+          =(b+1)(c+1)-\frac{ab(b+1)}2.</md>
+        The class <m>S+aF</m> is globally generated. If <m>a\gt0</m>, its polygon is the triangle with vertices <m>(-a,-1),(-a,0),(0,0)</m>; its section map contracts <m>S</m>, where the degree is zero. The divisor <m>S</m> itself is effective but not nef for <m>a\gt0</m>. At <m>a=0</m> the formulas recover the rectangle on <m>\P^1\times\P^1</m>.</p>
+    </example>
+  </section>
+
+  <section xml:id="toric-polytopes-projectivity">
+    <title>Polarized varieties and normal fans</title>
+    <subsection xml:id="toric-polytopes-normal-fan-construction">
+      <title>The fan and its polarization</title>
+    <definition xml:id="toric-def-normal-fan">
+      <title>The inward normal fan</title>
+      <statement>
+        <p>For a full-dimensional lattice polytope <m>P\subset M_{\R}</m> and a nonempty face <m>F\subseteq P</m>, set
+          <md number="no">\sigma_F=\{v\in N_{\R}:
+            \langle m,v\rangle=\min_{u\in P}\langle u,v\rangle
+            \text{ for every }m\in F\}.</md>
+          The normal fan <m>\Sigma_P</m> consists of these cones. We use minima, so they are inward normal cones. Maximal cones correspond to vertices.</p>
+      </statement>
+    </definition>
+    <p>The face inequalities show that these are rational polyhedral cones, their intersections are common faces, and their union is <m>N_{\R}</m>. Full-dimensionality of <m>P</m> makes them strongly convex. Their support function is <m>v\mapsto\min_{u\in P}\langle u,v\rangle</m>.</p>
+    <theorem xml:id="toric-thm-polytope-polarization">
+      <title>Polytopes and ample polarizations</title>
+      <statement>
+        <p>Let <m>X_P=X_{\Sigma_P}</m>. For each ray of the normal fan put
+          <md number="no">a_\rho=-\min_{m\in P}\langle m,u_\rho\rangle,\qquad
+            D_P=\sum_\rho a_\rho D_\rho.</md>
+          Then <m>D_P</m> is Cartier and ample, and <m>P_{D_P}=P</m>. Conversely, an invariant ample Cartier divisor on a complete toric variety has a full-dimensional lattice polytope whose normal fan is precisely the original fan.</p>
+      </statement>
+      <proof>
+        <p>On the normal cone of a vertex <m>p</m>, the support function is the integral linear form <m>\langle p,\cdot\rangle</m>. These give Cartier data. The minimum is attained at <m>p</m> exactly on that normal cone, giving strict concavity and therefore ampleness. The facet inequalities recover <m>P</m>.</p>
+        <p>Conversely generation makes <m>P_D</m> the convex hull of the Cartier points. Strict concavity says that the vectors where <m>m_\sigma</m> minimizes pairing are exactly <m>\sigma</m>, identifying the normal fan. The polytope has full dimension: the proof of ampleness puts <m>qm_\sigma</m> and <m>qm_\sigma+u_{\sigma,j}</m> in a sufficiently large dilate, and those differences generate <m>M</m> as a group. Its affine span is therefore <m>M_{\R}</m>.</p>
+      </proof>
+    </theorem>
+    <p>A complete toric variety is thus projective exactly when its fan admits an integral strictly concave support function. Completeness alone does not provide one. This is the passage from the geometry of a complete fan to the geometry of a polarized projective variety; see <xref ref="bib-toric-cls" detail="Sections 2.3 and 6.1"/>.</p>
+    <p>A lower-dimensional lattice polytope should instead be placed, after translation by a vertex, in its intrinsic lattice <m>M\cap\operatorname{span}_{\R}(P-P)</m>. Its normal cones in the original <m>N_{\R}</m> have lineality and cannot be used there as strongly convex fan cones.</p>
+    </subsection>
+
+    <subsection xml:id="toric-polytopes-normal-generation">
+      <title>Normality of the variety and of the section algebra</title>
+      <definition xml:id="toric-def-normal-polytope">
+        <title>The integer decomposition property</title>
+        <statement>
+          <p>A lattice polytope <m>P</m> is normal if for every integer <m>q\geq1</m> every point of <m>qP\cap M</m> is a sum of <m>q</m> points of <m>P\cap M</m>. For the full-dimensional polarization constructed above, this says equivalently that all sections of <m>qD_P</m> are linear combinations of products of <m>q</m> sections of <m>D_P</m>.</p>
+        </statement>
+      </definition>
+      <p>For an ample Cartier divisor, its full section ring
+        <md number="no">R(D)=\bigoplus_{q\geq0}H^0(X,\mathcal O_X(qD))</md>
+        is the semigroup algebra of the lattice points of the cone over <m>P_D\times\{1\}</m>, with degree-zero element <m>(0,0)</m>. It is finitely generated and saturated, hence normal. Normality does not assert that this ring is generated in degree one.</p>
+      <proposition xml:id="toric-prop-projective-normality">
+        <title>Projective normality is integer decomposition</title>
+        <statement>
+          <p>If <m>D</m> is very ample, the embedding by its complete linear system is projectively normal if and only if <m>P_D</m> is normal. For an ample divisor, sufficiently large multiples are both very ample and normally generated.</p>
+        </statement>
+        <proof>
+          <p>The homogeneous coordinate ring of the embedding is the degree-one generated subring of <m>R(D)</m>. Its degree-<m>q</m> exponents are sums of <m>q</m> lattice points of <m>P_D</m>. Its group of exponent differences is <m>M\oplus\Z</m>: on the affine chart at a vertex, very ampleness makes the differences of section weights generate <m>k[S_\sigma]</m>, hence the whole character lattice as a group, and one degree-one point supplies the degree direction. The semigroup normalization theorem now identifies its integral closure with <m>R(D)</m>. Equality is exactly the integer decomposition property.</p>
+          <p>The dilation theorem for lattice polytopes states that if <m>\dim P=n\geq2</m>, then <m>qP</m> is normal for every <m>q\geq n-1</m>; see <xref ref="bib-toric-cls" detail="Theorem 2.2.12"/>. Segments and points are already normal. Combine this with sufficiently large very ample multiples from the ample criterion.</p>
+        </proof>
+      </proposition>
+      <p>The embedding statement is <xref ref="bib-toric-cls" detail="Theorem 2.4.1(b)"/>. One must specify an actual embedding before asking about its projective normality. Normality of <m>X_\Sigma</m> itself follows from its affine cone charts and holds independently of this question.</p>
+      <example xml:id="toric-example-reeve-polytope">
+        <title>Degree-one lattice points can miss higher-degree sections</title>
+        <p>For <m>r\geq2</m> take
+          <md number="no">P=\operatorname{conv}\{0,(1,0,0),(0,1,0),(1,1,r)\}
+            \subseteq\R^3,\qquad M=\Z^3.</md>
+          Its only lattice points are its vertices. At an intermediate height <m>0\lt c\lt r</m>, both first coordinates of a lattice point must be at least one, while the barycentric inequality requires their sum to be at most <m>1+c/r\lt2</m>. At the top and bottom slices the assertion is immediate.</p>
+        <p>The point <m>(1,1,1)</m> belongs to <m>2P</m>: coefficients <m>1-1/r,1-1/r,1/r</m> on the three nonzero vertices, and <m>1/r</m> on the origin, sum to two. It is not a sum of two lattice points of <m>P</m>, whose third coordinates would add to a multiple of <m>r</m>. Thus <m>P</m> is not normal. Its normal fan still gives a normal projective toric variety with an ample Cartier polarization. This example makes no assertion that the degree-one map is an embedding.</p>
+      </example>
+    </subsection>
+  </section>
+  <section xml:id="toric-polytopes-ehrhart">
+    <title>Lattice counting and asymptotic volume</title>
+    <theorem xml:id="toric-thm-ehrhart-hilbert">
+      <title>The Hilbert polynomial comes from lattice counting</title>
+      <statement>
+        <p>Let <m>D</m> be an invariant ample Cartier divisor on a complete <m>n</m>-dimensional toric variety, with <m>P=P_D</m>. Then
+          <md number="no">h^0(X,\mathcal O_X(qD))=\#(qP\cap M)\quad(q\in\N).</md>
+          The count is a polynomial of degree <m>n</m>, with leading coefficient <m>\vol_M(P)</m> and constant term one. It agrees in large degrees with the Hilbert polynomial of the polarization, and
+          <md xml:id="toric-eq-degree-volume" number="yes">D^n=n!\,\vol_M(P)
+            =\operatorname{Vol}_M(P).</md>
+          When <m>D</m> is very ample, this is the degree of its projective embedding.</p>
+      </statement>
+      <proof>
+        <p>The section formula gives the count for positive <m>q</m>. At <m>q=0</m>, the complete integral variety has <m>H^0(\mathcal O_X)=k</m> and <m>0P=\{0\}</m>. Ehrhart's theorem gives polynomiality, leading lattice-volume coefficient, and constant term one. We use this counting theorem from <xref ref="bib-toric-cls" detail="Theorem 9.4.2"/>.</p>
+        <p>Serre vanishing identifies large-degree Euler characteristics with section dimensions. The leading coefficient of the Hilbert polynomial is the degree divided by <m>n!</m> for a very ample bundle. Comparing coefficients proves the formula in that case. For an ample divisor, use a very ample multiple and divide by its <m>n</m>-th power. Equivalently this defines the top self-intersection of a Cartier polarization by its Hilbert polynomial.</p>
+      </proof>
+    </theorem>
+    <p>Our measure assigns volume one to a lattice fundamental parallelepiped; normalized volume is <m>n!</m> times that measure. Cox<ndash/>Little<ndash/>Schenck normalize a basic simplex to have volume one, so their volume is our <m>\operatorname{Vol}_M</m>. This translates <xref ref="bib-toric-cls" detail="Proposition 9.4.3 and equation (9.4.4)"/>. Smoothness is not required in the degree formula.</p>
+    <p>For a globally generated divisor whose polytope has dimension <m>d\lt n</m>, Ehrhart's polynomial has degree <m>d</m> and leading coefficient computed in the intrinsic rank-<m>d</m> lattice of <xref ref="toric-conventions-volume"/>. This describes the growth of sections without treating a lower-dimensional polytope as a full-dimensional body. Rational polytopes generally give quasipolynomial counts; integrality of vertices is a hypothesis of the polynomial statement. In dimension zero the point count and both volume normalizations equal one.</p>
+    <p><xref ref="toric-ehrhart"/> gives a direct counting proof of the lattice-polytope theorem, its reciprocal interior count, and a positive numerator for the Hilbert series. It continues the section-ring construction without using the degree formula as a proof of polynomiality.</p>
+    <example xml:id="toric-example-volume-checks">
+      <title>Checking the surface normalizations</title>
+      <p>The triangle for <m>dH</m> on <m>\P^2</m> has area <m>d^2/2</m>, so its polarization has degree <m>d^2</m>. The rectangle for <m>(a,b)</m> on <m>\P^1\times\P^1</m> has area <m>ab</m>, giving degree <m>2ab</m>.</p>
+      <p>The nef Hirzebruch trapezoid for <m>bS+cF</m> has horizontal lengths <m>c</m> and <m>c-ab</m> and height <m>b</m>, hence area <m>bc-ab^2/2</m>. For an ample class the degree is <m>2bc-ab^2</m>. Substituting <m>qb,qc</m> in its section count gives
+        <md number="no">h^0(qD)=\left(bc-\frac{ab^2}{2}\right)q^2
+          +\left(b+c-\frac{ab}{2}\right)q+1,</md>
+        confirming the leading coefficient directly. Degenerate segments and points instead have their intrinsic lower-dimensional counts.</p>
+    </example>
+  </section>
+
+  <section xml:id="toric-polytopes-valuations">
+    <title>From weight semigroups to valuations</title>
+    <p>The section dictionary gives a precise interface with non-toric geometry. In this section work over <m>\C</m>, in the setting of the cited valuation constructions. A convex body and a finitely generated semigroup retain different amounts of information; only the latter supplies the algebra required for the degeneration statement below.</p>
+    <proposition xml:id="toric-prop-toric-okounkov-body">
+      <title>A toric Newton<ndash/>Okounkov body is a translated divisor polytope</title>
+      <statement>
+        <p>Let <m>X_\Sigma</m> be smooth projective, <m>D</m> invariant ample Cartier, and <m>v_1,\ldots,v_n</m> the ordered primitive generators of a maximal cone <m>\sigma</m>. They give the invariant flag
+          <md number="no">X\supset V(\Cone(v_1))\supset
+            V(\Cone(v_1,v_2))\supset\cdots\supset V(\sigma).</md>
+          For its successive-order valuation, with local frame <m>\chi^{m_\sigma}</m>,
+          <md number="no">\Delta(D)=\Phi_\sigma(P_D-m_\sigma),\qquad
+            \Phi_\sigma(u)=(\langle u,v_1\rangle,\ldots,\langle u,v_n\rangle).</md>
+        </p>
+      </statement>
+      <proof>
+        <p>The smooth chart is affine space in the dual-basis coordinates. A monomial section <m>\chi^u</m> of <m>qD</m> has coefficient <m>\chi^{u-qm_\sigma}</m> in the frame and therefore valuation <m>\Phi_\sigma(u-qm_\sigma)</m>. A polynomial section has the lexicographically least exponent of its monomial support as valuation. The character basis consequently gives the full value set. The Newton<ndash/>Okounkov body, obtained by taking the closed convex hull of normalized degree-positive values, is the displayed polytope: rational points of the lattice polytope occur in its integral dilates.</p>
+      </proof>
+    </proposition>
+    <p>This is the ample case of <xref ref="bib-toric-lm" detail="Proposition 6.1(i)"/>, which treats big line bundles on smooth projective toric varieties. Their representative is trivial on the flag chart; subtracting <m>m_\sigma</m> performs the same normalization. The map <m>\Phi_\sigma</m> is a lattice isomorphism and preserves lattice volume.</p>
+    <p>For a smooth projective variety, a big line bundle, and an admissible complete flag, successive orders of sections still define a convex body and recover asymptotic volume; see <xref ref="bib-toric-lm" detail="Theorem A"/>. An admissible flag consists of irreducible subvarieties of successive codimensions, all smooth at its final point. There is no pre-existing character basis that turns multiplication into addition of weights. Finite generation of the actual value semigroup is a separate issue.</p>
+    <theorem xml:id="toric-thm-anderson-interface">
+      <title>Finite generation produces a toric degeneration</title>
+      <statement>
+          <p>Let <m>X</m> be a projective variety over <m>\C</m>, and let a very ample linear system <m>V\subseteq H^0(X,L)</m> give a closed immersion. For its homogeneous coordinate ring
+          <md number="no">R(V)=\bigoplus_{q\geq0}
+            \operatorname{image}\bigl(\operatorname{Sym}^qV\to H^0(X,L^q)\bigr),</md>
+          take the valuation from an admissible complete flag. If the semigroup
+          <md number="no">\Gamma(V)=\{(q,\nu(s)):0\ne s\in R(V)_q\}</md>
+          is finitely generated, there is a flat family over <m>\A^1</m> whose nonzero fibers are isomorphic to <m>X</m> and whose zero fiber is <m>\operatorname{Proj}\C[\Gamma(V)]</m>. The special fiber can be nonnormal. Its normalization is the normal toric variety determined by the value polytope with its intrinsic lattice. Here that polytope is
+          <md number="no">\Delta(V)=\{v\in\R^n:(1,v)\in\overline{\Cone(\Gamma(V))}\},</md>
+          the degree-one slice of the closed value cone; it uses values of the stated homogeneous coordinate ring.</p>
+      </statement>
+    </theorem>
+    <p>This is the specialization we use of <xref ref="bib-toric-anderson" detail="Theorem 1.1(a) and Theorem 5.6"/>. A flag valuation has one-dimensional leaves, identifying the associated graded algebra with a semigroup algebra. Finite generation permits a finitely generated degeneration algebra and a flat family. The very ample hypothesis here ensures that the theorem degenerates <m>X</m> itself, rather than only the image of a linear-system map.</p>
+    <p>A rational polyhedral body alone does not imply finite generation of <m>\Gamma(V)</m>. A finitely generated semigroup need not be saturated either. One must separately establish the algebra producing the family and the condition making its special fiber normal. This is the transfer mechanism retained from toric geometry: additive value data replace character weights, while the finite algebra and the properties of the special fiber still require proof. The general valuation theory and its supporting results have their full treatment in the cited sources.</p>
+  </section>
+</chapter>

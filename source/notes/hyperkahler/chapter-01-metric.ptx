@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="hkg-metric">
+  <title>Hyperkähler metrics and holomorphic symplectic manifolds</title>
+  <introduction>
+    <p>A hyperkähler structure describes one Riemannian metric through several compatible complex structures. A holomorphic symplectic structure starts with a complex manifold and a nondegenerate holomorphic two-form. For compact Kähler manifolds, the Calabi–Yau theorem connects these descriptions. Irreducible holomorphic symplectic manifolds correspond to the case of holonomy exactly <m>\mathrm{Sp}(n)</m>.</p>
+    <p>The main references are <xref ref="hkg-bib-huybrechts" detail="§§1.1–1.7 of the 1997 preprint"/> and <xref ref="hkg-bib-beauville" detail="§§1–5"/>. Smooth manifolds are connected.</p>
+  </introduction>
+  <section xml:id="hkg-quaternionic-linear-algebra">
+    <title>Quaternionic structures on an inner product space</title>
+    <definition xml:id="hkg-def-quaternionic-hermitian">
+      <statement>
+        <p>A <em>quaternionic Hermitian structure</em> on a real vector space <m>E</m> consists of a positive definite inner product <m>g</m> and orthogonal endomorphisms <m>I,J,K</m> satisfying
+          <md number="no">I^2=J^2=K^2=-\operatorname{id},\qquad IJ=K=-JI.</md>
+          The other multiplication rules follow: <m>JK=I=-KJ</m> and <m>KI=J=-IK</m>. Equivalently, the quaternions act on <m>E</m>, with their three standard imaginary units acting by <m>I,J,K</m>.</p>
+      </statement>
+    </definition>
+    <p>Here orthogonality means <m>g(Iu,Iv)=g(u,v)</m>, and similarly for <m>J,K</m>. Since <m>I^{-1}=-I</m>, it also gives <m>g(Iu,v)=-g(u,Iv)</m>. Thus
+      <md number="no">\omega_I(u,v):=g(Iu,v),\qquad \omega_J(u,v):=g(Ju,v),\qquad \omega_K(u,v):=g(Ku,v)</md>
+      are real alternating forms.</p>
+    <lemma xml:id="hkg-lemma-quaternionic-blocks">
+      <statement><p>Let <m>(E,g,I,J,K)</m> be quaternionic Hermitian. Then <m>\dim_{\mathbb R}E=4n</m> for an integer <m>n</m>, and <m>E</m> is an orthogonal direct sum of quaternionic lines. The orthogonal transformations commuting with <m>I,J,K</m> form the compact symplectic group <m>\mathrm{Sp}(n)</m>.</p></statement>
+      <proof>
+        <p>Choose a unit vector <m>e</m>. The vectors <m>e,Ie,Je,Ke</m> are orthonormal. For example, <m>g(Ie,Je)=-g(e,IJe)=-g(e,Ke)=0</m>; all other pairings follow from the same skew-adjointness and multiplication rules. Their span is preserved by <m>I,J,K</m>. Its orthogonal complement is also preserved: if <m>u</m> lies in the complement and <m>v</m> lies in the span, then <m>g(Iu,v)=-g(u,Iv)=0</m>. Induction gives the orthogonal decomposition and the dimension.</p>
+        <p>In a basis obtained this way, commuting with the quaternionic action is quaternionic linearity. Preserving <m>g</m> is preservation of the corresponding quaternionic Hermitian inner product. Its group of isometries is the definition of the compact group <m>\mathrm{Sp}(n)</m>. This group is different from the complex group <m>\mathrm{Sp}(2n,\mathbb C)</m>, which preserves a nondegenerate alternating form on a complex vector space of dimension <m>2n</m>.</p>
+      </proof>
+    </lemma>
+    <p>The three-dimensional real space <m>Q=\mathbb RI\oplus\mathbb RJ\oplus\mathbb RK</m> has the ordered orthonormal basis <m>(I,J,K)</m>. For <m>u=(a,b,c)\in\mathbb R^3</m>, write <m>A_u=aI+bJ+cK</m>. Quaternion multiplication gives
+      <md xml:id="hkg-eq-quaternion-product" number="yes">A_uA_v=-\langle u,v\rangle\operatorname{id}+A_{u\times v}.</md>
+      Consequently, <m>A_u^2=-\operatorname{id}</m> exactly when <m>|u|=1</m>. If <m>(u,v,w)</m> is an oriented orthonormal basis of <m>\mathbb R^3</m>, then <m>(A_u,A_v,A_w)</m> is another quaternionic triple. This gives the sphere of complex structures and the rotations of a chosen triple without changing the inner product.</p>
+    <p>The space <m>E</m> has quaternionic dimension <m>n</m>, complex dimension <m>2n</m> for every induced <m>A_u</m>, and real dimension <m>4n</m>.</p>
+  </section>
+  <section xml:id="hkg-metric-holonomy">
+    <title>Parallel structures and holonomy</title>
+    <definition xml:id="hkg-def-hyperkahler-metric">
+      <statement><p>A <em>hyperkähler structure</em> on a smooth manifold <m>M</m> is a Riemannian metric <m>g</m> with orthogonal endomorphisms <m>I,J,K</m> of <m>TM</m> satisfying the quaternion relations and
+        <md number="no">\nabla I=\nabla J=\nabla K=0,</md>
+        where <m>\nabla</m> is the Levi-Civita connection. A metric admitting such a triple is called a <em>hyperkähler metric</em>. Compactness and irreducibility are not part of this definition.</p></statement>
+    </definition>
+    <p>Fix <m>x\in M</m>. The <em>holonomy group</em> <m>\operatorname{Hol}_x(g)</m> consists of parallel transports around all piecewise smooth loops based at <m>x</m>, viewed as orthogonal transformations of <m>T_xM</m>. The <em>restricted holonomy group</em> uses loops homotopic to the constant loop. Changing the base point conjugates these groups. On a simply connected manifold they agree.</p>
+    <proposition xml:id="hkg-prop-holonomy-containment">
+      <statement><p>A Riemannian manifold of real dimension <m>4n</m> admits a hyperkähler structure if and only if, after an orthogonal identification of one tangent space with a quaternionic Hermitian space,
+        <md number="no">\operatorname{Hol}_x(g)\subseteq\mathrm{Sp}(n).</md>
+        Containment of the restricted holonomy alone guarantees the structure on the universal cover, but need not make a chosen triple descend to <m>M</m>.</p></statement>
+      <proof>
+        <p>A parallel endomorphism commutes with parallel transport around every loop. Thus a hyperkähler triple makes <m>\operatorname{Hol}_x(g)</m> commute with <m>I_x,J_x,K_x</m>, and <xref ref="hkg-lemma-quaternionic-blocks"/> identifies this centralizer with <m>\mathrm{Sp}(n)</m>.</p>
+        <p>Conversely, choose a quaternionic triple on <m>T_xM</m> fixed by the holonomy. For a path from <m>x</m> to <m>y</m>, transport the three endomorphisms to <m>T_yM</m>. Two paths differ by a loop, and holonomy invariance makes their transports equal. This defines smooth parallel endomorphisms on <m>TM</m>. Their orthogonality and multiplication rules hold at <m>x</m> and are preserved by parallel transport, so they hold everywhere. On the universal cover all loops downstairs arising from loops upstairs are null-homotopic; the same argument applies to restricted holonomy there.</p>
+      </proof>
+    </proposition>
+    <lemma xml:id="hkg-lemma-parallel-complex">
+      <statement><p>Let <m>A</m> be an orthogonal endomorphism of a Riemannian tangent bundle with <m>A^2=-\operatorname{id}</m> and <m>\nabla A=0</m>. Then <m>A</m> is an integrable complex structure, and <m>g</m> is Kähler for <m>A</m>, with Kähler form <m>\omega_A(u,v)=g(Au,v)</m>.</p></statement>
+      <proof>
+        <p>The Levi-Civita connection is torsion free, so <m>[U,V]=\nabla_UV-\nabla_VU</m>. Substitute this into the Nijenhuis tensor
+          <md number="no">N_A(U,V)=[AU,AV]-A[AU,V]-A[U,AV]-[U,V].</md>
+          Move each <m>A</m> through <m>\nabla</m> using <m>\nabla A=0</m>. The terms cancel in pairs. Hence <m>N_A=0</m>, and the Newlander–Nirenberg integrability theorem gives complex coordinates for <m>A</m>; see <xref ref="hkg-bib-newlander-nirenberg"/>.</p>
+        <p>The form <m>\omega_A</m> is parallel because <m>g</m> and <m>A</m> are parallel. For a torsion-free connection, exterior differentiation is the alternation of covariant differentiation, so <m>d\omega_A=0</m>. Orthogonality gives type <m>(1,1)</m>, and <m>\omega_A(u,Au)=g(Au,Au)=g(u,u)&gt;0</m> for <m>u\ne0</m>. These are the Kähler conditions.</p>
+      </proof>
+    </lemma>
+    <p>Apply the lemma to <m>A_u</m> for each <m>u\in S^2</m>. Thus a hyperkähler metric is Kähler for an entire sphere of induced complex structures. A <em>hypercomplex structure</em> only requires an integrable quaternionic triple; it does not include a metric for which all three structures are parallel. A <em>quaternionic Kähler metric</em> is a different notion, usually defined by holonomy contained in <m>\mathrm{Sp}(n)\mathrm{Sp}(1)</m>. There the three-dimensional bundle of quaternionic structures is preserved, but its individual local generators need not be parallel.</p>
+    <proposition xml:id="hkg-prop-hk-symplectic-form">
+      <statement><p>Let <m>(M,g,I,J,K)</m> be hyperkähler. Then
+        <md xml:id="hkg-eq-symplectic-from-metric" number="yes">\sigma:=\omega_J+i\omega_K</md>
+        is a parallel holomorphic symplectic form on <m>X=(M,I)</m>. The metric <m>g</m> is Ricci flat.</p></statement>
+      <proof>
+        <p>The quaternion relations give
+          <md number="no">\sigma(Iu,v)=-\omega_K(u,v)+i\omega_J(u,v)=i\sigma(u,v).</md>
+          Skew-symmetry gives the same identity in the second argument. Thus <m>\sigma</m> has type <m>(2,0)</m>. It is parallel, so it is closed. The <m>(0,1)</m> part of the induced connection on holomorphic forms is <m>\bar\partial</m>; hence a parallel form is holomorphic.</p>
+        <p>Every vector of type <m>(1,0)</m> has the form <m>z=u-iIu</m> for a real vector <m>u</m>. If <m>\sigma(z,w)=0</m> for all vectors <m>w</m> of type <m>(1,0)</m>, type <m>(2,0)</m> implies the same vanishing for arbitrary complexified vectors <m>w</m>. Since <m>\sigma(z,w)=2\sigma(u,w)</m>, both <m>g(Ju,w)</m> and <m>g(Ku,w)</m> vanish for all real <m>w</m>. This forces <m>u=0</m>, proving nondegeneracy.</p>
+        <p>The top form <m>\sigma^n</m> is a nowhere vanishing parallel section of the canonical bundle. The connection on the canonical bundle is therefore flat. On a Kähler manifold its curvature is, up to the fixed factor <m>i</m> and sign convention, the Ricci form. The Ricci form and hence the Ricci tensor vanish. This curvature identity is the local Kähler identity <m>\rho=-i\partial\bar\partial\log\det(g_{a\bar b})</m>.</p>
+      </proof>
+    </proposition>
+  </section>
+  <section xml:id="hkg-holomorphic-symplectic">
+    <title>Holomorphic symplectic structures</title>
+    <definition xml:id="hkg-def-holomorphic-symplectic">
+      <statement><p>A <em>holomorphic symplectic manifold</em> is a complex manifold <m>X</m> with a holomorphic two-form <m>\sigma</m> such that <m>d\sigma=0</m> and contraction
+        <md number="no">\sigma^\flat:T_X\longrightarrow\Omega_X^1,\qquad v\longmapsto\iota_v\sigma</md>
+        is an isomorphism. We also use the term for <m>X</m> when the form is understood or only its existence is asserted.</p></statement>
+    </definition>
+    <p>A nondegenerate alternating form exists only in even dimension. At a point, choose vectors <m>e_1,f_1,\ldots,e_n,f_n</m> with <m>\sigma(e_i,f_j)=\delta_{ij}</m> and all other basis pairings zero. The existence of such a basis follows by selecting one pair with nonzero pairing, splitting off its symplectic orthogonal complement, and repeating. In the dual basis,
+      <md number="no">\sigma=\sum_{j=1}^n e_j^*\wedge f_j^*,\qquad \sigma^n=n!\,e_1^*\wedge f_1^*\wedge\cdots\wedge e_n^*\wedge f_n^*.</md>
+      In particular, <m>\sigma^n</m> never vanishes and trivializes <m>K_X=\Omega_X^{2n}</m>. Therefore <m>c_1(X)=0</m> in integral cohomology.</p>
+    <p>On a compact Kähler manifold every holomorphic differential form is closed. Indeed, a holomorphic <m>(p,0)</m>-form is <m>\bar\partial</m>-closed, and its <m>\bar\partial</m>-adjoint is zero for bidegree reasons. The Kähler identity <m>\Delta_d=2\Delta_{\bar\partial}</m> makes it <m>d</m>-harmonic and therefore closed. This is why <xref ref="hkg-bib-huybrechts" detail="§1.1"/> can formulate the compact definition using only a nondegenerate holomorphic two-form.<fn>Closedness is a separate condition without compact Kähler hypotheses. On <m>\mathbb C^4</m>, the holomorphic form <m>dz_1\wedge dz_2+e^{z_1}dz_3\wedge dz_4</m> is nondegenerate, but its exterior derivative is <m>e^{z_1}dz_1\wedge dz_3\wedge dz_4\ne0</m>.</fn></p>
+    <proposition xml:id="hkg-prop-symplectic-bundle-consequences">
+      <statement><p>Let <m>(X,\sigma)</m> be holomorphic symplectic of dimension <m>2n</m>. Contraction and exterior multiplication give holomorphic bundle isomorphisms
+        <md number="no">T_X\xrightarrow{\ \sigma^\flat\ }\Omega_X^1,\qquad \Omega_X^1\xrightarrow{\ \alpha\mapsto\alpha\wedge\sigma^{n-1}\ }\Omega_X^{2n-1}.</md>
+        Consequently, <m>H^q(X,T_X)\cong H^q(X,\Omega_X^1)</m> for every <m>q</m>. The odd Chern classes of <m>T_X</m> vanish in integral cohomology.</p></statement>
+      <proof>
+        <p>The first isomorphism is nondegeneracy. For the second, contraction with the nowhere vanishing top form gives an isomorphism <m>T_X\to\Omega_X^{2n-1}</m>, and
+          <md number="no">\iota_v(\sigma^n)=n(\iota_v\sigma)\wedge\sigma^{n-1}.</md>
+          Composing with the inverse of <m>\sigma^\flat</m> proves the assertion. Sheaf cohomology preserves an isomorphism of sheaves.</p>
+        <p>More generally, the odd integral Chern classes of any complex symplectic bundle <m>E</m> vanish. We prove this by induction on its even rank; compare <xref ref="hkg-bib-nieper-rw" detail="Proposition 7"/>. On the projective bundle <m>p:\mathbb P(E)\to X</m> of lines, the tautological line bundle <m>S</m> is contained in its symplectic orthogonal <m>S^\perp</m>. The quotient <m>S^\perp/S</m> is symplectic of rank two less, and the form identifies <m>p^*E/S^\perp</m> with <m>S^*</m>. The two resulting exact sequences give
+          <md number="no">c(p^*E)=c(S)c(S^\perp/S)c(S^*)=\bigl(1-c_1(S)^2\bigr)c(S^\perp/S).</md>
+          Induction makes every odd component zero. The projective bundle formula makes <m>p^*:H^*(X,\Z)\to H^*(\mathbb P(E),\Z)</m> injective, so the odd Chern classes of <m>E</m> vanish as well. Apply this to <m>E=T_X</m>.<fn>Self-duality alone gives only <m>2c_{2j+1}(E)=0</m>. The alternating form gives integral vanishing, including possible two-torsion; see <xref ref="hkg-bib-nieper-rw" detail="Remark 9"/>.</fn></p>
+      </proof>
+    </proposition>
+    <p>For compact Kähler <m>X</m>, the degree-one isomorphism identifies <m>H^1(X,T_X)</m> with <m>H^{1,1}(X)</m>, the tangent space used in deformation theory.</p>
+  </section>
+  <section xml:id="hkg-calabi-yau-bochner">
+    <title>The Calabi–Yau theorem and parallel forms</title>
+    <theorem xml:id="hkg-thm-yau">
+      <title>(Yau)</title>
+      <statement><p>Let <m>X</m> be a compact Kähler manifold with <m>c_1(X)=0</m> in <m>H^2(X,\mathbb R)</m>. Every Kähler class contains the Kähler form of a unique Ricci-flat Kähler metric.</p></statement>
+    </theorem>
+    <p>See <xref ref="hkg-bib-yau"/> and <xref ref="hkg-bib-huybrechts" detail="§1.3"/> for this case of the Calabi–Yau theorem. Uniqueness is for the fixed complex structure and Kähler class.</p>
+    <theorem xml:id="hkg-thm-bochner">
+      <title>(Bochner)</title>
+      <statement><p>Let <m>(X,g)</m> be compact Ricci-flat Kähler. Every holomorphic tensor formed from <m>T_X</m> and <m>\Omega_X^1</m> is parallel. In particular, for <m>x\in X</m>, evaluation gives
+        <md number="no">H^0(X,\Omega_X^p)\cong\bigl(\Lambda^p(T_x^{1,0}X)^*\bigr)^{\operatorname{Hol}_x(g)}.</md>
+        The group in this formula is the full holonomy group.</p></statement>
+    </theorem>
+    <p>For the analytic assertion, see <xref ref="hkg-bib-kobayashi-tensors" detail="§2, Theorem 1(3), page 7"/>. The Bochner identity for a holomorphic tensor, integrated over the compact manifold, has zero curvature term when the Ricci tensor is zero and yields <m>\int_X|\nabla s|^2\,dV_g=0</m>. The invariant-tensor description then follows by the parallel-transport construction in <xref ref="hkg-prop-holonomy-containment"/>. Compactness is used in the integrated identity; a holomorphic tensor on a noncompact Ricci-flat Kähler manifold need not be parallel.</p>
+    <proposition xml:id="hkg-prop-kahler-symplectic-metric">
+      <statement><p>Let <m>X</m> be compact Kähler and holomorphic symplectic. The Ricci-flat metric in any Kähler class admits a hyperkähler triple with first complex structure equal to the given complex structure of <m>X</m>.</p></statement>
+      <proof>
+        <p>The form <m>\sigma^n</m> trivializes <m>K_X</m>, so <xref ref="hkg-thm-yau"/> provides a Ricci-flat Kähler metric <m>g</m> in the chosen class. By <xref ref="hkg-thm-bochner"/>, write the parallel form as <m>\sigma=\alpha+i\beta</m>, with parallel real two-forms <m>\alpha,\beta</m>. Define skew-adjoint endomorphisms <m>A,B</m> by
+          <md number="no">g(Au,v)=\alpha(u,v),\qquad g(Bu,v)=\beta(u,v).</md>
+          The type <m>(2,0)</m> identity gives <m>AI=-B</m> and <m>IA=B</m>, so <m>AI=-IA</m>. Nondegeneracy of <m>\sigma</m> implies that <m>A</m> is invertible: <m>Au=0</m> implies <m>AIu=-IAu=0</m>, hence both <m>\alpha(u,-)</m> and <m>\beta(u,-)</m> vanish, and then <m>u=0</m>.</p>
+        <p>The endomorphism <m>-A^2</m> is positive definite and self-adjoint. Let <m>P=(-A^2)^{1/2}</m> be its positive square root. Since <m>A</m> is parallel, functional calculus makes <m>P</m> parallel; it commutes with <m>A,I</m>. Set
+          <md number="no">J=AP^{-1},\qquad K=IJ.</md>
+          Then <m>J^2=-\operatorname{id}</m>, <m>J^*=-J</m>, and <m>IJ=-JI</m>. Therefore <m>J</m> is orthogonal, and <m>I,J,K</m> obey the quaternion relations. All three are parallel, giving the required structure.</p>
+      </proof>
+    </proposition>
+    <p>On a product, a holomorphic symplectic form can have different scales on different factors; the polar decomposition normalizes each parallel summand. When <m>H^0(X,\Omega_X^2)=\C\sigma</m>, the metric-compatible form differs from the chosen <m>\sigma</m> by a single nonzero scalar.</p>
+  </section>
+  <section xml:id="hkg-beauville-bogomolov-decomposition">
+    <title>Products and irreducible factors</title>
+    <definition xml:id="hkg-def-ihs">
+      <statement><p>An <em>irreducible holomorphic symplectic manifold</em>, abbreviated IHS, is a simply connected compact Kähler manifold <m>X</m> for which <m>H^0(X,\Omega_X^2)=\mathbb C\sigma</m> with <m>\sigma</m> everywhere nondegenerate. Its dimension is <m>2n</m> for some <m>n\geq1</m>.</p></statement>
+    </definition>
+    <p>In this definition closedness follows from compact Kählerness. The word <em>irreducible</em> concerns the symplectic and holonomy decomposition; it does not merely mean that the underlying analytic space is irreducible. Every connected complex manifold is irreducible as a smooth analytic space, including a product of two K3 surfaces.<fn>Many algebraic-geometric papers use <em>hyperkähler manifold</em> as shorthand for IHS, often without choosing a metric. Differential-geometric papers frequently allow arbitrary hyperkähler metrics, including products and flat tori. We use IHS for the compact irreducible complex object and state explicitly when the broader metric meaning is intended.</fn></p>
+    <theorem xml:id="hkg-thm-bb-decomposition">
+      <title>(Beauville–Bogomolov)</title>
+      <statement>
+        <p>Let <m>X</m> be a compact Kähler manifold with <m>c_1(X)=0</m> in real cohomology. Its universal cover is biholomorphic to
+          <md number="no">\mathbb C^a\times\prod_i Y_i\times\prod_j Z_j,</md>
+          where each <m>Y_i</m> is simply connected and projective, of dimension <m>m_i\geq3</m>, with trivial canonical bundle and <m>H^0(Y_i,\Omega_{Y_i}^p)=0</m> for <m>0&lt;p&lt;m_i</m>, and each <m>Z_j</m> is IHS. There is a finite étale cover
+          <md number="no">T\times\prod_iY_i\times\prod_jZ_j\longrightarrow X,</md>
+          where <m>T</m> is a complex torus. Factors of dimension zero are omitted.</p>
+        <p>For a Ricci-flat Kähler metric on <m>X</m>, the lifted metric has the corresponding de Rham product decomposition. The nonflat factors have holonomy <m>\mathrm{SU}(m_i)</m> and <m>\mathrm{Sp}(\dim Z_j/2)</m>, respectively.</p>
+      </statement>
+    </theorem>
+    <p>The complex-geometric statement is <xref ref="hkg-bib-beauville" detail="§5, Theorem 2"/>; the metric statement is its Theorem 1 and the holonomy descriptions in §§3–4. The proof combines the Calabi–Yau theorem, de Rham splitting, the classification of irreducible Ricci-flat Kähler holonomy, and the structure of the fundamental group.</p>
+    <p>The factors <m>Y_i</m> are often called <em>strict Calabi–Yau manifolds</em>. The unqualified term <em>Calabi–Yau</em> has several conventions: it may only require trivial canonical bundle, may also require the vanishing of intermediate holomorphic forms, or may refer to a metric with special unitary holonomy. Under the first convention an IHS manifold is Calabi–Yau; under the strict convention in the decomposition theorem it is a different type of factor. The overlap <m>\mathrm{SU}(2)=\mathrm{Sp}(1)</m> is assigned to the symplectic factors, which explains the bound <m>m_i\geq3</m>.</p>
+    <corollary xml:id="hkg-cor-symplectic-decomposition">
+      <statement><p>A compact Kähler holomorphic symplectic manifold has a finite étale cover of the form
+        <md number="no">T\times Z_1\times\cdots\times Z_r,</md>
+        where <m>T</m> is an even-dimensional complex torus with a nondegenerate translation-invariant holomorphic two-form and the <m>Z_j</m> are IHS. If the original manifold is simply connected, it is itself a product of IHS manifolds.</p></statement>
+      <proof>
+        <p>Pull back <m>\sigma</m> to the product cover in <xref ref="hkg-thm-bb-decomposition"/>. Each simply connected compact Kähler factor has <m>H^0(\Omega^1)=0</m>: its first Betti number is zero, and Hodge decomposition gives <m>h^{1,0}=0</m>. Thus holomorphic two-forms have no mixed terms involving two different non-torus factors or one such factor and the torus. On a strict Calabi–Yau factor, <m>H^0(\Omega^2)=0</m> because its dimension is at least three. A tangent vector in that factor would be in the kernel of the pulled-back form. Nondegeneracy therefore excludes all strict Calabi–Yau factors.</p>
+        <p>The remaining form is the sum of a form on <m>T</m> and forms on the <m>Z_j</m>. It is nondegenerate on each factor separately. Holomorphic forms on a complex torus are translation invariant, as follows by lifting their coefficients to periodic holomorphic functions and using compactness. Hence <m>T</m> has even dimension and the stated symplectic structure. If <m>X</m> is simply connected, its universal cover is <m>X</m> itself. The Euclidean factor in the universal-cover statement is absent because <m>X</m> is compact, leaving the asserted product.</p>
+      </proof>
+    </corollary>
+    <lemma xml:id="hkg-lemma-sp-invariant-exterior">
+      <statement><p>Let <m>V</m> be the standard complex representation of <m>\mathrm{Sp}(n)</m>, with invariant symplectic form <m>\sigma</m>. Then
+        <md number="no">(\Lambda^{2k}V^*)^{\mathrm{Sp}(n)}=\mathbb C\sigma^k\quad(0\leq k\leq n),\qquad (\Lambda^{2k+1}V^*)^{\mathrm{Sp}(n)}=0.</md></p></statement>
+      <proof>
+        <p>Choose a unitary symplectic coframe <m>x_1,y_1,\ldots,x_n,y_n</m> with <m>\sigma=\sum_jx_j\wedge y_j</m>. A maximal compact torus acts on <m>x_j,y_j</m> by inverse phases, independently for each <m>j</m>. A basis wedge monomial fixed by all these phases must contain both <m>x_j,y_j</m> or neither for every <m>j</m>. There are no such monomials in odd degree. In degree <m>2k</m>, every invariant is a linear combination of
+          <md number="no">\prod_{j\in S}(x_j\wedge y_j),\qquad |S|=k.</md>
+          Symplectic unitary transformations permute the pairs. Since the factors in this product have even degree, no signs appear when pairs are permuted. Invariance therefore makes all coefficients equal. The resulting sum is <m>\sigma^k/k!</m>. Conversely, <m>\sigma^k</m> is invariant under the whole group, so this one-dimensional upper bound is attained.</p>
+      </proof>
+    </lemma>
+    <theorem xml:id="hkg-thm-ihs-metric-equivalence">
+      <statement><p>Let <m>X</m> be IHS of dimension <m>2n</m>. The Ricci-flat Kähler metric in every Kähler class has full holonomy exactly <m>\mathrm{Sp}(n)</m>. Conversely, if a compact Riemannian manifold of real dimension <m>4n</m> has holonomy exactly <m>\mathrm{Sp}(n)</m>, every complex structure in its induced sphere makes it IHS.</p></statement>
+      <proof>
+        <p>For the first implication, apply <xref ref="hkg-cor-symplectic-decomposition"/> to <m>X</m>. Simple connectedness removes the torus and the finite quotient. Each symplectic factor contributes a nonzero independent holomorphic two-form, so <m>h^{2,0}(X)=1</m> leaves only one factor. The metric part of <xref ref="hkg-thm-bb-decomposition"/> then gives restricted holonomy <m>\mathrm{Sp}(n)</m>. Full and restricted holonomy agree because <m>X</m> is simply connected.</p>
+        <p>Conversely, <xref ref="hkg-prop-holonomy-containment"/> gives a parallel quaternionic triple, and <xref ref="hkg-prop-hk-symplectic-form"/> gives a holomorphic symplectic form for each induced complex structure. Since <m>\mathrm{Sp}(n)</m> is connected, it is also the restricted holonomy. Its real representation on the tangent space is irreducible. Thus the product decomposition in <xref ref="hkg-thm-bb-decomposition"/> has no flat factor and only one nonflat factor. By <xref ref="hkg-cor-symplectic-decomposition"/>, this gives a finite étale cover <m>\pi:\widetilde X\to X</m> with <m>\widetilde X</m> IHS.</p>
+        <p>The lifted metric on the simply connected cover has the same restricted, and hence full, holonomy <m>\mathrm{Sp}(n)</m>. The Bochner principle and <xref ref="hkg-lemma-sp-invariant-exterior"/> therefore give <m>h^{2,0}(X)=1</m> and
+          <md number="no">\chi(X,\mathcal O_X)=n+1=\chi(\widetilde X,\mathcal O_{\widetilde X}).</md>
+          Let <m>\td(T_X)</m> be the Todd class of the tangent bundle. Hirzebruch–Riemann–Roch and <m>T_{\widetilde X}\cong\pi^*T_X</m> give
+          <md number="no">\chi(\widetilde X,\mathcal O_{\widetilde X})=\int_{\widetilde X}\pi^*\td(T_X)=(\deg\pi)\chi(X,\mathcal O_X).</md>
+          Hence <m>\deg\pi=1</m>, so <m>X</m> is simply connected and therefore IHS.</p>
+      </proof>
+    </theorem>
+  </section>
+  <section xml:id="hkg-holomorphic-forms">
+    <title>Holomorphic forms and elementary consequences</title>
+    <proposition xml:id="hkg-prop-ihs-holomorphic-forms">
+      <statement><p>Let <m>X</m> be IHS of dimension <m>2n</m>. Then
+        <md number="no">H^0(X,\Omega_X^{2k})=\mathbb C\sigma^k\quad(0\leq k\leq n),\qquad H^0(X,\Omega_X^{2k+1})=0.</md>
+        Consequently,
+        <md number="no">\chi(X,\mathcal O_X)=n+1,\qquad b_1(X)=0,\qquad b_2(X)\geq3,\qquad H^0(X,T_X)=0.</md>
+        The abelian group <m>H^2(X,\mathbb Z)</m> is torsion free.</p></statement>
+      <proof>
+        <p>Use a Ricci-flat metric in a Kähler class. Its holonomy is <m>\mathrm{Sp}(n)</m> by <xref ref="hkg-thm-ihs-metric-equivalence"/>. The Bochner principle and <xref ref="hkg-lemma-sp-invariant-exterior"/> give the spaces of holomorphic forms. Hodge symmetry gives <m>h^{0,2k}=1</m> and <m>h^{0,2k+1}=0</m>, hence <m>\chi(\mathcal O_X)=\sum_q(-1)^qh^{0,q}=n+1</m>.</p>
+        <p>Simple connectedness implies <m>H_1(X,\mathbb Z)=0</m> and thus <m>b_1=0</m>. The nonzero classes <m>[\sigma]</m>, <m>[\bar\sigma]</m>, and a Kähler class lie in three different Hodge components of <m>H^2(X,\mathbb C)</m>, so <m>b_2\geq3</m>. Contraction with <m>\sigma</m> identifies holomorphic vector fields with holomorphic one-forms, and the latter vanish. Finally, the universal coefficient exact sequence has left term <m>\operatorname{Ext}^1(H_1(X,\mathbb Z),\mathbb Z)=0</m>, so
+          <md number="no">H^2(X,\mathbb Z)\cong\operatorname{Hom}(H_2(X,\mathbb Z),\mathbb Z).</md>
+          A compact smooth manifold has finitely generated homology, and this Hom group is free abelian.</p>
+      </proof>
+    </proposition>
+    <p>Vanishing of odd-degree holomorphic forms does not imply vanishing of odd cohomology.</p>
+    <example xml:id="hkg-example-flat-torus">
+      <p>Let <m>\mathbb H^n</m> have its Euclidean metric and a standard quaternionic triple. All three endomorphisms are constant, so they are parallel. Every full lattice <m>\Gamma\subset\mathbb R^{4n}</m> acts by translations preserving the metric and the triple. The quotient <m>M=\mathbb R^{4n}/\Gamma</m> is compact hyperkähler with trivial holonomy. For each induced complex structure it is a complex torus of dimension <m>2n</m>, and
+        <md number="no">h^{p,0}(M)=\binom{2n}{p}.</md>
+        No invariance of the lattice under multiplication by <m>I,J,K</m> is needed: it is the translation action, whose differential is the identity, that must preserve the tensors. In dimension two this torus has <m>h^{2,0}=1</m>, but its fundamental group is <m>\mathbb Z^4</m>, so it is not IHS.</p>
+    </example>
+    <example xml:id="hkg-example-product-k3">
+      <p>Let <m>S_1,S_2</m> be K3 surfaces with Ricci-flat Kähler metrics. The product metric, with the componentwise quaternionic triple, is hyperkähler. Its holonomy is <m>\mathrm{Sp}(1)\times\mathrm{Sp}(1)</m>, a proper subgroup of <m>\mathrm{Sp}(2)</m>, and
+        <md number="no">H^0(S_1\times S_2,\Omega^2)=\mathbb C\,\operatorname{pr}_1^*\sigma_1\oplus\mathbb C\,\operatorname{pr}_2^*\sigma_2.</md>
+        The product is simply connected and holomorphic symplectic, but is not IHS. Thus both simple connectedness and the one-dimensional space of holomorphic two-forms have a role in the definition.</p>
+    </example>
+    <p>The induced sphere is attached to a quaternionic triple. On a flat metric, or a product with reducible holonomy, other parallel triples may give other induced spheres. In the irreducible case, the commutant of the standard <m>\mathrm{Sp}(n)</m> action is the quaternion algebra, so the metric determines the sphere, while an oriented orthonormal basis of its imaginary part determines the ordered triple.</p>
+  </section>
+</chapter>

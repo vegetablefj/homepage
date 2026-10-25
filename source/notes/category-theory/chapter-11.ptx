@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="cat-idempotents">
+  <title>Idempotents and Cauchy completion</title>
+  <introduction>
+    <p>An endomorphism satisfying <m>e^2=e</m> behaves like a projection onto an object that may not yet be present. Splitting it makes that object explicit. Idempotent completion has three equivalent descriptions: formally add the missing retracts, retain the retracts of representable presheaves, or retain the presheaves whose Hom functors preserve every small colimit. Their equivalence explains why idempotent completion is also called Cauchy completion.</p>
+    <p>All categories are ordinary, set-encoded, and locally <m>\U</m>-small. The first four sections allow a category <m>\mathcal C</m> with an arbitrary set of objects; from the presheaf realization onward, <m>\mathcal C</m> is <m>\U</m>-small. Small colimits always include the empty colimit. We use <xref ref="bib-cat-riehl" detail="Example 3.2.14 and Exercise 3.4.vi"/> for the connection between retracts and absolute limits. The construction in <xref ref="bib-cat-li2" detail="Chapter 2, Exercise 4, page 126"/> is its additive counterpart; the proofs here establish the ordinary-category statements without an additive hypothesis.</p>
+  </introduction>
+
+  <section xml:id="cat-c11-splittings">
+    <title>Projections and their missing objects</title>
+    <definition xml:id="cat-c11-def-splitting">
+      <title>Idempotents, splittings, and retracts</title>
+      <idx>Idempotent</idx><idx>Idempotent complete category</idx><idx>Cauchy complete category</idx><idx>Splitting an idempotent</idx><idx>Retract</idx>
+      <statement>
+        <p><ol>
+          <li><p>An idempotent on <m>c</m> is an endomorphism <m>e:c\to c</m> with <m>e^2=e</m>. A splitting is an object <m>b</m> and arrows
+            <md number="no">c\xrightarrow{r}b\xrightarrow{i}c,\qquad ir=e,\qquad ri=\id_b.</md>
+            Thus <m>b</m> is a retract of <m>c</m>, <m>i</m> is a section, and <m>r</m> is its retraction.</p></li>
+          <li><p>A category is idempotent complete if every idempotent has a splitting. We also call it Cauchy complete or Karoubi complete.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <p>Any retract determines an idempotent: <m>(ir)^2=i(ri)r=ir</m>. A section is monic and a retraction epic, but neither is required to be invertible. The equation <m>ir=e</m> describes the projection on the larger object; the equation <m>ri=\id_b</m> says that nothing is lost on the smaller one. For sets, the smaller object may be taken to be the image, equivalently the fixed-point set, of <m>e</m>.<fn>The word projection here does not require coordinates, addition, or a complementary summand. The expressions involving <m>1-e</m> in additive accounts have no meaning in a general category. Likewise, an idempotent endomorphism is different data from the idempotent monad of <xref ref="cat-c09-def-idempotent"/>.</fn></p>
+    <proposition xml:id="cat-c11-prop-unique-splitting">
+      <statement>
+        <p>If <m>(b,i,r)</m> and <m>(b',i',r')</m> split the same idempotent, there is a unique isomorphism <m>u:b\to b'</m> with <m>i'u=i</m> and <m>ur=r'</m>. Every functor carries a splitting to a splitting.</p>
+      </statement>
+      <proof>
+        <p>Set <m>u=r'i</m> and <m>v=ri'</m>. The equations <m>ei=i</m>, <m>re=r</m>, and their primed versions give <m>vu=\id_b</m>, <m>uv=\id_{b'}</m>, <m>i'u=i</m>, and <m>ur=r'</m>. Any compatible map must equal <m>r'i'u=r'i</m>, proving uniqueness. Applying a functor to <m>ir=e</m> and <m>ri=\id_b</m> proves the last assertion.</p>
+      </proof>
+    </proposition>
+    <p>This uniqueness concerns a splitting of a specified endomorphism, including its maps. Two retracts of the same object need not be isomorphic. Even when the retract objects are isomorphic, different choices of section and retraction can encode different projections. Keeping those maps is essential in the universal properties below.</p>
+  </section>
+
+  <section xml:id="cat-c11-existence">
+    <title>Equalizers, coequalizers, and absolute constructions</title>
+    <proposition xml:id="cat-c11-prop-equalizer-splitting">
+      <statement>
+        <p>For an idempotent <m>e:c\to c</m>, the following conditions are equivalent:</p>
+        <p><ol>
+          <li><p>The idempotent splits.</p></li>
+          <li><p>The pair <m>e,\id_c:c\rightrightarrows c</m> has an equalizer.</p></li>
+          <li><p>The same pair has a coequalizer.</p></li>
+        </ol></p>
+        <p>In a splitting, <m>i:b\to c</m> is that equalizer and <m>r:c\to b</m> that coequalizer. Both universal properties are preserved by every functor. Consequently, having all equalizers, or having all coequalizers, suffices for idempotent completeness.</p>
+      </statement>
+      <proof>
+        <p>Suppose <m>ir=e</m> and <m>ri=\id_b</m>. If <m>a:x\to c</m> satisfies <m>ea=a</m>, then <m>i(ra)=ea=a</m>. The factorization is unique because <m>i</m> is monic. Dually, if <m>a:c\to x</m> satisfies <m>ae=a</m>, then <m>(ai)r=ae=a</m>, uniquely because <m>r</m> is epic.</p>
+        <p>Conversely, let <m>i:b\to c</m> equalize <m>e</m> and <m>\id_c</m>. The equality <m>e^2=e</m> gives a unique <m>r:c\to b</m> with <m>ir=e</m>. Since <m>i(ri)=ei=i</m> and <m>i</m> is monic, <m>ri=\id_b</m>. If instead <m>r:c\to b</m> coequalizes the pair, factor <m>e</m> as <m>ir</m>; the equation <m>(ri)r=re=r</m> and epimorphy of <m>r</m> give the same result. Every functor preserves the splitting equations, so the first paragraph establishes the transported universal properties as well.</p>
+      </proof>
+    </proposition>
+    <p>A limit or colimit is called absolute when every functor out of its ambient category preserves its specified cone or cocone. The preceding equalizer and coequalizer are absolute. Equivalently, a splitting gives both an absolute limit and an absolute colimit of the diagram on the one-object category whose arrows are <m>1,e</m>, with <m>e^2=e</m>: its cones satisfy <m>ea=a</m> and its cocones satisfy <m>ae=a</m>. This is the observation in <xref ref="bib-cat-riehl" detail="Exercise 3.4.vi"/>. It concerns these particular diagrams, rather than preservation of arbitrary equalizers or coequalizers.</p>
+    <example xml:id="cat-c11-example-splittings">
+      <title>Sets, orders, and one-object categories</title>
+      <p><ol>
+        <li><p>In <m>\Set_\U</m>, take <m>b=\{x\in c:e(x)=x\}</m>, with inclusion <m>i</m> and <m>r(x)=e(x)</m>. This works for the empty set as well. The subset belongs to <m>\U</m>, so it proves idempotent completeness with the stipulated size convention.</p></li>
+        <li><p>A preorder regarded as a category has only identity endomorphisms, and is therefore idempotent complete. It need not have any initial or terminal object, or any binary products. Idempotent completeness is much weaker than finite completeness.</p></li>
+        <li><p>In the one-object category of a monoid <m>M</m>, an idempotent <m>e\in M</m> splits precisely when there are <m>i,r\in M</m> with <m>ir=e</m> and <m>ri=1</m>. This is a condition within the monoid, not just the existence of the element <m>e</m>. For the two-element monoid <m>\{1,e\}</m>, with <m>e^2=e\ne1</m>, the nonidentity idempotent does not split: a product is <m>1</m> only when both factors are <m>1</m>.</p></li>
+      </ol></p>
+    </example>
+    <p>Having a terminal object alone does not imply that idempotents split. For an explicit small example, take the full subcategory of finite sets consisting of a singleton and a three-element set. A self-map of the latter fixing two elements and sending the third to one of them is idempotent. Its image has two elements, so any splitting in sets would have a two-element retract object; that object is absent from this subcategory. The singleton is nevertheless terminal.<fn>In additive literature, Karoubian often means that idempotents have kernels, or that the corresponding decompositions into direct summands exist. The equivalence with splittings uses that additional structure. Compare <xref ref="bib-cat-li2" detail="Section 2.5 and Chapter 2, Exercise 4"/> and <xref ref="bib-cat-stacks" detail="Tag 09SF, Definition 12.4.1 and Lemma 12.4.2"/>. Our definition requires no zero object and makes no assertion about such decompositions.</fn></p>
+  </section>
+
+  <section xml:id="cat-c11-envelope">
+    <title>Adjoining the retracts</title>
+    <definition xml:id="cat-c11-def-envelope">
+      <title>The Karoubi envelope</title>
+      <idx>Karoubi envelope</idx>
+      <statement>
+        <p>The category <m>\operatorname{Kar}(\mathcal C)</m> has objects <m>(c,e)</m>, where <m>e:c\to c</m> is idempotent, and
+          <md number="no">\Hom_{\operatorname{Kar}(\mathcal C)}((c,e),(d,e'))=\{f:c\to d:f=e'fe\}.</md>
+          Composition is inherited from <m>\mathcal C</m>. The identity on <m>(c,e)</m> is <m>e</m>, and the canonical functor is <m>J:\mathcal C\to\operatorname{Kar}(\mathcal C)</m>, <m>J(c)=(c,\id_c)</m>, <m>J(f)=f</m>.</p>
+      </statement>
+    </definition>
+    <p>The arrow condition is equivalently the pair <m>fe=f=e'f</m>. One direction follows by multiplying <m>f=e'fe</m> by the idempotents; the other follows by substitution. Consequently, if <m>f:(c,e)\to(d,e')</m> and <m>g:(d,e')\to(a,e'')</m>, then <m>gf=e''gfe</m>, and <m>e'f=f=fe</m> proves the identity laws. Associativity is inherited. The Hom sets are subsets of the original Hom sets, so local <m>\U</m>-smallness is preserved. If <m>\mathcal C</m> is <m>\U</m>-small, its envelope is also <m>\U</m>-small.</p>
+    <proposition xml:id="cat-c11-prop-envelope">
+      <statement>
+        <p>The functor <m>J</m> is fully faithful. Every object of the envelope is a retract of an object in its image, and every idempotent in the envelope splits. Moreover, <m>J</m> is an equivalence exactly when <m>\mathcal C</m> is idempotent complete.</p>
+      </statement>
+      <proof>
+        <p>Between <m>J(c)</m> and <m>J(d)</m> the arrow condition imposes no restriction, proving full faithfulness. The arrow <m>e</m>, regarded once as <m>(c,e)\to J(c)</m> and once in the reverse direction, exhibits the required retract: their composite on <m>(c,e)</m> is its identity <m>e</m>.</p>
+        <p>Now let <m>u</m> be an idempotent endomorphism of <m>(c,e)</m>. In <m>\mathcal C</m> it satisfies <m>u^2=u</m> and <m>u=eu=ue</m>. The object <m>(c,u)</m> belongs to the envelope. The underlying arrow <m>u</m> in both directions between <m>(c,u)</m> and <m>(c,e)</m> splits the given endomorphism, since the identity of <m>(c,u)</m> is <m>u</m>.</p>
+        <p>If <m>e=ir</m> splits in <m>\mathcal C</m>, its maps give an isomorphism <m>(c,e)\cong J(b)</m>. Thus idempotent completeness makes <m>J</m> essentially surjective. Conversely, an isomorphism <m>(c,e)\cong J(b)</m>, read as two arrows of <m>\mathcal C</m>, supplies <m>ir=e</m> and <m>ri=\id_b</m>. This proves the final equivalence.</p>
+      </proof>
+    </proposition>
+    <p>For the monoid <m>\{1,e\}</m> above, the envelope has two objects, labelled by <m>1</m> and <m>e</m>. Every Hom set involving the second object is the singleton <m>\{e\}</m>; the endomorphisms of the first object are <m>\{1,e\}</m>. The new object is therefore both initial and terminal, hence a zero object. Its identity is the original monoid element <m>e</m>. This example shows concretely how a new object can have a familiar arrow as its identity, without an original zero object or any addition on Hom sets. The original monoid already has the absorbing zero arrow <m>e</m>, in the sense explained after <xref ref="cat-c02-def-initial-terminal"/>.</p>
+  </section>
+
+  <section xml:id="cat-c11-universal-property">
+    <title>The universal property on functors and transformations</title>
+    <theorem xml:id="cat-c11-thm-universal-property">
+      <statement>
+        <p>If <m>\mathcal D</m> is idempotent complete, restriction induces an equivalence of ordinary categories
+          <md number="no">J^*:\Fun(\operatorname{Kar}(\mathcal C),\mathcal D)\longrightarrow\Fun(\mathcal C,\mathcal D).</md>
+          In particular, every functor extends up to natural isomorphism, and every transformation between restrictions extends uniquely. The restriction functor commutes with postcomposition by functors between idempotent-complete targets.</p>
+      </statement>
+      <proof>
+        <p>Given <m>F:\mathcal C\to\mathcal D</m>, choose a splitting <m>F(c)\xrightarrow{r_e}b_e\xrightarrow{i_e}F(c)</m> of each <m>F(e)</m>. For <m>e=\id_c</m> choose the identity splitting on <m>F(c)</m>. Ordinary choice suffices: the idempotents form a set. Define
+          <md number="no">\overline F(c,e)=b_e,\qquad \overline F(f)=r_{e'}F(f)i_e.</md>
+          The identity <m>e</m> maps to <m>r_eF(e)i_e=\id_{b_e}</m>. For composable <m>f,g</m>, the middle factor <m>i_{e'}r_{e'}=F(e')</m> can be removed using <m>ge'=g</m> and <m>e'f=f</m>; hence <m>\overline F(g)\overline F(f)=\overline F(gf)</m>. Thus <m>\overline F</m> is a functor with <m>\overline FJ=F</m>.</p>
+        <p>Full faithfulness of restriction does not depend on these choices. Let <m>H,K:\operatorname{Kar}(\mathcal C)\to\mathcal D</m> and <m>\alpha:HJ\Rightarrow KJ</m>. Write <m>j_e:(c,e)\to J(c)</m> and <m>p_e:J(c)\to(c,e)</m> for the two arrows labelled <m>e</m>. The only possible extension has components
+          <md number="no">\widetilde\alpha_{(c,e)}=K(p_e)\alpha_cH(j_e).</md>
+          Indeed, naturality with <m>j_e</m> and <m>p_ej_e=\id_{(c,e)}</m> force this formula. Conversely it defines a transformation: every arrow <m>f:(c,e)\to(d,e')</m> factors as <m>p_{e'}J(f)j_e</m>, and naturality of <m>\alpha</m> with the underlying arrow <m>f:c\to d</m> gives the required equation. On <m>J(c)</m> the formula is <m>\alpha_c</m>. This proves fullness and faithfulness; the constructed extensions prove essential surjectivity.</p>
+        <p>For a functor <m>V:\mathcal D\to\mathcal E</m>, restriction and postcomposition satisfy <m>(VH)J=V(HJ)</m>, on transformations as well as objects. This proves the stated naturality of restriction, without selecting splittings compatible with every <m>V</m>.</p>
+      </proof>
+    </theorem>
+    <p>Thus different choices of splittings produce naturally isomorphic extensions; after their identifications on <m>\mathcal C</m> are fixed, the compatible isomorphism is unique. The extension itself is not a strictly unique formula. A functor <m>A:\mathcal C\to\mathcal C'</m> also induces <m>\operatorname{Kar}(A)(c,e)=(A(c),A(e))</m>, acting on arrows by <m>A</m>, so the construction respects changes of source.<fn>Li's <xref ref="bib-cat-li2" detail="Chapter 2, Exercise 4(ii)"/> gives a functor-category equivalence for additive functors. The formulas above isolate the part that works for all ordinary categories and ordinary functors. If the source is merely locally <m>\U</m>-small, neither displayed functor category is thereby claimed locally <m>\U</m>-small: the equivalence is an ordinary-set statement. A <m>\U</m>-small source does give the usual local size bound.</fn></p>
+  </section>
+
+  <section xml:id="cat-c11-presheaf-realization">
+    <title>Retracts of representable presheaves</title>
+    <p>For the rest of the chapter assume <m>\mathcal C</m> is <m>\U</m>-small, and write <m>\widehat{\mathcal C}=\Fun(\mathcal C^\op,\Set_\U)</m>. This category is locally <m>\U</m>-small and has pointwise small colimits. Let <m>h_c=\Hom_{\mathcal C}(-,c)</m>. Postcomposition by an idempotent <m>e</m> defines an idempotent <m>h_e</m> on <m>h_c</m>.</p>
+    <proposition xml:id="cat-c11-prop-presheaf-realization">
+      <statement>
+        <p>Set
+          <md number="no">P_e(x)=\{a:x\to c:ea=a\}.</md>
+          Precomposition makes this a presheaf. The assignment <m>(c,e)\mapsto P_e</m>, sending <m>f</m> to postcomposition by <m>f</m>, is a fully faithful functor <m>R:\operatorname{Kar}(\mathcal C)\to\widehat{\mathcal C}</m>. It extends Yoneda, and its essential image is precisely the retracts of representable presheaves.</p>
+      </statement>
+      <proof>
+        <p>If <m>ea=a</m>, then <m>e(ab)=ab</m>, which proves closure under restriction. There are natural maps <m>i_e:P_e\to h_c</m> by inclusion and <m>r_e:h_c\to P_e</m> by <m>a\mapsto ea</m>, satisfying <m>r_ei_e=\id</m> and <m>i_er_e=h_e</m>. Thus <m>P_e</m> is the pointwise image of <m>h_e</m> and is a retract of <m>h_c</m>. The condition <m>e'f=f=fe</m> ensures that postcomposition carries <m>P_e</m> to <m>P_{e'}</m>, and composition and identities follow immediately.</p>
+        <p>For a transformation <m>\beta:P_e\to P_{e'}</m>, form <m>i_{e'}\beta r_e:h_c\to h_d</m>. Yoneda identifies it with a unique <m>f:c\to d</m>. Its invariance under <m>h_e</m> on the right and <m>h_{e'}</m> on the left says exactly <m>fe=f=e'f</m>. Conversely, <m>\beta=r_{e'}h_fi_e</m>, so every such transformation comes from exactly one arrow in the envelope. This proves full faithfulness. For identities, <m>P_{\id_c}=h_c</m>, giving the Yoneda restriction.</p>
+        <p>Finally, suppose <m>P\xrightarrow{i}h_c\xrightarrow{r}P</m> has <m>ri=\id_P</m>. The composite <m>ir</m> is an idempotent on <m>h_c</m>, hence is <m>h_e</m> for an idempotent <m>e:c\to c</m> by full faithfulness of Yoneda. Uniqueness of splittings gives <m>P\cong P_e</m>. The reverse inclusion was proved in the first paragraph.</p>
+      </proof>
+    </proposition>
+    <p>This model replaces a formal pair by a concrete presheaf. Its elements are the arrows into <m>c</m> fixed by the projection, so its restrictions retain exactly the part selected by <m>e</m>. The full subcategory of all retracts of representables can contain many isomorphic copies of these chosen presheaves; the assertion is an equivalence with the envelope, not an equality of object encodings.</p>
+  </section>
+
+  <section xml:id="cat-c11-small-projectives">
+    <title>Presheaves that preserve every small colimit through Hom</title>
+    <definition xml:id="cat-c11-def-small-projective">
+      <title>Small projective presheaf</title>
+      <idx>Small projective presheaf</idx>
+      <statement>
+        <p>A presheaf <m>P</m> is small projective if <m>\Hom_{\widehat{\mathcal C}}(P,-):\widehat{\mathcal C}\to\Set_\U</m> preserves every <m>\U</m>-small colimit. Explicitly, for every small <m>D:\mathcal J\to\widehat{\mathcal C}</m>, the canonical map
+          <md number="no">\operatorname{colim}_{j\in\mathcal J}\Hom(P,D(j))\longrightarrow\Hom\bigl(P,\operatorname{colim}_{j\in\mathcal J}D(j)\bigr)</md>
+          is a bijection.</p>
+      </statement>
+    </definition>
+    <theorem xml:id="cat-c11-thm-small-projectives">
+      <statement>
+        <p>A presheaf on a small category is small projective if and only if it is a retract of a representable. Consequently, <m>\operatorname{Kar}(\mathcal C)</m> is equivalent to the full subcategory of small projectives in <m>\widehat{\mathcal C}</m>.</p>
+      </statement>
+      <proof>
+        <p>Yoneda identifies <m>\Hom(h_c,-)</m> with evaluation at <m>c</m>, which preserves small colimits because they are pointwise. If <m>P</m> is a retract of <m>h_c</m>, precomposition makes <m>\Hom(P,-)</m> a retract of <m>\Hom(h_c,-)</m>. For a fixed diagram, the comparison map in the definition for <m>P</m> is therefore a retract, in the category of arrows of sets, of the comparison for <m>h_c</m>. A retract of an isomorphism is an isomorphism: if the sections and retractions on its source and target are <m>s_0,r_0</m> and <m>s_1,r_1</m>, an inverse is <m>r_0v^{-1}s_1</m>, where <m>v</m> is the larger isomorphism. Thus retracts of representables are small projective.</p>
+        <p>Conversely use the canonical density presentation of <xref ref="cat-c08-thm-density"/>:
+          <md number="no">P\cong\operatorname{colim}_{(c,x)\in\operatorname{el}(P)}h_c,</md>
+          whose component at <m>(c,x)</m> is <m>\widehat x:h_c\to P</m>. Its element category is small. If <m>P</m> is small projective, applying its Hom functor makes <m>\id_P\in\Hom(P,P)</m> an element of the colimit of the sets <m>\Hom(P,h_c)</m>. Every element of a colimit of sets has a representative at one object of the indexing category. Therefore there are <m>(c,x)</m> and <m>u:P\to h_c</m> with <m>\widehat x\,u=\id_P</m>. These maps exhibit <m>P</m> as a retract of <m>h_c</m>.</p>
+        <p>This argument also handles an empty element category: its colimit of Hom sets would be empty, whereas <m>\Hom(P,P)</m> contains the identity, so preservation would be impossible. Combining the characterization with <xref ref="cat-c11-prop-presheaf-realization"/> proves the categorical equivalence.</p>
+      </proof>
+    </theorem>
+    <p>The empty presheaf is never small projective. Preservation of the empty colimit would require <m>\Hom(P,0)=\varnothing</m>, which fails for <m>P=0</m>. If <m>\mathcal C</m> is empty, its presheaf category has just this one object, and hence has no small projectives; its Karoubi envelope is empty too. Thus no nonemptiness assumption has been hidden in the factorization of the identity.</p>
+    <p>For <m>\mathcal C=1</m>, presheaves are sets and the representable is a singleton. Its only retracts are singletons, so these are exactly the small projectives in <m>\Set_\U</m>. In particular, a two-element set is not small projective: a function from it to a two-summand coproduct can hit both summands, so it need not come from either summand of the coproduct of Hom sets.<fn>Small projectivity requires preservation of all small colimits. Ordinary projectivity tests lifting through epimorphisms, and finite presentability tests preservation of filtered colimits. For the lifting definitions and the classification of projective presheaves as retracts of coproducts of representables, see <xref ref="cat-c15-projective-injective"/> and <xref ref="cat-c15-prop-presheaf-projectives"/>. The identity in the present proof must factor through one representable.</fn></p>
+  </section>
+
+  <section xml:id="cat-c11-absolute-weights">
+    <title>Why this is an absolute completion</title>
+    <p>The connection with absolute colimits can be made precise using the weights already encountered in <xref ref="cat-c08-copowers"/>. We use their universal property even in a target that lacks other colimits. For <m>A:\mathcal C\to\mathcal E</m>, a colimit weighted by <m>P</m> is an object <m>P\star A</m> with a natural bijection
+      <md number="no">\Hom_{\mathcal E}(P\star A,y)\cong\Nat\bigl(P,\Hom_{\mathcal E}(A(-),y)\bigr).</md>
+      The corresponding universal family has a map <m>A(c)\to P\star A</m> for every <m>x\in P(c)</m>, compatible with restrictions. In a cocomplete target it is the coend <m>\int^cP(c)\cdot A(c)</m>; compare <xref ref="bib-cat-loregian" detail="Remark 4.1.13(wc1)"/>. This definition does not require the target to be cocomplete.</p>
+    <definition xml:id="cat-c11-def-absolute-weight">
+      <title>Absolute weight</title>
+      <idx>Absolute weight</idx>
+      <statement>
+        <p>A presheaf <m>P</m> is an absolute weight if, for every functor <m>A:\mathcal C\to\mathcal E</m> with an existing <m>P</m>-weighted colimit, every functor <m>V:\mathcal E\to\mathcal F</m> carries its universal family to a <m>P</m>-weighted colimit family for <m>VA</m>. The targets are ordinary locally <m>\U</m>-small categories; neither needs to be cocomplete.</p>
+      </statement>
+    </definition>
+    <theorem xml:id="cat-c11-thm-absolute-weights">
+      <statement>
+        <p>A presheaf on a small category is an absolute weight exactly when it is a retract of a representable, equivalently when it is small projective. If <m>P\cong P_e</m>, its weighted colimit of <m>A</m> exists exactly when <m>A(e)</m> splits, and is the retract object in that splitting. Consequently, an ordinary category is idempotent complete exactly when it admits all small absolute weighted colimits.</p>
+      </statement>
+      <proof>
+        <p>Let <m>P\xrightarrow{i}h_c\xrightarrow{r}P</m> split <m>h_e</m>. For any <m>y\in\mathcal E</m>, precomposition identifies
+          <md number="no">\Nat\bigl(P,\Hom(A(-),y)\bigr)\cong\{v:A(c)\to y:vA(e)=v\}.</md>
+          Indeed, composing a transformation with <m>r</m> identifies it with a transformation on <m>h_c</m> fixed by precomposition with <m>h_e</m>; Yoneda then gives the displayed condition. Thus a weighted colimit for <m>P</m> is precisely a coequalizer of <m>A(e)</m> and <m>\id_{A(c)}</m>. By <xref ref="cat-c11-prop-equalizer-splitting"/> it exists exactly when <m>A(e)</m> splits, and every functor preserves it. The universal family associated with a splitting <m>A(c)\xrightarrow{q}b\xrightarrow{s}A(c)</m> has component <m>qA(i_d(x)):A(d)\to b</m> for <m>x\in P(d)</m>; applying <m>V</m> gives the family for the transported splitting. Hence <m>P</m> is absolute.</p>
+        <p>Conversely, suppose <m>P</m> is absolute. Its weighted colimit of Yoneda is <m>P\star h\cong P</m> by density. Apply the functor <m>V=\Hom(P,-):\widehat{\mathcal C}\to\Set_\U</m>. Absoluteness makes the canonical map
+          <md number="no">\int^c P(c)\times\Hom(P,h_c)\longrightarrow\Hom(P,P)</md>
+          a bijection. A representative <m>(x,u)</m> maps to <m>\widehat x\,u</m>. The identity therefore has such a representative, proving that <m>P</m> is a retract of <m>h_c</m>. As before, an empty indexing category has no representative and cannot give the identity. The small-projective characterization follows from the preceding theorem.</p>
+        <p>If <m>\mathcal E</m> is idempotent complete, the splitting construction gives every colimit with an absolute weight. Conversely use the small one-object category of the monoid <m>\{1,e\}</m> and the absolute weight <m>P_e</m> on it. A functor from this category selects any specified idempotent in <m>\mathcal E</m>. Existence of its <m>P_e</m>-weighted colimit splits that idempotent, proving the final equivalence.</p>
+      </proof>
+    </theorem>
+    <p>This explains the word completion with a precise scope. The Karoubi envelope is universally obtained by adjoining splittings, and these splittings supply every small absolute weighted colimit. No arbitrary coproducts or quotients need be adjoined. The presheaf category supplies all small colimits; its small-projective part retains exactly the retracts whose defining universal properties survive every functor. The universal property of <xref ref="cat-c11-thm-universal-property"/> and the presheaf characterization describe the same completion.</p>
+    <p>The weighted qualification matters when comparing terminology. An absolute conical colimit is a specified ordinary diagram and cocone preserved by every functor. An absolute weight instead guarantees preservation for every diagram with that fixed weight. The idempotent diagram earlier provides an ordinary absolute coequalizer; the theorem identifies all absolute set-valued weights. Neither formulation says that all colimits in an idempotent-complete category are absolute, or that an arbitrary colimit can be replaced by a splitting.</p>
+  </section>
+
+  <section xml:id="cat-c11-functor-categories">
+    <title>Completion and functor categories</title>
+    <p>Splitting an idempotent is compatible with parameters. The parameters may be the objects and arrows of another small category, and the idempotent may then be a natural transformation. This is a useful test of the construction: choosing retract objects separately is insufficient until their maps have also been defined. The same formulas that extend functors to the envelope supply those maps.</p>
+    <proposition xml:id="cat-c11-prop-functor-categories">
+      <statement>
+        <p><ol>
+          <li><p>If <m>\mathcal A</m> is small and <m>\mathcal D</m> idempotent complete, then <m>\Fun(\mathcal A,\mathcal D)</m> is idempotent complete.</p></li>
+          <li><p>For small <m>\mathcal C</m>, restriction gives an equivalence
+            <md number="no">(J^\op)^*:\widehat{\operatorname{Kar}(\mathcal C)}\longrightarrow\widehat{\mathcal C}.</md>
+            This equivalence preserves all small limits and colimits.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>For the first assertion let <m>\theta:F\Rightarrow F</m> be idempotent. Choose a splitting <m>F(a)\xrightarrow{r_a}B(a)\xrightarrow{i_a}F(a)</m> of each component. On <m>f:a\to a'</m> define <m>B(f)=r_{a'}F(f)i_a</m>. The identity law follows from <m>r_ai_a=\id</m>. In a composite the middle factor is <m>i_{a'}r_{a'}=\theta_{a'}</m>; naturality moves it past <m>F(f)</m>, and <m>\theta_ai_a=i_a</m> removes it. This proves the composition law.</p>
+        <p>The same naturality equation gives <m>i_{a'}B(f)=F(f)i_a</m> and <m>B(f)r_a=r_{a'}F(f)</m>. Thus the chosen families are transformations <m>i:B\Rightarrow F</m> and <m>r:F\Rightarrow B</m> with <m>ir=\theta</m> and <m>ri=\id_B</m>. They split the idempotent in the functor category.</p>
+        <p>For the second assertion there is a canonical isomorphism <m>\operatorname{Kar}(\mathcal C^\op)\cong\operatorname{Kar}(\mathcal C)^\op</m>: it keeps the objects and reverses arrows, with the same two idempotent conditions. Apply <xref ref="cat-c11-thm-universal-property"/> to <m>\mathcal C^\op</m> and the idempotent-complete target <m>\Set_\U</m>. This gives precisely the displayed restriction equivalence. Equivalences preserve all existing limits and colimits by <xref ref="cat-c04-prop-preservation"/>.</p>
+      </proof>
+    </proposition>
+    <p>The presheaf extension has a concrete description. Given <m>P:\mathcal C^\op\to\Set_\U</m>, put
+      <md number="no">\overline P(c,e)=\{x\in P(c):P(e)(x)=x\}.</md>
+      For <m>f:(c,e)\to(d,e')</m>, use the restriction of <m>P(f):P(d)\to P(c)</m>. It lands in the indicated fixed-point set because <m>fe=f</m>. Identity <m>e</m> acts as the identity on its fixed points. A transformation extends by restricting its components to these subsets; its naturality with each idempotent ensures that it does so. On objects <m>J(c)</m>, this recovers <m>P(c)</m> exactly.</p>
+    <p>The extension's value on a newly adjoined object is therefore forced by the old presheaf and the old idempotent. It supplies no independent new presheaf data. This gives a precise sense in which the completion adds missing retract objects while leaving the category of set-valued presheaves equivalent to the original one. It does not identify the original category with its completion: the two-element monoid example remains a category with one object on one side and an additional zero object on the other.</p>
+    <p>These observations also give practical ways to recognize the scope of a proposed completion. The category of all presheaves is much larger, since it adds arbitrary small colimits. Retaining only representables recovers the original category up to equivalence. Retaining their retracts gives the intermediate category studied here. Its intrinsic description by small projectives avoids dependence on a particular presentation as pairs or fixed-point subsets.<fn>The equivalence of presheaf categories follows from the proved functor-category universal property; it does not require a comparison of generators by cardinality. In particular, equivalent presheaf theories need not determine the original categories up to equivalence. The original category and its idempotent completion already provide such an example.</fn></p>
+  </section>
+</chapter>

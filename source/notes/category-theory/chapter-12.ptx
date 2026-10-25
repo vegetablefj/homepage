@@ -1,0 +1,224 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="cat-ind-pro">
+  <title>Ind and Pro completions</title>
+  <introduction>
+    <p>A filtered diagram need not have a colimit in its original category. Ind completion supplies such colimits formally, while retaining the original mapping problems. Pro completion is the dual construction for cofiltered limits. Their objects are not additional limits silently assumed to exist in the original category, and their arrows are not merely natural transformations between the chosen diagrams.</p>
+    <p>Throughout, <m>\mathcal C</m> is <m>\U</m>-small. Write <m>\widehat{\mathcal C}=\Fun(\mathcal C^{\op},\Set_{\U})</m> and <m>h_c=\Hom_{\mathcal C}(-,c)</m>. We use filtered colimits from <xref ref="cat-filtered-cofinal"/>, the density presentation of <xref ref="cat-ends-density"/>, and the pointwise Kan extensions of <xref ref="cat-kan"/>. The main source is <xref ref="bib-cat-li2" detail="Appendix B, Sections B.2–B.4"/>; compare <xref ref="bib-cat-ks" detail="Chapter 6"/>. The diagram formulas in <xref ref="bib-cat-stacks" detail="Remarks 4.22.4–4.22.5, Tags 05PW and 05PX"/> provide another presentation, with different ambient size conventions.</p>
+  </introduction>
+
+  <section xml:id="cat-c12-formal-objects">
+    <title>Formal filtered colimits and their size</title>
+    <p>The presheaf category already has small colimits, computed at each test object. Its Yoneda subcategory supplies the original objects. We retain only those new presheaves obtained using filtered colimits.</p>
+    <definition xml:id="cat-c12-def-ind">
+      <title>Ind objects</title>
+      <idx>Ind completion</idx><idx>Ind object</idx>
+      <statement>
+        <p>An object of <m>\operatorname{Ind}_{\U}(\mathcal C)</m> is a presheaf isomorphic to
+          <md number="no">\operatorname{colim}_{i\in I}h_{X_i},</md>
+          where <m>I</m> is a <m>\U</m>-small filtered category and <m>X:I\to\mathcal C</m> is a functor. We take <m>\operatorname{Ind}_{\U}(\mathcal C)</m> to be the full subcategory of <m>\widehat{\mathcal C}</m> on these objects. We usually write <m>\operatorname{Ind}(\mathcal C)</m> when the universe is fixed. The Yoneda embedding corestricts to a fully faithful functor <m>\iota:\mathcal C\to\operatorname{Ind}(\mathcal C)</m>.</p>
+      </statement>
+    </definition>
+    <p>The colimit in the definition is taken in the presheaf category. At a test object <m>c</m>, its value is <m>\operatorname{colim}_i\Hom_{\mathcal C}(c,X_i)</m>. This need not be represented by any object of <m>\mathcal C</m>. The notation <m>\text{``}\operatorname{colim}_iX_i\text{''}</m> is useful when it emphasizes this distinction, but the presheaf definition will always specify its meaning. A presentation includes its cocone, and is not unique.<fn>The quotation-mark convention, attributed to Deligne, is explained before <xref ref="bib-cat-li2" detail="Definition B.2.1"/>. It distinguishes a colimit of represented functors from a colimit in the original category. The definition here fixes the presheaf model, rather than treating all diagrams as distinct objects.</fn></p>
+    <p>The category is set-encoded and locally <m>\U</m>-small: it is a full subcategory of the presheaf category on a <m>\U</m>-small source. Its complete encoding belongs to <m>\V</m>, by the functor-category estimate. Its object set need not belong to <m>\U</m>. In particular, allowing all presheaves isomorphic to a given presentation can already supply many differently labelled copies of one object. Local smallness refers to the actual sets of transformations on the fixed small source, not merely to their cardinality.</p>
+    <p>The universe subscript controls both the values of the presheaves and the shapes of the permitted presentations. Enlarging it changes the construction being discussed. Starting with a merely locally small category would require further work on small presentations and on encodings of transformation sets; no such enlargement of scope is implicit here. The fixed small source is what makes the element categories below small without an additional cofinal-smallness condition.</p>
+    <p>Filtered categories are nonempty. Consequently <m>\operatorname{Ind}(\mathbf0)</m> is empty: there is no diagram from a nonempty filtered category into <m>\mathbf0</m>. The unique presheaf on the empty category is not an exception to the definition. Its element category is empty, which will also exclude it by the intrinsic criterion below.</p>
+  </section>
+
+  <section xml:id="cat-c12-hom-formula">
+    <title>The mapping formula</title>
+    <p>The presheaf model defines composition without further choices. A formula for its hom-sets then explains how maps are represented by arrows between stages. The source and target indices have different roles.</p>
+    <proposition xml:id="cat-c12-prop-ind-hom">
+      <statement>
+        <p>For filtered presentations <m>P=\operatorname{colim}_{i\in I}h_{X_i}</m> and <m>Q=\operatorname{colim}_{j\in J}h_{Y_j}</m>, there is a natural bijection
+          <md number="no">\Hom_{\operatorname{Ind}(\mathcal C)}(P,Q)
+            \cong\lim_{i\in I^{\op}}\operatorname{colim}_{j\in J}\Hom_{\mathcal C}(X_i,Y_j).</md>
+          The limit and colimit on the right are formed in <m>\Set_{\U}</m>. The opposite on the source index records contravariance of Hom in its first argument.</p>
+      </statement>
+      <proof>
+        <p>Fullness, the universal property of the source colimit, Yoneda, and pointwise evaluation give, respectively,
+          <md number="no"><mrow>\Hom_{\operatorname{Ind}(\mathcal C)}(P,Q)=\Nat(P,Q)</mrow><mrow>\cong\lim_{i\in I^{\op}}\Nat(h_{X_i},Q)
+            \cong\lim_{i\in I^{\op}}Q(X_i)</mrow><mrow>\cong\lim_{i\in I^{\op}}\operatorname{colim}_{j\in J}\Hom_{\mathcal C}(X_i,Y_j).</mrow></md>
+          Each bijection is induced by the specified cocones and is natural in the objects. No exchange of a finite limit with a filtered colimit occurs in this proof.</p>
+      </proof>
+    </proposition>
+    <p>For each source stage, a map chooses an eventual class of arrows into target stages. Compatibility means that the chosen classes agree after a source transition. Representatives may use different target stages, and their equations need only become true after further target transitions. It is therefore generally too restrictive to demand one natural transformation between the two originally chosen diagrams. The outer limit enforces compatibility of eventual classes, not a previously fixed common indexing category.<fn>This is <xref ref="bib-cat-li2" detail="Proposition B.2.2"/>. Stacks <xref ref="bib-cat-stacks" detail="Tag 05PW"/> takes the same formula as the mapping rule in a diagram model. Its objects retain presentations; our presheaf objects identify their represented universal mapping problems. These models are equivalent after translating presentations, rather than equal as encodings.</fn></p>
+    <p>Reindexing a presentation by a final functor between small filtered categories gives a canonically isomorphic Ind object, by cofinality in the presheaf category. The canonical isomorphism preserves the presentation maps. This supplies an elementary way to change stages without changing the formal object. A levelwise isomorphism is a sufficient way to obtain an isomorphism of Ind objects, but is not a necessary description of one on fixed presentations.</p>
+    <p>The hom-set on the left belongs to <m>\U</m> because it is a transformation set on <m>\mathcal C^{\op}</m>. The displayed bijection also shows why its cardinality has the expected bound, but strict membership is already supplied by that small-source argument. A bijection alone would not resolve the encoding issue for a larger source.</p>
+  </section>
+
+  <section xml:id="cat-c12-elements">
+    <title>Recognizing an Ind object by its elements</title>
+    <p>For a presheaf <m>P</m>, use the contravariant element category <m>\operatorname{el}(P)</m>: its objects are <m>(c,x)</m> with <m>x\in P(c)</m>, and an arrow <m>(c,x)\to(d,y)</m> is <m>f:c\to d</m> with <m>P(f)(y)=x</m>. It is <m>\U</m>-small, since both the source and every presheaf value are small.</p>
+    <theorem xml:id="cat-c12-thm-flat-elements">
+      <idx>Flat presheaf</idx>
+      <statement>
+        <p>A presheaf <m>P</m> belongs to <m>\operatorname{Ind}(\mathcal C)</m> if and only if <m>\operatorname{el}(P)</m> is filtered. These presheaves are also called flat presheaves. Their canonical filtered presentation is
+          <md number="no">P\cong\operatorname{colim}_{(c,x)\in\operatorname{el}(P)}h_c.</md>
+          For any filtered presentation <m>P\cong\operatorname{colim}_{i\in I}h_{X_i}</m>, its cocone defines a final functor <m>I\to\operatorname{el}(P)</m>.</p>
+      </statement>
+      <proof>
+        <p>Suppose first that the filtered presentation is given. Evaluation gives <m>P(c)\cong\operatorname{colim}_i\Hom(c,X_i)</m>. Some stage exists, so its identity arrow supplies an element of some <m>P(X_i)</m>; hence the element category is nonempty. For two element objects <m>(c,x)</m>, <m>(d,y)</m>, represent their elements by arrows <m>c\to X_i</m> and <m>d\to X_j</m>. Pass to a common later stage <m>k</m>. Its cocone element in <m>P(X_k)</m>, together with these two arrows, is a common receiving object in the element category.</p>
+        <p>Now take parallel arrows <m>f,g:(c,x)\rightrightarrows(d,y)</m>. Represent <m>y</m> by <m>v:d\to X_i</m>. The equality <m>P(f)(y)=P(g)(y)</m> says that <m>vf</m> and <m>vg</m> have the same class in the filtered colimit of <m>\Hom(c,X_i)</m>. The same-stage equality criterion gives an arrow <m>i\to k</m> after which these maps agree. The resulting arrow <m>d\to X_k</m> is a morphism from <m>(d,y)</m> to a cocone element, and equalizes <m>f,g</m>. This proves filteredness.</p>
+        <p>Write <m>x_i\in P(X_i)</m> for the element corresponding by Yoneda to the presentation map <m>h_{X_i}\to P</m>. Cocone compatibility defines <m>j:I\to\operatorname{el}(P)</m>, <m>i\mapsto(X_i,x_i)</m>. For a fixed <m>(c,x)</m>, objects of <m>((c,x)\downarrow j)</m> are representatives <m>c\to X_i</m> of <m>x</m>. Such representatives exist. Any two become equal at a common later stage, so they map to one common representative in this comma category. It is therefore nonempty and connected, proving that <m>j</m> is final.</p>
+        <p>Conversely, the density theorem presents every presheaf as the displayed colimit over its element category, using the maps corresponding to the elements. If this category is filtered, it is an allowed small filtered presentation. Thus <m>P</m> is an Ind object.</p>
+      </proof>
+    </theorem>
+    <p>The word flat in this statement refers to the filtered-element condition for a set-valued presheaf. It does not assert any module structure or tensor-product condition. The criterion tests nonemptiness, common receiving objects, and equalization of parallel arrows; preserving whichever finite limits happen to exist in the domain is not a substitute without further hypotheses.<fn>Compare <xref ref="bib-cat-li2" detail="Proposition B.3.3"/>. Li permits a larger source and includes a cofinal-smallness condition on the element category. Our assumption that <m>\mathcal C</m> is <m>\U</m>-small makes that extra condition automatic, with strict membership of its encoding in <m>\U</m>.</fn></p>
+    <p>The finality statement makes the canonical presentation usable rather than merely existential. It shows that every chosen filtered presentation can compute the same colimits after applying a functor to its stages. It also records the precise compatibility needed when comparing two presentations: their maps into the element category are part of the comparison.</p>
+  </section>
+
+  <section xml:id="cat-c12-filtered-colimits">
+    <title>Filtered colimits and finitely presentable objects</title>
+    <p>To deserve the name completion, the new category must itself admit the filtered colimits being added. The filtered-element criterion proves this without requiring an arbitrary choice of stage presentations for a diagram of Ind objects.</p>
+    <proposition xml:id="cat-c12-prop-filtered-colimits">
+      <statement>
+        <p>The category <m>\operatorname{Ind}(\mathcal C)</m> has all <m>\U</m>-small filtered colimits, and its inclusion into <m>\widehat{\mathcal C}</m> preserves them. They are computed pointwise.</p>
+      </statement>
+      <proof>
+        <p>Let <m>P=\operatorname{colim}_{i\in I}P_i</m> be the pointwise presheaf colimit of a small filtered diagram of Ind objects. Every <m>\operatorname{el}(P_i)</m> is filtered. Nonemptiness of <m>I</m> and of a fiber gives an object of <m>\operatorname{el}(P)</m>. Elements defining two objects of this category can be represented at stages of the diagram and moved to one common stage. A common receiving object in that stage's element category gives one in <m>\operatorname{el}(P)</m>.</p>
+        <p>For parallel element arrows <m>f,g:(c,x)\rightrightarrows(d,y)</m>, choose a representative <m>y_i\in P_i(d)</m>. Equality of the classes of <m>P_i(f)(y_i)</m> and <m>P_i(g)(y_i)</m> becomes equality after one transition <m>i\to k</m>. The arrows then define parallel morphisms in <m>\operatorname{el}(P_k)</m>. Equalize them there and map the resulting element object to <m>\operatorname{el}(P)</m>. The latter is filtered, so the criterion proves that the pointwise colimit belongs to <m>\operatorname{Ind}(\mathcal C)</m>. Fullness then gives its colimit property in that subcategory.</p>
+      </proof>
+    </proposition>
+    <definition xml:id="cat-c12-def-finitely-presentable">
+      <title>Finite presentability at the chosen scale</title>
+      <idx>Finitely presentable object in Ind</idx>
+      <statement>
+        <p>In a locally <m>\U</m>-small category with small filtered colimits, an object <m>K</m> is finitely presentable if <m>\Hom(K,-)</m> preserves those colimits. Thus the canonical map from the filtered colimit of hom-sets to the hom-set into the colimit must be a bijection.</p>
+      </statement>
+    </definition>
+    <proposition xml:id="cat-c12-prop-finitely-presentable">
+      <statement>
+        <p>Each <m>\iota c=h_c</m> is finitely presentable in <m>\operatorname{Ind}(\mathcal C)</m>. An Ind object is finitely presentable if and only if it is a retract of some <m>h_c</m>.</p>
+      </statement>
+      <proof>
+        <p>Yoneda identifies <m>\Hom(h_c,P)</m> with <m>P(c)</m>, and evaluation preserves the pointwise filtered colimits just constructed. A retract of such an object is finitely presentable: its hom functor is a retract of the evaluation functor, and the canonical comparison maps inherit inverse maps from that retract.</p>
+        <p>Conversely, write a finitely presentable <m>P</m> as a filtered colimit of <m>h_{X_i}</m>. Its identity factors through one presentation map, because finite presentability makes <m>\operatorname{colim}_i\Hom(P,h_{X_i})\to\Hom(P,P)</m> surjective. Thus there are <m>P\to h_{X_i}\to P</m> whose composite is <m>\id_P</m>, as required.</p>
+      </proof>
+    </proposition>
+    <p>The retract qualification cannot generally be removed: adding filtered colimits also realizes splittings of idempotents that were not already realized in <m>\mathcal C</m>. If every idempotent in <m>\mathcal C</m> splits, full faithfulness of Yoneda shows that every retract of <m>h_c</m> is representable. Indeed, transfer its idempotent to <m>c</m>, split it there, and apply Yoneda; the two splittings are uniquely isomorphic with their retraction maps preserved.<fn>Closure under filtered colimits is <xref ref="bib-cat-li2" detail="Proposition B.3.4"/>. The terminology compact in <xref ref="bib-cat-li2" detail="Definition A.2.2"/> uses this filtered-colimit test. We use finitely presentable to identify the precise condition, rather than assuming that every use of compact in other settings has this meaning.</fn></p>
+    <p>For the splitting assertion itself, take an idempotent <m>e:c\to c</m> and form the sequential colimit of <m>h_c\xrightarrow{h_e}h_c\xrightarrow{h_e}\cdots</m> in Ind. Its structure maps all agree: two consecutive maps agree after using the cocone equation twice and <m>e^2=e</m>. Write their common value as <m>q:h_c\to P</m>. The repeated maps <m>h_e</m> induce <m>s:P\to h_c</m> with <m>sq=h_e</m>. The cocone equations imply <m>qh_e=q</m>, hence <m>qs=\id_P</m> by uniqueness from the colimit. This constructs the retract explicitly, even when its representing splitting was absent from <m>\mathcal C</m>.</p>
+  </section>
+
+  <section xml:id="cat-c12-universal-property">
+    <title>The free filtered-colimit completion</title>
+    <p>Let <m>\mathcal D</m> be set-encoded, locally <m>\U</m>-small, and admit all small filtered colimits. A functor on <m>\mathcal C</m> should extend by evaluating each formal presentation as a genuine colimit in <m>\mathcal D</m>. The canonical element presentation makes that instruction independent of a chosen presentation.</p>
+    <theorem xml:id="cat-c12-thm-universal-property">
+      <statement>
+        <p>Restriction along <m>\iota</m> gives an equivalence
+          <md number="no">\Fun_{\mathrm{filt}}(\operatorname{Ind}(\mathcal C),\mathcal D)
+            \simeq\Fun(\mathcal C,\mathcal D),</md>
+          where the left side is the full subcategory on functors preserving small filtered colimits. An extension of <m>F:\mathcal C\to\mathcal D</m> is
+          <md number="no">\overline F(P)=\operatorname{colim}_{(c,x)\in\operatorname{el}(P)}F(c).</md>
+          For any filtered presentation of <m>P</m>, this gives a canonical isomorphism <m>\overline F(P)\cong\operatorname{colim}_iF(X_i)</m>.</p>
+      </statement>
+      <proof>
+        <p>Yoneda identifies <m>(\iota\downarrow P)</m> with <m>\operatorname{el}(P)</m>. The latter is small and filtered. Thus the pointwise left Kan extension <m>\overline F=\operatorname{Lan}_{\iota}F</m> exists by the formula in <xref ref="cat-kan"/>, even though arbitrary small colimits in <m>\mathcal D</m> have not been assumed. It is a functor with its specified comparison. Full faithfulness of <m>\iota</m> makes <m>F\Rightarrow\overline F\iota</m> invertible. Finality of a presentation's functor <m>I\to\operatorname{el}(P)</m> gives the claimed presentation formula.</p>
+        <p>We must prove that this extension preserves filtered colimits of Ind objects. Let <m>P=\operatorname{colim}_{i\in I}P_i</m>, computed pointwise. For an object <m>D\in\mathcal D</m>, a compatible family of cocones on all the diagrams <m>F\pi_i:\operatorname{el}(P_i)\to\mathcal D</m> assigns a map <m>F(c)\to D</m> to every stage element <m>x_i\in P_i(c)</m>, compatibly both with element morphisms and with stage transitions.</p>
+        <p>Such a family defines a cocone on <m>F\pi:\operatorname{el}(P)\to\mathcal D</m>. For <m>x\in P(c)</m>, choose a stage representative and use its assigned map. Any two representatives become equal at a common stage, proving independence. For an element arrow <m>f:(c,x)\to(d,y)</m>, represent <m>y</m> at one stage. Its image under that stage's <m>P_i(f)</m> represents <m>x</m>, so the needed cocone equation holds at that same stage. Conversely, any cocone on the final element diagram restricts to just such a compatible family.</p>
+        <p>This establishes a bijection, natural in <m>D</m>, between cocones on <m>F\pi</m> and compatible families of maps <m>\overline F(P_i)\to D</m>. Its correspondence uses exactly the canonical transition maps into <m>\overline F(P)</m>. Therefore <m>\overline F(P)</m>, with those maps, is their colimit. This proves preservation, including compatibility with the specified colimit cocone.</p>
+        <p>Finally let <m>H:\operatorname{Ind}(\mathcal C)\to\mathcal D</m> preserve filtered colimits. Density expresses every <m>P</m> as its canonical filtered colimit of representables, so the canonical Kan comparison
+          <md number="no">\overline{H\iota}(P)\longrightarrow H(P)</md>
+          is invertible. These comparisons are natural by the Kan extension property. Together with the invertible comparison on <m>\mathcal C</m>, they give inverse equivalences between extension and restriction. Their action on natural transformations is the unique action supplied by Kan universality, so the assertion includes transformations, not only the list of extendable functors.</p>
+      </proof>
+    </theorem>
+    <p>More explicitly, a transformation <m>\alpha:P\Rightarrow Q</m> induces the functor <m>\operatorname{el}(P)\to\operatorname{el}(Q)</m>, <m>(c,x)\mapsto(c,\alpha_c(x))</m>. Restrict the target colimit cocone along it to obtain <m>\overline F(\alpha)</m>. A transformation between two choices of <m>F</m> likewise gives a map between these colimits. The uniqueness of the induced maps proves the identity, composition, and naturality conditions; no compatibility between arbitrarily selected stage presentations is required.</p>
+    <p>The equivalence is an ordinary equivalence of set-encoded functor categories. It does not assert strict local <m>\U</m>-smallness of the category on the left: its transformations have components indexed by all Ind objects. Their restriction is a small transformation set, but an abstract bijection does not change the actual encoding of those larger component families.<fn>The extension formula and preservation are established in <xref ref="bib-cat-li2" detail="Definition–Proposition B.4.4 and Proposition B.4.5"/>. The proof here obtains the full universal statement directly from the canonical element presentation. Unlike the free presheaf completion, it requires only filtered colimits in the target, because these are precisely its comma shapes.</fn></p>
+  </section>
+
+  <section xml:id="cat-c12-finite-colimits">
+    <title>Finite colimits in the source and left exact presheaves</title>
+    <p>The filtered-element criterion needs no finite limits or colimits in <m>\mathcal C</m>. There is a useful reformulation when <m>\mathcal C</m> has finite colimits, equivalently when <m>\mathcal C^{\op}</m> has finite limits. This direction of the hypothesis is essential.</p>
+    <proposition xml:id="cat-c12-prop-left-exact">
+      <statement>
+        <p>If <m>\mathcal C</m> has finite colimits, a presheaf <m>P:\mathcal C^{\op}\to\Set_{\U}</m> belongs to <m>\operatorname{Ind}(\mathcal C)</m> if and only if it is left exact, meaning that it preserves finite limits in its displayed domain <m>\mathcal C^{\op}</m>.</p>
+      </statement>
+      <proof>
+        <p>Every <m>h_c</m> sends colimits in <m>\mathcal C</m> to limits of sets. Thus it is left exact on <m>\mathcal C^{\op}</m>. Small filtered colimits of sets commute with finite limits, and presheaf colimits are pointwise. A filtered colimit of representables is therefore left exact.</p>
+        <p>Conversely, suppose <m>P</m> is left exact. If <m>0</m> is initial in <m>\mathcal C</m>, <m>P(0)</m> is a singleton, so its element category is nonempty. For <m>(c,x),(d,y)</m>, finite-limit preservation gives a bijection
+          <md number="no">P(c\amalg d)\longrightarrow P(c)\times P(d).</md>
+          Lift <m>(x,y)</m> to an element <m>z</m>; the coproduct injections give a common receiving element object. For parallel arrows <m>f,g:(c,x)\rightrightarrows(d,y)</m>, form their coequalizer <m>q:d\to e</m> in <m>\mathcal C</m>. Preservation says that <m>P(q):P(e)\to P(d)</m> is the equalizer of <m>P(f),P(g)</m>. Since <m>y</m> equalizes them, it lifts to <m>z\in P(e)</m>. The element arrow supplied by <m>q</m> equalizes the two original arrows. The element category is filtered, proving the result.</p>
+      </proof>
+    </proposition>
+    <p>Finite limits in <m>\mathcal C</m> would be a different hypothesis. They ensure useful limit constructions in Ind categories, but do not provide the coproduct and coequalizer objects used in this test for presheaves. Calling <m>P</m> left exact refers to its covariant action on the category <m>\mathcal C^{\op}</m>, not to a covariant functor on <m>\mathcal C</m>. The explicit domain prevents the two statements from being interchanged.</p>
+    <p>For a concrete boundary, take <m>\mathcal C=\N^{\op}</m>, where <m>\N</m> has its usual order. This category has finite limits: its terminal object is zero and products are given by maxima in the usual order. It has no initial object. The constant empty presheaf, considered as a functor <m>\N\to\Set</m>, preserves every finite limit that exists in that domain. Indeed, every nonempty finite diagram of natural numbers has its minimum as limit, and its constant-empty image has empty limit; the empty diagram has no limit in the domain. Nevertheless, this presheaf is not flat, because its element category is empty. Thus a preservation condition referring only to the finite limits that happen to exist cannot recover the missing nonemptiness requirement.</p>
+    <p>Under the finite-colimit hypothesis, <m>\operatorname{Ind}(\mathcal C)</m> is also cocomplete. A precise construction of finite colimits is given in <xref ref="bib-cat-li2" detail="Lemma B.3.6"/>: parallel arrows can be represented, after reindexing, by parallel arrows on a common filtered diagram, as in <xref ref="bib-cat-li2" detail="Lemma B.2.7(iii)"/>; their finite colimits are then taken stagewise. The hom formula verifies the universal property, using the commutation of filtered colimits of sets with finite limits. Small coproducts are filtered colimits of finite coproducts over finite subsets of the indexing set. Coproducts and coequalizers then give all small colimits.</p>
+    <p>Represent a parallel pair by <m>f_i,g_i:X_i\rightrightarrows Y_i</m> on a common filtered index, and let <m>Z_i</m> be its stagewise coequalizer in <m>\mathcal C</m>. The transition maps on the coequalizers are determined by their universal properties, so they form a diagram. For a target <m>S=\operatorname{colim}_jh_{S_j}</m>, the hom-sets out of one stage satisfy
+      <md number="no"><mrow>\Hom_{\operatorname{Ind}(\mathcal C)}(h_{Z_i},S)
+        \cong\operatorname{colim}_j\Hom_{\mathcal C}(Z_i,S_j)</mrow><mrow>\cong\operatorname{Eq}\left(\Hom_{\operatorname{Ind}(\mathcal C)}(h_{Y_i},S)
+          \rightrightarrows\Hom_{\operatorname{Ind}(\mathcal C)}(h_{X_i},S)\right).</mrow></md>
+      The second step uses the defining coequalizer equation at each target stage and the fact that its equalizer of sets is a finite limit. Taking the limit over the source index now gives exactly the coequalizer mapping property for <m>\operatorname{colim}_ih_{Z_i}</m>. This explains both why the filteredness assumption matters and why the colimit need not agree with the colimit in all presheaves.</p>
+    <p>Binary coproducts have the same type of verification, with the product of the two source indexing categories providing a common filtered index. Finite products of hom-sets replace the equalizer in the displayed calculation. The initial object is <m>h_0</m>, where <m>0</m> is initial in <m>\mathcal C</m>: the left-exact criterion gives a singleton set of maps from it into every Ind object. In particular, this initial object has a nonempty value at the test object <m>0</m>, while the initial object of the entire presheaf category is empty at every test object. Even the empty colimit therefore need not be preserved by the inclusion into presheaves.</p>
+    <p>Combined with the finitely presentable representables and their filtered presentations, this makes <m>\operatorname{Ind}(\mathcal C)</m> locally finitely presentable: it is cocomplete and is generated under small filtered colimits by a small family of finitely presentable objects. The finite-colimit constructions occur in Ind, not generally pointwise in the full presheaf category. The pointwise preservation statement above concerns filtered colimits. For example, the empty presheaf need not be an Ind object even when <m>\mathcal C</m> has an initial object.</p>
+  </section>
+
+  <section xml:id="cat-c12-finite-sets">
+    <title>Recognition and the example of finite sets</title>
+    <p>The universal property constructs an extension, but does not alone assert that it is an equivalence with a proposed target. Finite presentability and generation give a direct recognition test.</p>
+    <proposition xml:id="cat-c12-prop-recognition">
+      <statement>
+        <p>Let <m>F:\mathcal C\to\mathcal D</m> be fully faithful, let <m>\mathcal D</m> have small filtered colimits, and suppose every <m>Fc</m> is finitely presentable there. If every object of <m>\mathcal D</m> is a small filtered colimit of objects in the image of <m>F</m>, then <m>\overline F:\operatorname{Ind}(\mathcal C)\to\mathcal D</m> is an equivalence.</p>
+      </statement>
+      <proof>
+        <p>For presentations <m>P=\operatorname{colim}_ih_{X_i}</m> and <m>Q=\operatorname{colim}_jh_{Y_j}</m>, the mapping property of a colimit in its source argument and finite presentability in its target argument give
+          <md number="no">\Hom_{\mathcal D}(\overline F(P),\overline F(Q))
+            \cong\lim_{i\in I^{\op}}\operatorname{colim}_{j\in J}\Hom_{\mathcal D}(FX_i,FY_j).</md>
+          Full faithfulness of <m>F</m> identifies this with the Ind hom formula, and these identifications are the maps induced by <m>\overline F</m>. Thus the extension is fully faithful. The generation hypothesis makes it essentially surjective.</p>
+      </proof>
+    </proposition>
+    <p>Take <m>\mathsf{Fin}</m> to be the <m>\U</m>-small category of finite ordinals <m>\underline n=\{0,\ldots,n-1\}</m>, with <m>\underline0=\varnothing</m>, and all functions between them. It is a skeleton of the category of small finite sets. This notation is distinct from the ordinal category <m>[n]</m> on <m>0,\ldots,n</m> used in <xref ref="cat-language"/>. The inclusion into <m>\Set_{\U}</m> satisfies the criterion, giving
+      <md number="no">\operatorname{Ind}_{\U}(\mathsf{Fin})\simeq\Set_{\U}.</md>
+      A finite set is finitely presentable: a function from it to a filtered colimit uses finitely many element representatives, which can be moved to one stage; equality of two such functions is checked by finitely many element equalities and can likewise be enforced at a later stage.</p>
+    <p>Every small set is the filtered union of its finite subsets. Their poset is nonempty, since it contains the empty subset, and two finite subsets have their union as a common upper bound. It is a <m>\U</m>-small poset, being a subset of the powerset of the given small set. Choose finite-ordinal representatives and transport the inclusion maps to obtain a diagram in <m>\mathsf{Fin}</m>. The colimit is the original set. These choices use ordinary choice and change the presentation, while its comparison with the given set determines the result up to the required compatible isomorphism.<fn>This is the set example following <xref ref="bib-cat-li2" detail="Example B.2.4"/>; the recognition criterion is <xref ref="bib-cat-li2" detail="Proposition B.4.6"/>. Taking a small skeleton at the start preserves our standing hypothesis, whereas the category of every finite set in <m>\U</m> has too many object names to be strictly <m>\U</m>-small.</fn></p>
+    <p>Ind completion is not simply closure under inclusions. The definition permits arbitrary filtered transition maps, including maps that identify elements. Finite subsets provide a particularly useful presentation of a set, but the hom formula and the universal property apply equally to other presentations. The equivalence identifies the resulting formal mapping problem, rather than assigning extra significance to one preferred chain of finite sets.</p>
+  </section>
+
+  <section xml:id="cat-c12-pro-objects">
+    <title>The dual completion and its mapping formula</title>
+    <definition xml:id="cat-c12-def-pro">
+      <title>Pro objects</title>
+      <idx>Pro completion</idx><idx>Pro object</idx>
+      <statement>
+        <p>Define
+          <md number="no">\operatorname{Pro}_{\U}(\mathcal C)=
+            \operatorname{Ind}_{\U}(\mathcal C^{\op})^{\op}.</md>
+          A presentation can be written as a small cofiltered diagram <m>X:I\to\mathcal C</m>, denoted <m>\text{``}\lim_{i\in I}X_i\text{''}</m>. Its associated covariant functor is
+          <md number="no">c\longmapsto\operatorname{colim}_{i\in I^{\op}}\Hom_{\mathcal C}(X_i,c).</md>
+          The Pro category is the opposite of the full subcategory of <m>\Fun(\mathcal C,\Set_{\U})</m> on these functors. Constant presentations give a fully faithful embedding <m>\iota_{\mathrm{pro}}:\mathcal C\to\operatorname{Pro}(\mathcal C)</m>.</p>
+      </statement>
+    </definition>
+    <p>The opposite is indispensable. A map of pro objects induces a transformation in the reverse direction between their associated covariant functors. With that direction, the source object of <m>\mathcal C</m> still moves covariantly under the constant embedding. The same presheaf size estimate applied to <m>\mathcal C^{\op}</m> shows that Pro is set-encoded and locally <m>\U</m>-small, with complete encoding in <m>\V</m>.</p>
+    <proposition xml:id="cat-c12-prop-pro-hom-universal">
+      <statement>
+        <p><ol>
+          <li><p>For presentations <m>X:I\to\mathcal C</m> and <m>Y:J\to\mathcal C</m>, with <m>I,J</m> small and cofiltered,
+            <md number="no">\Hom_{\operatorname{Pro}(\mathcal C)}(X,Y)
+              \cong\lim_{j\in J}\operatorname{colim}_{i\in I^{\op}}\Hom_{\mathcal C}(X_i,Y_j).</md></p></li>
+          <li><p>The category <m>\operatorname{Pro}(\mathcal C)</m> has all small cofiltered limits. If <m>\mathcal D</m> admits such limits, restriction along <m>\iota_{\mathrm{pro}}</m> is an equivalence from the category of cofiltered-limit-preserving functors <m>\operatorname{Pro}(\mathcal C)\to\mathcal D</m> to <m>\Fun(\mathcal C,\mathcal D)</m>. The extension of <m>F</m> sends a formal presentation to <m>\lim_iF(X_i)</m>.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>Apply the Ind hom formula to <m>\mathcal C^{\op}</m>, with source and target exchanged when taking the opposite. This gives the stated order of the two indices. The existence and universal property are the opposite forms of filtered-colimit closure and its extension theorem. A cofiltered presentation is the limit in Pro of its constant objects, because its opposite is the defining filtered colimit in <m>\operatorname{Ind}(\mathcal C^{\op})</m>.</p>
+      </proof>
+    </proposition>
+    <p>A pro map must give an eventual map to every target stage, compatible as that target stage changes. The source stage used may depend on the target stage. The target limit is outside the source colimit; reversing them would impose a different condition. For countable inverse systems, reindexing can often display such a map as a levelwise map along a suitable subsequence, but the initially displayed stages do not constitute part of the pro map's invariant data.<fn>The formula is <xref ref="bib-cat-li2" detail="Proposition B.2.2"/> and <xref ref="bib-cat-stacks" detail="Remark 4.22.5, Tag 05PX"/>. For a detailed description of maps between countable inverse systems, see <xref ref="bib-cat-stacks" detail="Example 4.22.6, Tag 0G2W"/>. The source colimit runs over the opposite of the displayed cofiltered index, even when an inverse-system notation suppresses this opposite.</fn></p>
+    <p>Initial reindexing functors preserve pro presentations, by the limit form of cofinality. If <m>\mathcal C</m> has finite limits, the dual of the left-exact criterion identifies Pro with the opposite of the category of left exact covariant functors <m>\mathcal C\to\Set_{\U}</m>. This is the dual statement with its domain correctly changed; it does not replace the finite-colimit hypothesis for Ind.</p>
+  </section>
+
+  <section xml:id="cat-c12-realization">
+    <title>Formal inverse systems and their realized limits</title>
+    <p>An embedding <m>F:\mathcal C\to\mathcal D</m> into a category with cofiltered limits produces a realization functor from Pro to <m>\mathcal D</m>. Its value on a formal system is the actual limit of its image system. The universal property constructs this functor and its maps, but does not assert that it is fully faithful.</p>
+    <example xml:id="cat-c12-example-prefixes">
+      <title>A set map invisible to finite stages</title>
+      <p>Use the finite-set skeleton <m>\mathsf{Fin}</m> and its inclusion into <m>\Set_{\U}</m>. Realization gives <m>R:\operatorname{Pro}(\mathsf{Fin})\to\Set_{\U}</m>. Consider the inverse system of finite binary words
+        <md number="no">\cdots\longrightarrow\{0,1\}^3\longrightarrow\{0,1\}^2\longrightarrow\{0,1\}\longrightarrow\{*\},</md>
+        with maps deleting the last letter. Identify these finite sets with chosen finite ordinals and transport the transition maps when using the skeleton. Denote the resulting pro object by <m>X</m>. Its realized limit is the set <m>\{0,1\}^{\N}</m> of infinite binary sequences, with its finite-prefix projections.</p>
+      <p>The constant pro object <m>2=\{0,1\}</m> has
+        <md number="no">\Hom_{\operatorname{Pro}(\mathsf{Fin})}(X,2)
+          \cong\operatorname{colim}_{n\in\N}\Hom_{\Set}(\{0,1\}^n,2).</md>
+        Every realized map in this hom-set depends only on a finite prefix. However, the function on infinite sequences which is one on the all-zero sequence and zero on every other sequence has no such description. For every prefix length, an all-zero prefix extends both to the all-zero sequence and to a sequence with a later nonzero coordinate. They receive different values. This function is an arrow in <m>\Set_{\U}</m> which does not come from a pro map.</p>
+      <p>Thus realization is not full, and hence not fully faithful. No topology has been put on the sequence set; the distinction already follows from the elementary mapping formula. The pro object remembers that its allowed maps to finite constant objects are determined at a finite stage. Merely taking the underlying inverse-limit set forgets that restriction on maps.</p>
+    </example>
+    <p>The example also separates existence in the original category from formal existence. This inverse system has a limit in Pro, but no limit in the finite-set category. If a finite set with a cone were its limit there, maps from a singleton would identify its elements with all infinite binary sequences. The latter set is infinite, a contradiction. The completion supplies a new object solving that formal limiting problem; it does not prove that an old finite object had been overlooked.</p>
+    <p>The corresponding warning applies to Ind realizations. A target that already has the relevant colimits supplies an evaluation functor on formal presentations, but an equivalence needs the finite-presentability and generation conditions of the recognition criterion. The choice between formal and realized objects should therefore be made by their mapping properties. An available limit or colimit, by itself, need not retain all the formal structure.</p>
+  </section>
+</chapter>

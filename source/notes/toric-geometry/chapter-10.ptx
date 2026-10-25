@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="toric-tropical-compactification">
+  <title>Tropicalization and toric compactifications</title>
+  <introduction>
+    <p>A subvariety of a torus need not be toric. Nevertheless, its possible directions of escape can determine which toric boundary orbits its closure meets. This gives a further use of the fan dictionary: choose an ambient toric variety whose boundary records the geometry of the subvariety, then impose flatness or smoothness on the multiplication map to control the intersections.</p>
+    <p>This chapter works over <m>\C</m> with its trivial valuation. Let <m>T=\Spec\C[M]</m>, let <m>N=\Hom(M,\Z)</m>, and put <m>n=\rk N</m>. Unless a hypersurface is explicitly considered, <m>Y\subset T</m> is a nonempty integral closed subvariety of dimension <m>d</m>, with ideal <m>I</m>. All fans are finite rational fans of strongly convex cones in <m>N_{\R}</m>. We prove the hypersurface boundary calculation and the smooth-boundary consequence directly. The general tropical lifting and compactification theorems are identified as external inputs.</p>
+  </introduction>
+
+  <section xml:id="toric-tropical-initial-ideals">
+    <title>Initial ideals and directions of escape</title>
+    <definition xml:id="toric-def-tropicalization">
+      <title>The least-weight convention</title>
+      <statement>
+        <p>For <m>w\in N_{\R}</m> and a nonzero Laurent polynomial <m>f=\sum_m c_m\chi^m</m>, set
+          <md number="no">\lambda_w(f)=\min_{c_m\ne0}\langle m,w\rangle,
+            \qquad
+            \operatorname{in}_w(f)=
+            \sum_{\langle m,w\rangle=\lambda_w(f)}c_m\chi^m.</md>
+          Put <m>\operatorname{in}_w(0)=0</m>. The initial ideal and tropicalization are
+          <md number="no">\operatorname{in}_w(I)=
+            \bigl(\operatorname{in}_w(f):f\in I\bigr)\subset\C[M],
+            \qquad
+            \operatorname{Trop}(Y)=
+            \{w:\operatorname{in}_w(I)\text{ contains no monomial}\}.</md>
+          A monomial means a nonzero scalar multiple of a character. Since every character is a unit in the Laurent ring, the condition is equivalently <m>\operatorname{in}_w(I)\ne(1)</m>. Its zero scheme in <m>T</m> is the initial degeneration at <m>w</m>.</p>
+      </statement>
+    </definition>
+    <p>The coefficients have weight zero. A nontrivially valued coefficient field would change the minimum to <m>\operatorname{val}(c_m)+\langle m,w\rangle</m> and would require a corresponding definition of the initial coefficients. No such extension is implicit here.</p>
+    <proposition xml:id="toric-prop-tropical-hypersurface">
+      <title>A hypersurface is detected by tied minima</title>
+      <statement>
+        <p>If <m>I=(f)</m>, then <m>\operatorname{in}_w(I)=(\operatorname{in}_w(f))</m>. Thus <m>w\in\operatorname{Trop}(V(f))</m> exactly when the least weight among the terms of <m>f</m> occurs at least twice.</p>
+      </statement>
+      <proof>
+        <p>The least-weight parts satisfy <m>\operatorname{in}_w(fh)=\operatorname{in}_w(f)\operatorname{in}_w(h)</m>: their product is nonzero in the Laurent domain and all other products have greater weight. This proves the ideal identity. The units of <m>\C[M]</m> are precisely its nonzero scalar monomials, by <xref ref="toric-prop-units"/> applied to the zero cone. Hence the principal initial ideal is the unit ideal exactly when the initial polynomial consists of one term.</p>
+      </proof>
+    </proposition>
+    <p>For an ideal with several generators, taking the initial polynomials of just those generators can lose equations. For example, in <m>\C[x^{\pm1},y^{\pm1}]</m> let
+      <md number="no">f=x^2+y+1,\qquad g=x^2+y+x,\qquad
+        I=(f,g).</md>
+      Here <m>Y=\{(1,-2)\}</m>. At <m>w=(-1,-2)</m>, both selected initial polynomials equal <m>x^2+y</m> and have common torus zeros. But <m>g-f=x-1\in I</m>, whose initial polynomial is the unit <m>x</m>. Therefore <m>w\notin\operatorname{Trop}(Y)</m>. The initial-system hypothesis in <xref ref="toric-def-system-nondegeneracy"/> deliberately concerns a chosen system of equations. Tropicalization concerns the full ideal; the two tests should not be identified.</p>
+    <p>We use the fundamental theorem of tropical geometry, together with the finite rational polyhedral structure supplied by Gröbner theory, as external inputs. For
+      <md number="no">K=\bigcup_{q\ge1}\C((t^{1/q})),</md>
+      with valuation given by the least exponent, they identify <m>\operatorname{Trop}(Y)</m> with the Euclidean closure of the coordinatewise valuations of <m>Y(K)</m>; every rational tropical point is attained by such a point. In particular, a relative interior of a rational cone meets <m>\operatorname{Trop}(Y)</m> if and only if it contains an attained rational tropical point. The passage from the trivial valuation on <m>\C</m> to the nontrivial valuation on <m>K</m> uses valued-field extension invariance. See <xref ref="bib-toric-maclagan-sturmfels" detail="Theorems 3.2.3–3.2.4 and Remark 3.2.5"/>; the polyhedral structure is supplied by Proposition 3.2.8 and, in this constant-coefficient case, Section 2.5 of the same reference. We will use this bridge only for the general orbit criterion.</p>
+  </section>
+
+  <section xml:id="toric-tropical-orbit-criterion">
+    <title>Which boundary orbits does a closure meet?</title>
+    <p>Write <m>\overline Y</m> for the scheme-theoretic closure in <m>X_\Sigma</m>. The orbit <m>O(\sigma)</m> has codimension <m>\dim\sigma</m>. Its intersection with <m>\overline Y</m> is governed by an existential condition inside <m>\sigma</m>, rather than by the initial polynomial at every weight in that cone.</p>
+    <proposition xml:id="toric-prop-hypersurface-orbit">
+      <title>The chart calculation for a hypersurface</title>
+      <statement>
+        <p>Let <m>Y=V(f)\subset T</m>, where <m>f</m> is nonzero and not a unit. If <m>\sigma</m> is smooth, then
+          <md number="no">\overline Y\cap O(\sigma)\ne\varnothing
+            \quad\Longleftrightarrow\quad
+            \relint(\sigma)\cap\operatorname{Trop}(Y)\ne\varnothing.</md></p>
+      </statement>
+      <proof>
+        <p>For <m>\sigma=0</m>, both sides hold: the orbit is <m>T</m> and the initial ideal at zero is <m>(f)</m>. Suppose <m>r=\dim\sigma&gt;0</m>. Choose a lattice basis extending its primitive ray generators. The chart is
+          <md number="no">U_\sigma=\Spec R,\qquad
+            R=\C[x_1,\ldots,x_r,x_{r+1}^{\pm1},\ldots,x_n^{\pm1}],</md>
+          and its closed orbit is defined by <m>x_1=\cdots=x_r=0</m>. Multiply <m>f</m> by a character so that the resulting polynomial <m>g\in R</m> has minimum exponent zero in each of the first <m>r</m> variables. No <m>x_i</m> divides <m>g</m>. The ring <m>R</m> is a unique factorization domain, so <m>(g)</m> is saturated with respect to <m>x_1\cdots x_r</m>. Consequently it is exactly the contraction of the hypersurface ideal from the torus: <m>V(g)</m> is the closure in this chart.</p>
+        <p>Restrict <m>g</m> to the orbit, obtaining a Laurent polynomial <m>g_0</m> in the remaining variables. The intersection is nonempty precisely when <m>g_0</m> is not a unit; this includes <m>g_0=0</m>. A nonzero Laurent nonunit has a torus zero by the Nullstellensatz. A weight in <m>\relint(\sigma)</m> assigns strictly positive weights to the first <m>r</m> variables and weight zero to the others. If <m>g_0</m> is a single monomial, it is the unique least-weight term at every such weight. If <m>g_0</m> has at least two terms, all of those terms have weight zero and give a tropical point at every such weight.</p>
+        <p>It remains to treat <m>g_0=0</m>. Suppose, for contradiction, that every strictly positive weight has a unique least-weight term of <m>g</m>. The minimizing term is locally constant as a function of the weight. The positive orthant is connected, so one fixed term minimizes everywhere. Letting a positive weight approach each coordinate vector shows that its exponent in every <m>x_i</m>, <m>i\le r</m>, is the minimum exponent of that variable among all terms, hence zero. This term would survive in <m>g_0</m>, a contradiction. Thus some strictly positive weight has a tied minimum. Multiplication by the character used to obtain <m>g</m> does not change tied minima. The hypersurface criterion now proves the assertion.</p>
+      </proof>
+    </proposition>
+    <p>The last case matters. The closure of <m>x+y=0</m> in <m>\A^2</m> meets the origin, but inside the positive quadrant its tropicalization is only the diagonal ray. Most interior weights have a monomial initial polynomial.</p>
+    <theorem xml:id="toric-thm-tevelev-orbits">
+      <title>Tevelev's orbit criterion</title>
+      <statement>
+        <p>For any fan <m>\Sigma</m> and any <m>\sigma\in\Sigma</m>,
+          <md number="no">\overline Y\cap O(\sigma)\ne\varnothing
+            \quad\Longleftrightarrow\quad
+            \relint(\sigma)\cap\operatorname{Trop}(Y)\ne\varnothing.</md>
+          Neither flatness of a multiplication map nor completeness of the ambient fan is assumed.</p>
+      </statement>
+      <proof>
+        <p>For smooth <m>\sigma</m>, this is the external result <xref ref="bib-toric-tevelev" detail="Lemma 2.2"/>, expressed through the tropical lifting theorem above. In its chart <m>\A^r\times\Gm^{n-r}</m>, a Puiseux point specializes to the closed orbit exactly when its first <m>r</m> valuations are positive and the others are zero. Conversely, a curve germ approaching that orbit from <m>Y</m> gives such a point. The cited lemma establishes this passage for a general subvariety.</p>
+        <p>Here is the extension to an arbitrary cone, so the scope of that citation is explicit. Take a proper smooth subdivision of the fan, using <xref ref="toric-birational-higher-resolution"/>, and let <m>\overline Y'</m> be the closure upstairs. Its map to <m>\overline Y</m> is proper and surjective: its closed image contains the dense subset <m>Y</m>. An orbit <m>O(\tau)</m> upstairs maps to <m>O(\sigma)</m> exactly when <m>\relint(\tau)\subset\relint(\sigma)</m>. If the latter orbit meets the closure, lift a point and apply the smooth-cone criterion to the orbit containing its lift. Conversely, a tropical point in <m>\relint(\sigma)</m> lies in the relative interior of one cone of the subdivision; apply the smooth criterion there and map its intersection point down.</p>
+      </proof>
+    </theorem>
+  </section>
+
+  <section xml:id="toric-tropical-flat-compactifications">
+    <title>Proper closure and flat multiplication</title>
+    <definition xml:id="toric-def-tropical-compactification">
+      <title>Tropical compactification</title>
+      <statement>
+        <p>The closure <m>\overline Y\subset X_\Sigma</m> is a tropical compactification if <m>\overline Y</m> is proper and the multiplication morphism
+          <md number="no">\mu:T\times\overline Y\longrightarrow X_\Sigma,
+            \qquad (t,y)\longmapsto t\cdot y</md>
+          is faithfully flat. The ambient toric variety need not be complete.</p>
+      </statement>
+    </definition>
+    <p>This is <xref ref="bib-toric-tevelev" detail="Definition 1.1"/>. For these finite-type morphisms, faithful flatness includes both flatness and surjectivity. Surjectivity means that every ambient orbit meets the closure, but it does not supply the flatness condition.</p>
+    <theorem xml:id="toric-thm-tropical-existence">
+      <title>Existence and compatible subdivisions</title>
+      <statement>
+        <p>Every <m>Y</m> as above has a tropical compactification with smooth toric ambient space. For any tropical compactification, <m>|\Sigma|=\operatorname{Trop}(Y)</m>. A subdivision gives another tropical compactification; its closure is the scheme-theoretic inverse image of <m>\overline Y</m>, and its multiplication map is obtained by base change.</p>
+      </statement>
+    </theorem>
+    <p>These are external inputs from <xref ref="bib-toric-tevelev" detail="Theorem 1.2 and Proposition 2.5"/>. Smoothness here concerns the ambient toric variety. It does not assert that an arbitrary <m>Y</m> acquires a smooth closure. In particular, the dimension conditions on boundary intersections below do not assert that those intersections are nonsingular.</p>
+    <proposition xml:id="toric-prop-tropical-boundary-dimension">
+      <title>Expected dimensions from flatness</title>
+      <statement>
+        <p>If <m>\overline Y\subset X_\Sigma</m> is a tropical compactification, then every intersection <m>\overline Y\cap O(\sigma)</m> is nonempty and pure of dimension
+          <md number="no">d-\dim\sigma.</md>
+          In particular, no cone of <m>\Sigma</m> has dimension greater than <m>d</m>.</p>
+      </statement>
+      <proof>
+        <p>Nonemptiness follows from surjectivity. The source <m>T\times\overline Y</m> is integral of dimension <m>n+d</m>. The flat dimension formula over the <m>n</m>-dimensional normal toric target gives pure <m>d</m>-dimensional geometric fibers of <m>\mu</m>. Fix <m>p\in O(\sigma)</m>. The projection of <m>\mu^{-1}(p)</m> to <m>\overline Y\cap O(\sigma)</m> is the pullback of the orbit map <m>T\to O(\sigma)</m>, after inversion and translation. This orbit map is a torsor under its stabilizer, a split torus of dimension <m>\dim\sigma</m>; it is smooth and surjective. Subtracting this dimension gives the asserted purity and dimension. A nonempty finite-type scheme cannot have negative dimension.</p>
+      </proof>
+    </proposition>
+    <p>The support equality records directions of escape. Flatness controls how the closure varies along each orbit, and is the additional hypothesis used in this dimension argument. A fan with the right support is therefore a candidate ambient space; this support calculation alone is not a verification of tropical compactification.</p>
+  </section>
+
+  <section xml:id="toric-tropical-schon">
+    <title>Smooth multiplication and normal crossings</title>
+    <definition xml:id="toric-def-schon">
+      <title>Schön subvarieties</title>
+      <statement>
+        <p>The embedding <m>Y\subset T</m> is schön if some tropical compactification has smooth multiplication morphism.</p>
+      </statement>
+    </definition>
+    <p>The existence of one such compactification implies smooth multiplication for every tropical compactification of the same embedding; this is <xref ref="bib-toric-tevelev" detail="Definition 1.3 and Theorem 1.4"/>. The quantifier concerns tropical compactifications, including their flatness condition.</p>
+    <proposition xml:id="toric-prop-schon-snc">
+      <title>A smooth ambient fan gives a smooth pair</title>
+      <statement>
+        <p>Suppose <m>Y</m> is schön and <m>\overline Y\subset X_\Sigma</m> is a tropical compactification with <m>\Sigma</m> smooth. Then <m>\overline Y</m> is smooth, and its reduced boundary <m>B=\overline Y\setminus Y</m> is a simple normal crossings divisor. At a point in <m>O(\sigma)</m>, exactly <m>\dim\sigma</m> local boundary branches occur.</p>
+      </statement>
+      <proof>
+        <p>The multiplication map is smooth and the ambient variety is smooth, so <m>T\times\overline Y</m> is smooth. Smoothness descends along its smooth surjective projection to <m>\overline Y</m>. Equivalently, at a complex point <m>(1,y)</m>, both local dimension and tangent-space dimension of the product are those of <m>\overline Y</m> plus <m>n</m>, so regularity of the product gives regularity of <m>\overline Y</m>.</p>
+        <p>Let <m>y\in\overline Y\cap O(\sigma)</m> and <m>r=\dim\sigma</m>. On the smooth chart <m>U_\sigma=\A^r\times\Gm^{n-r}</m>, denote the first coordinates by <m>z_1,\ldots,z_r</m>. They vanish on the orbit and their product defines the ambient boundary. The differential of <m>\mu</m> at <m>(1,y)</m> is surjective. Its torus-factor directions lie in the tangent space of <m>O(\sigma)</m>, since the torus preserves each orbit. Consequently the tangent map from <m>T_y\overline Y</m> to the normal space of that orbit is surjective. The restricted differentials <m>dz_1,\ldots,dz_r</m> on <m>\overline Y</m> are therefore independent.</p>
+        <p>Extend these restricted functions to local parameters on the smooth variety <m>\overline Y</m>. The boundary has equation <m>z_1\cdots z_r=0</m> there, with each factor occurring once. Its branches are smooth and meet transversely. Each branch belongs to the restriction of a distinct ambient invariant divisor. For any one ambient divisor, this argument also shows that its restriction is smooth wherever nonempty; its distinct irreducible components are thus disjoint. Hence the boundary components themselves are smooth, establishing simple normal crossings rather than only the local normal-crossing equation.</p>
+      </proof>
+    </proposition>
+  </section>
+
+  <section xml:id="toric-tropical-pair-of-pants">
+    <title>A three-punctured line in a toric surface</title>
+    <example xml:id="toric-example-tropical-pair-of-pants">
+      <title>The pair of pants</title>
+      <p>Consider <m>Y=\{x+y=1\}\subset(\C^*)^2</m>. For <m>w=(a,b)</m>, the three term weights are <m>a,b,0</m>. The tied-minimum criterion gives
+        <md number="no">\operatorname{Trop}(Y)=
+          \R_{\ge0}(1,0)\ \cup\
+          \R_{\ge0}(0,1)\ \cup\
+          \R_{\ge0}(-1,-1).</md>
+        Let <m>\Sigma</m> consist of these three rays and the zero cone, with no two-dimensional cones. This is a subfan of the fan of <m>\P^2</m>. Its toric variety is <m>\P^2</m> with its three torus fixed points removed.</p>
+      <p>In coordinates <m>x=X/Z</m>, <m>y=Y/Z</m>, the projective closure is the line <m>X+Y=Z</m>. It avoids the three removed points. Thus its closure in <m>X_\Sigma</m> is still this proper line <m>\overline Y\simeq\P^1</m>, with boundary
+        <md number="no">[0:1:1],\qquad [1:0:1],\qquad [1:-1:0].</md>
+        Each point belongs to the orbit of its corresponding ray. The curve meets all ambient orbits, so its multiplication map is surjective.</p>
+      <p>We can also verify smoothness without invoking a general hypersurface theorem. Both <m>T\times\overline Y</m> and <m>X_\Sigma</m> are smooth. Over the dense torus, varying the torus factor makes the differential of multiplication surjective. Near a boundary point choose the chart <m>\A^1\times\Gm</m>, with normal coordinate <m>z</m> and invertible orbit coordinate <m>u</m>. At the first two boundary points the line has equation <m>u=1-z</m>. At the third use <m>z=Z/X</m>, <m>u=Y/X</m>, so its equation is <m>u=z-1</m>. In each case write it as <m>u=c+\epsilon z</m>, with <m>c\ne0</m>. The two independent torus characters defining this chart give action coordinates <m>(s,t)</m>, and multiplication is locally
+        <md number="no">(s,t,z)\longmapsto
+          \bigl(sz,\ t(c+\epsilon z)\bigr).</md>
+        At <m>z=0</m>, the derivatives in the <m>z</m> and <m>t</m> directions are independent. Hence the map is smooth at the boundary too, by the differential criterion for morphisms of smooth complex varieties. Smooth surjectivity implies faithful flatness. We have obtained a tropical compactification and proved that this embedding is schön.</p>
+      <p>The ambient open subset is essential to this statement. If one instead keeps the complete fan of <m>\P^2</m>, the same line still has a proper closure, but multiplication misses the three fixed points. It is not surjective and does not define a tropical compactification in that ambient space. Its full fan has support <m>\R^2</m>, whereas the tropicalization has only the three rays.</p>
+    </example>
+    <p>This example compactifies a non-toric curve using a toric surface. Indeed <m>Y\simeq\P^1\setminus\{0,1,\infty\}</m> is not a toric curve: its unit group modulo constants has rank two, generated by <m>x</m> and <m>1-x</m>, whereas the smooth toric curves <m>\A^1</m>, <m>\Gm</m>, and <m>\P^1</m> have ranks zero, one, and zero. To check the first rank directly, its coordinate ring is <m>\C[x,x^{-1},(1-x)^{-1}]</m>; unique factorization in <m>\C[x]</m> shows that the units of this localization are exactly <m>c x^a(1-x)^b</m>, with <m>c\in\C^*</m> and <m>a,b\in\Z</m>. The fan controls boundary incidence and, through smooth multiplication, transversality. It does not turn the original subvariety into a toric variety.</p>
+    <figure xml:id="toric-figure-pair-of-pants-tropicalization">
+      <caption>The tropicalization of <m>x+y=1</m> with the least-weight convention. These are the rays of the projective-plane fan, with all two-dimensional cones omitted; the initial polynomials displayed along the rays describe its three boundary directions.</caption>
+      <image source="pair-of-pants-tropicalization.svg" width="80%"><description><p>The positive coordinate rays have initial polynomials y minus one and x minus one; the negative diagonal has initial polynomial x plus y. Their union is the tropicalization, with no two-dimensional cones.</p></description></image>
+    </figure>
+  </section>
+</chapter>

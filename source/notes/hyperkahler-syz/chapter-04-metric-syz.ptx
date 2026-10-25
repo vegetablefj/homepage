@@ -1,0 +1,212 @@
+<chapter xml:id="hks-metric-syz">
+  <title>Special Lagrangian tori near a degeneration</title>
+
+  <introduction>
+    <p>A maximal degeneration has local angular tori near its deepest crossings. These tori have a prescribed topological relation to monodromy, but they need not be Lagrangian for the Ricci-flat metric. The analytic problem is to deform one of them to a special Lagrangian torus while preserving its isotopy class. This chapter distinguishes that problem from the stronger conclusion that special Lagrangian tori fill an open set whose measure tends to the total measure.</p>
+    <p>There are two results to use. Blum–Liu and Yang Li prove the metric SYZ statement through valuations and a comparison of Monge–Ampère equations. The local theorem in <xref ref="hks-bib-openai-syz" detail="Theorem 2.1"/> proves the existence of a torus in a specified angular isotopy class by convergence to a flat cylinder. We state both results with their hypotheses. The elementary calculations concerning valuations, scaling, and the deformation operator are proved here. The global theorems in non-Archimedean geometry and the analytic convergence theorems are cited.</p>
+  </introduction>
+
+  <section xml:id="hks-metric-degeneration">
+    <title>Polarized degenerations and angular tori</title>
+
+    <p>In this chapter, a Calabi–Yau manifold of dimension <m>d</m> is a compact connected Kähler manifold with trivial canonical bundle. No vanishing of <m>H^i(\cO)</m> in intermediate degrees is imposed. Thus the term includes hyperkähler manifolds and complex tori. Let <m>\pi:\mathcal Y^*\to\Delta^*</m> be a meromorphic degeneration of such manifolds, with a relatively ample line bundle <m>\mathcal A</m>. Meromorphic means that the family extends across the puncture as a proper family of complex spaces after a bimeromorphic modification. We work after a finite base change and semistable reduction, with a smooth total space <m>\mathcal Y</m> and a reduced simple normal crossings central fibre.</p>
+    <p>Write <m>Y_t=\pi^{-1}(t)</m> and <m>s=-\log|t|</m>. Choose a meromorphic relative volume form whose restriction <m>\Omega_t</m> is nowhere zero on <m>Y_t</m>. Its positive volume density and the associated probability measure are
+      <md number="no">
+        |\Omega_t|^2=i^{d^2}\Omega_t\wedge\overline{\Omega_t},
+        \qquad
+        \mu_t=\frac{|\Omega_t|^2}{\int_{Y_t}|\Omega_t|^2}.
+      </md>
+      Multiplication of <m>\Omega_t</m> by a nonzero scalar does not change <m>\mu_t</m>. When applying the calibrated definition of a special Lagrangian submanifold, we normalize the parallel form by a positive constant for the Ricci-flat metric in question. The unnormalized form is retained in estimates of its integral.</p>
+    <p>The essential skeleton <m>\operatorname{Sk}(\mathcal Y^*)</m> records the strata on which the logarithmic weight of the volume form is minimal. It is independent of the semistable model. The degeneration is <em>maximal</em> when this skeleton has dimension <m>d</m>. In a semistable model, a top-dimensional simplex comes from a point at which <m>d+1</m> components of the central fibre meet and the minimum weight is attained. After normalizing the minimum weight to zero, the local form is
+      <md number="no">
+        z_0z_1\cdots z_d=t,
+        \qquad
+        \Omega_t=f(z)\frac{dz_1}{z_1}\wedge\cdots\wedge\frac{dz_d}{z_d},
+        \qquad f(0)\ne0.
+      </md>
+      The nonzero coefficient is a condition on the volume form as well as on the crossing. In the prescribed hyperkähler degeneration, this form is <xref ref="hks-eq-nonzero-residue-chart"/>.</p>
+    <p>Let <m>x_j=-\log|z_j|/s</m>. The equation of the fibre gives <m>x_0+\cdots+x_d=1</m>. Points with all <m>x_j&gt;0</m> form the interior of a simplex. For fixed such <m>x</m> and sufficiently large <m>s</m>, the equations
+      <md number="no">
+        |z_j|=e^{-s x_j}\quad(1\le j\le d),
+        \qquad z_0=\frac{t}{z_1\cdots z_d}
+      </md>
+      define an embedded real <m>d</m>-torus <m>F_{t,o}</m> in the crossing chart. Its angular variables are <m>\arg z_1,\ldots,\arg z_d</m>. Varying <m>x</m> within the simplex gives an isotopy of these tori. In a nodal curve, where <m>z_0z_1=t</m>, the simplex is an interval and <m>F_{t,o}</m> is the familiar circle in the neck.</p>
+    <p xml:id="hks-angular-parameters">These coordinates explain the isotopy requirement in the hyperkähler application. As <m>t</m> travels around the puncture, the same angular parameters define the torus in the same crossing chart. The resulting inclusion has monodromy-invariant restriction maps on cohomology, as proved in <xref ref="hks-lemma-monodromy-restriction"/>. A special Lagrangian torus isotopic to <m>F_{t,o}</m> has the same restriction map after transport along the isotopy.</p>
+    <aside xml:id="margin-hks-angular-isotopy">
+      <p>Two inclusions joined by an isotopy induce the same pullback on cohomology after identifying their domains by that isotopy. This is stronger information than the abstract diffeomorphism type of the torus. It is the relation with the prescribed class <m>e</m> that is used after hyperkähler rotation.</p>
+    </aside>
+
+    <p>The Ricci-flat Kähler form <m>\omega_t^{(0)}</m> in <m>c_1(\mathcal A_t)</m> satisfies
+      <md number="no">
+        \bigl(\omega_t^{(0)}\bigr)^d
+        =\left(\int_{Y_t}c_1(\mathcal A_t)^d\right)\mu_t.
+      </md>
+      The top self-intersection is constant on the smooth family. Li uses the rescaled form <m>s^{-1}\omega_t^{(0)}</m>. At the scale of an angular torus, the local cylinder argument uses <m>s\omega_t^{(0)}</m>. Their Riemannian metrics differ by the constant factor <m>s^2</m>.</p>
+    <proposition xml:id="hks-scaling-special-lagrangian">
+      <statement>
+        <p>Let <m>(Y,\omega,\Omega)</m> be a Calabi–Yau manifold with normalized volume form, and let <m>F\subset Y</m> be an oriented submanifold of real dimension <m>d</m>. For any <m>a&gt;0</m> and <m>\varphi\in\R</m>, <m>F</m> is special Lagrangian for <m>(\omega,\Omega)</m> if and only if it is special Lagrangian for <m>(a\omega,a^{d/2}e^{i\varphi}\Omega)</m>, with the phase adjusted by <m>\varphi</m>.</p>
+      </statement>
+      <proof>
+        <p>The equation <m>\omega|_F=0</m> is equivalent to <m>(a\omega)|_F=0</m>. The metric changes from <m>g</m> to <m>ag</m>, so its volume density on a real <m>d</m>-plane changes by <m>a^{d/2}</m>. Therefore
+          <md number="no">
+            \operatorname{Re}\bigl(e^{-i(\theta+\varphi)}a^{d/2}e^{i\varphi}\Omega\bigr)|_F
+            =a^{d/2}\vol_{g,F}=\vol_{ag,F}.
+          </md>
+          The equation for the imaginary part is preserved as well. Applying the inverse rescaling proves the converse.</p>
+      </proof>
+    </proposition>
+    <p>This permits the two normalizations of the Ricci-flat metric, after normalizing the volume form for each metric. More generally, multiplying an unnormalized volume form by any nonzero complex number changes only its positive normalization and its phase. The metric scale remains significant when discussing convergence, diameters, or curvature.</p>
+  </section>
+
+  <section xml:id="hks-valuative-independence">
+    <title>Valuative independence</title>
+
+    <p>Let <m>K=\C((t))</m>, with <m>v_K(t)=1</m>. The non-Archimedean analytification <m>Y_K^{\mathrm{an}}</m> is obtained by allowing multiplicative seminorms on affine coordinate rings which extend the norm <m>|a|=e^{-v_K(a)}</m> on <m>K</m>. A point of the essential skeleton is a monomial valuation in a semistable chart. In the coordinates just used, it assigns <m>v_x(z_j)=x_j</m>, where <m>x_j\ge0</m> and <m>\sum_jx_j=1</m>.</p>
+    <p>A local frame of a line bundle allows us to evaluate sections by such valuations. Replacing the frame adds the same function to the values of all sections of that line bundle. Consequently, the equality in the next definition is independent of the frame. A model extending the line bundle makes these choices compatible across charts; see <xref ref="hks-bib-blum-liu" detail="§2.3.5"/>.</p>
+    <definition xml:id="hks-def-valuative-independence">
+      <idx>Valuative independence</idx>
+      <statement>
+        <p>Let <m>V\subset H^0(Y_K,\mathcal A_K^{\otimes \ell})</m> be a finite-dimensional <m>K</m>-vector space. A basis <m>\theta_1,\ldots,\theta_N</m> is <em>valuatively independent on the essential skeleton</em> if, for every <m>x\in\operatorname{Sk}(\mathcal Y^*)</m> and every <m>a_1,\ldots,a_N\in K</m>,
+          <md xml:id="hks-eq-valuative-independence" number="yes">
+            v_x\left(\sum_{j=1}^N a_j\theta_j\right)
+            =\min_{j:a_j\ne0}\bigl(v_K(a_j)+v_x(\theta_j)\bigr).
+          </md>
+          The value of the zero section and the minimum over the empty set are <m>+\infty</m>.</p>
+      </statement>
+    </definition>
+    <p>Every valuation satisfies the inequality with <m>\ge</m> in place of equality. Equality states that no choice of coefficients causes cancellation of all terms of smallest value. Linear independence over <m>K</m> only excludes cancellation of the entire section. The condition in <xref ref="hks-def-valuative-independence"/> excludes an increase of valuation at every point of the skeleton.</p>
+
+    <example xml:id="hks-gauss-valuation-example">
+      <statement>
+        <p>Let <m>u_1,\ldots,u_N\in\Z^d</m> be distinct. For <m>x\in\R^d</m>, the Gauss valuation on Laurent polynomials is
+          <md number="no">
+            v_x\left(\sum_u a_u z^u\right)
+            =\min_{u:a_u\ne0}\bigl(v_K(a_u)+\langle u,x\rangle\bigr).
+          </md>
+          The monomials <m>z^{u_1},\ldots,z^{u_N}</m> are valuatively independent for all these valuations.</p>
+      </statement>
+      <solution>
+        <p>The formula defines a valuation: the terms of smallest weight of a nonzero Laurent polynomial form a nonzero element of its associated graded Laurent polynomial ring, and the product of two such elements is nonzero. Distinct exponents remain distinct in a linear combination of the chosen monomials. Applying the defining formula to that combination gives <xref ref="hks-eq-valuative-independence"/>.</p>
+      </solution>
+    </example>
+    <p>For comparison, <m>1</m> and <m>1+tz</m> are a basis of the <m>K</m>-span of <m>1,z</m>. If <m>x&gt;-1</m>, both basis elements have Gauss value zero, whereas their difference has value <m>v_x(tz)=1+x&gt;0</m>. This basis is not valuatively independent. The example explains why a change of basis is necessary even in a two-dimensional space.</p>
+    <p>At a maximal crossing, monomials have exponent vectors in <m>\Z^{d+1}</m>, with the relation <m>z_0\cdots z_d=t</m>. Multiplication by <m>t</m> shifts the exponent vector by <m>(1,\ldots,1)</m>. Leading exponents must therefore be compared in
+      <md number="no">
+        \Z^{d+1}/\Z(1,\ldots,1).
+      </md>
+      If two basis sections have the same leading exponent in this quotient on an open polyhedral region, a power of <m>t</m> aligns the exponents and a scalar cancels the leading coefficients. Their difference has larger value. This proves the distinctness of leading exponents required by valuative independence; compare <xref ref="hks-bib-li-valuative" detail="Lemma 3.2"/>.</p>
+
+    <p>We use the complete discrete valuation ring case of <xref ref="hks-bib-blum-liu" detail="Theorem 1.1"/>.</p>
+    <theorem xml:id="hks-thm-blum-liu">
+      <statement>
+        <p>Let <m>Y_K</m> be a smooth projective variety over <m>K=\C((t))</m> with trivial canonical bundle, and let <m>\mathcal A_K</m> be ample. There is an integer <m>m_0&gt;0</m> such that, for every <m>\ell&gt;0</m>, the space
+          <md number="no">
+            H^0(Y_K,\mathcal A_K^{\otimes m_0\ell})
+          </md>
+          admits a basis valuatively independent on the essential skeleton.</p>
+      </statement>
+    </theorem>
+    <p>The original theorem permits projective log canonical Calabi–Yau pairs. Over a discrete valuation ring essentially of finite type over a characteristic-zero field, it applies to every positive power of the ample line bundle. The complete ring version quoted here has the divisibility condition. The bases need not be unique. Their existence, rather than a distinguished choice or a compatibility with multiplication, is the hypothesis in Li's comparison theorem.</p>
+    <p xml:id="hks-independent-bases-meaning">A single valuation on a finite-dimensional vector space gives a filtration by the value of a section. Valuative independence asks for a basis which splits all these filtrations simultaneously, for every valuation on the skeleton. Blum–Liu prove this through higher-dimensional degenerations and multigraded Rees algebras. The required simultaneous splitting is their external theorem; the monomial example explains its conclusion without requiring a separate development of that theory.</p>
+  </section>
+
+  <section xml:id="hks-weak-comparison">
+    <title>Comparison of Monge–Ampère equations</title>
+
+    <p>Fix a semistable model <m>\mathcal Y</m> and an extension of the polarization. Its dual complex <m>\Delta_{\mathcal Y}</m> contains the essential skeleton, and the model defines a retraction
+      <md number="no">
+        r_{\mathcal Y}:Y_K^{\mathrm{an}}\longrightarrow\Delta_{\mathcal Y}.
+      </md>
+      In a crossing chart, this retraction remembers the values <m>v(z_j)</m> and discards the remaining analytic information. The normalized measures <m>\mu_t</m> have a limiting measure <m>\mu_0</m> on the essential skeleton. In a maximal degeneration, this is a normalized Lebesgue measure on its top-dimensional faces, with the densities prescribed by the volume form.</p>
+    <p>Non-Archimedean pluripotential theory gives a continuous semipositive metric on <m>\mathcal A_K</m> whose Monge–Ampère measure is <m>(\mathcal A_K^d)\mu_0</m>, unique up to multiplication of the metric by a constant. Relative to the chosen model metric, write its potential as <m>\phi_0</m>. Semipositivity here means approximation by metrics from nef models. Existence and uniqueness of this solution, and its relation to limits of the complex potentials, are used as external results; see <xref ref="hks-bib-li-valuative" detail="§§2.3–2.4"/> and <xref ref="hks-bib-li-canonical"/>.</p>
+    <definition xml:id="hks-def-weak-comparison">
+      <idx>Weak comparison property</idx>
+      <statement>
+        <p>The chosen semistable model satisfies the <em>weak comparison property</em> for <m>\phi_0</m> if there is an open subset <m>U\subset\operatorname{Sk}(\mathcal Y^*)</m> with <m>\mu_0(U)=1</m> such that
+          <md number="no">
+            \phi_0(x)=\phi_0\bigl(r_{\mathcal Y}(x)\bigr)
+            \quad\text{for every }x\in r_{\mathcal Y}^{-1}(U).
+          </md>
+        </p>
+      </statement>
+    </definition>
+    <p>This is <xref ref="hks-bib-li-valuative" detail="Definition 1.2"/>. It is a statement on the preimage of <m>U</m> in the analytification. On that preimage, the potential depends only on the real variables of the skeleton. Comparison with the real Monge–Ampère equation can then be applied. The distinction between a model metric and its potential is necessary: the function <m>\phi_0</m> in the definition is measured relative to the model just fixed.</p>
+    <p>Li's two comparison theorems give the implications in <xref ref="hks-thm-li-comparison"/>; see <xref ref="hks-bib-li-valuative" detail="Theorems 1.8 and 1.4"/>.</p>
+    <theorem xml:id="hks-thm-li-comparison">
+      <statement>
+        <p>Let <m>(\mathcal Y^*,\mathcal A)\to\Delta^*</m> be a polarized meromorphic maximal degeneration of Calabi–Yau manifolds, with a nowhere vanishing total holomorphic volume form inducing the fibrewise forms <m>\Omega_t</m>.
+          <ol marker="(i)">
+            <li><p>If every <m>H^0(Y_K,\mathcal A_K^{\otimes\ell})</m> admits a valuatively independent basis, the weak comparison property holds after semistable reduction.</p></li>
+            <li><p>If the weak comparison property holds for a semistable model, then for every <m>0&lt;\delta&lt;1</m> and all sufficiently small <m>t\ne0</m>, an open subset <m>V_{t,\delta}\subset Y_t</m> admits a special Lagrangian real <m>d</m>-torus fibration and satisfies <m>\mu_t(V_{t,\delta})\ge1-\delta</m>. The Calabi–Yau structure is <m>(s^{-1}\omega_t^{(0)},\Omega_t)</m>.</p></li>
+          </ol>
+        </p>
+      </statement>
+    </theorem>
+    <corollary xml:id="hks-thm-metric-syz-large-measure">
+      <statement>
+        <p>Every polarized meromorphic maximal degeneration satisfying the volume-form hypothesis of <xref ref="hks-thm-li-comparison"/> has the special Lagrangian torus fibrations asserted there.</p>
+      </statement>
+      <proof>
+        <p>Apply <xref ref="hks-thm-blum-liu"/> to the generic fibre and replace <m>\mathcal A</m> by <m>\mathcal A^{\otimes m_0}</m>. Every positive degree now has a valuatively independent basis. By <xref ref="hks-thm-li-comparison"/>, the required fibrations exist for the Ricci-flat form in <m>s^{-1}m_0c_1(\mathcal A_t)</m>. Uniqueness of the Ricci-flat metric makes this form <m>m_0s^{-1}\omega_t^{(0)}</m>. The probability measure is still <m>\mu_t</m>, and <xref ref="hks-scaling-special-lagrangian"/> gives the assertion for <m>s^{-1}\omega_t^{(0)}</m>.</p>
+      </proof>
+    </corollary>
+    <p>The algebraic theorem gives bases which prevent cancellation of leading terms. Li proves that their valuation functions control the non-Archimedean potential, and then proves the estimates and perturbations which produce special Lagrangian fibrations. Convergence of potentials in the <m>C^0</m> hybrid topology alone would not justify the smooth perturbation of a torus. The analytic conclusion is contained in the second part of <xref ref="hks-thm-li-comparison"/>.</p>
+    <p xml:id="hks-metric-large-measure-scope">The sets <m>V_{t,\delta}</m> are open subsets measured by <m>\mu_t</m>. This statement does not assert that the fibration extends over all of <m>Y_t</m>. For the hyperkähler proof, a further property matters: the isotopy class of a fibre must be related to the specified degeneration. We use a local theorem which includes that property in its conclusion.</p>
+  </section>
+
+  <section xml:id="hks-flat-cylinder">
+    <title>The torus in a crossing chart</title>
+
+    <p>The local existence theorem is <xref ref="hks-bib-openai-syz" detail="Theorem 2.1"/>. In its statement, the extension of the polarizing line bundle need not be relatively ample on the central fibre.</p>
+    <theorem xml:id="hks-thm-metric-torus">
+      <statement>
+        <p>Let <m>\pi:\mathcal Y\to\Delta</m> be the restriction of a projective algebraic family over a smooth curve. Assume that <m>\mathcal Y</m> is smooth, <m>Y_0</m> is reduced with simple normal crossings, and each <m>Y_t</m> for <m>t\ne0</m> is a smooth connected projective Calabi–Yau manifold of dimension <m>d\ge2</m>. Let <m>\mathcal A</m> be a line bundle on <m>\mathcal Y</m> whose restriction to every <m>Y_t</m>, <m>t\ne0</m>, is ample. Suppose that the nowhere vanishing forms <m>\Omega_t</m> extend as a section of the relative logarithmic canonical bundle and satisfy
+          <md number="no">
+            c\,s^d\le\int_{Y_t}|\Omega_t|^2\le C\,s^d,
+            \qquad s=-\log|t|,
+          </md>
+          for constants <m>c,C&gt;0</m>. Suppose that, at a point <m>o\in Y_0</m>, exactly <m>d+1</m> components meet and
+          <md number="no">
+            z_0\cdots z_d=t,\qquad
+            \Omega_t=f(z)\frac{dz_1}{z_1}\wedge\cdots\wedge\frac{dz_d}{z_d},
+            \qquad f(o)\ne0.
+          </md>
+          Assume that <m>z_1,\ldots,z_d</m> are restrictions of rational functions on the algebraic total space. For every sufficiently small <m>t\ne0</m>, the Ricci-flat metric in <m>c_1(\mathcal A_t)</m> has an embedded special Lagrangian real <m>d</m>-torus <m>F\subset Y_t</m> isotopic in <m>Y_t</m> to an angular coordinate torus <m>F_{t,o}</m> in this chart.</p>
+      </statement>
+    </theorem>
+    <p>We use this theorem with its analytic proof as an external result. The argument in <xref ref="hks-bib-openai-syz" detail="§§2–3"/> has two parts: smooth convergence in the actual logarithmic coordinates, followed by the deformation of an angular torus. We explain the second part and the reason for the coordinate requirement.</p>
+    <p>Write <m>w_j=\log z_j=u_j+i\vartheta_j</m>, where <m>\vartheta_j\in\R/2\pi\Z</m>. After translating the real coordinates to a point in the interior of the expanding simplex, the candidate local limit is
+      <md number="no">
+        H=\R^d\times(\R/2\pi\Z)^d.
+      </md>
+      If <m>\int|\Omega_t|^2</m> is comparable to <m>s^d</m>, the Ricci-flat volume density in the <m>w</m>-coordinates is comparable to <m>s^{-d}</m>. Multiplying the metric by <m>s</m> multiplies its volume density by <m>s^d</m>. This explains why <m>s g_t^{(0)}</m> is the scale at which a noncollapsed cylinder can occur.</p>
+    <p>The volume estimate does not by itself prove convergence of the metrics. The cited proof controls traces of the metric in logarithmic coordinates and chooses points where the rescaled curvature energy tends to zero. A pointed limit has a flat regular part. It then proves that the metric completion is the full cylinder, extends the flat metric across the possible singular set, and proves smooth convergence in the original logarithmic coordinates. These conclusions are the analytic assertions used here. An abstract diffeomorphism with a flat limit would leave the relation with the angular torus undetermined.</p>
+
+    <lemma xml:id="hks-flat-angular-torus">
+      <statement>
+        <p>Let <m>H=\R^d\times(\R/2\pi\Z)^d</m>, with local complex coordinates <m>w_j=u_j+i\vartheta_j</m>. Suppose that <m>\omega_\infty</m> is a translation-invariant Kähler form, <m>\Omega_\infty</m> is a nonzero constant holomorphic volume form normalized for its metric, and the periods of <m>\omega_\infty</m> on all angular coordinate two-tori vanish. Then every torus <m>\{u=a\}</m> is special Lagrangian for <m>(\omega_\infty,\Omega_\infty)</m>, with its calibration orientation.</p>
+      </statement>
+      <proof>
+        <p>The restriction of <m>\omega_\infty</m> to an angular torus has constant coefficients in the forms <m>d\vartheta_i\wedge d\vartheta_j</m>. Their integrals over the coordinate two-tori are the respective coefficients multiplied by <m>(2\pi)^2</m>. All coefficients vanish, so the torus is Lagrangian. Write <m>\Omega_\infty=b\,dw_1\wedge\cdots\wedge dw_d</m>, where <m>b\ne0</m>. Its restriction is <m>b i^d\,d\vartheta_1\wedge\cdots\wedge d\vartheta_d</m>, which has constant phase and is nowhere zero. Normalization and <xref ref="hks-slag-calibration"/> give the calibration identity.</p>
+      </proof>
+    </lemma>
+    <p>The periods vanish in the application because <m>\mathcal A</m> is trivial on a sufficiently small contractible neighbourhood of the crossing. The restriction of <m>c_1(\mathcal A_t)</m> to the logarithmic tube is zero. Its Ricci-flat representative and all positive rescalings are exact there, so the limiting form has zero angular periods.</p>
+    <p>For the perturbation, let <m>F_0</m> be an angular torus in this flat cylinder. A small normal displacement is represented by a one-form <m>\alpha</m> on <m>F_0</m>, using <m>v\mapsto\iota_v\omega_\infty|_{F_0}</m>. The equations for its graph are
+      <md number="no">
+        \omega_t|_{\operatorname{graph}(\alpha)}=0,
+        \qquad
+        \operatorname{Im}\bigl(e^{-i\theta_t}\Omega_t\bigr)
+        |_{\operatorname{graph}(\alpha)}=0.
+      </md>
+      Choose <m>\theta_t</m> from the nonzero period <m>\int_{F_0}\Omega_t</m>. The second left-hand side then has integral zero. The first has zero cohomology class because <m>\omega_t</m> is exact on the tube. These are the cohomological conditions needed to solve the equations.</p>
+    <p>The linearization is <m>\alpha\mapsto(d\alpha,d^*\alpha)</m>, as in <xref ref="hks-mclean-deformations"/>. Restrict to one-forms orthogonal to the harmonic forms. For an exact two-form <m>\beta</m> and a mean-zero function <m>h</m>, the inverse is
+      <md number="no">
+        \alpha=d^*G\beta+dGh,
+      </md>
+      where <m>G</m> is the Green operator of the Hodge Laplacian. The Hodge identities give <m>d\alpha=\beta</m> and <m>d^*\alpha=h</m>, and elliptic estimates give a bounded inverse between the corresponding Hölder spaces. Smooth convergence of the ambient structures on a fixed tube now permits the implicit function theorem. Its solution is embedded and isotopic to <m>F_0</m> through the graphs of <m>r\alpha</m>, <m>0\le r\le1</m>. The uniform estimates and the use of the original angular coordinates are proved in <xref ref="hks-bib-openai-syz" detail="§3.4"/>, following the deformation method of <xref ref="hks-bib-mclean"/> and <xref ref="hks-bib-zhang-tori" detail="§4"/>.</p>
+    <p xml:id="hks-metric-torus-hk-application">Apply <xref ref="hks-thm-metric-torus"/> to the family in <xref ref="hks-thm-prescribed-degeneration"/>, with <m>d=2n</m>. That construction verifies algebraicity, the extension of the polarization, logarithmic extension of the volume form, the growth <m>\int|\Omega_t|^2\asymp s^{2n}</m>, and the existence of a maximal crossing with nonzero residue. It follows that every sufficiently small fibre has a special Lagrangian torus in the isotopy class of the coordinate torus from <xref ref="hks-profound-torus-class"/>. Along the prescribed ray, choose one of these fibres. The monodromy restriction of <xref ref="hks-lemma-monodromy-restriction"/> applies to its torus and will be used in <xref ref="hks-main-proof"/> to determine the restriction of the symplectic periods.</p>
+    <aside xml:id="margin-hks-local-versus-large-measure">
+      <p>The local theorem proves existence near a crossing with nonzero residue and preserves its angular isotopy class. The theorem of Blum–Liu and Li gives fibrations on open sets of arbitrarily large normalized measure. The local theorem is sufficient for semiampleness because the subsequent geometric argument begins with one torus whose cohomological relation to the degeneration is known.</p>
+    </aside>
+  </section>
+</chapter>

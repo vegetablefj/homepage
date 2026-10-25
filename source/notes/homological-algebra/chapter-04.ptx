@@ -1,0 +1,206 @@
+<chapter xml:id="ha-c04">
+  <title>Complexes and homotopy</title>
+  <introduction><p>A complex records objects together with successive relations between them. Its cohomology forgets the boundaries, whereas homotopy retains enough information to compare constructions before passing to cohomology. We establish the signs and constructions used throughout the note. The main references are <xref ref="bib-ha-li2" detail="§§3.1–3.10"/> and <xref ref="bib-ha-weibel" detail="Chapter 1"/>.</p></introduction>
+  <section xml:id="ha-c04-complexes">
+    <title>Complexes and cohomology</title>
+    <definition xml:id="ha-c04-complex-definition">
+      <title>Complexes and their cohomology</title>
+      <idx>Complex</idx><idx>Cochain complex</idx><idx>Quasi-isomorphism</idx><idx>Acyclic complex</idx>
+      <statement><p>Let <m>\mathcal A</m> be an additive category.
+        <ol>
+          <li><p>A <em>cochain complex</em> <m>X</m> consists of objects <m>X^n</m> and morphisms <m>d_X^n:X^n\to X^{n+1}</m>, indexed by <m>n\in\Z</m>, such that <m>d_X^{n+1}d_X^n=0</m>. A morphism <m>f:X\to Y</m> satisfies <m>d_Y^nf^n=f^{n+1}d_X^n</m>. These form the category <m>\Ch(\mathcal A)</m>.</p></li>
+          <li><p>Suppose that <m>\mathcal A</m> is abelian. Write <m>Z^nX=\ker d_X^n</m>, <m>B^nX=\im d_X^{n-1}</m>, and <m>H^nX=Z^nX/B^nX</m>. The complex is <em>acyclic</em> if every <m>H^nX</m> is zero. A morphism is a <em>quasi-isomorphism</em> if it induces an isomorphism on each cohomology object.</p></li>
+          <li><p>The complex is <em>bounded below</em> if <m>X^n=0</m> for all sufficiently negative <m>n</m>, <em>bounded above</em> if <m>X^n=0</m> for all sufficiently positive <m>n</m>, and <em>bounded</em> if both hold. The corresponding full subcategories carry superscripts <m>+</m>, <m>-</m>, and <m>b</m>.</p></li>
+        </ol>
+      </p></statement>
+    </definition>
+    <p>The shift is <m>X[r]^n=X^{n+r}</m>, with differential <m>(-1)^r d_X</m>. In particular, an object <m>A</m> placed in degree <m>0</m> becomes concentrated in degree <m>-r</m> after shifting by <m>r</m>.<fn>Homological indexing uses a differential lowering degree. The translation <m>C_n=X^{-n}</m> converts it to our indexing; thus a projective resolution lies in nonpositive cochain degrees.</fn> The identity <m>H^n(X[r])=H^{n+r}(X)</m> concerns cohomology objects and does not remove the sign in the differential.</p>
+    <proposition xml:id="ha-c04-long-exact">
+      <statement><p>If <m>\mathcal A</m> is abelian, then <m>\Ch(\mathcal A)</m> is abelian, with kernels and cokernels computed degreewise. Every short exact sequence of complexes <m>0\to X\to Y\to Z\to0</m> gives a natural long exact sequence
+        <md number="no">\cdots\to H^nX\to H^nY\to H^nZ\xrightarrow{\delta^n}H^{n+1}X\to\cdots.</md>
+      </p></statement>
+      <proof><p>Degreewise kernels and cokernels inherit differentials because the structure maps commute with differentials. The abelian category axioms follow degreewise. The snake lemma applied to cycles, boundaries, and the differentials gives the connecting maps and exactness. For modules, the connecting map has the following description: lift a cycle <m>z\in Z^n</m> to <m>y\in Y^n</m>; then <m>dy</m> is the image of a cycle <m>x\in X^{n+1}</m>, and <m>\delta^n[z]=[x]</m>. Changing either lift changes <m>x</m> by a boundary.</p></proof>
+    </proposition>
+    <p>The description by elements explains the connecting map; the snake lemma supplies the same construction in every abelian category. We shall use element calculations for module examples without treating an arbitrary abelian category as a category of sets.</p>
+    <proposition xml:id="ha-c04-degreewise-operations">
+      <statement><p>Let <m>\mathcal A</m> be abelian. Evaluation in degree <m>n</m> is an exact functor <m>\Ch(\mathcal A)\to\mathcal A</m>. Limits and colimits indexed by a small category, whenever they exist in <m>\mathcal A</m>, are computed degreewise in <m>\Ch(\mathcal A)</m>. An exact additive functor <m>F:\mathcal A\to\mathcal B</m> induces natural isomorphisms <m>H^n(FX)\simeq F(H^nX)</m>. If a class of colimits is exact in <m>\mathcal A</m>, those colimits commute with cohomology.</p></statement>
+      <proof><p>The universal property of a degreewise limit or colimit supplies the differential; its square is zero by the same universal property. An exact additive functor preserves kernels, images, and cokernels, hence the quotient defining cohomology. For a diagram of complexes apply this assertion to the exact colimit functor from the diagram category. In particular, filtered colimits commute with cohomology in a Grothendieck category.</p></proof>
+    </proposition>
+    <p>The last assertion requires exactness. Products are left exact in every abelian category having products, but need not preserve epimorphisms. Thus cohomology need not commute with products. Coproducts also need not be exact in an arbitrary abelian category. Conditions on infinite operations enter the theory of unbounded complexes even though each individual cohomology object uses only a finite diagram.</p>
+    <p>A morphism of short exact sequences of complexes induces a morphism of their long exact sequences, including the connecting maps. In the description above, applying the middle vertical map to a chosen lift gives a lift in the second sequence; applying the differential then gives the corresponding image of <m>x</m>. This proves the naturality of <m>\delta</m>. The same construction also shows that an exact additive functor commutes with the connecting maps under its cohomology comparisons. The justification of such finite diagram calculations in a general abelian category is given in <xref ref="ha-c01-finite-diagram-reduction"/>.</p>
+  </section>
+  <section xml:id="ha-c04-homotopy">
+    <title>Hom complexes and homotopy</title>
+    <definition xml:id="ha-c04-homotopy-definition">
+      <title>Homotopy and the Hom complex</title>
+      <idx>Homotopy of complex morphisms</idx><idx>Hom complex</idx><idx>Contractible complex</idx><idx>Homotopy category</idx>
+      <statement><p>For complexes in an additive category, define the complex of abelian groups
+        <md number="no">\underline{\Hom}^r(X,Y)=\prod_{n\in\Z}\Hom_{\mathcal A}(X^n,Y^{n+r}),\qquad d(u)=d_Yu-(-1)^r u d_X.</md>
+        A <em>homotopy</em> from <m>g</m> to <m>f</m> is a family <m>h^n:X^n\to Y^{n-1}</m> with <m>f-g=d_Yh+h d_X</m>. The category <m>\K(\mathcal A)</m> has complexes as objects and homotopy classes of complex morphisms as morphisms. A complex is <em>contractible</em> if its identity is homotopic to zero; a morphism is a <em>homotopy equivalence</em> if its class in <m>\K(\mathcal A)</m> is invertible.</p></statement>
+    </definition>
+    <p>The products here exist in <m>\Ab</m>, independently of products in <m>\mathcal A</m>. An internal Hom complex requires additional structure and will be considered in <xref ref="ha-c12"/>. A degree-zero cocycle is exactly a complex morphism, so
+      <md number="no">H^0\underline{\Hom}^{\bullet}(X,Y)=\Hom_{\K(\mathcal A)}(X,Y).</md>
+      More generally <m>H^r\underline{\Hom}^{\bullet}(X,Y)\cong\Hom_{\K(\mathcal A)}(X,Y[r])</m>, with the shift signs understood.</p>
+    <proposition xml:id="ha-c04-hom-calculus">
+      <statement><p>The Hom differential has square zero. Composition of homogeneous families satisfies
+        <md number="no">d(vu)=d(v)u+(-1)^s v\,d(u),\qquad |v|=s.</md>
+        Consequently homotopy is compatible with composition and addition, and <m>\K(\mathcal A)</m> is additive. The shift of a homotopy <m>h</m> between <m>f</m> and <m>g</m> is the homotopy <m>(-1)^r h</m> between <m>f[r]</m> and <m>g[r]</m>.</p></statement>
+      <proof><p>For <m>|u|=r</m>, expansion of <m>d^2(u)</m> leaves two mixed terms with coefficients <m>-(-1)^r</m> and <m>-(-1)^{r+1}</m>; they cancel, and the remaining terms contain the square of a differential. Expanding the right side of the composition formula gives <m>d_Zvu-(-1)^{r+s}vu d_X</m>. Boundaries therefore form an ideal among degree-zero cocycles. The shift assertion follows from <m>d_{X[r]}=(-1)^r d_X</m>.</p></proof>
+    </proposition>
+    <p>To check the higher-degree Hom identification, a degree-<m>r</m> cocycle <m>u</m> satisfies <m>d_Yu=(-1)^r u d_X</m>. This is exactly the equation for a complex morphism <m>X\to Y[r]</m>. A boundary <m>d(v)</m>, where <m>|v|=r-1</m>, corresponds to the null-homotopic map with homotopy <m>(-1)^r v</m>. The signs are needed even though the resulting cohomology groups have a short notation.</p>
+    <definition xml:id="ha-c04-dg-category">
+      <title>Differential graded categories and their degree-zero categories</title><idx>Differential graded category</idx><idx>Enriched category</idx>
+      <statement><p>A differential graded category, or <em>dg category</em>, over <m>\Z</m> consists of objects, a complex of abelian groups <m>\mathcal C(X,Y)</m> for each pair, associative composition maps of complexes
+        <md number="no">\mathcal C(Y,Z)\otimes_{\Z}\mathcal C(X,Y)\longrightarrow\mathcal C(X,Z),</md>
+        and identity elements that are degree-zero cycles. Equivalently it is a category enriched over <m>\Ch(\Ab)</m> with its tensor product and unit <m>\Z[0]</m>. Its category <m>Z^0\mathcal C</m> has degree-zero cycles as arrows; its category <m>H^0\mathcal C</m> has degree-zero cohomology classes as arrows. The composition formula in <xref ref="ha-c04-hom-calculus"/> makes both compositions well-defined.</p></statement>
+    </definition>
+    <p>An additive category <m>\mathcal A</m> gives a dg category of complexes with Hom complexes <m>\underline{\Hom}^{\bullet}(X,Y)</m>. Its two degree-zero categories are <m>\Ch(\mathcal A)</m> and <m>\K(\mathcal A)</m>, respectively. Before passing to complexes, a preadditive category is already a category enriched over <m>\Ab</m>: its composition is bilinear. In a general enrichment the Hom sets are replaced by objects of a monoidal category and composition uses that category's tensor product. An internal tensor product of the objects <m>X,Y</m> of <m>\mathcal C</m> is a separate structure.<fn>The ordinary underlying category of a dg category has arrows <m>\Hom_{\Ch(\Ab)}(\Z[0],\mathcal C(X,Y))=Z^0\mathcal C(X,Y)</m>, not <m>H^0\mathcal C(X,Y)</m>. Taking <m>H^0</m> additionally identifies boundaries. This distinction explains the passage from actual chain maps to homotopy classes.</fn> We use this language to describe the Hom construction; localization and enhancement theory for dg categories require a separate development.</p>
+    <proposition xml:id="ha-c04-homotopy-properties">
+      <statement><p>Homotopic morphisms induce the same maps on cohomology. A homotopy equivalence is a quasi-isomorphism. Every contractible complex in an abelian category is acyclic, and an acyclic complex is contractible if and only if all the sequences
+        <md number="no">0\to Z^nX\to X^n\xrightarrow{d_X^n}Z^{n+1}X\to0</md>
+        split.</p></statement>
+      <proof><p>If <m>f-g=dh+hd</m>, its restriction to cycles factors through boundaries, so it induces zero on cohomology. If the displayed sequences split, identify <m>X^n\cong Z^nX\oplus Z^{n+1}X</m>; the differential sends <m>(a,b)</m> to <m>(b,0)</m>. Sending <m>(a,b)</m> to <m>(0,a)</m> in degree <m>n-1</m> contracts <m>X</m>. Conversely, if <m>dh+hd=\id</m>, then the restriction of <m>h^{n+1}</m> to <m>Z^{n+1}X</m> is a section of <m>d_X^n:X^n\to Z^{n+1}X</m>.</p></proof>
+    </proposition>
+    <example xml:id="ha-c04-acyclic-not-contractible">
+      <p>The exact complex <m>0\to\Z\to\Q\to\Q/\Z\to0</m>, placed in three consecutive degrees, is acyclic but not contractible. A splitting would embed the nonzero torsion group <m>\Q/\Z</m> in the torsion-free group <m>\Q</m>. Thus the quasi-isomorphism from this complex to zero is not a homotopy equivalence. Over a field every short exact sequence of vector spaces splits, so every acyclic complex of vector spaces is contractible.</p>
+    </example>
+    <definition xml:id="ha-c04-disk-definition">
+      <title>Stalk and disk complexes</title><idx>Stalk complex</idx><idx>Disk complex</idx>
+      <statement><p>Write <m>S^n(A)=A[-n]</m> for <m>A</m> in degree <m>n</m> with all other terms zero. The disk complex <m>D^n(A)</m> has <m>A</m> in degrees <m>n,n+1</m>, identity differential between them, and zero elsewhere. It is contractible. There are natural bijections
+        <md number="no"><mrow>\Hom_{\Ch(\mathcal A)}(D^n(A),X)\simeq\Hom_{\mathcal A}(A,X^n),</mrow><mrow>\Hom_{\Ch(\mathcal A)}(X,D^n(A))\simeq\Hom_{\mathcal A}(X^{n+1},A).</mrow></md>
+      </p></statement>
+    </definition>
+    <p>In the first bijection the component in degree <m>n+1</m> must be <m>d_X^n</m> times the chosen component in degree <m>n</m>. In the second it must satisfy <m>f^n=f^{n+1}d_X^n</m>. These formulas explain why a disk, rather than a stalk, represents unrestricted evaluation on complexes. A map from a stalk has to land in cycles.</p>
+    <proposition xml:id="ha-c04-split-complex">
+      <statement><p>Suppose that <m>\mathcal A</m> is abelian and that both sequences
+        <md number="no">0\to B^nX\to Z^nX\to H^nX\to0,\qquad 0\to Z^nX\to X^n\to B^{n+1}X\to0</md>
+        split for every <m>n</m>. Then choices of splittings identify <m>X</m> with the direct sum of its cohomology stalks and contractible disks. In particular <m>X</m> is homotopy equivalent to the complex <m>H^\bullet X</m> with zero differential.</p></statement>
+      <proof><p>The splittings give <m>X^n\simeq B^nX\oplus H^nX\oplus B^{n+1}X</m>, with differential <m>(b,h,c)\mapsto(c,0,0)</m>. The middle summands form <m>H^\bullet X</m>. The other two summands form disks, contracted by sending <m>(b,c)</m> to <m>(0,b)</m>. In each degree only finitely many of these stalks and disks contribute, so this decomposition requires no infinite coproducts in <m>\mathcal A</m>.</p></proof>
+    </proposition>
+    <p>The splitting hypothesis holds in a semisimple abelian category, in particular for vector spaces over a field. The resulting complex isomorphism depends on choices. One should not infer a natural splitting of a complex merely from the existence of a homotopy equivalence. Over a general abelian category, extension data between successive cohomology objects can survive in the derived category; the truncation triangles in <xref ref="ha-c09"/> describe that data.</p>
+  </section>
+  <section xml:id="ha-c04-cones">
+    <title>Mapping cones</title>
+    <definition xml:id="ha-c04-cone-definition">
+      <title>The mapping cone</title><idx>Mapping cone</idx>
+      <statement><p>For a morphism <m>f:X\to Y</m>, its cone is
+        <md number="no">\Cone(f)^n=Y^n\oplus X^{n+1},\qquad d(y,x)=(d_Yy+f x,-d_Xx).</md>
+        It fits into the degreewise split exact sequence <m>0\to Y\to\Cone(f)\to X[1]\to0</m>.</p></statement>
+    </definition>
+    <proposition xml:id="ha-c04-cone-properties">
+      <statement><p>Let <m>\mathcal A</m> be abelian.
+        <ol>
+          <li><p>The cone sequence gives an exact sequence <m>\cdots\to H^nX\xrightarrow{H^nf}H^nY\to H^n\Cone(f)\to H^{n+1}X\to\cdots</m>. In particular <m>f</m> is a quasi-isomorphism if and only if <m>\Cone(f)</m> is acyclic.</p></li>
+          <li><p>The cone of <m>\id_X</m> is contractible. If <m>f</m> and <m>g:X\to Y</m> are homotopic, their cones are isomorphic as complexes.</p></li>
+          <li><p>A strictly commutative square of complex morphisms induces a morphism of cones. A square commuting only up to homotopy also does so after choosing that homotopy.</p></li>
+        </ol>
+      </p></statement>
+      <proof><p>For the first assertion use <xref ref="ha-c04-long-exact"/>; lifting a cycle in <m>X[1]</m> to <m>(0,x)</m> identifies the connecting map with <m>H^{n+1}f</m>. The homotopy <m>h(y,x)=(0,y)</m> contracts <m>\Cone(\id_X)</m>. More generally, suppose <m>a:X\to X'</m>, <m>b:Y\to Y'</m>, and <m>b f-f'a=d h+h d</m>. Then
+        <md number="no">(y,x)\longmapsto (by+h x,ax)</md>
+        is a morphism <m>\Cone(f)\to\Cone(f')</m>, as substitution in the differentials verifies. Taking <m>a=b=\id</m> gives the second assertion, with inverse obtained by replacing <m>h</m> by <m>-h</m>.</p></proof>
+    </proposition>
+    <p>The last assertion explains why cones require care after passing to homotopy classes: the chosen homotopy is part of the construction.<fn>The cone is functorial on the category of actual morphisms of complexes with strictly commutative squares. This does not provide a canonical cone functor on arbitrary morphisms in a triangulated category.</fn> Cone triangles will supply the triangulated structure on <m>\K(\mathcal A)</m> in <xref ref="ha-c08"/>.</p>
+    <proposition xml:id="ha-c04-cone-homotopy-equivalence">
+      <statement><p>For complexes in an additive category, <m>f:X\to Y</m> is a homotopy equivalence if and only if <m>\Cone(f)</m> is contractible.</p></statement>
+      <proof><p>For any complex <m>T</m>, the cone formula gives an isomorphism of complexes of abelian groups
+        <md number="no">\underline{\Hom}^{\bullet}(T,\Cone(f))\simeq\Cone\bigl(\underline{\Hom}^{\bullet}(T,f)\bigr).</md>
+        Its cohomology sequence has successive terms <m>\Hom_{\K}(T,X[r])</m>, <m>\Hom_{\K}(T,Y[r])</m>, and <m>\Hom_{\K}(T,\Cone(f)[r])</m>. If the cone is contractible, the first map is a bijection for every <m>T,r</m>; Yoneda makes <m>f</m> invertible in <m>\K</m>. Conversely, if <m>f</m> is invertible, exactness makes every Hom into its cone zero. Taking <m>T=\Cone(f)</m> and <m>r=0</m> shows that the identity of the cone is null-homotopic. This argument uses cohomology only in <m>\Ab</m> and therefore does not require <m>\mathcal A</m> to be abelian.</p></proof>
+    </proposition>
+    <definition xml:id="ha-c04-cylinder-definition">
+      <title>Mapping fiber and mapping cylinder</title><idx>Mapping fiber</idx><idx>Mapping cylinder</idx>
+      <statement><p>Set <m>\operatorname{Fib}(f)=\Cone(f)[-1]</m>. A mapping cylinder for <m>f:X\to Y</m> is
+        <md number="no">\operatorname{Cyl}(f)=\Cone\bigl((-\id_X,f):X\to X\oplus Y\bigr).</md>
+        Thus its terms are <m>X^n\oplus Y^n\oplus X^{n+1}</m> and its differential is <m>(a,y,x)\mapsto(d_Xa-x,d_Yy+fx,-d_Xx)</m>.</p></statement>
+    </definition>
+    <p>The maps <m>j:X\to\operatorname{Cyl}(f)</m>, <m>j(a)=(a,0,0)</m>, and <m>p:\operatorname{Cyl}(f)\to Y</m>, <m>p(a,y,x)=fa+y</m>, factor <m>f</m>. The first is a split monomorphism on terms, and <m>p</m> is a homotopy equivalence. Indeed <m>i(y)=(0,y,0)</m> satisfies <m>pi=\id</m>; the family <m>H(a,y,x)=(0,0,-a)</m> satisfies <m>dH+Hd=\id-ip</m>. The cokernel of <m>j</m> is <m>\Cone(f)</m>. This replaces an arbitrary morphism by a degreewise split inclusion followed by a homotopy equivalence, a construction useful before any localization is formed.</p>
+    <proposition xml:id="ha-c04-cone-short-exact">
+      <statement><p>For a short exact sequence of complexes <m>0\to X\xrightarrow{i}Y\xrightarrow{p}Z\to0</m>, the morphism <m>\Cone(i)\to Z</m> sending <m>(y,x)</m> to <m>p(y)</m> is a quasi-isomorphism. No degreewise splitting is required.</p></statement>
+      <proof><p>Its kernel has terms <m>X^n\oplus X^{n+1}</m> and differential <m>(a,x)\mapsto(d_Xa+x,-d_Xx)</m>. It is therefore <m>\Cone(\id_X)</m>, which is contractible. The resulting short exact sequence and its cohomology sequence prove the assertion.</p></proof>
+    </proposition>
+    <p>This comparison explains why short exact sequences can be replaced by cone sequences after quasi-isomorphisms are inverted. Before doing so, they retain different information: a general short exact sequence need not split degreewise, whereas the defining sequence of a cone always does. The natural connecting homomorphism in cohomology is the same under the comparison.</p>
+  </section>
+  <section xml:id="ha-c04-truncations">
+    <title>Truncations</title>
+    <definition xml:id="ha-c04-truncation-definition">
+      <title>Brutal and canonical truncation</title><idx>Brutal truncation</idx><idx>Canonical truncation</idx><idx>Smart truncation</idx>
+      <statement><p>Let <m>X</m> be a complex in an abelian category and let <m>n\in\Z</m>. The brutal truncations <m>\sigma_{\leq n}X</m> and <m>\sigma_{\geq n}X</m> retain the terms in the indicated degrees and replace all other terms by zero. The canonical, or smart, truncations are
+        <md number="no">(\tau_{\leq n}X)^i=\begin{cases}X^i&amp;i&lt;n,\\ \ker d_X^n&amp;i=n,\\0&amp;i&gt;n,\end{cases}\qquad (\tau_{\geq n}X)^i=\begin{cases}0&amp;i&lt;n,\\ \coker d_X^{n-1}&amp;i=n,\\X^i&amp;i&gt;n.\end{cases}</md>
+        Their differentials are induced by those of <m>X</m>.</p></statement>
+    </definition>
+    <p>There are natural morphisms <m>\tau_{\leq n}X\to X\to\tau_{\geq n}X</m>. The first preserves cohomology in degrees at most <m>n</m> and kills higher cohomology; the second preserves cohomology in degrees at least <m>n</m> and kills lower cohomology. For brutal truncation the natural maps instead have the directions <m>\sigma_{\geq n}X\to X\to\sigma_{\leq n}X</m>.<fn>Sources use several symbols, including “stupid” for brutal truncation. We reserve <m>\tau</m> for the truncations preserving the specified cohomology, and <m>\sigma</m> for those retaining terms.</fn></p>
+    <example xml:id="ha-c04-truncation-example"><p>Let <m>X=(\Z\xrightarrow{2}\Z)</m> in degrees <m>0,1</m>. Then <m>H^0X=0</m>, whereas <m>H^0(\sigma_{\leq0}X)=\Z</m>. The canonical truncation <m>\tau_{\leq0}X</m> is zero and <m>\tau_{\geq1}X=(\Z/2)[-1]</m>. Truncating terms and truncating cohomology therefore serve different purposes.</p></example>
+    <proposition xml:id="ha-c04-truncation-properties">
+      <statement><p>Let <m>\Ch_{\leq n}(\mathcal A)</m> and <m>\Ch_{\geq n}(\mathcal A)</m> denote the full subcategories of complexes whose <em>terms</em> vanish in degrees greater than <m>n</m> and less than <m>n</m>, respectively.
+        <ol>
+          <li><p>The inclusion <m>\Ch_{\leq n}(\mathcal A)\hookrightarrow\Ch(\mathcal A)</m> has left adjoint <m>\sigma_{\leq n}</m> and right adjoint <m>\tau_{\leq n}</m>. The inclusion <m>\Ch_{\geq n}(\mathcal A)\hookrightarrow\Ch(\mathcal A)</m> has left adjoint <m>\tau_{\geq n}</m> and right adjoint <m>\sigma_{\geq n}</m>.</p></li>
+          <li><p>There is a natural degreewise split exact sequence
+            <md number="no">0\to\sigma_{\geq n+1}X\to X\to\sigma_{\leq n}X\to0.</md>
+            The connecting map at the cut is induced by <m>d_X^n</m>.</p></li>
+          <li><p>The endpoint cohomology of the brutal truncations is
+            <md number="no">H^n(\sigma_{\leq n}X)=X^n/B^nX,\qquad H^n(\sigma_{\geq n}X)=Z^nX.</md>
+            Away from the endpoint they retain the cohomology in the retained range and have zero cohomology outside it. Canonical truncations retain <m>H^nX</m> at the endpoint as well.</p></li>
+          <li><p>Both composites <m>\tau_{\geq n}\tau_{\leq n}X</m> and <m>\tau_{\leq n}\tau_{\geq n}X</m> are canonically isomorphic to <m>H^nX[-n]</m>. All four truncations are additive functors of complexes. The canonical truncations preserve quasi-isomorphisms; the brutal truncations need not.</p></li>
+        </ol>
+      </p></statement>
+      <proof><p>A map <m>Y\to X</m> with <m>Y^{n+1}=0</m> has degree-<m>n</m> component in <m>\ker d_X^n</m>, which proves the right adjunction for <m>\tau_{\leq n}</m>. A map <m>X\to Y</m> with <m>Y^{n-1}=0</m> kills <m>\im d_X^{n-1}</m>, proving the left adjunction for <m>\tau_{\geq n}</m>. The other two adjunctions follow by restricting the components, with no kernel or quotient required. The sequence in the second assertion is exact in each degree; lifting a class across its degreewise splitting gives the differential at the cut as its connecting map. Calculating kernels and images in degree <m>n</m> proves the remaining assertions. For the last failure, take the acyclic disk <m>D^n(A)</m> with <m>A\ne0</m>: its upper brutal truncation at <m>n</m> is the nonacyclic stalk <m>S^n(A)</m>.</p></proof>
+    </proposition>
+    <p>The degreewise splitting of the displayed sequence is not generally a splitting by complex morphisms: the differential crossing the cut obstructs such a splitting. Nor is
+      <md number="no">0\to\tau_{\leq n}X\to X\to\tau_{\geq n+1}X\to0</md>
+      generally exact as a sequence of complexes. At degree <m>n</m> its putative kernel is <m>X^n</m>, whereas the first term there is <m>Z^nX</m>. Instead set <m>Q=X/\tau_{\leq n}X</m>. There is a natural quasi-isomorphism <m>Q\to\tau_{\geq n+1}X</m>; its kernel is the disk on <m>B^{n+1}X</m> in degrees <m>n,n+1</m>. Passing from this actual quotient to its quasi-isomorphic canonical truncation yields the truncation triangle of <xref ref="ha-c09"/>.<fn>Some treatments formulate canonical truncation directly on the derived category, where it is characterized by cohomological bounds. The adjunctions just proved are on categories of complexes with bounds on their terms. Those statements have different domains; the derived adjunction requires the additional orthogonality argument in <xref ref="ha-c13"/>.</fn></p>
+    <p>Brutal truncations are useful when a construction is made term by term, or a complex is filtered by its degrees. Canonical truncations are useful when a construction must preserve a prescribed range of cohomology. For example, a bounded above complex can be built from its successive terms using brutal cuts; a complex with bounded above cohomology may still have nonzero terms arbitrarily far to the right, and canonical truncation replaces it by a bounded above quasi-isomorphic complex.</p>
+  </section>
+  <section xml:id="ha-c04-totalization">
+    <title>Double complexes and totalization</title>
+    <definition xml:id="ha-c04-double-definition">
+      <title>Double complexes and their totals</title><idx>Double complex</idx><idx>Total complex</idx>
+      <statement><p>A double complex <m>C^{p,q}</m> has differentials <m>d_h:C^{p,q}\to C^{p+1,q}</m> and <m>d_v:C^{p,q}\to C^{p,q+1}</m> satisfying <m>d_h^2=d_v^2=0</m> and <m>d_hd_v=d_vd_h</m>. When the relevant sums or products exist, define
+        <md number="no">\Tot_{\oplus}(C)^n=\bigoplus_{p+q=n}C^{p,q},\qquad \Tot_{\prod}(C)^n=\prod_{p+q=n}C^{p,q},</md>
+        in both cases with differential <m>d_h+(-1)^p d_v</m> on bidegree <m>(p,q)</m>.</p></statement>
+    </definition>
+    <p>The mixed terms in the square of this differential cancel. Replacing <m>d_v</m> by <m>(-1)^p d_v</m> converts our commuting squares into anticommuting squares; in that convention the total differential is simply the sum of the two differentials. This is the convention comparison used in <xref ref="bib-ha-li2" detail="§3.5"/> and <url href="https://stacks.math.columbia.edu/tag/0FNB">Stacks, Tag 0FNB</url>.</p>
+    <p>If only finitely many entries on each diagonal are nonzero, the two totals agree canonically. This includes a first-quadrant double complex. Without this condition the distinction is substantive: for a field <m>k</m>, put <m>C^{p,-p}=k</m> for every <m>p\in\Z</m>, all other terms and differentials zero. Its sum total has <m>\bigoplus_{p\in\Z}k</m> in degree zero, whereas its product total has <m>\prod_{p\in\Z}k</m>; the natural map is not surjective.</p>
+    <p>For complexes of modules, the tensor complex uses the sum total:
+      <md number="no">(X\otimes_R Y)^n=\bigoplus_{p+q=n}X^p\otimes_RY^q,\qquad d(x\otimes y)=dx\otimes y+(-1)^p x\otimes dy.</md>
+      The Hom complex uses products because a homogeneous morphism specifies a component in every degree. Acyclicity of rows or columns implies acyclicity of a total only under suitable boundedness or other hypotheses; <xref ref="ha-c07"/> proves the finite-diagonal case by a filtration. Unbounded totalization will require separate arguments.</p>
+    <p>More generally, an additive bifunctor <m>\Phi:\mathcal A\times\mathcal B\to\mathcal C</m> gives a double complex <m>\Phi(X^p,Y^q)</m>. If countable coproducts exist in <m>\mathcal C</m>, its sum total defines a bifunctor on complexes. A homotopy in either argument induces a homotopy of totals, so it descends to homotopy categories. In the second argument its degree-<m>-1</m> homotopy is <m>(-1)^p\Phi(\id,h)</m> on the component of first degree <m>p</m>; in the first argument it is <m>\Phi(h,\id)</m>. These signs follow by expanding <m>dH+Hd</m>. A bifunctor on homotopy categories need not descend to derived categories: preserving homotopy equivalences is weaker than preserving quasi-isomorphisms. The acyclic replacement conditions in <xref ref="ha-c10"/> and <xref ref="ha-c12"/> address this additional requirement.</p>
+  </section>
+  <section xml:id="ha-c04-salamander">
+    <title>The salamander lemma</title>
+    <p>A connecting morphism often crosses a diagram against the direction of one of its arrows. The salamander lemma expresses such maps through kernels and quotients attached to neighboring vertices of a double complex. We use Bergman's construction from <xref ref="bib-ha-bergman" detail="§§1–2"/>, with letter notation in place of his diagrammatic symbols. No boundedness, injective objects, or totalization is needed.</p>
+    <definition xml:id="ha-c04-donor-receptor">
+      <title>Donors, receptors, and their maps</title><idx>Salamander lemma</idx><idx>Donor of a double complex</idx><idx>Receptor of a double complex</idx>
+      <statement><p>Let <m>C</m> be a commuting double complex in an abelian category. At <m>A=C^{p,q}</m> write <m>h:A\to C^{p+1,q}</m> and <m>v:A\to C^{p,q+1}</m> for the outgoing maps, and <m>h_-:C^{p-1,q}\to A</m>, <m>v_-:C^{p,q-1}\to A</m> for the incoming maps. Let <m>a:C^{p-1,q-1}\to A</m> and <m>b:A\to C^{p+1,q+1}</m> be the diagonal composites. Define
+        <md number="no"><mrow>H_h(A)=\ker h/\im h_-,\qquad H_v(A)=\ker v/\im v_-,</mrow><mrow>R(A)=(\ker h\cap\ker v)/\im a,</mrow><mrow>D(A)=\ker b/(\im h_-+\im v_-).</mrow></md>
+        The last two objects are the <em>receptor</em> and <em>donor</em> at <m>A</m>. Identity on the relevant subobjects of <m>A</m> induces maps <m>R(A)\to H_h(A)\to D(A)</m> and <m>R(A)\to H_v(A)\to D(A)</m>. They form a commuting diamond. Every horizontal or vertical differential <m>u:A\to B</m> induces a map <m>\overline u:D(A)\to R(B)</m>.</p></statement>
+    </definition>
+    <p>The subquotients are defined because the incoming diagonal has image in both outgoing kernels, and the two incoming images lie in the kernel of the outgoing diagonal. To check the last map, consider a horizontal arrow <m>u</m>. For <m>x\in\ker b</m>, its image <m>ux</m> is killed by the next horizontal arrow and by the vertical arrow at <m>B</m>. The incoming horizontal image at <m>A</m> maps to zero, and its incoming vertical image maps into the incoming diagonal image at <m>B</m>. Interchanging the two directions gives the vertical case. These checks may be made in a module category by <xref ref="ha-c01-finite-diagram-reduction"/>.</p>
+    <p>For a horizontal arrow <m>u:A\to B</m>, the induced vertical cohomology map factors as
+      <md number="no">H_v(A)\longrightarrow D(A)\xrightarrow{\overline u}R(B)\longrightarrow H_v(B).</md>
+      For a vertical arrow the same factorization holds with horizontal cohomology. It is induced by <m>u</m> throughout. This factorization should be distinguished from the exact sequence below: the displayed composite need not be zero.</p>
+    <lemma xml:id="ha-c04-salamander-lemma">
+      <statement><p>Let <m>u:A\to B</m> be a horizontal differential in <m>C</m>, let <m>U</m> be the vertex immediately above <m>A</m>, and let <m>V</m> be the vertex immediately below <m>B</m>, with increasing vertical degree drawn downward. These vertices occupy the positions
+        <md number="no">\begin{array}{ccc}U&amp;&amp;\\\downarrow&amp;&amp;\\A&amp;\xrightarrow{u}&amp;B\\&amp;&amp;\downarrow\\&amp;&amp;V.\end{array}</md>
+        There is a natural sequence
+        <md number="no">D(U)\longrightarrow H_h(A)\longrightarrow D(A)\xrightarrow{\overline u}R(B)\longrightarrow H_h(B)\longrightarrow R(V),</md>
+        exact at its four interior objects. The first map is <m>D(U)\to R(A)\to H_h(A)</m>; the last is <m>H_h(B)\to D(B)\to R(V)</m>. For a vertical differential <m>A\to B</m>, take <m>U</m> immediately to the left of <m>A</m>, <m>V</m> immediately to the right of <m>B</m>, and replace <m>H_h</m> by <m>H_v</m>.</p></statement>
+      <proof><p>All objects and maps involved belong to a finite diagram, so <xref ref="ha-c01-finite-diagram-reduction"/> permits an exact embedding of the required small abelian subcategory into modules. Exactness and faithfulness preserve and reflect the assertions. We prove the horizontal case there. Write <m>c:U\to A</m>, <m>d:W\to A</m> for the incoming vertical and horizontal maps, and <m>t:B\to V</m> for the outgoing vertical map. Thus the donor numerator at <m>A</m> is <m>\ker(tu)</m>; the incoming diagonal at <m>B</m> is <m>uc</m>.</p>
+        <p>At <m>H_h(A)</m>, a class represented by <m>x\in\ker u</m> maps to zero in <m>D(A)</m> precisely when <m>x=dw+cz</m>. The equation <m>ux=0</m> gives <m>ucz=0</m>, so <m>z</m> belongs to the donor numerator at <m>U</m>. Modulo <m>\im d</m> the class of <m>x</m> is the image of <m>z</m>. Conversely, an image from this donor is represented by an element of <m>\im c</m>, so maps to zero in <m>D(A)</m>.</p>
+        <p>At <m>D(A)</m>, a class represented by <m>x\in\ker(tu)</m> maps to zero in <m>R(B)</m> precisely when <m>ux=ucz</m> for some <m>z\in U</m>. Then <m>x-cz\in\ker u</m> represents the same donor class and comes from <m>H_h(A)</m>. Conversely a representative killed by <m>u</m> gives zero in the receptor.</p>
+        <p>At <m>R(B)</m>, a representative <m>y</m> maps to zero in <m>H_h(B)</m> precisely when <m>y=ux</m>. Since <m>ty=0</m>, this <m>x</m> lies in <m>\ker(tu)</m> and gives the required donor class. Conversely a donor image is in <m>\im u</m>.</p>
+        <p>Finally, let <m>y</m> be a horizontal cycle at <m>B</m> whose class maps to zero in <m>R(V)</m>. The incoming diagonal at <m>V</m> is <m>tu</m>, so <m>ty=tux</m> for some <m>x\in A</m>. The representative <m>y-ux</m> is both a horizontal and a vertical cycle, hence gives a class in <m>R(B)</m> with the required horizontal cohomology class. Conversely a representative killed by <m>t</m> maps to zero. The formulas commute with maps of double complexes, giving naturality. Transposing the double complex proves the vertical statement.</p></proof>
+    </lemma>
+    <p>No zeros are asserted at the ends of this six-term sequence. In particular, the first map need not be monic and the last need not be epic. The two maps from <m>R(A)</m> to <m>D(A)</m> have equal composite through horizontal or vertical cohomology, but this common composite need not vanish.<fn>The notation <m>D(A)</m> here denotes a donor, not a duality functor or a disk complex <m>D^n(A)</m>. These local donor symbols are used only in this section. Bergman's displaced-square notation avoids this conflict in larger diagrams; the explicit quotients suffice for the applications here.</fn></p>
+    <corollary xml:id="ha-c04-salamander-exact-arrow">
+      <statement><p>If the row containing a horizontal arrow <m>A\to B</m> is exact at both ends of that arrow, its map <m>D(A)\to R(B)</m> is an isomorphism. The analogous assertion holds for a vertical arrow whose column is exact at both ends.</p></statement>
+      <proof><p>The two neighboring cohomology objects in the salamander sequence vanish.</p></proof>
+    </corollary>
+    <example xml:id="ha-c04-salamander-connecting">
+      <p>Place a short exact sequence of complexes <m>0\to X\xrightarrow{i}Y\xrightarrow{p}Z\to0</m> in three columns of a double complex, with vertical differentials those of the complexes and zeros in all other columns. Exactness of each row gives isomorphisms
+        <md number="no">D(X^{n+1})\xrightarrow{\sim}R(Y^{n+1}),\qquad D(Y^n)\xrightarrow{\sim}R(Z^n).</md>
+        At the outside columns, direct substitution in the definitions gives <m>D(X^{n+1})\simeq H^{n+1}X</m> and <m>R(Z^n)\simeq H^nZ</m>. The composite
+        <md number="no">H^nZ\simeq R(Z^n)\xrightarrow{\sim}D(Y^n)\longrightarrow R(Y^{n+1})\xrightarrow{\sim}D(X^{n+1})\simeq H^{n+1}X</md>
+        is the connecting morphism. For a cycle <m>z</m>, the inverse isomorphism selects the donor class of any lift <m>y</m>; the next arrow applies <m>d_Y</m>; the final inverse identifies its class with the class of <m>x</m> satisfying <m>i(x)=d_Yy</m>. The inverses take place between subquotients, so no splitting of <m>p</m> is required. Exactness of the resulting long sequence follows by joining the vertical salamander sequences at these isomorphisms.</p>
+    </example>
+    <p>A commutative diagram of two short exact sequences is likewise a finite double complex after adjoining zeros. The snake connecting morphism is obtained by composing donor–receptor maps and inverses along its exact rows. Thus the snake lemma, the long cohomology sequence, and the <m>3\times3</m> lemma share the same local exactness argument; see <xref ref="bib-ha-bergman" detail="§§2–4"/> for the corresponding diagrams. The ordinary snake lemma in <xref ref="ha-c01"/> remains available directly. The purpose of the present formulation is to expose the intermediate subquotients, rather than to require a new calculation every time a familiar diagram lemma is used.</p>
+  </section>
+</chapter>

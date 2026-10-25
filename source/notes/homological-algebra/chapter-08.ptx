@@ -1,0 +1,137 @@
+<chapter xml:id="ha-c08">
+  <title>Triangulated categories and Verdier quotients</title>
+  <introduction>
+    <p>Mapping cones replace cokernels when homotopies are retained. A triangle records a map, a cone, and a connecting morphism. The axioms below retain the consequences of cone constructions that are used by exact functors and localization. The references are <xref ref="bib-ha-li2" detail="Sections 4.1–4.3"/>, <xref ref="bib-ha-ks" detail="Chapter 10"/>, and <xref ref="bib-ha-neeman" detail="Chapters 1–2"/>.</p>
+  </introduction>
+  <section xml:id="ha-c08-axioms">
+    <title>Triangles and exact functors</title>
+    <definition xml:id="ha-c08-def-triangle">
+      <title>Triangles and their morphisms</title><idx>Triangle</idx><idx>Distinguished triangle</idx>
+      <statement><p>Let <m>\mathcal T</m> be additive with an additive autoequivalence <m>[1]</m>. A triangle is a diagram <m>X\xrightarrow{u}Y\xrightarrow{v}Z\xrightarrow{w}X[1]</m>. A morphism to a triangle <m>X'\xrightarrow{u'}Y'\xrightarrow{v'}Z'\xrightarrow{w'}X'[1]</m> is a triple <m>(a,b,c)</m> satisfying <m>bu=u'a</m>, <m>cv=v'b</m>, and <m>a[1]w=w'c</m>.</p></statement>
+    </definition>
+    <definition xml:id="ha-c08-def-triangulated">
+      <title>Triangulated categories</title><idx>Triangulated category</idx><idx>Octahedral axiom</idx>
+      <statement>
+        <p>A triangulated structure on <m>\mathcal T</m> specifies distinguished triangles with the following properties.<ol>
+          <li><p>The class is closed under isomorphism. The triangle <m>X\xrightarrow{\id}X\to0\to X[1]</m> is distinguished, and every map is the first map of a distinguished triangle.</p></li>
+          <li><p>A triangle <m>(u,v,w)</m> is distinguished if and only if its rotation <m>(v,w,-u[1])</m> is distinguished.</p></li>
+          <li><p>A commutative square on the first two objects of distinguished triangles extends to a morphism of triangles.</p></li>
+          <li><p>For composable maps <m>X\xrightarrow{f}Y\xrightarrow{g}Z</m>, choose distinguished triangles with third objects <m>C_f,C_{gf},C_g</m>. Write their second and third maps as <m>i_f,p_f</m>, <m>i_{gf},p_{gf}</m>, and <m>i_g,p_g</m>. There exist maps <m>a:C_f\to C_{gf}</m> and <m>b:C_{gf}\to C_g</m> such that <m>(\id_X,g,a)</m> and <m>(f,\id_Z,b)</m> are morphisms of the chosen triangles and
+            <md number="no">C_f\xrightarrow{a}C_{gf}\xrightarrow{b}C_g\xrightarrow{i_f[1]p_g}C_f[1]</md>
+            is distinguished.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <p>The last condition is the octahedral axiom in the convention of <xref ref="bib-ha-stacks" detail="Tag 0145"/>. We retain the minus sign in rotation. In particular, shifting all three maps of a distinguished triangle without adjusting the connecting map is not our convention for a shifted distinguished triangle.<fn>The word pretriangulated has different uses. In the Stacks definition it means the first three axioms; in the theory of differential graded categories it describes a different structure. We use triangulated here with all four axioms.</fn></p>
+    <definition xml:id="ha-c08-def-exact">
+      <title>Exact and cohomological functors</title><idx>Exact functor, triangulated</idx><idx>Cohomological functor</idx>
+      <statement><p><ol>
+        <li><p>An exact functor <m>F:\mathcal T\to\mathcal S</m> is additive, has a specified natural isomorphism <m>F(X[1])\simeq F(X)[1]</m>, and takes distinguished triangles to distinguished triangles using this isomorphism on the last map.</p></li>
+        <li><p>An additive functor <m>H:\mathcal T\to\mathcal A</m> to an abelian category is cohomological if each distinguished triangle induces an exact sequence <m>H(X)\to H(Y)\to H(Z)</m>. Rotation then gives its long exact sequence.</p></li>
+      </ol></p></statement>
+    </definition>
+    <proposition xml:id="ha-c08-prop-basic">
+      <statement><p><ol>
+        <li><p>Consecutive maps of a distinguished triangle have zero composite.</p></li>
+        <li><p>The functors <m>\Hom_{\mathcal T}(W,-)</m> and <m>\Hom_{\mathcal T}(-,W)</m> give exact sequences on distinguished triangles, with the latter contravariant.</p></li>
+        <li><p>In a morphism of distinguished triangles, if two components are isomorphisms, the third is an isomorphism.</p></li>
+        <li><p>A distinguished triangle <m>X\to Y\to Z\to X[1]</m> is split if its last map is zero. In this case it is isomorphic to <m>X\to X\oplus Z\to Z\to X[1]</m> with inclusion, projection, and zero as maps.</p></li>
+      </ol></p></statement>
+      <proof><p>Compare the identity triangle of <m>X</m> with the given triangle using the third axiom; the middle square gives <m>vu=0</m>, and rotation gives the other zero composites. For exactness of <m>\Hom(W,-)</m>, a map <m>W\to Y</m> killed by <m>Y\to Z</m> extends, by the third axiom applied to a split triangle and a rotation, to a factorization through <m>X</m>. The dual argument proves the other assertion. Applying these long exact sequences and the five lemma proves the isomorphism assertion. If the connecting map is zero, exactness of <m>\Hom(Z,-)</m> supplies a section <m>Z\to Y</m>. Together with <m>X\to Y</m> it gives a morphism from the split triangle which is the identity on <m>X</m> and <m>Z</m>; the third assertion proves it is an isomorphism.</p></proof>
+    </proposition>
+    <p>A cone of a fixed map is consequently unique up to an isomorphism compatible with the triangle, but this isomorphism need not be unique. The third axiom does not specify a functorial choice of the third component. Concrete cones of chain maps and cones in an abstract homotopy category must be distinguished.</p>
+    <proposition xml:id="ha-c08-prop-detection">
+      <statement><p>For a distinguished triangle <m>X\xrightarrow{u}Y\xrightarrow{v}Z\xrightarrow{w}X[1]</m>, the following criteria hold.<ol>
+        <li><p>The map <m>u</m> is an isomorphism if and only if <m>Z=0</m>.</p></li>
+        <li><p>The map <m>u</m> is a split monomorphism if and only if <m>w=0</m>, and this is equivalent to <m>v</m> being a split epimorphism.</p></li>
+        <li><p>A map is invertible if it induces isomorphisms on <m>\Hom(W,-)</m> for all <m>W</m>. A distinguished triangle with zero connecting map is split as a triangle, not just as a relation between its three objects.</p></li>
+      </ol></p></statement>
+      <proof><p>The first criterion follows by applying the exact Hom sequences in all degrees: if <m>u</m> is invertible, the identity of <m>Z</m> is zero; the converse is Yoneda. A retraction of <m>u</m> forces <m>w=0</m> by applying <m>\Hom(-,X)</m>, and a section of <m>v</m> forces the same equation by composing with <m>w</m>. The split-triangle assertion already proved supplies both splittings. The last criterion is Yoneda applied to the natural transformation represented by the map.</p></proof>
+    </proposition>
+    <p>The exact Hom sequences are weak kernel and weak cokernel statements: a map killed by the next arrow factors through the preceding arrow, without uniqueness of that factorization. They do not make a triangulated category abelian. For example, a monomorphism in a triangulated category splits, since injectivity of <m>\Hom(W,u)</m> makes the preceding connecting map zero and hence splits <m>u</m>. Non-split short exact sequences belong to an abelian heart or to a category of complexes; they are not ordinary kernel–cokernel sequences inside the ambient triangulated category.</p>
+  </section>
+  <section xml:id="ha-c08-homotopy">
+    <title>The homotopy category as an example</title>
+    <theorem xml:id="ha-c08-thm-homotopy">
+      <statement><p>For an additive category <m>\mathcal A</m>, the category <m>\K(\mathcal A)</m>, with the translation of <xref ref="ha-c00"/>, is triangulated. Its distinguished triangles are those isomorphic to
+        <md number="no">X\xrightarrow{f}Y\longrightarrow\Cone(f)\longrightarrow X[1].</md>
+        An additive functor <m>\mathcal A\to\mathcal B</m>, applied termwise, induces an exact functor on homotopy categories.</p></statement>
+      <proof><p>The inclusion and projection in a cone give the displayed triangle. Rotating it produces an isomorphic cone triangle in the homotopy category; the contractible summands account for the sign. A square commuting up to a specified chain homotopy extends to a map of cones by placing that homotopy in the off-diagonal entry. For composable chain maps, the cone maps induced by <m>(g,\id)</m> and <m>(\id,f[1])</m> give the octahedron after removing a contractible summand. The explicit construction and verification of the four axioms are given in <xref ref="bib-ha-li2" detail="Sections 3.3 and 4.1"/> and <xref ref="bib-ha-ks" detail="Chapters 10–11"/>. Termwise application of an additive functor preserves these formulas because it preserves finite biproducts.</p></proof>
+    </theorem>
+    <p>If <m>\mathcal A</m> is abelian, cohomology gives a long exact sequence on these triangles. A termwise split short exact sequence of complexes is a distinguished triangle in <m>\K(\mathcal A)</m>. A general short exact sequence need not give such a triangle in <m>\K(\mathcal A)</m>; it will do so after passing to <m>\D(\mathcal A)</m>.</p>
+  </section>
+  <section xml:id="ha-c08-cone-maps">
+    <title>Cone maps and suspension signs</title>
+    <p>A morphism in <m>\K(\mathcal A)</m> is a homotopy class, so a commutative square there need not be a strictly commutative square of its chosen chain maps. The homotopy correcting that square appears in the cone map.</p>
+    <proposition xml:id="ha-c08-prop-cone-map">
+      <statement><p>Let <m>f:X\to Y</m>, <m>f':X'\to Y'</m>, <m>a:X\to X'</m>, and <m>b:Y\to Y'</m> be chain maps. If a degree-minus-one map <m>h:X\to Y'</m> satisfies <m>bf-f'a=d_{Y'}h+hd_X</m>, then
+        <md number="no">c:\Cone(f)\longrightarrow\Cone(f'),\qquad c(y,x)=(by+hx,ax)</md>
+        is a chain map giving a morphism of cone triangles in the homotopy category. Also, the map
+        <md number="no">\Cone(f[1])\longrightarrow\Cone(f)[1],\qquad(y,x)\longmapsto(y,-x)</md>
+        is an isomorphism of complexes. Thus the shifted distinguished triangle has maps <m>f[1],i[1],-p[1]</m>, where <m>i,p</m> are the cone inclusion and projection.</p></statement>
+      <proof><p>For the first assertion, the first component of <m>d c-c d</m> on <m>(y,x)</m> is <m>(d_{Y'}h+hd_X+f'a-bf)x</m>, which is zero. The second component vanishes because <m>a</m> is a chain map. Inclusion and projection commute with <m>c</m> by its formula. In the second assertion the differentials on the first components are <m>-d_Yy+fx</m> and <m>-d_Yy-fx</m>, respectively. Negating the second coordinate changes one to the other. It also negates the projection to <m>X[2]</m>, which gives the stated connecting map.</p></proof>
+    </proposition>
+    <example xml:id="ha-c08-example-cone-choice">
+      <p>Take <m>f:k[-1]\to k</m> to be zero. Its cone is <m>k\oplus k</m> concentrated in degree zero. For every scalar <m>t\in k</m>, the matrix <m>\begin{pmatrix}1&amp;t\\0&amp;1\end{pmatrix}</m> is an automorphism of that cone fixing both its inclusion from <m>k</m> and its projection to <m>k[-1][1]=k</m>. These are different automorphisms even in <m>\D(k)</m>. Thus an isomorphism between cones compatible with the two end objects need not be unique.</p>
+    </example>
+    <p>A specified complex of chain maps has more data than its image in the homotopy category. Its explicit cone construction is functorial on strictly commutative chain-map squares. Replacing a square by its homotopy class discards the chosen <m>h</m>, so that functoriality does not descend merely by omitting the extra entry.<fn>Enhanced theories retain compatible homotopies rather than selecting a cone map from a commutative square of homotopy classes. Their construction is separate from the triangulated axioms used here.</fn></p>
+    <p>A natural transformation between exact functors must respect the chosen isomorphisms with suspension when it is to induce a morphism of distinguished triangles. In particular, the translation functor <m>[1]</m> uses the negative suspension comparison in this cone convention. A statement about exact functors therefore includes their suspension comparison, not only their underlying additive functors.</p>
+  </section>
+  <section xml:id="ha-c08-octahedron">
+    <title>The cone of a composite</title>
+    <p>The octahedral axiom compares the errors measured by a map and a second map with the error of their composite. Its concrete form is a triangle of three cones. This is also the reason that maps whose cones lie in a triangulated subcategory are closed under composition.</p>
+    <proposition xml:id="ha-c08-prop-concrete-octahedron">
+      <statement><p>For chain maps <m>X\xrightarrow{f}Y\xrightarrow{g}Z</m>, define
+        <md number="no"><mrow>a:\Cone(f)\to\Cone(gf),\quad a(y,x)=(gy,x),</mrow><mrow>b:\Cone(gf)\to\Cone(g),\quad b(z,x)=(z,fx).</mrow></md>
+        There is a distinguished triangle
+        <md number="no">\Cone(f)\xrightarrow{a}\Cone(gf)\xrightarrow{b}\Cone(g)\xrightarrow{i_f[1]p_g}\Cone(f)[1]</md>
+        in <m>\K(\mathcal A)</m>.</p></statement>
+      <proof><p>The two formulas are chain maps. Their composite is null-homotopic: the homotopy <m>(y,x)\mapsto(0,y)</m> into <m>\Cone(g)[-1]</m> satisfies <m>dh+hd=ba</m>. Write a degree-<m>n</m> element of <m>\Cone(a)</m> as <m>(z,x,y',x')</m>, with components in <m>Z^n,X^{n+1},Y^{n+1},X^{n+2}</m>. The map
+        <md number="no">\Cone(a)\longrightarrow\Cone(g),\qquad(z,x,y',x')\longmapsto(z,y'+fx)</md>
+        is a split chain epimorphism, with chain section <m>(z,y')\mapsto(z,0,y',0)</m>. Its kernel is the complex on <m>(x,x')</m> with differential <m>(x,x')\mapsto(-d_Xx+x',d_Xx')</m>, hence is the contractible complex <m>\Cone(\id_{X[1]})</m>. The epimorphism is a homotopy equivalence. Its composite with the inclusion from <m>\Cone(gf)</m> is <m>b</m>; its chain section followed by the cone projection is <m>i_f[1]p_g</m>. Transporting the cone triangle of <m>a</m> along this equivalence gives the asserted triangle.</p></proof>
+    </proposition>
+    <p>This computation proves more than a relation between isomorphism classes of cones: it provides the maps compatible with the original triangles. It explains the composition part of Verdier localization without requiring a separate theory of homotopy limits.</p>
+    <definition xml:id="ha-c08-def-cartesian">
+      <title>Homotopy Cartesian squares</title><idx>Homotopy Cartesian square</idx>
+      <statement><p>A commutative square with maps <m>u:A\to B</m>, <m>v:A\to C</m>, <m>s:B\to D</m>, and <m>t:C\to D</m> is homotopy Cartesian if it can be completed to a distinguished triangle
+        <md number="no">A\xrightarrow{(u,v)}B\oplus C\xrightarrow{(s,-t)}D\longrightarrow A[1].</md>
+        The assertion includes the existence of a compatible last arrow.</p></statement>
+    </definition>
+    <p>For specified chain maps <m>s,t</m>, the shifted cone of <m>(s,-t)</m>, with the projection sign prescribed by rotation, supplies such a square in the homotopy category. The ordinary pullback of the underlying complexes need not give it. For example, the square with <m>B=C=0</m>, <m>D=k</m>, and <m>A=k[-1]</m> is homotopy Cartesian, whereas the ordinary pullback of <m>0\to k\leftarrow0</m> is zero. This language records the triangle and does not assert a categorical pullback universal property for all Hom sets.</p>
+  </section>
+  <section xml:id="ha-c08-quotients">
+    <title>Thick subcategories and quotients</title>
+    <definition xml:id="ha-c08-def-thick">
+      <title>Triangulated and thick subcategories</title><idx>Thick subcategory</idx><idx>Verdier quotient</idx>
+      <statement><p>A strictly full subcategory <m>\mathcal N\subset\mathcal T</m> is triangulated if it contains zero, is closed under both translations, and contains the third object of any distinguished triangle whose first two objects lie in <m>\mathcal N</m>. It is thick if it is also closed under direct summands that exist in <m>\mathcal T</m>. For a triangulated <m>\mathcal N</m>, let <m>S_{\mathcal N}</m> consist of the maps whose cone lies in <m>\mathcal N</m>. The Verdier quotient is the localization <m>\mathcal T/\mathcal N=S_{\mathcal N}^{-1}\mathcal T</m>.</p></statement>
+    </definition>
+    <p>The quotient is taken at a size scale where the localization exists. If <m>\mathcal T</m> is small this causes no hom-set difficulty. For a large category, the following structural assertions do not assert local smallness at the original scale.</p>
+    <theorem xml:id="ha-c08-thm-verdier">
+      <statement><p>The class <m>S_{\mathcal N}</m> admits a calculus of fractions. The quotient has a triangulated structure for which the quotient functor <m>q</m> is exact. Every exact functor annihilating <m>\mathcal N</m> factors through <m>q</m>, with the localization universal property on functors and natural transformations. If <m>\mathcal N</m> is thick, <m>qX=0</m> exactly when <m>X\in\mathcal N</m>, and <m>qf</m> is invertible exactly when <m>\Cone(f)\in\mathcal N</m>.</p></statement>
+      <proof><p>The octahedron makes <m>S_{\mathcal N}</m> closed under composition: the cone of a composite is an extension of the cones of its factors. Completing a map to a triangle and applying the third axiom supplies the common denominators and cancellation required by the fraction construction. Triangles isomorphic to images of distinguished triangles then give the quotient structure. The full verification is the Verdier localization theorem; see <xref ref="bib-ha-stacks" detail="Tag 05RA"/> or <xref ref="bib-ha-neeman" detail="Chapter 2"/>. An exact functor annihilating <m>\mathcal N</m> inverts its denominators by the long exact Hom sequence, so the ordinary localization property gives the factorization. The final assertions use thickness; without thickness the kernel is the thick closure of <m>\mathcal N</m>.</p></proof>
+    </theorem>
+    <p>A morphism of the quotient may be represented by a roof <m>X\xleftarrow{s}X'\xrightarrow{a}Y</m> with <m>s\in S_{\mathcal N}</m>, representing <m>q(a)q(s)^{-1}</m>. Two roofs represent the same map if they have a common refinement on which their numerators agree and whose composite denominators lie in <m>S_{\mathcal N}</m>. The equalities are in <m>\mathcal T</m>; for a homotopy category they are equalities of homotopy classes.</p>
+    <p>The quotient universal property does not produce a right or left adjoint of <m>q</m>. Such adjoints are additional localization results, developed in <xref ref="ha-c15"/>. This separates the construction of the quotient from the existence of preferred local representatives.</p>
+    <proposition xml:id="ha-c08-prop-roofs">
+      <statement><p>A roof <m>X\xleftarrow{s}X'\xrightarrow{a}Y</m> is zero in the quotient if and only if there is a further denominator <m>t:W\to X'</m> with <m>at=0</m>. To compose it with <m>Y\xleftarrow{r}Y'\xrightarrow{b}Z</m>, choose <m>t:W\to X'</m> in the denominator class and <m>c:W\to Y'</m> with <m>at=rc</m>. The composite is represented by <m>X\xleftarrow{st}W\xrightarrow{bc}Z</m>.</p></statement>
+      <proof><p>The zero criterion is cancellation in the fraction calculus: equality with the zero numerator is witnessed after a common refinement. The displayed equation <m>at=rc</m> replaces the formal factor <m>r^{-1}a</m> by <m>ct^{-1}</m>. Substitution yields the composite roof. A second choice admits a common refinement, so it represents the same morphism.</p></proof>
+    </proposition>
+    <p>The operative equation for composition is <m>at=rc</m>, with <m>t</m> a denominator. It is an equation in the original category <m>\mathcal T</m>; if <m>\mathcal T=\K(\mathcal A)</m>, the representatives need only agree up to homotopy. No inverse chain map to a quasi-isomorphism is being asserted.</p>
+  </section>
+  <section xml:id="ha-c08-orthogonals">
+    <title>Orthogonals and exact adjoints</title>
+    <definition xml:id="ha-c08-def-orthogonals">
+      <title>Orthogonal subcategories</title><idx>Right orthogonal</idx><idx>Left orthogonal</idx>
+      <statement><p>For a triangulated subcategory <m>\mathcal N</m>, its right orthogonal <m>\mathcal N^\perp</m> consists of objects <m>I</m> such that <m>\Hom(N,I[n])=0</m> for every <m>N\in\mathcal N</m> and <m>n\in\Z</m>. Its left orthogonal <m>{}^{\perp}\mathcal N</m> consists of <m>P</m> such that <m>\Hom(P,N[n])=0</m> for those objects and shifts. Both are thick in <m>\mathcal T</m>.</p></statement>
+    </definition>
+    <proposition xml:id="ha-c08-prop-orthogonal-calculation">
+      <statement><p>If <m>I\in\mathcal N^\perp</m>, localization induces an isomorphism <m>\Hom_{\mathcal T}(X,I)\simeq\Hom_{\mathcal T/\mathcal N}(qX,qI)</m> for every <m>X</m>. If <m>P\in{}^\perp\mathcal N</m>, it induces <m>\Hom_{\mathcal T}(P,Y)\simeq\Hom_{\mathcal T/\mathcal N}(qP,qY)</m> for every <m>Y</m>. In particular the restrictions to either orthogonal are fully faithful.</p></statement>
+      <proof><p>For a denominator <m>s:X'\to X</m>, its cone triangle and orthogonality show that <m>\Hom(X,I)\to\Hom(X',I)</m> is bijective. Thus the numerator of any roof into <m>I</m> descends uniquely to <m>X</m>, and common refinements preserve that descended map. The left-orthogonal assertion uses the right-hand fraction calculus. Closure under triangles, shifts, and retracts follows from the Hom exact sequences.</p></proof>
+    </proposition>
+    <p>Full faithfulness does not imply that every quotient object has an orthogonal representative. The existence of those representatives is exactly the additional replacement question. In <xref ref="ha-c10"/>, the relevant orthogonals will be the K-injective and K-projective complexes. In <xref ref="ha-c15"/>, they will be the local objects for a reflective localization.</p>
+    <proposition xml:id="ha-c08-prop-adjoints">
+      <statement><p>A right or left adjoint of an exact functor is exact for its adjoint suspension comparison. Units and counits respect these comparisons.</p></statement>
+      <proof><p>For a right adjoint <m>G</m> of <m>F</m>, adjunction and the exact suspension comparison of <m>F</m> give <m>G(Y[1])\simeq G(Y)[1]</m> by Yoneda. To test a triangle after applying <m>G</m>, first choose a cone triangle for its first map in the source of <m>F</m>. Apply <m>F</m>, and use the counit and the triangle-morphism axiom to map this cone triangle to the original triangle. Its adjoint supplies a comparison from the chosen cone to the proposed third object. The Hom exact sequences and the five lemma make that comparison invertible. This proves exactness, with the indicated suspension sign; see <xref ref="bib-ha-stacks" detail="Tag 0A8D"/>. The argument for a left adjoint is dual.</p></proof>
+    </proposition>
+  </section>
+</chapter>

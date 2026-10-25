@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-darkmode="disabled">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette: blue-red                     *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>t-structures and hearts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Notes on homological algebra">
+<meta property="og:title" content="Notes on homological algebra">
+<meta property="book:title" content="Notes on homological algebra">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.53"></script><script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="../../vendor/lunr/lunr.min.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+<link rel="stylesheet" href="../../layout.css?v=fee08a8c1c">
+<script src="../../layout.js?v=e9391a21a7" defer></script><link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"C": "\\mathbb{C}", "Pone": "\\mathbb{P}^1_{\\mathbb{C}}", "cO": "\\mathcal{O}", "ord": "\\operatorname{ord}", "lt": "<", "gt": ">", "amp": "&", "Hom": "\\operatorname{Hom}", "End": "\\operatorname{End}", "Ext": "\\operatorname{Ext}", "Tor": "\\operatorname{Tor}", "colim": "\\operatorname{colim}", "im": "\\operatorname{im}", "coker": "\\operatorname{coker}", "Cone": "\\operatorname{Cone}", "Tot": "\\operatorname{Tot}", "Fun": "\\operatorname{Fun}", "Loc": "\\operatorname{Loc}", "thick": "\\operatorname{thick}", "Perf": "\\operatorname{Perf}", "id": "\\mathrm{id}", "op": "\\mathrm{op}", "Ab": "\\mathsf{Ab}", "Mod": "\\mathsf{Mod}", "Ch": "\\mathsf{C}", "K": "\\mathsf{K}", "D": "\\mathsf{D}", "RHom": "\\mathbf{R}\\!\\operatorname{Hom}", "Ltensor": "\\mathbin{\\otimes^{\\mathbf L}}", "Z": "\\mathbb Z", "N": "\\mathbb N", "Q": "\\mathbb Q"}}, "options": {"ignoreHtmlClass": "ignore-math", "processHtmlClass": "process-math", "enableMenu": false}};</script><script src="../../vendor/mathjax/tex-chtml.js" defer></script>
+</head>
+<body class="pretext book ignore-math note-page" data-page-format="note">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner"><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="homological-algebra-notes.html"><span class="title">Notes on homological algebra</span></a></div>
+<p class="byline"><a href="../../home.html">Jie Fu</a>'s <a href="../../notes.html">Notes</a></p>
+<p class="note-metadata"><span class="note-review-status">Under review and improvement</span> · <span class="note-last-updated">Last updated: <time datetime="2026-10-25">2026-10-25</time></span></p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Contents</span></button><a class="index-button button" href="ha-index.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Index</span></a><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true"></span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="treebuttons"><a class="previous-button button" href="ha-c12.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="up-button button" href="homological-algebra-notes.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Up</span></a><a class="next-button button" href="ha-c14.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a></span>
+</div></nav><div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth4 focused" data-preexpanded-levels="1" data-max-levels="4"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c00.html" class="internal"><span class="codenumber">0</span> <span class="title">Conventions and sources</span></a></div>
+<ul id="ptx-toc-group-ha-c00" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c00.html#ha-c00-conventions" class="internal"><span class="codenumber">0.1</span> <span class="title">Size, rings, and variance</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c00.html#ha-c00-signs" class="internal"><span class="codenumber">0.2</span> <span class="title">Degrees and signs</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c00.html#ha-c00-homology-language" class="internal"><span class="codenumber">0.3</span> <span class="title">Homology, cohomology, and dual terminology</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c00.html#ha-c00-dependencies" class="internal"><span class="codenumber">0.4</span> <span class="title">Reading and reference conventions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c01.html" class="internal"><span class="codenumber">1</span> <span class="title">Additive and abelian categories</span></a></div>
+<ul id="ptx-toc-group-ha-c01" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c01.html#ha-c01-additive" class="internal"><span class="codenumber">1.1</span> <span class="title">Addition and biproducts</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c01.html#ha-c01-abelian" class="internal"><span class="codenumber">1.2</span> <span class="title">Kernels, images, and exactness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c01.html#ha-c01-finiteness" class="internal"><span class="codenumber">1.3</span> <span class="title">Finiteness of objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c01.html#ha-c01-functors" class="internal"><span class="codenumber">1.4</span> <span class="title">Exact functors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c01.html#ha-c01-embeddings" class="internal"><span class="codenumber">1.5</span> <span class="title">Embedding and finite diagrams</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c01.html#ha-c01-diagram-lemmas" class="internal"><span class="codenumber">1.6</span> <span class="title">Diagram lemmas</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c02.html" class="internal"><span class="codenumber">2</span> <span class="title">Grothendieck categories and abelian localization</span></a></div>
+<ul id="ptx-toc-group-ha-c02" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c02.html#ha-c02-ab-conditions" class="internal"><span class="codenumber">2.1</span> <span class="title">Infinite exactness and generators</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c02.html#ha-c02-presentability" class="internal"><span class="codenumber">2.2</span> <span class="title">Finite generation and finite presentation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c02.html#ha-c02-examples" class="internal"><span class="codenumber">2.3</span> <span class="title">Examples and failures of duality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c02.html#ha-c02-localization" class="internal"><span class="codenumber">2.4</span> <span class="title">Serre quotients and exact localizations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c02.html#ha-c02-gabriel-popescu" class="internal"><span class="codenumber">2.5</span> <span class="title">Realization as a quotient of modules</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c03.html" class="internal"><span class="codenumber">3</span> <span class="title">Closed monoidal structures</span></a></div>
+<ul id="ptx-toc-group-ha-c03" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c03.html#ha-c03-monoidal" class="internal"><span class="codenumber">3.1</span> <span class="title">Monoidal data and linearity</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c03.html#ha-c03-closed" class="internal"><span class="codenumber">3.2</span> <span class="title">Internal Hom and adjunction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c03.html#ha-c03-exactness-duals" class="internal"><span class="codenumber">3.3</span> <span class="title">Exactness and dualizable objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c03.html#ha-c03-terminology" class="internal"><span class="codenumber">3.4</span> <span class="title">Tensor terminology and functors</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c04.html" class="internal"><span class="codenumber">4</span> <span class="title">Complexes and homotopy</span></a></div>
+<ul id="ptx-toc-group-ha-c04" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c04.html#ha-c04-complexes" class="internal"><span class="codenumber">4.1</span> <span class="title">Complexes and cohomology</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c04.html#ha-c04-homotopy" class="internal"><span class="codenumber">4.2</span> <span class="title">Hom complexes and homotopy</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c04.html#ha-c04-cones" class="internal"><span class="codenumber">4.3</span> <span class="title">Mapping cones</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c04.html#ha-c04-truncations" class="internal"><span class="codenumber">4.4</span> <span class="title">Truncations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c04.html#ha-c04-totalization" class="internal"><span class="codenumber">4.5</span> <span class="title">Double complexes and totalization</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c04.html#ha-c04-salamander" class="internal"><span class="codenumber">4.6</span> <span class="title">The salamander lemma</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c05.html" class="internal"><span class="codenumber">5</span> <span class="title">Resolutions and classical derived functors</span></a></div>
+<ul id="ptx-toc-group-ha-c05" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c05.html#ha-c05-resolutions" class="internal"><span class="codenumber">5.1</span> <span class="title">Resolutions and comparison</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c05.html#ha-c05-classical" class="internal"><span class="codenumber">5.2</span> <span class="title">Classical derived functors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c05.html#ha-c05-universality" class="internal"><span class="codenumber">5.3</span> <span class="title">Universality and effacement</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c05.html#ha-c05-acyclic" class="internal"><span class="codenumber">5.4</span> <span class="title">Acyclic resolutions and inverse limits</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c06.html" class="internal"><span class="codenumber">6</span> <span class="title">Ext, Tor, and homological dimension</span></a></div>
+<ul id="ptx-toc-group-ha-c06" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c06.html#ha-c06-ext" class="internal"><span class="codenumber">6.1</span> <span class="title">The two computations of Ext</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c06.html#ha-c06-yoneda" class="internal"><span class="codenumber">6.2</span> <span class="title">Extensions and their products</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c06.html#ha-c06-balanced-bifunctors" class="internal"><span class="codenumber">6.3</span> <span class="title">Balanced bifunctors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c06.html#ha-c06-tor" class="internal"><span class="codenumber">6.4</span> <span class="title">Tor and flat resolutions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c06.html#ha-c06-dimensions" class="internal"><span class="codenumber">6.5</span> <span class="title">Homological dimensions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c06.html#ha-c06-change-rings" class="internal"><span class="codenumber">6.6</span> <span class="title">Changing the ring</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c07.html" class="internal"><span class="codenumber">7</span> <span class="title">Filtered complexes and spectral sequences</span></a></div>
+<ul id="ptx-toc-group-ha-c07" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c07.html#ha-c07-filtrations" class="internal"><span class="codenumber">7.1</span> <span class="title">Filtrations and the abutment</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c07.html#ha-c07-construction" class="internal"><span class="codenumber">7.2</span> <span class="title">Construction from a filtered complex</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c07.html#ha-c07-exact-couples" class="internal"><span class="codenumber">7.3</span> <span class="title">Exact couples</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c07.html#ha-c07-convergence-variants" class="internal"><span class="codenumber">7.4</span> <span class="title">Convergence beyond finite filtrations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c07.html#ha-c07-double" class="internal"><span class="codenumber">7.5</span> <span class="title">The spectral sequences of a double complex</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c07.html#ha-c07-edge-products" class="internal"><span class="codenumber">7.6</span> <span class="title">Edges, extensions, and products</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c08.html" class="internal"><span class="codenumber">8</span> <span class="title">Triangulated categories and Verdier quotients</span></a></div>
+<ul id="ptx-toc-group-ha-c08" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c08.html#ha-c08-axioms" class="internal"><span class="codenumber">8.1</span> <span class="title">Triangles and exact functors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c08.html#ha-c08-homotopy" class="internal"><span class="codenumber">8.2</span> <span class="title">The homotopy category as an example</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c08.html#ha-c08-cone-maps" class="internal"><span class="codenumber">8.3</span> <span class="title">Cone maps and suspension signs</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c08.html#ha-c08-octahedron" class="internal"><span class="codenumber">8.4</span> <span class="title">The cone of a composite</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c08.html#ha-c08-quotients" class="internal"><span class="codenumber">8.5</span> <span class="title">Thick subcategories and quotients</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c08.html#ha-c08-orthogonals" class="internal"><span class="codenumber">8.6</span> <span class="title">Orthogonals and exact adjoints</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c09.html" class="internal"><span class="codenumber">9</span> <span class="title">Derived categories</span></a></div>
+<ul id="ptx-toc-group-ha-c09" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c09.html#ha-c09-construction" class="internal"><span class="codenumber">9.1</span> <span class="title">Inverting quasi-isomorphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c09.html#ha-c09-bounded" class="internal"><span class="codenumber">9.2</span> <span class="title">Bounded models and short exact sequences</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c09.html#ha-c09-examples" class="internal"><span class="codenumber">9.3</span> <span class="title">What derived morphisms retain</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c09.html#ha-c09-morphism-models" class="internal"><span class="codenumber">9.4</span> <span class="title">Morphism calculations and resolution models</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c09.html#ha-c09-cohomological-filtration" class="internal"><span class="codenumber">9.5</span> <span class="title">Cohomology layers and extension data</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c09.html#ha-c09-yoneda-and-subcategories" class="internal"><span class="codenumber">9.6</span> <span class="title">Yoneda extensions and full subcategories</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c10.html" class="internal"><span class="codenumber">10</span> <span class="title">Unbounded resolutions</span></a></div>
+<ul id="ptx-toc-group-ha-c10" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c10.html#ha-c10-homological" class="internal"><span class="codenumber">10.1</span> <span class="title">Homotopically injective and projective complexes</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c10.html#ha-c10-existence" class="internal"><span class="codenumber">10.2</span> <span class="title">Existence and its hypotheses</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c10.html#ha-c10-towers" class="internal"><span class="codenumber">10.3</span> <span class="title">Compatible towers of injective models</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c10.html#ha-c10-flat" class="internal"><span class="codenumber">10.4</span> <span class="title">K-flat complexes and a failure of termwise arguments</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c10.html#ha-c10-semi-free" class="internal"><span class="codenumber">10.5</span> <span class="title">A filtered construction of a replacement</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c11.html" class="internal"><span class="codenumber">11</span> <span class="title">Total derived functors and adjunctions</span></a></div>
+<ul id="ptx-toc-group-ha-c11" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c11.html#ha-c11-universal" class="internal"><span class="codenumber">11.1</span> <span class="title">The universal comparison</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c11.html#ha-c11-adapted-classes" class="internal"><span class="codenumber">11.2</span> <span class="title">Adapted classes and bounded computation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c11.html#ha-c11-composition" class="internal"><span class="codenumber">11.3</span> <span class="title">Composition and acyclicity</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c11.html#ha-c11-adjunction" class="internal"><span class="codenumber">11.4</span> <span class="title">Deriving an adjunction</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c12.html" class="internal"><span class="codenumber">12</span> <span class="title">Derived tensor and Hom</span></a></div>
+<ul id="ptx-toc-group-ha-c12" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c12.html#ha-c12-abstract-hom" class="internal"><span class="codenumber">12.1</span> <span class="title">Derived morphism complexes in an abelian category</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c12.html#ha-c12-abstract-tensor" class="internal"><span class="codenumber">12.2</span> <span class="title">Deriving a monoidal structure</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c12.html#ha-c12-constructions" class="internal"><span class="codenumber">12.3</span> <span class="title">Module models and replacement formulas</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c12.html#ha-c12-closed" class="internal"><span class="codenumber">12.4</span> <span class="title">The closed structure over a commutative ring</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c12.html#ha-c12-base" class="internal"><span class="codenumber">12.5</span> <span class="title">Change of rings and tensor comparisons</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c12.html#ha-c12-perfect" class="internal"><span class="codenumber">12.6</span> <span class="title">Finite resolutions and evaluation</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="ha-c13.html" class="internal"><span class="codenumber">13</span> <span class="title">t-structures and hearts</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-ha-c13">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c13.html#ha-c13-definition" class="internal"><span class="codenumber">13.1</span> <span class="title">Truncation as a universal construction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c13.html#ha-c13-heart" class="internal"><span class="codenumber">13.2</span> <span class="title">The abelian heart and its extensions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c13.html#ha-c13-examples" class="internal"><span class="codenumber">13.3</span> <span class="title">Standard, shifted, and degenerate examples</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c13.html#ha-c13-completeness" class="internal"><span class="codenumber">13.4</span> <span class="title">Detection and reconstruction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c13.html#ha-c13-exact-functors" class="internal"><span class="codenumber">13.5</span> <span class="title">Functors and t-exactness</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c14.html" class="internal"><span class="codenumber">14</span> <span class="title">Compact generation and representability</span></a></div>
+<ul id="ptx-toc-group-ha-c14" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c14.html#ha-c14-compact" class="internal"><span class="codenumber">14.1</span> <span class="title">Compact objects and generators</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c14.html#ha-c14-module-example" class="internal"><span class="codenumber">14.2</span> <span class="title">Derived categories of modules</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c14.html#ha-c14-brown" class="internal"><span class="codenumber">14.3</span> <span class="title">Brown representability and right adjoints</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c14.html#ha-c14-adjoints" class="internal"><span class="codenumber">14.4</span> <span class="title">Preservation and tests on generators</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c15.html" class="internal"><span class="codenumber">15</span> <span class="title">Localization and recollement</span></a></div>
+<ul id="ptx-toc-group-ha-c15" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c15.html#ha-c15-reflective" class="internal"><span class="codenumber">15.1</span> <span class="title">Local objects and localization triangles</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c15.html#ha-c15-compact-localization" class="internal"><span class="codenumber">15.2</span> <span class="title">Localization generated by compact objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c15.html#ha-c15-recollement" class="internal"><span class="codenumber">15.3</span> <span class="title">Recollement data</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c15.html#ha-c15-gluing" class="internal"><span class="codenumber">15.4</span> <span class="title">Gluing t-structures</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c16.html" class="internal"><span class="codenumber">16</span> <span class="title">Monoidal triangulated categories and duality</span></a></div>
+<ul id="ptx-toc-group-ha-c16" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c16.html#ha-c16-structures" class="internal"><span class="codenumber">16.1</span> <span class="title">Exact closed monoidal structures</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c16.html#ha-c16-dualizable" class="internal"><span class="codenumber">16.2</span> <span class="title">Duals and the tensor–Hom comparison</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c16.html#ha-c16-reflexive" class="internal"><span class="codenumber">16.3</span> <span class="title">Reflexivity and dualizing objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c16.html#ha-c16-compactness" class="internal"><span class="codenumber">16.4</span> <span class="title">Compactness and perfect complexes</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c16.html#ha-c16-tensor-localization" class="internal"><span class="codenumber">16.5</span> <span class="title">Tensor-compatible localization</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c16.html#ha-c16-traces" class="internal"><span class="codenumber">16.6</span> <span class="title">Trace and suspension</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c17.html" class="internal"><span class="codenumber">17</span> <span class="title">Monoidal adjunctions and formal duality</span></a></div>
+<ul id="ptx-toc-group-ha-c17" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c17.html#ha-c17-mates" class="internal"><span class="codenumber">17.1</span> <span class="title">Adjoint transposition of natural transformations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c17.html#ha-c17-one-pair" class="internal"><span class="codenumber">17.2</span> <span class="title">One monoidal adjunction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c17.html#ha-c17-second-pair" class="internal"><span class="codenumber">17.3</span> <span class="title">The second adjunction and the projection isomorphism</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c17.html#ha-c17-generation" class="internal"><span class="codenumber">17.4</span> <span class="title">Representability and extension from generators</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c17.html#ha-c17-dualizing-subcategories" class="internal"><span class="codenumber">17.5</span> <span class="title">Descriptions using dualizing objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c17.html#ha-c17-contexts" class="internal"><span class="codenumber">17.6</span> <span class="title">Grothendieck and Wirthmüller comparisons</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c17.html#ha-c17-traces" class="internal"><span class="codenumber">17.7</span> <span class="title">Counits and their compatibility with composition</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c18.html" class="internal"><span class="codenumber">18</span> <span class="title">Indexed categories and the six operations</span></a></div>
+<ul id="ptx-toc-group-ha-c18" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-indexed" class="internal"><span class="codenumber">18.1</span> <span class="title">The base and the ordinary adjunction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-six-data" class="internal"><span class="codenumber">18.2</span> <span class="title">Exceptional operations and coherence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-pasting" class="internal"><span class="codenumber">18.3</span> <span class="title">Exchange maps and pasting</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-formal-consequences" class="internal"><span class="codenumber">18.4</span> <span class="title">Mates, proper comparisons, and relative duality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-external-products" class="internal"><span class="codenumber">18.5</span> <span class="title">External products and an abstract Künneth isomorphism</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-localization" class="internal"><span class="codenumber">18.6</span> <span class="title">Localization at an abstract decomposition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-compactification" class="internal"><span class="codenumber">18.7</span> <span class="title">Constructing exceptional direct images from factorizations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-example" class="internal"><span class="codenumber">18.8</span> <span class="title">A system indexed by sets</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="homological-algebra-notes-23.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul id="ptx-toc-group-homological-algebra-notes-23" class="structural toc-item-list">
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="ha-exact.html" class="internal"><span class="codenumber">A.</span> <span class="title">Exact and quasi-abelian categories</span></a></div>
+<ul id="ptx-toc-group-ha-exact" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-exact.html#ha-exact-structures" class="internal"><span class="codenumber">A.1</span> <span class="title">A chosen class of exact sequences</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-exact.html#ha-exact-strictness" class="internal"><span class="codenumber">A.2</span> <span class="title">Preabelian categories and strict morphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-exact.html#ha-exact-quasi-abelian" class="internal"><span class="codenumber">A.3</span> <span class="title">The canonical exact structure</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-exact.html#ha-exact-filtered-example" class="internal"><span class="codenumber">A.4</span> <span class="title">Finite filtered vector spaces</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="ha-concordance.html" class="internal"><span class="codenumber">B.</span> <span class="title">Terminology and hypothesis comparisons</span></a></div>
+<ul id="ptx-toc-group-ha-concordance" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-concordance.html#ha-concordance-language" class="internal"><span class="codenumber">B.1</span> <span class="title">Names and structures</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-concordance.html#ha-concordance-hypotheses" class="internal"><span class="codenumber">B.2</span> <span class="title">Conditions that must be checked separately</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="ha-references.html" class="internal"><span class="title">References</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="ha-index.html" class="internal"><span class="title">Index</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="chapter" id="ha-c13">
+<h1 class="heading">
+<span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">t-structures and hearts</span>
+</h1>
+<section class="introduction" id="ha-c13-2">
+<div class="para" id="ha-c13-2-1">A triangulated category does not specify which objects should be regarded as concentrated in degree zero. A t-structure makes that choice and provides functorial truncations and cohomology objects. Its heart is abelian, but recovering the whole triangulated category from that heart is a further question.</div>
+<div class="para" id="ha-c13-2-2">We use the cohomological shift convention of <a href="ha-c00.html" class="internal" title="Chapter 0: Conventions and sources">Chapter 0</a>. The main reference is <a href="ha-references.html#BBD82" class="xref" data-knowl="./knowl/xref/bib-ha-bbd.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry BBD82">[BBD82, Section 1.3]</a>; compare the treatments of truncation and derived categories in <a href="ha-references.html#KS06" class="xref" data-knowl="./knowl/xref/bib-ha-ks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry KS06">[KS06]</a> and <a href="ha-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-ha-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII]</a>.</div></section>
+<section class="section" id="ha-c13-definition">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Truncation as a universal construction</span>
+</h2>
+<article class="definition definition-like" id="ha-c13-definition-tstructure"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">t-structures and boundedness.</span>
+</h3>
+<div class="para" id="ha-c13-definition-tstructure-6-1">A t-structure on a triangulated category <span class="process-math">\(\mathcal T\)</span> is a pair of strictly full subcategories <span class="process-math">\((\mathcal T^{\leq0},\mathcal T^{\geq0})\)</span> such that:</div> 
+<div class="para logical" id="ha-c13-definition-tstructure-6-2">
+<ol class="decimal" id="ha-c13-definition-tstructure-6-2-1">
+<li id="ha-c13-definition-tstructure-6-2-1-1">
+<div class="para" id="ha-c13-definition-tstructure-6-2-1-1-1">
+<span class="process-math">\(\mathcal T^{\leq0}[1]\subseteq\mathcal T^{\leq0}\)</span> and <span class="process-math">\(\mathcal T^{\geq0}[-1]\subseteq\mathcal T^{\geq0}\text{.}\)</span>
+</div>
+</li>
+<li id="ha-c13-definition-tstructure-6-2-1-2">
+<div class="para" id="ha-c13-definition-tstructure-6-2-1-2-1">
+<span class="process-math">\(\Hom(U,V)=0\)</span> for <span class="process-math">\(U\in\mathcal T^{\leq0}\)</span> and <span class="process-math">\(V\in\mathcal T^{\geq1}\text{,}\)</span> where <span class="process-math">\(\mathcal T^{\geq1}=\mathcal T^{\geq0}[-1]\text{.}\)</span>
+</div>
+</li>
+<li id="ha-c13-definition-tstructure-6-2-1-3">
+<div class="para" id="ha-c13-definition-tstructure-6-2-1-3-1">Every <span class="process-math">\(X\)</span> occurs in a distinguished triangle <span class="process-math">\(U\to X\to V\to U[1]\)</span> with <span class="process-math">\(U\in\mathcal T^{\leq0}\)</span> and <span class="process-math">\(V\in\mathcal T^{\geq1}\text{.}\)</span>
+</div>
+</li>
+</ol>
+</div> 
+<div class="para" id="ha-c13-definition-tstructure-6-3">Set <span class="process-math">\(\mathcal T^{\leq n}=\mathcal T^{\leq0}[-n]\text{,}\)</span> <span class="process-math">\(\mathcal T^{\geq n}=\mathcal T^{\geq0}[-n]\text{,}\)</span> and <span class="process-math">\(\mathcal T^{[a,b]}=\mathcal T^{\geq a}\cap\mathcal T^{\leq b}\text{.}\)</span> The heart is <span class="process-math">\(\mathcal A=\mathcal T^{\leq0}\cap\mathcal T^{\geq0}\text{.}\)</span> The t-structure is bounded if every object belongs to some <span class="process-math">\(\mathcal T^{[a,b]}\text{.}\)</span> It is nondegenerate if both <span class="process-math">\(\bigcap_n\mathcal T^{\leq n}\)</span> and <span class="process-math">\(\bigcap_n\mathcal T^{\geq n}\)</span> contain only zero objects.</div>
+</article>
+<div class="para" id="ha-c13-definition-3">With this convention, shifting by <span class="process-math">\([1]\)</span> lowers cohomological degrees. Thus <span class="process-math">\(\mathcal T^{\leq n}[1]=\mathcal T^{\leq n-1}\text{.}\)</span> The two halves of a t-structure need not be triangulated subcategories: each is closed under just one of the two shift directions.</div>
+<article class="proposition theorem-like" id="ha-c13-proposition-truncation"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c13-proposition-truncation-1-1">The inclusion <span class="process-math">\(\mathcal T^{\leq n}\to\mathcal T\)</span> has a right adjoint <span class="process-math">\(\tau_{\leq n}\text{,}\)</span> and the inclusion <span class="process-math">\(\mathcal T^{\geq n}\to\mathcal T\)</span> has a left adjoint <span class="process-math">\(\tau_{\geq n}\text{.}\)</span> The resulting triangle</div> 
+<div class="para logical" id="ha-c13-proposition-truncation-1-2">
+<div class="displaymath process-math" id="ha-c13-proposition-truncation-1-2-1">
+\begin{equation*}
+\tau_{\leq n}X\longrightarrow X\longrightarrow\tau_{\geq n+1}X\longrightarrow(\tau_{\leq n}X)[1]
+\end{equation*}
+</div>
+</div> 
+<div class="para" id="ha-c13-proposition-truncation-1-3">is functorial in <span class="process-math">\(X\text{.}\)</span> Both halves of the t-structure are extension-closed and closed under existing retracts.</div>
+</article>
+<details id="ha-c13-proposition-truncation-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c13-proposition-truncation-2-1">Choose a triangle <span class="process-math">\(U\to X\to V\to U[1]\)</span> with the required bounds. For <span class="process-math">\(A\in\mathcal T^{\leq n}\text{,}\)</span> the two groups <span class="process-math">\(\Hom(A,V)\)</span> and <span class="process-math">\(\Hom(A,V[-1])\)</span> vanish. The exact Hom sequence therefore gives <span class="process-math">\(\Hom(A,U)\simeq\Hom(A,X)\text{.}\)</span> This represents the desired right adjoint, independently of the chosen triangle. The left adjoint follows by the dual argument. These universal properties force a unique morphism between the truncation triangles over a morphism of their middle objects; the triangulated category axiom supplies existence.</div>
+<div class="para" id="ha-c13-proposition-truncation-2-2">The orthogonality characterization <span class="process-math">\(\mathcal T^{\leq n}={}^{\perp}(\mathcal T^{\geq n+1})\text{,}\)</span> and its dual, follows by applying the same triangle to an object orthogonal to the indicated half. These characterizations prove extension-closure and closure under retracts.</div>
+</article></details>
+<div class="para" id="ha-c13-definition-5">Functorial truncation does not provide a functorial cone for arbitrary morphisms. The bounds and orthogonality make the particular truncation triangle unique. This is the additional reason it is functorial.<a id="ha-c13-definition-5-1" href="#margin-ha-c13-definition-5-1" class="margin-note-marker" aria-label="Margin note 1">1</a>
+</div>
+<article class="proposition theorem-like" id="ha-c13-proposition-truncation-calculus"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="ha-c13-proposition-truncation-calculus-1-1">
+<div class="para">There are natural isomorphisms</div>
+<div class="displaymath process-math" id="ha-c13-proposition-truncation-calculus-1-1-1">
+\begin{gather*}
+\tau_{\leq a}\tau_{\leq b}\simeq\tau_{\leq\min(a,b)},\\
+\tau_{\geq a}\tau_{\geq b}\simeq\tau_{\geq\max(a,b)},\\
+\tau_{\geq a}\tau_{\leq b}\simeq\tau_{\leq b}\tau_{\geq a}\quad(a\leq b).
+\end{gather*}
+</div>
+<div class="para">Shifting truncation gives <span class="process-math">\((\tau_{\leq n}X)[r]\simeq\tau_{\leq n-r}(X[r])\text{,}\)</span> and similarly for lower truncation. The common mixed truncation has its values in <span class="process-math">\(\mathcal T^{[a,b]}\text{.}\)</span> If <span class="process-math">\(a&gt;b\text{,}\)</span> both mixed truncations are zero.</div>
+</div>
+</article>
+<details id="ha-c13-proposition-truncation-calculus-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c13-proposition-truncation-calculus-2-1">Applying the appropriate Hom adjunction twice gives the first two formulas. For mixed truncation, truncate the triangle for one of the bounds at the other bound. Orthogonality identifies the remaining piece with the object having both bounds, and the universal maps identify the two orders. The same universal properties make the isomorphisms natural and compatible with repeated truncation. The shift formula follows by shifting the defining triangle. An object in <span class="process-math">\(\mathcal T^{\leq b}\cap\mathcal T^{\geq a}\)</span> for <span class="process-math">\(a&gt;b\)</span> has zero identity by orthogonality.</div>
+</article></details>
+<div class="para" id="ha-c13-definition-7">In particular, the subcategories determine the truncation functors, their units and counits, and their comparison isomorphisms. Writing a truncation as an explicit complex is one model for these data. Equality of the resulting objects in a selected model is stronger than the natural isomorphism specified here.<a id="ha-c13-definition-7-1" href="#margin-ha-c13-definition-7-1" class="margin-note-marker" aria-label="Margin note 2">2</a>
+</div>
+</section>
+<section class="section" id="ha-c13-heart">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The abelian heart and its extensions</span>
+</h2>
+<article class="theorem theorem-like" id="ha-c13-theorem-heart"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c13-theorem-heart-1-1">The heart <span class="process-math">\(\mathcal A\)</span> is an abelian category. There is a cohomological functor <span class="process-math">\(H_t^0:\mathcal T\to\mathcal A\text{,}\)</span> given by <span class="process-math">\(\tau_{\geq0}\tau_{\leq0}\text{.}\)</span> Set <span class="process-math">\(H_t^n(X)=H_t^0(X[n])\text{.}\)</span> A distinguished triangle gives a natural long exact sequence of these cohomology objects.</div> 
+<div class="para" id="ha-c13-theorem-heart-1-2">If <span class="process-math">\(f:A\to B\)</span> is a map in the heart and <span class="process-math">\(C\)</span> is its cone, then <span class="process-math">\(C\in\mathcal T^{[-1,0]}\text{,}\)</span> and</div> 
+<div class="para logical" id="ha-c13-theorem-heart-1-3">
+<div class="displaymath process-math" id="ha-c13-theorem-heart-1-3-1">
+\begin{equation*}
+\ker_{\mathcal A}f\simeq H_t^{-1}(C),\qquad\coker_{\mathcal A}f\simeq H_t^0(C).
+\end{equation*}
+</div>
+</div> 
+<div class="para" id="ha-c13-theorem-heart-1-4">A sequence <span class="process-math">\(0\to A\to B\to C\to0\)</span> in the heart is exact if and only if its two maps extend to a distinguished triangle <span class="process-math">\(A\to B\to C\to A[1]\text{.}\)</span>
+</div>
+</article>
+<div class="para" id="ha-c13-heart-3">The proof, including the equality of image and coimage and the cohomological property, is given in <a href="ha-references.html#BBD82" class="xref" data-knowl="./knowl/xref/bib-ha-bbd.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry BBD82">[BBD82, Section 1.3]</a>. The kernel construction can be seen directly. Truncate the cone triangle at its two possible cohomological degrees. Orthogonality makes the map <span class="process-math">\(H_t^{-1}(C)\to A\)</span> universal among maps in the heart killed by <span class="process-math">\(f\text{.}\)</span> The dual argument constructs the cokernel. The octahedral axiom compares these two constructions and proves that the resulting image and coimage agree. Thus the abelian structure is induced by triangles; it is not an abelian structure assumed in advance.</div>
+<div class="para" id="ha-c13-heart-4">More explicitly, rotate the cone triangle to <span class="process-math">\(C[-1]\to A\xrightarrow f B\to C\text{.}\)</span> For <span class="process-math">\(T\)</span> in the heart, <span class="process-math">\(\Hom(T,B[-1])=0\text{.}\)</span> The Hom sequence therefore identifies maps <span class="process-math">\(T\to A\)</span> killed by <span class="process-math">\(f\)</span> with maps <span class="process-math">\(T\to C[-1]\text{.}\)</span> Since <span class="process-math">\(C[-1]\in\mathcal T^{[0,1]}\text{,}\)</span> its degree-zero truncation is <span class="process-math">\(H_t^{-1}(C)\text{,}\)</span> and the truncation adjunction identifies this last Hom set with <span class="process-math">\(\Hom(T,H_t^{-1}(C))\text{.}\)</span> This proves the kernel universal property. The dual Hom calculation gives the cokernel. The actual maps into and out of <span class="process-math">\(A,B\)</span> therefore come from the cone triangle, not just from knowing the isomorphism classes of its cohomology.</div>
+<article class="proposition theorem-like" id="ha-c13-proposition-postnikov"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="ha-c13-proposition-postnikov-1-1">
+<div class="para">For every <span class="process-math">\(X\)</span> and integer <span class="process-math">\(n\text{,}\)</span> there are functorial distinguished triangles</div>
+<div class="displaymath process-math" id="ha-c13-proposition-postnikov-1-1-3">
+\begin{gather*}
+\tau_{\leq n-1}X\longrightarrow\tau_{\leq n}X\longrightarrow H_t^n(X)[-n]\longrightarrow(\tau_{\leq n-1}X)[1],\\
+H_t^n(X)[-n]\longrightarrow\tau_{\geq n}X\longrightarrow\tau_{\geq n+1}X\longrightarrow H_t^n(X)[1-n].
+\end{gather*}
+</div>
+<div class="para">Thus an object of <span class="process-math">\(\mathcal T^{[a,b]}\)</span> is obtained from the objects <span class="process-math">\(H_t^n(X)[-n]\text{,}\)</span> for <span class="process-math">\(a\leq n\leq b\text{,}\)</span> by finitely many such triangles.</div>
+</div>
+</article>
+<details id="ha-c13-proposition-postnikov-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c13-proposition-postnikov-2-1">Apply the truncation triangle at <span class="process-math">\(n-1\)</span> to <span class="process-math">\(\tau_{\leq n}X\text{.}\)</span> The truncation calculus identifies the first term with <span class="process-math">\(\tau_{\leq n-1}X\)</span> and the third with <span class="process-math">\(\tau_{\geq n}\tau_{\leq n}X=H_t^n(X)[-n]\text{.}\)</span> The second triangle follows dually. In a bounded interval, one end truncation is zero and the other is <span class="process-math">\(X\text{,}\)</span> which gives the finite construction.</div>
+</article></details>
+<div class="para" id="ha-c13-heart-6">The connecting morphisms in these triangles record how adjacent cohomological pieces are attached. A list of cohomology objects omits those morphisms. For the standard t-structure over a field all such attachments split after choosing complements; a general t-structure has no splitting assertion of this kind.</div>
+<article class="proposition theorem-like" id="ha-c13-proposition-ext-one"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.6</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c13-proposition-ext-one-1-1">For <span class="process-math">\(A,C\in\mathcal A\text{,}\)</span> there is a natural isomorphism</div> 
+<div class="para logical" id="ha-c13-proposition-ext-one-1-2">
+<div class="displaymath process-math" id="ha-c13-proposition-ext-one-1-2-1">
+\begin{equation*}
+\Ext^1_{\mathcal A}(C,A)\simeq\Hom_{\mathcal T}(C,A[1]),
+\end{equation*}
+</div>
+</div> 
+<div class="para" id="ha-c13-proposition-ext-one-1-3">where the left side denotes Yoneda extensions.</div>
+</article>
+<details id="ha-c13-proposition-ext-one-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c13-proposition-ext-one-2-1">An extension gives the connecting map of its distinguished triangle. Conversely, complete a morphism <span class="process-math">\(C\to A[1]\)</span> to a triangle <span class="process-math">\(A\to B\to C\to A[1]\text{.}\)</span> Extension-closure places <span class="process-math">\(B\)</span> in the heart, and its cohomology sequence is a short exact sequence with ends <span class="process-math">\(A,C\text{.}\)</span> The axiom on morphisms of triangles identifies equivalent extensions. Pullback and pushout of extensions correspond to composition at the two ends of the connecting map. This also identifies Baer addition with addition of morphisms.</div>
+</article></details>
+<div class="para" id="ha-c13-heart-8">The higher-degree comparison requires care. Yoneda products give maps from higher extensions in the heart to shifted morphisms in <span class="process-math">\(\mathcal T\text{,}\)</span> but the heart theorem alone does not assert their invertibility. Nor does it construct an equivalence <span class="process-math">\(\D^b(\mathcal A)\simeq\mathcal T\text{.}\)</span> A realization theorem needs additional hypotheses and a specified construction.</div>
+<article class="proposition theorem-like" id="ha-c13-proposition-realization-test"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.7</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="ha-c13-proposition-realization-test-1-1">
+<div class="para">Suppose that the t-structure on <span class="process-math">\(\mathcal T\)</span> is bounded, that <span class="process-math">\(\D^b(\mathcal A)\)</span> is locally small at the chosen scale, and that an exact functor <span class="process-math">\(R:\D^b(\mathcal A)\to\mathcal T\)</span> has been given whose restriction to the heart is its inclusion, with the specified natural identification. If</div>
+<div class="displaymath process-math" id="ha-c13-proposition-realization-test-1-1-4">
+\begin{equation*}
+\Ext^n_{\mathcal A}(A,B)\longrightarrow\Hom_{\mathcal T}(A,B[n])
+\end{equation*}
+</div>
+<div class="para">induced by <span class="process-math">\(R\)</span> is an isomorphism for every <span class="process-math">\(A,B\in\mathcal A\)</span> and <span class="process-math">\(n\geq0\text{,}\)</span> then <span class="process-math">\(R\)</span> is an equivalence. Ext here may be defined by Yoneda extensions.</div>
+</div>
+</article>
+<details id="ha-c13-proposition-realization-test-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c13-proposition-realization-test-2-1">For negative <span class="process-math">\(n\)</span> both sides of the corresponding shifted Hom comparison vanish by orthogonality. The assumed comparison therefore gives full faithfulness between all shifts of heart objects. Induct on the finite truncation lengths of the two arguments, applying their truncation triangles and the long exact Hom sequences. The five lemma gives full faithfulness on all bounded objects. The essential image contains the heart and, by full faithfulness and exactness, is closed under cones of maps between its objects. Every object of <span class="process-math">\(\mathcal T\)</span> has the finite construction in <a href="ha-c13.html#ha-c13-proposition-postnikov" class="xref" data-knowl="./knowl/xref/ha-c13-proposition-postnikov.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 13.5">Proposition 13.5</a>, so the image is all of <span class="process-math">\(\mathcal T\text{.}\)</span>
+</div>
+</article></details>
+<div class="para" id="ha-c13-heart-10">This is a criterion for a given realization functor, not its construction. It separates two tasks: producing the exact functor with the required compatibility, and proving the higher extension comparisons. Degree one is automatic by <a href="ha-c13.html#ha-c13-proposition-ext-one" class="xref" data-knowl="./knowl/xref/ha-c13-proposition-ext-one.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 13.6">Proposition 13.6</a>; higher degrees are the substantive test. Boundedness makes the proof finite and is not a replacement for those comparisons.</div>
+</section>
+<section class="section" id="ha-c13-examples">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Standard, shifted, and degenerate examples</span>
+</h2>
+<article class="example example-like" id="ha-c13-example-standard"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.8</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c13-example-standard-1">For an abelian category <span class="process-math">\(\mathcal A\)</span> whose derived category has the required morphism sets, define <span class="process-math">\(\D(\mathcal A)^{\leq0}\)</span> and <span class="process-math">\(\D(\mathcal A)^{\geq0}\)</span> by vanishing of ordinary cohomology above and below zero. Smart truncation gives the required triangle. The heart is equivalent to <span class="process-math">\(\mathcal A\)</span> via complexes concentrated in degree zero. This t-structure is nondegenerate; its restriction to <span class="process-math">\(\D^b(\mathcal A)\)</span> is bounded.</div>
+<div class="para" id="ha-c13-example-standard-2">For any integer <span class="process-math">\(r\text{,}\)</span> the shifted pair <span class="process-math">\((\mathcal T^{\leq r},\mathcal T^{\geq r})\)</span> is another t-structure. Its heart is <span class="process-math">\(\mathcal A[-r]\text{.}\)</span> The abstract triangulated category does not select the original heart from all these choices.</div>
+</article>
+<article class="example example-like" id="ha-c13-example-degenerate"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.9</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c13-example-degenerate-1">The pairs <span class="process-math">\((\mathcal T,0)\)</span> and <span class="process-math">\((0,\mathcal T)\)</span> are t-structures with zero heart. Unless <span class="process-math">\(\mathcal T=0\text{,}\)</span> they are degenerate and unbounded. In particular, cohomology objects for an arbitrary t-structure need not detect zero objects. If the t-structure is nondegenerate, the truncation triangles show that an object with all cohomology objects zero is zero.</div>
+</article>
+<div class="para" id="ha-c13-examples-4">For a bounded object, successive truncation triangles express it as a finite sequence of extensions of <span class="process-math">\(H_t^n(X)[-n]\text{.}\)</span> In a bounded t-structure the heart therefore generates <span class="process-math">\(\mathcal T\)</span> as a triangulated category. This generation statement gives no universal property identifying the category with a derived category of its heart: the morphisms and their higher extension comparisons still have to be checked.</div>
+</section>
+<section class="section" id="ha-c13-completeness">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Detection and reconstruction</span>
+</h2>
+<div class="para" id="ha-c13-completeness-2">Nondegeneracy detects whether an object is zero. Boundedness ensures that each object is assembled from finitely many cohomology objects. Reconstruction of an unbounded object from an infinite truncation tower is a third question.</div>
+<article class="proposition theorem-like" id="ha-c13-proposition-detection"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.10</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c13-proposition-detection-1-1">For a nondegenerate t-structure, a map is an isomorphism if and only if every <span class="process-math">\(H_t^n\)</span> takes it to an isomorphism.</div>
+</article>
+<details id="ha-c13-proposition-detection-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c13-proposition-detection-2-1">The cone of such a map has all cohomology zero. For an object <span class="process-math">\(X\)</span> with this property, consecutive truncations are isomorphic by <a href="ha-c13.html#ha-c13-proposition-postnikov" class="xref" data-knowl="./knowl/xref/ha-c13-proposition-postnikov.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 13.5">Proposition 13.5</a>. Fixing <span class="process-math">\(n\text{,}\)</span> the object <span class="process-math">\(\tau_{\leq n}X\)</span> then lies in <span class="process-math">\(\mathcal T^{\leq m}\)</span> for every <span class="process-math">\(m\text{;}\)</span> nondegeneracy makes it zero. Thus <span class="process-math">\(X\in\mathcal T^{\geq n+1}\)</span> for every <span class="process-math">\(n\text{,}\)</span> and nondegeneracy again gives <span class="process-math">\(X=0\text{.}\)</span>
+</div>
+</article></details>
+<div class="para logical" id="ha-c13-completeness-4">
+<div class="para">For reconstruction, the towers in our cohomological convention are</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/ha-c14.html" id="ha-c13-completeness-4-1">
+\begin{equation*}
+\tau_{\leq0}X\to\tau_{\leq1}X\to\cdots\to X,\qquad X\to\cdots\to\tau_{\geq-2}X\to\tau_{\geq-1}X\to\tau_{\geq0}X.
+\end{equation*}
+</div>
+<div class="para">The first asks for a homotopy-colimit description of <span class="process-math">\(X\text{;}\)</span> the second asks for a homotopy-limit description. A homotopy limit of an inverse sequence <span class="process-math">\(X_n\)</span> is specified by a triangle</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/ha-c14.html" id="ha-c13-completeness-4-4">
+\begin{equation*}
+\operatorname{holim}X_n\longrightarrow\prod_nX_n\xrightarrow{1-s}\prod_nX_n\longrightarrow(\operatorname{holim}X_n)[1],
+\end{equation*}
+</div>
+<div class="para">where <span class="process-math">\(s\)</span> uses the transition maps. The homotopy-colimit triangle uses direct sums and has the opposite orientation, as in <a href="ha-c14.html" class="internal" title="Chapter 14: Compact generation and representability">Chapter 14</a>. These constructions require the indicated products or coproducts. For derived categories one can choose models of the truncation towers and form the comparison maps there; a general triangulated category does not supply functorial cones for arbitrary towers.</div>
+</div>
+<div class="para" id="ha-c13-completeness-5">The assertions that the resulting comparisons <span class="process-math">\(\operatorname{hocolim}_n\tau_{\leq n}X\to X\)</span> and <span class="process-math">\(X\to\operatorname{holim}_n\tau_{\geq-n}X\)</span> are isomorphisms are completeness assertions. They do not follow from nondegeneracy alone. For the standard t-structure on <span class="process-math">\(\D(\mathcal A)\text{,}\)</span> exact countable coproducts in <span class="process-math">\(\mathcal A\)</span> make the first comparison an isomorphism: termwise stabilization and exact coproducts compute the same cohomology as <span class="process-math">\(X\text{.}\)</span> Exact countable products in <span class="process-math">\(\mathcal A\)</span> make the second comparison an isomorphism by the dual product calculation. See <a class="external" href="https://stacks.math.columbia.edu/tag/0A5K" target="_blank">Stacks, Tag 0A5K</a> and <a class="external" href="https://stacks.math.columbia.edu/tag/08TB" target="_blank">Tag 08TB</a>. The comparison with a homotopy limit need not be unique in the triangulated category; whether it is invertible is independent of that choice.<a id="ha-c13-completeness-5-9" href="#margin-ha-c13-completeness-5-9" class="margin-note-marker" aria-label="Margin note 3">3</a>
+</div>
+<div class="para" id="ha-c13-completeness-6">We shall use finite truncation arguments without imposing completeness on every abstract t-structure. Whenever an infinite truncation tower is used, its existence and the comparison with the original object must be checked separately. This is the same distinction between constructing spectral-sequence pages and proving convergence.</div>
+</section>
+<section class="section" id="ha-c13-exact-functors">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Functors and t-exactness</span>
+</h2>
+<article class="definition definition-like" id="ha-c13-definition-exact-functor"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.11</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">t-exact functors.</span>
+</h3>
+<div class="para" id="ha-c13-definition-exact-functor-5-1">For t-structured triangulated categories, an exact functor <span class="process-math">\(F:\mathcal T\to\mathcal U\)</span> is right t-exact if <span class="process-math">\(F(\mathcal T^{\leq0})\subseteq\mathcal U^{\leq0}\text{,}\)</span> and left t-exact if <span class="process-math">\(F(\mathcal T^{\geq0})\subseteq\mathcal U^{\geq0}\text{.}\)</span> It is t-exact if both conditions hold.</div>
+</article>
+<article class="proposition theorem-like" id="ha-c13-proposition-functors"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.12</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c13-proposition-functors-1-1">A t-exact functor commutes with truncation and cohomology up to the natural isomorphisms defined by their universal properties, and restricts to an exact functor of hearts. If <span class="process-math">\(F\dashv G\)</span> are exact, then <span class="process-math">\(F\)</span> is right t-exact if and only if <span class="process-math">\(G\)</span> is left t-exact.</div>
+</article>
+<details id="ha-c13-proposition-functors-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c13-proposition-functors-2-1">Apply <span class="process-math">\(F\)</span> to a truncation triangle and use both bounds to recognize the truncation triangle of <span class="process-math">\(FX\text{.}\)</span> A short exact sequence in the heart is a distinguished triangle of heart objects, which proves exactness on hearts. For the adjoint assertion, if <span class="process-math">\(F\)</span> is right t-exact and <span class="process-math">\(V\in\mathcal U^{\geq0}\text{,}\)</span> then <span class="process-math">\(\Hom(A,GV)=\Hom(FA,V)=0\)</span> for <span class="process-math">\(A\in\mathcal T^{\leq-1}\text{.}\)</span> Orthogonality places <span class="process-math">\(GV\)</span> in <span class="process-math">\(\mathcal T^{\geq0}\text{.}\)</span> The converse uses the same calculation and the other orthogonality characterization.</div>
+</article></details>
+<div class="para logical" id="ha-c13-exact-functors-4">
+<div class="para">One-sided t-exactness still gives useful maps. If <span class="process-math">\(F\)</span> is right t-exact, the map <span class="process-math">\(F\tau_{\leq n}X\to FX\)</span> factors uniquely through <span class="process-math">\(\tau_{\leq n}FX\text{.}\)</span> If <span class="process-math">\(F\)</span> is left t-exact, the map <span class="process-math">\(FX\to F\tau_{\geq n}X\)</span> factors uniquely through <span class="process-math">\(\tau_{\geq n}FX\text{.}\)</span> Thus there are comparisons</div>
+<div class="displaymath process-math" id="ha-c13-exact-functors-4-7">
+\begin{equation*}
+F\tau_{\leq n}\longrightarrow\tau_{\leq n}F,\qquad\tau_{\geq n}F\longrightarrow F\tau_{\geq n},
+\end{equation*}
+</div>
+<div class="para">under the respective assumptions. They need not be invertible without the other half of t-exactness.</div>
+</div>
+<article class="definition definition-like" id="ha-c13-definition-amplitude"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.13</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Cohomological amplitude.</span>
+</h3>
+<div class="para" id="ha-c13-definition-amplitude-3-1">For integers <span class="process-math">\(a\leq b\text{,}\)</span> an exact functor <span class="process-math">\(F:\mathcal T\to\mathcal U\)</span> has cohomological amplitude contained in <span class="process-math">\([a,b]\)</span> if <span class="process-math">\(F(\mathcal T^{\geq0})\subseteq\mathcal U^{\geq a}\)</span> and <span class="process-math">\(F(\mathcal T^{\leq0})\subseteq\mathcal U^{\leq b}\text{.}\)</span> It then takes <span class="process-math">\(\mathcal T^{[c,d]}\)</span> into <span class="process-math">\(\mathcal U^{[c+a,d+b]}\text{.}\)</span>
+</div>
+</article>
+<article class="proposition theorem-like" id="ha-c13-proposition-derived-amplitude"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.14</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c13-proposition-derived-amplitude-1-1">Let <span class="process-math">\(F:\mathcal A\to\mathcal B\)</span> be left exact with <span class="process-math">\(\mathcal A\)</span> having enough injectives. Then <span class="process-math">\(\mathbf RF:\D^+(\mathcal A)\to\D^+(\mathcal B)\)</span> is left t-exact. If <span class="process-math">\(R^nF=0\)</span> for every <span class="process-math">\(n&gt;e\text{,}\)</span> then for bounded inputs with cohomology in <span class="process-math">\([c,d]\text{,}\)</span> its output has cohomology in <span class="process-math">\([c,d+e]\text{.}\)</span> Dually a right exact functor with left derived dimension at most <span class="process-math">\(e\)</span> takes bounded cohomological intervals <span class="process-math">\([c,d]\)</span> into <span class="process-math">\([c-e,d]\text{.}\)</span>
+</div>
+</article>
+<details id="ha-c13-proposition-derived-amplitude-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c13-proposition-derived-amplitude-2-1">A bounded below complex in degrees at least zero admits an injective replacement with the same lower bound, which proves left t-exactness. For a heart object the stated vanishing places its image in <span class="process-math">\([0,e]\text{.}\)</span> The finite truncation construction of a bounded input then puts each successive image piece in the interval <span class="process-math">\([n,n+e]\text{.}\)</span> Extension-closure gives the bound <span class="process-math">\([c,d+e]\text{.}\)</span> Reverse degrees for the left-derived case.</div>
+</article></details>
+<div class="para" id="ha-c13-exact-functors-7">This bounded-input conclusion uses finitely many triangles. Applying the same amplitude claim to an arbitrary unbounded object requires additional control of the corresponding infinite tower. Likewise, a right adjoint in an abstract six-operation formalism is not automatically bounded on a specified subcategory merely because its adjunction exists.</div>
+</section></section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="ha-c12.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Top</span></a><a class="next-button button" href="ha-c14.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a>
+</div></main>
+<div class="margin-notes" role="complementary" aria-label="Margin notes">
+<aside id="margin-ha-c13-definition-5-1" class="aside aside-like margin-note" data-margin-anchor="ha-c13-definition-5" data-margin-label="1" data-margin-inline="true"><h4 class="heading"><a href="#ha-c13-definition-5" class="margin-note-label">1</a></h4>
+<div class="para">Brutal truncation of a complex generally fails to descend to its derived category: it need not preserve quasi-isomorphisms. The functors here are the smart truncations, characterized by their universal properties.
+</div></aside><aside id="margin-ha-c13-definition-7-1" class="aside aside-like margin-note" data-margin-anchor="ha-c13-definition-7" data-margin-label="2" data-margin-inline="true"><h4 class="heading"><a href="#ha-c13-definition-7" class="margin-note-label">2</a></h4>
+<div class="para">A common alternative indexes a t-structure homologically, with the shift raising the displayed degree. The inequalities, shift formulas, and the names left and right t-exact must all be translated together.
+</div></aside><aside id="margin-ha-c13-completeness-5-9" class="aside aside-like margin-note" data-margin-anchor="ha-c13-completeness-5" data-margin-label="3" data-margin-inline="true"><h4 class="heading"><a href="#ha-c13-completeness-5" class="margin-note-label">3</a></h4>
+<div class="para">The names left and right completeness depend on whether a source indexes homologically or cohomologically. The two displayed comparison maps specify exactly the assertions meant here. Completeness of a filtered object in <a href="ha-c07.html" class="internal" title="Chapter 7: Filtered complexes and spectral sequences">Chapter 7</a> is a different condition.
+</div></aside>
+</div>
+</div>
+<footer id="site-copyright" class="site-copyright"><p>© 2026 Jie Fu. All rights reserved.</p></footer>
+</body>
+</html>

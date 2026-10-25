@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-darkmode="disabled">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette: blue-red                     *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Filtered diagrams and cofinality</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Notes on 1-category theory">
+<meta property="og:title" content="Notes on 1-category theory">
+<meta property="book:title" content="Notes on 1-category theory">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.53"></script><script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="../../vendor/lunr/lunr.min.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+<link rel="stylesheet" href="../../layout.css?v=fee08a8c1c">
+<script src="../../layout.js?v=e9391a21a7" defer></script><link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"C": "\\mathbb{C}", "Pone": "\\mathbb{P}^1_{\\mathbb{C}}", "cO": "\\mathcal{O}", "ord": "\\operatorname{ord}", "lt": "<", "gt": ">", "amp": "&", "Ob": "\\operatorname{Ob}", "Ar": "\\operatorname{Ar}", "Hom": "\\operatorname{Hom}", "Fun": "\\operatorname{Fun}", "Nat": "\\operatorname{Nat}", "End": "\\operatorname{End}", "Aut": "\\operatorname{Aut}", "Iso": "\\operatorname{Iso}", "Set": "\\mathsf{Set}", "Mon": "\\mathsf{Mon}", "Grp": "\\mathsf{Grp}", "Ring": "\\mathsf{Ring}", "CRing": "\\mathsf{CRing}", "Cat": "\\mathsf{Cat}", "id": "\\mathrm{id}", "op": "\\mathrm{op}", "N": "\\mathbb{N}", "Z": "\\mathbb{Z}", "Q": "\\mathbb{Q}", "U": "\\mathcal{U}", "V": "\\mathcal{V}"}}, "options": {"ignoreHtmlClass": "ignore-math", "processHtmlClass": "process-math", "enableMenu": false}};</script><script src="../../vendor/mathjax/tex-chtml.js" defer></script>
+</head>
+<body class="pretext book ignore-math note-page" data-page-format="note">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner"><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="category-theory-notes.html"><span class="title">Notes on 1-category theory</span></a></div>
+<p class="byline"><a href="../../home.html">Jie Fu</a>'s <a href="../../notes.html">Notes</a></p>
+<p class="note-metadata"><span class="note-review-status">Under review and improvement</span> · <span class="note-last-updated">Last updated: <time datetime="2026-10-24">2026-10-24</time></span></p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Contents</span></button><a class="index-button button" href="cat-index.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Index</span></a><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true"></span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="treebuttons"><a class="previous-button button" href="cat-adjunctions.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="up-button button" href="category-theory-notes.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Up</span></a><a class="next-button button" href="cat-kan.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a></span>
+</div></nav><div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth4 focused" data-preexpanded-levels="1" data-max-levels="4"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-conventions.html" class="internal"><span class="codenumber">0</span> <span class="title">Conventions and foundations</span></a></div>
+<ul id="ptx-toc-group-cat-conventions" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-conventions.html#cat-conventions-language" class="internal"><span class="codenumber">0.1</span> <span class="title">Language and notation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-conventions.html#cat-universes" class="internal"><span class="codenumber">0.2</span> <span class="title">The ambient sets</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-conventions.html#cat-conventions-size" class="internal"><span class="codenumber">0.3</span> <span class="title">Small, locally small, and essentially small</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-conventions.html#cat-conventions-standard-categories" class="internal"><span class="codenumber">0.4</span> <span class="title">Categories of algebraic objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-conventions.html#cat-conventions-functor-size" class="internal"><span class="codenumber">0.5</span> <span class="title">Size of functors and natural transformations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-conventions.html#cat-conventions-choice-sources" class="internal"><span class="codenumber">0.6</span> <span class="title">Choices and comparisons with sources</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-language.html" class="internal"><span class="codenumber">1</span> <span class="title">Categories, functors, and natural transformations</span></a></div>
+<ul id="ptx-toc-group-cat-language" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-category-data" class="internal"><span class="codenumber">1.1</span> <span class="title">Objects, arrows, and composition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-isomorphisms-cancellation" class="internal"><span class="codenumber">1.2</span> <span class="title">Isomorphisms, retracts, and cancellation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-opposites-subcategories" class="internal"><span class="codenumber">1.3</span> <span class="title">Opposites and subcategories</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-functors" class="internal"><span class="codenumber">1.4</span> <span class="title">Functors and what they detect</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-natural-transformations" class="internal"><span class="codenumber">1.5</span> <span class="title">Natural transformations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-transformation-calculus" class="internal"><span class="codenumber">1.6</span> <span class="title">Composition and changing the source or target</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-functor-categories" class="internal"><span class="codenumber">1.7</span> <span class="title">Functor categories and natural isomorphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-equivalences" class="internal"><span class="codenumber">1.8</span> <span class="title">Equivalence and the choice of representatives</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-constructions.html" class="internal"><span class="codenumber">2</span> <span class="title">Constructions and universal properties</span></a></div>
+<ul id="ptx-toc-group-cat-constructions" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-constructions.html#cat-c02-products-coproducts" class="internal"><span class="codenumber">2.1</span> <span class="title">Products and coproducts of categories</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-constructions.html#cat-c02-initial-terminal" class="internal"><span class="codenumber">2.2</span> <span class="title">Initial and terminal objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-constructions.html#cat-c02-arrows-slices" class="internal"><span class="codenumber">2.3</span> <span class="title">Arrows, slices, and coslices</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-constructions.html#cat-c02-comma" class="internal"><span class="codenumber">2.4</span> <span class="title">Comma categories and compatible data</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-constructions.html#cat-c02-induced-functors" class="internal"><span class="codenumber">2.5</span> <span class="title">Induced functors and their directions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-constructions.html#cat-c02-universal-arrows" class="internal"><span class="codenumber">2.6</span> <span class="title">Universal arrows and structural uniqueness</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cat-constructions.html#cat-c02-universal-examples" class="internal"><span class="codenumber">2.7</span> <span class="title">Elementary universal specifications</span></a></div>
+<ul id="ptx-toc-group-cat-c02-universal-examples" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cat-constructions.html#cat-c02-pairing-functions" class="internal"><span class="codenumber">2.7.1</span> <span class="title">A pair of maps and its common source</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cat-constructions.html#cat-c02-free-monoids" class="internal"><span class="codenumber">2.7.2</span> <span class="title">Words and the free monoid</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cat-constructions.html#cat-c02-quotient-groups" class="internal"><span class="codenumber">2.7.3</span> <span class="title">Quotients with a prescribed relation</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cat-constructions.html#cat-c02-order-approximations" class="internal"><span class="codenumber">2.7.4</span> <span class="title">Least and greatest approximations</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-yoneda.html" class="internal"><span class="codenumber">3</span> <span class="title">Representability and the Yoneda lemma</span></a></div>
+<ul id="ptx-toc-group-cat-yoneda" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-yoneda.html#cat-c03-hom-functors" class="internal"><span class="codenumber">3.1</span> <span class="title">Hom functors and presheaves</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-yoneda.html#cat-c03-yoneda-lemma" class="internal"><span class="codenumber">3.2</span> <span class="title">Evaluation at the identity</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-yoneda.html#cat-c03-embedding-elements" class="internal"><span class="codenumber">3.3</span> <span class="title">The embedding and generalized elements</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-yoneda.html#cat-c03-representations" class="internal"><span class="codenumber">3.4</span> <span class="title">Representations and universal elements</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-yoneda.html#cat-c03-elements-categories" class="internal"><span class="codenumber">3.5</span> <span class="title">Categories of elements</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-yoneda.html#cat-c03-uniqueness-functoriality" class="internal"><span class="codenumber">3.6</span> <span class="title">Uniqueness and maps between representations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-yoneda.html#cat-c03-examples" class="internal"><span class="codenumber">3.7</span> <span class="title">Powers, algebra, and universal arrows</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-yoneda.html#cat-c03-obstructions" class="internal"><span class="codenumber">3.8</span> <span class="title">Obstructions and the role of naturality</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-limits.html" class="internal"><span class="codenumber">4</span> <span class="title">Limits and colimits</span></a></div>
+<ul id="ptx-toc-group-cat-limits" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-limits.html#cat-c04-cones" class="internal"><span class="codenumber">4.1</span> <span class="title">Cones, cocones, and their universal objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-limits.html#cat-c04-hom-formulas" class="internal"><span class="codenumber">4.2</span> <span class="title">The representing functors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-limits.html#cat-c04-basic-shapes" class="internal"><span class="codenumber">4.3</span> <span class="title">The basic shapes, including the empty shape</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-limits.html#cat-c04-existence-constructions" class="internal"><span class="codenumber">4.4</span> <span class="title">Building limits from products and equations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-limits.html#cat-c04-set-models" class="internal"><span class="codenumber">4.5</span> <span class="title">Compatible tuples and generated identifications in sets</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-limits.html#cat-c04-examples" class="internal"><span class="codenumber">4.6</span> <span class="title">Orders, actions, and algebraic structure</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-limits.html#cat-c04-functoriality" class="internal"><span class="codenumber">4.7</span> <span class="title">Maps between diagrams and choices of limits</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-limits.html#cat-c04-pointwise" class="internal"><span class="codenumber">4.8</span> <span class="title">Limits and colimits of functors are pointwise</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-limits.html#cat-c04-preservation" class="internal"><span class="codenumber">4.9</span> <span class="title">Preservation, reflection, and comparison maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-limits.html#cat-c04-commuting-limits" class="internal"><span class="codenumber">4.10</span> <span class="title">Iterated limits and simultaneous compatibility</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-adjunctions.html" class="internal"><span class="codenumber">5</span> <span class="title">Adjunctions and existence theorems</span></a></div>
+<ul id="ptx-toc-group-cat-adjunctions" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-hom-correspondence" class="internal"><span class="codenumber">5.1</span> <span class="title">The natural mapping correspondence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-unit-counit" class="internal"><span class="codenumber">5.2</span> <span class="title">The unit, the counit, and the triangle identities</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-universal-arrows" class="internal"><span class="codenumber">5.3</span> <span class="title">Constructing the adjoint object by object</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-order-examples" class="internal"><span class="codenumber">5.4</span> <span class="title">Order adjunctions and quantification</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-calculus" class="internal"><span class="codenumber">5.5</span> <span class="title">Uniqueness and composition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-mates" class="internal"><span class="codenumber">5.6</span> <span class="title">Mates of natural transformations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-parameters" class="internal"><span class="codenumber">5.7</span> <span class="title">Adjunctions with a parameter</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-full-faithful" class="internal"><span class="codenumber">5.8</span> <span class="title">Fully faithful adjoints and reflective subcategories</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-limits" class="internal"><span class="codenumber">5.9</span> <span class="title">Preservation of limits and colimits</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-weak-initial" class="internal"><span class="codenumber">5.10</span> <span class="title">From a family of candidates to an initial object</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-existence" class="internal"><span class="codenumber">5.11</span> <span class="title">The general adjoint functor theorem</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-subobjects-generators" class="internal"><span class="codenumber">5.12</span> <span class="title">Subobjects and families that distinguish maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-special-initial" class="internal"><span class="codenumber">5.13</span> <span class="title">An initial object from intersections</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-special-aft" class="internal"><span class="codenumber">5.14</span> <span class="title">The special adjoint functor theorem</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="cat-filtered-cofinal.html" class="internal"><span class="codenumber">6</span> <span class="title">Filtered diagrams and cofinality</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-cat-filtered-cofinal">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-connected-components" class="internal"><span class="codenumber">6.1</span> <span class="title">Connected categories and components</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-final-initial" class="internal"><span class="codenumber">6.2</span> <span class="title">Final and initial functors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-cofinality-theorem" class="internal"><span class="codenumber">6.3</span> <span class="title">Restriction and extension of cocones</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-tests-adjoints" class="internal"><span class="codenumber">6.4</span> <span class="title">Tests for finality and the role of adjoints</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-filtered-categories" class="internal"><span class="codenumber">6.5</span> <span class="title">Filtered categories and finite cocones</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-filtered-set-colimits" class="internal"><span class="codenumber">6.6</span> <span class="title">Equality at a common stage</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-finite-data" class="internal"><span class="codenumber">6.7</span> <span class="title">Moving finite data to one stage</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-finite-limits" class="internal"><span class="codenumber">6.8</span> <span class="title">Finite limits commute with filtered colimits of sets</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-characterization-boundary" class="internal"><span class="codenumber">6.9</span> <span class="title">Characterization and the finite boundary</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-directed-reindexing" class="internal"><span class="codenumber">6.10</span> <span class="title">Reindexing filtered categories by directed posets</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-sifted-products" class="internal"><span class="codenumber">6.11</span> <span class="title">Sifted categories and the diagonal criterion</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-sifted-reflexive" class="internal"><span class="codenumber">6.12</span> <span class="title">Filtered diagrams and reflexive coequalizers</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-sifted-boundaries" class="internal"><span class="codenumber">6.13</span> <span class="title">What siftedness does not imply</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-kan.html" class="internal"><span class="codenumber">7</span> <span class="title">Kan extensions</span></a></div>
+<ul id="ptx-toc-group-cat-kan" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-kan.html#cat-c07-universal-comparison" class="internal"><span class="codenumber">7.1</span> <span class="title">The universal comparison problem</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-kan.html#cat-c07-comma-diagrams" class="internal"><span class="codenumber">7.2</span> <span class="title">The diagrams attached to a new object</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-kan.html#cat-c07-left-formula" class="internal"><span class="codenumber">7.3</span> <span class="title">Constructing the left extension</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-kan.html#cat-c07-right-formula" class="internal"><span class="codenumber">7.4</span> <span class="title">Constructing the right extension</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-kan.html#cat-c07-existence-restriction" class="internal"><span class="codenumber">7.5</span> <span class="title">Existence and restriction along a fully faithful functor</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-kan.html#cat-c07-adjunction-composition" class="internal"><span class="codenumber">7.6</span> <span class="title">Adjoints to restriction and composition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-kan.html#cat-c07-index-adjoints-preservation" class="internal"><span class="codenumber">7.7</span> <span class="title">Adjoint indexing functors and preservation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-kan.html#cat-c07-nonpointwise" class="internal"><span class="codenumber">7.8</span> <span class="title">A universal extension that is not pointwise</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-kan.html#cat-c07-set-formulas-variance" class="internal"><span class="codenumber">7.9</span> <span class="title">Set-valued formulas and presheaf variance</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-kan.html#cat-c07-elementary-computations" class="internal"><span class="codenumber">7.10</span> <span class="title">Elementary computations</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-ends-density.html" class="internal"><span class="codenumber">8</span> <span class="title">Ends, coends, and density</span></a></div>
+<ul id="ptx-toc-group-cat-ends-density" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ends-density.html#cat-c08-wedges" class="internal"><span class="codenumber">8.1</span> <span class="title">Compatible diagonal families</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ends-density.html#cat-c08-constructions" class="internal"><span class="codenumber">8.2</span> <span class="title">Products, quotients, and existence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ends-density.html#cat-c08-natural-transformations" class="internal"><span class="codenumber">8.3</span> <span class="title">Natural transformations as an end</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ends-density.html#cat-c08-fubini" class="internal"><span class="codenumber">8.4</span> <span class="title">Iterating ends and coends</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ends-density.html#cat-c08-copowers" class="internal"><span class="codenumber">8.5</span> <span class="title">Copowers and weighted identifications</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ends-density.html#cat-c08-density-formula" class="internal"><span class="codenumber">8.6</span> <span class="title">Every presheaf is a colimit of representables</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ends-density.html#cat-c08-free-cocompletion" class="internal"><span class="codenumber">8.7</span> <span class="title">The free cocompletion of a small category</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ends-density.html#cat-c08-dense-functors" class="internal"><span class="codenumber">8.8</span> <span class="title">Dense functors and restricted Yoneda</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-monads.html" class="internal"><span class="codenumber">9</span> <span class="title">Monads and algebras</span></a></div>
+<ul id="ptx-toc-group-cat-monads" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-monad-data" class="internal"><span class="codenumber">9.1</span> <span class="title">Insertion, substitution, and the monad laws</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-algebras-free" class="internal"><span class="codenumber">9.2</span> <span class="title">Algebras and the free-algebra adjunction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-kleisli" class="internal"><span class="codenumber">9.3</span> <span class="title">The Kleisli category and its adjunction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-comparison" class="internal"><span class="codenumber">9.4</span> <span class="title">What an adjunction recovers from its monad</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-limits" class="internal"><span class="codenumber">9.5</span> <span class="title">The forgetful functor creates limits</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-colim-created" class="internal"><span class="codenumber">9.6</span> <span class="title">Colimits preserved by the monad</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-split-forks" class="internal"><span class="codenumber">9.7</span> <span class="title">Reflexive pairs and split coequalizers</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-presentations" class="internal"><span class="codenumber">9.8</span> <span class="title">Quotients of free algebras</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-beck" class="internal"><span class="codenumber">9.9</span> <span class="title">Beck’s monadicity criterion</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-set-examples" class="internal"><span class="codenumber">9.10</span> <span class="title">Words and arbitrary joins</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-idempotent" class="internal"><span class="codenumber">9.11</span> <span class="title">Idempotent monads and reflective subcategories</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-comonads" class="internal"><span class="codenumber">9.12</span> <span class="title">Comonads and the dual reconstruction theorem</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-localization.html" class="internal"><span class="codenumber">10</span> <span class="title">Localizations</span></a></div>
+<ul id="ptx-toc-group-cat-localization" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-localization.html#cat-c10-universal-property" class="internal"><span class="codenumber">10.1</span> <span class="title">The universal problem and the path construction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-localization.html#cat-c10-transformations-comparisons" class="internal"><span class="codenumber">10.2</span> <span class="title">Natural transformations and comparison of models</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-localization.html#cat-c10-size" class="internal"><span class="codenumber">10.3</span> <span class="title">Existence and local size are different questions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-localization.html#cat-c10-saturation" class="internal"><span class="codenumber">10.4</span> <span class="title">Saturation and weaker closure conditions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-localization.html#cat-c10-ore" class="internal"><span class="codenumber">10.5</span> <span class="title">An oriented calculus of fractions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-localization.html#cat-c10-roofs" class="internal"><span class="codenumber">10.6</span> <span class="title">Roofs, refinements, and composition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-localization.html#cat-c10-monoid-examples" class="internal"><span class="codenumber">10.7</span> <span class="title">Monoids and the effect on arrows</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-localization.html#cat-c10-reflective" class="internal"><span class="codenumber">10.8</span> <span class="title">Reflective localizations</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-idempotents.html" class="internal"><span class="codenumber">11</span> <span class="title">Idempotents and Cauchy completion</span></a></div>
+<ul id="ptx-toc-group-cat-idempotents" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-idempotents.html#cat-c11-splittings" class="internal"><span class="codenumber">11.1</span> <span class="title">Projections and their missing objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-idempotents.html#cat-c11-existence" class="internal"><span class="codenumber">11.2</span> <span class="title">Equalizers, coequalizers, and absolute constructions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-idempotents.html#cat-c11-envelope" class="internal"><span class="codenumber">11.3</span> <span class="title">Adjoining the retracts</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-idempotents.html#cat-c11-universal-property" class="internal"><span class="codenumber">11.4</span> <span class="title">The universal property on functors and transformations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-idempotents.html#cat-c11-presheaf-realization" class="internal"><span class="codenumber">11.5</span> <span class="title">Retracts of representable presheaves</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-idempotents.html#cat-c11-small-projectives" class="internal"><span class="codenumber">11.6</span> <span class="title">Presheaves that preserve every small colimit through Hom</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-idempotents.html#cat-c11-absolute-weights" class="internal"><span class="codenumber">11.7</span> <span class="title">Why this is an absolute completion</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-idempotents.html#cat-c11-functor-categories" class="internal"><span class="codenumber">11.8</span> <span class="title">Completion and functor categories</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-ind-pro.html" class="internal"><span class="codenumber">12</span> <span class="title">Ind and Pro completions</span></a></div>
+<ul id="ptx-toc-group-cat-ind-pro" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ind-pro.html#cat-c12-formal-objects" class="internal"><span class="codenumber">12.1</span> <span class="title">Formal filtered colimits and their size</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ind-pro.html#cat-c12-hom-formula" class="internal"><span class="codenumber">12.2</span> <span class="title">The mapping formula</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ind-pro.html#cat-c12-elements" class="internal"><span class="codenumber">12.3</span> <span class="title">Recognizing an Ind object by its elements</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ind-pro.html#cat-c12-filtered-colimits" class="internal"><span class="codenumber">12.4</span> <span class="title">Filtered colimits and finitely presentable objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ind-pro.html#cat-c12-universal-property" class="internal"><span class="codenumber">12.5</span> <span class="title">The free filtered-colimit completion</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ind-pro.html#cat-c12-finite-colimits" class="internal"><span class="codenumber">12.6</span> <span class="title">Finite colimits in the source and left exact presheaves</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ind-pro.html#cat-c12-finite-sets" class="internal"><span class="codenumber">12.7</span> <span class="title">Recognition and the example of finite sets</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ind-pro.html#cat-c12-pro-objects" class="internal"><span class="codenumber">12.8</span> <span class="title">The dual completion and its mapping formula</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ind-pro.html#cat-c12-realization" class="internal"><span class="codenumber">12.9</span> <span class="title">Formal inverse systems and their realized limits</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-presentability.html" class="internal"><span class="codenumber">13</span> <span class="title">Presentability and accessible categories</span></a></div>
+<ul id="ptx-toc-group-cat-presentability" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-presentability.html#cat-c13-cardinals" class="internal"><span class="codenumber">13.1</span> <span class="title">Regular cardinals and larger filteredness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-presentability.html#cat-c13-presentable-objects" class="internal"><span class="codenumber">13.2</span> <span class="title">Presentable objects and eventual equality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-presentability.html#cat-c13-stability" class="internal"><span class="codenumber">13.3</span> <span class="title">Colimits, retracts, and rank</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-presentability.html#cat-c13-accessible" class="internal"><span class="codenumber">13.4</span> <span class="title">Accessible and locally presentable categories</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-presentability.html#cat-c13-restricted-nerve" class="internal"><span class="codenumber">13.5</span> <span class="title">Presentable generators determine maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-presentability.html#cat-c13-presheaves" class="internal"><span class="codenumber">13.6</span> <span class="title">Why presheaf categories are locally finitely presentable</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-presentability.html#cat-c13-adjoints" class="internal"><span class="codenumber">13.7</span> <span class="title">Solution sets and the accessible adjoint criterion</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-cartesian-closure.html" class="internal"><span class="codenumber">14</span> <span class="title">Cartesian closure and dependent products</span></a></div>
+<ul id="ptx-toc-group-cat-cartesian-closure" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-cartesian-closure.html#cat-c14-exponentials" class="internal"><span class="codenumber">14.1</span> <span class="title">Exponential objects and currying</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-cartesian-closure.html#cat-c14-examples" class="internal"><span class="codenumber">14.2</span> <span class="title">Sets, orders, and an algebraic obstruction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-cartesian-closure.html#cat-c14-presheaf-exponentials" class="internal"><span class="codenumber">14.3</span> <span class="title">Exponentials of presheaves</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-cartesian-closure.html#cat-c14-pullback-adjunction" class="internal"><span class="codenumber">14.4</span> <span class="title">Pullback and the composition functor</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-cartesian-closure.html#cat-c14-local-closure" class="internal"><span class="codenumber">14.5</span> <span class="title">Dependent products and local cartesian closure</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-cartesian-closure.html#cat-c14-set-dependent-products" class="internal"><span class="codenumber">14.6</span> <span class="title">Dependent products of sets</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-cartesian-closure.html#cat-c14-base-change" class="internal"><span class="codenumber">14.7</span> <span class="title">Composition and pullback comparison</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-cartesian-closure.html#cat-c14-presheaf-slices" class="internal"><span class="codenumber">14.8</span> <span class="title">Presheaf slices as families of elements</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-images-regular.html" class="internal"><span class="codenumber">15</span> <span class="title">Images, quotients, and regular categories</span></a></div>
+<ul id="ptx-toc-group-cat-images-regular" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-subobjects" class="internal"><span class="codenumber">15.1</span> <span class="title">Subobjects and the direction of quotient maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-epimorphisms" class="internal"><span class="codenumber">15.2</span> <span class="title">Regular and strong epimorphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-relations" class="internal"><span class="codenumber">15.3</span> <span class="title">Kernel pairs and internal equivalence relations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-regularity" class="internal"><span class="codenumber">15.4</span> <span class="title">Regularity and image factorizations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-image-comparisons" class="internal"><span class="codenumber">15.5</span> <span class="title">Minimality, uniqueness, and maps between images</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-factorization-systems" class="internal"><span class="codenumber">15.6</span> <span class="title">Orthogonal factorization systems</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-images-base-change" class="internal"><span class="codenumber">15.7</span> <span class="title">Images under change of base</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-effective-relations" class="internal"><span class="codenumber">15.8</span> <span class="title">Effective relations and Barr exactness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-sets-groups" class="internal"><span class="codenumber">15.9</span> <span class="title">Quotients of sets and groups</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-non-effective-example" class="internal"><span class="codenumber">15.10</span> <span class="title">A regular category with a noneffective relation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-projective-injective" class="internal"><span class="codenumber">15.11</span> <span class="title">Projective and injective objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-enough-projectives" class="internal"><span class="codenumber">15.12</span> <span class="title">Enough objects, generators, and free objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-presheaf-projectives" class="internal"><span class="codenumber">15.13</span> <span class="title">Projectives and injectives in a presheaf category</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-fibrations.html" class="internal"><span class="codenumber">16</span> <span class="title">Categories over a base</span></a></div>
+<ul id="ptx-toc-group-cat-fibrations" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-fibrations.html#cat-c16-cartesian-arrows" class="internal"><span class="codenumber">16.1</span> <span class="title">Fibers and cartesian arrows</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-fibrations.html#cat-c16-fibrations-cleavages" class="internal"><span class="codenumber">16.2</span> <span class="title">Fibrations and chosen restriction functors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-fibrations.html#cat-c16-coherence" class="internal"><span class="codenumber">16.3</span> <span class="title">Successive restrictions and their comparisons</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-fibrations.html#cat-c16-strict-construction" class="internal"><span class="codenumber">16.4</span> <span class="title">The Grothendieck construction for strict functors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-fibrations.html#cat-c16-coherent-construction" class="internal"><span class="codenumber">16.5</span> <span class="title">Coherent indexed categories and recovery</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-fibrations.html#cat-c16-discrete" class="internal"><span class="codenumber">16.6</span> <span class="title">Discrete fibrations and set-valued functors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-fibrations.html#cat-c16-codomain" class="internal"><span class="codenumber">16.7</span> <span class="title">The codomain fibration and slices</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-fibrations.html#cat-c16-maps-base-change-size" class="internal"><span class="codenumber">16.8</span> <span class="title">Maps, change of base, and size</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-monoidal.html" class="internal"><span class="codenumber">17</span> <span class="title">Monoidal categories and closed structures</span></a></div>
+<ul id="ptx-toc-group-cat-monoidal" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monoidal.html#cat-c17-monoidal-data" class="internal"><span class="codenumber">17.1</span> <span class="title">Multiplication with specified constraints</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monoidal.html#cat-c17-coherence" class="internal"><span class="codenumber">17.2</span> <span class="title">Coherence and strictness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monoidal.html#cat-c17-elementary-models" class="internal"><span class="codenumber">17.3</span> <span class="title">Products, coproducts, and discrete monoids</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monoidal.html#cat-c17-monoidal-functors" class="internal"><span class="codenumber">17.4</span> <span class="title">Lax, strong, and oplax functors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monoidal.html#cat-c17-braiding" class="internal"><span class="codenumber">17.5</span> <span class="title">Braiding and symmetry</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monoidal.html#cat-c17-monoid-objects" class="internal"><span class="codenumber">17.6</span> <span class="title">Monoid objects and their transport</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monoidal.html#cat-c17-endofunctors" class="internal"><span class="codenumber">17.7</span> <span class="title">Composition of endofunctors and monads</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monoidal.html#cat-c17-closed" class="internal"><span class="codenumber">17.8</span> <span class="title">Right and left internal Hom objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monoidal.html#cat-c17-duality" class="internal"><span class="codenumber">17.9</span> <span class="title">Dual objects give particular internal Homs</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-lawvere-theories.html" class="internal"><span class="codenumber">18</span> <span class="title">Lawvere theories and finitary monads</span></a></div>
+<ul id="ptx-toc-group-cat-lawvere-theories" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-lawvere-theories.html#cat-c18-theories-models" class="internal"><span class="codenumber">18.1</span> <span class="title">Operations as arrows</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-lawvere-theories.html#cat-c18-examples" class="internal"><span class="codenumber">18.2</span> <span class="title">Groups and commutative rings</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-lawvere-theories.html#cat-c18-free-models" class="internal"><span class="codenumber">18.3</span> <span class="title">Free models</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-lawvere-theories.html#cat-c18-from-monads" class="internal"><span class="codenumber">18.4</span> <span class="title">The theory of a finitary monad</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-lawvere-theories.html#cat-c18-correspondence" class="internal"><span class="codenumber">18.5</span> <span class="title">The correspondence and colimits of models</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-lawvere-theories.html#cat-c18-internal-models" class="internal"><span class="codenumber">18.6</span> <span class="title">Models in a category with finite products</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="category-theory-notes-23.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul id="ptx-toc-group-category-theory-notes-23" class="structural toc-item-list">
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="cat-concordance.html" class="internal"><span class="codenumber">A.</span> <span class="title">Notation, terminology, and construction guide</span></a></div>
+<ul id="ptx-toc-group-cat-concordance" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-concordance.html#cat-a-size" class="internal"><span class="codenumber">A.1</span> <span class="title">Size and basic notation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-concordance.html#cat-a-variance" class="internal"><span class="codenumber">A.2</span> <span class="title">Variance and adjoint notation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-concordance.html#cat-a-terms" class="internal"><span class="codenumber">A.3</span> <span class="title">Terminology across sources</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-concordance.html#cat-a-constructions" class="internal"><span class="codenumber">A.4</span> <span class="title">Choosing a construction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-concordance.html#cat-a-finiteness" class="internal"><span class="codenumber">A.5</span> <span class="title">Tests involving representables</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-concordance.html#cat-a-reading" class="internal"><span class="codenumber">A.6</span> <span class="title">Reading paths</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-concordance.html#cat-a-references" class="internal"><span class="codenumber">A.7</span> <span class="title">Using the references</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="cat-hypotheses.html" class="internal"><span class="codenumber">B.</span> <span class="title">Hypotheses and counterexamples</span></a></div>
+<ul id="ptx-toc-group-cat-hypotheses" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-hypotheses.html#cat-h-functorial-information" class="internal"><span class="codenumber">B.1</span> <span class="title">Natural data and information carried by objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-hypotheses.html#cat-h-size-existence" class="internal"><span class="codenumber">B.2</span> <span class="title">Size bounds in existence statements</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-hypotheses.html#cat-h-shape-preservation" class="internal"><span class="codenumber">B.3</span> <span class="title">Diagram shape and preservation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-hypotheses.html#cat-h-completion-realization" class="internal"><span class="codenumber">B.4</span> <span class="title">Formal completions and internal finiteness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-hypotheses.html#cat-h-quotients-tensors" class="internal"><span class="codenumber">B.5</span> <span class="title">Quotients, multiplication, and duality</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="cat-references.html" class="internal"><span class="title">References</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="cat-index.html" class="internal"><span class="title">Index</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="chapter" id="cat-filtered-cofinal">
+<h1 class="heading">
+<span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Filtered diagrams and cofinality</span>
+</h1>
+<section class="introduction" id="cat-filtered-cofinal-2">
+<div class="para" id="cat-filtered-cofinal-2-1">A diagram often contains more stages than are needed to compute its colimit. Cofinality identifies changes of indexing that preserve every cocone, hence preserve the universal problem itself. Filteredness has a different role: it allows finitely many stages and finitely many equations to be handled at one later stage. Together these ideas explain the particularly concrete behavior of filtered colimits of sets.</div>
+<div class="para" id="cat-filtered-cofinal-2-2">Our indexing categories are <span class="process-math">\(\U\)</span>-small unless another size is explicitly stated. Ambient categories are set-encoded and locally <span class="process-math">\(\U\)</span>-small. Thus the sets, colimits, and functor categories used below have the size bounds established earlier. We use the cone conventions of <a href="cat-limits.html" class="internal" title="Chapter 4: Limits and colimits">Chapter 4</a> and the adjunctions of <a href="cat-adjunctions.html" class="internal" title="Chapter 5: Adjunctions and existence theorems">Chapter 5</a>. The principal sources are <a href="cat-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-cat-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Section 1.6]</a>, <a href="cat-references.html#LiI" class="xref" data-knowl="./knowl/xref/bib-cat-li1.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiI">[LiI, Definition 2.7.6 and the following discussion]</a>, and <a href="cat-references.html#Rie" class="xref" data-knowl="./knowl/xref/bib-cat-riehl.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Rie">[Rie, Section 3.8]</a>. We compare terminology at the relevant definitions.</div></section>
+<section class="section" id="cat-c06-connected-components">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Connected categories and components</span>
+</h2>
+<div class="para" id="cat-c06-connected-components-2">The connectedness needed here is a condition on finite chains of arrows. Arrows in a chain may point in either direction; they need not be invertible, and their composites need not exist along the direction in which the chain is traversed.</div>
+<article class="definition definition-like" id="cat-c06-def-connected"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Connectedness and the component set.</span>
+</h3>
+<div class="para logical" id="cat-c06-def-connected-4-1">
+<div class="para">Two objects of a category <span class="process-math">\(I\)</span> are in the same component if they can be joined by a finite zigzag</div>
+<div class="displaymath process-math" id="cat-c06-def-connected-4-1-2">
+\begin{equation*}
+i=i_0\longleftrightarrow i_1\longleftrightarrow\cdots\longleftrightarrow i_n=i',
+\end{equation*}
+</div>
+<div class="para">where each displayed step is an arrow in either direction. A zigzag of length zero is allowed. This is an equivalence relation on <span class="process-math">\(\Ob(I)\text{;}\)</span> its quotient is denoted <span class="process-math">\(\pi_0(I)\text{.}\)</span> The category <span class="process-math">\(I\)</span> is connected if it is nonempty and any two objects are in the same component, equivalently if <span class="process-math">\(\pi_0(I)\)</span> is a singleton.</div>
+</div>
+</article>
+<div class="para" id="cat-c06-connected-components-4">Reflexivity is supplied by the length-zero zigzag, symmetry by reversing its traversal, and transitivity by concatenation. Reversing the traversal does not reverse any arrow in the category. One can write zigzags in alternating directions by inserting identity arrows, so conventions that specify an alternating pattern give the same notion. The empty category has empty component set and is not connected. Each component determines a full subcategory, and there are no arrows between distinct such subcategories.</div>
+<div class="para" id="cat-c06-connected-components-5">For example, a category with an initial or a terminal object is connected: every object is joined to that distinguished object by one arrow. A nonempty poset with a greatest element is connected. A one-object category is connected regardless of its endomorphism monoid. Connectedness therefore says nothing by itself about uniqueness of arrows or about the possibility of equalizing parallel arrows.</div>
+<article class="proposition theorem-like" id="cat-c06-prop-components-colimit"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="cat-c06-prop-components-colimit-1-1">
+<div class="para">For a small category <span class="process-math">\(I\text{,}\)</span> let <span class="process-math">\(\Delta A:I\to\Set_\U\)</span> be the constant diagram at a set <span class="process-math">\(A\in\U\text{,}\)</span> with identity transition maps. Then</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/cat-c03-def-category-elements.html" id="cat-c06-prop-components-colimit-1-1-4">
+\begin{equation*}
+\operatorname{colim}_I\Delta A\cong\pi_0(I)\times A.
+\end{equation*}
+</div>
+<div class="para">In particular, <span class="process-math">\(\operatorname{colim}_I\Delta1\cong\pi_0(I)\text{.}\)</span> More generally, for <span class="process-math">\(F:I\to\Set_\U\text{,}\)</span> there is a canonical bijection</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/cat-c03-def-category-elements.html" id="cat-c06-prop-components-colimit-1-1-7">
+\begin{equation*}
+\operatorname{colim}_I F\cong\pi_0\bigl(\operatorname{el}(F)\bigr),
+\end{equation*}
+</div>
+<div class="para">with the covariant element-category convention of <a href="cat-yoneda.html#cat-c03-def-category-elements" class="xref" data-knowl="./knowl/xref/cat-c03-def-category-elements.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 3.6: Categories of elements, in both variances">Definition 3.6</a>.</div>
+</div>
+</article>
+<details id="cat-c06-prop-components-colimit-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="cat-c06-prop-components-colimit-2-1">A cocone from <span class="process-math">\(\Delta A\)</span> to <span class="process-math">\(S\)</span> is a family of maps <span class="process-math">\(A\to S\)</span> constant along every arrow, hence constant on each component. Such a family is exactly a map <span class="process-math">\(\pi_0(I)\times A\to S\text{.}\)</span> For the second assertion, the quotient construction of a set colimit identifies <span class="process-math">\((i,x)\)</span> with <span class="process-math">\((j,F(a)(x))\)</span> for each <span class="process-math">\(a:i\to j\text{.}\)</span> These are exactly the identifications generated by the arrows in <span class="process-math">\(\operatorname{el}(F)\text{,}\)</span> so its component relation is the colimit relation.</div>
+</article></details>
+<div class="para" id="cat-c06-connected-components-7">For a nonempty connected index, a cocone under a constant diagram must use the same map at every object. Nonemptiness provides a map to recover, and connectedness makes it independent of the chosen object. These are separate requirements; both will recur in the proof of the cofinality theorem. Component sets also make sense for all our set-encoded categories. Smallness is needed above to place the displayed constructions in <span class="process-math">\(\Set_\U\text{,}\)</span> rather than merely to form them as ordinary sets.</div>
+</section>
+<section class="section" id="cat-c06-final-initial">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Final and initial functors</span>
+</h2>
+<div class="para" id="cat-c06-final-initial-2">Let <span class="process-math">\(u:J\to I\)</span> be a functor. To extend a cocone on the reindexed diagram to a stage <span class="process-math">\(i\)</span> of the original diagram, we need arrows <span class="process-math">\(i\to u(j)\text{.}\)</span> Their choices and comparisons are organized by a comma category, not just by the collection of objects in the image of <span class="process-math">\(u\text{.}\)</span>
+</div>
+<article class="definition definition-like" id="cat-c06-def-final-initial"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The two cofinality conditions.</span>
+</h3>
+<div class="para logical" id="cat-c06-def-final-initial-6-1">
+<ol class="decimal" id="cat-c06-def-final-initial-6-1-1">
+<li id="cat-c06-def-final-initial-6-1-1-1">
+<div class="para" id="cat-c06-def-final-initial-6-1-1-1-1">The functor <span class="process-math">\(u:J\to I\)</span> is final, or cofinal, if <span class="process-math">\((i\downarrow u)\)</span> is nonempty and connected for every <span class="process-math">\(i\in I\text{.}\)</span> Its objects are pairs <span class="process-math">\((j,a:i\to u(j))\text{;}\)</span> an arrow to <span class="process-math">\((j',a')\)</span> is <span class="process-math">\(b:j\to j'\)</span> with <span class="process-math">\(u(b)a=a'\text{.}\)</span>
+</div>
+</li>
+<li id="cat-c06-def-final-initial-6-1-1-2">
+<div class="para" id="cat-c06-def-final-initial-6-1-1-2-1">The functor <span class="process-math">\(u\)</span> is initial, or coinitial, if <span class="process-math">\((u\downarrow i)\)</span> is nonempty and connected for every <span class="process-math">\(i\in I\text{.}\)</span> Its objects are pairs <span class="process-math">\((j,a:u(j)\to i)\text{;}\)</span> an arrow to <span class="process-math">\((j',a')\)</span> satisfies <span class="process-math">\(a'u(b)=a\text{.}\)</span>
+</div>
+</li>
+</ol>
+</div> 
+<div class="para" id="cat-c06-def-final-initial-6-2">Thus <span class="process-math">\(u\)</span> is initial exactly when <span class="process-math">\(u^\op:J^\op\to I^\op\)</span> is final. A subcategory has either property when its inclusion does.</div>
+</article>
+<div class="para" id="cat-c06-final-initial-4">Connected already includes nonempty in our convention; we display both words to emphasize what the comma condition requires. The first requirement supplies at least one way to reach the reindexed diagram from <span class="process-math">\(i\text{.}\)</span> The second connects every two such ways by a finite chain of commuting triangles. Merely requiring that every object admit some arrow to the image does not establish finality.</div>
+<div class="para" id="cat-c06-final-initial-5">Our final is the cofinal of <a href="cat-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-cat-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Definition 1.6.4]</a> and <a href="cat-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-cat-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Tag 04E6]</a>. Stacks calls the opposite condition initial, as we do. Kashiwara–Schapira call these conditions cofinal and co-cofinal, respectively, in <a href="cat-references.html#KS06" class="xref" data-knowl="./knowl/xref/bib-cat-ks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry KS06">[KS06, Definition 2.5.1]</a>. Li’s cofinality result is also applied to diagrams on <span class="process-math">\(I^\op\text{;}\)</span> this is the limit statement for <span class="process-math">\(u^\op\text{,}\)</span> not a statement that a final <span class="process-math">\(u\)</span> preserves limits of diagrams on <span class="process-math">\(I\text{.}\)</span><a id="cat-c06-final-initial-5-8" href="#margin-cat-c06-final-initial-5-8" class="margin-note-marker" aria-label="Margin note 1">1</a>
+</div>
+<article class="example example-like" id="cat-c06-example-final"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Tails and distinguished objects.</span>
+</h3>
+<div class="para logical" id="cat-c06-example-final-2">
+<ol class="decimal" id="cat-c06-example-final-2-1">
+<li id="cat-c06-example-final-2-1-1">
+<div class="para" id="cat-c06-example-final-2-1-1-1">The inclusion of a tail <span class="process-math">\(\{n\in\N:n\ge n_0\}\)</span> into the ordered category <span class="process-math">\(\N\)</span> is final. For each <span class="process-math">\(i\text{,}\)</span> its comma category is the nonempty tail of indices at least both <span class="process-math">\(i\)</span> and <span class="process-math">\(n_0\text{,}\)</span> and any two have a common upper bound. More generally, an order-preserving <span class="process-math">\(v:\N\to\N\)</span> is final exactly when its values are unbounded.</div>
+</li>
+<li id="cat-c06-example-final-2-1-2">
+<div class="para" id="cat-c06-example-final-2-1-2-1">A functor <span class="process-math">\(\mathbf1\to I\)</span> selecting <span class="process-math">\(t\)</span> is final exactly when <span class="process-math">\(t\)</span> is terminal. Indeed, <span class="process-math">\((i\downarrow t)\)</span> is the discrete category of arrows <span class="process-math">\(i\to t\text{;}\)</span> it is nonempty and connected exactly when there is one such arrow. Dually, selection of an initial object is an initial functor.</div>
+</li>
+</ol>
+</div>
+</article>
+<div class="para" id="cat-c06-final-initial-7">A selected weakly terminal object, meaning one that receives at least one arrow from every object, is therefore insufficient in the second example. Multiple choices of arrows have no comparisons inside the one-object source category. The connectedness condition records precisely this missing uniqueness after comparisons are allowed.</div>
+<div class="para" id="cat-c06-final-initial-8">The empty cases also agree with the definition. There is no final functor from the empty category to a nonempty category, because its comma categories are empty. A functor to the empty category can only have empty source; that unique functor is both final and initial, since there are no target objects to test. Its reindexing theorem is simply the identity comparison for an empty diagram. Keeping these cases visible prevents a vacuous connectedness condition from entering a nonempty indexing problem.</div>
+</section>
+<section class="section" id="cat-c06-cofinality-theorem">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Restriction and extension of cocones</span>
+</h2>
+<div class="para" id="cat-c06-cofinality-theorem-2">The reindexing theorem compares entire cocone categories, including their maps of vertices. It makes no assumption that the ambient category already has the relevant colimits.</div>
+<article class="theorem theorem-like" id="cat-c06-thm-cofinality"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Cofinality theorem.</span>
+</h3>
+<div class="para logical" id="cat-c06-thm-cofinality-3-1">
+<div class="para">Let <span class="process-math">\(u:J\to I\)</span> be final and <span class="process-math">\(D:I\to\mathcal C\)</span> a diagram. Restriction induces an isomorphism of categories over <span class="process-math">\(\mathcal C\text{,}\)</span>
+</div>
+<div class="displaymath process-math" id="cat-c06-thm-cofinality-3-1-4">
+\begin{equation*}
+\operatorname{Cocone}(D)\longrightarrow
+\operatorname{Cocone}(Du),\qquad
+(Q,(\lambda_i)_i)\longmapsto(Q,(\lambda_{u(j)})_j).
+\end{equation*}
+</div>
+<div class="para">Consequently <span class="process-math">\(\operatorname{colim}_I D\)</span> exists if and only if <span class="process-math">\(\operatorname{colim}_J Du\)</span> exists, and the canonical comparison</div>
+<div class="displaymath process-math" id="cat-c06-thm-cofinality-3-1-7">
+\begin{equation*}
+\operatorname{colim}_J Du\longrightarrow\operatorname{colim}_I D
+\end{equation*}
+</div>
+<div class="para">is then an isomorphism. Dually, if <span class="process-math">\(u\)</span> is initial, restriction identifies the cone categories and gives a canonical isomorphism</div>
+<div class="displaymath process-math" id="cat-c06-thm-cofinality-3-1-9">
+\begin{equation*}
+\lim_I D\longrightarrow\lim_J Du
+\end{equation*}
+</div>
+<div class="para">whenever either side exists.</div>
+</div>
+</article>
+<details id="cat-c06-thm-cofinality-4" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="cat-c06-thm-cofinality-4-1">
+<div class="para">Let <span class="process-math">\((Q,(\mu_j)_j)\)</span> be a cocone under <span class="process-math">\(Du\text{.}\)</span> For each <span class="process-math">\(i\in I\text{,}\)</span> choose an object <span class="process-math">\((j,a:i\to u(j))\)</span> of <span class="process-math">\((i\downarrow u)\)</span> and set</div>
+<div class="displaymath process-math" id="cat-c06-thm-cofinality-4-1-6">
+\begin{equation*}
+\lambda_i=\mu_jD(a):D(i)\longrightarrow Q.
+\end{equation*}
+</div>
+<div class="para">We first check independence of this choice. An arrow <span class="process-math">\(b:(j,a)\to(j',a')\)</span> in the comma category satisfies <span class="process-math">\(a'=u(b)a\text{.}\)</span> The cocone equation gives</div>
+<div class="displaymath process-math" id="cat-c06-thm-cofinality-4-1-9">
+\begin{equation*}
+\mu_{j'}D(a')
+=\mu_{j'}D(u(b))D(a)=\mu_jD(a).
+\end{equation*}
+</div>
+<div class="para">The same equality can be read in either direction. Connectedness therefore proves equality along a zigzag between any two choices.</div>
+</div>
+<div class="para logical" id="cat-c06-thm-cofinality-4-2">
+<div class="para">For an arrow <span class="process-math">\(c:i\to i'\text{,}\)</span> choose <span class="process-math">\(a':i'\to u(j)\text{.}\)</span> The composite <span class="process-math">\(a'c\)</span> is an allowed choice for <span class="process-math">\(i\text{,}\)</span> so independence gives</div>
+<div class="displaymath process-math" id="cat-c06-thm-cofinality-4-2-5">
+\begin{equation*}
+\lambda_{i'}D(c)=\mu_jD(a')D(c)
+=\mu_jD(a'c)=\lambda_i.
+\end{equation*}
+</div>
+<div class="para">Thus <span class="process-math">\(\lambda\)</span> is a cocone. At <span class="process-math">\(i=u(j)\text{,}\)</span> the choice <span class="process-math">\((j,\id_{u(j)})\)</span> gives <span class="process-math">\(\lambda_{u(j)}=\mu_j\text{;}\)</span> extension followed by restriction is the identity. Conversely, any extension of <span class="process-math">\(\mu\)</span> must satisfy <span class="process-math">\(\lambda_i=\lambda_{u(j)}D(a)=\mu_jD(a)\text{,}\)</span> so it is the unique extension. Restriction followed by extension is also the identity.</div>
+</div>
+<div class="para logical" id="cat-c06-thm-cofinality-4-3">
+<div class="para">It remains to check arrows between cocones. If <span class="process-math">\(q:Q\to Q'\)</span> satisfies <span class="process-math">\(q\mu_j=\mu'_j\)</span> at every <span class="process-math">\(j\text{,}\)</span> then</div>
+<div class="displaymath process-math" id="cat-c06-thm-cofinality-4-3-4">
+\begin{equation*}
+q\lambda_i=q\mu_jD(a)=\mu'_jD(a)=\lambda'_i.
+\end{equation*}
+</div>
+<div class="para">The converse follows by restriction. Hence extension sends the vertex map <span class="process-math">\(q\)</span> to the same arrow <span class="process-math">\(q\)</span> and is a strict inverse to restriction. Initial objects of these cocone categories correspond, which proves existence in both directions and the asserted comparison isomorphism. Taking opposite categories proves the statement about limits and initial functors.</div>
+</div>
+</article></details>
+<div class="para" id="cat-c06-cofinality-theorem-4">The construction is the cocone proof in <a href="cat-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-cat-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Proposition 1.6.5]</a>. For the colimit formulation see also <a href="cat-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-cat-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Tag 04E7]</a>. Although choices were used to write the formula, independence shows that the extended cocone is determined without any remaining choice. Extension keeps the original cocone’s vertex and determines its structure maps from that cocone and the arrows of the indexing categories.</div>
+<div class="para" id="cat-c06-cofinality-theorem-5">The same proof works for arbitrary set-encoded indexing categories: all the families and comma categories still exist as ordinary sets. The smallness convention here ensures that the cone sets and set-valued colimits under discussion lie in <span class="process-math">\(\U\text{.}\)</span> It is not an additional step in the cocone-extension argument. In particular, the theorem compares existence of two universal objects; it does not require a preexisting colimit functor on the entire ambient category.</div>
+<div class="para" id="cat-c06-cofinality-theorem-6">The direction of the comparison is fixed by its structure maps. A colimit cocone for <span class="process-math">\(D\)</span> restricts to one for <span class="process-math">\(Du\text{,}\)</span> so the universal property gives a map from the latter colimit to the former. For limits, restriction gives a cone with the original limit as vertex, and the comparison runs the other way. This supplies a reliable way to reconstruct both directions when an indexing opposite is present.</div>
+<div class="para" id="cat-c06-cofinality-theorem-7">For an inverse diagram <span class="process-math">\(E:I^\op\to\mathcal C\text{,}\)</span> a final <span class="process-math">\(u:J\to I\)</span> does give a limit comparison: its opposite is initial, and the relevant reindexed diagram is <span class="process-math">\(Eu^\op\)</span> on <span class="process-math">\(J^\op\text{.}\)</span> The theorem then gives <span class="process-math">\(\lim_{I^\op}E\cong\lim_{J^\op}Eu^\op\text{.}\)</span> Thus the same unbounded subsequence of an ordered index works for its forward colimit diagrams and its inverse limit diagrams, with the domains explicitly reversed in the latter statement.</div>
+</section>
+<section class="section" id="cat-c06-tests-adjoints">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Tests for finality and the role of adjoints</span>
+</h2>
+<div class="para" id="cat-c06-tests-adjoints-2">The comma condition is sufficient for every diagram, and it is also necessary if reindexing is to work uniformly. A small family of set-valued diagrams already detects it.</div>
+<article class="proposition theorem-like" id="cat-c06-prop-finality-tests"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.6</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="cat-c06-prop-finality-tests-1-1">For <span class="process-math">\(u:J\to I\)</span> between small categories, the following conditions are equivalent.</div> 
+<div class="para logical" id="cat-c06-prop-finality-tests-1-2">
+<ol class="decimal" id="cat-c06-prop-finality-tests-1-2-1">
+<li id="cat-c06-prop-finality-tests-1-2-1-1">
+<div class="para" id="cat-c06-prop-finality-tests-1-2-1-1-1">The functor <span class="process-math">\(u\)</span> is final.</div>
+</li>
+<li id="cat-c06-prop-finality-tests-1-2-1-2">
+<div class="para" id="cat-c06-prop-finality-tests-1-2-1-2-1">For every <span class="process-math">\(D:I\to\Set_\U\text{,}\)</span> the canonical map <span class="process-math">\(\operatorname{colim}_JDu\to\operatorname{colim}_ID\)</span> is bijective.</div>
+</li>
+<li id="cat-c06-prop-finality-tests-1-2-1-3">
+<div class="para" id="cat-c06-prop-finality-tests-1-2-1-3-1">For every <span class="process-math">\(i\in I\text{,}\)</span> <span class="process-math">\(\operatorname{colim}_{j\in J}\Hom_I(i,u(j))\)</span> is a singleton.</div>
+</li>
+</ol>
+</div> 
+<div class="para" id="cat-c06-prop-finality-tests-1-3">Final functors compose. If <span class="process-math">\(v:K\to J\)</span> and both <span class="process-math">\(v\)</span> and <span class="process-math">\(uv\)</span> are final, then <span class="process-math">\(u\)</span> is final. A final functor induces a bijection <span class="process-math">\(\pi_0(J)\to\pi_0(I)\text{.}\)</span> Every right adjoint is final, and every left adjoint is initial.</div>
+</article>
+<details id="cat-c06-prop-finality-tests-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="cat-c06-prop-finality-tests-2-1">The cofinality theorem proves the first implication. For the second, apply the set-valued condition to <span class="process-math">\(D=\Hom_I(i,-)\text{.}\)</span> Its colimit is a singleton: every element <span class="process-math">\(a:i\to i'\)</span> is the image of <span class="process-math">\(\id_i\)</span> under <span class="process-math">\(D(a)\text{,}\)</span> so all elements are identified. For the last implication, the covariant element category of <span class="process-math">\(j\mapsto\Hom_I(i,u(j))\)</span> is <span class="process-math">\((i\downarrow u)\text{.}\)</span> The component description in <a href="cat-filtered-cofinal.html#cat-c06-prop-components-colimit" class="xref" data-knowl="./knowl/xref/cat-c06-prop-components-colimit.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 6.2">Proposition 6.2</a> identifies its colimit with <span class="process-math">\(\pi_0(i\downarrow u)\text{.}\)</span> A singleton component set is exactly nonempty connectedness.</div>
+<div class="para" id="cat-c06-prop-finality-tests-2-2">The comparison for a composite is the composite of the two comparisons. The equivalence just proved therefore gives composition and the stated cancellation property. Apply the comparison to the constant singleton diagram to obtain the assertion about components.</div>
+<div class="para" id="cat-c06-prop-finality-tests-2-3">If <span class="process-math">\(L:I\to J\)</span> is left adjoint to <span class="process-math">\(u:J\to I\text{,}\)</span> its unit <span class="process-math">\(i\to uL(i)\)</span> is an initial object of <span class="process-math">\((i\downarrow u)\)</span> by the universal-arrow criterion for an adjunction. Thus each comma category is connected and nonempty, and <span class="process-math">\(u\)</span> is final. If <span class="process-math">\(u\)</span> is a left adjoint, its counit instead provides a terminal object of <span class="process-math">\((u\downarrow i)\text{,}\)</span> proving initiality.</div>
+</article></details>
+<div class="para" id="cat-c06-tests-adjoints-4">The set-valued characterization is part of <a href="cat-references.html#KS06" class="xref" data-knowl="./knowl/xref/bib-cat-ks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry KS06">[KS06, Proposition 2.5.2]</a>. Its use of the diagrams <span class="process-math">\(\Hom_I(i,-)\)</span> explains why an objectwise reachability condition is insufficient: their colimits count components of entire comma categories. Checking that they are nonempty would detect reachability, but checking that they are singletons also imposes the necessary compatibility.</div>
+<div class="para" id="cat-c06-tests-adjoints-5">The adjoint direction deserves attention. In the sentence <span class="process-math">\(L\dashv u\text{,}\)</span> it is the right adjoint <span class="process-math">\(u\)</span> that is final and may reindex colimits. This concerns changing the indexing category. It is a different assertion from a left adjoint between ambient categories preserving colimits. An ambient functor is applied to the objects and arrows of a diagram; an indexing functor is precomposed with that diagram to select and compare its stages. The comma categories make the distinction explicit.</div>
+<div class="para" id="cat-c06-tests-adjoints-6">A comparison being invertible for one particular diagram does not imply finality. For example, selecting an object of a connected category gives a bijective comparison for the constant singleton diagram, but that selection functor is final only when the object is terminal. The characterization requires all set-valued diagrams, or the full indicated family of Hom tests. Dually, the initial condition is the uniform reindexing criterion for limits.</div>
+</section>
+<section class="section" id="cat-c06-filtered-categories">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Filtered categories and finite cocones</span>
+</h2>
+<div class="para" id="cat-c06-filtered-categories-2">Connectedness joins stages by zigzags. Filteredness allows finite collections of stages and relations to be moved forward to one common stage. Its equalization clause is indispensable when different arrows can have the same endpoints.</div>
+<article class="definition definition-like" id="cat-c06-def-filtered"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.7</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Filtered, cofiltered, and directed.</span>
+</h3>
+<div class="para" id="cat-c06-def-filtered-5-1">A category <span class="process-math">\(I\)</span> is filtered if it satisfies all three conditions:</div> 
+<div class="para logical" id="cat-c06-def-filtered-5-2">
+<ol class="decimal" id="cat-c06-def-filtered-5-2-1">
+<li id="cat-c06-def-filtered-5-2-1-1">
+<div class="para" id="cat-c06-def-filtered-5-2-1-1-1">It has at least one object.</div>
+</li>
+<li id="cat-c06-def-filtered-5-2-1-2">
+<div class="para" id="cat-c06-def-filtered-5-2-1-2-1">For any <span class="process-math">\(i,j\in I\text{,}\)</span> there are an object <span class="process-math">\(k\)</span> and arrows <span class="process-math">\(i\to k\text{,}\)</span> <span class="process-math">\(j\to k\text{.}\)</span>
+</div>
+</li>
+<li id="cat-c06-def-filtered-5-2-1-3">
+<div class="para" id="cat-c06-def-filtered-5-2-1-3-1">For any parallel arrows <span class="process-math">\(a,b:i\to j\text{,}\)</span> there is an arrow <span class="process-math">\(c:j\to k\)</span> with <span class="process-math">\(ca=cb\text{.}\)</span>
+</div>
+</li>
+</ol>
+</div> 
+<div class="para" id="cat-c06-def-filtered-5-3">It is cofiltered if <span class="process-math">\(I^\op\)</span> is filtered. A filtered diagram in these notes is a diagram whose indexing category is filtered. A directed poset is a nonempty poset in which every pair of elements has a common upper bound; regarded as a category, it is filtered.</div>
+</article>
+<div class="para" id="cat-c06-filtered-categories-4">In a poset the parallel-arrow clause is automatic, so directedness reduces to the common-upper-bound condition together with nonemptiness. The same is true for a preorder. We reserve directed poset for the antisymmetric case. The terms inductive system and inverse system refer to diagrams on an ordered category and its opposite, respectively; the actual arrow directions remain part of the data.<a id="cat-c06-filtered-categories-4-1" href="#margin-cat-c06-filtered-categories-4-1" class="margin-note-marker" aria-label="Margin note 2">2</a>
+</div>
+<div class="para" id="cat-c06-filtered-categories-5">Nonemptiness is explicit in <a href="cat-references.html#LiI" class="xref" data-knowl="./knowl/xref/bib-cat-li1.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiI">[LiI, Definition 2.7.6]</a>. The displayed list in <a href="cat-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-cat-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Definition 1.6.6]</a> gives the two amalgamation conditions and refers back to that definition. We retain nonemptiness explicitly: without it, the empty category would satisfy the two remaining clauses vacuously. Kashiwara–Schapira use the word filtrant for filtered and cofiltrant for cofiltered.</div>
+<article class="proposition theorem-like" id="cat-c06-prop-finite-cocones"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.8</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="cat-c06-prop-finite-cocones-1-1">A category is filtered if and only if every diagram in it indexed by a finite category admits a cocone. Here finite means finitely many arrows, and includes the empty category.</div>
+</article>
+<details id="cat-c06-prop-finite-cocones-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="cat-c06-prop-finite-cocones-2-1">
+<div class="para">Suppose <span class="process-math">\(I\)</span> is filtered and <span class="process-math">\(D:K\to I\)</span> has finite index. If <span class="process-math">\(K\)</span> is empty, any object of <span class="process-math">\(I\)</span> is a cocone vertex. Otherwise, repeated use of common targets gives an object <span class="process-math">\(q\)</span> and arrows <span class="process-math">\(s_k:D(k)\to q\)</span> for every object of <span class="process-math">\(K\text{.}\)</span> These arrows need not yet form a cocone. For each arrow <span class="process-math">\(a:k\to l\)</span> of <span class="process-math">\(K\text{,}\)</span> the pair</div>
+<div class="displaymath process-math" id="cat-c06-prop-finite-cocones-2-1-10">
+\begin{equation*}
+s_k,\ s_lD(a):D(k)\rightrightarrows q
+\end{equation*}
+</div>
+<div class="para">can be equalized by postcomposition. Process the finitely many arrows one at a time, postcomposing every <span class="process-math">\(s_k\)</span> at each step. Equalities already obtained remain true after further postcomposition. At the end all cocone equations hold.</div>
+</div>
+<div class="para" id="cat-c06-prop-finite-cocones-2-2">Conversely, a cocone on the empty diagram supplies an object. A cocone on two discrete objects supplies their common target. A cocone on a parallel pair <span class="process-math">\(i\rightrightarrows j\)</span> has a leg from <span class="process-math">\(j\)</span> that equalizes the pair. These three finite shapes give exactly the defining conditions.</div>
+</article></details>
+<div class="para" id="cat-c06-filtered-categories-7">This is the formulation used in <a href="cat-references.html#Rie" class="xref" data-knowl="./knowl/xref/bib-cat-riehl.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Rie">[Rie, Definition 3.8.7]</a>. It shows why filteredness is suited to finite data: finitely many objects can be brought together, and finitely many equations can then be enforced without losing earlier ones.</div>
+<div class="para" id="cat-c06-filtered-categories-8">The cocone in this criterion need not be universal. Its vertex need not be unique, and there need not be a preferred way to choose it. Only existence is required, so the criterion does not assert that the category has finite colimits. For example, a directed poset may provide several upper bounds for two objects without providing a least upper bound. Both suffice as common stages, while their categorical coproduct would require a least one. This distinction separates the indexing property from a completeness property of the category.</div>
+<article class="example example-like" id="cat-c06-example-filtered-nonposet"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.9</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Common examples and a non-poset example.</span>
+</h3>
+<div class="para" id="cat-c06-example-filtered-nonposet-2">The ordered category <span class="process-math">\(\N\text{,}\)</span> every nonempty ordinal category, and the poset of finite subsets of a set in <span class="process-math">\(\U\)</span> are filtered. A category with a terminal object is filtered, since its terminal arrows provide both common targets and equalizations. The parallel-pair category <span class="process-math">\(0\rightrightarrows1\)</span> is connected and has common targets, but is not filtered: the two distinct arrows have no later equalization.</div>
+<div class="para" id="cat-c06-example-filtered-nonposet-3">Let <span class="process-math">\(M=\{1,0\}\)</span> be the monoid with identity <span class="process-math">\(1\)</span> and absorbing element <span class="process-math">\(0\text{.}\)</span> Its one-object category is filtered, because postcomposition by <span class="process-math">\(0\)</span> equalizes every pair. It is not equivalent to any poset category: a fully faithful equivalence would identify its two-element endomorphism set with a singleton endomorphism set.</div>
+</article></section>
+<section class="section" id="cat-c06-filtered-set-colimits">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Equality at a common stage</span>
+</h2>
+<div class="para" id="cat-c06-filtered-set-colimits-2">For a general set-valued diagram, its colimit relation is generated by identifications and may require a zigzag to witness equality. Filteredness replaces that generated relation by one explicit common-stage condition. This is the reason element calculations with filtered colimits are manageable.</div>
+<article class="theorem theorem-like" id="cat-c06-thm-filtered-set-colimit"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.10</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="cat-c06-thm-filtered-set-colimit-2-1">
+<div class="para">Let <span class="process-math">\(I\)</span> be small and filtered, and <span class="process-math">\(F:I\to\Set_\U\text{.}\)</span> For <span class="process-math">\(x\in F(i)\)</span> and <span class="process-math">\(y\in F(j)\text{,}\)</span> set <span class="process-math">\(x\sim y\)</span> if there exist arrows <span class="process-math">\(a:i\to k\text{,}\)</span> <span class="process-math">\(b:j\to k\)</span> with <span class="process-math">\(F(a)(x)=F(b)(y)\text{.}\)</span> Then this is an equivalence relation on the tagged disjoint union, and</div>
+<div class="displaymath process-math" id="cat-c06-thm-filtered-set-colimit-2-1-9">
+\begin{equation*}
+\operatorname{colim}_IF\cong
+\left(\coprod_{i\in\Ob(I)}F(i)\right)\big/\sim.
+\end{equation*}
+</div>
+<div class="para">Write <span class="process-math">\([i,x]\text{,}\)</span> or <span class="process-math">\([x]\)</span> when unambiguous, for the corresponding class. For two elements at the same stage, the sharper criterion is</div>
+<div class="displaymath process-math" id="cat-c06-thm-filtered-set-colimit-2-1-12">
+\begin{equation*}
+[i,x]=[i,y]\quad\Longleftrightarrow\quad
+\text{there exists }c:i\to k\text{ with }F(c)(x)=F(c)(y).
+\end{equation*}
+</div>
+</div>
+</article>
+<details id="cat-c06-thm-filtered-set-colimit-3" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="cat-c06-thm-filtered-set-colimit-3-1">
+<div class="para">Identities prove reflexivity, and symmetry follows by exchanging the two arrows. For transitivity, suppose <span class="process-math">\(x\in F(i)\text{,}\)</span> <span class="process-math">\(y\in F(j)\text{,}\)</span> and <span class="process-math">\(z\in F(l)\text{,}\)</span> with witnesses</div>
+<div class="displaymath process-math" id="cat-c06-thm-filtered-set-colimit-3-1-4">
+\begin{equation*}
+a:i\to p,\quad b:j\to p,\quad
+c:j\to q,\quad d:l\to q,
+\end{equation*}
+</div>
+<div class="para">so that <span class="process-math">\(F(a)(x)=F(b)(y)\)</span> and <span class="process-math">\(F(c)(y)=F(d)(z)\text{.}\)</span> Choose common-target arrows <span class="process-math">\(r:p\to t\)</span> and <span class="process-math">\(s:q\to t\text{.}\)</span> The composites <span class="process-math">\(rb,sc:j\to t\)</span> may be different. Choose <span class="process-math">\(e:t\to v\)</span> equalizing them. Then</div>
+<div class="displaymath process-math" id="cat-c06-thm-filtered-set-colimit-3-1-11">
+\begin{equation*}
+F(era)(x)=F(erb)(y)=F(esc)(y)=F(esd)(z).
+\end{equation*}
+</div>
+<div class="para">The arrows <span class="process-math">\(era:i\to v\)</span> and <span class="process-math">\(esd:l\to v\)</span> witness <span class="process-math">\(x\sim z\text{.}\)</span>
+</div>
+</div>
+<div class="para" id="cat-c06-thm-filtered-set-colimit-3-2">Every generating colimit identification <span class="process-math">\(x\sim F(a)(x)\)</span> satisfies this relation, using <span class="process-math">\(a\)</span> and the identity of its target. Conversely, a common-stage equality relates both elements to the same image through generating identifications. Thus the equivalence relation is precisely the colimit relation from the set construction in <a href="cat-limits.html#cat-c04-thm-set-limits" class="xref" data-knowl="./knowl/xref/cat-c04-thm-set-limits.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 4.9">Theorem 4.9</a>. The quotient belongs to <span class="process-math">\(\U\)</span> because the index and all values are small.</div>
+<div class="para" id="cat-c06-thm-filtered-set-colimit-3-3">For the sharper assertion, the common-stage criterion initially gives possibly different arrows <span class="process-math">\(a,b:i\to k\)</span> with <span class="process-math">\(F(a)(x)=F(b)(y)\text{.}\)</span> Equalize <span class="process-math">\(a,b\)</span> by <span class="process-math">\(e:k\to l\)</span> and put <span class="process-math">\(c=ea=eb\text{.}\)</span> Applying <span class="process-math">\(F(e)\)</span> gives <span class="process-math">\(F(c)(x)=F(c)(y)\text{.}\)</span> The converse uses <span class="process-math">\(c\)</span> as both common-stage arrows.</div>
+</article></details>
+<div class="para" id="cat-c06-filtered-set-colimits-4">The transitivity proof is given explicitly after <a href="cat-references.html#LiI" class="xref" data-knowl="./knowl/xref/bib-cat-li1.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiI">[LiI, Definition 2.7.6]</a>; see also <a href="cat-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-cat-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Proposition 1.6.11]</a>. The equalization step cannot be replaced by merely choosing a common target. Two routes out of the middle stage act on the same middle element, and common targets alone do not make those routes agree.</div>
+<div class="para" id="cat-c06-filtered-set-colimits-5">Likewise, when two representatives lie at the same stage, the phrase eventually equal should mean equality after one common transition arrow, as in the sharper criterion. The first form of the relation permits two distinct arrows. Moving between these formulations uses the equalization axiom, rather than a tacit assumption that the index is a poset.</div>
+<div class="para" id="cat-c06-filtered-set-colimits-6">The canonical maps <span class="process-math">\(F(i)\to\operatorname{colim}F\)</span> need not be injective. Their failure of injectivity is exactly the occurrence of distinct elements made equal by a transition arrow. On the other hand, if every transition map is injective, each canonical map is injective by the sharper criterion. This includes increasing unions of subsets, but no inclusions or injectivity assumptions are needed for the theorem itself.</div>
+<div class="para" id="cat-c06-filtered-set-colimits-7">There is likewise no preferred common stage attached to an equality. A witness can always be transported farther along any available arrow, and several unrelated witnesses may exist. The theorem asserts existence of a finite witness of a specific form. It does not equip the colimit with a stage function or make its representatives canonical. Calculations should therefore be phrased in terms of choosing a witness and proving that the eventual conclusion is independent of that choice.</div>
+</section>
+<section class="section" id="cat-c06-finite-data">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.7</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Moving finite data to one stage</span>
+</h2>
+<div class="para" id="cat-c06-finite-data-2">Many uses of filtered colimits rely on more than testing one equality. We need to represent several elements at once and enforce several equations at once. The following formulation separates those two operations and applies even when the elements belong to different diagrams.</div>
+<article class="lemma theorem-like" id="cat-c06-lem-finite-data"><h3 class="heading">
+<span class="type">Lemma</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.11</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="cat-c06-lem-finite-data-1-1">Let <span class="process-math">\(I\)</span> be small and filtered.</div> 
+<div class="para logical" id="cat-c06-lem-finite-data-1-2">
+<ol class="decimal" id="cat-c06-lem-finite-data-1-2-1">
+<li id="cat-c06-lem-finite-data-1-2-1-1">
+<div class="para" id="cat-c06-lem-finite-data-1-2-1-1-1">Given finitely many classes in colimits of set-valued diagrams on <span class="process-math">\(I\text{,}\)</span> there is one stage at which all these classes have representatives.</div>
+</li>
+<li id="cat-c06-lem-finite-data-1-2-1-2">
+<div class="para" id="cat-c06-lem-finite-data-1-2-1-2-1">Let <span class="process-math">\(F_1,\ldots,F_r:I\to\Set_\U\text{,}\)</span> and suppose <span class="process-math">\(x_s,y_s\in F_s(i)\)</span> have equal colimit classes for each <span class="process-math">\(s\text{.}\)</span> There is one arrow <span class="process-math">\(a:i\to j\)</span> such that <span class="process-math">\(F_s(a)(x_s)=F_s(a)(y_s)\)</span> for every <span class="process-math">\(s\text{.}\)</span>
+</div>
+</li>
+</ol>
+</div> 
+<div class="para" id="cat-c06-lem-finite-data-1-3">Both assertions include empty finite collections.</div>
+</article>
+<details id="cat-c06-lem-finite-data-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="cat-c06-lem-finite-data-2-1">For the first assertion, choose a representative for each class and then a common target for the finitely many chosen stages. Transporting the representatives gives the result. For no classes, choose any stage, using nonemptiness.</div>
+<div class="para" id="cat-c06-lem-finite-data-2-2">For the second assertion, use the same-stage criterion to make the first pair equal after an arrow out of <span class="process-math">\(i\text{.}\)</span> Transport all remaining pairs by that arrow. Their classes are still equal, so apply the criterion at the new stage to the next pair. Continue finitely many times. Previously established equalities are preserved by subsequent transition maps, and the composite arrow works for every pair. For no equations, take <span class="process-math">\(\id_i\text{.}\)</span>
+</div>
+</article></details>
+<div class="para" id="cat-c06-finite-data-4">The finiteness is used twice: in finding one upper stage for representatives and in terminating the process of enforcing equations. Nothing in the definition supplies an upper bound for infinitely many stages, or one transition that enforces infinitely many separate equalities. This distinction will account for the countable-product counterexample below.</div>
+<article class="proposition theorem-like" id="cat-c06-prop-injections-unions"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.12</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="cat-c06-prop-injections-unions-1-1">A componentwise injective natural transformation <span class="process-math">\(\alpha:F\Rightarrow G\)</span> of set-valued diagrams on a small filtered category induces an injective map on colimits. If a directed poset indexes subsets <span class="process-math">\(A_i\)</span> of one set, with <span class="process-math">\(A_i\subseteq A_j\)</span> for <span class="process-math">\(i\le j\)</span> and the inclusion transitions, their colimit is their union.</div>
+</article>
+<details id="cat-c06-prop-injections-unions-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="cat-c06-prop-injections-unions-2-1">If representatives <span class="process-math">\(x\in F(i)\text{,}\)</span> <span class="process-math">\(y\in F(j)\)</span> have equal images in <span class="process-math">\(\operatorname{colim}G\text{,}\)</span> common-stage arrows <span class="process-math">\(a:i\to k\text{,}\)</span> <span class="process-math">\(b:j\to k\)</span> give <span class="process-math">\(\alpha_k(F(a)(x))=\alpha_k(F(b)(y))\text{.}\)</span> Injectivity of <span class="process-math">\(\alpha_k\)</span> gives equality in <span class="process-math">\(F(k)\text{,}\)</span> hence equality of the original classes. For subsets, the map from the colimit to the union sends a representative to its underlying element. It is surjective by definition of the union; two representatives of the same element agree at any common upper stage, so it is injective.</div>
+</article></details>
+<div class="para" id="cat-c06-finite-data-6">In a general filtered diagram of injections, the stages need not have been given as subsets of one original set. They can nevertheless be identified with their canonical images in the colimit. Under those identifications the colimit is a union of stage images. This is a conclusion about that diagram, not permission to replace arbitrary transition maps by inclusions at the outset.</div>
+<div class="para" id="cat-c06-finite-data-7">For example, the finite subsets of a set <span class="process-math">\(A\in\U\)</span> form a directed poset under inclusion, and their inclusion diagram has <span class="process-math">\(A\)</span> as colimit. Every element belongs to a finite subset, and every finite collection belongs to one common finite subset. The second statement is exactly the simultaneous-representative property. By contrast, an infinite collection need not belong to a finite subset; the colimit contains all of its elements without requiring them to originate together at one stage.</div>
+</section>
+<section class="section" id="cat-c06-finite-limits">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.8</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Finite limits commute with filtered colimits of sets</span>
+</h2>
+<div class="para" id="cat-c06-finite-limits-2">A limit of sets is a compatible family of elements. For a finite indexing category, that family uses finitely many elements subject to finitely many equations. The preceding lemma puts the entire family, with all its equations, at one stage. This is the finite-data mechanism behind the commutation theorem.</div>
+<article class="theorem theorem-like" id="cat-c06-thm-finite-limit-commutation"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.13</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="cat-c06-thm-finite-limit-commutation-1-1">
+<div class="para">Let <span class="process-math">\(I\)</span> be small and filtered, <span class="process-math">\(K\)</span> a finite category, and <span class="process-math">\(X:I\times K\to\Set_\U\)</span> a functor. The canonical comparison is a bijection:</div>
+<div class="displaymath process-math" id="cat-c06-thm-finite-limit-commutation-1-1-4">
+\begin{equation*}
+\kappa:\operatorname{colim}_{i\in I}\lim_{k\in K}X(i,k)
+\longrightarrow
+\lim_{k\in K}\operatorname{colim}_{i\in I}X(i,k).
+\end{equation*}
+</div>
+<div class="para">It is natural in <span class="process-math">\(X\text{.}\)</span> In particular, the functor <span class="process-math">\(\operatorname{colim}_I:\Fun(I,\Set_\U)\to\Set_\U\)</span> preserves finite limits, including the terminal object, finite products, equalizers, and pullbacks.</div>
+</div>
+</article>
+<details id="cat-c06-thm-finite-limit-commutation-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="cat-c06-thm-finite-limit-commutation-2-1">For each <span class="process-math">\(i\text{,}\)</span> the maps <span class="process-math">\(X(i,k)\to\operatorname{colim}_{i'}X(i',k)\)</span> give a map from the limit over <span class="process-math">\(k\)</span> to the limit on the right. These maps are compatible in <span class="process-math">\(i\text{,}\)</span> so they induce <span class="process-math">\(\kappa\text{.}\)</span> This construction uses only the universal properties and proves its naturality.</div>
+<div class="para logical" id="cat-c06-thm-finite-limit-commutation-2-2">
+<div class="para">First suppose <span class="process-math">\(K\)</span> is nonempty. An element of the right-hand limit is a family <span class="process-math">\((z_k)_k\)</span> of colimit classes, compatible under the arrows of <span class="process-math">\(K\text{.}\)</span> Since there are finitely many objects, <a href="cat-filtered-cofinal.html#cat-c06-lem-finite-data" class="xref" data-knowl="./knowl/xref/cat-c06-lem-finite-data.html" data-reveal-label="Reveal" data-close-label="Close" title="Lemma 6.11">Lemma 6.11</a> supplies one stage <span class="process-math">\(i\)</span> and representatives <span class="process-math">\(x_k\in X(i,k)\text{.}\)</span> For every arrow <span class="process-math">\(b:k\to l\text{,}\)</span> compatibility says</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/cat-c06-lem-finite-data.html" id="cat-c06-thm-finite-limit-commutation-2-2-8">
+\begin{equation*}
+[X(i,b)(x_k)]=[x_l]
+\quad\text{in }\operatorname{colim}_{i'}X(i',l).
+\end{equation*}
+</div>
+<div class="para">There are finitely many such equations. Apply the second part of the lemma to the diagrams <span class="process-math">\(X(-,l)\text{,}\)</span> allowing repeated diagrams for different equations. We obtain one arrow <span class="process-math">\(a:i\to j\)</span> after which they all hold. The transported elements form an actual member of <span class="process-math">\(\lim_kX(j,k)\text{.}\)</span> Its colimit class maps to <span class="process-math">\((z_k)_k\text{,}\)</span> proving surjectivity.</div>
+</div>
+<div class="para" id="cat-c06-thm-finite-limit-commutation-2-3">For injectivity, represent two elements of the left-hand colimit by compatible families at stages <span class="process-math">\(i\)</span> and <span class="process-math">\(j\text{.}\)</span> Move both to a common stage <span class="process-math">\(q\text{.}\)</span> If their images under <span class="process-math">\(\kappa\)</span> agree, each pair of coordinates has equal class in the corresponding colimit. There are only finitely many coordinates, so one arrow out of <span class="process-math">\(q\)</span> makes all the pairs equal simultaneously. At its target the two compatible families are identical elements of the limit. The common-stage criterion, now applied to the diagram <span class="process-math">\(i\mapsto\lim_kX(i,k)\text{,}\)</span> proves equality in the left-hand colimit.</div>
+<div class="para" id="cat-c06-thm-finite-limit-commutation-2-4">If <span class="process-math">\(K\)</span> is empty, every limit over <span class="process-math">\(K\)</span> is a singleton. The right-hand side is therefore a singleton, and the left-hand side is <span class="process-math">\(\operatorname{colim}_I\Delta1\text{.}\)</span> A filtered category is nonempty and connected, so this is a singleton by <a href="cat-filtered-cofinal.html#cat-c06-prop-components-colimit" class="xref" data-knowl="./knowl/xref/cat-c06-prop-components-colimit.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 6.2">Proposition 6.2</a>. Thus <span class="process-math">\(\kappa\)</span> is bijective in the empty case as well. Pointwise computation of limits in the functor category gives the final preservation statement.</div>
+</article></details>
+<div class="para" id="cat-c06-finite-limits-4">This proof makes explicit the finite-stage choices in <a href="cat-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-cat-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Proposition 1.6.12]</a> and <a href="cat-references.html#Rie" class="xref" data-knowl="./knowl/xref/bib-cat-riehl.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Rie">[Rie, Theorem 3.8.9]</a>. The corresponding Stacks result is <a href="cat-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-cat-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Tag 002W]</a>. The bijection is canonical even though representatives are chosen in its proof: <span class="process-math">\(\kappa\)</span> was defined before any such choices, and the argument proves that this fixed map is bijective.</div>
+<div class="para" id="cat-c06-finite-limits-5">For a product, the theorem says that finitely many colimit classes can be represented simultaneously. For an equalizer, it says that an equality of colimit classes can be enforced at a stage. A pullback combines both operations. The terminal-object case detects the nonempty connectedness of the index. These are distinct aspects of one theorem, rather than separate assumptions on the transition maps; in particular, those maps need not be injective.</div>
+<div class="para" id="cat-c06-finite-limits-6">The assertion here is about sets. To transfer it to another category through an underlying-set functor, one must know that the relevant limits and filtered colimits are computed by that functor. Filteredness of the index alone is not a substitute for those additional facts about the ambient category.</div>
+</section>
+<section class="section" id="cat-c06-characterization-boundary">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.9</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Characterization and the finite boundary</span>
+</h2>
+<div class="para" id="cat-c06-characterization-boundary-2">The commutation property also detects filteredness, so the three defining clauses have not merely been sufficient conveniences for the proof.</div>
+<article class="proposition theorem-like" id="cat-c06-prop-filtered-characterization"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.14</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="cat-c06-prop-filtered-characterization-1-1">A small category <span class="process-math">\(I\)</span> is filtered if and only if <span class="process-math">\(\operatorname{colim}_I:\Fun(I,\Set_\U)\to\Set_\U\)</span> preserves finite limits.</div>
+</article>
+<details id="cat-c06-prop-filtered-characterization-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="cat-c06-prop-filtered-characterization-2-1">Only the converse remains. Preservation of the terminal object gives <span class="process-math">\(\operatorname{colim}_I\Delta1\cong1\text{,}\)</span> so <span class="process-math">\(I\)</span> is nonempty. For <span class="process-math">\(i,j\in I\text{,}\)</span> consider <span class="process-math">\(A=\Hom_I(i,-)\)</span> and <span class="process-math">\(B=\Hom_I(j,-)\text{.}\)</span> Each has singleton colimit, as in <a href="cat-filtered-cofinal.html#cat-c06-prop-finality-tests" class="xref" data-knowl="./knowl/xref/cat-c06-prop-finality-tests.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 6.6">Proposition 6.6</a>. Product preservation implies that <span class="process-math">\(\operatorname{colim}_I(A\times B)\)</span> is a singleton and in particular nonempty. Some value <span class="process-math">\(A(k)\times B(k)\)</span> is therefore nonempty. Its element supplies arrows from both <span class="process-math">\(i\)</span> and <span class="process-math">\(j\)</span> to <span class="process-math">\(k\text{.}\)</span>
+</div>
+<div class="para logical" id="cat-c06-prop-filtered-characterization-2-2">
+<div class="para">For parallel arrows <span class="process-math">\(a,b:i\to j\text{,}\)</span> precomposition gives transformations <span class="process-math">\(\Hom_I(j,-)\rightrightarrows\Hom_I(i,-)\text{.}\)</span> Their equalizer has value</div>
+<div class="displaymath process-math" id="cat-c06-prop-filtered-characterization-2-2-3">
+\begin{equation*}
+E(k)=\{c:j\to k:ca=cb\}.
+\end{equation*}
+</div>
+<div class="para">Both original colimits are singletons, so equalizer preservation makes <span class="process-math">\(\operatorname{colim}_I E\)</span> a singleton. Consequently some <span class="process-math">\(E(k)\)</span> is nonempty, giving the required equalization. These are all three filteredness clauses.</div>
+</div>
+</article></details>
+<div class="para" id="cat-c06-characterization-boundary-4">The characterization is <a href="cat-references.html#KS06" class="xref" data-knowl="./knowl/xref/bib-cat-ks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry KS06">[KS06, Theorem 3.1.6]</a>. The proof exhibits tests for each part of filteredness: the terminal diagram detects nonemptiness, a product of outgoing Hom functors detects common targets, and an equalizer of transformations between them detects equalization of parallel arrows.</div>
+<div class="para" id="cat-c06-characterization-boundary-5">Notice that the converse did not use a common-stage formula before filteredness was known. It used only the general quotient construction: a colimit of sets is nonempty precisely when at least one of its values is nonempty. This avoids a circular argument. Once the three clauses have been recovered, the common-stage theorem becomes available and supplies the stronger elementwise description.</div>
+<article class="example example-like" id="cat-c06-example-countable-products"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.15</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">A countable product that does not commute.</span>
+</h3>
+<div class="para logical" id="cat-c06-example-countable-products-2">
+<div class="para">Let <span class="process-math">\(I=\N\)</span> with its usual order, and let <span class="process-math">\(K\)</span> be the discrete category of positive integers. Put</div>
+<div class="displaymath process-math" id="cat-c06-example-countable-products-2-3">
+\begin{equation*}
+X(n,m)=
+\begin{cases}\{0,1\},&amp;m\le n,\\
+\{0\},&amp;m&gt;n,\end{cases}
+\end{equation*}
+</div>
+<div class="para">with inclusions as <span class="process-math">\(n\)</span> increases. For each fixed <span class="process-math">\(m\text{,}\)</span> its colimit is <span class="process-math">\(\{0,1\}\text{.}\)</span> Thus the product of the colimits is the set of all infinite binary sequences.</div>
+</div>
+<div class="para" id="cat-c06-example-countable-products-3">At stage <span class="process-math">\(n\text{,}\)</span> the product <span class="process-math">\(\prod_{m\ge1}X(n,m)\)</span> consists of sequences that are zero after their first <span class="process-math">\(n\)</span> entries. These products form an increasing sequence of subsets. Their colimit is the set of binary sequences with finite support. The canonical comparison is the inclusion of this set into all binary sequences and is not surjective; the sequence constantly equal to one is missing.</div>
+<div class="para" id="cat-c06-example-countable-products-4">Every individual coordinate can be represented at a stage, but no one stage supplies all coordinates of this missing sequence. All the sets and the countable product still belong to <span class="process-math">\(\U\text{;}\)</span> the obstruction is the absence of a uniform finite stage, rather than a size failure. This gives a concrete boundary to the finite-data argument.</div>
+</article></section>
+<section class="section" id="cat-c06-directed-reindexing">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.10</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Reindexing filtered categories by directed posets</span>
+</h2>
+<div class="para" id="cat-c06-directed-reindexing-2">A filtered category need not be equivalent to a poset, as the absorbing-monoid example showed. Nevertheless a directed poset can always supply enough stages and comparisons to compute its colimits. The appropriate map is final, which is a weaker and more useful requirement than an equivalence for this purpose.</div>
+<article class="theorem theorem-like" id="cat-c06-thm-directed-replacement"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.16</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="cat-c06-thm-directed-replacement-1-1">
+<div class="para">For every small filtered category <span class="process-math">\(I\text{,}\)</span> there exist a small directed poset <span class="process-math">\(P\)</span> and a final functor <span class="process-math">\(p:P\to I\text{.}\)</span> Consequently, for every diagram <span class="process-math">\(D:I\to\mathcal C\text{,}\)</span>
+</div>
+<div class="displaymath process-math" id="cat-c06-thm-directed-replacement-1-1-5">
+\begin{equation*}
+\operatorname{colim}_PDp\cong\operatorname{colim}_ID
+\end{equation*}
+</div>
+<div class="para">if either side exists. For <span class="process-math">\(E:I^\op\to\mathcal C\text{,}\)</span> there is similarly a canonical isomorphism</div>
+<div class="displaymath process-math" id="cat-c06-thm-directed-replacement-1-1-7">
+\begin{equation*}
+\lim_{I^\op}E\cong\lim_{P^\op}Ep^\op
+\end{equation*}
+</div>
+<div class="para">if either side exists.</div>
+</div>
+</article>
+<details id="cat-c06-thm-directed-replacement-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="cat-c06-thm-directed-replacement-2-1">For the existence of <span class="process-math">\(P\)</span> and <span class="process-math">\(p\text{,}\)</span> we use the construction and proof of <a href="cat-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-cat-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Tag 0032, Lemma 4.21.5]</a>. Its construction produces a partially ordered directed set, not only a preorder. Applied to a <span class="process-math">\(\U\)</span>-small category, it stays within <span class="process-math">\(\U\text{:}\)</span> the construction uses finite generating data from <span class="process-math">\(I\times\N\text{,}\)</span> subcategories of this small category, and their inclusion order. The assumption <span class="process-math">\(\N\in\U\)</span> and the closure properties of the universe provide the indicated smallness. The cofinality theorem gives both displayed comparisons, the second by applying it in the opposite ambient category.</div>
+</article></details>
+<div class="para" id="cat-c06-directed-reindexing-4">The replacement is a theorem about indexing. It does not remove the multiple arrows of <span class="process-math">\(I\text{,}\)</span> and the functor <span class="process-math">\(p\)</span> need not be full, faithful, or injective on objects. Different elements of <span class="process-math">\(P\)</span> may map to the same object while their transition arrows encode different amounts of comparison data. This is why replacing a category by the poset of its objects, ordered merely by existence of an arrow, does not prove the theorem: that relation discards the parallel-arrow information that must eventually be equalized.</div>
+<article class="proposition theorem-like" id="cat-c06-prop-full-cofinal-subcategory"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.17</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="cat-c06-prop-full-cofinal-subcategory-1-1">Let <span class="process-math">\(I\)</span> be filtered and <span class="process-math">\(J\subseteq I\)</span> a full subcategory. Its inclusion is final if and only if every <span class="process-math">\(i\in I\)</span> admits an arrow to an object of <span class="process-math">\(J\text{.}\)</span> When this holds, <span class="process-math">\(J\)</span> is filtered.</div>
+</article>
+<details id="cat-c06-prop-full-cofinal-subcategory-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="cat-c06-prop-full-cofinal-subcategory-2-1">The condition is necessary by nonemptiness of each comma category. Conversely, it gives an object of <span class="process-math">\(J\text{,}\)</span> and common targets in <span class="process-math">\(I\)</span> can be followed by an arrow back into <span class="process-math">\(J\text{.}\)</span> Fullness then gives common targets for pairs of objects of <span class="process-math">\(J\text{.}\)</span> Likewise, an equalization in <span class="process-math">\(I\)</span> followed by an arrow into <span class="process-math">\(J\)</span> gives the required equalization in <span class="process-math">\(J\text{,}\)</span> so <span class="process-math">\(J\)</span> is filtered.</div>
+<div class="para" id="cat-c06-prop-full-cofinal-subcategory-2-2">For two objects <span class="process-math">\((j,a)\text{,}\)</span> <span class="process-math">\((j',a')\)</span> of <span class="process-math">\((i\downarrow J)\text{,}\)</span> first choose arrows from <span class="process-math">\(j,j'\)</span> to a common target in <span class="process-math">\(I\text{.}\)</span> Equalize the resulting two composites out of <span class="process-math">\(i\text{,}\)</span> and follow by an arrow into an object <span class="process-math">\(k\in J\text{.}\)</span> Fullness makes the two resulting arrows from <span class="process-math">\(j,j'\)</span> arrows of <span class="process-math">\(J\text{.}\)</span> They give a common target for the two comma objects. Thus that comma category is nonempty and connected, proving finality.</div>
+</article></details>
+<div class="para" id="cat-c06-directed-reindexing-6">This criterion is <a href="cat-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-cat-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Proposition 1.6.8]</a>. Fullness and filteredness are the reasons that reachability alone suffices here, whereas it failed for a general functor.</div>
+<div class="para" id="cat-c06-directed-reindexing-7">There is an explicit replacement for the one-object category of <span class="process-math">\(\{1,0\}\text{.}\)</span> Send every <span class="process-math">\(n\in\N\)</span> to its sole object, every strict transition <span class="process-math">\(n&lt;m\)</span> to <span class="process-math">\(0\text{,}\)</span> and every identity to <span class="process-math">\(1\text{.}\)</span> This is a functor. In its comma category, any two objects map to one at a strictly larger stage labeled by <span class="process-math">\(0\text{,}\)</span> so it is final. A diagram of sets on the monoid category is a set with an idempotent self-map; this reindexing becomes a sequence repeatedly applying that map. Its colimit is the image of the idempotent. The replacement retains that information through transition arrows, even though all its stages have the same image object.</div>
+<div class="para" id="cat-c06-directed-reindexing-8">Finally, the canonical comparisons are independent of replacement choices in the appropriate universal sense. If two directed replacements are used, both resulting colimit cocones extend uniquely to the original diagram. Each is therefore a colimit of that diagram, and there is a unique isomorphism compatible with those extended cocones. The comparison is natural in the diagram by the same uniqueness. This does not identify the two directed posets or their stagewise diagrams; it identifies the universal objects they compute.</div>
+</section>
+<section class="section" id="cat-c06-sifted-products">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.11</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Sifted categories and the diagonal criterion</span>
+</h2>
+<div class="para" id="cat-c06-sifted-products-2">Filteredness controls finite equations as well as finite collections of representatives. If only finite products are to commute with a colimit, the appropriate condition is weaker. Indexing categories remain <span class="process-math">\(\U\)</span>-small, and the commutation assertion concerns <span class="process-math">\(\Set_\U\text{.}\)</span>
+</div>
+<article class="definition definition-like" id="cat-c06-sifted-def"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.18</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Sifted category.</span>
+</h3>
+<div class="para logical" id="cat-c06-sifted-def-4-1">
+<div class="para">A small category <span class="process-math">\(I\)</span> is sifted if <span class="process-math">\(\operatorname{colim}_I:\Fun(I,\Set_\U)\to\Set_\U\)</span> preserves finite products. Explicitly, for every finite family <span class="process-math">\((F_s:I\to\Set_\U)_{s\in S}\text{,}\)</span> the canonical map</div>
+<div class="displaymath process-math" id="cat-c06-sifted-def-4-1-4">
+\begin{equation*}
+\operatorname{colim}_{i\in I}\prod_{s\in S}F_s(i)\longrightarrow\prod_{s\in S}\operatorname{colim}_{i\in I}F_s(i)
+\end{equation*}
+</div>
+<div class="para">is bijective. The empty family is included. A sifted colimit in any category means a colimit indexed by a small sifted category.</div>
+</div>
+</article>
+<div class="para" id="cat-c06-sifted-products-4">It suffices to test binary products and the terminal object, then iterate. The empty-product condition says <span class="process-math">\(\operatorname{colim}_I\Delta1\cong1\text{,}\)</span> equivalently that <span class="process-math">\(I\)</span> is nonempty and connected. Thus nonemptiness is part of the definition, rather than an optional convention.</div>
+<article class="theorem theorem-like" id="cat-c06-sifted-thm-diagonal"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.19</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="cat-c06-sifted-thm-diagonal-1-1">
+<div class="para">A small category <span class="process-math">\(I\)</span> is sifted if and only if it is nonempty and its diagonal <span class="process-math">\(\delta:I\to I\times I\)</span> is final. Equivalently, <span class="process-math">\(I\)</span> is nonempty and, for every <span class="process-math">\(a,b\in I\text{,}\)</span> the category of cospans</div>
+<div class="displaymath process-math" id="cat-c06-sifted-thm-diagonal-1-1-5">
+\begin{equation*}
+a\xrightarrow{u}k\xleftarrow{v}b
+\end{equation*}
+</div>
+<div class="para">is nonempty and connected. Its morphisms are arrows <span class="process-math">\(h:k\to k'\)</span> satisfying <span class="process-math">\(hu=u'\)</span> and <span class="process-math">\(hv=v'\text{.}\)</span>
+</div>
+</div>
+</article>
+<details id="cat-c06-sifted-thm-diagonal-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="cat-c06-sifted-thm-diagonal-2-1">
+<div class="para">Suppose first that <span class="process-math">\(I\)</span> is sifted. The empty-product test makes it nonempty. Each covariant representable <span class="process-math">\(\Hom_I(a,-)\)</span> has singleton colimit: every arrow from <span class="process-math">\(a\)</span> is the image of <span class="process-math">\(\id_a\text{.}\)</span> Binary-product preservation therefore gives</div>
+<div class="displaymath process-math" id="cat-c06-sifted-thm-diagonal-2-1-5">
+\begin{equation*}
+\operatorname{colim}_{k\in I}\bigl(\Hom_I(a,k)\times\Hom_I(b,k)\bigr)\cong1.
+\end{equation*}
+</div>
+<div class="para">The covariant element category of this product functor is precisely the displayed cospan category <span class="process-math">\(((a,b)\downarrow\delta)\text{.}\)</span> The component description of set colimits makes that category nonempty and connected, proving finality.</div>
+</div>
+<div class="para logical" id="cat-c06-sifted-thm-diagonal-2-2">
+<div class="para">Conversely, finality of <span class="process-math">\(\delta\)</span> supplies a cospan between every two objects. Together with nonemptiness this makes <span class="process-math">\(I\)</span> connected, so the terminal-object test holds. For <span class="process-math">\(F,G:I\to\Set_\U\text{,}\)</span> apply cofinality to <span class="process-math">\(H(i,j)=F(i)\times G(j)\text{.}\)</span> It identifies the diagonal colimit with <span class="process-math">\(\operatorname{colim}_{I\times I}H\text{.}\)</span> The latter is canonically</div>
+<div class="displaymath process-math" id="cat-c06-sifted-thm-diagonal-2-2-6">
+\begin{equation*}
+\bigl(\operatorname{colim}_I F\bigr)\times\bigl(\operatorname{colim}_I G\bigr).
+\end{equation*}
+</div>
+<div class="para">Indeed, every pair of classes has representatives at independently chosen stages. Equality of the first representatives is generated by a zigzag of transition identifications while the second representative is held fixed; then vary the second coordinate while holding the first fixed. These are exactly the identifications in the product-indexed colimit. This proves bijectivity, including the case of an empty colimit on either side. The resulting composite is the canonical product comparison, so binary products are preserved.</div>
+</div>
+</article></details>
+<div class="para" id="cat-c06-sifted-products-6">This is the criterion in <a href="cat-references.html#ARV10" class="xref" data-knowl="./knowl/xref/bib-cat-arv-sifted.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry ARV10">[ARV10, Remark 2.1(i), June 2010 manuscript]</a>. The explicit nonemptiness condition matters: the diagonal of the empty category is final vacuously, but that category is not sifted. The proof also shows why connectedness of each cospan category, rather than uniqueness of a common target, is the relevant condition.</div>
+<div class="para" id="cat-c06-sifted-products-7">Connectedness alone is much weaker. Let a nontrivial small group <span class="process-math">\(G\)</span> define a one-object category. A covariant functor from it to sets is a left action, and its colimit is the orbit set. The regular action of <span class="process-math">\(G\)</span> on itself has one orbit, whereas the diagonal action on <span class="process-math">\(G\times G\)</span> has orbit set in bijection with <span class="process-math">\(G\text{:}\)</span> the invariant is <span class="process-math">\(g^{-1}h\text{,}\)</span> and equal invariants give elements in the same orbit. Thus this connected category fails the binary-product test. The test concerns arbitrary diagrams, not merely constant diagrams with identity transition maps.</div>
+</section>
+<section class="section" id="cat-c06-sifted-reflexive">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.12</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Filtered diagrams and reflexive coequalizers</span>
+</h2>
+<div class="para" id="cat-c06-sifted-reflexive-2">Every filtered category is sifted by <a href="cat-filtered-cofinal.html#cat-c06-thm-finite-limit-commutation" class="xref" data-knowl="./knowl/xref/cat-c06-thm-finite-limit-commutation.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 6.13">Theorem 6.13</a>. Every small category with finite coproducts is also sifted: it is nonempty, and the coproduct cospan <span class="process-math">\(a\to a\amalg b\leftarrow b\)</span> is initial in its cospan category. A further example separates siftedness from filteredness.</div>
+<article class="definition definition-like" id="cat-c06-sifted-def-reflexive"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.20</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Reflexive pair and its indexing category.</span>
+</h3>
+<div class="para" id="cat-c06-sifted-def-reflexive-4-1">A parallel pair <span class="process-math">\(d_0,d_1:A\rightrightarrows B\)</span> is reflexive if it has a common section <span class="process-math">\(s:B\to A\text{,}\)</span> so <span class="process-math">\(d_0s=d_1s=\id_B\text{.}\)</span> A reflexive coequalizer is a coequalizer of such a pair. Let <span class="process-math">\(\mathcal R\)</span> be the category presented by these two objects, three generating arrows, and those two relations; no further relations are imposed.</div>
+</article>
+<div class="para" id="cat-c06-sifted-reflexive-4">A diagram of shape <span class="process-math">\(\mathcal R\)</span> specifies the pair together with its common section. Its colimit is exactly the coequalizer of the pair: a cocone is determined by its leg <span class="process-math">\(q:B\to Q\text{,}\)</span> with <span class="process-math">\(qd_0=qd_1\text{;}\)</span> the leg from <span class="process-math">\(A\)</span> is then <span class="process-math">\(qd_0\text{,}\)</span> and its compatibility with <span class="process-math">\(s\)</span> follows from <span class="process-math">\(d_0s=\id_B\text{.}\)</span> This argument works in any category and requires no preexisting coequalizers.</div>
+<article class="proposition theorem-like" id="cat-c06-sifted-prop-reflexive"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.21</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="cat-c06-sifted-prop-reflexive-1-1">The category <span class="process-math">\(\mathcal R\)</span> is sifted and is not filtered. Consequently reflexive coequalizers commute with finite products in sets.</div>
+</article>
+<details id="cat-c06-sifted-prop-reflexive-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="cat-c06-sifted-prop-reflexive-2-1">
+<div class="para">Take two reflexive pairs of sets <span class="process-math">\(d_0,d_1:A\rightrightarrows B\)</span> and <span class="process-math">\(e_0,e_1:A'\rightrightarrows B'\text{,}\)</span> with common sections <span class="process-math">\(s,t\text{.}\)</span> Write their coequalizers as <span class="process-math">\(B/{\sim}\)</span> and <span class="process-math">\(B'/{\approx}\text{.}\)</span> Let <span class="process-math">\(\equiv\)</span> be the equivalence relation generated on <span class="process-math">\(B\times B'\)</span> by</div>
+<div class="displaymath process-math" id="cat-c06-sifted-prop-reflexive-2-1-8">
+\begin{equation*}
+(d_0a,e_0a')\equiv(d_1a,e_1a').
+\end{equation*}
+</div>
+<div class="para">Each generating identification respects <span class="process-math">\(\sim\)</span> and <span class="process-math">\(\approx\text{,}\)</span> so <span class="process-math">\(\equiv\)</span> is contained in the coordinatewise equivalence relation. Conversely, choosing <span class="process-math">\(a'=t(b')\)</span> shows</div>
+<div class="displaymath process-math" id="cat-c06-sifted-prop-reflexive-2-1-13">
+\begin{equation*}
+(d_0a,b')\equiv(d_1a,b'),
+\end{equation*}
+</div>
+<div class="para">and choosing <span class="process-math">\(a=s(b)\)</span> allows the second coordinate to change while the first stays fixed. Taking equivalence closures gives every coordinatewise equivalence. Hence</div>
+<div class="displaymath process-math" id="cat-c06-sifted-prop-reflexive-2-1-15">
+\begin{equation*}
+(B\times B')/{\equiv}\cong(B/{\sim})\times(B'/{\approx}).
+\end{equation*}
+</div>
+<div class="para">This is the canonical comparison for the two diagrams. The constant singleton diagram has singleton coequalizer, so the empty-product test also holds. Binary and empty products establish siftedness.</div>
+</div>
+<div class="para" id="cat-c06-sifted-prop-reflexive-2-2">To disprove filteredness, reduce words using <span class="process-math">\(d_i s=\id_B\text{.}\)</span> The only arrows with source <span class="process-math">\(B\)</span> are <span class="process-math">\(\id_B\)</span> and <span class="process-math">\(s\text{.}\)</span> Neither equalizes <span class="process-math">\(d_0,d_1\text{:}\)</span> both <span class="process-math">\(d_0\ne d_1\)</span> and <span class="process-math">\(sd_0\ne sd_1\text{.}\)</span> These inequalities can be checked in a set-valued diagram with <span class="process-math">\(A=\{0,1,2\}\text{,}\)</span> <span class="process-math">\(B=\{0,1\}\text{,}\)</span> the inclusion as section, and <span class="process-math">\(d_0,d_1\)</span> fixing <span class="process-math">\(0,1\)</span> but sending <span class="process-math">\(2\)</span> to <span class="process-math">\(0,1\text{,}\)</span> respectively. Thus no arrow out of <span class="process-math">\(B\)</span> equalizes the generating pair.</div>
+</article></details>
+<div class="para" id="cat-c06-sifted-reflexive-6">The quotient argument is a direct verification of the example in <a href="cat-references.html#ARV10" class="xref" data-knowl="./knowl/xref/bib-cat-arv-sifted.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry ARV10">[ARV10, Example 2.2, June 2010 manuscript]</a>. The common sections supply stationary coordinates. They do not supply a later stage equalizing the two arrows, which is the extra demand made by filteredness.</div>
+</section>
+<section class="section" id="cat-c06-sifted-boundaries">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.13</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">What siftedness does not imply</span>
+</h2>
+<div class="para logical" id="cat-c06-sifted-boundaries-2">
+<div class="para">Siftedness does not guarantee commutation with equalizers. In <span class="process-math">\(\mathcal R\text{,}\)</span> precomposition with <span class="process-math">\(d_0,d_1\)</span> gives transformations</div>
+<div class="displaymath process-math" id="cat-c06-sifted-boundaries-2-3">
+\begin{equation*}
+\Hom_{\mathcal R}(B,-)\rightrightarrows\Hom_{\mathcal R}(A,-).
+\end{equation*}
+</div>
+<div class="para">Their pointwise equalizer is empty everywhere, since no arrow out of <span class="process-math">\(B\)</span> equalizes the pair. Its colimit is empty, whereas both representable colimits are singletons and their equalizer is a singleton. This directly witnesses the failure of finite-limit commutation.</div>
+</div>
+<div class="para" id="cat-c06-sifted-boundaries-3">Nor are arbitrary coequalizer shapes sifted. For the category freely generated by a parallel pair, take a diagram <span class="process-math">\(\{*\}\rightrightarrows\{0,1\}\)</span> sending the generator to <span class="process-math">\(0\)</span> and <span class="process-math">\(1\text{.}\)</span> Its coequalizer is a singleton. In the product of this diagram with itself, only <span class="process-math">\((0,0)\)</span> and <span class="process-math">\((1,1)\)</span> are identified; the off-diagonal elements remain separate. Its coequalizer has three elements, so the product comparison is not bijective.</div>
+<article class="proposition theorem-like" id="cat-c06-sifted-prop-product-models"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.22</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="cat-c06-sifted-prop-product-models-1-1">Let <span class="process-math">\(T\)</span> be a small category with finite products. The full subcategory of <span class="process-math">\(\Fun(T,\Set_\U)\)</span> consisting of finite-product-preserving functors is closed under sifted colimits computed in that functor category.</div>
+</article>
+<details id="cat-c06-sifted-prop-product-models-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="cat-c06-sifted-prop-product-models-2-1">
+<div class="para">For a sifted diagram of such functors <span class="process-math">\(M_i\text{,}\)</span> form its pointwise colimit <span class="process-math">\(M\text{.}\)</span> For every finite family <span class="process-math">\((t_s)\)</span> in <span class="process-math">\(T\text{,}\)</span> the maps supplied by its product projections give natural comparison bijections for each <span class="process-math">\(M_i\text{.}\)</span> Taking their colimit and using siftedness gives</div>
+<div class="displaymath process-math" id="cat-c06-sifted-prop-product-models-2-1-6">
+\begin{equation*}
+M\left(\prod_s t_s\right)\cong\operatorname{colim}_i\prod_s M_i(t_s)\cong\prod_s M(t_s).
+\end{equation*}
+</div>
+<div class="para">The composite is precisely the comparison induced by those projections. The empty family is included, so the terminal object is preserved too. Thus <span class="process-math">\(M\)</span> belongs to the full subcategory. Its cocone is still universal there, since it is already universal against every vertex in the ambient functor category.</div>
+</div>
+</article></details>
+<div class="para" id="cat-c06-sifted-boundaries-5">This gives a useful scope for the set-theoretic commutation theorem. Whenever objects of interest are described by product-preserving set-valued functors on a specified small category, their sifted colimits can be formed pointwise. It uses no assertion about arbitrary equations, arbitrary limits, or the behavior of an unspecified underlying-set functor. The product comparisons and the terminal comparison are exactly the structure retained.</div>
+<div class="para" id="cat-c06-sifted-boundaries-6">Thus filtered colimits and reflexive coequalizers are two important families of sifted colimits, with different mechanisms. Reducing all sifted constructions to those two families requires further hypotheses on the ambient category.<a id="cat-c06-sifted-boundaries-6-1" href="#margin-cat-c06-sifted-boundaries-6-1" class="margin-note-marker" aria-label="Margin note 3">3</a> As with the filtered theorem, the defining product commutation takes place in sets. Using it in another ambient category requires an argument that its relevant products and colimits have the corresponding behavior.</div>
+</section></section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="cat-adjunctions.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Top</span></a><a class="next-button button" href="cat-kan.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a>
+</div></main>
+<div class="margin-notes" role="complementary" aria-label="Margin notes">
+<aside id="margin-cat-c06-final-initial-5-8" class="aside aside-like margin-note" data-margin-anchor="cat-c06-final-initial-5" data-margin-label="1" data-margin-inline="true"><h4 class="heading"><a href="#cat-c06-final-initial-5" class="margin-note-label">1</a></h4>
+<div class="para">Names should be translated using the displayed comma category and the domain of the diagram. The word cofinal alone is especially easy to misread when an inverse system is written with its opposite indexing category suppressed.
+</div></aside><aside id="margin-cat-c06-filtered-categories-4-1" class="aside aside-like margin-note" data-margin-anchor="cat-c06-filtered-categories-4" data-margin-label="2" data-margin-inline="true"><h4 class="heading"><a href="#cat-c06-filtered-categories-4" class="margin-note-label">2</a></h4>
+<div class="para">Compare <a href="cat-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-cat-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Tags 002Z and 0030]</a>. Stacks also calls a diagram filtered under a slightly weaker condition: it only requires the images of parallel composites to become equal, rather than requiring those composites equal in the index category itself; see <a href="cat-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-cat-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Tag 002V]</a>. Our usage always places filteredness on the indexing category.
+</div></aside><aside id="margin-cat-c06-sifted-boundaries-6-1" class="aside aside-like margin-note" data-margin-anchor="cat-c06-sifted-boundaries-6" data-margin-label="3" data-margin-inline="true"><h4 class="heading"><a href="#cat-c06-sifted-boundaries-6" class="margin-note-label">3</a></h4>
+<div class="para">For a functor with finitely cocomplete domain, preservation of existing sifted colimits is equivalent to preservation of existing filtered colimits and reflexive coequalizers: <a href="cat-references.html#ARV10" class="xref" data-knowl="./knowl/xref/bib-cat-arv-sifted.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry ARV10">[ARV10, Theorem 3.1, June 2010 manuscript]</a>. The domain need not be assumed to have all filtered or all sifted colimits: preservation concerns the colimits that exist. The same manuscript’s Examples 2.4 and 3.2 give failures of unrestricted existence and preservation claims. We use this result only for the boundary comparison.
+</div></aside>
+</div>
+</div>
+<footer id="site-copyright" class="site-copyright"><p>© 2026 Jie Fu. All rights reserved.</p></footer>
+</body>
+</html>

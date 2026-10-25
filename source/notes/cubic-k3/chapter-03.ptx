@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="ck3-hassett">
+  <title>Special cubic fourfolds and associated K3 surfaces</title>
+  <section xml:id="ck3-surfaces-and-discriminants">
+    <title>Two surfaces and their intersection matrices</title>
+    <p>A surface inside a cubic fourfold gives an integral class in middle cohomology. Its degree and self-intersection determine the intersection matrix with the square of the hyperplane class. We begin with the plane and the quartic scroll, since these calculations explain the discriminants eight and fourteen without introducing periods.</p>
+    <p>Let <m>X\subset\mathbb P^5</m> be smooth, and write <m>h=c_1(\mathcal O_X(1))</m>. The intersection pairing satisfies <m>(h^2,h^2)=\int_Xh^4=3</m>. If <m>P\simeq\mathbb P^2</m> is a plane in <m>X</m>, its normal bundles fit into
+      <md><mrow>0\longrightarrow N_{P/X}\longrightarrow\mathcal O_P(1)^{\oplus3}\longrightarrow\mathcal O_P(3)\longrightarrow0.</mrow></md>
+      The last map is surjective because <m>X</m> is smooth along <m>P</m>. With <m>H=h|_P</m>, the total Chern class is
+      <md><mrow>c(N_{P/X})=\frac{(1+H)^3}{1+3H}=1+3H^2.</mrow></md>
+      The self-intersection formula gives <m>[P]^2=\int_Pc_2(N_{P/X})=3</m>. Since <m>h^2\cdot[P]=1</m>, the two classes have Gram matrix
+      <md><mrow>\begin{pmatrix}3&amp;1\\1&amp;3\end{pmatrix},</mrow></md>
+      whose determinant is eight.</p>
+    <p xml:id="ck3-surface-selfintersection">For any smooth surface <m>S\subset X</m>, let <m>H=h|_S</m> and let <m>K_S</m> be its canonical class. Expanding <m>c(TX|_S)=(1+H)^6/(1+3H)</m> gives <m>c_1(TX|_S)=3H</m> and <m>c_2(TX|_S)=6H^2</m>. The tangent and normal exact sequence therefore gives
+      <md><mrow>[S]^2=\int_Sc_2(N_{S/X})=6H^2+3H\cdot K_S+K_S^2-c_2(S).</mrow></md>
+      Here the numbers on the right are degrees on <m>S</m>. This formula will be used again for the surfaces in <xref ref="ck3-rationality"/>.</p>
+    <aside xml:id="margin-ck3-selfintersection"><p>The degree <m>H^2</m> and the self-intersection <m>[S]^2</m> measure different intersections. The first is computed on the surface using hyperplanes. The second is computed inside the fourfold and uses the normal bundle.</p></aside>
+    <p>A smooth quartic rational normal scroll <m>\Sigma\subset\mathbb P^5</m> can be realized as <m>\mathbb P^1\times\mathbb P^1</m> embedded by <m>\mathcal O(1,2)</m>. If <m>s,f</m> are the two ruling classes, then <m>H=s+2f</m>, <m>K_\Sigma=-2s-2f</m>, and <m>s^2=f^2=0</m>, <m>s\cdot f=1</m>. Thus <m>H^2=4</m>, <m>H\cdot K_\Sigma=-6</m>, <m>K_\Sigma^2=8</m>, and <m>c_2(\Sigma)=4</m>. For a cubic containing this scroll,
+      <md><mrow>[\Sigma]^2=24-18+8-4=10.</mrow></md>
+      The Gram matrix of <m>h^2,[\Sigma]</m> is
+      <md><mrow>\begin{pmatrix}3&amp;4\\4&amp;10\end{pmatrix},</mrow></md>
+      with determinant fourteen. The other smooth quartic scroll, on the Hirzebruch surface <m>\mathbb F_2</m>, has the same four numerical invariants and gives the same matrix.</p>
+    <p xml:id="ck3-surface-lattice-index">These computations produce rank-two sublattices of <m>H^4(X,\mathbb Z)</m>. To define the discriminant of a labelled cubic, we must require the sublattice to be saturated. A lattice of discriminant fourteen is automatically saturated in an integral lattice, since fourteen has no nontrivial square divisor. The plane lattice is saturated as well; after the existence theorem below, this follows because a proper saturation would have discriminant two, which is excluded for smooth cubics.</p>
+    <aside xml:id="margin-ck3-saturation"><p>If <m>K\subset K^{\mathrm{sat}}</m> has index <m>e</m>, then <m>\det K=e^2\det K^{\mathrm{sat}}</m>. A determinant calculated from two surface classes is the discriminant of a label only after this index has been checked.</p></aside>
+  </section>
+  <section xml:id="ck3-labels-and-periods">
+    <title>Labels and Noether–Lefschetz divisors</title>
+    <p>Define the algebraic lattice by
+      <md><mrow>A_X=H^4(X,\mathbb Z)\cap H^{2,2}(X).</mrow></md>
+      Its orthogonal complement in <m>H^4(X,\mathbb Z)</m>, taken with respect to cup product, is the transcendental lattice <m>T_X=A_X^\perp</m>. The integral Hodge conjecture for cubic fourfolds says that every class in <m>A_X</m> is algebraic <xref ref="bib-ck3-blmnps" detail="Corollary 29.8"/>. The lattice <m>A_X</m> is positive definite and contains <m>h^2</m>. A very general cubic has <m>A_X=\mathbb Z h^2</m>. A cubic is called special when <m>\operatorname{rank}A_X\geq2</m>, equivalently when it has an algebraic surface class independent of <m>h^2</m>.</p>
+    <p>The positivity follows from the Hodge–Riemann relations. For <m>\gamma\in A_X</m>, write <m>\gamma=(h^2\cdot\gamma)h^2/3+\gamma_0</m> over <m>\mathbb Q</m>, with <m>\gamma_0</m> primitive. The two summands are orthogonal, and the cup product is positive on real primitive classes of type <m>(2,2)</m>. The full middle lattice has signature <m>(21,2)</m>. Consequently, if <m>r=\operatorname{rank}A_X</m>, then <m>T_X</m> has rank <m>23-r</m> and signature <m>(21-r,2)</m>. An additional algebraic direction removes one positive direction from the transcendental lattice.</p>
+    <p xml:id="ck3-label-definition">A label on <m>X</m> is a saturated rank-two sublattice <m>K_d\subset A_X</m> containing <m>h^2</m>. Its discriminant is the positive integer <m>d=\det K_d</m>. Since <m>h^2</m> is primitive, it extends to a basis <m>h^2,\gamma</m> of the label. If <m>a=h^2\cdot\gamma</m> and <m>b=\gamma^2</m>, then
+      <md><mrow>K_d=\begin{pmatrix}3&amp;a\\a&amp;b\end{pmatrix}.</mrow></md>
+      Thus <m>d=3b-a^2</m>. The second basis vector need not be the class of a single smooth surface. The label is an integral sublattice, independently of how its classes are represented by cycles.</p>
+    <aside xml:id="margin-ck3-multiple-labels"><p>A cubic can have several labels of different discriminants. An expression such as <m>X\in\mathcal C_d</m> asserts that one label of discriminant <m>d</m> exists. It does not assign a unique discriminant to the unlabelled cubic.</p></aside>
+    <p>The class <m>h^2</m> is characteristic in the odd unimodular lattice <m>H^4(X,\mathbb Z)</m>. For every <m>\eta\in H^4(X,\mathbb Z)</m>, the Wu formula gives
+      <md><mrow>\eta^2\equiv\eta\cdot h^2\pmod2.</mrow></md>
+      Hence <m>b\equiv a\pmod2</m>. Reducing <m>d=3b-a^2</m> modulo six shows that <m>d\equiv0</m> or <m>2\pmod6</m>. Replacing <m>\gamma</m> by <m>\gamma+kh^2</m> changes <m>a</m> by <m>3k</m>. Changing its sign if necessary gives the normal form
+      <md><mrow>K_{6n}=\begin{pmatrix}3&amp;0\\0&amp;2n\end{pmatrix}</mrow></md>
+      when <m>d=6n</m>. When <m>d=6n+2</m>, the corresponding form is
+      <md><mrow>K_{6n+2}=\begin{pmatrix}3&amp;1\\1&amp;2n+1\end{pmatrix}.</mrow></md>
+      These normal forms follow from parity and a change of basis preserving <m>h^2</m>. They do not by themselves prove that a smooth cubic with the label exists.</p>
+    <p>The moduli space <m>\mathcal C</m> of smooth cubic fourfolds has dimension twenty. After a marking, the primitive lattice <m>L_0=(h^2)^\perp</m> has rank twenty-two and signature <m>(20,2)</m>. The line <m>H^{3,1}(X)=\mathbb C\omega</m> determines the primitive Hodge structure. It belongs to a component of the period domain
+      <md><mrow>\mathcal D=\{[\omega]\in\mathbb P(L_0\otimes\mathbb C): (\omega,\omega)=0,\ (\omega,\overline\omega)\lt0\}.</mrow></md>
+      This domain has complex dimension twenty: it is open in a quadric in <m>\mathbb P^{21}</m>. Asking for one additional independent integral class <m>\gamma</m> to be of type <m>(2,2)</m> imposes the linear equation <m>(\gamma,\omega)=0</m>.</p>
+    <p xml:id="ck3-period-hyperplane">The locus of cubics admitting a label <m>K_d</m> is denoted <m>\mathcal C_d</m>. The period description explains its expected codimension one. Taking the arithmetic quotient and determining which periods come from smooth cubics gives Hassett's existence and irreducibility theorem <xref ref="bib-ck3-hassett-special" detail="Theorem 1.0.1"/>.</p>
+    <aside xml:id="margin-ck3-very-general-divisor"><p>The very general member of <m>\mathcal C_d</m> has <m>A_X=K_d</m>. Intersections with other independent Hodge conditions have larger algebraic rank. A general member means a point in a specified Zariski open set; excluding countably many further Hodge loci requires the phrase very general.</p></aside>
+    <theorem xml:id="ck3-hassett-existence">
+      <statement><p>The locus <m>\mathcal C_d</m> is a nonempty irreducible divisor in <m>\mathcal C</m> if and only if <m>d\gt6</m> and <m>d\equiv0,2\pmod6</m>.</p></statement>
+    </theorem>
+    <p>The small values two and six satisfy the congruence but lie outside the smooth cubic period image. Their exclusion uses geometry in addition to lattice parity. The image theorem in <xref ref="ck3-period-image"/> describes these two excluded divisors and explains their lattice conditions. The plane and scroll examples give <m>\mathcal C_8</m> and <m>\mathcal C_{14}</m>. The special locus is the countable union of these divisors as <m>d</m> varies, so its complement contains the very general cubic.</p>
+  </section>
+  <section xml:id="ck3-integral-k3-association">
+    <title>The integral K3 association</title>
+    <p>The Hodge numbers of primitive cubic cohomology resemble those of a K3 surface, but an association must compare integral bilinear forms. For a label <m>K_d</m>, its orthogonal complement has rank twenty-one and signature <m>(19,2)</m>. A primitive polarization <m>\ell</m> of square <m>d</m> on a K3 surface has an orthogonal complement <m>\ell^\perp\subset H^2(S,\mathbb Z)</m> of the same rank, with signature <m>(2,19)</m>. Negating the K3 intersection form makes these signatures agree.</p>
+    <p xml:id="ck3-associated-isometry">A K3 surface <m>S</m> with a primitive ample polarization <m>\ell</m> is associated to the labelled cubic <m>(X,K_d)</m> when <m>\ell^2=d</m> and there is an integral Hodge isometry
+      <md><mrow>K_d^\perp\simeq H^2(S,\mathbb Z)_{\mathrm{prim}}(-1).</mrow></md>
+      The primitive group on the right is <m>\ell^\perp</m>. The twist <m>(-1)</m> raises weight two to weight four and shifts bidegrees by <m>(1,1)</m>. We equip the twisted K3 side with the negative of its cup product. Thus the isometry sends the K3 period line to <m>H^{3,1}(X)</m> and preserves the stated integral forms.</p>
+    <aside xml:id="margin-ck3-orthogonal-ranks"><p>The full primitive cohomology <m>H^4(X,\mathbb Z)_{\mathrm{prim}}</m> has rank twenty-two. The group <m>K_d^\perp</m> has rank twenty-one. Removing the extra algebraic direction is necessary when comparing with the primitive cohomology of a polarized K3 surface.</p></aside>
+    <p>For a very general labelled cubic, <m>A_X=K_d</m>, so <m>K_d^\perp=T_X</m>. Its associated K3 surface has Picard rank one and <m>H^2(S,\mathbb Z)_{\mathrm{prim}}=T_S</m>. At points with additional algebraic classes, <m>K_d^\perp</m> itself contains Hodge classes and should not be replaced by <m>T_X</m>. Restricting an associated Hodge isometry to the orthogonal complements of all algebraic classes still gives <m>T_X\simeq T_S(-1)</m>.</p>
+    <p>Hassett gives an exact arithmetic condition for the association <xref ref="bib-ck3-hassett-special" detail="Theorem 5.1.3"/>.</p>
+    <theorem xml:id="ck3-hassett-admissibility">
+      <statement><p>Let <m>(X,K_d)</m> be a labelled special cubic fourfold. It has an associated polarized K3 surface of degree <m>d</m> if and only if <m>4\nmid d</m>, <m>9\nmid d</m>, and no odd prime <m>p\equiv2\pmod3</m> divides <m>d</m>.</p></statement>
+    </theorem>
+    <p>A discriminant satisfying the conditions of both <xref ref="ck3-hassett-existence"/> and <xref ref="ck3-hassett-admissibility"/> is called admissible. The first examples are <m>14,26,38,42</m>. The existence of the divisor and the existence of an associated K3 surface are separate conditions. In particular, eight is a discriminant of smooth cubics, but is not admissible.</p>
+    <p>The lattice comparison explains the arithmetic restrictions. The primitive cohomology of a degree-<m>d</m> polarized K3 surface has a cyclic discriminant group of order <m>d</m>, with a specified quadratic form valued in <m>\mathbb Q/2\mathbb Z</m>. The even lattice <m>K_d^\perp</m> has the same determinant, but its discriminant form need not agree. For example, in the normal form for <m>d=6n</m>, a factor of nine in <m>d</m> makes the discriminant group noncyclic. Other obstructions occur in its quadratic form at the prime two and at odd primes congruent to two modulo three. Agreement of these finite quadratic forms gives the stated divisibility conditions.</p>
+    <p>Once the discriminant forms agree, the classification of indefinite even lattices gives an integral lattice isometry. The K3 period theorem realizes the induced Hodge structure on that lattice. The restrictions defining the period image of smooth cubic fourfolds exclude the roots that would make the K3 polarization merely nef instead of ample. Hassett carries out the discriminant-form and embedding calculations in the proof of <xref ref="bib-ck3-hassett-special" detail="Theorem 5.1.3"/>. The elementary lattice operations and the norm arithmetic that explain the comparison with the twisted condition are developed in <xref ref="ck3-lattice-appendix"/>.</p>
+    <p xml:id="ck3-admissibility-quantifier">For an unlabelled cubic, having an associated K3 surface means that at least one admissible label exists. A cubic in <m>\mathcal C_8\cap\mathcal C_{14}</m> can have a degree-fourteen association through its second label, although its plane label is not admissible. The categorical and twisted versions of this statement are given in <xref ref="ck3-dictionary"/>.</p>
+    <aside xml:id="margin-ck3-association-versus-rationality"><p>Admissibility is a theorem about an integral K3 association. The rational maps in <xref ref="ck3-rationality"/> prove rationality for particular families by additional geometry. The arithmetic association alone is not such a construction.</p></aside>
+  </section>
+</chapter>

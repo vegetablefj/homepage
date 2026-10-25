@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="ha-c13">
+  <title>t-structures and hearts</title>
+  <introduction>
+    <p>A triangulated category does not specify which objects should be regarded as concentrated in degree zero. A t-structure makes that choice and provides functorial truncations and cohomology objects. Its heart is abelian, but recovering the whole triangulated category from that heart is a further question.</p>
+    <p>We use the cohomological shift convention of <xref ref="ha-c00"/>. The main reference is <xref ref="bib-ha-bbd" detail="Section 1.3"/>; compare the treatments of truncation and derived categories in <xref ref="bib-ha-ks"/> and <xref ref="bib-ha-li2"/>.</p>
+  </introduction>
+  <section xml:id="ha-c13-definition">
+    <title>Truncation as a universal construction</title>
+    <definition xml:id="ha-c13-definition-tstructure">
+      <title>t-structures and boundedness</title>
+      <idx>t-structure</idx><idx>Heart</idx><idx>Bounded t-structure</idx><idx>Nondegenerate t-structure</idx>
+    <statement>
+      <p>A t-structure on a triangulated category <m>\mathcal T</m> is a pair of strictly full subcategories <m>(\mathcal T^{\leq0},\mathcal T^{\geq0})</m> such that:</p>
+      <p><ol>
+        <li><p><m>\mathcal T^{\leq0}[1]\subseteq\mathcal T^{\leq0}</m> and <m>\mathcal T^{\geq0}[-1]\subseteq\mathcal T^{\geq0}</m>.</p></li>
+        <li><p><m>\Hom(U,V)=0</m> for <m>U\in\mathcal T^{\leq0}</m> and <m>V\in\mathcal T^{\geq1}</m>, where <m>\mathcal T^{\geq1}=\mathcal T^{\geq0}[-1]</m>.</p></li>
+        <li><p>Every <m>X</m> occurs in a distinguished triangle <m>U\to X\to V\to U[1]</m> with <m>U\in\mathcal T^{\leq0}</m> and <m>V\in\mathcal T^{\geq1}</m>.</p></li>
+      </ol></p>
+      <p>Set <m>\mathcal T^{\leq n}=\mathcal T^{\leq0}[-n]</m>, <m>\mathcal T^{\geq n}=\mathcal T^{\geq0}[-n]</m>, and <m>\mathcal T^{[a,b]}=\mathcal T^{\geq a}\cap\mathcal T^{\leq b}</m>. The heart is <m>\mathcal A=\mathcal T^{\leq0}\cap\mathcal T^{\geq0}</m>. The t-structure is bounded if every object belongs to some <m>\mathcal T^{[a,b]}</m>. It is nondegenerate if both <m>\bigcap_n\mathcal T^{\leq n}</m> and <m>\bigcap_n\mathcal T^{\geq n}</m> contain only zero objects.</p>
+    </statement>
+    </definition>
+    <p>With this convention, shifting by <m>[1]</m> lowers cohomological degrees. Thus <m>\mathcal T^{\leq n}[1]=\mathcal T^{\leq n-1}</m>. The two halves of a t-structure need not be triangulated subcategories: each is closed under just one of the two shift directions.</p>
+    <proposition xml:id="ha-c13-proposition-truncation">
+      <statement>
+        <p>The inclusion <m>\mathcal T^{\leq n}\to\mathcal T</m> has a right adjoint <m>\tau_{\leq n}</m>, and the inclusion <m>\mathcal T^{\geq n}\to\mathcal T</m> has a left adjoint <m>\tau_{\geq n}</m>. The resulting triangle</p>
+        <p><md number="no">\tau_{\leq n}X\longrightarrow X\longrightarrow\tau_{\geq n+1}X\longrightarrow(\tau_{\leq n}X)[1]</md></p>
+        <p>is functorial in <m>X</m>. Both halves of the t-structure are extension-closed and closed under existing retracts.</p>
+      </statement>
+      <proof>
+        <p>Choose a triangle <m>U\to X\to V\to U[1]</m> with the required bounds. For <m>A\in\mathcal T^{\leq n}</m>, the two groups <m>\Hom(A,V)</m> and <m>\Hom(A,V[-1])</m> vanish. The exact Hom sequence therefore gives <m>\Hom(A,U)\simeq\Hom(A,X)</m>. This represents the desired right adjoint, independently of the chosen triangle. The left adjoint follows by the dual argument. These universal properties force a unique morphism between the truncation triangles over a morphism of their middle objects; the triangulated category axiom supplies existence.</p>
+        <p>The orthogonality characterization <m>\mathcal T^{\leq n}={}^{\perp}(\mathcal T^{\geq n+1})</m>, and its dual, follows by applying the same triangle to an object orthogonal to the indicated half. These characterizations prove extension-closure and closure under retracts.</p>
+      </proof>
+    </proposition>
+    <p>Functorial truncation does not provide a functorial cone for arbitrary morphisms. The bounds and orthogonality make the particular truncation triangle unique. This is the additional reason it is functorial.<fn>Brutal truncation of a complex generally fails to descend to its derived category: it need not preserve quasi-isomorphisms. The functors here are the smart truncations, characterized by their universal properties.</fn></p>
+    <proposition xml:id="ha-c13-proposition-truncation-calculus">
+      <statement><p>There are natural isomorphisms
+        <md number="no"><mrow>\tau_{\leq a}\tau_{\leq b}\simeq\tau_{\leq\min(a,b)},</mrow><mrow>\tau_{\geq a}\tau_{\geq b}\simeq\tau_{\geq\max(a,b)},</mrow><mrow>\tau_{\geq a}\tau_{\leq b}\simeq\tau_{\leq b}\tau_{\geq a}\quad(a\leq b).</mrow></md>
+        Shifting truncation gives <m>(\tau_{\leq n}X)[r]\simeq\tau_{\leq n-r}(X[r])</m>, and similarly for lower truncation. The common mixed truncation has its values in <m>\mathcal T^{[a,b]}</m>. If <m>a&gt;b</m>, both mixed truncations are zero.</p></statement>
+      <proof><p>Applying the appropriate Hom adjunction twice gives the first two formulas. For mixed truncation, truncate the triangle for one of the bounds at the other bound. Orthogonality identifies the remaining piece with the object having both bounds, and the universal maps identify the two orders. The same universal properties make the isomorphisms natural and compatible with repeated truncation. The shift formula follows by shifting the defining triangle. An object in <m>\mathcal T^{\leq b}\cap\mathcal T^{\geq a}</m> for <m>a&gt;b</m> has zero identity by orthogonality.</p></proof>
+    </proposition>
+    <p>In particular, the subcategories determine the truncation functors, their units and counits, and their comparison isomorphisms. Writing a truncation as an explicit complex is one model for these data. Equality of the resulting objects in a selected model is stronger than the natural isomorphism specified here.<fn>A common alternative indexes a t-structure homologically, with the shift raising the displayed degree. The inequalities, shift formulas, and the names left and right t-exact must all be translated together.</fn></p>
+  </section>
+  <section xml:id="ha-c13-heart">
+    <title>The abelian heart and its extensions</title>
+    <theorem xml:id="ha-c13-theorem-heart">
+      <statement>
+        <p>The heart <m>\mathcal A</m> is an abelian category. There is a cohomological functor <m>H_t^0:\mathcal T\to\mathcal A</m>, given by <m>\tau_{\geq0}\tau_{\leq0}</m>. Set <m>H_t^n(X)=H_t^0(X[n])</m>. A distinguished triangle gives a natural long exact sequence of these cohomology objects.</p>
+        <p>If <m>f:A\to B</m> is a map in the heart and <m>C</m> is its cone, then <m>C\in\mathcal T^{[-1,0]}</m>, and</p>
+        <p><md number="no">\ker_{\mathcal A}f\simeq H_t^{-1}(C),\qquad\coker_{\mathcal A}f\simeq H_t^0(C).</md></p>
+        <p>A sequence <m>0\to A\to B\to C\to0</m> in the heart is exact if and only if its two maps extend to a distinguished triangle <m>A\to B\to C\to A[1]</m>.</p>
+      </statement>
+    </theorem>
+    <p>The proof, including the equality of image and coimage and the cohomological property, is given in <xref ref="bib-ha-bbd" detail="Section 1.3"/>. The kernel construction can be seen directly. Truncate the cone triangle at its two possible cohomological degrees. Orthogonality makes the map <m>H_t^{-1}(C)\to A</m> universal among maps in the heart killed by <m>f</m>. The dual argument constructs the cokernel. The octahedral axiom compares these two constructions and proves that the resulting image and coimage agree. Thus the abelian structure is induced by triangles; it is not an abelian structure assumed in advance.</p>
+    <p>More explicitly, rotate the cone triangle to <m>C[-1]\to A\xrightarrow f B\to C</m>. For <m>T</m> in the heart, <m>\Hom(T,B[-1])=0</m>. The Hom sequence therefore identifies maps <m>T\to A</m> killed by <m>f</m> with maps <m>T\to C[-1]</m>. Since <m>C[-1]\in\mathcal T^{[0,1]}</m>, its degree-zero truncation is <m>H_t^{-1}(C)</m>, and the truncation adjunction identifies this last Hom set with <m>\Hom(T,H_t^{-1}(C))</m>. This proves the kernel universal property. The dual Hom calculation gives the cokernel. The actual maps into and out of <m>A,B</m> therefore come from the cone triangle, not just from knowing the isomorphism classes of its cohomology.</p>
+    <proposition xml:id="ha-c13-proposition-postnikov">
+      <statement><p>For every <m>X</m> and integer <m>n</m>, there are functorial distinguished triangles
+        <md number="no"><mrow>\tau_{\leq n-1}X\longrightarrow\tau_{\leq n}X\longrightarrow H_t^n(X)[-n]\longrightarrow(\tau_{\leq n-1}X)[1],</mrow><mrow>H_t^n(X)[-n]\longrightarrow\tau_{\geq n}X\longrightarrow\tau_{\geq n+1}X\longrightarrow H_t^n(X)[1-n].</mrow></md>
+        Thus an object of <m>\mathcal T^{[a,b]}</m> is obtained from the objects <m>H_t^n(X)[-n]</m>, for <m>a\leq n\leq b</m>, by finitely many such triangles.</p></statement>
+      <proof><p>Apply the truncation triangle at <m>n-1</m> to <m>\tau_{\leq n}X</m>. The truncation calculus identifies the first term with <m>\tau_{\leq n-1}X</m> and the third with <m>\tau_{\geq n}\tau_{\leq n}X=H_t^n(X)[-n]</m>. The second triangle follows dually. In a bounded interval, one end truncation is zero and the other is <m>X</m>, which gives the finite construction.</p></proof>
+    </proposition>
+    <p>The connecting morphisms in these triangles record how adjacent cohomological pieces are attached. A list of cohomology objects omits those morphisms. For the standard t-structure over a field all such attachments split after choosing complements; a general t-structure has no splitting assertion of this kind.</p>
+    <proposition xml:id="ha-c13-proposition-ext-one">
+      <statement>
+        <p>For <m>A,C\in\mathcal A</m>, there is a natural isomorphism</p>
+        <p><md number="no">\Ext^1_{\mathcal A}(C,A)\simeq\Hom_{\mathcal T}(C,A[1]),</md></p>
+        <p>where the left side denotes Yoneda extensions.</p>
+      </statement>
+      <proof>
+        <p>An extension gives the connecting map of its distinguished triangle. Conversely, complete a morphism <m>C\to A[1]</m> to a triangle <m>A\to B\to C\to A[1]</m>. Extension-closure places <m>B</m> in the heart, and its cohomology sequence is a short exact sequence with ends <m>A,C</m>. The axiom on morphisms of triangles identifies equivalent extensions. Pullback and pushout of extensions correspond to composition at the two ends of the connecting map. This also identifies Baer addition with addition of morphisms.</p>
+      </proof>
+    </proposition>
+    <p>The higher-degree comparison requires care. Yoneda products give maps from higher extensions in the heart to shifted morphisms in <m>\mathcal T</m>, but the heart theorem alone does not assert their invertibility. Nor does it construct an equivalence <m>\D^b(\mathcal A)\simeq\mathcal T</m>. A realization theorem needs additional hypotheses and a specified construction.</p>
+    <proposition xml:id="ha-c13-proposition-realization-test">
+      <statement><p>Suppose that the t-structure on <m>\mathcal T</m> is bounded, that <m>\D^b(\mathcal A)</m> is locally small at the chosen scale, and that an exact functor <m>R:\D^b(\mathcal A)\to\mathcal T</m> has been given whose restriction to the heart is its inclusion, with the specified natural identification. If
+        <md number="no">\Ext^n_{\mathcal A}(A,B)\longrightarrow\Hom_{\mathcal T}(A,B[n])</md>
+        induced by <m>R</m> is an isomorphism for every <m>A,B\in\mathcal A</m> and <m>n\geq0</m>, then <m>R</m> is an equivalence. Ext here may be defined by Yoneda extensions.</p></statement>
+      <proof><p>For negative <m>n</m> both sides of the corresponding shifted Hom comparison vanish by orthogonality. The assumed comparison therefore gives full faithfulness between all shifts of heart objects. Induct on the finite truncation lengths of the two arguments, applying their truncation triangles and the long exact Hom sequences. The five lemma gives full faithfulness on all bounded objects. The essential image contains the heart and, by full faithfulness and exactness, is closed under cones of maps between its objects. Every object of <m>\mathcal T</m> has the finite construction in <xref ref="ha-c13-proposition-postnikov"/>, so the image is all of <m>\mathcal T</m>.</p></proof>
+    </proposition>
+    <p>This is a criterion for a given realization functor, not its construction. It separates two tasks: producing the exact functor with the required compatibility, and proving the higher extension comparisons. Degree one is automatic by <xref ref="ha-c13-proposition-ext-one"/>; higher degrees are the substantive test. Boundedness makes the proof finite and is not a replacement for those comparisons.</p>
+  </section>
+  <section xml:id="ha-c13-examples">
+    <title>Standard, shifted, and degenerate examples</title>
+    <example xml:id="ha-c13-example-standard">
+      <p>For an abelian category <m>\mathcal A</m> whose derived category has the required morphism sets, define <m>\D(\mathcal A)^{\leq0}</m> and <m>\D(\mathcal A)^{\geq0}</m> by vanishing of ordinary cohomology above and below zero. Smart truncation gives the required triangle. The heart is equivalent to <m>\mathcal A</m> via complexes concentrated in degree zero. This t-structure is nondegenerate; its restriction to <m>\D^b(\mathcal A)</m> is bounded.</p>
+      <p>For any integer <m>r</m>, the shifted pair <m>(\mathcal T^{\leq r},\mathcal T^{\geq r})</m> is another t-structure. Its heart is <m>\mathcal A[-r]</m>. The abstract triangulated category does not select the original heart from all these choices.</p>
+    </example>
+    <example xml:id="ha-c13-example-degenerate">
+      <p>The pairs <m>(\mathcal T,0)</m> and <m>(0,\mathcal T)</m> are t-structures with zero heart. Unless <m>\mathcal T=0</m>, they are degenerate and unbounded. In particular, cohomology objects for an arbitrary t-structure need not detect zero objects. If the t-structure is nondegenerate, the truncation triangles show that an object with all cohomology objects zero is zero.</p>
+    </example>
+    <p>For a bounded object, successive truncation triangles express it as a finite sequence of extensions of <m>H_t^n(X)[-n]</m>. In a bounded t-structure the heart therefore generates <m>\mathcal T</m> as a triangulated category. This generation statement gives no universal property identifying the category with a derived category of its heart: the morphisms and their higher extension comparisons still have to be checked.</p>
+  </section>
+  <section xml:id="ha-c13-completeness">
+    <title>Detection and reconstruction</title>
+    <p>Nondegeneracy detects whether an object is zero. Boundedness ensures that each object is assembled from finitely many cohomology objects. Reconstruction of an unbounded object from an infinite truncation tower is a third question.</p>
+    <proposition xml:id="ha-c13-proposition-detection">
+      <statement><p>For a nondegenerate t-structure, a map is an isomorphism if and only if every <m>H_t^n</m> takes it to an isomorphism.</p></statement>
+      <proof><p>The cone of such a map has all cohomology zero. For an object <m>X</m> with this property, consecutive truncations are isomorphic by <xref ref="ha-c13-proposition-postnikov"/>. Fixing <m>n</m>, the object <m>\tau_{\leq n}X</m> then lies in <m>\mathcal T^{\leq m}</m> for every <m>m</m>; nondegeneracy makes it zero. Thus <m>X\in\mathcal T^{\geq n+1}</m> for every <m>n</m>, and nondegeneracy again gives <m>X=0</m>.</p></proof>
+    </proposition>
+    <p>For reconstruction, the towers in our cohomological convention are
+      <md number="no">\tau_{\leq0}X\to\tau_{\leq1}X\to\cdots\to X,\qquad X\to\cdots\to\tau_{\geq-2}X\to\tau_{\geq-1}X\to\tau_{\geq0}X.</md>
+      The first asks for a homotopy-colimit description of <m>X</m>; the second asks for a homotopy-limit description. A homotopy limit of an inverse sequence <m>X_n</m> is specified by a triangle
+      <md number="no">\operatorname{holim}X_n\longrightarrow\prod_nX_n\xrightarrow{1-s}\prod_nX_n\longrightarrow(\operatorname{holim}X_n)[1],</md>
+      where <m>s</m> uses the transition maps. The homotopy-colimit triangle uses direct sums and has the opposite orientation, as in <xref ref="ha-c14"/>. These constructions require the indicated products or coproducts. For derived categories one can choose models of the truncation towers and form the comparison maps there; a general triangulated category does not supply functorial cones for arbitrary towers.</p>
+    <p>The assertions that the resulting comparisons <m>\operatorname{hocolim}_n\tau_{\leq n}X\to X</m> and <m>X\to\operatorname{holim}_n\tau_{\geq-n}X</m> are isomorphisms are completeness assertions. They do not follow from nondegeneracy alone. For the standard t-structure on <m>\D(\mathcal A)</m>, exact countable coproducts in <m>\mathcal A</m> make the first comparison an isomorphism: termwise stabilization and exact coproducts compute the same cohomology as <m>X</m>. Exact countable products in <m>\mathcal A</m> make the second comparison an isomorphism by the dual product calculation. See <url href="https://stacks.math.columbia.edu/tag/0A5K">Stacks, Tag 0A5K</url> and <url href="https://stacks.math.columbia.edu/tag/08TB">Tag 08TB</url>. The comparison with a homotopy limit need not be unique in the triangulated category; whether it is invertible is independent of that choice.<fn>The names left and right completeness depend on whether a source indexes homologically or cohomologically. The two displayed comparison maps specify exactly the assertions meant here. Completeness of a filtered object in <xref ref="ha-c07"/> is a different condition.</fn></p>
+    <p>We shall use finite truncation arguments without imposing completeness on every abstract t-structure. Whenever an infinite truncation tower is used, its existence and the comparison with the original object must be checked separately. This is the same distinction between constructing spectral-sequence pages and proving convergence.</p>
+  </section>
+  <section xml:id="ha-c13-exact-functors">
+    <title>Functors and t-exactness</title>
+    <definition xml:id="ha-c13-definition-exact-functor">
+      <title>t-exact functors</title>
+      <idx>t-exact functor</idx><idx>Left t-exact functor</idx><idx>Right t-exact functor</idx>
+    <statement>
+      <p>For t-structured triangulated categories, an exact functor <m>F:\mathcal T\to\mathcal U</m> is right t-exact if <m>F(\mathcal T^{\leq0})\subseteq\mathcal U^{\leq0}</m>, and left t-exact if <m>F(\mathcal T^{\geq0})\subseteq\mathcal U^{\geq0}</m>. It is t-exact if both conditions hold.</p>
+    </statement>
+    </definition>
+    <proposition xml:id="ha-c13-proposition-functors">
+      <statement>
+        <p>A t-exact functor commutes with truncation and cohomology up to the natural isomorphisms defined by their universal properties, and restricts to an exact functor of hearts. If <m>F\dashv G</m> are exact, then <m>F</m> is right t-exact if and only if <m>G</m> is left t-exact.</p>
+      </statement>
+      <proof>
+        <p>Apply <m>F</m> to a truncation triangle and use both bounds to recognize the truncation triangle of <m>FX</m>. A short exact sequence in the heart is a distinguished triangle of heart objects, which proves exactness on hearts. For the adjoint assertion, if <m>F</m> is right t-exact and <m>V\in\mathcal U^{\geq0}</m>, then <m>\Hom(A,GV)=\Hom(FA,V)=0</m> for <m>A\in\mathcal T^{\leq-1}</m>. Orthogonality places <m>GV</m> in <m>\mathcal T^{\geq0}</m>. The converse uses the same calculation and the other orthogonality characterization.</p>
+      </proof>
+    </proposition>
+    <p>One-sided t-exactness still gives useful maps. If <m>F</m> is right t-exact, the map <m>F\tau_{\leq n}X\to FX</m> factors uniquely through <m>\tau_{\leq n}FX</m>. If <m>F</m> is left t-exact, the map <m>FX\to F\tau_{\geq n}X</m> factors uniquely through <m>\tau_{\geq n}FX</m>. Thus there are comparisons
+      <md number="no">F\tau_{\leq n}\longrightarrow\tau_{\leq n}F,\qquad\tau_{\geq n}F\longrightarrow F\tau_{\geq n},</md>
+      under the respective assumptions. They need not be invertible without the other half of t-exactness.</p>
+    <definition xml:id="ha-c13-definition-amplitude">
+      <title>Cohomological amplitude</title><idx>Cohomological amplitude</idx>
+      <statement><p>For integers <m>a\leq b</m>, an exact functor <m>F:\mathcal T\to\mathcal U</m> has cohomological amplitude contained in <m>[a,b]</m> if <m>F(\mathcal T^{\geq0})\subseteq\mathcal U^{\geq a}</m> and <m>F(\mathcal T^{\leq0})\subseteq\mathcal U^{\leq b}</m>. It then takes <m>\mathcal T^{[c,d]}</m> into <m>\mathcal U^{[c+a,d+b]}</m>.</p></statement>
+    </definition>
+    <proposition xml:id="ha-c13-proposition-derived-amplitude">
+      <statement><p>Let <m>F:\mathcal A\to\mathcal B</m> be left exact with <m>\mathcal A</m> having enough injectives. Then <m>\mathbf RF:\D^+(\mathcal A)\to\D^+(\mathcal B)</m> is left t-exact. If <m>R^nF=0</m> for every <m>n&gt;e</m>, then for bounded inputs with cohomology in <m>[c,d]</m>, its output has cohomology in <m>[c,d+e]</m>. Dually a right exact functor with left derived dimension at most <m>e</m> takes bounded cohomological intervals <m>[c,d]</m> into <m>[c-e,d]</m>.</p></statement>
+      <proof><p>A bounded below complex in degrees at least zero admits an injective replacement with the same lower bound, which proves left t-exactness. For a heart object the stated vanishing places its image in <m>[0,e]</m>. The finite truncation construction of a bounded input then puts each successive image piece in the interval <m>[n,n+e]</m>. Extension-closure gives the bound <m>[c,d+e]</m>. Reverse degrees for the left-derived case.</p></proof>
+    </proposition>
+    <p>This bounded-input conclusion uses finitely many triangles. Applying the same amplitude claim to an arbitrary unbounded object requires additional control of the corresponding infinite tower. Likewise, a right adjoint in an abstract six-operation formalism is not automatically bounded on a specified subcategory merely because its adjunction exists.</p>
+  </section>
+</chapter>

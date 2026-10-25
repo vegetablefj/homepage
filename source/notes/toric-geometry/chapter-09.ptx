@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="toric-vector-bundles">
+  <title>Toric vector bundles and filtrations</title>
+  <introduction>
+    <p>A toric line bundle is described by integral linear functions on cones. In higher rank there are several local weights, and the subspaces carrying those weights can change from chart to chart. Klyachko's description retains both kinds of information: integers record orders along boundary divisors, while subspaces of one fixed vector space record how local summands fit together. Local splitting consequently need not extend to a global splitting.</p>
+    <p>This chapter uses affine charts, orbit closures, and the Cartier conventions of <xref ref="toric-divisors"/>. The classification theorem is an external input, originally due to Klyachko; our reference for its form on arbitrary normal toric varieties is <xref ref="bib-toric-payne" detail="Sections 2.1–2.3"/>. Payne works over a field with a split torus, so the algebraically closed field of arbitrary characteristic fixed in these notes is allowed. Neither smoothness nor completeness is required until an example explicitly imposes it. We explain the local module construction and prove the section, operation, and splitting calculations used here.</p>
+  </introduction>
+
+  <section xml:id="toric-vector-bundles-linearizations">
+    <title>The action is part of the bundle</title>
+    <definition xml:id="toric-def-toric-vector-bundle">
+      <title>A toric vector bundle</title>
+      <statement><p>A toric vector bundle on <m>X=X_\Sigma</m> is a finite-rank algebraic vector bundle <m>\mathcal E</m> together with an action of <m>T_N</m> on its total space, linear on fibers, whose projection to <m>X</m> is equivariant. This chosen action is its <term>linearization</term>. Morphisms are bundle maps over <m>X</m> that commute with the actions. Write
+        <md number="no">E=\mathcal E_1</md>
+        for the fiber over the identity of the specified dense torus.</p></statement>
+    </definition>
+    <p>The action gives a canonical trivialization on the torus: <m>(t,e)\mapsto t\cdot e</m> identifies <m>T_N\times E</m> with <m>\mathcal E|_{T_N}</m>. Thus a section there is a finite sum of expressions <m>\chi^m e</m>. Here <m>E</m> is a vector space, not a representation obtained by restricting the action to this fiber: translation moves the identity to another base point.</p>
+    <p>There are two signs to distinguish. The action on sections is
+      <md number="no">(t\cdot s)(x)=t\cdot s(t^{-1}x).</md>
+      In the canonical torus trivialization, <m>\chi^m e</m> has action weight <m>-m</m>. We call <m>m</m> its <term>coefficient exponent</term>. A local eigenframe of action weight <m>u</m> therefore has coefficient exponent <m>-u</m>. This is exactly the sign issue already encountered between a character and the action on its rational-function section; compare <xref ref="bib-toric-payne" detail="Remark 2.1"/>.</p>
+    <p xml:id="toric-anchor-bundle-line-sign">For the natural divisorial linearization of <m>\mathcal O(D)</m>, the local frame on <m>U_\sigma</m> is <m>\chi^{m_\sigma}</m>. Its action weight is consequently <m>u=-m_\sigma</m>. Since <m>\langle m_\sigma,u_\rho\rangle=-a_\rho</m>, the weight satisfies <m>\langle u,u_\rho\rangle=a_\rho</m>. The filtration convention below will recover these coefficients without changing the support-function convention.</p>
+    <aside xml:id="margin-toric-vector-bundles-forgetful"><p>Forgetting a linearization loses information. On <m>\P^1</m>, multiply the action on the trivial line bundle by any character of its dense torus. These bundles have the same underlying line bundle, but different characters give different equivariant isomorphism classes: an automorphism of the underlying trivial line is multiplication by a nonzero constant. The classification below concerns bundles with their chosen actions; it is not an equivalence with the category of ordinary vector bundles.</p></aside>
+  </section>
+
+  <section xml:id="toric-vector-bundles-classification">
+    <title>Boundary filtrations and cone compatibility</title>
+    <p>A ray tests how far a torus section can acquire a pole in its direction while remaining a regular bundle section. For <m>\rho\in\Sigma(1)</m> and <m>i\in\Z</m>, choose <m>m\in M</m> with <m>\langle m,u_\rho\rangle=-i</m>, and define
+      <md xml:id="toric-eq-bundle-filtration" number="yes">E^\rho(i)=\{e\in E:\chi^m e\text{ extends to a section of }\mathcal E\text{ on }U_\rho\}.</md>
+      Such <m>m</m> exists because <m>u_\rho</m> is primitive. A different choice differs by an invertible character on <m>U_\rho</m>, so the subspace does not depend on that choice.</p>
+    <definition xml:id="toric-def-compatible-filtrations">
+      <title>Compatible decreasing filtrations</title>
+      <statement><p>A filtered fan datum consists of a finite-dimensional vector space <m>E</m> and subspaces <m>E^\rho(i)</m> for every ray and integer, with
+        <md number="no">E^\rho(i+1)\subseteq E^\rho(i),\qquad
+          E^\rho(i)=E\ (i\ll0),\qquad E^\rho(i)=0\ (i\gg0).</md>
+        The last two conditions are called exhaustive and separated. For every cone <m>\sigma</m>, set <m>M_\sigma=M/(M\cap\sigma^\perp)</m>. Compatibility requires a finite decomposition
+        <md xml:id="toric-eq-bundle-cone-compatibility" number="yes">E=\bigoplus_{[u]\in M_\sigma}E_{\sigma,[u]},\qquad
+          E^\rho(i)=\bigoplus_{\langle u,u_\rho\rangle\geq i}E_{\sigma,[u]}
+          \quad(\rho\preceq\sigma).</md>
+        Only finitely many summands are nonzero. The pairing depends only on <m>[u]</m> when <m>\rho\preceq\sigma</m>. A morphism of such data is a linear map <m>f:E\to F</m> with <m>f(E^\rho(i))\subseteq F^\rho(i)</m> for every ray and integer.</p></statement>
+    </definition>
+    <p>The decomposition is allowed to depend on the cone; a single decomposition for the whole fan is a stronger condition. The subspaces in a chosen decomposition are auxiliary, while the filtrations are the classification data. Quotienting the weights by <m>\sigma^\perp\cap M</m> is also essential: multiplying an eigenframe by a character unit changes its weight by such an element. For the zero cone the quotient is zero and compatibility imposes no restriction.</p>
+    <theorem xml:id="toric-thm-klyachko">
+      <title>Klyachko's classification</title>
+      <statement><p>The fiber and filtrations above give an equivalence between toric vector bundles on <m>X_\Sigma</m> and compatible filtered fan data. Under this equivalence a bundle map is determined by its map on the identity fiber, and the allowable maps on that fiber are exactly the filtration-preserving linear maps.</p></statement>
+    </theorem>
+    <p>We invoke the theorem, including its functorial assertion, from the unnumbered classification theorem in <xref ref="bib-toric-payne" detail="Section 2.3, pp. 1202–1203"/>. The original classification for possibly singular toric varieties is <xref ref="bib-toric-klyachko" detail="Theorem 2.2.1"/>; its opening Theorem 0.1.1 instead gives a formulation for smooth varieties. Payne's formulation supplies the explicit field convention and the quotient weight lattice used here.</p>
+    <p>The rank-one test fixes the sign. For <m>\mathcal E=\mathcal O(D)</m>, the fiber is <m>k</m>, and the ray inequality for a section gives
+      <md xml:id="toric-eq-bundle-line-filtration" number="yes">E^\rho(i)=\begin{cases}k&amp;i\leq a_\rho,\\0&amp;i&gt;a_\rho.\end{cases}</md>
+      Compatibility on <m>\sigma</m> asks for <m>u\in M</m> with <m>\langle u,u_\rho\rangle=a_\rho</m> on its rays. This is the Cartier criterion with <m>u=-m_\sigma</m>. Thus the higher-rank theorem really extends the earlier line-bundle dictionary.</p>
+  </section>
+
+  <section xml:id="toric-vector-bundles-modules">
+    <title>Graded modules, gluing, and sections</title>
+    <p>The classification is plausible for a concrete algebraic reason. Given compatible filtrations, define a submodule of <m>k[M]\otimes_k E</m> by
+      <md xml:id="toric-eq-bundle-affine-module" number="yes">\mathcal M_\sigma=
+        \bigoplus_{m\in M}\chi^m\otimes
+        \bigcap_{\rho\in\sigma(1)}E^\rho(-\langle m,u_\rho\rangle).</md>
+      An empty intersection is <m>E</m>. Multiplication by <m>\chi^s</m>, <m>s\in S_\sigma</m>, decreases the filtration indices, so this is a <m>k[S_\sigma]</m>-module. Choose a compatible decomposition and lifts <m>u</m> of its nonzero weights. Distributing the intersections across this simultaneous decomposition gives
+      <md number="no">\mathcal M_\sigma=
+        \bigoplus_{[u]} k[S_\sigma]\chi^{-u}\otimes_k E_{\sigma,[u]}.</md>
+      Indeed the summand <m>E_{\sigma,[u]}</m> occurs in coefficient degree <m>m</m> exactly when <m>m+u\in S_\sigma</m>. The displayed module is free of rank <m>\dim E</m>. Changing a lift multiplies its frame by a character unit.</p>
+    <p>Face localization supplies the transition maps. If <m>\tau\preceq\sigma</m>, invert an exposing character as in <xref ref="toric-thm-face-localization"/>. On the free summands this replaces <m>k[S_\sigma]</m> by <m>k[S_\tau]</m>. Equivalently, it removes the filtration inequalities on rays outside <m>\tau</m>. The remaining simultaneous decomposition is compatible with precisely the filtrations defining <m>\mathcal M_\tau</m>. Both modules are embedded in the same torus module, so these identifications satisfy the cocycle condition. Filtration-preserving maps induce module maps on every chart and respect these identifications.</p>
+    <p>This explains the constructive direction of the theorem. In the other direction, an equivariant bundle on an affine toric chart has an eigenbasis of sections, hence splits there as a sum of equivariant line bundles. One can see the mechanism by choosing homogeneous sections whose values form a basis at a point of the closed orbit. Their determinant is an eigensection nonzero there; its invariant zero locus must be empty by the orbit closure order. These sections are therefore a basis everywhere on the chart. Existence of the chosen homogeneous sections follows from affine generation and the weight decomposition for a split torus, applied also to the stabilizer of the closed-orbit point. This is <xref ref="bib-toric-payne" detail="Proposition 2.2"/>. It uses no smoothness assumption on the cone.</p>
+    <theorem xml:id="toric-thm-bundle-sections">
+      <title>Global sections from intersections of filtrations</title>
+      <statement><p>Using coefficient exponents to grade sections, one has
+        <md xml:id="toric-eq-bundle-global-sections" number="yes">H^0(X,\mathcal E)=\bigoplus_{m\in M}\chi^m\otimes H^0(X,\mathcal E)_m,
+          \qquad H^0(X,\mathcal E)_m=
+          \bigcap_{\rho\in\Sigma(1)}E^\rho(-\langle m,u_\rho\rangle)\subseteq E.</md>
+        The action weight of this summand is <m>-m</m>. Every section uses finitely many exponents, even if the direct sum has infinitely many nonzero terms.</p></statement>
+      <proof><p>Restriction to the dense torus injects sections into <m>k[M]\otimes E</m>, since a vector bundle on an integral scheme has no section supported away from a dense open. On <m>U_\sigma</m>, the free-summand formula just proved says exactly which coefficient vectors extend. A torus section extends globally if it extends to all charts, and extensions agree on overlaps because they agree on the torus. Intersecting their ray conditions gives the formula. The decomposition is a direct sum because Laurent characters are linearly independent.</p></proof>
+    </theorem>
+    <p>For a line bundle, inserting <xref ref="toric-eq-bundle-line-filtration"/> recovers <m>\langle m,u_\rho\rangle\geq-a_\rho</m> and the basis indexed by <m>P_D\cap M</m>. In higher rank a permitted exponent can contribute a subspace of dimension greater than one. The polyhedron of a line bundle has consequently become a family of intersections of subspaces.</p>
+  </section>
+  <section xml:id="toric-vector-bundles-operations">
+    <title>Tensor operations and two filtrations on the projective line</title>
+    <proposition xml:id="toric-prop-bundle-filtration-operations">
+      <title>Direct sums, tensor products, and duals</title>
+      <statement><p>The identity fibers of these bundle operations carry the following filtrations:
+        <md number="no"><mrow>(E\oplus F)^\rho(i)=E^\rho(i)\oplus F^\rho(i),</mrow>
+          <mrow>(E\otimes F)^\rho(i)=\sum_{a+b=i}E^\rho(a)\otimes F^\rho(b),</mrow>
+          <mrow>(E^\vee)^\rho(i)=\bigl(E^\rho(1-i)\bigr)^\perp\subseteq E^\vee.</mrow></md>
+        In the last line the perpendicular sign means annihilator under the dual pairing. The tensor sum denotes the span of these subspaces; the exhaustive and separated bounds leave only finitely many contributing changes.</p></statement>
+      <proof><p>On a ray choose decompositions into subspaces of integer weights <m>p</m> and <m>q</m>. A tensor has weight <m>p+q</m>, and it occurs in filtration step <m>i</m> exactly when <m>p+q\geq i</m>. This is equivalent to the existence of integers <m>a\leq p</m> and <m>b\leq q</m> with <m>a+b=i</m>, proving the tensor formula. Dual weights are <m>-p</m>. Their step <m>i</m> consists of the dual summands with <m>p\leq-i</m>, which annihilate the original summands with <m>p\geq1-i</m>. This proves the dual formula and explains its shift by one. The direct-sum formula follows immediately. The same weight operations on each cone verify compatibility.</p></proof>
+    </proposition>
+    <p>For two line filtrations with cutoffs <m>a_\rho,b_\rho</m>, these rules give cutoffs <m>a_\rho+b_\rho</m> and <m>-a_\rho</m>. They therefore recover <m>\mathcal O(D)\otimes\mathcal O(D')=\mathcal O(D+D')</m> and <m>\mathcal O(D)^\vee=\mathcal O(-D)</m>. Replacing <m>1-i</m> by <m>-i</m> in the dual formula would already fail this test at a jump.</p>
+    <lemma xml:id="toric-lem-two-flags-basis">
+      <title>Two flags admit one adapted basis</title>
+      <statement><p>Any two finite filtrations of a finite-dimensional vector space have a common adapted basis: each of their subspaces is spanned by a subset of that basis.</p></statement>
+      <proof><p>List their distinct subspaces in increasing order as <m>0=A_0\subseteq\cdots\subseteq A_p=E</m> and <m>0=B_0\subseteq\cdots\subseteq B_q=E</m>. Inductively choose a complement <m>C_{ij}</m> to
+        <md number="no">(A_{i-1}\cap B_j)+(A_i\cap B_{j-1})
+          \quad\text{in }A_i\cap B_j.</md>
+        Then
+        <md number="no">A_i\cap B_j=\bigoplus_{h\leq i,\,l\leq j}C_{hl}.</md>
+        To check the induction, the two preceding intersections overlap in <m>A_{i-1}\cap B_{j-1}</m>, whose decomposition has already been chosen. Their combined summands are therefore independent after their common summands are counted once; adjoining the chosen complement gives the displayed formula. Choose a basis of each <m>C_{ij}</m>. Their union is a basis of <m>E</m>, adapted to both flags by taking <m>i=p</m> or <m>j=q</m>.</p></proof>
+    </lemma>
+    <theorem xml:id="toric-thm-equivariant-p1-splitting">
+      <title>Equivariant splitting on <m>\P^1</m></title>
+      <statement><p>Every toric vector bundle on <m>\P^1</m> is equivariantly isomorphic to a direct sum of toric line bundles.</p></statement>
+      <proof><p>The fan has two rays <m>\rho_+,\rho_-</m> with primitive generators <m>1,-1</m>. A bundle supplies two filtrations of <m>E</m>. Choose a common adapted basis <m>e_1,\ldots,e_r</m> by the lemma. For each basis vector there are integer cutoffs <m>a_j^+,a_j^-</m> such that
+        <md number="no">E^{\rho_\pm}(i)=\operatorname{span}\{e_j:a_j^\pm\geq i\}.</md>
+        Hence the filtered datum is the direct sum of its one-dimensional data. The classification identifies its summands with
+        <md number="no">\mathcal O(a_j^+D_++a_j^-D_-).</md>
+        The underlying line bundle of this summand has degree <m>a_j^++a_j^-</m>. Its two integers retain the linearization information forgotten by the degree.</p></proof>
+    </theorem>
+    <p>This proves the splitting statement for bundles with the specified torus action. It does not establish, or need, the stronger assertion that every ordinary vector bundle on <m>\P^1</m> splits. The elementary reason for our result is the simultaneous basis for two filtrations. There is no corresponding simultaneous-basis theorem for an arbitrary collection of three filtrations.</p>
+  </section>
+
+  <section xml:id="toric-vector-bundles-tangent-plane">
+    <title>The tangent bundle of the projective plane</title>
+    <p>Use the fan of <m>\P^2</m> with rays
+      <md number="no">u_1=(1,0),\qquad u_2=(0,1),\qquad u_3=(-1,-1).</md>
+      The tangent bundle has its natural linearization obtained by differentiating the torus action. Its identity fiber is <m>E=N\otimes_\Z k</m>, the Lie algebra of the torus. This identification sends <m>v\in N</m> to the invariant derivation <m>\chi^m\mapsto\langle m,v\rangle\chi^m</m>.</p>
+    <example xml:id="toric-example-tangent-p2-filtrations">
+      <title>Three boundary lines in a two-dimensional fiber</title>
+      <p>The filtrations are
+        <md xml:id="toric-eq-tangent-p2-filtration" number="yes">E^{\rho_j}(i)=\begin{cases}
+          E&amp;i\leq0,\\
+          k u_j&amp;i=1,\\
+          0&amp;i\geq2.
+          \end{cases}</md>
+        Here <m>u_j</m> means its image in <m>N\otimes k</m>. To derive the formula, extend the primitive ray vector to a lattice basis. On its chart <m>\A^1\times\Gm</m>, with coordinates <m>t,y</m>, the invariant tangent fields are <m>t\partial_t</m> and <m>y\partial_y</m>. A coefficient exponent of pairing <m>-i</m> gives powers <m>t^{1-i}</m> in the first component and <m>t^{-i}</m> in the second. For <m>i\leq0</m> both components extend. For <m>i=1</m> only the normal component extends, and for <m>i\geq2</m> neither extends. Character factors in <m>y</m> are units and do not change the test.</p>
+      <p>Compatibility can be checked directly. On the cone spanned by <m>u_j,u_l</m>, decompose <m>E=ku_j\oplus ku_l</m>. The weight of the first line is the dual-basis character that pairs to <m>1,0</m> with these two rays, and the second has pairings <m>0,1</m>. These produce the required two filtrations. Every chart therefore splits equivariantly, although the decomposition changes between charts. The three lines <m>ku_1,ku_2,ku_3</m> are distinct in every characteristic, including two.</p>
+      <p>If the tangent bundle split equivariantly as two line bundles, the resulting decomposition <m>E=L_1\oplus L_2</m> would simultaneously split every filtration. Each nonzero proper step <m>ku_j</m> would have to be one of <m>L_1,L_2</m>. Three distinct lines cannot be the two coordinate lines of a single decomposition. Thus <m>T_{\P^2}</m> has no equivariant splitting. This is a direct obstruction in the relative positions of subspaces, rather than a failure of local freeness. Compare the local splittings in <xref ref="bib-toric-payne" detail="Section 2.2"/>.</p>
+    </example>
+    <example xml:id="toric-example-tangent-p2-sections">
+      <title>The section formula counts eight vector fields</title>
+      <p>For coefficient exponent <m>m=(a,b)</m>, the relevant three pairings are <m>a,b,-a-b</m>. Any pairing below <m>-1</m> makes its filtration intersection zero. A pairing equal to <m>-1</m> restricts the coefficient to its boundary line, and two such pairings give zero because those lines are distinct. The only exponent with all pairings nonnegative is <m>0</m>; it contributes <m>E</m> of dimension two. The exponents with exactly one pairing equal to <m>-1</m> and the others nonnegative are
+        <md number="no">(-1,0),\ (-1,1),\ (0,-1),\ (1,-1),\ (1,0),\ (0,1).</md>
+        Each contributes one dimension. Consequently <m>h^0(\P^2,T_{\P^2})=8</m> over every characteristic. This calculation uses the chosen linearization and remembers more than the dimension: the action weights are the negatives of these coefficient exponents, together with weight zero twice.</p>
+    </example>
+    <p>One can also rule out splitting after forgetting the action, using a separate characteristic-class input. The projective Euler sequence is
+      <md number="no">0\longrightarrow\mathcal O\longrightarrow
+        \mathcal O(1)^{\oplus3}\longrightarrow T_{\P^2}\longrightarrow0.</md>
+      It follows directly from the tangent spaces to the quotient of <m>\A^3\setminus\{0\}</m> by scalar multiplication, and holds in every characteristic. It is the projective-plane specialization of <xref ref="bib-toric-cls" detail="Theorem 8.1.6"/>. The Whitney formula for Chern classes, used here as external intersection theory from <xref ref="bib-toric-fulton-intersection" detail="Section 3.2"/>, gives
+      <md number="no">c(T_{\P^2})=(1+H)^3=1+3H+3H^2
+        \quad\text{in }A^*(\P^2)=\Z[H]/(H^3).</md>
+      A splitting into line bundles would be <m>\mathcal O(a)\oplus\mathcal O(b)</m>, since <m>\Pic(\P^2)=\Z H</m>. It would require <m>a+b=3</m> and <m>ab=3</m>, which have no integer solution. These Chern classes lie in an integral Chow ring; their coefficients are not reduced modulo the characteristic of the field. This argument is stronger than the filtration obstruction, and its extra input has been made explicit.</p>
+  </section>
+
+  <section xml:id="toric-vector-bundles-scope">
+    <title>What makes the dictionary possible</title>
+    <p>Several hypotheses now have visible jobs. The specified free dense torus orbit identifies all torus fibers with one vector space. The split torus gives character gradings, including in positive characteristic; no averaging over a finite group is involved. The normal affine charts make their coordinate rings lattice-point algebras and allow the ray inequalities to recover the displayed modules. Finally local freeness is encoded by simultaneous decompositions on each cone. Arbitrary filtrations need not admit those decompositions, so they must not automatically be declared vector bundles.</p>
+    <p>Local weights alone also omit information. The two filtrations on <m>\P^1</m> can be put in one basis, whereas the three lines of the tangent example cannot. Keeping the actual subspaces, rather than just the dimensions of their jumps, is what detects this difference. Conversely, choosing an adapted decomposition on each cone is useful for constructing the bundle but does not add an extra permanent choice to the classified object.</p>
+    <p>These observations lead to a concrete further direction within toric geometry. Fixing the jump dimensions puts the filtrations in products of partial flag varieties; fixing the local weight multiplicities imposes additional rank conditions. Payne constructs parameter spaces for framed toric bundles with this fixed equivariant information; see <xref ref="bib-toric-payne" detail="Theorem 1.1"/>. A framing is an identification of the identity fiber with a specified vector space. His construction concerns families, so more is required than checking compatibility separately at each point of a parameter space. We use only the individual-object classification here. The examples explain both why finite linear algebra is available and why it can still carry substantial geometry.</p>
+  </section>
+</chapter>

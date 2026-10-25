@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="hkg-sheaf-moduli">
+  <title>Moduli spaces of sheaves on symplectic surfaces</title>
+  <introduction>
+    <p>Moduli spaces of sheaves explain both the Hilbert-scheme examples and many of their deformations. Gieseker semistability gives a projective moduli space, and Serre duality gives a symplectic form on its stable locus. For primitive vectors and generic polarizations, the global theorems below determine when this space is nonempty and irreducible holomorphic symplectic.</p>
+    <p>Throughout the K3 part of this chapter, <m>S</m> is a projective K3 surface over <m>\C</m> and <m>H</m> is an ample line bundle. Coherent sheaves, their Chern characters, Serre duality, and Riemann–Roch are assumed. Boundedness and the construction of moduli spaces by geometric invariant theory are taken from <xref ref="hkg-bib-huybrechts-lehn" detail="Chapters 1–4"/>. We state the needed conclusions without developing GIT. The symplectic construction follows Mukai, and the global geometry follows Yoshioka; <xref ref="hkg-bib-huybrechts-k3" detail="Chapter 10"/> gives a systematic account.</p>
+  </introduction>
+  <section xml:id="hkg-mukai-lattice">
+    <title>The Mukai vector and pairing</title>
+    <p>Write <m>[\mathrm{pt}]\in H^4(S,\Z)</m> for the class with integral one. We identify a class in even cohomology with a triple <m>(r,c,s)</m>, meaning <m>r+c+s[\mathrm{pt}]</m>. The last entry is a number, not a second Chern class. Since <m>c_2(S)=24[\mathrm{pt}]</m>,
+      <md number="no">\operatorname{td}(S)=1+2[\mathrm{pt}],
+      \qquad \sqrt{\operatorname{td}(S)}=1+[\mathrm{pt}].</md></p>
+    <definition xml:id="hkg-def-mukai">
+      <statement>
+        <p>The <em>Mukai lattice</em> of <m>S</m> is
+          <m>\widetilde H(S,\Z):=H^0(S,\Z)\oplus H^2(S,\Z)\oplus H^4(S,\Z)</m>,
+          with pairing
+          <md xml:id="hkg-eq-mukai-pairing" number="yes">
+            \langle(r,c,s),(r',c',s')\rangle
+            :=\int_Sc\smile c'-rs'-r's.
+          </md>
+          Its weight-two Hodge structure has <m>\widetilde H^{2,0}(S)=H^{2,0}(S)</m>, <m>\widetilde H^{0,2}(S)=H^{0,2}(S)</m>, and
+          <m>\widetilde H^{1,1}(S)=H^0(S,\C)\oplus H^{1,1}(S)\oplus H^4(S,\C)</m>.
+          Its algebraic part is
+          <m>\widetilde H_{\mathrm{alg}}(S,\Z)=\Z\oplus\operatorname{NS}(S)\oplus\Z</m>.
+          The <em>Mukai vector</em> of a coherent sheaf <m>E</m> is
+          <md xml:id="hkg-eq-mukai-vector" number="yes">
+            v(E):=\operatorname{ch}(E)\sqrt{\operatorname{td}(S)}
+            =\left(r,c_1(E),r+\frac{c_1(E)^2}{2}-c_2(E)\right),
+            \qquad r=\operatorname{rk}(E).
+          </md></p>
+      </statement>
+    </definition>
+    <p>We write <m>v^2:=\langle v,v\rangle</m>. The square is even, since the K3 intersection form is even. Thus <m>v(E)</m> is integral. The <m>H^0\oplus H^4</m> summand has matrix <m>\left(\begin{smallmatrix}0&amp;-1\\-1&amp;0\end{smallmatrix}\right)</m>, which is isometric to <m>U</m> by changing the sign of one basis vector. Consequently,
+      <md number="no">\widetilde H(S,\Z)\cong
+      U^{\oplus4}\oplus E_8(-1)^{\oplus2},</md>
+      an even unimodular lattice of signature <m>(4,20)</m>.<fn>The weight-two Hodge structure on even cohomology differs from its ordinary cohomological grading. In particular, the classes of a point and of the constant function have Hodge type <m>(1,1)</m> in the Mukai Hodge structure. This is why <m>v^\perp</m> can later carry the Hodge structure of the second cohomology of a moduli space.</fn></p>
+    <proposition xml:id="hkg-mukai-rr">
+      <statement>
+        <p>For coherent sheaves <m>E,F</m> on <m>S</m>,
+          <md xml:id="hkg-eq-mukai-rr" number="yes">
+            \chi(E,F):=\sum_{i=0}^2(-1)^i
+            \dim_\C\operatorname{Ext}^i_S(E,F)
+            =-\langle v(E),v(F)\rangle.
+          </md>
+          In particular, if <m>v(E)=(r,c,s)</m>, then
+          <m>\chi(S,E)=r+s</m>.</p>
+      </statement>
+      <proof>
+        <p>A coherent sheaf on the smooth surface <m>S</m> has a finite locally free resolution, so Riemann–Roch applies to its class in the Grothendieck group. If <m>x^\vee=(r,-c,s)</m> for <m>x=(r,c,s)</m>, the Chern character of the dual class is obtained by this involution. Thus
+          <md number="no">\chi(E,F)
+          =\int_S\operatorname{ch}(E)^\vee\operatorname{ch}(F)\operatorname{td}(S)
+          =\int_Sv(E)^\vee v(F).</md>
+          The degree-four part is <m>rs'+r's-c\smile c'</m>, proving the formula. Taking <m>E=\mathcal O_S</m>, whose vector is <m>(1,0,1)</m>, gives <m>\chi(S,F)=r'+s'</m>.</p>
+      </proof>
+    </proposition>
+    <example xml:id="hkg-mukai-basic-examples">
+      <p>A line bundle <m>L</m> with first Chern class <m>\ell</m> has
+        <m>v(L)=(1,\ell,1+\ell^2/2)</m> and square <m>-2</m>.
+        A skyscraper sheaf <m>\mathcal O_p</m> has vector <m>(0,0,1)</m> and square zero.
+        If <m>Z\subset S</m> has length <m>n</m>, the exact sequence
+        <m>0\to I_Z\to\mathcal O_S\to\mathcal O_Z\to0</m> gives
+        <m>v(I_Z)=(1,0,1-n)</m> and square <m>2n-2</m>.
+        These examples already account for moduli spaces of dimensions zero, two, and <m>2n</m>.</p>
+    </example>
+    <proposition xml:id="hkg-mukai-line-twist">
+      <statement>
+        <p>Let <m>L</m> be a line bundle on <m>S</m> with <m>\ell=c_1(L)</m>. Tensor product by <m>L</m> acts on Mukai vectors by the integral Hodge isometry
+          <md number="no">e^\ell:\widetilde H(S,\Z)\longrightarrow\widetilde H(S,\Z),
+          \qquad (r,c,s)\longmapsto
+          \left(r,c+r\ell,s+c\cdot\ell+\frac{r\ell^2}{2}\right).</md></p>
+      </statement>
+      <proof>
+        <p>The Chern character satisfies <m>\operatorname{ch}(E\otimes L)=\operatorname{ch}(E)e^\ell</m>, giving the formula. The evenness of <m>\ell^2</m> gives integrality. If <m>x=(r,c,s)</m> and <m>y=(r',c',s')</m>, then
+          <md number="no">\begin{aligned}
+          \langle e^\ell x,e^\ell y\rangle
+          &amp;=(c+r\ell)\cdot(c'+r'\ell)\\
+          &amp;\quad-r\left(s'+c'\cdot\ell+\frac{r'\ell^2}{2}\right)
+          -r'\left(s+c\cdot\ell+\frac{r\ell^2}{2}\right)\\
+          &amp;=c\cdot c'-rs'-r's.
+          \end{aligned}</md>
+          Its inverse is <m>e^{-\ell}</m>. Since <m>\ell</m> has Hodge type <m>(1,1)</m>, the map preserves the Mukai Hodge decomposition.</p>
+      </proof>
+    </proposition>
+    <p>The action on the lattice does not by itself identify moduli spaces for a fixed stability condition. Tensoring by <m>H^{\otimes k}</m> preserves <m>H</m>-Gieseker stability because it replaces every Hilbert polynomial <m>P(m)</m> by <m>P(m+k)</m>. Tensoring by an arbitrary line bundle requires a separate check: after equality of the slope coefficients, the comparison of constant terms can change by the intersection with <m>\ell</m>. The lattice isometry and preservation of sheaf stability are separate assertions.</p>
+  </section>
+  <section xml:id="hkg-sheaf-stability">
+    <title>Stability and the projective moduli space</title>
+    <definition xml:id="hkg-def-gieseker">
+      <statement>
+        <p>A nonzero coherent sheaf <m>E</m> is <em>pure of dimension <m>d</m></em> if every nonzero subsheaf has support of dimension <m>d</m>. Let
+          <m>P_{H,E}(m)=\chi(S,E\otimes H^{\otimes m})</m>, and divide this polynomial by its positive leading coefficient to obtain its <em>reduced Hilbert polynomial</em> <m>p_{H,E}</m>. A pure sheaf <m>E</m> is <em><m>H</m>-Gieseker semistable</em> if
+          <m>p_{H,F}(m)\leq p_{H,E}(m)</m> for all sufficiently large <m>m</m> and every proper nonzero subsheaf <m>F\subset E</m>. It is <em>stable</em> if all these inequalities are strict.</p>
+      </statement>
+    </definition>
+    <p>On the smooth integral surface <m>S</m>, a positive-rank sheaf is pure of dimension two exactly when it is torsion-free. For <m>v(E)=(r,c,s)</m>, Riemann–Roch gives
+      <md xml:id="hkg-eq-sheaf-hilbert-polynomial" number="yes">
+        P_{H,E}(m)=\frac{rH^2}{2}m^2+(c\cdot H)m+r+s.
+      </md>
+      When <m>r=0</m> and <m>E</m> is pure of dimension one, this becomes
+      <m>P_{H,E}(m)=(c\cdot H)m+s</m>. Thus its reduced polynomial is <m>m+s/(c\cdot H)</m>. The stability condition depends on <m>H</m> even after the Mukai vector is fixed.</p>
+    <p>For a torsion-free sheaf of positive rank, its <em>slope</em> is <m>\mu_H(E)=c_1(E)\cdot H/\operatorname{rk}(E)</m>. It is <em>slope semistable</em>, respectively <em>slope stable</em>, if <m>\mu_H(F)\leq\mu_H(E)</m>, respectively <m>\mu_H(F)&lt;\mu_H(E)</m>, for every subsheaf with <m>0&lt;\operatorname{rk}(F)&lt;\operatorname{rk}(E)</m>.</p>
+    <proposition xml:id="hkg-slope-gieseker-comparison">
+      <statement><p>For a torsion-free sheaf of positive rank on <m>S</m>,
+        <md number="no">\text{slope stable}\ \Longrightarrow\ \text{Gieseker stable}\ \Longrightarrow\ \text{Gieseker semistable}\ \Longrightarrow\ \text{slope semistable}.</md></p></statement>
+      <proof><p>After division by the leading coefficient in <xref ref="hkg-eq-sheaf-hilbert-polynomial"/>, the linear coefficient is <m>2\mu_H(E)/H^2</m>. A strict slope inequality therefore decides the reduced-polynomial inequality for sufficiently large <m>m</m>. A proper subsheaf of the same rank has a nonzero quotient of dimension at most one; subtracting that quotient's positive Hilbert polynomial also gives a strict inequality. This proves the first implication. The middle implication is part of the definition. Finally, a subsheaf of larger slope has larger reduced Hilbert polynomial for sufficiently large <m>m</m>, contradicting Gieseker semistability.</p></proof>
+    </proposition>
+    <p>The Hermitian–Einstein correspondence in <xref ref="hkg-thm-duy"/> uses slope polystability. The projective moduli scheme in this chapter uses Gieseker semistability; when slopes agree, its constant-term condition still has to be checked.</p>
+    <p>A semistable sheaf has a Jordan–Hölder filtration with stable factors of the same reduced Hilbert polynomial. The direct sum of these factors is independent of the filtration up to isomorphism. Two semistable sheaves are <em>S-equivalent</em> if these direct sums are isomorphic. These assertions, including existence of the filtration in the category of semistable sheaves with fixed reduced polynomial, are part of the standard stability theory in <xref ref="hkg-bib-huybrechts-lehn" detail="Chapter 1"/>.</p>
+    <theorem xml:id="hkg-sheaf-git">
+      <statement>
+        <p>For fixed <m>v\in\widetilde H_{\mathrm{alg}}(S,\Z)</m>, there is a projective coarse moduli scheme <m>M_H^{\mathrm{ss}}(v)</m> for <m>H</m>-Gieseker semistable sheaves of Mukai vector <m>v</m>. Its closed points are S-equivalence classes. The stable sheaves form an open subscheme <m>M_H^{\mathrm s}(v)</m>, whose closed points are isomorphism classes of stable sheaves. The scheme may be empty.</p>
+      </statement>
+    </theorem>
+    <p>Boundedness, construction, and projectivity are proved in <xref ref="hkg-bib-huybrechts-lehn" detail="Theorem 4.3.4 and the fixed-Chern-class decomposition"/>.</p>
+    <p>The projective moduli space includes torsion-free sheaves that are not locally free. Restricting to vector bundles generally gives an open set and loses compactness. Likewise, the stable locus need not be closed when strictly semistable sheaves exist.</p>
+    <definition xml:id="hkg-def-v-generic">
+      <statement>
+        <p>Fix <m>v</m>. We call <m>H</m> <em><m>v</m>-generic</em> if every stable Jordan–Hölder factor of every <m>H</m>-semistable sheaf of vector <m>v</m> has Mukai vector in <m>\Q_{&gt;0}v</m>. A vector is <em>primitive</em> if it is not an integer multiple <m>kv_0</m> with <m>k\geq2</m> and integral <m>v_0</m>.</p>
+      </statement>
+    </definition>
+    <p>For the positive-rank vectors considered below, a locally finite collection of real hyperplanes in the ample cone contains the nongeneric polarizations; the analogous wall statement holds for the ample rank-zero classes below when <m>s\ne0</m>. We use this wall theorem from <xref ref="hkg-bib-huybrechts-lehn" detail="Appendix 4.C"/> and <xref ref="hkg-bib-yoshioka" detail="§1.4"/>. The assertion includes local finiteness, which is needed to find ample integral polarizations off the walls. It is not enough to exclude one subsheaf at a time.<fn>The definition is phrased in terms of proportional Mukai vectors so that it also applies to nonprimitive <m>v</m>. It does not say that all semistable sheaves are stable when <m>v</m> is nonprimitive: proportional proper factors can still occur.</fn></p>
+    <proposition xml:id="hkg-primitive-no-strictly-semistable">
+      <statement>
+        <p>If <m>v</m> is primitive and <m>H</m> is <m>v</m>-generic, then every semistable sheaf of vector <m>v</m> is stable. In this case write
+          <m>M_H(v):=M_H^{\mathrm{ss}}(v)=M_H^{\mathrm s}(v)</m>.</p>
+      </statement>
+      <proof>
+        <p>Write the vectors of the stable factors as <m>t_i v</m>, with <m>t_i\in\Q_{&gt;0}</m> and <m>\sum_i t_i=1</m>. If <m>v</m> is a primitive element of a free abelian group, then <m>tv</m> is integral for <m>t\in\Q</m> only when <m>t\in\Z</m>: extend <m>v</m> to an integral basis, or choose an integral functional taking value one on <m>v</m>. Thus every <m>t_i</m> is a positive integer. Their sum can be one only if there is one factor.</p>
+      </proof>
+    </proposition>
+    <p>For positive rank, the equations that define possible walls can be seen directly from <xref ref="hkg-eq-sheaf-hilbert-polynomial"/>. If <m>F\subset E</m> has ranks <m>r_F,r</m> and first Chern classes <m>c_F,c</m>, equality of the reduced polynomials requires
+      <md number="no">(rc_F-r_Fc)\cdot H=0,\qquad
+      rs_F-r_Fs=0.</md>
+      The first equality is a hyperplane equation when its class is nonzero. The boundedness and discriminant estimates in the cited wall theorem show that only locally finitely many such hyperplanes matter. This is where the general theory enters the generic-polarization assertion.</p>
+  </section>
+  <section xml:id="hkg-mukai-symplectic">
+    <title>Deformations and the symplectic form</title>
+    <lemma xml:id="hkg-stable-simple">
+      <statement>
+        <p>An <m>H</m>-stable sheaf <m>E</m> is simple: <m>\operatorname{Hom}(E,E)=\C\operatorname{id}_E</m>. If <m>E,F</m> are nonisomorphic stable sheaves with the same reduced Hilbert polynomial, then <m>\operatorname{Hom}(E,F)=0</m>.</p>
+      </statement>
+      <proof>
+        <p>Let <m>f:E\to F</m> be nonzero. Its image <m>I</m> has the same dimension as <m>E</m> and <m>F</m> by purity. If the kernel is nonzero, stability of <m>E</m> and additivity of the Hilbert polynomial imply <m>p_I&gt;p_E</m>: the polynomial of <m>E</m> is a positive weighted average of those of its kernel and image. Stability of <m>F</m> gives <m>p_I\leq p_F=p_E</m>, a contradiction. Thus the kernel is zero, and <m>p_I=p_E=p_F</m>. Stability of <m>F</m> forces <m>I=F</m>, so <m>f</m> is an isomorphism.</p>
+        <p>In particular every nonzero endomorphism of <m>E</m> is invertible. The algebra <m>\operatorname{End}(E)</m> is finite-dimensional over <m>\C</m>. For any <m>u</m> in this algebra, its minimal polynomial has a root <m>\lambda\in\C</m>; then <m>u-\lambda\operatorname{id}</m> cannot be invertible. Hence it is zero, proving simplicity.</p>
+      </proof>
+    </lemma>
+    <p>We use the following deformation-theoretic statement for sheaves on a smooth projective surface. The tangent space to the stable coarse moduli scheme at <m>[E]</m> is <m>\operatorname{Ext}^1(E,E)</m>. Obstructions to lifting a deformation across a square-zero extension lie in <m>\operatorname{Ext}^2(E,E)</m>, and their trace is the corresponding obstruction to deforming <m>\det E</m>. In particular, if the Picard scheme is smooth, the obstruction classes lie in
+      <md number="no">\operatorname{Ext}^2(E,E)_0:=
+      \ker\bigl(\operatorname{tr}:\operatorname{Ext}^2(E,E)\to H^2(S,\mathcal O_S)\bigr).</md>
+      We take this theorem from <xref ref="hkg-bib-huybrechts-lehn" detail="§4.5"/>; the trace-obstruction statement is also given in <xref ref="hkg-bib-huybrechts-k3" detail="Proposition 10.1.11"/>. It applies to torsion-free and pure one-dimensional sheaves, not only to vector bundles.</p>
+    <proposition xml:id="hkg-stable-smooth-dimension">
+      <statement>
+        <p>Let <m>E</m> be an <m>H</m>-stable sheaf on <m>S</m>, and let <m>v=v(E)</m>. Then <m>M_H^{\mathrm s}(v)</m> is smooth at <m>[E]</m>, with
+          <md number="no">T_{[E]}M_H^{\mathrm s}(v)\cong\operatorname{Ext}^1(E,E),
+          \qquad \dim\operatorname{Ext}^1(E,E)=v^2+2.</md>
+          In particular, a vector with <m>v^2&lt;-2</m> cannot be represented by a stable sheaf.</p>
+      </statement>
+      <proof>
+        <p>Choose a nonzero form <m>\sigma_S\in H^0(S,K_S)</m>, identifying <m>K_S</m> with <m>\mathcal O_S</m>. Serre duality and <xref ref="hkg-stable-simple"/> give
+          <m>\operatorname{Ext}^2(E,E)\cong\operatorname{Hom}(E,E)^*\cong\C</m>.
+          Under Serre duality, the trace map to <m>H^2(S,\mathcal O_S)</m> is dual to the map
+          <m>H^0(S,\mathcal O_S)\to\operatorname{Hom}(E,E)</m> sending <m>1</m> to <m>\operatorname{id}_E</m>. This map is an isomorphism, so the trace map is an isomorphism as well. Consequently <m>\operatorname{Ext}^2(E,E)_0=0</m>.</p>
+        <p>The Picard scheme of <m>S</m> is smooth: its tangent space is <m>H^1(S,\mathcal O_S)=0</m>, and in characteristic zero the Picard scheme of a smooth projective variety is reduced. The cited obstruction theorem therefore gives smoothness. Finally,
+          <md number="no">-v^2=\chi(E,E)
+          =1-\dim\operatorname{Ext}^1(E,E)+1,</md>
+          which gives the dimension formula and the necessary inequality.</p>
+      </proof>
+    </proposition>
+    <p>The proof does not assert <m>\operatorname{Ext}^2(E,E)=0</m>; that group is one-dimensional. It is the trace-free obstruction space that vanishes.<fn>For a positive-rank bundle, one sometimes uses the scalar inclusion and ordinary matrix trace, whose composite is multiplication by the rank. That argument would say nothing for a rank-zero sheaf. The Serre-dual description above works in both cases because the dual map sends <m>1</m> to the identity endomorphism.</fn></p>
+    <p>Normalize the Serre-duality functional by <m>\sigma_S</m>:
+      <md number="no">\lambda_{\sigma_S}:H^2(S,\mathcal O_S)\longrightarrow\C,\qquad
+      \xi\longmapsto\operatorname{Tr}_S(\xi\smile\sigma_S),</md>
+      where <m>\operatorname{Tr}_S:H^2(S,K_S)\to\C</m> is the Serre trace. At a stable sheaf, define
+      <md xml:id="hkg-eq-mukai-symplectic-form" number="yes">
+        \sigma_{M,[E]}(a,b):=
+        \lambda_{\sigma_S}\bigl(\operatorname{tr}(a\smile b)\bigr),
+        \qquad a,b\in\operatorname{Ext}^1(E,E),
+      </md>
+      with <m>\smile</m> denoting the Yoneda product.</p>
+    <theorem xml:id="hkg-mukai-symplectic-theorem">
+      <title>(Mukai)</title>
+      <statement>
+        <p>The pairings <xref ref="hkg-eq-mukai-symplectic-form"/> define a closed holomorphic nondegenerate two-form on <m>M_H^{\mathrm s}(v)</m>. See <xref ref="hkg-bib-mukai"/> and <xref ref="hkg-bib-huybrechts-lehn" detail="Chapter 10"/>.</p>
+      </statement>
+    </theorem>
+    <p>At a stable sheaf, graded cyclicity of trace gives
+      <m>\operatorname{tr}(a\smile b)=-\operatorname{tr}(b\smile a)</m>, so the pairing is alternating. Serre duality gives a perfect pairing between <m>\operatorname{Ext}^1(E,E)</m> and <m>\operatorname{Ext}^1(E,E\otimes K_S)</m>; multiplication by <m>\sigma_S</m> identifies the second space with the first. Thus the displayed form is nondegenerate. Global holomorphic variation, descent from local universal families, and closedness are the additional assertions of Mukai's theorem. Pointwise Serre duality alone does not prove closedness.</p>
+    <p>When a universal family exists locally on the moduli space, its relative Ext sheaf in degree one is the tangent bundle. On overlaps the families differ by a line bundle from the base. This line bundle cancels from the relative endomorphism complex, so the pairing descends. This also explains why the absence of a global universal sheaf does not obstruct the symplectic form.</p>
+  </section>
+  <section xml:id="hkg-k3-moduli-global">
+    <title>Nonemptiness and the global geometry</title>
+    <theorem xml:id="hkg-yoshioka-k3">
+      <title>(Mukai–Yoshioka)</title>
+      <statement>
+        <p>Let <m>v=(r,c,s)\in\widetilde H_{\mathrm{alg}}(S,\Z)</m> be primitive, let <m>H</m> be <m>v</m>-generic, and assume either <m>r&gt;0</m>, or <m>r=0</m>, <m>c</m> is the class of an ample line bundle, and <m>s\ne0</m>. Then <m>M_H(v)</m> is nonempty if and only if <m>v^2\geq-2</m>. When it is nonempty, it is smooth and projective of dimension <m>v^2+2</m>. More precisely:</p>
+        <p><ol>
+          <li><p>If <m>v^2=-2</m>, then <m>M_H(v)</m> is a point.</p></li>
+          <li><p>If <m>v^2=0</m>, then <m>M_H(v)</m> is a K3 surface.</p></li>
+          <li><p>If <m>v^2=2n-2&gt;0</m>, then <m>M_H(v)</m> is an irreducible holomorphic symplectic manifold of <m>\mathrm{K3}^{[n]}</m> type.</p></li>
+        </ol></p>
+        <p>The positive-rank statement and Mukai isometry are proved in <xref ref="hkg-bib-yoshioka-k3" detail="Theorem 0.1"/>; the deformation-equivalence statement including ample rank-zero classes is <xref ref="hkg-bib-yoshioka" detail="Theorem 8.1"/>. The isotropic case and the zero-dimensional case are also discussed in <xref ref="hkg-bib-huybrechts-k3" detail="Chapter 10, §3"/>.</p>
+      </statement>
+    </theorem>
+    <p>The inequality <m>v^2\geq-2</m> is necessary by the tangent-space calculation. Its sufficiency is a substantial existence theorem. Neither the dimension calculation nor the construction of a symplectic form produces a sheaf with prescribed Chern classes. The irreducibility and simple connectedness of the compact moduli space likewise belong to the global theorem.</p>
+    <p>The zero-dimensional conclusion has a short proof once existence is known. Suppose <m>E</m> and <m>F</m> are distinct stable sheaves of the same vector <m>v</m> with <m>v^2=-2</m>. They have the same reduced Hilbert polynomial, so <m>\operatorname{Hom}(E,F)=\operatorname{Hom}(F,E)=0</m>. Serre duality gives <m>\operatorname{Ext}^2(E,F)=0</m>. It follows that <m>\chi(E,F)=-\dim\operatorname{Ext}^1(E,F)\leq0</m>, whereas Riemann–Roch gives <m>\chi(E,F)=-v^2=2</m>. This contradiction proves uniqueness; smoothness of dimension zero makes the moduli scheme a reduced point.</p>
+    <p>The rank-zero hypothesis in <xref ref="hkg-yoshioka-k3"/> is a sufficient hypothesis, not a definition of all possible support classes. Sheaves can also have reducible or nonample support. Their existence and chamber behaviour require the appropriate rank-zero versions of the theorem. The condition <m>s\ne0</m> also has a role: when <m>s=0</m>, every pure sheaf of Euler characteristic zero has reduced Hilbert polynomial <m>m</m>, regardless of its support class. If <m>c=c_1+c_2</m> and there are stable pure sheaves of vectors <m>(0,c_1,0)</m> and <m>(0,c_2,0)</m>, their direct sum is strictly semistable for every <m>H</m>. Primitivity of the total vector does not eliminate this phenomenon. Additional support assumptions or a change of stability are needed to treat such cases.<fn>The adjective <em>positive</em> for a Mukai vector is used with several conventions in this literature. It records rank or effectivity conditions and must not be read as <m>v^2&gt;0</m>. The statements here give their rank and divisor hypotheses explicitly.</fn></p>
+    <example xml:id="hkg-moduli-hilbert">
+      <p>Take <m>v=(1,0,1-n)</m>. Every torsion-free rank-one sheaf <m>E</m> has a line-bundle double dual <m>E^{\vee\vee}</m>, and <m>E^{\vee\vee}/E</m> is supported in dimension zero. Since <m>c_1(E)=0</m> and <m>\operatorname{Pic}^0(S)=0</m>, the line bundle is <m>\mathcal O_S</m>. Thus <m>E=I_Z</m> for a length-<m>n</m> subscheme <m>Z</m>.</p>
+      <p>Every torsion-free rank-one sheaf is Gieseker stable. Indeed, a proper rank-one subsheaf has a nonzero quotient of dimension at most one; subtracting its positive Hilbert polynomial makes the reduced polynomial strictly smaller. There are no nonzero lower-dimensional subsheaves. Consequently,
+        <md number="no">M_H(1,0,1-n)\cong S^{[n]}.</md>
+        This is an isomorphism of moduli spaces, not just a bijection of closed points: an ideal sheaf gives a flat family of finite subschemes, and a family of the rank-one sheaves above becomes a family of ideals after tensoring by a line bundle from the base. The relative statement is proved in <xref ref="hkg-bib-huybrechts-k3" detail="Proposition 10.3.8"/>.</p>
+    </example>
+  </section>
+  <section xml:id="hkg-universal-and-mukai-map">
+    <title>Universal families and the Mukai isometry</title>
+    <p>A coarse moduli space records the isomorphism class of each stable sheaf but need not carry a sheaf whose restriction to every point is that sheaf. A <em>universal sheaf</em> is such a family <m>\mathcal E</m> on <m>S\times M_H(v)</m>, with the usual universal property for families up to tensoring by line bundles from the parameter scheme. When it exists, the moduli space is called <em>fine</em> in the sheaf-moduli sense.</p>
+    <p>Scalar automorphisms of a stable sheaf explain the possible failure of descent. Local universal families can be chosen on an étale cover of the stable moduli space. On pairwise overlaps they differ by line bundles from the base; on triple overlaps their identifications can fail the cocycle condition by invertible scalars. These scalars define a Brauer obstruction. A twisted universal sheaf keeps track of this obstruction; its endomorphism complex is untwisted, as used in the symplectic construction. We use this description from <xref ref="hkg-bib-huybrechts-lehn" detail="§4.6"/>.</p>
+    <proposition xml:id="hkg-universal-sufficient">
+      <statement>
+        <p>A sufficient condition for a universal sheaf on the stable moduli space is the existence of <m>w\in\widetilde H_{\mathrm{alg}}(S,\Z)</m> with <m>\langle v,w\rangle=1</m>. In particular, <m>\gcd(r,c\cdot H,s)=1</m> is sufficient. See <xref ref="hkg-bib-huybrechts-lehn" detail="§4.6"/> and <xref ref="hkg-bib-huybrechts-k3" detail="Chapter 10, §2.2"/>.</p>
+      </statement>
+    </proposition>
+    <p>The numerical condition trivializes the scalar descent obstruction by a determinant-of-cohomology line bundle of weight one. We cite that construction rather than developing descent theory here. Primitivity of <m>v</m> in the full integral Mukai lattice is a different condition from pairing to one with an algebraic vector, so it should not silently be used as a fine-moduli hypothesis.</p>
+    <p>A <em>quasi-universal sheaf</em> of similitude <m>\rho\geq1</m> is a family <m>\mathcal E</m> whose fibre at <m>[E]</m> is <m>E^{\oplus\rho}</m>. Such families exist on the stable moduli spaces under consideration; see <xref ref="hkg-bib-huybrechts-lehn" detail="§4.6"/>. A quasi-universal sheaf is not universal when <m>\rho&gt;1</m>, but its normalized Chern character defines the required map on cohomology.</p>
+    <p>Let <m>M=M_H(v)</m> be as in <xref ref="hkg-yoshioka-k3"/>, let <m>p_S,p_M</m> be the projections from <m>S\times M</m>, and choose a quasi-universal sheaf <m>\mathcal E</m> of similitude <m>\rho</m>. For <m>x\in v^\perp\subset\widetilde H(S,\Z)</m>, define
+      <md xml:id="hkg-eq-mukai-homomorphism" number="yes">
+        \theta_v(x):=
+        \frac{1}{\rho}
+        \left[
+        p_{M*}\left(
+        \operatorname{ch}(\mathcal E)\,
+        p_S^*\bigl(\sqrt{\operatorname{td}(S)}\,x^\vee\bigr)
+        \right)\right]_2
+        \in H^2(M,\Q).
+      </md>
+      The subscript two means the component of cohomological degree two on <m>M</m>. The involution <m>x^\vee=(r,-c,s)</m> is the one used in Riemann–Roch.</p>
+    <p>The orthogonality condition explains independence from a basic ambiguity in the family. Tensoring <m>\mathcal E</m> by <m>p_M^*L</m> changes the degree-two component by <m>c_1(L)</m> times the degree-zero component. The latter equals
+      <md number="no">\frac1\rho\int_S
+      \operatorname{ch}(\mathcal E|_{S\times\{[E]\}})
+      \sqrt{\operatorname{td}(S)}\,x^\vee
+      =\int_Sv\,x^\vee=-\langle v,x\rangle=0.</md>
+      Full independence of the quasi-universal choice, and integrality despite the factor <m>1/\rho</m>, are included in the theorem below.</p>
+    <theorem xml:id="hkg-mukai-isometry">
+      <title>(Mukai–Yoshioka)</title>
+      <statement>
+        <p>Under the hypotheses of <xref ref="hkg-yoshioka-k3"/>, the map <m>\theta_v</m> is integral and preserves Hodge structures. If <m>v^2&gt;0</m>, it is an isometry
+          <md xml:id="hkg-eq-positive-mukai-isometry" number="yes">
+            \theta_v:(v^\perp,\langle\, ,\,\rangle)
+            \xrightarrow{\ \sim\ }(H^2(M,\Z),q_M).
+          </md>
+          If <m>v^2=0</m>, it annihilates <m>v</m> and induces an isometry
+          <md xml:id="hkg-eq-isotropic-mukai-isometry" number="yes">
+            v^\perp/\Z v\xrightarrow{\ \sim\ }H^2(M,\Z).
+          </md>
+          The orthogonal complement is taken in the full Mukai lattice, not merely its algebraic part. See <xref ref="hkg-bib-yoshioka-k3" detail="Theorem 0.1"/> for positive rank and positive square, and <xref ref="hkg-bib-huybrechts-lehn" detail="Theorem 6.1.14"/> for the isotropic case. The statement including ample rank-zero vectors is recorded in <xref ref="hkg-bib-bayer-macri-mmp" detail="Theorem 3.6 and the following paragraph"/>, which refers to <xref ref="hkg-bib-yoshioka" detail="§§7–8"/> for the sheaf case.</p>
+      </statement>
+    </theorem>
+    <p>When <m>v^2=0</m>, the vector <m>v</m> lies in <m>v^\perp</m> and spans the radical of its pairing. Passing to the quotient is therefore necessary. The ranks also distinguish the two cases: <m>v^\perp</m> has rank twenty-three; the quotient in the isotropic case has rank twenty-two, the rank of a K3 surface's second cohomology.</p>
+    <example xml:id="hkg-hilbert-lattice-from-mukai">
+      <p>Let <m>v=(1,0,1-n)</m> with <m>n\geq2</m>. For <m>x=(r,c,s)</m>, the equation <m>\langle x,v\rangle=0</m> is <m>s=(n-1)r</m>. Thus
+        <md number="no">v^\perp=
+        H^2(S,\Z)\oplus\Z(1,0,n-1),\qquad
+        (1,0,n-1)^2=-2(n-1).</md>
+        The summands are orthogonal. The Mukai isometry recovers exactly the lattice in <xref ref="hkg-eq-hilbert-lattice"/>. Under that identification the final generator maps to one of the two signs of the half-exceptional class. Its sign depends on the chosen convention for the Mukai homomorphism and does not change the lattice.</p>
+      <p>For <m>n=1</m>, the vector is <m>(1,0,0)</m>. Its orthogonal complement consists of <m>(r,c,0)</m>, and quotienting by <m>\Z(1,0,0)</m> leaves <m>H^2(S,\Z)</m>. This recovers <m>M_H(1,0,0)\cong S</m> with its original intersection lattice.</p>
+    </example>
+  </section>
+  <section xml:id="hkg-curve-sheaves">
+    <title>Sheaves supported on curves</title>
+    <p>Let <m>C\subset S</m> be a smooth connected curve of genus <m>g</m>, let <m>i:C\hookrightarrow S</m> be its inclusion, and let <m>L</m> be a line bundle of degree <m>d</m> on <m>C</m>. The sheaf <m>i_*L</m> is pure of dimension one, has first Chern class <m>[C]</m>, and satisfies
+      <m>\chi(S,i_*L)=\chi(C,L)=d+1-g</m>. Hence
+      <md number="no">v(i_*L)=(0,[C],d+1-g),\qquad
+      v(i_*L)^2=C^2=2g-2.</md>
+      The last equality is adjunction on the K3 surface.</p>
+    <proposition xml:id="hkg-curve-line-stable">
+      <statement>
+        <p>The sheaf <m>i_*L</m> is <m>H</m>-stable for every ample <m>H</m>.</p>
+      </statement>
+      <proof>
+        <p>A nonzero subsheaf has generic rank one on the integral curve <m>C</m>; its quotient is supported in dimension zero. If the subsheaf is proper, that quotient has positive length. The leading coefficient of the Hilbert polynomial does not change, while its constant term decreases by this length. Its reduced Hilbert polynomial is therefore strictly smaller.</p>
+      </proof>
+    </proposition>
+    <p>The same proof applies to <m>i_*F</m> when <m>C</m> is an integral, possibly singular curve and <m>F</m> is a torsion-free rank-one sheaf on <m>C</m>. This is the compactified Jacobian interpretation over integral singular members of the linear system.<fn>The degree of such a sheaf is defined by <m>\deg F=\chi(C,F)+g-1</m>, where <m>g=1-\chi(C,\mathcal O_C)</m> is the arithmetic genus. For reducible or nonreduced support, stability also compares subsheaves on proper subcurves and can depend on the polarization.</fn></p>
+    <p>Suppose now that the class <m>[C]</m> is ample, that <m>s\ne0</m>, and that <m>v=(0,[C],s)</m> is primitive. Choose a <m>v</m>-generic <m>H</m> and let <m>d=s+g-1</m>. The global theorem gives a projective irreducible holomorphic symplectic manifold <m>M_H(v)</m> of dimension <m>2g</m>. Sending a pure one-dimensional sheaf to its support divisor gives the support morphism
+      <md xml:id="hkg-eq-support-morphism" number="yes">
+        \pi:M_H(0,[C],s)\longrightarrow |C|.
+      </md>
+      The divisor is defined by the zeroth Fitting ideal, or equivalently by the determinant section of a local resolution. Its multiplicities are the generic lengths of the sheaf along the support components. The construction in families gives the displayed morphism; see <xref ref="hkg-bib-huybrechts-lehn" detail="Chapter 10"/>.</p>
+    <p>The base has dimension <m>g</m>. Indeed, the exact sequence
+      <m>0\to\mathcal O_S\to\mathcal O_S(C)\to K_C\to0</m>
+      and <m>H^1(S,\mathcal O_S)=0</m> give
+      <m>h^0(S,\mathcal O_S(C))=1+h^0(C,K_C)=g+1</m>.
+      Thus <m>|C|\cong\mathbb P^g</m>.</p>
+    <p>Every smooth member <m>D\in|C|</m> has genus <m>g</m>, and its fibre is <m>\operatorname{Pic}^d(D)</m>. Indeed, a pure sheaf whose support cycle is the smooth divisor <m>D</m> with multiplicity one is annihilated by its ideal: the image of that ideal would have zero-dimensional support and purity forces it to vanish. It is therefore a torsion-free rank-one sheaf on <m>D</m>, hence a line bundle. Conversely every such line bundle is stable by <xref ref="hkg-curve-line-stable"/>. Since the support morphism is proper and its image contains the dense open set of smooth curves, it is surjective.</p>
+    <proposition xml:id="hkg-jacobian-fibres-lagrangian">
+      <statement>
+        <p>For a smooth <m>D\in|C|</m>, the fibre <m>\operatorname{Pic}^d(D)</m> is a Lagrangian submanifold of <m>M_H(0,[C],s)</m>.</p>
+      </statement>
+      <proof>
+        <p>At a line bundle <m>L</m> on <m>D</m>, the tangent space of the fibre is
+          <m>\operatorname{Ext}^1_D(L,L)=H^1(D,\mathcal O_D)</m>. Pushing forward extensions gives its injection into
+          <m>\operatorname{Ext}^1_S(i_*L,i_*L)</m>, the tangent space of the moduli space. This injection can also be read from the local-to-global Ext sequence
+          <md number="no">0\longrightarrow H^1(D,\mathcal O_D)
+          \longrightarrow\operatorname{Ext}^1_S(i_*L,i_*L)
+          \longrightarrow H^0(D,N_{D/S})\longrightarrow0.</md>
+          Here <m>N_{D/S}\cong K_D</m> by adjunction. The sequence is the usual local Ext computation for a Cartier divisor, together with <m>H^2(D,\mathcal O_D)=0</m>.</p>
+        <p>Two tangent vectors to <m>\operatorname{Pic}^d(D)</m> are extensions formed on <m>D</m>. Their Yoneda product on <m>D</m> lies in
+          <m>\operatorname{Ext}^2_D(L,L)=H^2(D,\mathcal O_D)=0</m>.
+          Exact pushforward preserves composition of extensions, so their product is also zero in <m>\operatorname{Ext}^2_S(i_*L,i_*L)</m>. The Mukai symplectic pairing therefore vanishes on the fibre tangent space. Finally, its dimension is <m>g</m>, half the dimension <m>2g</m> of the moduli space. Thus the fibre is Lagrangian.</p>
+      </proof>
+    </proposition>
+    <p>This is the geometric reason that moduli of curve-supported sheaves produce integrable systems: the smooth fibres are Jacobians, and the symplectic pairing identifies their tangent directions with the dual directions in the linear system. Singular curves are accommodated by pure sheaves rather than line bundles, giving compactified Jacobian fibres. Their detailed geometry is a separate subject; neither smoothness nor irreducibility of each singular fibre is asserted here.</p>
+  </section>
+  <section xml:id="hkg-abelian-moduli">
+    <title>Abelian surfaces and Albanese fibres</title>
+    <p>Let <m>A</m> be an abelian surface and <m>\widehat A=\operatorname{Pic}^0(A)</m> its dual. Its tangent bundle is trivial, so <m>\operatorname{td}(A)=1</m> and
+      <md number="no">v(E)=\operatorname{ch}(E)
+      =\left(r,c_1(E),\frac{c_1(E)^2}{2}-c_2(E)\right),
+      \qquad \chi(A,E)=s.</md>
+      We use the same pairing <m>\langle(r,c,s),(r',c',s')\rangle=c\cdot c'-rs'-r's</m> on <m>\widetilde H(A,\Z)</m>. Its lattice is <m>U^{\oplus4}</m>, since <m>H^2(A,\Z)\cong U^{\oplus3}</m>. The correction by the rank in the last entry of the K3 Mukai vector is absent here.</p>
+    <p>The deformation and symplectic calculations still apply to stable sheaves, because <m>K_A\cong\mathcal O_A</m> and the Picard scheme is smooth. Thus a stable sheaf of vector <m>v</m> has a smooth symplectic moduli space of dimension <m>v^2+2</m>. However, translations of <m>A</m> and tensor products by line bundles in <m>\widehat A</m> move sheaves in additional directions. The whole moduli space is generally not irreducible holomorphic symplectic.</p>
+    <p>For a reference sheaf <m>E_0</m> of vector <m>v</m>, determinant and the Albanese class of the second Chern cycle give a map to <m>A\times\widehat A</m>, normalized to send <m>[E_0]</m> to zero. One can write its components as
+      <md number="no">a_v([E])=
+      \left(
+      \operatorname{alb}_A\bigl(c_2(E)-c_2(E_0)\bigr),
+      \det E\otimes(\det E_0)^{-1}
+      \right).</md>
+      The second Chern classes here belong to <m>\operatorname{CH}_0(A)</m>, the group of zero-cycles modulo rational equivalence, defined in <xref ref="hkg-def-chow"/>. For a degree-zero cycle <m>\sum_i n_i[p_i]</m>, its Albanese class is <m>\sum_i n_i p_i\in A</m>; rational equivalence does not change this sum. The determinant lies in <m>\widehat A</m> because the first Chern classes agree. This cycle description is used in <xref ref="hkg-bib-rapagnetta6" detail="§1.1"/>. Changes of normalization translate the target, and the Fourier–Mukai determinant convention of <xref ref="hkg-bib-yoshioka" detail="§4.1"/> may also change coordinates on <m>A\times\widehat A</m>. The fibres used below are unaffected up to isomorphism by these choices.</p>
+    <theorem xml:id="hkg-yoshioka-abelian">
+      <title>(Yoshioka)</title>
+      <statement>
+        <p>Let <m>v=(r,c,s)\in\widetilde H_{\mathrm{alg}}(A,\Z)</m> be primitive with <m>r&gt;0</m> and <m>v^2\geq6</m>, and let <m>H</m> be <m>v</m>-generic. Then <m>M_H(v)</m> is nonempty, smooth, and projective of dimension <m>v^2+2</m>. Its Albanese variety is <m>A\times\widehat A</m>, and the map <m>a_v</m> above is an Albanese morphism after the indicated coordinate convention. Its fibres
+          <m>K_H(v):=a_v^{-1}(0)</m> are irreducible holomorphic symplectic manifolds of dimension <m>v^2-2</m>, deformation equivalent to
+          <m>K_{v^2/2-1}(A)</m>. The restriction of the Mukai homomorphism gives an integral Hodge isometry
+          <md number="no">v^\perp\xrightarrow{\ \sim\ }H^2(K_H(v),\Z).</md>
+          See <xref ref="hkg-bib-yoshioka" detail="Theorems 0.1 and 0.2"/>.</p>
+      </statement>
+    </theorem>
+    <p>The lower bound <m>v^2\geq6</m> ensures that the fibre has dimension at least four. For <m>v^2=4</m>, the fibre is a K3 surface and has twenty-two-dimensional second cohomology; <m>v^\perp</m> in the rank-eight abelian Mukai lattice has rank seven and cannot be its entire second cohomology. For <m>v^2=2</m>, the Albanese map is an isomorphism. These small cases are treated separately in <xref ref="hkg-bib-yoshioka" detail="Introduction and §4"/>.</p>
+    <example xml:id="hkg-abelian-hilbert-moduli">
+      <p>Let <m>v=(1,0,-m)</m> with <m>m\geq3</m>. A torsion-free rank-one sheaf of this vector is <m>I_Z\otimes L</m>, with <m>Z</m> of length <m>m</m> and <m>L\in\widehat A</m>. Thus
+        <md number="no">M_H(1,0,-m)\cong A^{[m]}\times\widehat A.</md>
+        Its determinant is <m>L</m>, and its second Chern cycle is the cycle of <m>Z</m>. After choosing a reference cycle of sum zero and trivial determinant, the Albanese map is
+        <m>(Z,L)\mapsto(s(Z),L)</m>. Its zero fibre is exactly <m>K_{m-1}(A)</m>. The dimensions agree:
+        <m>v^2+2=2m+2</m> for the full moduli space and <m>v^2-2=2m-2</m> for the fibre.</p>
+    </example>
+    <p>This example distinguishes three spaces that are sometimes conflated: the Hilbert scheme <m>A^{[m]}</m>, the sheaf moduli space <m>A^{[m]}\times\widehat A</m>, and its Albanese fibre <m>K_{m-1}(A)</m>. Only the last is irreducible holomorphic symplectic in dimension at least four.</p>
+  </section>
+  <section xml:id="hkg-nonprimitive-moduli">
+    <title>Nonprimitive vectors and symplectic resolutions</title>
+    <p>The primitive hypothesis excludes strictly semistable sheaves for a generic polarization. If <m>v=2w</m> and there are stable sheaves <m>E_1,E_2</m> of vector <m>w</m>, their direct sum is semistable of vector <m>v</m> and is not stable. Its automorphism group is larger than the scalar group. The quotient describing its deformation space can therefore be singular, even though the stable locus remains smooth and symplectic.</p>
+    <p>O'Grady's examples use
+      <md number="no">v=(2,0,-2)=2(1,0,-1),\qquad w^2=2,\qquad v^2=8.</md>
+      On a K3 surface the condition means rank two, first Chern class zero, and <m>c_2=4</m>; on an abelian surface it means <m>c_2=2</m>. The same triple does not encode the same second Chern class because the Todd corrections differ.</p>
+    <p>For the degree-two, Picard-rank-one K3 surface of <xref ref="hkg-ogrady-existence"/>, the stable locus of <m>M_H^{\mathrm{ss}}(v)</m> has dimension ten and admits Mukai's form. O'Grady constructs a projective resolution on which this form extends nondegenerately, and proves that the resolution is irreducible holomorphic symplectic. On the principally polarized abelian surface in that construction, the full moduli space again has dimension ten. O'Grady's compatible resolution carries a determinant-and-Albanese map; its zero fibre is the six-dimensional irreducible holomorphic symplectic manifold of type <m>\mathrm{OG}_6</m>. Equivalently, the construction gives a symplectic resolution of the corresponding singular fibre. These assertions are taken from <xref ref="hkg-bib-ogrady10"/> and <xref ref="hkg-bib-ogrady6"/>.</p>
+    <p>Thus the K3 construction gives a ten-dimensional manifold from the whole moduli space, while the abelian construction gives its six-dimensional manifold from a fibre. The BBF lattices of the two resulting manifolds, computed by Rapagnetta, are given in <xref ref="hkg-eq-ogrady-lattices"/>.</p>
+  </section>
+</chapter>

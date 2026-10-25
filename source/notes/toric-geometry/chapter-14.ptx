@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="toric-fano-metrics">
+  <title>Toric Fano polytopes and canonical metrics</title>
+  <introduction>
+    <p>For a smooth projective toric Fano variety, the barycenter of its preferred anticanonical polytope decides whether a Kähler<ndash/>Einstein metric exists. The analytic existence theorem is substantial. The finite calculation that supplies its criterion is accessible from our divisor dictionary: lattice boundary measure, integration by parts on a polytope, and convexity.</p>
+    <p>Work over <m>\C</m>. Throughout, <m>X=X_\Sigma</m> is smooth, projective, and Fano, of dimension <m>n\ge1</m>. Write <m>T=\Spec\C[M]\simeq(\C^*)^n</m> for the algebraic torus and <m>K\simeq(S^1)^n</m> for its maximal compact subgroup. Metric invariance in this chapter means invariance under <m>K</m>. The complex torus acts holomorphically; its whole action is not assumed to preserve the metric. We use Kähler geometry and the Wang<ndash/>Zhu theorem as external inputs, while proving the polytope identities and convex inequalities below.</p>
+  </introduction>
+
+  <section xml:id="toric-metrics-canonical-polytope">
+    <title>The preferred anticanonical polytope</title>
+    <p>Let <m>u_\rho\in N</m> be the primitive generator of a ray. The divisor <m>-K_X=\sum_\rho D_\rho</m> fixes
+      <md number="no">P=\{x\in M_{\R}:\langle x,u_\rho\rangle\ge-1
+        \text{ for every }\rho\in\Sigma(1)\}.</md>
+      By <xref ref="toric-thm-reflexive-fano"/>, this is a full-dimensional reflexive lattice polytope containing zero in its interior. Its normal fan is <m>\Sigma</m>. Here smoothness is an extra hypothesis on the variety, beyond the Gorenstein Fano correspondence of that theorem.</p>
+    <definition xml:id="toric-def-fano-barycenter">
+      <title>Volume and barycenter</title>
+      <statement>
+        <p>Let <m>dx</m> be Lebesgue measure for which a fundamental parallelepiped of <m>M</m> has volume one. Put
+          <md number="no">V_P=\int_P dx,\qquad
+            b(P)=\frac1{V_P}\int_P x\,dx\in M_{\R}.</md>
+          This is the volume normalization of <xref ref="toric-polytopes"/>; it does not include a factor <m>n!</m>.</p>
+      </statement>
+    </definition>
+    <proposition xml:id="toric-prop-fano-barycenter-products">
+      <title>Lattice coordinates and products</title>
+      <statement>
+        <p>If <m>A:M\to M'</m> is a lattice isomorphism, then <m>b(A_{\R}P)=A_{\R}b(P)</m>. If two varieties in our class have preferred polytopes <m>P_1,P_2</m>, their product has preferred polytope <m>P_1\times P_2</m>, with
+          <md number="no">V_{P_1\times P_2}=V_{P_1}V_{P_2},
+            \qquad
+            b(P_1\times P_2)=\bigl(b(P_1),b(P_2)\bigr).</md></p>
+      </statement>
+      <proof>
+        <p>A lattice isomorphism has determinant of absolute value one in lattice coordinates. Change of variables therefore preserves normalized volume and transforms the vector integral by <m>A_{\R}</m>, proving the first identity. The rays of the product fan have the form <m>(u_\rho,0)</m> or <m>(0,u_{\rho'})</m>. Their anticanonical inequalities separate into the inequalities defining the two factors, giving exactly the product polytope. Fubini's theorem gives its volume and both components of its first moment, proving the remaining formulas.</p>
+      </proof>
+    </proposition>
+    <p>Thus vanishing of the preferred barycenter is independent of a lattice basis, and a product is balanced exactly when both factors are balanced. These statements involve linear lattice identifications and product constructions; a translation has a different effect on the chosen origin.</p>
+    <p>The origin in this definition is fixed by the anticanonical inequalities with constant <m>-1</m>. An arbitrary divisor linearly equivalent to <m>-K_X</m> gives a translated polytope. Its centroid is not the vector to substitute into the criterion below without restoring this preferred normalization. The distinction will be explicit in the Hirzebruch example.</p>
+  </section>
+
+  <section xml:id="toric-metrics-boundary-measure">
+    <title>Lattice boundary measure and a divergence identity</title>
+    <definition xml:id="toric-def-lattice-boundary-measure">
+      <title>The facet measure</title>
+      <statement>
+        <p>On the facet <m>F_\rho=\{\langle x,u_\rho\rangle=-1\}\cap P</m>, let <m>d\sigma</m> be the lattice measure for the affine lattice parallel to <m>M\cap u_\rho^\perp</m>. In lattice coordinates with their standard Euclidean metric,
+          <md number="no">d\sigma=\frac{dA}{\|u_\rho\|},</md>
+          where <m>dA</m> is Euclidean hypersurface measure. Integrals over <m>\partial P</m> mean the sum over facets. For <m>n=1</m>, each endpoint has mass one.</p>
+      </statement>
+    </definition>
+    <p>Primitivity matters: <m>x\mapsto\langle x,u_\rho\rangle</m> maps <m>M</m> onto <m>\Z</m>. In these coordinates the covolume of its kernel lattice in the facet hyperplane is <m>\|u_\rho\|</m>, giving the stated measure. This is the facet measure specified in <xref ref="bib-toric-donaldson" detail="Section 3.2, before Lemma 3.2.6"/>. Euclidean area alone would weight facets of different primitive normal lengths incorrectly.</p>
+    <proposition xml:id="toric-prop-fano-divergence">
+      <title>Integration by parts at lattice distance one</title>
+      <statement>
+        <p>If <m>f</m> is continuously differentiable on a neighborhood of <m>P</m>, then
+          <md xml:id="toric-eq-fano-divergence" number="yes">\int_{\partial P}f\,d\sigma
+            =\int_P\bigl(nf+\langle x,\nabla f\rangle\bigr)\,dx.</md>
+          The same identity holds for continuous piecewise affine <m>f</m>, using its almost-everywhere gradient. In particular,
+          <md number="no">\int_{\partial P}d\sigma=nV_P.</md></p>
+      </statement>
+      <proof>
+        <p>The outward unit normal to <m>F_\rho</m> is <m>\nu_\rho=-u_\rho/\|u_\rho\|</m>. Since <m>\langle x,u_\rho\rangle=-1</m> there, the vector field <m>x</m> satisfies <m>\langle x,\nu_\rho\rangle=1/\|u_\rho\|</m>. Apply the Euclidean divergence theorem to <m>f(x)x</m>. Its boundary flux is exactly <m>f\,dA/\|u_\rho\|=f\,d\sigma</m>, while its divergence is <m>nf+\langle x,\nabla f\rangle</m>. The coordinate volume is <m>dx</m> by our lattice normalization.</p>
+        <p>For a continuous piecewise affine function, subdivide <m>P</m> into finitely many polyhedral cells on which it is affine. Apply the same identity cellwise using the vector field <m>f(x)x</m>. The two fluxes on every internal wall cancel, because the normals are opposite and the vector field is continuous. The remaining walls have measure zero in the volume integral, so the resulting interior term uses the almost-everywhere gradient. Taking <m>f=1</m> proves the last identity.</p>
+      </proof>
+    </proposition>
+  </section>
+
+  <section xml:id="toric-metrics-convex-functional">
+    <title>A boundary functional on convex functions</title>
+    <definition xml:id="toric-def-fano-boundary-functional">
+      <title>The anticanonical boundary functional</title>
+      <statement>
+        <p>For a continuous piecewise affine function on <m>P</m>, set
+          <md number="no">\mathcal L_P(f)=
+            \int_{\partial P}f\,d\sigma-n\int_P f\,dx.</md>
+          By <xref ref="toric-prop-fano-divergence"/>,
+          <md number="no">\mathcal L_P(f)=
+            \int_P\langle x,\nabla f\rangle\,dx.</md></p>
+      </statement>
+    </definition>
+    <p>This is Donaldson's linear boundary functional <m>\mathcal L_A</m> with constant
+      <m>A=\operatorname{vol}(\partial P,d\sigma)/V_P=n</m>; see <xref ref="bib-toric-donaldson" detail="equation (3.3.2)"/>. We keep the displayed normalization throughout.</p>
+    <proposition xml:id="toric-prop-fano-affine-functional">
+      <title>Affine functions detect the barycenter</title>
+      <statement>
+        <p>For <m>f(x)=\langle x,v\rangle+c</m>, with <m>v\in N_{\R}</m>,
+          <md number="no">\mathcal L_P(f)=V_P\langle b(P),v\rangle.</md>
+          In particular, constants have value zero, and the functional vanishes on all affine functions exactly when <m>b(P)=0</m>.</p>
+      </statement>
+      <proof>
+        <p>The gradient is <m>v</m>, so the divergence formula gives <m>\mathcal L_P(f)=\langle\int_P x\,dx,v\rangle</m>. Nondegeneracy of the lattice pairing proves the final equivalence.</p>
+      </proof>
+    </proposition>
+    <proposition xml:id="toric-prop-fano-convex-positivity">
+      <title>Positivity and its equality case</title>
+      <statement>
+        <p>The following conditions are equivalent: <m>b(P)=0</m>; and <m>\mathcal L_P(f)\ge0</m> for every continuous convex piecewise affine function <m>f</m> on <m>P</m>. Under these conditions, equality holds exactly for affine functions.</p>
+      </statement>
+      <proof>
+        <p>Assume <m>b(P)=0</m>. At each differentiability point of a convex function, its supporting-plane inequality at <m>x</m>, evaluated at zero, gives
+          <md number="no">\langle x,\nabla f(x)\rangle\ge f(x)-f(0).</md>
+          Therefore <m>\mathcal L_P(f)\ge\int_P f\,dx-V_P f(0)</m>. For completeness, the needed Jensen inequality follows from a supporting affine function at zero: write <m>\ell(x)=f(0)+\langle x,v\rangle\le f(x)</m>. Since the barycenter is zero, <m>\int_P\ell\,dx=V_P f(0)</m>, and integration of <m>f-\ell\ge0</m> proves the inequality.</p>
+        <p>If <m>\mathcal L_P(f)=0</m>, both inequalities are equalities. Thus the continuous nonnegative function <m>f-\ell</m> has integral zero on the full-dimensional polytope. It vanishes everywhere: any positive value, including at a boundary point, would by continuity give positive values on a subset of positive volume. Hence <m>f=\ell</m> is affine. The affine formula proves the converse equality statement.</p>
+        <p>Conversely, affine functions and their negatives are convex piecewise affine functions. Nonnegativity on both forces their functional values to vanish, and <xref ref="toric-prop-fano-affine-functional"/> gives <m>b(P)=0</m>.</p>
+      </proof>
+    </proposition>
+    <p>This proves a precise finite-dimensional obstruction and convex inequality. The analytic conclusion about a smooth metric is supplied by the following external theorem, together with the toric computation of the Futaki invariant.</p>
+  </section>
+
+  <section xml:id="toric-metrics-existence">
+    <title>The metric existence theorem</title>
+    <p>A Kähler form is a closed positive real <m>(1,1)</m>-form. We normalize it by <m>[\omega]=2\pi c_1(X)</m> and use the Ricci form
+      <md number="no">\operatorname{Ric}(\omega)
+        =-\sqrt{-1}\,\partial\overline\partial
+          \log\det(g_{i\overline j}),</md>
+      representing <m>2\pi c_1(X)</m>. A positively normalized Kähler<ndash/>Einstein metric satisfies <m>\operatorname{Ric}(\omega)=\omega</m>. A Kähler<ndash/>Ricci soliton satisfies
+      <md number="no">\operatorname{Ric}(\omega)-\omega
+        =\mathcal L_W\omega</md>
+      for a real holomorphic vector field <m>W</m>, meaning a real vector field whose local flow consists of biholomorphisms. Here <m>\mathcal L_W</m> is Lie derivative, distinct from the polytope functional <m>\mathcal L_P</m>.<fn>Wang<ndash/>Zhu normalize their forms to represent <m>c_1(X)</m>. Multiplying their Kähler form by <m>2\pi</m> and using the ordinary Ricci form gives our normalization. They write the equation with a holomorphic <m>(1,0)</m>-vector field. Its Lie derivative of the solution form is real, so it equals the Lie derivative along its real part <m>(Z+\overline Z)/2</m>, as used here.</fn></p>
+    <theorem xml:id="toric-thm-wang-zhu">
+      <title>Wang<ndash/>Zhu and the barycenter criterion</title>
+      <statement>
+        <p>Every smooth projective toric Fano variety admits a <m>K</m>-invariant Kähler<ndash/>Ricci soliton metric. The soliton metric is unique up to holomorphic automorphisms. The variety admits a Kähler<ndash/>Einstein metric if and only if
+          <md number="no">b(P)=0.</md></p>
+      </statement>
+    </theorem>
+    <p>The analytic input is <xref ref="bib-toric-wang-zhu" detail="Theorem 1.1 and Corollary 1.3"/>: soliton existence, and the equivalence of Kähler<ndash/>Einstein existence with vanishing of the Futaki character. That character is an invariant of holomorphic vector fields supplied by Kähler geometry. Its toric restriction is, up to the convention for its overall nonzero factor, <m>v\mapsto\mathcal L_P(\langle x,v\rangle)</m>; see <xref ref="bib-toric-donaldson" detail="Lemma 3.2.9"/>. The passage from this restriction to full vanishing is part of the toric identification in <xref ref="bib-toric-wang-zhu" detail="Lemma 2.1 and equations (2.14)–(2.16)"/>. Thus the affine calculation gives exactly the stated barycenter condition.</p>
+    <p>The regularity and existence estimates for the nonlinear metric equation are external. Our convex positivity proof neither develops that analysis nor identifies a particular normalization of a Donaldson<ndash/>Futaki invariant for degenerations. It provides the explicit polytope calculation that the metric criterion uses.</p>
+    <proposition xml:id="toric-prop-weighted-barycenter">
+      <title>A unique weighted balancing vector</title>
+      <statement>
+        <p>There is a unique <m>\xi\in N_{\R}</m> for which
+          <md number="no">\int_P x\,e^{\langle x,\xi\rangle}\,dx=0.</md>
+          It is zero exactly when <m>b(P)=0</m>.</p>
+      </statement>
+      <proof>
+        <p>Consider <m>\Phi(\xi)=\log\int_P e^{\langle x,\xi\rangle}\,dx</m>. Differentiating under the integral gives the weighted barycenter as its gradient. Its Hessian in a nonzero direction <m>v</m> is the variance of <m>\langle x,v\rangle</m> for the positive probability density proportional to <m>e^{\langle x,\xi\rangle}</m>. This variance is positive because <m>P</m> has interior. Hence <m>\Phi</m> is strictly convex.</p>
+        <p>Choose a Euclidean ball <m>B(0,r)\subset P</m>. For <m>\xi\ne0</m>, the ball of radius <m>r/4</m> centered at <m>(r/2)\xi/\|\xi\|</m>, using the dual Euclidean identification, lies in <m>P</m> and has <m>\langle x,\xi\rangle\ge r\|\xi\|/4</m>. Integrating over it shows <m>\Phi(\xi)\ge C+r\|\xi\|/4</m>, with <m>C</m> independent of <m>\xi</m>. Thus <m>\Phi</m> attains a minimum, unique by strict convexity. Its gradient vanishes there. At zero its gradient is <m>b(P)</m>, proving the last assertion.</p>
+      </proof>
+    </proposition>
+    <p>This balancing equation is the finite-dimensional condition for the soliton vector in the logarithmic coordinates of <xref ref="bib-toric-wang-zhu" detail="Lemma 2.2, equation (2.16)"/>. The proposition establishes the balancing vector; the theorem supplies the associated metric.</p>
+  </section>
+
+  <section xml:id="toric-metrics-examples">
+    <title>Two balanced polytopes and the first Hirzebruch surface</title>
+    <example xml:id="toric-example-balanced-fano-polytopes">
+      <title>The projective plane and the product of lines</title>
+      <p>For <m>\P^2</m>, the preferred anticanonical triangle is
+        <md number="no">P=\operatorname{conv}\{(-1,-1),(2,-1),(-1,2)\}.</md>
+        A triangle's centroid is the average of its vertices, so <m>b(P)=0</m>. Its area is <m>9/2</m>. The two coordinate edges each have lattice length three, and the diagonal edge has Euclidean length <m>3\sqrt2</m> and primitive normal <m>(-1,-1)</m>, giving lattice length three. Thus the boundary measure is nine, equal to twice the area, as required. The criterion gives a Kähler<ndash/>Einstein metric.</p>
+      <p>For <m>\P^1\times\P^1</m>, the preferred polytope is <m>[-1,1]^2</m>. Its central symmetry gives barycenter zero; its area is four and its lattice boundary length is eight. This variety also admits a Kähler<ndash/>Einstein metric. As a direct test of the strict convex inequality, take the non-affine convex piecewise affine function <m>f(p,q)=|p|</m>. Its volume integral is two. On the vertical edges its boundary integral contributes four, and on the horizontal edges it contributes two. Hence <m>\mathcal L_P(f)=6-2\cdot2=2&gt;0</m>, whereas every affine function has value zero.</p>
+    </example>
+    <example xml:id="toric-example-f1-barycenter">
+      <title>A nonzero barycenter on <m>\mathbb F_1</m></title>
+      <p>Use the rays <m>(1,0),(0,1),(-1,1),(0,-1)</m> of <xref ref="toric-example-hirzebruch-divisors"/>. The anticanonical polytope is
+        <md number="no">P=\{(p,q):-1\le q\le1,\ -1\le p\le q+1\},</md>
+        with vertices <m>(-1,-1),(0,-1),(2,1),(-1,1)</m>. It has exactly the given normal fan, so the anticanonical divisor is ample. Direct integration gives
+        <md number="no">\begin{aligned}
+          V_P&amp;=\int_{-1}^{1}(q+2)\,dq=4,\\
+          \int_P p\,dp\,dq
+            &amp;=\frac12\int_{-1}^{1}\bigl((q+1)^2-1\bigr)\,dq
+              =\frac13,\\
+          \int_P q\,dp\,dq
+            &amp;=\int_{-1}^{1}q(q+2)\,dq=\frac23.
+        \end{aligned}</md>
+        Consequently
+        <md number="no">b(P)=\left(\frac1{12},\frac16\right),
+          \qquad
+          \mathcal L_P(p)=\frac13,\qquad
+          \mathcal L_P(q)=\frac23.</md>
+        In particular the affine convex function <m>-p</m> has negative functional value. The surface has no Kähler<ndash/>Einstein metric, while the Wang<ndash/>Zhu theorem supplies a Kähler<ndash/>Ricci soliton.</p>
+      <p>The left vertical edge has lattice length two, and the lower and upper horizontal edges have lengths one and three. The slanted edge has Euclidean length <m>2\sqrt2</m> and primitive normal <m>(-1,1)</m>, so its lattice length is two. The sum is eight, again <m>nV_P</m>.</p>
+      <p>In the divisor notation of <xref ref="toric-example-hirzebruch-divisors"/>, one may instead represent <m>-K_X=2S+3F</m> by <m>D=2D_2+3D_1</m>. The section polytope of that representative is <m>P_D=P-(2,1)</m>, namely
+        <md number="no">-2\le q\le0,\qquad -3\le p\le q.</md>
+        It represents the same line bundle, but its facets no longer all have constant <m>-1</m>. Therefore the distance-one divergence formula, and its expression of affine functional values by the centroid, do not have the same form in those translated coordinates. Indeed the boundary functional applied to a translated affine coordinate is unchanged, since translation subtracts a constant and the functional kills constants. Arbitrarily centering a moment polytope does not change the metric existence criterion; restoring the preferred anticanonical facet equations restores the nonzero vector computed above.</p>
+    </example>
+    <figure xml:id="toric-figure-fano-barycenters">
+      <caption>The preferred anticanonical polytopes. The projective-plane triangle has barycenter zero; the first Hirzebruch surface has barycenter <m>(1/12,1/6)</m>. Translating either picture would change its displayed centroid and its preferred facet normalization together.</caption>
+      <image source="fano-barycenters.svg" width="100%"><description><p>The anticanonical triangle of the projective plane, with barycenter at the origin, beside the anticanonical trapezoid of the first Hirzebruch surface, with barycenter one twelfth and one sixth.</p></description></image>
+    </figure>
+  </section>
+</chapter>

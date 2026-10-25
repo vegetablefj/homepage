@@ -1,4 +1,4 @@
-param([string]$PythonPath)
+param([string]$PythonPath, [string]$SourcePath, [string]$Target)
 $ErrorActionPreference = 'Stop'
 $pythonOptions = @()
 if (-not $PythonPath) {
@@ -8,5 +8,8 @@ if (-not $PythonPath) {
     elseif (Get-Command py -ErrorAction SilentlyContinue) { $PythonPath = (Get-Command py).Source; $pythonOptions = @('-3') }
     else { throw 'Create a Python environment or supply -PythonPath.' }
 }
-& $PythonPath @pythonOptions -X utf8 (Join-Path $PSScriptRoot 'build.py')
+$buildOptions = @()
+if ($SourcePath) { $buildOptions += @('--source', $SourcePath) }
+if ($Target) { $buildOptions += @('--target', $Target) }
+& $PythonPath @pythonOptions -X utf8 (Join-Path $PSScriptRoot 'build.py') @buildOptions
 if ($LASTEXITCODE -ne 0) { throw 'The build failed.' }

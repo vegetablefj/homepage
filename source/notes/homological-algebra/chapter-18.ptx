@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="ha-c18">
+  <title>Indexed categories and the six operations</title>
+  <introduction>
+    <p>The adjunctions of <xref ref="ha-c17"/> concern one pair of categories. A six-operation system also varies those categories with a base object and compares operations around Cartesian squares. We give a classical version with explicit coherence requirements. It is sufficient for the formal results below and does not assert the existence of these data in an unspecified geometric setting.</p>
+    <p>For adjoint monoidal pseudofunctors and exchange transformations, the main reference is <xref ref="bib-ha-lipman" detail="Sections 3.6–3.7"/>. The general fibred-category definitions and the exceptional operations in <xref ref="bib-ha-cd" detail="Part I, Sections 1.1–1.3 and 2.2"/> provide a more extensive treatment. Our definition omits the homotopy and geometric axioms used to construct motivic examples. For comparisons between formulations, see <xref ref="bib-ha-gallauer" detail="Sections 1.4–1.5 and 2.3"/>.</p>
+  </introduction>
+  <section xml:id="ha-c18-indexed">
+    <title>The base and the ordinary adjunction</title>
+    <p>Fix a category <m>\mathcal B</m> with pullbacks, and a class <m>E</m> of its arrows containing all isomorphisms and stable under composition and pullback. Categories and index sets are taken in the size conventions of <xref ref="ha-c00"/>. For <m>f:X\to Y</m> in <m>E</m>, every base change <m>f':X\times_Y Y'\to Y'</m> therefore also lies in <m>E</m>.</p>
+    <definition xml:id="ha-c18-definition-indexed">
+      <title>Indexed monoidal categories</title>
+      <idx>Indexed monoidal category</idx><idx>Pseudofunctor</idx>
+    <statement>
+      <p>An indexed exact closed symmetric monoidal category on <m>\mathcal B</m> consists of:</p>
+      <p><ol>
+        <li><p>For each <m>X</m>, an exact closed symmetric monoidal triangulated category <m>\mathcal D(X)</m>, with tensor <m>\otimes_X</m>, unit <m>\mathbf1_X</m>, and internal Hom <m>[-,-]_X</m>.</p></li>
+        <li><p>For each arrow <m>f:X\to Y</m>, an exact strong symmetric monoidal functor <m>f^*:\mathcal D(Y)\to\mathcal D(X)</m>.</p></li>
+        <li><p>Monoidal natural isomorphisms <m>f^*g^*\simeq(gf)^*</m> and <m>\id_X^*\simeq\id_{\mathcal D(X)}</m>. For three composable arrows, the two ways of applying the composition isomorphisms agree. Composing with an identity agrees with the identity isomorphisms.</p></li>
+      </ol></p>
+      <p>We further require each <m>f^*</m> to have a chosen right adjoint <m>f_*</m>. Composition and identity isomorphisms for <m>f_*</m> are the mates of those for <m>f^*</m>.</p>
+    </statement>
+    </definition>
+    <p>The third condition is the pseudofunctor associativity and unit condition. It permits canonical identifications of iterated pullbacks while retaining the assertion that these are isomorphisms, not literal equalities. Taking mates makes the corresponding conditions for right adjoints consequences rather than additional independent choices.</p>
+    <p>Consider a Cartesian square</p>
+    <p><md number="no">\begin{array}{ccc}X'&amp;\xrightarrow{g'}&amp;X\\ f'\downarrow&amp;&amp;\downarrow f\\Y'&amp;\xrightarrow{g}&amp;Y.\end{array}</md></p>
+    <p>The equality <m>fg'=gf'</m> gives <m>f'^*g^*\simeq g'^*f^*</m>. The ordinary exchange map</p>
+    <p><md number="no">\rho_\square:g^*f_*\longrightarrow f'_*g'^*</md></p>
+    <p>is its mate: it is adjoint under <m>f'^*\dashv f'_*</m> to</p>
+    <p><md number="no">f'^*g^*f_*\simeq g'^*f^*f_*\longrightarrow g'^*,</md></p>
+    <p>where the last map uses the counit for <m>f</m>. The map exists for every Cartesian square. Its invertibility is a separate property of the square and the indexed system.<fn>A base-change theorem has two assertions: the comparison is a specified natural map, and that map is invertible under stated conditions. Listing two isomorphic-looking composites without specifying the comparison loses the compatibility needed for iteration.</fn></p>
+    <p>The composition isomorphism for the right adjoints is likewise fixed, rather than chosen independently. For <m>X\xrightarrow{f}Y\xrightarrow{h}Z</m>, the chain of adjunction bijections identifies the right adjoint of <m>f^*h^*</m> with <m>h_*f_*</m>, giving <m>(hf)_*\simeq h_*f_*</m>. The counit of this composite first applies the counit for <m>h^*\dashv h_*</m> inside <m>f^*(-)</m>, then the counit for <m>f^*\dashv f_*</m>. This determines the order of all ordinary direct-image compositors.</p>
+    <p>Pullbacks need not have been selected strictly associatively in the base category. For iterated pullbacks, the unique base isomorphism preserving all projections induces a monoidal equivalence of the corresponding fibres. All formulas involving an iterated Cartesian square include these base identifications. Treating them as notation is justified by their universal property, not by assuming the category of pullback choices is literally equal to the original base.</p>
+  </section>
+  <section xml:id="ha-c18-six-data">
+    <title>Exceptional operations and coherence</title>
+    <definition xml:id="ha-c18-definition-six">
+      <title>Six-operation data on <m>(\mathcal B,E)</m></title>
+      <idx>Six operations</idx><idx>Exceptional direct image</idx><idx>Exceptional inverse image</idx><idx>Base change</idx>
+    <statement>
+      <p>In addition to <xref ref="ha-c18-definition-indexed"/>, require the following data.</p>
+      <p><ol>
+        <li><p>For every <m>f:X\to Y</m> in <m>E</m>, an exact adjunction <m>f_!:\mathcal D(X)\rightleftarrows\mathcal D(Y):f^!</m>. The functors <m>f_!</m> have composition isomorphisms <m>g_!f_!\simeq(gf)_!</m> and identity isomorphisms satisfying associativity and units. Those for <m>f^!</m> are their mates.</p></li>
+        <li><p>For every Cartesian square displayed above with <m>f\in E</m>, a natural isomorphism <m>\beta_\square:g^*f_!\xrightarrow{\sim}f'_!g'^*</m>.</p></li>
+        <li><p>For <m>A\in\mathcal D(Y)</m> and <m>M\in\mathcal D(X)</m>, a natural isomorphism <m>\pi^!_{f,A,M}:A\otimes_Y f_!M\xrightarrow{\sim}f_!(f^*A\otimes_X M)</m>.</p></li>
+      </ol></p>
+      <p>These isomorphisms must respect the specified suspensions and satisfy the following compatibilities; every comparison is taken with the specified composition, unit, and monoidal isomorphisms.</p>
+      <p><ol>
+        <li><p>For an identity square, <m>\beta</m> is the identity comparison. For a horizontal or vertical pasting of Cartesian squares, applying the two exchange isomorphisms successively equals the exchange isomorphism of the outer square. Vertical pasting is required when both vertical arrows belong to <m>E</m>.</p></li>
+        <li><p>For a fixed <m>f</m>, the projection isomorphisms satisfy the unit and tensor-associativity conditions of <xref ref="ha-c17"/>. For composable <m>f,g\in E</m>, the projection isomorphism for <m>gf</m> equals the composite obtained by first moving the tensor factor through <m>g_!</m> and then through <m>f_!</m>. For an identity arrow it is the identity comparison.</p></li>
+        <li><p>In a Cartesian square, the following two maps from <m>g^*A\otimes_{Y'}g^*f_!M</m> to <m>f'_!(f'^*g^*A\otimes_{X'}g'^*M)</m> agree. One applies <m>g^*\pi^!_f</m> followed by <m>\beta</m>, using <m>g'^*f^*\simeq f'^*g^*</m>. The other applies <m>\id\otimes\beta</m> followed by <m>\pi^!_{f'}</m>.</p></li>
+      </ol></p>
+    </statement>
+    </definition>
+    <p>The word <em>six</em> counts the two operations within each fibre, tensor and internal Hom, and the four operations between fibres. On this abstract level all six symbols already denote the specified functors; an extra derived-functor decoration would not add information.</p>
+    <p>This is one version of a classical six-operation system. The allowed exceptional arrows and base-change squares have been fixed explicitly. Definitions in which fewer squares are allowed, or in which stronger descent or higher coherence is retained, describe different amounts of structure. Our definition does not identify them.<fn>The modern treatments reviewed by <xref ref="bib-ha-gallauer" detail="Section 2.3"/> often retain stable enhancements. This chapter works with triangulated categories and stated natural isomorphisms. It makes no uniqueness assertion about enhancing these data or recovering all higher compatibilities from them.</fn></p>
+    <p>The maps <m>\beta</m> and <m>\pi^!</m> are assumptions. They are not supplied by the existence of four adjoint functors. Brown representability can construct <m>f^!</m> from a given exact <m>f_!</m> under generation and coproduct hypotheses; it does not construct the exceptional direct images for all arrows, nor prove their base change.</p>
+  </section>
+  <section xml:id="ha-c18-pasting">
+    <title>Exchange maps and pasting</title>
+    <p>The coherence conditions specify usable equalities of maps. We spell out their two basic forms. Suppose <m>Y''\xrightarrow{h}Y'\xrightarrow{g}Y</m> and form the two successive pullbacks of <m>f:X\to Y</m>, with vertical arrows <m>f',f''</m> and top maps <m>g',h'</m>. The ordinary exchange for the composite base change is</p>
+    <p><md number="no">(gh)^*f_*\simeq h^*g^*f_*\xrightarrow{h^*\rho_g}h^*f'_*g'^*\xrightarrow{\rho_h g'^*}f''_*h'^*g'^*\simeq f''_*(g'h')^*.</md></p>
+    <p>This equals <m>\rho_{gh}</m> by the unit–counit formulas. For exceptional direct image, replace <m>\rho</m> by <m>\beta</m> and the lower-star symbols by lower-shriek symbols. Equality with <m>\beta_{gh}</m> is the horizontal-pasting requirement in the definition.</p>
+    <p>For vertical pasting, take <m>X\xrightarrow{f}Y\xrightarrow{e}Z</m> in <m>E</m> and a base change <m>g:Z'\to Z</m>. Denote the pullback of <m>Y</m> by <m>Y'</m>, its map to <m>Y</m> by <m>g_Y</m>, and similarly use <m>X',g_X,f',e'</m>. The required composite is</p>
+    <p><md number="no">g^*(ef)_!\simeq g^*e_!f_!\xrightarrow{\beta_e f_!}e'_!g_Y^*f_!\xrightarrow{e'_!\beta_f}e'_!f'_!g_X^*\simeq(e'f')_!g_X^*.</md></p>
+    <p>It equals the exchange for the outer square. The same two formulas work for ordinary direct image with its canonical comparisons, regardless of their invertibility. Combining horizontal and vertical pasting gives the cube compatibility: changing the order of these two expansions does not change the comparison of the outer composites. The proof is the interchange law for natural transformations, followed by the stated composition isomorphisms. A diagram calculation may therefore subdivide a Cartesian rectangle without introducing a new comparison map.</p>
+    <proposition xml:id="ha-c18-proposition-exceptional-pullback-map">
+      <statement><p>For a square with <m>f\in E</m>, there is a natural map
+        <md number="no">\kappa_\square:g'^*f^!\longrightarrow f'^!g^*.</md>
+        It is adjoint under <m>f'_!\dashv f'^!</m> to
+        <md number="no">f'_!g'^*f^!\xrightarrow{\beta^{-1}f^!}g^*f_!f^!\xrightarrow{g^*v_f}g^*.</md>
+        Its construction is compatible with successive base changes. Its invertibility is not among the axioms of the six-operation data.</p></statement>
+      <proof><p>The displayed map has the stated source and target, so adjunction supplies <m>\kappa</m>. For two successive squares, insert the formula for each map. Exceptional base-change pasting combines the two inverse <m>\beta</m> factors; the counit identity for the composite adjunction combines the remaining factors. The resulting adjoint is the formula for the outer square. This is a partial mate, so the invertibility of <m>\beta</m> alone does not prove its invertibility.</p></proof>
+    </proposition>
+  </section>
+  <section xml:id="ha-c18-formal-consequences">
+    <title>Mates, proper comparisons, and relative duality</title>
+    <proposition xml:id="ha-c18-proposition-mates">
+      <statement>
+        <p>For six-operation data, a Cartesian square with <m>f\in E</m> has a natural isomorphism</p>
+        <p><md number="no">g'_*f'^!\simeq f^!g_*.</md></p>
+        <p>For each such <m>f</m> there are also natural isomorphisms</p>
+        <p><md number="no">f_*[M,f^!A]_X\simeq[f_!M,A]_Y,\qquad[f^*A,f^!B]_X\simeq f^![A,B]_Y.</md></p>
+      </statement>
+      <proof>
+        <p>The first map is the mate of <m>\beta_\square</m> between the entire right adjoints of its two sides. Its adjoint evaluation is
+          <md number="no">g^*f_!g'_*f'^!\xrightarrow{\beta}f'_!g'^*g'_*f'^!\longrightarrow f'_!f'^!\longrightarrow\id,</md>
+          where the last two arrows are the ordinary and exceptional counits. Both sides of <m>\beta</m> are left adjoints, so the inverse isomorphism has the inverse mate. This distinguishes it from the partial mate <m>\kappa</m>. Pasting compatibility follows from compatibility of mates with composition. The internal Hom isomorphisms are the fixed-functor result of <xref ref="ha-c17"/>, applied in the two fibres.</p>
+      </proof>
+    </proposition>
+    <p>The displayed mate involves <m>g'_*</m> and <m>g_*</m>. It does not assert that <m>g'^*f^!\simeq f'^!g^*</m>. Other mixed exchange comparisons require their own hypotheses or constructions.</p>
+    <definition xml:id="ha-c18-definition-support">
+      <title>A comparison with ordinary direct image</title>
+      <idx>Proper arrow</idx><idx>Proper base change</idx><idx>Ordinary direct image</idx>
+    <statement>
+      <p>One may add natural transformations <m>\theta_f:f_!\to f_*</m> for <m>f\in E</m>, compatible with identities and composition. For <m>hf</m>, this means that <m>\theta_{hf}</m> equals <m>(h_*\theta_f)\circ(\theta_h f_!)</m> under the composition isomorphisms. Require also that, for each allowed Cartesian square, the composite <m>g^*f_!\xrightarrow{\beta}f'_!g'^*\xrightarrow{\theta_{f'}}f'_*g'^*</m> equals <m>g^*f_!\xrightarrow{g^*\theta_f}g^*f_*\xrightarrow{\rho}f'_*g'^*</m>. A chosen subclass <m>P\subset E</m>, containing isomorphisms and stable under composition and pullback, is called the class of <em>proper arrows for these data</em> if <m>\theta_f</m> is an isomorphism for every <m>f\in P</m>.</p>
+    </statement>
+    </definition>
+    <p>Here <em>proper</em> labels specified abstract structure. In an application one must compare that class with the geometric definition. For <m>f\in P</m>, the last compatibility proves that <m>\rho</m> is invertible: both vertical comparisons <m>\theta</m> and the exceptional base-change map are invertible. The projection formula for <m>f_*</m> follows from that for <m>f_!</m> if the comparison also respects their tensor-action maps.</p>
+    <p>The tensor compatibility just mentioned is the equation
+      <md number="no">\theta_{f,f^*A\otimes M}\,\pi^!_{f,A,M}=\pi_{f,A,M}(\id_A\otimes\theta_{f,M}).</md>
+      Its two sides map <m>A\otimes f_!M</m> to <m>f_*(f^*A\otimes M)</m>. This condition connects the specified exceptional projection map to the ordinary comparison constructed from the counit. For proper arrows it lets one transport the exceptional formula to precisely that ordinary comparison, rather than just find an unspecified isomorphism between its two objects.</p>
+    <p>Under <m>\theta_f:f_!\simeq f_*</m>, the exceptional inverse image is a right adjoint of the ordinary direct image, as in the Grothendieck configuration. The identification uses the transported unit and counit. For an arbitrary arrow, a right adjoint of <m>f_*</m>, if it exists, need not agree with <m>f^!</m>: the latter was defined as right adjoint of <m>f_!</m>. This distinction is present even before any geometric example is chosen.</p>
+    <p>Suppose now that <m>\mathcal B</m> has a terminal object <m>*</m> and every structure arrow <m>a_X:X\to *</m> lies in <m>E</m>. Define</p>
+    <p><md number="no">\omega_X=a_X^!\mathbf1_*,\qquad D_XM=[M,\omega_X]_X.</md></p>
+    <p>Pseudofunctoriality gives <m>f^!\omega_Y\simeq\omega_X</m> for <m>f\in E</m>. The internal Hom isomorphisms give <m>D_Xf^*\simeq f^!D_Y</m> and <m>f_*D_X\simeq D_Yf_!</m>. These formulas do not say that <m>D_X</m> is a duality on all of <m>\mathcal D(X)</m>. On specified subcategories preserved by the functors and satisfying biduality, they give the exceptional-functor descriptions of <xref ref="ha-c17"/>. The counit <m>f_!f^!\to\id</m> supplies the trace map; a formula for its value is additional information.</p>
+    <p>For a dualizable <m>A\in\mathcal D(Y)</m>, there is also <m>f^!A\simeq f^*A\otimes_X f^!\mathbf1_Y</m>. The relative twisting object <m>f^!\mathbf1_Y</m> and the absolute object <m>\omega_X=a_X^!\mathbf1_*</m> have different bases. They need not coincide. A special formula for one of them, preservation of a bounded subcategory, and biduality on that subcategory are additional assertions. None is part of the adjunction notation.</p>
+  </section>
+  <section xml:id="ha-c18-external-products">
+    <title>External products and an abstract Künneth isomorphism</title>
+    <p>Assume the terminal-object hypotheses just stated. For <m>M\in\mathcal D(X)</m> and <m>N\in\mathcal D(Y)</m>, define the external product on <m>X\times Y</m> by
+      <md number="no">M\boxtimes N=p_X^*M\otimes_{X\times Y}p_Y^*N.</md>
+      This differs from tensor within one fibre. Its base object is the product, and it uses the two pullback functors.</p>
+    <proposition xml:id="ha-c18-proposition-kunneth">
+      <statement><p>There is a natural isomorphism
+        <md number="no">a_{X!}M\otimes_*a_{Y!}N\simeq a_{X\times Y,!}(M\boxtimes N).</md>
+        It is compatible with reassociation of three external factors, using the projection and base-change coherence of the six-operation data.</p></statement>
+      <proof><p>The product square identifies <m>a_X^*a_{Y!}N</m> with <m>p_{X!}p_Y^*N</m> by exceptional base change. Apply the projection isomorphism first to <m>a_X</m> and then to <m>p_X</m> to obtain
+        <md number="no">a_{X!}M\otimes a_{Y!}N\simeq a_{X!}(M\otimes a_X^*a_{Y!}N)\simeq a_{X!}p_{X!}(p_X^*M\otimes p_Y^*N).</md>
+        The composite <m>a_Xp_X</m> is the structure arrow of <m>X\times Y</m>, giving the result. For three factors, projection associativity and Cartesian pasting identify the two expansions with the same composite. No interchange between an ordinary direct image and tensor is used.</p></proof>
+    </proposition>
+    <p>This theorem is a statement in the coefficient category <m>\mathcal D(*)</m>. Turning it into a direct-sum formula for individual cohomology groups requires whatever tensor cohomology theorem holds in that category. For example, over a general coefficient ring, derived tensor retains Tor terms. Those do not disappear from the formula because its proof uses only formal adjunctions.</p>
+    <p>One can define abstract ordinary and supported cohomology by <m>\Hom(\mathbf1_*,a_{X*}M[n])</m> and <m>\Hom(\mathbf1_*,a_{X!}M[n])</m>. Their comparison comes from <m>\theta_{a_X}</m>, when that comparison is given. The internal duality isomorphism says
+      <md number="no">a_{X*}D_XM\simeq[a_{X!}M,\mathbf1_*]_*.</md>
+      Evaluation therefore gives a pairing between <m>a_{X!}M</m> and <m>a_{X*}D_XM</m>. It is a dual-pair evaluation when <m>a_{X!}M</m> is dualizable. Existence of this displayed internal Hom does not alone make the pairing perfect or its individual cohomology groups finite.</p>
+  </section>
+  <section xml:id="ha-c18-localization">
+    <title>Localization at an abstract decomposition</title>
+    <p>Localization is extra structure on the base and on its coefficient categories. Fix arrows <m>j:U\to X</m> and <m>i:Z\to X</m> in <m>E</m>, designated as a decomposition. No topology on these objects is being defined. Suppose that the data include compatible identifications <m>j^!\simeq j^*</m> and <m>i_!\simeq i_*</m>.</p>
+    <definition xml:id="ha-c18-definition-localization">
+      <title>Localization for a decomposition</title><idx>Localization, six operations</idx>
+      <statement><p>Require that <m>i_*,j_!,j_*</m> be fully faithful, that <m>j^*i_*=0</m>, and that the adjunction maps extend to functorial distinguished triangles
+        <md number="no">j_!j^*M\longrightarrow M\longrightarrow i_*i^*M\longrightarrow(j_!j^*M)[1]</md>
+        and
+        <md number="no">i_*i^!M\longrightarrow M\longrightarrow j_*j^*M\longrightarrow(i_*i^!M)[1].</md>
+        If decompositions are to vary under base change, require their pullbacks to be designated decompositions. Compatibility of localization triangles means compatibility with the comparisons constructed from the adjunctions and exchange maps; it does not require every component of those comparison morphisms to be invertible.</p>
+        <p>For the tensor compatibility used below, require also that the counit <m>q_A:j_!j^*A\to A</m> satisfy <m>q_A\pi^!_{j,A,\mathbf1_U}=\id_A\otimes q_{\mathbf1_X}</m>, after the unit identifications. This specifies compatibility of the localization map with the exceptional tensor action.</p></statement>
+    </definition>
+    <p>For each designated decomposition these conditions are exactly a recollement of <m>\mathcal D(X)</m> by <m>\mathcal D(Z)</m> and <m>\mathcal D(U)</m>. They identify <m>\ker j^*</m> with <m>\im i_*</m> and identify the quotient with <m>\mathcal D(U)</m>. They also permit the gluing of t-structures from <xref ref="ha-c15"/>. A system can satisfy the six-operation definition without any designated decomposition, so this conclusion is an additional localization property.</p>
+    <proposition xml:id="ha-c18-proposition-localization-tensor">
+      <statement><p>For a localization decomposition, <m>\ker j^*</m> is a tensor ideal: if <m>M\in\ker j^*</m>, then <m>A\otimes_X M\in\ker j^*</m> for every <m>A</m>. The exceptional projection formula identifies <m>j_!j^*A</m> with <m>A\otimes_X j_!\mathbf1_U</m>. If <m>i</m> is proper and its comparison respects tensor as above, it similarly identifies <m>i_*i^*A</m> with <m>A\otimes_X i_*\mathbf1_Z</m>.</p></statement>
+      <proof><p>The kernel assertion follows from the strong monoidal isomorphism <m>j^*(A\otimes M)\simeq j^*A\otimes j^*M</m>. For the other two assertions apply the indicated projection isomorphisms to the unit object on the source. Unit and counit compatibility identify the resulting maps with those in the first localization triangle.</p></proof>
+    </proposition>
+    <p>The second localization triangle involves <m>j_*j^*</m>. Its analogous tensor description needs the ordinary projection formula for <m>j_*</m>, which has not been assumed for arbitrary arrows. Thus one should not tensor the unit triangle and silently identify every resulting term with an ordinary direct-image localization. This is another place where lower star and lower shriek have different formal roles.</p>
+    <p>There is a similar distinction for base change. The first triangle uses <m>j_!</m> and, with the proper comparison, <m>i_!</m>, so exceptional base change compares it to the first triangle on the pulled-back decomposition by isomorphisms. The second uses <m>j_*</m> and <m>i^!</m>; its comparison uses <m>\rho</m> and <m>\kappa</m>, whose invertibility requires additional hypotheses. Requiring both triangles to be preserved isomorphically by every ordinary pullback would impose a stronger condition than the localization axioms stated here.</p>
+  </section>
+  <section xml:id="ha-c18-compactification">
+    <title>Constructing exceptional direct images from factorizations</title>
+    <p>A common construction begins with less than six operations. Suppose the base has two specified classes <m>J,P</m>, thought of as open-like and proper-like arrows, and that every <m>f\in E</m> admits a factorization <m>f=pj</m> with <m>j\in J</m> and <m>p\in P</m>. Suppose <m>j_!\dashv j^*</m> is already defined for <m>j\in J</m>, while <m>p_*</m> is the ordinary right adjoint for <m>p\in P</m>. A candidate is</p>
+    <p><md number="no">f_!^{(j,p)}=p_*j_!.</md></p>
+    <p>The factorization is called a compactification relative to these classes. The notation does not give a compactification theorem. Existence of such factorizations, and the class of refinements allowed between them, must be specified for the chosen base.</p>
+    <proposition xml:id="ha-c18-proposition-factorization-independence">
+      <statement><p>Fix <m>f:X\to Y</m>. Assume that its compactifications form a nonempty cofiltered category <m>\mathcal C_f</m> at a suitable universe scale. For every refinement <m>c'\to c</m>, suppose there is a natural isomorphism <m>p'_*j'_!\to p_*j_!</m>, with identity and composition compatibility. Then choosing any compactification defines a functor <m>f_!</m> independent of that choice up to the comparison isomorphisms. These comparisons satisfy the cocycle condition for three choices.</p></statement>
+      <proof><p>Choose a common refinement <m>d</m> of <m>c_1,c_2</m>. The two specified isomorphisms from its candidate functor define an isomorphism from the candidate for <m>c_1</m> to that for <m>c_2</m>. A further common refinement compares any two such constructions. If the refinement diagrams contain parallel arrows, cofilteredness supplies a further arrow equalizing them. Composition compatibility makes the two functor comparisons equal after that refinement, and hence equal. The same argument with three compactifications proves the cocycle identity.</p></proof>
+    </proposition>
+    <p>For a refinement given by an arrow <m>r:\overline X'\to\overline X</m> over <m>Y</m>, with <m>rj'=j</m> and <m>p'=pr</m>, its transition isomorphism would come from a support comparison <m>r_*j'_!\simeq j_!</m>. This support comparison is an actual theorem or input about the elementary functors; it does not follow from the written factorization equation. Proper base change, localization, and compatibility for a square mixing the two classes are typical hypotheses used to prove it.</p>
+    <p>The proposition settles only independence for one <m>f</m>. To obtain the six-operation system one must additionally compare compactifications of composites, compare their base changes, verify projection formulas, and check that all comparison paths agree. Once exact <m>f_!</m> preserving coproducts is available and the source fibres satisfy Brown representability, right adjoints <m>f^!</m> exist. That last step still does not establish the earlier compactification and exchange assertions.</p>
+    <p>The construction by exceptional functoriality is developed in <xref ref="bib-ha-cd" detail="Part I, Section 2.2"/>; <xref ref="bib-ha-gallauer" detail="Section 3.1"/> discusses the construction problem and its dependencies. Their existence theorems have further hypotheses on their indexed categories and geometric bases. We retain the factorization-independence argument here and leave those background theories to their own notes. This provides a place to insert a precise construction theorem later without treating a chosen formula <m>p_*j_!</m> as an already verified six-operation formalism.</p>
+  </section>
+  <section xml:id="ha-c18-example">
+    <title>A system indexed by sets</title>
+    <example xml:id="ha-c18-example-finite-sets">
+      <p>Let <m>k</m> be a field and let <m>\mathcal B</m> be the category of finite sets, with <m>E</m> all arrows. Put <m>\mathcal D(S)=\prod_{s\in S}\D(k)</m> and use componentwise tensor and Hom. For <m>f:S\to T</m>, define</p>
+      <p><md number="no">
+        <mrow>(f^*A)_s=A_{f(s)},\qquad(f_*M)_t=\prod_{f(s)=t}M_s,</mrow>
+        <mrow>(f_!M)_t=\bigoplus_{f(s)=t}M_s,\qquad(f^!A)_s=A_{f(s)}.</mrow>
+      </md></p>
+      <p>The adjunctions are the product and coproduct adjunctions. Composition isomorphisms regroup finite sums or products. In a Cartesian square, the fibre over <m>t'\in T'</m> is in bijection with the fibre of <m>f</m> over its image in <m>T</m>; this bijection defines <m>\beta</m>. The projection isomorphism distributes tensor over the indicated sum.</p>
+      <p>All coherence requirements can be checked on a single summand labelled by an element of a fibre. Pasting follows from composition of the fibre bijections. The two projection composites send each tensor in that summand to the same tensor in the same target summand. The coproduct universal property proves equality of these maps. Finite sum and product agree, giving <m>\theta_f</m>; one may take <m>P=E</m>.</p>
+      <p>The same formulas give a system on small sets, using arbitrary coproducts and products of complexes of vector spaces. The natural map from a sum to a product supplies <m>\theta</m>; maps with finite fibres form a pullback-stable class <m>P</m>. For <m>I\to *</m> with <m>I</m> infinite, exceptional direct image is sum and ordinary direct image is product. They differ. Tensor preserves the first, while the map <m>A\otimes_k k^I\to A^I</m> need not be invertible. Take <m>I=\N</m> and an infinite-dimensional <m>A</m>: a sequence of linearly independent vectors is not in its image.</p>
+    </example>
+    <p>For a decomposition of a finite set <m>S=U\sqcup Z</m>, restriction to the two parts and extension by zero give a recollement. Its triangles split componentwise. This is an instance of the recollement of <xref ref="ha-c15"/>. The six functors in a recollement describe the gluing of three categories; they are not the list consisting of tensor, internal Hom, and the four indexed operations. In a general system, a localization or recollement statement must be added or proved. It is not a consequence of the six-operation data specified here.</p>
+  </section>
+</chapter>

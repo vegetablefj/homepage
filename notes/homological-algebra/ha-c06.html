@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-darkmode="disabled">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette: blue-red                     *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ext, Tor, and homological dimension</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Notes on homological algebra">
+<meta property="og:title" content="Notes on homological algebra">
+<meta property="book:title" content="Notes on homological algebra">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.53"></script><script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="../../vendor/lunr/lunr.min.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+<link rel="stylesheet" href="../../layout.css?v=fee08a8c1c">
+<script src="../../layout.js?v=e9391a21a7" defer></script><link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"C": "\\mathbb{C}", "Pone": "\\mathbb{P}^1_{\\mathbb{C}}", "cO": "\\mathcal{O}", "ord": "\\operatorname{ord}", "lt": "<", "gt": ">", "amp": "&", "Hom": "\\operatorname{Hom}", "End": "\\operatorname{End}", "Ext": "\\operatorname{Ext}", "Tor": "\\operatorname{Tor}", "colim": "\\operatorname{colim}", "im": "\\operatorname{im}", "coker": "\\operatorname{coker}", "Cone": "\\operatorname{Cone}", "Tot": "\\operatorname{Tot}", "Fun": "\\operatorname{Fun}", "Loc": "\\operatorname{Loc}", "thick": "\\operatorname{thick}", "Perf": "\\operatorname{Perf}", "id": "\\mathrm{id}", "op": "\\mathrm{op}", "Ab": "\\mathsf{Ab}", "Mod": "\\mathsf{Mod}", "Ch": "\\mathsf{C}", "K": "\\mathsf{K}", "D": "\\mathsf{D}", "RHom": "\\mathbf{R}\\!\\operatorname{Hom}", "Ltensor": "\\mathbin{\\otimes^{\\mathbf L}}", "Z": "\\mathbb Z", "N": "\\mathbb N", "Q": "\\mathbb Q"}}, "options": {"ignoreHtmlClass": "ignore-math", "processHtmlClass": "process-math", "enableMenu": false}};</script><script src="../../vendor/mathjax/tex-chtml.js" defer></script>
+</head>
+<body class="pretext book ignore-math note-page" data-page-format="note">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner"><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="homological-algebra-notes.html"><span class="title">Notes on homological algebra</span></a></div>
+<p class="byline"><a href="../../home.html">Jie Fu</a>'s <a href="../../notes.html">Notes</a></p>
+<p class="note-metadata"><span class="note-review-status">Under review and improvement</span> · <span class="note-last-updated">Last updated: <time datetime="2026-10-25">2026-10-25</time></span></p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Contents</span></button><a class="index-button button" href="ha-index.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Index</span></a><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true"></span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="treebuttons"><a class="previous-button button" href="ha-c05.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="up-button button" href="homological-algebra-notes.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Up</span></a><a class="next-button button" href="ha-c07.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a></span>
+</div></nav><div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth4 focused" data-preexpanded-levels="1" data-max-levels="4"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c00.html" class="internal"><span class="codenumber">0</span> <span class="title">Conventions and sources</span></a></div>
+<ul id="ptx-toc-group-ha-c00" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c00.html#ha-c00-conventions" class="internal"><span class="codenumber">0.1</span> <span class="title">Size, rings, and variance</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c00.html#ha-c00-signs" class="internal"><span class="codenumber">0.2</span> <span class="title">Degrees and signs</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c00.html#ha-c00-homology-language" class="internal"><span class="codenumber">0.3</span> <span class="title">Homology, cohomology, and dual terminology</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c00.html#ha-c00-dependencies" class="internal"><span class="codenumber">0.4</span> <span class="title">Reading and reference conventions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c01.html" class="internal"><span class="codenumber">1</span> <span class="title">Additive and abelian categories</span></a></div>
+<ul id="ptx-toc-group-ha-c01" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c01.html#ha-c01-additive" class="internal"><span class="codenumber">1.1</span> <span class="title">Addition and biproducts</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c01.html#ha-c01-abelian" class="internal"><span class="codenumber">1.2</span> <span class="title">Kernels, images, and exactness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c01.html#ha-c01-finiteness" class="internal"><span class="codenumber">1.3</span> <span class="title">Finiteness of objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c01.html#ha-c01-functors" class="internal"><span class="codenumber">1.4</span> <span class="title">Exact functors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c01.html#ha-c01-embeddings" class="internal"><span class="codenumber">1.5</span> <span class="title">Embedding and finite diagrams</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c01.html#ha-c01-diagram-lemmas" class="internal"><span class="codenumber">1.6</span> <span class="title">Diagram lemmas</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c02.html" class="internal"><span class="codenumber">2</span> <span class="title">Grothendieck categories and abelian localization</span></a></div>
+<ul id="ptx-toc-group-ha-c02" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c02.html#ha-c02-ab-conditions" class="internal"><span class="codenumber">2.1</span> <span class="title">Infinite exactness and generators</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c02.html#ha-c02-presentability" class="internal"><span class="codenumber">2.2</span> <span class="title">Finite generation and finite presentation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c02.html#ha-c02-examples" class="internal"><span class="codenumber">2.3</span> <span class="title">Examples and failures of duality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c02.html#ha-c02-localization" class="internal"><span class="codenumber">2.4</span> <span class="title">Serre quotients and exact localizations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c02.html#ha-c02-gabriel-popescu" class="internal"><span class="codenumber">2.5</span> <span class="title">Realization as a quotient of modules</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c03.html" class="internal"><span class="codenumber">3</span> <span class="title">Closed monoidal structures</span></a></div>
+<ul id="ptx-toc-group-ha-c03" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c03.html#ha-c03-monoidal" class="internal"><span class="codenumber">3.1</span> <span class="title">Monoidal data and linearity</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c03.html#ha-c03-closed" class="internal"><span class="codenumber">3.2</span> <span class="title">Internal Hom and adjunction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c03.html#ha-c03-exactness-duals" class="internal"><span class="codenumber">3.3</span> <span class="title">Exactness and dualizable objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c03.html#ha-c03-terminology" class="internal"><span class="codenumber">3.4</span> <span class="title">Tensor terminology and functors</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c04.html" class="internal"><span class="codenumber">4</span> <span class="title">Complexes and homotopy</span></a></div>
+<ul id="ptx-toc-group-ha-c04" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c04.html#ha-c04-complexes" class="internal"><span class="codenumber">4.1</span> <span class="title">Complexes and cohomology</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c04.html#ha-c04-homotopy" class="internal"><span class="codenumber">4.2</span> <span class="title">Hom complexes and homotopy</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c04.html#ha-c04-cones" class="internal"><span class="codenumber">4.3</span> <span class="title">Mapping cones</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c04.html#ha-c04-truncations" class="internal"><span class="codenumber">4.4</span> <span class="title">Truncations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c04.html#ha-c04-totalization" class="internal"><span class="codenumber">4.5</span> <span class="title">Double complexes and totalization</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c04.html#ha-c04-salamander" class="internal"><span class="codenumber">4.6</span> <span class="title">The salamander lemma</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c05.html" class="internal"><span class="codenumber">5</span> <span class="title">Resolutions and classical derived functors</span></a></div>
+<ul id="ptx-toc-group-ha-c05" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c05.html#ha-c05-resolutions" class="internal"><span class="codenumber">5.1</span> <span class="title">Resolutions and comparison</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c05.html#ha-c05-classical" class="internal"><span class="codenumber">5.2</span> <span class="title">Classical derived functors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c05.html#ha-c05-universality" class="internal"><span class="codenumber">5.3</span> <span class="title">Universality and effacement</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c05.html#ha-c05-acyclic" class="internal"><span class="codenumber">5.4</span> <span class="title">Acyclic resolutions and inverse limits</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="ha-c06.html" class="internal"><span class="codenumber">6</span> <span class="title">Ext, Tor, and homological dimension</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-ha-c06">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c06.html#ha-c06-ext" class="internal"><span class="codenumber">6.1</span> <span class="title">The two computations of Ext</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c06.html#ha-c06-yoneda" class="internal"><span class="codenumber">6.2</span> <span class="title">Extensions and their products</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c06.html#ha-c06-balanced-bifunctors" class="internal"><span class="codenumber">6.3</span> <span class="title">Balanced bifunctors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c06.html#ha-c06-tor" class="internal"><span class="codenumber">6.4</span> <span class="title">Tor and flat resolutions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c06.html#ha-c06-dimensions" class="internal"><span class="codenumber">6.5</span> <span class="title">Homological dimensions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c06.html#ha-c06-change-rings" class="internal"><span class="codenumber">6.6</span> <span class="title">Changing the ring</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c07.html" class="internal"><span class="codenumber">7</span> <span class="title">Filtered complexes and spectral sequences</span></a></div>
+<ul id="ptx-toc-group-ha-c07" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c07.html#ha-c07-filtrations" class="internal"><span class="codenumber">7.1</span> <span class="title">Filtrations and the abutment</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c07.html#ha-c07-construction" class="internal"><span class="codenumber">7.2</span> <span class="title">Construction from a filtered complex</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c07.html#ha-c07-exact-couples" class="internal"><span class="codenumber">7.3</span> <span class="title">Exact couples</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c07.html#ha-c07-convergence-variants" class="internal"><span class="codenumber">7.4</span> <span class="title">Convergence beyond finite filtrations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c07.html#ha-c07-double" class="internal"><span class="codenumber">7.5</span> <span class="title">The spectral sequences of a double complex</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c07.html#ha-c07-edge-products" class="internal"><span class="codenumber">7.6</span> <span class="title">Edges, extensions, and products</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c08.html" class="internal"><span class="codenumber">8</span> <span class="title">Triangulated categories and Verdier quotients</span></a></div>
+<ul id="ptx-toc-group-ha-c08" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c08.html#ha-c08-axioms" class="internal"><span class="codenumber">8.1</span> <span class="title">Triangles and exact functors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c08.html#ha-c08-homotopy" class="internal"><span class="codenumber">8.2</span> <span class="title">The homotopy category as an example</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c08.html#ha-c08-cone-maps" class="internal"><span class="codenumber">8.3</span> <span class="title">Cone maps and suspension signs</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c08.html#ha-c08-octahedron" class="internal"><span class="codenumber">8.4</span> <span class="title">The cone of a composite</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c08.html#ha-c08-quotients" class="internal"><span class="codenumber">8.5</span> <span class="title">Thick subcategories and quotients</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c08.html#ha-c08-orthogonals" class="internal"><span class="codenumber">8.6</span> <span class="title">Orthogonals and exact adjoints</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c09.html" class="internal"><span class="codenumber">9</span> <span class="title">Derived categories</span></a></div>
+<ul id="ptx-toc-group-ha-c09" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c09.html#ha-c09-construction" class="internal"><span class="codenumber">9.1</span> <span class="title">Inverting quasi-isomorphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c09.html#ha-c09-bounded" class="internal"><span class="codenumber">9.2</span> <span class="title">Bounded models and short exact sequences</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c09.html#ha-c09-examples" class="internal"><span class="codenumber">9.3</span> <span class="title">What derived morphisms retain</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c09.html#ha-c09-morphism-models" class="internal"><span class="codenumber">9.4</span> <span class="title">Morphism calculations and resolution models</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c09.html#ha-c09-cohomological-filtration" class="internal"><span class="codenumber">9.5</span> <span class="title">Cohomology layers and extension data</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c09.html#ha-c09-yoneda-and-subcategories" class="internal"><span class="codenumber">9.6</span> <span class="title">Yoneda extensions and full subcategories</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c10.html" class="internal"><span class="codenumber">10</span> <span class="title">Unbounded resolutions</span></a></div>
+<ul id="ptx-toc-group-ha-c10" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c10.html#ha-c10-homological" class="internal"><span class="codenumber">10.1</span> <span class="title">Homotopically injective and projective complexes</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c10.html#ha-c10-existence" class="internal"><span class="codenumber">10.2</span> <span class="title">Existence and its hypotheses</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c10.html#ha-c10-towers" class="internal"><span class="codenumber">10.3</span> <span class="title">Compatible towers of injective models</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c10.html#ha-c10-flat" class="internal"><span class="codenumber">10.4</span> <span class="title">K-flat complexes and a failure of termwise arguments</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c10.html#ha-c10-semi-free" class="internal"><span class="codenumber">10.5</span> <span class="title">A filtered construction of a replacement</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c11.html" class="internal"><span class="codenumber">11</span> <span class="title">Total derived functors and adjunctions</span></a></div>
+<ul id="ptx-toc-group-ha-c11" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c11.html#ha-c11-universal" class="internal"><span class="codenumber">11.1</span> <span class="title">The universal comparison</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c11.html#ha-c11-adapted-classes" class="internal"><span class="codenumber">11.2</span> <span class="title">Adapted classes and bounded computation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c11.html#ha-c11-composition" class="internal"><span class="codenumber">11.3</span> <span class="title">Composition and acyclicity</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c11.html#ha-c11-adjunction" class="internal"><span class="codenumber">11.4</span> <span class="title">Deriving an adjunction</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c12.html" class="internal"><span class="codenumber">12</span> <span class="title">Derived tensor and Hom</span></a></div>
+<ul id="ptx-toc-group-ha-c12" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c12.html#ha-c12-abstract-hom" class="internal"><span class="codenumber">12.1</span> <span class="title">Derived morphism complexes in an abelian category</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c12.html#ha-c12-abstract-tensor" class="internal"><span class="codenumber">12.2</span> <span class="title">Deriving a monoidal structure</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c12.html#ha-c12-constructions" class="internal"><span class="codenumber">12.3</span> <span class="title">Module models and replacement formulas</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c12.html#ha-c12-closed" class="internal"><span class="codenumber">12.4</span> <span class="title">The closed structure over a commutative ring</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c12.html#ha-c12-base" class="internal"><span class="codenumber">12.5</span> <span class="title">Change of rings and tensor comparisons</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c12.html#ha-c12-perfect" class="internal"><span class="codenumber">12.6</span> <span class="title">Finite resolutions and evaluation</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c13.html" class="internal"><span class="codenumber">13</span> <span class="title">t-structures and hearts</span></a></div>
+<ul id="ptx-toc-group-ha-c13" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c13.html#ha-c13-definition" class="internal"><span class="codenumber">13.1</span> <span class="title">Truncation as a universal construction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c13.html#ha-c13-heart" class="internal"><span class="codenumber">13.2</span> <span class="title">The abelian heart and its extensions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c13.html#ha-c13-examples" class="internal"><span class="codenumber">13.3</span> <span class="title">Standard, shifted, and degenerate examples</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c13.html#ha-c13-completeness" class="internal"><span class="codenumber">13.4</span> <span class="title">Detection and reconstruction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c13.html#ha-c13-exact-functors" class="internal"><span class="codenumber">13.5</span> <span class="title">Functors and t-exactness</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c14.html" class="internal"><span class="codenumber">14</span> <span class="title">Compact generation and representability</span></a></div>
+<ul id="ptx-toc-group-ha-c14" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c14.html#ha-c14-compact" class="internal"><span class="codenumber">14.1</span> <span class="title">Compact objects and generators</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c14.html#ha-c14-module-example" class="internal"><span class="codenumber">14.2</span> <span class="title">Derived categories of modules</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c14.html#ha-c14-brown" class="internal"><span class="codenumber">14.3</span> <span class="title">Brown representability and right adjoints</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c14.html#ha-c14-adjoints" class="internal"><span class="codenumber">14.4</span> <span class="title">Preservation and tests on generators</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c15.html" class="internal"><span class="codenumber">15</span> <span class="title">Localization and recollement</span></a></div>
+<ul id="ptx-toc-group-ha-c15" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c15.html#ha-c15-reflective" class="internal"><span class="codenumber">15.1</span> <span class="title">Local objects and localization triangles</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c15.html#ha-c15-compact-localization" class="internal"><span class="codenumber">15.2</span> <span class="title">Localization generated by compact objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c15.html#ha-c15-recollement" class="internal"><span class="codenumber">15.3</span> <span class="title">Recollement data</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c15.html#ha-c15-gluing" class="internal"><span class="codenumber">15.4</span> <span class="title">Gluing t-structures</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c16.html" class="internal"><span class="codenumber">16</span> <span class="title">Monoidal triangulated categories and duality</span></a></div>
+<ul id="ptx-toc-group-ha-c16" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c16.html#ha-c16-structures" class="internal"><span class="codenumber">16.1</span> <span class="title">Exact closed monoidal structures</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c16.html#ha-c16-dualizable" class="internal"><span class="codenumber">16.2</span> <span class="title">Duals and the tensor–Hom comparison</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c16.html#ha-c16-reflexive" class="internal"><span class="codenumber">16.3</span> <span class="title">Reflexivity and dualizing objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c16.html#ha-c16-compactness" class="internal"><span class="codenumber">16.4</span> <span class="title">Compactness and perfect complexes</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c16.html#ha-c16-tensor-localization" class="internal"><span class="codenumber">16.5</span> <span class="title">Tensor-compatible localization</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c16.html#ha-c16-traces" class="internal"><span class="codenumber">16.6</span> <span class="title">Trace and suspension</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c17.html" class="internal"><span class="codenumber">17</span> <span class="title">Monoidal adjunctions and formal duality</span></a></div>
+<ul id="ptx-toc-group-ha-c17" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c17.html#ha-c17-mates" class="internal"><span class="codenumber">17.1</span> <span class="title">Adjoint transposition of natural transformations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c17.html#ha-c17-one-pair" class="internal"><span class="codenumber">17.2</span> <span class="title">One monoidal adjunction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c17.html#ha-c17-second-pair" class="internal"><span class="codenumber">17.3</span> <span class="title">The second adjunction and the projection isomorphism</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c17.html#ha-c17-generation" class="internal"><span class="codenumber">17.4</span> <span class="title">Representability and extension from generators</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c17.html#ha-c17-dualizing-subcategories" class="internal"><span class="codenumber">17.5</span> <span class="title">Descriptions using dualizing objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c17.html#ha-c17-contexts" class="internal"><span class="codenumber">17.6</span> <span class="title">Grothendieck and Wirthmüller comparisons</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c17.html#ha-c17-traces" class="internal"><span class="codenumber">17.7</span> <span class="title">Counits and their compatibility with composition</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c18.html" class="internal"><span class="codenumber">18</span> <span class="title">Indexed categories and the six operations</span></a></div>
+<ul id="ptx-toc-group-ha-c18" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-indexed" class="internal"><span class="codenumber">18.1</span> <span class="title">The base and the ordinary adjunction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-six-data" class="internal"><span class="codenumber">18.2</span> <span class="title">Exceptional operations and coherence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-pasting" class="internal"><span class="codenumber">18.3</span> <span class="title">Exchange maps and pasting</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-formal-consequences" class="internal"><span class="codenumber">18.4</span> <span class="title">Mates, proper comparisons, and relative duality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-external-products" class="internal"><span class="codenumber">18.5</span> <span class="title">External products and an abstract Künneth isomorphism</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-localization" class="internal"><span class="codenumber">18.6</span> <span class="title">Localization at an abstract decomposition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-compactification" class="internal"><span class="codenumber">18.7</span> <span class="title">Constructing exceptional direct images from factorizations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-example" class="internal"><span class="codenumber">18.8</span> <span class="title">A system indexed by sets</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="homological-algebra-notes-23.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul id="ptx-toc-group-homological-algebra-notes-23" class="structural toc-item-list">
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="ha-exact.html" class="internal"><span class="codenumber">A.</span> <span class="title">Exact and quasi-abelian categories</span></a></div>
+<ul id="ptx-toc-group-ha-exact" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-exact.html#ha-exact-structures" class="internal"><span class="codenumber">A.1</span> <span class="title">A chosen class of exact sequences</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-exact.html#ha-exact-strictness" class="internal"><span class="codenumber">A.2</span> <span class="title">Preabelian categories and strict morphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-exact.html#ha-exact-quasi-abelian" class="internal"><span class="codenumber">A.3</span> <span class="title">The canonical exact structure</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-exact.html#ha-exact-filtered-example" class="internal"><span class="codenumber">A.4</span> <span class="title">Finite filtered vector spaces</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="ha-concordance.html" class="internal"><span class="codenumber">B.</span> <span class="title">Terminology and hypothesis comparisons</span></a></div>
+<ul id="ptx-toc-group-ha-concordance" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-concordance.html#ha-concordance-language" class="internal"><span class="codenumber">B.1</span> <span class="title">Names and structures</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-concordance.html#ha-concordance-hypotheses" class="internal"><span class="codenumber">B.2</span> <span class="title">Conditions that must be checked separately</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="ha-references.html" class="internal"><span class="title">References</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="ha-index.html" class="internal"><span class="title">Index</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="chapter" id="ha-c06">
+<h1 class="heading">
+<span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Ext, Tor, and homological dimension</span>
+</h1>
+<section class="introduction" id="ha-c06-2">
+<div class="para" id="ha-c06-2-1">Ext measures extensions and the failure of Hom to be exact; Tor measures the failure of tensor product to be exact. Their two variables admit different kinds of resolutions, and the comparison between these computations is part of the theory. We first work in abelian categories when possible, then state tensor and change-of-ring results for modules. Main references are <a href="ha-references.html#Wei94" class="xref" data-knowl="./knowl/xref/bib-ha-weibel.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Wei94">[Wei94, Chapters 3–4]</a> and <a href="ha-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-ha-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, §3.14]</a>.</div></section>
+<section class="section" id="ha-c06-ext">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The two computations of Ext</span>
+</h2>
+<article class="definition definition-like" id="ha-c06-ext-definition"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Ext groups.</span>
+</h3>
+<div class="para logical" id="ha-c06-ext-definition-3-1">
+<div class="para">If an abelian category <span class="process-math">\(\mathcal A\)</span> has enough injectives, define</div>
+<div class="displaymath process-math" id="ha-c06-ext-definition-3-1-2">
+\begin{equation*}
+\Ext^n_{\mathcal A}(A,B)=R^n\Hom_{\mathcal A}(A,-)(B)=H^n\underline{\Hom}^{\bullet}(A,I_B).
+\end{equation*}
+</div>
+<div class="para">If it has enough projectives, one can instead define <span class="process-math">\(\Ext^n_{\mathcal A}(A,B)=H^n\underline{\Hom}^{\bullet}(P_A,B)\text{.}\)</span> In either construction <span class="process-math">\(n\geq0\text{,}\)</span> the first variable is contravariant, and the second is covariant.</div>
+</div>
+</article>
+<article class="proposition theorem-like" id="ha-c06-balanced-ext"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c06-balanced-ext-1-1">If <span class="process-math">\(\mathcal A\)</span> has enough projectives and injectives, the two constructions of Ext are naturally isomorphic. They agree with Hom in degree zero and give long exact sequences in each variable. Moreover, <span class="process-math">\(\Ext^n(P,B)=0\)</span> for projective <span class="process-math">\(P\)</span> and <span class="process-math">\(\Ext^n(A,I)=0\)</span> for injective <span class="process-math">\(I\text{,}\)</span> whenever <span class="process-math">\(n&gt;0\text{.}\)</span>
+</div>
+</article>
+<details id="ha-c06-balanced-ext-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c06-balanced-ext-2-1">For resolutions <span class="process-math">\(P\to A\)</span> and <span class="process-math">\(B\to I\text{,}\)</span> compare <span class="process-math">\(\underline{\Hom}^{\bullet}(P,B)\)</span> and <span class="process-math">\(\underline{\Hom}^{\bullet}(A,I)\)</span> with the total complex of the first-quadrant double complex <span class="process-math">\(C^{p,q}=\Hom_{\mathcal A}(P^{-p},I^q)\text{,}\)</span> inserting the Hom signs. Exactness of <span class="process-math">\(\Hom(P^{-p},-)\)</span> and <span class="process-math">\(\Hom(-,I^q)\)</span> makes both comparisons quasi-isomorphisms. The first-quadrant totalization argument is proved in <a href="ha-c07.html" class="internal" title="Chapter 7: Filtered complexes and spectral sequences">Chapter 7</a>. Comparison of resolutions makes the isomorphisms natural. The horseshoe lemma gives the long exact sequences, while one-term resolutions give the vanishing statements.</div>
+</article></details>
+<div class="para" id="ha-c06-ext-4">Using the opposite source category converts the first variable into a covariant left exact functor, so its long exact sequence has the direction <span class="process-math">\(\Hom(A'',B)\to\Hom(A,B)\to\Hom(A',B)\to\Ext^1(A'',B)\text{.}\)</span> The two variances must be retained when transporting extension classes.<a id="ha-c06-ext-4-2" href="#margin-ha-c06-ext-4-2" class="margin-note-marker" aria-label="Margin note 1">1</a>
+</div>
+<div class="para" id="ha-c06-ext-5">In the injective construction, every fixed injective <span class="process-math">\(I\)</span> makes <span class="process-math">\(\Hom(-,I)\)</span> exact. Therefore resolving only <span class="process-math">\(B\)</span> still gives a long exact sequence in <span class="process-math">\(A\text{,}\)</span> even if the category has no projective objects. The projective construction has the dual property. Enough objects of one kind suffice to obtain the two-variable Ext theory; requiring both kinds is needed only for the displayed double-resolution comparison.</div>
+</section>
+<section class="section" id="ha-c06-yoneda">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Extensions and their products</span>
+</h2>
+<article class="definition definition-like" id="ha-c06-extension-definition"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Yoneda extensions.</span>
+</h3>
+<div class="para logical" id="ha-c06-extension-definition-5-1">
+<div class="para">For <span class="process-math">\(n\geq1\text{,}\)</span> an <span class="process-math">\(n\)</span>-extension of <span class="process-math">\(A\)</span> by <span class="process-math">\(B\)</span> is an exact sequence</div>
+<div class="displaymath process-math" id="ha-c06-extension-definition-5-1-5">
+\begin{equation*}
+0\to B\to E_{n-1}\to\cdots\to E_0\to A\to0.
+\end{equation*}
+</div>
+<div class="para">Equivalence is the relation generated by morphisms of these sequences which are the identity on the two endpoints. For <span class="process-math">\(n=1\text{,}\)</span> such a morphism is an isomorphism. The Baer sum is obtained by taking the direct sum of extensions, pulling back along the diagonal of <span class="process-math">\(A\text{,}\)</span> and pushing out along the addition map of <span class="process-math">\(B\text{.}\)</span> Splicing extensions gives the Yoneda product</div>
+<div class="displaymath process-math" id="ha-c06-extension-definition-5-1-9">
+\begin{equation*}
+\Ext^p(B,C)\times\Ext^q(A,B)\longrightarrow\Ext^{p+q}(A,C).
+\end{equation*}
+</div>
+</div>
+</article>
+<article class="proposition theorem-like" id="ha-c06-yoneda-comparison"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c06-yoneda-comparison-1-1">In an abelian category with enough projectives or enough injectives, equivalence classes of <span class="process-math">\(n\)</span>-extensions form an abelian group under Baer sum, naturally isomorphic to <span class="process-math">\(\Ext^n(A,B)\text{.}\)</span> The zero class in degree one consists of the split short exact sequences. Splicing gives an associative bilinear product, with degree-zero morphisms acting by pullback and pushout.</div>
+</article>
+<details id="ha-c06-yoneda-comparison-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c06-yoneda-comparison-2-1">For degree one, choose <span class="process-math">\(0\to K\to P^0\to A\to0\)</span> with <span class="process-math">\(P^0\)</span> projective. Pulling an extension back to <span class="process-math">\(P^0\)</span> splits it, and a choice of splitting gives a map <span class="process-math">\(K\to B\text{.}\)</span> A different splitting changes this map by the restriction of a map <span class="process-math">\(P^0\to B\text{.}\)</span> Conversely, pushing out <span class="process-math">\(0\to K\to P^0\to A\to0\)</span> along <span class="process-math">\(K\to B\)</span> produces an extension. These constructions are inverse and identify the group with <span class="process-math">\(\coker(\Hom(P^0,B)\to\Hom(K,B))=\Ext^1(A,B)\text{.}\)</span>
+</div>
+<div class="para" id="ha-c06-yoneda-comparison-2-2">The higher comparison follows by cutting a resolution into short exact sequences and iterating this construction. The compatibility with Baer sum and splicing is the standard Yoneda comparison; see <a href="ha-references.html#Wei94" class="xref" data-knowl="./knowl/xref/bib-ha-weibel.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Wei94">[Wei94, §3.4]</a> and <a class="external" href="https://stacks.math.columbia.edu/tag/06XP" target="_blank">Stacks, Tag 06XP</a>. The injective construction is dual.</div>
+</article></details>
+<div class="para" id="ha-c06-yoneda-4">The definition by extensions makes sense without enough projectives or injectives, but its set-theoretic size must then be checked. In <a href="ha-c09.html" class="internal" title="Chapter 9: Derived categories">Chapter 9</a> we shall compare it with <span class="process-math">\(\Hom_{\D(\mathcal A)}(A,B[n])\)</span> whenever these morphisms form sets.<a id="ha-c06-yoneda-4-3" href="#margin-ha-c06-yoneda-4-3" class="margin-note-marker" aria-label="Margin note 2">2</a> The graded algebra <span class="process-math">\(\Ext^*(A,A)\)</span> need not be graded-commutative; such a conclusion requires extra structure.</div>
+<article class="proposition theorem-like" id="ha-c06-yoneda-operations"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="ha-c06-yoneda-operations-1-1">
+<div class="para">Write an extension class of <span class="process-math">\(A\)</span> by <span class="process-math">\(B\)</span> as <span class="process-math">\(\xi\text{.}\)</span>
+</div>
+<ol class="decimal" id="ha-c06-yoneda-operations-1-1-4">
+<li id="ha-c06-yoneda-operations-1-1-4-1">
+<div class="para" id="ha-c06-yoneda-operations-1-1-4-1-1">A morphism <span class="process-math">\(a:A'\to A\)</span> pulls <span class="process-math">\(\xi\)</span> back by taking the pullback at its right end; a morphism <span class="process-math">\(b:B\to B'\)</span> pushes it out at its left end. These operations commute and give the two variances of <span class="process-math">\(\Ext^n\text{.}\)</span>
+</div>
+</li>
+<li id="ha-c06-yoneda-operations-1-1-4-2">
+<div class="para" id="ha-c06-yoneda-operations-1-1-4-2-1">The inverse of a class under Baer sum is its pushout along <span class="process-math">\(-\id_B\text{.}\)</span> The Baer sum is commutative and associative, and pullback, pushout, and splicing are additive.</div>
+</li>
+<li id="ha-c06-yoneda-operations-1-1-4-3">
+<div class="para" id="ha-c06-yoneda-operations-1-1-4-3-1">Given <span class="process-math">\(0\to B'\to B\to B''\to0\)</span> with class <span class="process-math">\(\eta\in\Ext^1(B'',B')\text{,}\)</span> its connecting map sends <span class="process-math">\(\xi\in\Ext^n(A,B'')\)</span> to the splice <span class="process-math">\(\eta\xi\in\Ext^{n+1}(A,B')\text{.}\)</span> Given <span class="process-math">\(0\to A'\to A\to A''\to0\)</span> with class <span class="process-math">\(\zeta\in\Ext^1(A'',A')\text{,}\)</span> the first-variable connecting map sends <span class="process-math">\(\xi\in\Ext^n(A',B)\)</span> to <span class="process-math">\(\xi\zeta\text{.}\)</span>
+</div>
+</li>
+</ol>
+<div class="para" id="ha-c06-yoneda-operations-1-1-5-anchor">In degree zero, splicing at an endpoint means the corresponding pullback or pushout.<a id="ha-c06-yoneda-operations-1-1-5" href="#margin-ha-c06-yoneda-operations-1-1-5" class="margin-note-marker" aria-label="Margin note 3">3</a>
+</div>
+</div>
+</article>
+<details id="ha-c06-yoneda-operations-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c06-yoneda-operations-2-1">Pullbacks of epimorphisms and pushouts of monomorphisms are exact in an abelian category, so the endpoint operations preserve extensions. Their interchange follows from the universal properties. For addition, taking a direct sum and then applying diagonal and addition at the ends gives the stated formulas; the interchange laws for those maps give associativity, commutativity, and distributivity. For the connecting morphism, lift an extension through a projective resolution, or compare it with an injective resolution. The boundary is the obstruction to extending that lift across the additional short exact sequence, represented precisely by concatenating the two extensions. The degree-one calculation in <a href="ha-c06.html#ha-c06-yoneda-comparison" class="xref" data-knowl="./knowl/xref/ha-c06-yoneda-comparison.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 6.4">Proposition 6.4</a> fixes this identification, and dimension shifting proves all degrees. See <a href="ha-references.html#Wei94" class="xref" data-knowl="./knowl/xref/bib-ha-weibel.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Wei94">[Wei94, §3.4]</a>.</div>
+</article></details>
+<div class="para logical" id="ha-c06-yoneda-6">
+<div class="para">For a projective resolution, the full higher comparison can also be written without choosing a derived category. Its first <span class="process-math">\(n\)</span> steps form an <span class="process-math">\(n\)</span>-extension of <span class="process-math">\(A\)</span> by <span class="process-math">\(\Omega^nA\text{.}\)</span> Pushing it out along <span class="process-math">\(u:\Omega^nA\to B\)</span> gives an extension class, and dimension shifting identifies</div>
+<div class="displaymath process-math" id="ha-c06-yoneda-6-6">
+\begin{equation*}
+\Ext^n(A,B)\cong\frac{\Hom(\Omega^nA,B)}{\im\bigl(\Hom(P^{-n+1},B)\to\Hom(\Omega^nA,B)\bigr)}\qquad(n\geq1).
+\end{equation*}
+</div>
+<div class="para">A map extending across <span class="process-math">\(P^{-n+1}\)</span> gives the zero class. Conversely the degree-one comparison applied to <span class="process-math">\(\Omega^{n-1}A\)</span> shows that these are all relations. This constructs every higher extension from a fixed resolution and explains why changing that resolution does not change Ext.</div>
+</div>
+<div class="para" id="ha-c06-yoneda-7">For instance, for <span class="process-math">\(m\geq2\text{,}\)</span> the class of <span class="process-math">\(0\to\Z\xrightarrow{m}\Z\to\Z/m\to0\)</span> generates <span class="process-math">\(\Ext^1_\Z(\Z/m,\Z)\text{.}\)</span> Pushing out along multiplication by <span class="process-math">\(r\)</span> gives its multiple by <span class="process-math">\(r\text{.}\)</span> Splitting is equivalent to this multiple being zero, which occurs exactly when <span class="process-math">\(m\)</span> divides <span class="process-math">\(r\text{.}\)</span> These are endpoint operations on the fixed extension, so no choice of generators in a second resolution is needed.</div>
+</section>
+<section class="section" id="ha-c06-balanced-bifunctors">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Balanced bifunctors</span>
+</h2>
+<div class="para" id="ha-c06-balanced-bifunctors-2">The two computations of Ext are an instance of a general resolution argument. It is useful to state the argument before specializing to tensor product: the exactness hypotheses belong to the partially resolved functors, and not merely to the categories.</div>
+<article class="proposition theorem-like" id="ha-c06-balance-general"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.6</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="ha-c06-balance-general-1-1">
+<div class="para">Let <span class="process-math">\(T:\mathcal A\times\mathcal B\to\mathcal C\)</span> be additive in each variable, with all three categories abelian.</div>
+<ol class="decimal" id="ha-c06-balance-general-1-1-2">
+<li id="ha-c06-balance-general-1-1-2-1">
+<div class="para" id="ha-c06-balance-general-1-1-2-1-1">Suppose that <span class="process-math">\(\mathcal A,\mathcal B\)</span> have enough projectives, that <span class="process-math">\(T\)</span> is right exact in each variable, and that <span class="process-math">\(T(P,-)\)</span> and <span class="process-math">\(T(-,Q)\)</span> are exact whenever <span class="process-math">\(P,Q\)</span> are projective. For projective resolutions <span class="process-math">\(P_A\to A\)</span> and <span class="process-math">\(Q_B\to B\text{,}\)</span> there are natural isomorphisms <span class="process-math">\(H^{-n}T(P_A,B)\cong H^{-n}T(A,Q_B)\text{.}\)</span> These bifunctors have homological long exact sequences in each variable.</div>
+</li>
+<li id="ha-c06-balance-general-1-1-2-2">
+<div class="para" id="ha-c06-balance-general-1-1-2-2-1">Dually, suppose that both source categories have enough injectives, that <span class="process-math">\(T\)</span> is left exact in each variable, and that <span class="process-math">\(T(I,-)\)</span> and <span class="process-math">\(T(-,J)\)</span> are exact for injective <span class="process-math">\(I,J\text{.}\)</span> Then <span class="process-math">\(H^nT(I_A,B)\cong H^nT(A,J_B)\)</span> naturally, with cohomological long exact sequences in both variables.</div>
+</li>
+</ol>
+</div>
+</article>
+<details id="ha-c06-balance-general-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c06-balance-general-2-1">In the projective case form <span class="process-math">\(T(P_A^p,Q_B^q)\text{,}\)</span> with both indices nonpositive. Augmenting in either direction gives a map from its total complex to one of the single-resolution complexes. The cone has exact rows or columns by the partially resolved exactness hypotheses. Each diagonal is finite, so the double-complex theorem of <a href="ha-c07.html" class="internal" title="Chapter 7: Filtered complexes and spectral sequences">Chapter 7</a> makes both augmentations quasi-isomorphisms. Comparison of resolutions proves naturality. The horseshoe lemma gives the long exact sequences. Reverse the degrees and arrows for the injective statement.</div>
+</article></details>
+<div class="para" id="ha-c06-balanced-bifunctors-4">Apply the second statement to <span class="process-math">\(\Hom:\mathcal A^{\op}\times\mathcal A\to\Ab\text{:}\)</span> projective objects of <span class="process-math">\(\mathcal A\)</span> are injective in its opposite category. For tensor product of modules, apply the first statement. These special cases are called balanced computations. A general additive bifunctor need not satisfy either exactness condition, so resolving the two variables separately need not give the same result.<a id="ha-c06-balanced-bifunctors-4-3" href="#margin-ha-c06-balanced-bifunctors-4-3" class="margin-note-marker" aria-label="Margin note 4">4</a>
+</div>
+</section>
+<section class="section" id="ha-c06-tor">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Tor and flat resolutions</span>
+</h2>
+<article class="definition definition-like" id="ha-c06-tor-definition"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.7</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Tor groups.</span>
+</h3>
+<div class="para" id="ha-c06-tor-definition-4-1">Let <span class="process-math">\(R\)</span> be an associative unital ring, <span class="process-math">\(M\)</span> a right <span class="process-math">\(R\)</span>-module, and <span class="process-math">\(N\)</span> a left <span class="process-math">\(R\)</span>-module. For a projective resolution <span class="process-math">\(P\to M\)</span> in right modules, put <span class="process-math">\(\Tor_n^R(M,N)=H^{-n}(P\otimes_RN)\text{.}\)</span> A right module is <em class="emphasis">flat</em> if <span class="process-math">\(M\otimes_R-\)</span> is exact; left flatness is defined using <span class="process-math">\(-\otimes_RN\text{.}\)</span>
+</div>
+</article>
+<article class="proposition theorem-like" id="ha-c06-balanced-tor"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.8</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c06-balanced-tor-1-1">Tor can be computed using a projective or flat resolution of either variable. It is covariant in both variables, agrees with tensor product in degree zero, and has the homological long exact sequence in each variable. A right module <span class="process-math">\(M\)</span> is flat if and only if <span class="process-math">\(\Tor_1^R(M,N)=0\)</span> for every left module <span class="process-math">\(N\text{;}\)</span> equivalently all its positive Tor groups vanish. There are corresponding assertions for left modules.</div>
+</article>
+<details id="ha-c06-balanced-tor-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c06-balanced-tor-2-1">If <span class="process-math">\(P\to M\)</span> and <span class="process-math">\(Q\to N\)</span> are projective resolutions, the maps from <span class="process-math">\(\Tot_\oplus(P\otimes_RQ)\)</span> to <span class="process-math">\(P\otimes_RN\)</span> and <span class="process-math">\(M\otimes_RQ\)</span> are quasi-isomorphisms by exactness in the resolved variable. Both complexes are bounded above, so each total diagonal is finite. The same argument compares a flat resolution in one variable with a projective resolution in the other. The horseshoe lemma gives long exact sequences. Finally <span class="process-math">\(\Tor_1(M,-)=0\)</span> makes tensor preserve monomorphisms by that sequence, and tensor is already right exact. See also <a class="external" href="https://stacks.math.columbia.edu/tag/00LY" target="_blank">Stacks, Tag 00LY</a>.</div>
+</article></details>
+<div class="para" id="ha-c06-tor-4">Functoriality can be seen before making any balance comparison. For <span class="process-math">\(a:M\to M'\)</span> between right modules, choose a lift between projective resolutions; for <span class="process-math">\(b:N\to N'\text{,}\)</span> tensor that lift with <span class="process-math">\(b\text{.}\)</span> Different lifts are homotopic, and tensoring the homotopy with <span class="process-math">\(b\)</span> gives a homotopy of the resulting total maps. Thus the map on Tor is independent of the lift and respects composition. Using flat resolutions computes these same maps by comparison with the projective construction, even when a map between the chosen flat resolutions cannot be lifted directly.</div>
+<div class="para" id="ha-c06-tor-5">The connecting morphism also has a concrete meaning. For <span class="process-math">\(0\to N'\to N\to N''\to0\text{,}\)</span> choose a projective resolution <span class="process-math">\(P\to M\text{.}\)</span> Every <span class="process-math">\(P^j\)</span> is flat, so tensoring gives a short exact sequence of complexes. To compute <span class="process-math">\(\Tor_1(M,N'')\to M\otimes_RN'\text{,}\)</span> lift a cycle in <span class="process-math">\(P^{-1}\otimes_RN''\)</span> to <span class="process-math">\(P^{-1}\otimes_RN\text{,}\)</span> take its differential, and regard the result in <span class="process-math">\(P^0\otimes_RN'\text{.}\)</span> Its image in <span class="process-math">\(M\otimes_RN'\)</span> is independent of the lift. This is exactly the cohomology connecting map, with index lowered by one.</div>
+<article class="example example-like" id="ha-c06-principal-example"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.9</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="ha-c06-principal-example-1">
+<div class="para">Let <span class="process-math">\(R\)</span> be commutative and let <span class="process-math">\(r\in R\)</span> be a non-zero-divisor. The resolution <span class="process-math">\(0\to R\xrightarrow{r}R\to R/(r)\to0\)</span> gives</div>
+<div class="displaymath process-math" id="ha-c06-principal-example-1-4">
+\begin{equation*}
+\Tor_1^R(R/(r),N)=\{x\in N:rx=0\},\qquad \Ext_R^1(R/(r),N)=N/rN.
+\end{equation*}
+</div>
+<div class="para">Both functors vanish in degrees greater than one. Thus <span class="process-math">\(\Tor_1^\Z(\Z/m,\Z/n)\)</span> and <span class="process-math">\(\Ext_\Z^1(\Z/m,\Z/n)\)</span> are cyclic of order <span class="process-math">\(\gcd(m,n)\)</span> for positive <span class="process-math">\(m,n\text{.}\)</span> If <span class="process-math">\(r\)</span> is a zero-divisor, the displayed sequence is not a resolution and these higher-vanishing conclusions no longer follow.</div>
+</div>
+</article>
+<article class="example example-like" id="ha-c06-ideal-intersection"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.10</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="ha-c06-ideal-intersection-1">
+<div class="para">For ideals <span class="process-math">\(I,J\)</span> of a commutative ring, tensor <span class="process-math">\(0\to I\to R\to R/I\to0\)</span> with <span class="process-math">\(R/J\text{.}\)</span> The Tor sequence and <span class="process-math">\(I\otimes_RR/J\cong I/IJ\)</span> give</div>
+<div class="displaymath process-math" id="ha-c06-ideal-intersection-1-5">
+\begin{equation*}
+\Tor_1^R(R/I,R/J)\cong(I\cap J)/IJ.
+\end{equation*}
+</div>
+<div class="para">In particular <span class="process-math">\(\Tor_1^R(R/I,R/I)\cong I/I^2\text{.}\)</span> This calculation needs no regularity or noetherian hypothesis and is often more useful than choosing a full resolution.</div>
+</div>
+</article>
+<article class="definition definition-like" id="ha-c06-koszul-definition"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.11</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The Koszul complex.</span>
+</h3>
+<div class="para logical" id="ha-c06-koszul-definition-4-1">
+<div class="para">For elements <span class="process-math">\(r_1,\ldots,r_s\)</span> in a commutative ring <span class="process-math">\(R\text{,}\)</span> the Koszul complex <span class="process-math">\(K(r_1,\ldots,r_s)\)</span> has <span class="process-math">\(K^{-a}=\bigwedge^a R^s\)</span> and differential</div>
+<div class="displaymath process-math" id="ha-c06-koszul-definition-4-1-5">
+\begin{equation*}
+d(e_{j_1}\wedge\cdots\wedge e_{j_a})=\sum_{t=1}^a(-1)^{t-1}r_{j_t}\,e_{j_1}\wedge\cdots\wedge\widehat e_{j_t}\wedge\cdots\wedge e_{j_a}.
+\end{equation*}
+</div>
+<div class="para">The sequence is <em class="emphasis">regular</em> if its ideal is proper and multiplication by <span class="process-math">\(r_i\)</span> is injective on <span class="process-math">\(R/(r_1,\ldots,r_{i-1})\)</span> for each <span class="process-math">\(i\text{.}\)</span>
+</div>
+</div>
+</article>
+<article class="proposition theorem-like" id="ha-c06-koszul-resolution"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.12</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c06-koszul-resolution-1-1">The Koszul complex of a regular sequence is a finite free resolution of <span class="process-math">\(R/(r_1,\ldots,r_s)\text{.}\)</span>
+</div>
+</article>
+<details id="ha-c06-koszul-resolution-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c06-koszul-resolution-2-1">The displayed differential agrees with the tensor differential on <span class="process-math">\(K(r_1)\otimes_R\cdots\otimes_RK(r_s)\text{.}\)</span> Induct on <span class="process-math">\(s\text{.}\)</span> Adjoining the last two-term factor gives, after the degreewise sign change identifying the tensor and cone conventions, the cone of multiplication by <span class="process-math">\(r_s\)</span> on the previous Koszul complex. Its cohomology sequence has only the kernel and cokernel of multiplication by <span class="process-math">\(r_s\)</span> on <span class="process-math">\(R/(r_1,\ldots,r_{s-1})\text{.}\)</span> Regularity kills that kernel and identifies the cokernel with the required quotient.</div>
+</article></details>
+<div class="para" id="ha-c06-tor-10">After tensoring this resolution with its quotient ring all differentials vanish, so the resulting Tor groups are the exterior powers of <span class="process-math">\((R/(r_1,\ldots,r_s))^s\text{.}\)</span> Koszul complexes still exist for nonregular sequences, but their negative cohomology need not vanish. We use regularity only in the resolution statement. See <a href="ha-references.html#Wei94" class="xref" data-knowl="./knowl/xref/bib-ha-weibel.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Wei94">[Wei94, §4.5]</a>.</div>
+</section>
+<section class="section" id="ha-c06-dimensions">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Homological dimensions</span>
+</h2>
+<article class="definition definition-like" id="ha-c06-dimension-definition"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.13</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Projective, injective, and flat dimension.</span>
+</h3>
+<div class="para" id="ha-c06-dimension-definition-7-1">In an abelian category with enough projectives, the projective dimension <span class="process-math">\(\operatorname{pd}A\)</span> is the least <span class="process-math">\(d\geq0\)</span> for which <span class="process-math">\(A\)</span> has a projective resolution in degrees <span class="process-math">\([-d,0]\text{,}\)</span> or infinity if none exists. With enough injectives, injective dimension is defined using a resolution in degrees <span class="process-math">\([0,d]\text{.}\)</span> We assign dimension zero to the zero object. For modules, write a subscript <span class="process-math">\(R\)</span> to specify the category. Flat dimension of an <span class="process-math">\(R\)</span>-module uses a flat resolution in degrees <span class="process-math">\([-d,0]\text{.}\)</span> The left global dimension of <span class="process-math">\(R\)</span> is the supremum of projective dimensions of left modules; left weak global dimension uses flat dimensions.</div>
+</article>
+<article class="proposition theorem-like" id="ha-c06-dimension-test"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.14</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="ha-c06-dimension-test-1-1">
+<div class="para">For a left module <span class="process-math">\(M\)</span> and an integer <span class="process-math">\(d\geq0\text{:}\)</span>
+</div>
+<ol class="decimal" id="ha-c06-dimension-test-1-1-3">
+<li id="ha-c06-dimension-test-1-1-3-1">
+<div class="para" id="ha-c06-dimension-test-1-1-3-1-1">
+<span class="process-math">\(\operatorname{pd}_RM\leq d\)</span> if and only if <span class="process-math">\(\Ext_R^{d+1}(M,N)=0\)</span> for every left module <span class="process-math">\(N\text{.}\)</span>
+</div>
+</li>
+<li id="ha-c06-dimension-test-1-1-3-2">
+<div class="para" id="ha-c06-dimension-test-1-1-3-2-1">
+<span class="process-math">\(\operatorname{id}_RM\leq d\)</span> if and only if <span class="process-math">\(\Ext_R^{d+1}(N,M)=0\)</span> for every left module <span class="process-math">\(N\text{.}\)</span>
+</div>
+</li>
+<li id="ha-c06-dimension-test-1-1-3-3">
+<div class="para" id="ha-c06-dimension-test-1-1-3-3-1">
+<span class="process-math">\(\operatorname{fd}_RM\leq d\)</span> if and only if <span class="process-math">\(\Tor_{d+1}^R(N,M)=0\)</span> for every right module <span class="process-math">\(N\text{.}\)</span>
+</div>
+</li>
+</ol>
+<div class="para">In each case the condition implies vanishing in all larger degrees.</div>
+</div>
+</article>
+<details id="ha-c06-dimension-test-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c06-dimension-test-2-1">Let <span class="process-math">\(K_d\)</span> be the <span class="process-math">\(d\)</span>th syzygy in a projective resolution, with <span class="process-math">\(K_0=M\text{.}\)</span> Dimension shifting identifies <span class="process-math">\(\Ext_R^{d+1}(M,N)\)</span> with <span class="process-math">\(\Ext_R^1(K_d,N)\text{.}\)</span> Vanishing for every <span class="process-math">\(N\)</span> says that every extension ending in <span class="process-math">\(K_d\)</span> splits, which is equivalent to projectivity. For flat dimension, dimension shifting identifies the Tor condition with <span class="process-math">\(\Tor_1^R(N,K_d)=0\text{;}\)</span> hence <span class="process-math">\(K_d\)</span> is flat. A given length-<span class="process-math">\(d\)</span> flat resolution proves the converse. The injective argument uses cosyzygies and the dual extension criterion. See <a href="ha-references.html#Wei94" class="xref" data-knowl="./knowl/xref/bib-ha-weibel.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Wei94">[Wei94, Chapter 4]</a>.</div>
+</article></details>
+<article class="example example-like" id="ha-c06-infinite-dimension"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.15</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c06-infinite-dimension-1">For <span class="process-math">\(R=k[\epsilon]/(\epsilon^2)\)</span> and <span class="process-math">\(k=R/(\epsilon)\text{,}\)</span> multiplication by <span class="process-math">\(\epsilon\)</span> gives the infinite projective resolution <span class="process-math">\(\cdots\xrightarrow{\epsilon}R\xrightarrow{\epsilon}R\to k\to0\text{.}\)</span> Its exactness follows from <span class="process-math">\(\ker(\epsilon)=\epsilon R\text{.}\)</span> Applying either <span class="process-math">\(\Hom_R(-,k)\)</span> or <span class="process-math">\(-\otimes_Rk\)</span> gives zero differentials, so <span class="process-math">\(\Ext_R^n(k,k)=k\)</span> and <span class="process-math">\(\Tor_n^R(k,k)=k\)</span> in every nonnegative degree. Finite-dimensional modules over a finite-dimensional algebra can therefore have infinite homological dimension.</div>
+</article>
+<div class="para" id="ha-c06-dimensions-5">The projective and injective definitions, dimension tests, and proofs apply in any abelian category with the respective supply of resolutions. Flat dimension requires a specified tensor setting and its supply of flat resolutions; it is not a structure carried by an arbitrary abelian category. In that more general categorical setting, the statement <span class="process-math">\(R^nF(A)=0\)</span> for <span class="process-math">\(n&gt;d\)</span> is a dimension bound relative to <span class="process-math">\(F\text{,}\)</span> and different functors can give different bounds.</div>
+<article class="proposition theorem-like" id="ha-c06-dimension-inequalities"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.16</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="ha-c06-dimension-inequalities-1-1">
+<div class="para">In an abelian category with enough projectives, a short exact sequence <span class="process-math">\(0\to A\to B\to C\to0\)</span> gives</div>
+<div class="displaymath process-math" id="ha-c06-dimension-inequalities-1-1-2">
+\begin{equation*}
+\begin{aligned}\operatorname{pd}B&amp;\leq\max(\operatorname{pd}A,\operatorname{pd}C),\\\operatorname{pd}A&amp;\leq\max(\operatorname{pd}B,\operatorname{pd}C-1),\\\operatorname{pd}C&amp;\leq\max(\operatorname{pd}B,\operatorname{pd}A+1).\end{aligned}
+\end{equation*}
+</div>
+<div class="para">Use the convention <span class="process-math">\(\infty-1=\infty\text{.}\)</span> The dual inequalities hold for injective dimension when there are enough injectives.</div>
+</div>
+</article>
+<details id="ha-c06-dimension-inequalities-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c06-dimension-inequalities-2-1">Apply the first-variable long exact sequence of Ext with arbitrary second argument. Above the indicated bounds, the two groups adjacent to the group under consideration vanish. The dimension test then gives each inequality. Reversing the short exact sequence in the opposite category gives the injective inequalities.</div>
+</article></details>
+<div class="para" id="ha-c06-dimensions-7">These inequalities explain the role of the last syzygy: a resolution of length <span class="process-math">\(d\)</span> is possible exactly when a <span class="process-math">\(d\)</span>th syzygy is projective. It is not enough that a chosen object appearing as a term of the resolution have small dimension; the kernels connecting the terms are what transmit the bound. Over <span class="process-math">\(\Z\text{,}\)</span> all modules have projective dimension at most one because subgroups of free abelian groups are free. The group <span class="process-math">\(\Q\)</span> is flat but not projective, so flat and projective dimension can already differ in this example.</div>
+</section>
+<section class="section" id="ha-c06-change-rings">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Changing the ring</span>
+</h2>
+<div class="para" id="ha-c06-change-rings-2">For a ring homomorphism <span class="process-math">\(R\to S\text{,}\)</span> restriction of scalars has left adjoint <span class="process-math">\(S\otimes_R-\)</span> and right adjoint <span class="process-math">\(\Hom_R(S,-)\text{.}\)</span> In the latter, <span class="process-math">\(S\)</span> is an <span class="process-math">\((R,S)\)</span>-bimodule and the left <span class="process-math">\(S\)</span>-action is <span class="process-math">\((s\phi)(t)=\phi(ts)\text{.}\)</span> These bimodule structures are necessary even though restriction itself does not change the underlying abelian groups.</div>
+<article class="proposition theorem-like" id="ha-c06-base-change"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.17</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="ha-c06-base-change-1-1">
+<div class="para">Let <span class="process-math">\(R\to S\)</span> be a flat homomorphism of commutative rings and let <span class="process-math">\(M,N\)</span> be <span class="process-math">\(R\)</span>-modules.</div>
+<ol class="decimal" id="ha-c06-base-change-1-1-4">
+<li id="ha-c06-base-change-1-1-4-1">
+<div class="para" id="ha-c06-base-change-1-1-4-1-1">There are natural isomorphisms <span class="process-math">\(S\otimes_R\Tor_n^R(M,N)\cong\Tor_n^S(S\otimes_RM,S\otimes_RN)\text{.}\)</span>
+</div>
+</li>
+<li id="ha-c06-base-change-1-1-4-2">
+<div class="para" id="ha-c06-base-change-1-1-4-2-1">If <span class="process-math">\(M\)</span> admits a projective resolution whose terms are finitely generated, there are natural isomorphisms <span class="process-math">\(S\otimes_R\Ext_R^n(M,N)\cong\Ext_S^n(S\otimes_RM,S\otimes_RN)\text{.}\)</span>
+</div>
+</li>
+<li id="ha-c06-base-change-1-1-4-3">
+<div class="para" id="ha-c06-base-change-1-1-4-3-1">For an <span class="process-math">\(S\)</span>-module <span class="process-math">\(T\text{,}\)</span> there are natural isomorphisms <span class="process-math">\(\Ext_S^n(S\otimes_RM,T)\cong\Ext_R^n(M,T)\text{,}\)</span> where the right-hand side uses restriction of scalars.</div>
+</li>
+</ol>
+</div>
+</article>
+<details id="ha-c06-base-change-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c06-base-change-2-1">Tensor a projective resolution of <span class="process-math">\(M\)</span> with <span class="process-math">\(S\text{.}\)</span> Flatness preserves its exactness, and extension of scalars preserves projectives. For Tor, the tensor associativity isomorphism identifies the computing complexes. For the second assertion, finite generation and projectivity give <span class="process-math">\(S\otimes_R\Hom_R(P,N)\cong\Hom_S(S\otimes_RP,S\otimes_RN)\)</span> in each degree. Flatness commutes with their cohomology. The third assertion uses the ordinary extension-restriction adjunction degreewise, with no finiteness assumption on the resolution.</div>
+</article></details>
+<div class="para" id="ha-c06-change-rings-4">The finiteness condition in the Ext base-change statement cannot simply be discarded. For <span class="process-math">\(R=\Z\text{,}\)</span> <span class="process-math">\(S=\Q\text{,}\)</span> <span class="process-math">\(M=\Q\text{,}\)</span> and <span class="process-math">\(N=\Z\text{,}\)</span> its degree-zero source is zero and its target is <span class="process-math">\(\Q\text{.}\)</span> Nor does finite presentation alone justify every higher degree: the needed finite generation concerns the relevant part of a resolution. More general change-of-ring comparisons are derived adjunctions and spectral sequences; they will be stated after the machinery of <a href="ha-c11.html" class="internal" title="Chapter 11: Total derived functors and adjunctions">Chapter 11</a> and <a href="ha-c12.html" class="internal" title="Chapter 12: Derived tensor and Hom">Chapter 12</a> is available.</div>
+</section></section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="ha-c05.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Top</span></a><a class="next-button button" href="ha-c07.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a>
+</div></main>
+<div class="margin-notes" role="complementary" aria-label="Margin notes">
+<aside id="margin-ha-c06-ext-4-2" class="aside aside-like margin-note" data-margin-anchor="ha-c06-ext-4" data-margin-label="1" data-margin-inline="true"><h4 class="heading"><a href="#ha-c06-ext-4" class="margin-note-label">1</a></h4>
+<div class="para">These Ext groups derive the abelian-group-valued Hom functor. An internal Ext object requires a specified internal Hom and a separate construction. Linearity may provide additional scalar actions but does not identify these two notions.
+</div></aside><aside id="margin-ha-c06-yoneda-4-3" class="aside aside-like margin-note" data-margin-anchor="ha-c06-yoneda-4" data-margin-label="2" data-margin-inline="true"><h4 class="heading"><a href="#ha-c06-yoneda-4" class="margin-note-label">2</a></h4>
+<div class="para">For higher extensions, equivalence does not mean that all middle terms are isomorphic. The equivalence relation deliberately allows morphisms and chains of morphisms fixing the endpoints.
+</div></aside><aside id="margin-ha-c06-yoneda-operations-1-1-5" class="aside aside-like margin-note" data-margin-anchor="ha-c06-yoneda-operations-1-1-5-anchor" data-margin-label="3" data-margin-inline="true"><h4 class="heading"><a href="#ha-c06-yoneda-operations-1-1-5-anchor" class="margin-note-label">3</a></h4>
+<div class="para">We use the Yoneda comparison normalized to identify the connecting maps with splicing. Translating a cocycle in a Hom complex written with different differential signs requires translating this comparison as well.
+</div></aside><aside id="margin-ha-c06-balanced-bifunctors-4-3" class="aside aside-like margin-note" data-margin-anchor="ha-c06-balanced-bifunctors-4" data-margin-label="4" data-margin-inline="true"><h4 class="heading"><a href="#ha-c06-balanced-bifunctors-4" class="margin-note-label">4</a></h4>
+<div class="para">This balance is distinct from a balanced bilinear map used to define a tensor product over a ring. Here the word concerns agreement of the two derived-functor calculations.
+</div></aside>
+</div>
+</div>
+<footer id="site-copyright" class="site-copyright"><p>© 2026 Jie Fu. All rights reserved.</p></footer>
+</body>
+</html>

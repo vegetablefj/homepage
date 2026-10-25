@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="hkg-fibrations">
+  <title>Lagrangian fibrations and isotropic line bundles</title>
+  <introduction>
+    <p>A proper fibration from an IHS manifold has fibers of half its dimension, and the symplectic form vanishes on them. On the smooth locus this produces a family of complex tori and commuting Hamiltonian vector fields. The class pulled back from the base is isotropic for the BBF form. We first prove these relationships, then discuss the converse construction from a nef isotropic line bundle.</p>
+  </introduction>
+  <section xml:id="hkg-fibration-definitions">
+    <title>Fibrations and Lagrangian subvarieties</title>
+    <definition xml:id="hkg-def-lagrangian-fibration">
+      <statement><p>A submanifold <m>F</m> of a holomorphic symplectic <m>2n</m>-fold <m>(X,\sigma)</m> is <em>Lagrangian</em> if <m>\dim F=n</m> and <m>\sigma|_F=0</m>. A reduced irreducible subvariety is Lagrangian if it has dimension <m>n</m> and this vanishing holds on its smooth locus.</p>
+        <p>A <em>fibration</em> is a proper surjective holomorphic map <m>f:X\to B</m> onto a normal complex space, with <m>f_*\cO_X=\cO_B</m> and <m>0&lt;\dim B&lt;\dim X</m>. A <em>Lagrangian fibration</em> is one for which every irreducible component of every fiber, with its reduced structure, is a Lagrangian subvariety.</p></statement>
+    </definition>
+    <p>The condition <m>f_*\cO_X=\cO_B</m> gives connected fibers and is obtained by Stein factorization. Some definitions require the Lagrangian condition only for general smooth fibers; the following theorem gives it for every fiber component.</p>
+    <theorem xml:id="hkg-matsushita-fibration">
+      <title>(Matsushita)</title>
+      <statement><p>Every fibration from an IHS manifold is Lagrangian. Its base is a normal projective variety of dimension <m>n</m>, and the map is equidimensional.</p></statement>
+    </theorem>
+    <p>We quote the theorem in this Kähler form from <xref ref="hkg-bib-greb-lehn" detail="Proposition 2.2"/>, which specifies the underlying results of Matsushita and the passage to a normal Kähler base. The original projective dimension theorem and the smooth-fiber Lagrangian assertion are <xref ref="hkg-bib-matsushita-fibres" detail="Theorem 2"/> and <xref ref="hkg-bib-matsushita-addendum" detail="Theorem 1"/>. Singular bases and singular fibers are allowed.</p>
+  </section>
+  <section xml:id="hkg-half-dimensional-fibres">
+    <title>The BBF calculation behind the fiber dimension</title>
+    <p>The half-dimensional conclusion and the vanishing of the symplectic form on smooth fibers can be derived from the intersection identities already established, once projectivity of the base is known. This also identifies the numerical class attached to the fibration.</p>
+    <proposition xml:id="hkg-fibration-isotropic-class">
+      <statement><p>Let <m>f:X\to B</m> be a fibration from an IHS manifold, and let <m>A</m> be an ample line bundle on the projective base. Let <m>\lambda=c_1(f^*A)</m>. Then <m>\lambda</m> is nonzero and nef, <m>q_X(\lambda)=0</m>, and <m>\dim B=n</m>. Every smooth fiber over a point where <m>f</m> is a submersion is Lagrangian.</p></statement>
+      <proof><p>Replace <m>A</m> by a positive power so that it embeds <m>B</m> in projective space, and pull back the Fubini–Study form. The resulting representative of a positive multiple of <m>\lambda</m> is semipositive and has rank <m>d=\dim B</m> at general points of <m>X</m>. Adding <m>\varepsilon\omega</m> for a Kähler form <m>\omega</m> makes it positive, so <m>\lambda\in\overline{\mathcal K_X}</m>. Positivity at a general point implies <m>\int_X\lambda\omega^{2n-1}&gt;0</m>, hence <m>\lambda\ne0</m>.</p>
+        <p>Since <m>d&lt;2n</m>, we have <m>\lambda^{2n}=0</m>. The Fujiki relation gives <m>q_X(\lambda)=0</m>. By <xref ref="hkg-nef-isotropic-dimension"/>, the largest <m>k</m> for which <m>\int_X\lambda^k\omega^{2n-k}&gt;0</m> is <m>n</m>. On the other hand, semipositivity and generic rank <m>d</m> show that this largest integer is <m>d</m>: the power <m>d+1</m> vanishes and the power <m>d</m> has positive integral. Thus <m>d=n</m>.</p>
+        <p>Suppose <m>n\geq2</m>. Apply the polarized Fujiki formula to <m>n</m> copies of <m>\lambda</m>, one copy each of <m>\sigma,\bar\sigma</m>, and <m>n-2</m> copies of <m>\omega</m>. The class <m>\lambda</m> pairs to zero with itself and with <m>\sigma,\bar\sigma</m>. Each copy would have to pair with an <m>\omega</m>, but there are only <m>n-2</m> such copies. Every term is therefore zero, and
+          <md number="no">\int_X\lambda^n\sigma\bar\sigma\omega^{n-2}=0.</md>
+          Choose general hyperplanes on <m>B</m> whose intersection is a finite set of points in the smooth submersion locus of <m>f</m>. Their inverse images represent a positive multiple of <m>\lambda^n</m> and are a disjoint union of smooth fibers. The last integral is a sum of their integrals <m>\int_F\sigma|_F\,\overline{\sigma|_F}\,\omega|_F^{n-2}</m>. Each is nonnegative by the pointwise Hermitian norm identity for a <m>(2,0)</m> form, and it is zero exactly when <m>\sigma|_F=0</m>.</p>
+        <p>These fiber integrals are constant on the connected smooth submersion locus: they integrate a closed form along homologous locally transported fibers. Hence the vanishing holds on every smooth fiber there. Its dimension is <m>n</m>, so it is Lagrangian. When <m>n=1</m>, a holomorphic two-form restricts to zero on every curve, giving the same conclusion.</p></proof>
+    </proposition>
+    <p>The isotropy calculation follows <xref ref="hkg-bib-matsushita-addendum"/>. Equidimensionality and the assertion about singular fiber components are the additional conclusions of <xref ref="hkg-matsushita-fibration"/>.</p>
+  </section>
+  <section xml:id="hkg-integrable-system">
+    <title>Torus fibers and Hamiltonian vector fields</title>
+    <proposition xml:id="hkg-lagrangian-projective">
+      <title>(Voisin)</title>
+      <statement><p>Every compact Lagrangian submanifold <m>F</m> of an IHS manifold is projective.</p></statement>
+      <proof><p>Restriction <m>r:H^2(X,\R)\to H^2(F,\R)</m> kills <m>H^{2,0}(X)\oplus H^{0,2}(X)</m>, since these two summands are generated by <m>\sigma</m> and <m>\bar\sigma</m>. Thus its image lies in <m>H^{1,1}(F,\R)</m>. It contains the Kähler class <m>r(\omega)</m> for any Kähler class <m>\omega</m> on <m>X</m>. Rational classes are dense in <m>H^2(X,\R)</m>, and the Kähler cone of <m>F</m> is open. Consequently some <m>\alpha\in H^2(X,\Q)</m> has <m>r(\alpha)</m> Kähler. Multiplying by an integer gives an integral Kähler class on <m>F</m>; the Kodaira embedding theorem makes <m>F</m> projective.</p></proof>
+    </proposition>
+    <p>This argument is recorded in <xref ref="hkg-bib-huybrechts-mauri" detail="Proposition 1.1"/>. It uses the one-dimensionality of <m>H^{2,0}(X)</m>; a Lagrangian subtorus of a general holomorphic symplectic torus need not be projective.</p>
+    <p>Write <m>B^\circ</m> for the open subset of the smooth locus of <m>B</m> over which <m>f</m> is a submersion, and set <m>X^\circ=f^{-1}(B^\circ)</m>.</p>
+    <proposition xml:id="hkg-smooth-fiber-torus">
+      <statement><p>Let <m>b\in B^\circ</m>. The fiber <m>F=f^{-1}(b)</m> is an abelian variety after choosing an origin.</p></statement>
+      <proof><p>Since <m>f</m> is a submersion along <m>F</m>, its normal bundle <m>N_{F/X}\cong T_bB\otimes\cO_F</m> is trivial. The symplectic form identifies <m>T_F</m> with <m>N_{F/X}^*</m>, because <m>T_F</m> is its own symplectic orthogonal. Hence <m>T_F</m> and <m>\Omega_F^1</m> are holomorphically trivial.</p>
+        <p>The fiber is compact Kähler, so its holomorphic one-forms are closed. Choose a global frame <m>\theta_1,\ldots,\theta_n</m> of <m>\Omega_F^1</m>, with dual holomorphic vector fields <m>V_1,\ldots,V_n</m>. The identity
+          <md number="no">d\theta_i(V_j,V_k)=-\theta_i([V_j,V_k])</md>
+          shows that the vector fields commute. Compactness makes their real and imaginary parts complete; these commuting flows give global complex-time flows. They define a transitive holomorphic <m>\C^n</m>-action: each orbit is open, and connectedness leaves one orbit. The stabilizer is a discrete cocompact subgroup <m>\Gamma\subset\C^n</m>, giving <m>F\cong\C^n/\Gamma</m>. By <xref ref="hkg-lagrangian-projective"/>, this torus is projective, hence an abelian variety.</p></proof>
+    </proposition>
+    <p>Without a section, the smooth fibers are torsors for their associated abelian varieties, with no distinguished origins.</p>
+    <p>Let <m>z_1,\ldots,z_n</m> be local coordinates on <m>B^\circ</m>. Define vector fields <m>H_i</m> by
+      <md number="no">\iota_{H_i}\sigma=d(f^*z_i).</md>
+      They are vertical: the right side vanishes on the Lagrangian vertical tangent bundle, so its symplectic dual is vertical. They form a frame on each smooth fiber. Cartan's formula gives <m>\mathcal L_{H_i}\sigma=0</m>, and then
+      <md number="no">\iota_{[H_i,H_j]}\sigma=\mathcal L_{H_i}d(f^*z_j)=d\bigl(H_i(f^*z_j)\bigr)=0.</md>
+      Thus they commute. This is the Hamiltonian description of the integrable system.</p>
+    <p>On <m>X^\circ</m>, contraction with <m>\sigma</m> gives <m>T_{X^\circ/B^\circ}\cong f^*\Omega_{B^\circ}^1</m>. Dualizing and pushing forward, using <m>f_*\cO_{X^\circ}=\cO_{B^\circ}</m>, yields
+      <md number="no">f_*\Omega_{X^\circ/B^\circ}^1\cong T_{B^\circ}.</md>
+      The left side is the bundle of fiberwise holomorphic one-forms. A polarized variation of Hodge structure is obtained when the tori carry a locally constant integral polarization, for example when <m>X</m> is projective. Extending these bundles and their geometric structures across the discriminant is an additional problem; the displayed isomorphism is stated only on the smooth locus.</p>
+  </section>
+  <section xml:id="hkg-fibration-base">
+    <title>The base</title>
+    <theorem xml:id="hkg-hwang-base">
+      <title>(Hwang; Greb–Lehn)</title>
+      <statement><p>If the base <m>B</m> of a fibration from an IHS <m>2n</m>-fold is smooth, then <m>B\cong\PP^n</m>.</p></statement>
+    </theorem>
+    <p>Hwang proved the projective case in <xref ref="hkg-bib-hwang"/>; Greb and Lehn removed projectivity of <m>X</m> in <xref ref="hkg-bib-greb-lehn" detail="Theorem 1.1"/>. See also the Hodge-theoretic proof in <xref ref="hkg-bib-bakker-schnell" detail="Theorem 1.1"/>. These versions assume a smooth base.</p>
+    <p>When <m>X</m> is projective, Matsushita's original theorem also gives <m>\rho(B)=1</m>, log-terminal singularities of <m>B</m>, and ampleness of <m>-K_B</m>; see <xref ref="hkg-bib-matsushita-fibres" detail="Theorem 2"/>. For projective IHS fourfolds, Huybrechts and Xu proved <m>B\cong\PP^2</m> without assuming smoothness of <m>B</m>; see <xref ref="hkg-bib-huybrechts-xu" detail="Theorem 0.1"/>.</p>
+    <remark xml:id="hkg-base-preprint">
+      <p>The September 2026 preprint <xref ref="hkg-bib-openai-bases" detail="Theorem 1.1"/> states <m>B\cong\PP^n</m> in every dimension for a <em>projective morphism</em> <m>f</m> as above, without a smoothness hypothesis on <m>B</m>. Here projective means that <m>f</m> admits a relatively ample line bundle. Since <m>B</m> is projective, this also makes <m>X</m> projective. The statement has been checked against that preprint; its proof has not been assessed here.</p>
+    </remark>
+  </section>
+  <section xml:id="hkg-fibration-direct-images">
+    <title>Higher direct images and cohomology of the fibration class</title>
+    <theorem xml:id="hkg-matsushita-direct-images">
+      <title>(Matsushita)</title>
+      <statement><p>Let <m>f:X\to B</m> be a Lagrangian fibration from a projective IHS manifold, and assume that <m>B</m> is smooth. Then
+        <md number="no">R^if_*\cO_X\cong\Omega_B^i\qquad(0\leq i\leq n),</md>
+        and the higher direct images vanish for <m>i&gt;n</m>.</p></statement>
+    </theorem>
+    <p>We quote <xref ref="hkg-bib-matsushita-direct-images" detail="Theorem 1.2"/>. On the smooth locus a relative polarization identifies <m>R^1f_*\cO_X</m> with the dual of the bundle of holomorphic one-forms on the fibers, which was identified with <m>T_B</m> in <xref ref="hkg-integrable-system"/>. Exterior powers give the higher degrees there. The theorem extends the isomorphisms across the singular fibers; local freeness on the entire base is part of its conclusion.</p>
+    <p>For a smooth base, <xref ref="hkg-hwang-base"/> identifies <m>B</m> with <m>\PP^n</m>. These direct images determine every cohomology group of a positive power of <m>L=f^*\cO_{\PP^n}(1)</m>. The calculation on projective space is as follows.</p>
+    <lemma xml:id="hkg-positive-twisted-differentials">
+      <statement><p>Let <m>m&gt;0</m> and <m>0\leq p\leq n</m>. Then
+        <md number="no">H^a(\PP^n,\Omega_{\PP^n}^p(m))=0\quad(a&gt;0),</md>
+        and
+        <md number="no">h^0(\PP^n,\Omega_{\PP^n}^p(m))=\binom{m-1}{p}\binom{m+n-p}{n-p}.</md>
+        Here <m>\binom{m-1}{p}=0</m> for <m>p&gt;m-1</m>.</p></statement>
+      <proof><p>Let <m>V=\C^{n+1}</m>. Exterior powers of the Euler sequence give an exact complex
+        <md number="no">0\longrightarrow\Omega^p(m)\longrightarrow
+          {\textstyle\bigwedge^p}V^*\otimes\cO(m-p)\longrightarrow\cdots\longrightarrow\cO(m)\longrightarrow0.</md>
+        Every line-bundle twist in this complex is at least <m>1-n</m>. Its higher cohomology therefore vanishes, by the line-bundle cohomology of projective space, <url href="https://stacks.math.columbia.edu/tag/01XT">Stacks, Tag 01XT</url>. Thus the cohomology of <m>\Omega^p(m)</m> is computed by the complex of global sections of the displayed terms.</p>
+        <p>Let <m>x_0,\ldots,x_n</m> be a basis of <m>V^*</m>, also regarded as polynomial coordinates. The global-section complex is the truncation of the Koszul complex in total degree <m>m</m>, where total degree is polynomial degree plus exterior degree. Its differential is <m>d=\sum_j x_j\iota_j</m>, with <m>\iota_j</m> contraction of the exterior factor by the dual basis vector. The operator <m>s=\sum_j(x_j\wedge-)\partial/\partial x_j</m> satisfies <m>ds+sd=m\id</m> on total degree <m>m</m>: the two terms sum to polynomial degree plus exterior degree. Since <m>m&gt;0</m>, the full complex is exact. Truncation can leave cohomology only at its first term. This proves the higher-cohomology vanishing; it also gives <m>H^0=0</m> when <m>m\leq p</m>, since that first term is zero or has zero kernel.</p>
+        <p>For the dimension, the short exact sequence obtained from the same Euler complex is
+          <md number="no">0\longrightarrow\Omega^p(m)\longrightarrow
+            {\textstyle\bigwedge^p}V^*\otimes\cO(m-p)\longrightarrow\Omega^{p-1}(m)\longrightarrow0.</md>
+          With <m>a_p=h^0(\Omega^p(m))</m> and the vanishing just proved, it yields
+          <md number="no">a_p=\binom{n+1}{p}\binom{n+m-p}{n}-a_{p-1},\qquad a_0=\binom{n+m}{n}.</md>
+          A binomial coefficient for a negative line-bundle degree is read as zero in this recurrence. Substituting the stated formula verifies the recurrence and initial value, proving the formula by induction on <m>p</m>.</p></proof>
+    </lemma>
+    <proposition xml:id="hkg-fibration-line-cohomology">
+      <statement><p>Let <m>f:X\to\PP^n</m> be a Lagrangian fibration with <m>X</m> projective IHS, and set <m>L=f^*\cO(1)</m>. For every <m>m&gt;0</m>,
+        <md xml:id="hkg-eq-fibration-line-cohomology" number="yes">h^i(X,L^{\otimes m})=
+          \begin{cases}\displaystyle\binom{m-1}{i}\binom{m+n-i}{n-i},&amp;0\leq i\leq n,\\0,&amp;i&gt;n.\end{cases}</md></p></statement>
+      <proof><p>The projection formula and <xref ref="hkg-matsushita-direct-images"/> identify the Leray spectral sequence as
+        <md number="no">E_2^{a,b}=H^a(\PP^n,\Omega_{\PP^n}^b(m))\Longrightarrow H^{a+b}(X,L^{\otimes m}).</md>
+        By <xref ref="hkg-positive-twisted-differentials"/>, only the column <m>a=0</m> is nonzero. Every differential is zero, and each total degree has a single graded piece. Hence the dimensions are exactly those in the preceding lemma.</p></proof>
+    </proposition>
+    <p>For <m>m=1</m>, this gives <m>h^0(X,L)=n+1</m> and no higher cohomology. For large <m>m</m>, all groups in degrees zero through <m>n</m> are nonzero, even though <m>\chi(X,L^{\otimes m})=n+1</m> remains constant. For a fourfold and <m>m=3</m>, their dimensions are <m>10,8,1</m>; their alternating sum is three.</p>
+  </section>
+  <section xml:id="hkg-fiber-restriction">
+    <title>Restriction of cohomology to a smooth fiber</title>
+    <p>A smooth fiber is an abelian <m>n</m>-fold and has many cohomology classes. Very few are restrictions of classes on <m>X</m>. The proof below separates a general fact about fibers from the IHS calculation.</p>
+    <lemma xml:id="hkg-fiber-kernel-lemma">
+      <title>(Voisin)</title>
+      <statement><p>Let <m>f:Y\to B</m> be a proper surjective holomorphic map from a connected compact Kähler manifold onto a normal complex space. Let <m>F</m> be a connected smooth fiber over the submersion locus, of codimension <m>r</m>, with inclusion <m>j:F\hookrightarrow Y</m>. Then, in every degree,
+        <md number="no">\ker\bigl(j^*:H^k(Y,\R)\to H^k(F,\R)\bigr)
+          =\ker\bigl([F]\smile-:H^k(Y,\R)\to H^{k+2r}(Y,\R)\bigr).</md></p></statement>
+      <proof><p>Let <m>I^k=\operatorname{im}j^*</m>, and let <m>h_F</m> be the restriction of a Kähler class on <m>Y</m>. We use the global invariant cycle theorem in its compact Kähler form: <m>I^k</m> is the monodromy-invariant part of the fiber cohomology. This theorem, and its application to relative Lefschetz decomposition, are quoted from <xref ref="hkg-bib-shen-yin" detail="Appendix B, proof of Lemma B.4"/>. Over the submersion locus, the class <m>h_F</m> is a flat section, and its relative Lefschetz decomposition commutes with monodromy. Thus <m>I^*</m> is stable under that decomposition and under both Lefschetz operators. It is also a real Hodge substructure, since restriction preserves Hodge type.</p>
+        <p>Write <m>d=\dim F</m>. The Hodge–Riemann bilinear relations make the Lefschetz pairing nondegenerate on each primitive real Hodge substructure of <m>I^*</m>: the associated Hermitian form is definite on each primitive Hodge component, so its restriction has zero radical. Primitive summands in a fixed degree are orthogonal. Together with the Lefschetz isomorphisms, this proves that
+          <md number="no">I^k\times I^{2d-k}\longrightarrow\R,\qquad(a,b)\longmapsto\int_F ab</md>
+          is nondegenerate in every degree.</p>
+        <p>If <m>j^*a=0</m>, the projection formula gives <m>[F]a=j_*j^*a=0</m>. Conversely, if <m>j^*a\ne0</m>, nondegeneracy provides <m>b\in H^{2d-k}(Y,\R)</m> with
+          <md number="no">0\ne\int_F j^*a\,j^*b=\int_Y[F]ab.</md>
+          Hence <m>[F]a\ne0</m>. This proves the reverse inclusion.</p></proof>
+    </lemma>
+    <theorem xml:id="hkg-fiber-restriction-rank">
+      <title>(Shen–Yin; Voisin)</title>
+      <statement><p>Let <m>f:X\to B</m> be a Lagrangian fibration from an IHS <m>2n</m>-fold. For every smooth fiber <m>F</m> over the submersion locus and every Kähler class <m>\omega</m> on <m>X</m>,
+        <md number="no">\operatorname{im}\bigl(H^k(X,\R)\to H^k(F,\R)\bigr)=
+          \begin{cases}\R(\omega|_F)^i,&amp;k=2i,\ 0\leq i\leq n,\\0,&amp;k\text{ odd or }k&gt;2n.\end{cases}</md>
+        Over <m>\Q</m>, the map has rank one in even degree at most <m>2n</m> and rank zero in odd degree.</p></statement>
+      <proof><p>Choose an ample line bundle <m>A</m> on the projective base <m>B</m> and let <m>\lambda=c_1(f^*A)</m>. Its square for the BBF form is zero. Intersecting general hyperplanes on the base shows that <m>[F]</m> is a nonzero scalar multiple of <m>\lambda^n</m>. Fibers over the connected submersion locus have the same cohomology class, so this holds for each such <m>F</m>. By <xref ref="hkg-fiber-kernel-lemma"/>, the rank of restriction equals the rank of cup product by <m>\lambda^n</m>.</p>
+        <p>For <m>a\in H^2(X,\C)</m>, the matrix entries of <m>a^n\smile-</m> are homogeneous polynomials in <m>a</m>. Consequently the condition that its rank in degree <m>k</m> is at most a prescribed integer is Zariski closed, being defined by minors. Let
+          <md number="no">\mathscr Q=\{a\in H^2(X,\C):q_X(a)=0\}</md>
+          be the affine isotropic cone. It is irreducible because <m>q_X</m> is nondegenerate and <m>b_2(X)\geq3</m>. Local Torelli gives a nonempty analytic open subset of the projective quadric <m>\PP(\mathscr Q)</m> consisting of period lines <m>[\sigma_t]</m>. Allowing all nonzero scalar multiples <m>a=c\sigma_t</m> therefore gives a nonempty analytic open subset of <m>\mathscr Q\setminus\{0\}</m>. The differentiable trivialization identifies the cup products on the fibers.</p>
+        <p>Since <m>\sigma_t^n</m> has Hodge type <m>(2n,0)</m>, cup product by it kills every component <m>H^{p,k-p}(X_t)</m> with <m>p&gt;0</m>. The remaining component <m>H^{0,k}(X_t)</m> is zero for odd <m>k</m> and one-dimensional for even <m>k\leq2n</m>, by <xref ref="hkg-prop-ihs-holomorphic-forms"/>. Thus the rank is zero or at most one, respectively; multiplying <m>\sigma_t</m> by <m>c\ne0</m> does not change it. This analytic open subset is Zariski dense in the irreducible cone <m>\mathscr Q</m>. The closed rank condition therefore holds on the entire cone, in particular at <m>a=\lambda</m>. For <m>k&gt;2n</m>, restriction vanishes for dimensional reasons.</p>
+        <p>In degree <m>2i</m> with <m>0\leq i\leq n</m>, the restriction <m>(\omega|_F)^i</m> is nonzero, because its product with <m>(\omega|_F)^{n-i}</m> has positive integral. Hence restriction has rank exactly one and its image is the displayed line. Extension of scalars preserves the rank of a rational linear map, giving the rational assertion.</p></proof>
+    </theorem>
+    <p>This is Voisin's proof in <xref ref="hkg-bib-shen-yin" detail="Appendix B, Theorem B.1 and Proposition B.2"/>. The invariant cycle theorem is the step that uses the fiber hypothesis.<fn>The kernel identity can fail for a smooth subvariety that is not a fiber. The counterexample in <xref ref="hkg-bib-shen-yin" detail="Remark B.3"/> is the exceptional divisor of the blowup of <m>\PP^3</m> along an elliptic curve, in degree three.</fn></p>
+  </section>
+  <section xml:id="hkg-lagrangian-deformations">
+    <title>Deforming a Lagrangian submanifold</title>
+    <p>A smooth fiber is a Lagrangian torus. Conversely, a Lagrangian torus in <m>X</m> already has a neighborhood fibered by its deformations. We first prove this local assertion, then state the global extension theorems.</p>
+    <p>For a compact submanifold <m>Y\subset X</m>, let <m>\operatorname{Def}_X(Y)</m> denote the germ at <m>[Y]</m> of the Douady space of compact analytic subspaces of the fixed manifold <m>X</m>. Its universal family is locally the incidence space of pairs <m>(x,[Y'])</m> with <m>x\in Y'</m>. In the projective setting this is the analytic germ of the Hilbert scheme. We use the existence of this parameter space and its universal family from analytic deformation theory.</p>
+    <proposition xml:id="hkg-lagrangian-normal-tangent">
+      <statement><p>Let <m>Y\subset X</m> be a compact Lagrangian submanifold. The symplectic form gives an isomorphism
+        <md number="no">N_{Y/X}\xrightarrow{\ \sim\ }\Omega_Y^1,\qquad
+          [v]\longmapsto\bigl(w\longmapsto\sigma(v,w)\bigr),</md>
+        and
+        <md number="no">T_{[Y]}\operatorname{Def}_X(Y)\cong H^0(Y,N_{Y/X})
+          \cong H^0(Y,\Omega_Y^1).</md>
+        Every sufficiently small smooth embedded deformation of <m>Y</m> is Lagrangian.</p></statement>
+      <proof><p>The displayed bundle map is well defined because <m>\sigma|_{T_Y}=0</m>. Its kernel is the image in <m>N_{Y/X}</m> of the symplectic orthogonal <m>T_Y^\perp</m>. A Lagrangian subspace is its own symplectic orthogonal, so the kernel is zero. Both bundles have rank <m>n</m>, proving the isomorphism.</p>
+        <p>A first-order embedded deformation is locally the graph of a normal vector field multiplied by <m>\varepsilon</m>, with <m>\varepsilon^2=0</m>. Changing its local lift by a tangent vector field changes the parametrization of the graph, rather than its embedded subspace. Compatibility on overlaps is therefore exactly the gluing condition for a section of <m>N_{Y/X}</m>. This identifies the Zariski tangent space with <m>H^0(Y,N_{Y/X})</m>.</p>
+        <p>In a small smooth family of embedded submanifolds, differentiable trivialization identifies the inclusions up to homotopy. Thus the classes <m>[\sigma|_{Y_t}]\in H^2(Y_t,\C)</m> are the transports of <m>[\sigma|_Y]=0</m>. Each <m>Y_t</m> is compact Kähler, since it is a submanifold of <m>X</m>. On a compact Kähler manifold, a holomorphic two-form with zero cohomology class vanishes, by Hodge decomposition. Hence <m>\sigma|_{Y_t}=0</m>. The dimension remains <m>n</m>, so <m>Y_t</m> is Lagrangian.</p></proof>
+    </proposition>
+    <theorem xml:id="hkg-ran-voisin-unobstructed">
+      <title>(Ran, Voisin)</title>
+      <statement><p>For a compact Lagrangian submanifold <m>Y\subset X</m>, the germ <m>\operatorname{Def}_X(Y)</m> is smooth. Its dimension is <m>h^0(Y,\Omega_Y^1)</m>.</p></statement>
+    </theorem>
+    <p>We use the unobstructedness theorem without proof. It is the fixed-ambient fiber of the deformation statement in <xref ref="hkg-bib-ran-lagrangian" detail="Theorem 2.2"/>, attributed there to Voisin; see also <xref ref="hkg-bib-voisin-lagrangian"/>. Its application to the Douady space is recorded in <xref ref="hkg-bib-glr-beauville" detail="proof of Lemma 3.1"/>. The tangent-space calculation gives the dimension: it is zero for a Lagrangian projective space and <m>n</m> for a Lagrangian <m>n</m>-torus.<fn>Unobstructedness here holds even when <m>H^1(Y,N_{Y/X})\ne0</m>. For example, when <m>Y\cong\PP^n</m>, this obstruction space is <m>H^1(\PP^n,\Omega^1)\cong\C</m>, but the embedded deformation germ is a reduced point.</fn></p>
+    <p>One can also deform the ambient manifold together with the submanifold. Write <m>\operatorname{Def}(X,Y)</m> for the germ parametrizing deformations of the inclusion <m>j:Y\hookrightarrow X</m>, with both central fibers identified. Forgetting the inclusion gives a map <m>p:\operatorname{Def}(X,Y)\to\operatorname{Def}(X)</m>. Its image germ is denoted by <m>D_Y</m>. This differs from <m>\operatorname{Def}_X(Y)</m>, where the ambient complex structure is fixed.</p>
+    <proposition xml:id="hkg-lagrangian-pair-tangent">
+      <statement><p>Let <m>j:Y\hookrightarrow X</m> be a compact Lagrangian submanifold. The infinitesimal condition for a deformation of <m>X</m> to admit a deformation of the inclusion is the kernel of
+        <md number="no">\rho_Y:H^1(X,T_X)\longrightarrow H^1(Y,N_{Y/X}),</md>
+        induced by restriction and the normal-bundle quotient. Under contraction with <m>\sigma</m> and <m>N_{Y/X}\cong\Omega_Y^1</m>, this map is
+        <md number="no">j^*:H^{1,1}(X)\longrightarrow H^{1,1}(Y).</md>
+        Its rank is <m>r_Y:=\operatorname{rk}_{\Q}\bigl(j^*:H^2(X,\Q)\to H^2(Y,\Q)\bigr)</m>.</p></statement>
+      <proof><p>Represent a first-order ambient deformation by a Čech cocycle <m>\theta_{ab}</m> of holomorphic vector fields. On each local chart, a first-order deformation of <m>Y</m> is specified by a normal field <m>\nu_a</m>. The local submanifolds glue precisely when the normal image of <m>\theta_{ab}|_Y</m> equals <m>\nu_b-\nu_a</m>, with a consistent choice of the gluing sign. Such fields exist exactly when the induced class in <m>H^1(Y,N_{Y/X})</m> vanishes. Thus the image of the tangent map <m>dp</m> is <m>\ker\rho_Y</m>.</p>
+        <p>For a local vector field <m>v</m>, the one-form on <m>Y</m> obtained from its normal image is <m>w\mapsto\sigma(v,w)</m>. This is also the restriction of <m>v\mathbin{\lrcorner}\sigma</m>. Hence contraction identifies the normal-quotient map with restriction of one-forms, and the same holds on <m>H^1</m>. Dolbeault theory gives the displayed map on <m>(1,1)</m> classes.</p>
+        <p>Restriction kills <m>H^{2,0}(X)\oplus H^{0,2}(X)</m>, since <m>Y</m> is Lagrangian. Its rank on total degree-two cohomology therefore equals its rank on <m>H^{1,1}(X)</m>. Extension of scalars from <m>\Q</m> to <m>\C</m> preserves the rank, proving the last assertion.</p></proof>
+    </proposition>
+    <theorem xml:id="hkg-lagrangian-pair-period-locus">
+      <title>(Voisin)</title>
+      <statement><p>Let <m>Y</m> be a smooth compact Lagrangian submanifold of a compact IHS manifold <m>X</m>. Trivialize the degree-two cohomology local system over a small representative <m>V</m> of <m>\operatorname{Def}(X)</m>, and regard <m>[\sigma_t]</m> as a class in <m>H^2(X,\C)</m>. Then, as germs at <m>0</m>,
+        <md xml:id="hkg-eq-lagrangian-pair-period-locus" number="yes">D_Y=\{t\in V:j^*[\sigma_t]=0\text{ in }H^2(Y,\C)\}.</md>
+        Both <m>\operatorname{Def}(X,Y)</m> and <m>D_Y</m> are smooth, and <m>p</m> is a submersion onto <m>D_Y</m>. Moreover,
+        <md number="no">\operatorname{codim}_{\operatorname{Def}(X)}D_Y=r_Y,\qquad
+          T_0D_Y=\ker\rho_Y.</md></p></statement>
+    </theorem>
+    <p>We quote the equality of germs and the smoothness assertions. The smooth-submanifold case of <xref ref="hkg-bib-lehn-lagrangian-deformations" detail="Theorems 3.8 and 4.3, Corollary 4.4"/> records Voisin's theorem with this period description; the unobstructedness and smooth image and fibers are also in <xref ref="hkg-bib-ran-lagrangian" detail="Theorem 2.2"/>. In <xref ref="hkg-eq-lagrangian-pair-period-locus"/>, <m>j^*</m> is the fixed cohomology map of the central inclusion, transported by the chosen trivialization. Voisin's theorem realizes this cohomological vanishing as deformations <m>Y_t\hookrightarrow X_t</m>. Since <m>p</m> is smooth onto its image, that image has the tangent space calculated above.</p>
+    <p>The relation to the degree-two Hodge loci of <xref ref="hkg-deformations"/> is explicit. Put
+      <md number="no">K(j)=\ker\bigl(j^*:H^2(X,\Q)\to H^2(Y,\Q)\bigr),\qquad N(j)=K(j)^{\perp_{q_X}}.</md>
+      A marking transfers <m>N(j)</m> to a rational subspace of <m>\Lambda_\Q</m>. The period condition is <m>[\sigma_t]\in\PP(K(j)_\C)</m>, equivalently orthogonality to <m>N(j)</m>. Thus <m>D_Y</m> is locally the locus <m>\Omega_{\Lambda,\eta(N(j))}</m> of <xref ref="hkg-definition-degree-two-hodge-locus"/>. The BBF form is nondegenerate, so <m>\dim_\Q N(j)=r_Y</m>; <xref ref="hkg-proposition-hodge-loci-codimension"/> proves the codimension formula. Equality of this period locus with actual deformations of the pair is Voisin's geometric assertion.</p>
+    <proposition xml:id="hkg-lagrangian-torus-local-fibration">
+      <statement><p>Let <m>T\subset X</m> be a Lagrangian submanifold biholomorphic to a complex torus. There are an open neighborhood <m>U</m> of <m>T</m>, a small polydisc <m>S</m> of dimension <m>n</m>, and a proper holomorphic submersion <m>p_U:U\to S</m> with central fiber <m>T</m>. Its fibers are the small embedded deformations of <m>T</m> and are Lagrangian tori.</p></statement>
+      <proof><p>The cotangent bundle of <m>T</m> is trivial, and evaluation of holomorphic one-forms at any point is an isomorphism. By the preceding results, a sufficiently small representative <m>S</m> of <m>\operatorname{Def}_X(T)</m> is smooth of dimension <m>n</m>. Its universal family <m>p:\mathcal T\to S</m> is a proper submersion after shrinking; smoothness of the fibers and of the map is open near the compact central fiber. Let <m>e:\mathcal T\to X</m> be evaluation.</p>
+        <p>At <m>u=(x,0)</m> in the central fiber, the tangent sequence of <m>p</m> and the normal sequence of <m>T\subset X</m> give
+          <md number="no">\begin{array}{ccccccccc}
+            0&amp;\longrightarrow&amp;T_xT&amp;\longrightarrow&amp;T_u\mathcal T&amp;\longrightarrow&amp;T_0S&amp;\longrightarrow&amp;0\\
+            &amp;&amp;\Vert&amp;&amp;\downarrow\,de_u&amp;&amp;\downarrow\,\mathrm{ev}_x\\
+            0&amp;\longrightarrow&amp;T_xT&amp;\longrightarrow&amp;T_xX&amp;\longrightarrow&amp;N_{T/X,x}&amp;\longrightarrow&amp;0.
+          \end{array}</md>
+          The right arrow evaluates the normal section corresponding to the first-order deformation. Under <m>N_{T/X}\cong\Omega_T^1</m>, it is evaluation of holomorphic one-forms, hence an isomorphism. Exactness then makes <m>de_u</m> an isomorphism. The holomorphic inverse function theorem shows that <m>e</m> is a local biholomorphism along the central fiber. Compactness and properness of <m>p</m> let us shrink <m>S</m> so that it is a local biholomorphism on all of <m>\mathcal T</m>.</p>
+        <p>After another shrinking, <m>e</m> is injective. Otherwise there would be distinct pairs <m>u_j,v_j</m> above base points tending to <m>0</m>, with <m>e(u_j)=e(v_j)</m>. Properness gives subsequences converging to points <m>u,v</m> of the central fiber. Evaluation embeds that fiber as <m>T</m>, so <m>u=v</m>. Both sequences eventually lie in one neighborhood where <m>e</m> is injective, a contradiction. Thus <m>e</m> identifies <m>\mathcal T</m> with an open neighborhood <m>U</m> of <m>T</m>. Transporting <m>p</m> gives <m>p_U</m>.</p>
+        <p>The fibers are Lagrangian by <xref ref="hkg-lagrangian-normal-tangent"/>. Their normal bundles are trivial, since they are fibers of a submersion. The symplectic identification therefore makes their cotangent bundles trivial. They are connected compact Kähler manifolds, so the commuting-vector-field argument in <xref ref="hkg-smooth-fiber-torus"/> identifies them with complex tori. They are projective by <xref ref="hkg-lagrangian-projective"/>.</p></proof>
+    </proposition>
+    <p>The evaluation argument is from <xref ref="hkg-bib-glr-beauville" detail="Lemma 3.1"/>. Unobstructedness gives the family of actual deformations; compactness then turns local invertibility along <m>T</m> into a fibration of a whole neighborhood.</p>
+    <definition xml:id="hkg-almost-holomorphic-fibration">
+      <statement><p>A dominant meromorphic map <m>f:X\dashrightarrow B</m> is <em>almost holomorphic</em> if there are dense open subsets <m>U\subset X</m> and <m>B^\circ\subset B</m> such that <m>f|_U:U\to B^\circ</m> is proper and its fibers are general fibers of <m>f</m>. A smooth submanifold <m>T</m> is a <em>strong fiber</em> if such a neighborhood of complete fibers can be chosen to contain <m>T</m> as a fiber. For an almost holomorphic Lagrangian fibration, the general fibers are connected Lagrangian tori and <m>B</m> is normal.</p></statement>
+    </definition>
+    <p>Beauville asked whether a Lagrangian torus in a compact IHS manifold is a fiber of a meromorphic Lagrangian fibration. The local proposition constructs such a fibration near the torus; the global question concerns extending its family of leaves across <m>X</m>.</p>
+    <theorem xml:id="hkg-beauville-torus-fibration">
+      <title>(Greb–Lehn–Rollenske; Hwang–Weiss)</title>
+      <statement><p>Let <m>T\subset X</m> be a Lagrangian torus in a compact IHS manifold.</p>
+        <p><ol>
+          <li><p>If <m>X</m> is nonprojective, it admits a holomorphic Lagrangian fibration with fiber <m>T</m>.</p></li>
+          <li><p>In general, there is an almost holomorphic Lagrangian fibration <m>f:X\dashrightarrow B</m> onto a normal projective variety with strong fiber <m>T</m>. In a neighborhood of this fiber the map is proper and smooth.</p></li>
+        </ol></p>
+      </statement>
+    </theorem>
+    <p>The first assertion is <xref ref="hkg-bib-glr-beauville" detail="Theorem 4.1"/>; the second is <xref ref="hkg-bib-hwang-weiss" detail="Theorem 1.2"/>. Both are quoted. Amerik and Campana give a short alternative proof of the nonprojective case in <xref ref="hkg-bib-amerik-campana-tori" detail="§2"/>. Their discussion of the projective case is distinct from Hwang and Weiss's general theorem.</p>
+    <theorem xml:id="hkg-almost-holomorphic-model">
+      <title>(Greb–Lehn–Rollenske)</title>
+      <statement><p>Let <m>X</m> be projective IHS, and let <m>f:X\dashrightarrow B</m> be an almost holomorphic Lagrangian fibration with normal projective base. There are a projective IHS manifold <m>X'</m>, birational maps <m>\phi:X\dashrightarrow X'</m> and <m>\beta:B\dashrightarrow B'</m>, and a holomorphic Lagrangian fibration <m>f':X'\to B'</m> such that <m>f'\circ\phi=\beta\circ f</m> as meromorphic maps. The map <m>\phi</m> is an isomorphism near a general fiber of <m>f</m>.</p></statement>
+    </theorem>
+    <p>This is <xref ref="hkg-bib-glr-beauville" detail="Theorem 6.2"/>. A Lagrangian torus therefore gives an almost holomorphic fibration on <m>X</m> and a holomorphic fibration on a birational IHS model <m>X'</m>. Semiampleness of a nef isotropic line bundle concerns a morphism on <m>X</m> itself.</p>
+    <corollary xml:id="hkg-lagrangian-torus-pair-hypersurface">
+      <statement><p>For any Lagrangian torus <m>T\subset X</m>,
+        <md number="no">\operatorname{rk}\bigl(H^2(X,\Q)\to H^2(T,\Q)\bigr)=1.</md>
+        Consequently, the deformations of <m>X</m> admitting a deformation of <m>T</m> form a smooth hypersurface in <m>\operatorname{Def}(X)</m>.</p></statement>
+      <proof><p>If <m>X</m> is nonprojective, <xref ref="hkg-beauville-torus-fibration"/> realizes <m>T</m> as a smooth fiber of a holomorphic fibration. The rank assertion is then <xref ref="hkg-fiber-restriction-rank"/> in degree two.</p>
+        <p>If <m>X</m> is projective, the same theorem gives an almost holomorphic fibration with strong fiber <m>T</m>. On a connected smooth proper locus containing this fiber, the restriction maps from <m>H^2(X,\Q)</m> give a map to a cohomology local system, so their ranks are constant. We can therefore replace <m>T</m> by a general fiber <m>F</m> in that locus. By <xref ref="hkg-almost-holomorphic-model"/>, a birational IHS model <m>X'</m> has a holomorphic fibration and is isomorphic to <m>X</m> near <m>F</m>. The natural isometry <m>H^2(X,\Q)\cong H^2(X',\Q)</m> is compatible with restriction to <m>F</m>, since it is induced on this common open set by the isomorphism. Applying <xref ref="hkg-fiber-restriction-rank"/> on <m>X'</m> gives rank one on <m>X</m> as well. The hypersurface assertion now follows from <xref ref="hkg-lagrangian-pair-period-locus"/>.</p></proof>
+    </corollary>
+  </section>
+  <section xml:id="hkg-semiampleness">
+    <title>From an isotropic line bundle to a fibration</title>
+    <p>Recall the definition of semiampleness in <xref ref="hkg-def-semiample"/>. Positive-square nef bundles give birational contractions by <xref ref="hkg-nef-positive-contraction"/>. The isotropic case instead gives a morphism of half the dimension.</p>
+    <proposition xml:id="hkg-isotropic-semiample-fibration">
+      <statement><p>Let <m>L</m> be a nontrivial nef line bundle on an IHS manifold, with <m>q_X(c_1(L))=0</m>. If <m>L</m> is semiample, a sufficiently divisible positive power defines a Lagrangian fibration after Stein factorization.</p></statement>
+      <proof><p>A generated power defines a morphism to projective space. Its Stein factorization is <m>f:X\to B</m>, where <m>B</m> is normal and projective, <m>f_*\cO_X=\cO_B</m>, and <m>L^{\otimes m}=f^*A</m> for an ample line bundle <m>A</m> on <m>B</m>. The class <m>c_1(L)</m> is nonzero by <xref ref="hkg-picard-identification"/>. Its numerical dimension is <m>n</m> by <xref ref="hkg-nef-isotropic-dimension"/>, while the pullback of an ample class has numerical dimension <m>\dim B</m>. Hence <m>\dim B=n</m>. It is a nontrivial fibration, so <xref ref="hkg-matsushita-fibration"/> makes it Lagrangian.</p></proof>
+    </proposition>
+    <p>The difficult converse question was traditionally called the <em>hyperkähler SYZ conjecture</em>, the <em>Lagrangian fibration conjecture</em>, or a hyperkähler case of abundance: must every nontrivial nef isotropic line bundle be semiample? Its formulation concerns a holomorphic fibration. The metric SYZ problem concerns special Lagrangian real tori in a degenerating Calabi–Yau metric; the two formulations are related by hyperkähler rotation but are not identical definitions.</p>
+    <theorem xml:id="hkg-engel-mauri-semiampleness">
+      <title>(Engel–Mauri, 2026 preprint)</title>
+      <statement><p>Every nef line bundle on a compact IHS manifold is semiample.</p></statement>
+    </theorem>
+    <p>This is Theorem 1.1 of the October 2026 preprint <xref ref="hkg-bib-engel-mauri"/>. We use its statement as an external theorem from this preprint; its full proof has not been independently verified here. For positive BBF square, the projectivity criterion and the base-point-free theorem already give semiampleness: the line bundle is nef and big on a projective manifold with trivial canonical bundle. The new case is the nontrivial isotropic one. By <xref ref="hkg-isotropic-semiample-fibration"/>, a nontrivial nef isotropic line bundle then defines a Lagrangian fibration.</p>
+    <p>The proof in <xref ref="hkg-bib-engel-mauri" detail="§§2–4"/> connects three theories. A metric SYZ theorem produces special Lagrangian tori in a maximal degeneration. The limiting cohomology identifies their Poincaré duals as nonzero multiples of <m>\lambda^n</m> for an isotropic degree-two class <m>\lambda</m>. A rotation result with this cohomological hypothesis makes the tori holomorphic Lagrangian. Existence of a fibration and a semiampleness-in-families theorem then carry the construction to the prescribed nef class.</p>
+    <p>The metric SYZ theorem, limiting mixed Hodge theory, and semiampleness in families are external theorems in that proof. Its rotation step requires the cohomological condition stated below.</p>
+    <p xml:id="hkg-independent-syz-note">The independent <url href="/notes/hyperkahler-syz/hyperkahler-syz-notes.html">Lagrangian fibrations and hyperkähler SYZ</url> develops the prescribed degeneration, the cohomological rotation criteria, and the return to the original nef pair. It also treats the recent results on singular bases and the affine and semi-flat geometry of the smooth locus. The present chapter supplies the general fibration and deformation results used there.</p>
+  </section>
+  <section xml:id="hkg-rotation-lagrangian">
+    <title>Holomorphic and special Lagrangian submanifolds</title>
+    <p>Fix a hyperkähler metric and a quaternionic triple <m>I,J,K</m>, with <m>\sigma_I=\omega_J+i\omega_K</m> and <m>\sigma_J=\omega_K+i\omega_I</m>. The volume form <m>\Omega_J=\sigma_J^n/n!</m> is parallel. For an oriented real <m>2n</m>-dimensional submanifold <m>F</m>, special Lagrangian of phase <m>\theta</m> means
+      <md number="no">\omega_J|_F=0,\qquad\operatorname{Im}(e^{i\theta}\Omega_J)|_F=0,\qquad
+        \operatorname{Re}(e^{i\theta}\Omega_J)|_F=\operatorname{vol}_F.</md>
+      The last equality includes the orientation and calibration condition.</p>
+    <proposition xml:id="hkg-holomorphic-to-special">
+      <statement><p>If <m>F</m> is <m>I</m>-holomorphic Lagrangian, then with its complex orientation it is special Lagrangian for <m>J</m> with phase <m>\theta=-n\pi/2</m>.</p></statement>
+      <proof><p>The identity <m>\sigma_I|_F=0</m> means <m>\omega_J|_F=\omega_K|_F=0</m>. Since <m>F</m> is <m>I</m>-complex, its induced Kähler form is <m>\omega_I|_F</m>, and its Riemannian volume is <m>\omega_I^n|_F/n!</m>. Therefore
+        <md number="no">\Omega_J|_F=i^n\frac{\omega_I^n|_F}{n!}=i^n\operatorname{vol}_F.</md>
+        Multiplication by <m>e^{-in\pi/2}</m> gives the required real positive volume form.</p></proof>
+    </proposition>
+    <proposition xml:id="hkg-special-to-holomorphic">
+      <statement><p>Let <m>F</m> be a compact special Lagrangian submanifold for <m>(J,\omega_J,\Omega_J)</m>, with the orientation and constant phase in the preceding definition. Then <m>F</m> is <m>I</m>-holomorphic Lagrangian if and only if <m>[\omega_K|_F]=0</m> in <m>H^2(F,\R)</m>.</p></statement>
+      <proof><p>If <m>F</m> is <m>I</m>-holomorphic Lagrangian, then <m>\omega_K|_F=0</m>. Conversely, since <m>F</m> is compact and <m>[\omega_K|_F]=0</m>, the binomial expansion of <m>\Omega_J=(\omega_K+i\omega_I)^n/n!</m> gives
+        <md number="no">\int_F\Omega_J=i^n\int_F\frac{\omega_I^n}{n!}.</md>
+        The constant-phase calibration condition and Wirtinger's inequality therefore give
+        <md number="no">\begin{aligned}
+          \operatorname{Vol}(F)&amp;=\left|\int_F\Omega_J\right|=\left|\int_F\frac{\omega_I^n}{n!}\right|\\
+          &amp;\leq\int_F\left|\frac{\omega_I^n}{n!}\right|\leq\operatorname{Vol}(F).
+        \end{aligned}</md>
+        The absolute value in the last integral denotes the density of the real top-degree form on <m>F</m>. Equality in Wirtinger's pointwise inequality holds exactly for an <m>I</m>-complex tangent plane. The nonnegative continuous difference between the volume density and that density has integral zero, so it vanishes at every point. Thus <m>F</m> is an <m>I</m>-complex submanifold. For tangent vectors <m>v,w</m>, the quaternionic identities give <m>\omega_K(v,w)=-\omega_J(Iv,w)=0</m>. Together with <m>\omega_J|_F=0</m>, this proves <m>\sigma_I|_F=0</m>.</p></proof>
+    </proposition>
+    <p>The argument is <xref ref="hkg-bib-engel-mauri" detail="Proposition 2.2"/>. Its rotation theorem obtains the cohomological vanishing from a condition on <m>\operatorname{PD}[F]</m>.<fn>In dimensions greater than two, special Lagrangianity alone is weaker than being holomorphic Lagrangian after a prescribed hyperkähler rotation. The condition on <m>[\omega_K|_F]</m> is what allows equality in Wirtinger's inequality.</fn></p>
+  </section>
+  <section xml:id="hkg-fibration-examples">
+    <title>Examples and section counts</title>
+    <example xml:id="hkg-elliptic-hilbert-fibration">
+      <p>Let <m>p:S\to\PP^1</m> be an elliptic K3 surface. Composing the Hilbert–Chow morphism with the map induced by <m>p</m> gives
+        <md number="no">S^{[n]}\longrightarrow S^{(n)}\longrightarrow(\PP^1)^{(n)}\cong\PP^n.</md>
+        Over a divisor of <m>n</m> distinct smooth base points, its fiber is the product of the corresponding elliptic curves. It is connected. Stein factorization therefore has finite part of generic degree one, which is an isomorphism because <m>\PP^n</m> is normal. Thus the displayed map has connected fibers and is a Lagrangian fibration. Its isotropic line bundle is the pullback of <m>\cO_{\PP^n}(1)</m>.</p>
+    </example>
+    <p>A different construction is the support map from the moduli space of curve-supported sheaves on a K3 surface. Its smooth fibers are Jacobians and their Lagrangian property was proved in <xref ref="hkg-jacobian-fibres-lagrangian"/>. The two constructions make the moduli interpretation concrete: an elliptic product or a Jacobian varies over a projective space of divisors.</p>
+    <example xml:id="hkg-fibration-euler-versus-sections">
+      <p>Suppose <m>f:X\to\PP^n</m> is a Lagrangian fibration with connected fibers, and let <m>L=f^*\cO(1)</m>. The projection formula gives
+        <md number="no">h^0(X,L^{\otimes m})=h^0(\PP^n,\cO(m))=\binom{m+n}{n}\qquad(m\geq0).</md>
+        Yet <m>\chi(X,L^{\otimes m})=n+1</m> for every integer <m>m</m>, by <xref ref="hkg-nef-isotropic-dimension"/>. For an elliptic K3 surface and <m>m\geq1</m>, Serre duality gives <m>h^2(X,L^{\otimes m})=h^0(X,L^{\otimes(-m)})=0</m>, and therefore <m>h^1(X,L^{\otimes m})=m-1</m>.</p>
+    </example>
+  </section>
+</chapter>

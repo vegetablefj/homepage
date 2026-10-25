@@ -1,0 +1,420 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="cat-monads">
+  <title>Monads and algebras</title>
+  <introduction>
+    <p>An adjunction produces more than a composite endofunctor. It supplies a way to insert an object into that composite, and a way to flatten two successive applications into one. A monad retains these operations without retaining the entire adjunction. Its algebras describe coherent ways to evaluate the resulting formal expressions. Recovering the category on the other side of an adjunction from these evaluations is a further theorem, rather than part of the definition.</p>
+    <p>We work with ordinary, set-encoded, locally <m>\U</m>-small categories. All diagrams called small are <m>\U</m>-small. Our adjunction convention is <m>F:\mathcal C\to\mathcal D</m>, <m>G:\mathcal D\to\mathcal C</m>, with <m>F\dashv G</m>. The sources are <xref ref="bib-cat-riehl" detail="Sections 5.1–5.6"/> and <xref ref="bib-cat-li2" detail="Section 7.6"/>. The constructions below require neither an additive structure nor a theory of enriched categories.</p>
+  </introduction>
+
+  <section xml:id="cat-c09-monad-data">
+    <title>Insertion, substitution, and the monad laws</title>
+    <definition xml:id="cat-c09-def-monad">
+      <title>Monad</title>
+      <idx>Monad</idx>
+      <statement>
+        <p>A monad on <m>\mathcal C</m> consists of an endofunctor <m>T:\mathcal C\to\mathcal C</m> and natural transformations <m>\eta:\id_{\mathcal C}\Rightarrow T</m>, <m>\mu:T^2\Rightarrow T</m>, such that for every object <m>X</m>,
+          <md xml:id="cat-c09-eq-monad-laws" number="yes">\begin{aligned}
+          \mu_XT(\eta_X)&amp;=\id_{TX}=\mu_X\eta_{TX},\\
+          \mu_XT(\mu_X)&amp;=\mu_X\mu_{TX}.
+          \end{aligned}</md>
+          The first line comprises maps <m>TX\to TX</m>, and the second comprises maps <m>T^3X\to TX</m>. We call <m>\eta</m> the unit and <m>\mu</m> the multiplication.</p>
+      </statement>
+    </definition>
+    <p>Naturality is part of this data: for <m>f:X\to Y</m>, one has <m>T(f)\eta_X=\eta_Yf</m> and <m>T(f)\mu_X=\mu_YT^2(f)</m>. The two maps <m>T\eta</m> and <m>\eta T</m> have the same source and target, but need not be equal. Their separate unit equations must both be checked. The name multiplication refers to the map <m>T^2X\to TX</m>, rather than to a prescribed binary operation <m>X\times X\to X</m>.</p>
+    <proposition xml:id="cat-c09-prop-adjunction-monad">
+      <statement>
+        <p>An adjunction <m>F\dashv G</m> with unit <m>\eta</m> and counit <m>\varepsilon</m> induces the monad
+          <md number="no">T=GF,\qquad \mu_X=G(\varepsilon_{FX}):GFGFX\to GFX,</md>
+          with the given unit.</p>
+      </statement>
+      <proof>
+        <p>Whiskering the natural counit gives naturality of <m>\mu</m>. Applying <m>G</m> to <m>\varepsilon_{FX}F(\eta_X)=\id_{FX}</m> proves <m>\mu_XT(\eta_X)=\id_{TX}</m>. The other triangle identity, at <m>FX</m>, proves <m>\mu_X\eta_{TX}=\id_{TX}</m>. For associativity, naturality of <m>\varepsilon</m> at <m>\varepsilon_{FX}:FGFX\to FX</m> says
+          <md number="no">\varepsilon_{FX}FG(\varepsilon_{FX})=\varepsilon_{FX}\varepsilon_{FGFX}.</md>
+          Applying <m>G</m> gives the required equation from <m>T^3X</m> to <m>TX</m>.</p>
+      </proof>
+    </proposition>
+    <p>The monad remembers the counit only at free objects, after applying <m>G</m>. It can therefore contain less information than the adjunction that produced it.<fn>Riehl introduces this viewpoint in <xref ref="bib-cat-riehl" detail="Section 5.1, before Lemma 5.1.3"/>. Li obtains the same formulas in <xref ref="bib-cat-li2" detail="Example 7.6.2"/>. Describing a monad as a monoid under composition of endofunctors is an equivalent compact formulation; the displayed component equations supply everything needed here.</fn></p>
+    <p>The identity functor, with identity unit and multiplication, is a monad. A less trivial example on sets sends a set to its finite words, inserts a letter as a one-letter word, and flattens a word of words by concatenation. Flattening three levels in either order gives the same ordered word. This example motivates substitution, including substitution of an empty word, without restricting the general definition to sets or to finite operations.</p>
+    <p>The unit is not required to be monic, and multiplication is not required to be invertible. For example, the constant singleton endofunctor on sets is a monad, with its unique unit and identity multiplication. Its unit identifies every pair of elements of a nonempty set. Nor does the definition say that <m>T(X)</m> is free for some independently specified kind of structure. The next construction defines what the relevant algebras are and then proves that it is free for precisely that structure. Remembering an endofunctor and a unit alone would leave out the substitution operation and its associativity.</p>
+  </section>
+
+  <section xml:id="cat-c09-algebras-free">
+    <title>Algebras and the free-algebra adjunction</title>
+    <definition xml:id="cat-c09-def-algebra">
+      <title>Algebras for a monad</title>
+      <idx>Algebra for a monad</idx><idx>Eilenberg–Moore category</idx>
+      <statement>
+        <p>A <m>T</m>-algebra is a pair <m>(A,a)</m> with <m>a:TA\to A</m> satisfying
+          <md number="no">a\eta_A=\id_A,\qquad a\mu_A=aT(a):T^2A\to A.</md>
+          A morphism <m>f:(A,a)\to(B,b)</m> is an arrow <m>f:A\to B</m> with <m>fa=bT(f)</m>. The Eilenberg–Moore category of these algebras is denoted <m>\mathcal C^T</m>; its forgetful functor is <m>U^T:\mathcal C^T\to\mathcal C</m>.</p>
+      </statement>
+    </definition>
+    <p>Identities satisfy the morphism equation. For consecutive algebra maps, <m>gfa=gbT(f)=cT(g)T(f)=cT(gf)</m>, so composition in <m>\mathcal C</m> defines composition of algebras. Its local morphism sets are subsets of local morphism sets in <m>\mathcal C</m>, and its objects form a set of pairs. Thus it has our required size. The forgetful functor is faithful. It is conservative as well: if <m>f</m> is invertible underneath, the equation <m>fa=bT(f)</m>, multiplied by the two inverses, gives <m>f^{-1}b=aT(f^{-1})</m>.<fn>Li calls these objects <m>T</m>-modules in <xref ref="bib-cat-li2" detail="Definition 7.6.3"/>. They are the algebras of <xref ref="bib-cat-riehl" detail="Definition 5.2.4"/>. The word module here does not impose an abelian-group structure or scalar multiplication.</fn></p>
+    <proposition xml:id="cat-c09-prop-free-adjunction">
+      <statement>
+        <p>The assignments <m>F^T(X)=(TX,\mu_X)</m>, <m>F^T(f)=T(f)</m> define a functor left adjoint to <m>U^T</m>. The adjunction bijection is
+          <md number="no">\Hom_{\mathcal C^T}(F^TX,(A,a))\cong\Hom_{\mathcal C}(X,A),\qquad h\longmapsto h\eta_X,</md>
+          with inverse <m>f\mapsto aT(f)</m>. Its unit is <m>\eta</m>, its counit at <m>(A,a)</m> is <m>a</m>, and its induced monad is the given monad.</p>
+      </statement>
+      <proof>
+        <p>The algebra laws for <m>(TX,\mu_X)</m> are two monad laws. Naturality of <m>\mu</m> makes <m>T(f)</m> an algebra map, and functoriality follows from that of <m>T</m>. For <m>f:X\to A</m>, the extension satisfies
+          <md number="no">aT(f)\mu_X=a\mu_AT^2(f)=aT(a)T^2(f)=aT(aT(f)),</md>
+          so it is an algebra map. Its restriction is <m>aT(f)\eta_X=a\eta_Af=f</m>. Conversely an algebra map <m>h</m> satisfies
+          <md number="no">aT(h\eta_X)=aT(h)T(\eta_X)=h\mu_XT(\eta_X)=h.</md>
+          The formulas commute with precomposition in <m>X</m> and postcomposition by an algebra map, giving the required naturality. Applying the formulas to identities gives the unit and counit; consequently the composite endofunctor and multiplication are <m>T</m> and <m>\mu</m>.</p>
+      </proof>
+    </proposition>
+    <p>A free algebra is universal for a map from its generating object, not for arbitrary maps from its underlying object. The distinction between <m>X</m> and <m>TX</m> is important even when both are sets. Every algebra map out of <m>F^TX</m> is determined by its restriction along <m>\eta_X</m>, while a general underlying map <m>TX\to A</m> need not respect evaluation. This is the universal property established in <xref ref="bib-cat-li2" detail="Definition–Proposition 7.6.6"/> and <xref ref="bib-cat-riehl" detail="Lemma 5.2.9"/>.</p>
+    <p>The two algebra laws have separate roles. The first says that inserting an ordinary input and then evaluating returns the input. The second compares evaluating an expression whose entries are themselves expressions: evaluation can take place inside first, or substitution can take place first. An algebra morphism commutes with this entire evaluation operation. The familiar noun algebra should therefore be read relative to the displayed monad; it need not mean an algebra over a ring, or even an object with a separately given binary operation.</p>
+  </section>
+
+  <section xml:id="cat-c09-kleisli">
+    <title>The Kleisli category and its adjunction</title>
+    <p>There is another way to recover an adjunction from a monad. Instead of adding evaluation structures to objects, keep the original objects and change what counts as an arrow.</p>
+    <definition xml:id="cat-c09-def-kleisli">
+      <title>Kleisli arrows</title>
+      <idx>Kleisli category</idx>
+      <statement>
+        <p>The Kleisli category <m>\mathcal C_T</m> has the objects of <m>\mathcal C</m> and
+          <md number="no">\Hom_{\mathcal C_T}(X,Y)=\Hom_{\mathcal C}(X,TY).</md>
+          Its identity at <m>X</m> is <m>\eta_X</m>. For <m>f:X\to TY</m> and <m>g:Y\to TZ</m>, its composition is
+          <md number="no">g\star f=\mu_ZT(g)f:X\to TZ.</md>
+          We sometimes write <m>X\rightsquigarrow Y</m> to distinguish a Kleisli arrow from an ordinary arrow.</p>
+      </statement>
+    </definition>
+    <p>The right identity law is <m>\mu_YT(f)\eta_X=\mu_Y\eta_{TY}f=f</m>, by naturality and a unit law. The left identity law is <m>\mu_YT(\eta_Y)f=f</m>. For a third arrow <m>h:Z\to TW</m>, the two composites expand to
+      <md number="no">\begin{aligned}
+      h\star(g\star f)&amp;=\mu_W\mu_{TW}T^2(h)T(g)f,\\
+      (h\star g)\star f&amp;=\mu_WT(\mu_W)T^2(h)T(g)f.
+      \end{aligned}</md>
+      In the first line, naturality of <m>\mu</m> moves <m>T(h)</m> past <m>\mu_Z</m>. Associativity of <m>\mu</m> makes the expressions equal. These verifications prove the category axioms. Local smallness follows from local smallness in <m>\mathcal C</m>.</p>
+    <proposition xml:id="cat-c09-prop-kleisli-adjunction">
+      <statement>
+        <p>Define <m>J_T:\mathcal C\to\mathcal C_T</m> by <m>J_T(X)=X</m> and <m>J_T(f)=\eta_Yf</m>. Define <m>R_T:\mathcal C_T\to\mathcal C</m> by <m>R_T(X)=TX</m> and <m>R_T(f)=\mu_YT(f)</m>. Then <m>J_T\dashv R_T</m>, and its induced monad is <m>T</m> with its given unit and multiplication.</p>
+      </statement>
+      <proof>
+        <p>The calculation <m>(\eta_Zg)\star(\eta_Yf)=\eta_Zgf</m> uses naturality of <m>\eta</m> and the unit equation, and proves preservation of composition by <m>J_T</m>; identities are its defining formula. For <m>R_T</m>, the identity equation is <m>\mu_XT(\eta_X)=\id_{TX}</m>. Composition is verified by
+          <md number="no">\begin{aligned}
+          R_T(g\star f)&amp;=\mu_ZT(\mu_Z)T^2(g)T(f),\\
+          R_T(g)R_T(f)&amp;=\mu_Z\mu_{TZ}T^2(g)T(f).
+          \end{aligned}</md>
+          Naturality of <m>\mu</m> gives the second expansion, and the monad associativity equation makes the expressions equal.</p>
+        <p>The adjunction bijection is the defining equality
+          <md number="no">\Hom_{\mathcal C_T}(J_TX,Y)=\Hom_{\mathcal C}(X,R_TY).</md>
+          Precomposition by <m>J_T(a)</m> is ordinary precomposition by <m>a</m> under this equality; postcomposition by a Kleisli arrow <m>g</m> is postcomposition by <m>R_T(g)</m>. This proves naturality in both variables. The counit at <m>Y</m> is the Kleisli arrow from <m>TY</m> to <m>Y</m> represented by <m>\id_{TY}</m>. Applying <m>R_T</m> gives <m>\mu_Y</m>, which proves the claim about multiplication.</p>
+      </proof>
+    </proposition>
+    <p>The Kleisli category describes substitution before an evaluation algebra has been chosen. For the finite-word monad an arrow assigns a word in <m>Y</m> to each generator in <m>X</m>, and composition substitutes words for letters. For the covariant powerset monad discussed below it assigns a set of possible outputs, so composition is relational composition. These interpretations illustrate the formula; the category and adjunction require no elementwise interpretation.<fn>See <xref ref="bib-cat-riehl" detail="Definition 5.2.10, Example 5.2.11, and Lemma 5.2.12"/>. In particular, the right adjoint is not the identity on objects: it sends <m>X</m> to <m>TX</m>. The two categories use the same object labels, but different arrow sets.</fn></p>
+    <p>These types also explain why an ordinary identity cannot simply be reused as a Kleisli identity: it would have target <m>X</m> rather than <m>TX</m>. For the identity monad the distinction disappears, and both the Kleisli category and the algebra category identify with <m>\mathcal C</m>. For a general monad, <m>J_T</m> sends an ordinary arrow <m>f:X\to Y</m> to the Kleisli arrow represented by <m>\eta_Yf</m>. It need not be faithful: for the constant singleton monad on sets, every Kleisli hom-set is a singleton.</p>
+  </section>
+
+  <section xml:id="cat-c09-comparison">
+    <title>What an adjunction recovers from its monad</title>
+    <proposition xml:id="cat-c09-prop-comparison">
+      <statement>
+        <p>For <m>F\dashv G</m> inducing <m>T=GF</m>, there is a comparison functor
+          <md number="no">K:\mathcal D\to\mathcal C^T,\qquad K(Y)=(GY,G\varepsilon_Y),\qquad K(f)=G(f).</md>
+          It satisfies <m>U^TK=G</m> and <m>KF=F^T</m>, including their arrow assignments.</p>
+      </statement>
+      <proof>
+        <p>The unit law for <m>G\varepsilon_Y</m> is the triangle identity. Naturality of the counit at <m>\varepsilon_Y</m>, followed by <m>G</m>, gives its algebra associativity equation. Naturality at <m>f:Y\to Y'</m> says exactly that <m>G(f)</m> is an algebra map. It preserves identities and composites because <m>G</m> does. At <m>FX</m>, the structure map is <m>G\varepsilon_{FX}=\mu_X</m>; on a morphism <m>f</m>, the map <m>GF(f)</m> is <m>T(f)</m>. This proves both equalities.</p>
+      </proof>
+    </proposition>
+    <p>For the Kleisli adjunction, the comparison sends <m>X</m> to <m>(TX,\mu_X)</m> and <m>f:X\to TY</m> to <m>\mu_YT(f)</m>. It is fully faithful: the free-algebra bijection identifies all algebra maps <m>F^TX\to F^TY</m> with exactly <m>\Hom_{\mathcal C}(X,TY)</m>. Thus its essential image consists of algebras isomorphic to free algebras. This is not a claim that every algebra is free.<fn>This distinction is <xref ref="bib-cat-riehl" detail="Lemma 5.2.14 and the following discussion"/>. The construction for a general adjunction is also <xref ref="bib-cat-li2" detail="Lemma 7.6.7"/>.</fn></p>
+    <p>There is also a fully faithful functor <m>H:\mathcal C_T\to\mathcal D</m> for the original adjunction: it sends <m>X</m> to <m>FX</m> and a Kleisli arrow <m>f:X\to GFY</m> to its transpose <m>\varepsilon_{FY}F(f)</m>. Its identity equation is the triangle identity. For composition, naturality of the counit and its naturality at <m>\varepsilon_{FZ}</m> identify <m>H(g)H(f)</m> with <m>\varepsilon_{FZ}F(\mu_Z)FGF(g)F(f)=H(g\star f)</m>. The adjunction bijection makes it fully faithful. Its objects describe the free objects inside the original target, while <m>K</m> describes arbitrary target objects as evaluation algebras. These are different directions of comparison, and neither definition requires choosing a presentation of every target object.</p>
+    <definition xml:id="cat-c09-def-monadic">
+      <title>Monadicity</title>
+      <idx>Monadic functor</idx>
+      <statement>
+        <p>The adjunction <m>F\dashv G</m> is monadic if its comparison <m>K</m> is an equivalence. A functor <m>G</m> is monadic if it has a left adjoint whose comparison is an equivalence. Requiring the comparison to be an isomorphism of categories is a stronger, presentation-dependent condition, sometimes called strict monadicity.</p>
+      </statement>
+    </definition>
+    <p>Every monad comes from both adjunctions just constructed, but their comparisons need not have the same essential image. For the free-monoid monad, whose algebras are identified in <xref ref="cat-c09-example-monoids"/>, a two-element group, regarded as a monoid, is not isomorphic to a free monoid: it has a nonidentity invertible element, while the only invertible finite word is the empty word. The Kleisli comparison is therefore not essentially surjective. Having the same induced monad does not by itself identify an adjunction's target with all algebras. Monadicity is the missing assertion.</p>
+  </section>
+
+  <section xml:id="cat-c09-limits">
+    <title>The forgetful functor creates limits</title>
+    <p>The algebra equations interact especially well with maps into a limit. No assumption that <m>T</m> preserves limits is needed for this interaction.</p>
+    <theorem xml:id="cat-c09-thm-created-limits">
+      <statement>
+        <p>Let a small diagram in <m>\mathcal C^T</m> have objects <m>(A_j,a_j)</m>. If its underlying diagram has a specified limit cone <m>p_j:L\to A_j</m> in <m>\mathcal C</m>, there is a unique algebra structure <m>l:TL\to L</m> making every <m>p_j</m> an algebra map. The lifted cone is a limit in <m>\mathcal C^T</m>. In this precise sense <m>U^T</m> creates all limits that exist underneath.</p>
+      </statement>
+      <proof>
+        <p>The maps <m>a_jT(p_j):TL\to A_j</m> form a cone: for a diagram arrow <m>f:(A_j,a_j)\to(A_k,a_k)</m>, its algebra equation gives <m>fa_jT(p_j)=a_kT(fp_j)=a_kT(p_k)</m>. Thus there is a unique <m>l</m> with <m>p_jl=a_jT(p_j)</m>. Comparing after every projection shows
+          <md number="no">p_jl\eta_L=p_j,\qquad p_jl\mu_L=p_jlT(l),</md>
+          using naturality of the unit and multiplication and the two laws for <m>a_j</m>. The joint uniqueness property of the limit gives the algebra laws for <m>l</m>.</p>
+        <p>A cone of algebra maps from <m>(B,b)</m> factors uniquely through a map <m>u:B\to L</m> underneath. Its composites show <m>p_jub=a_jT(p_ju)=p_jlT(u)</m> for all <m>j</m>. Hence <m>ub=lT(u)</m>, so the factorization is an algebra map. Its uniqueness remains true after forgetting. Finally, any algebra structure making all projections algebra maps must satisfy the equations that defined <m>l</m>, proving uniqueness of the lift.</p>
+      </proof>
+    </theorem>
+    <p>For the empty diagram, this constructs the unique algebra structure on a terminal object of <m>\mathcal C</m>. More generally, completeness or finite completeness of the base category passes to its algebra category. The conclusion concerns an existing underlying limit and its cone, rather than a claim that arbitrary objects of the base admit algebra structures. One should not dualize this result while keeping the same monad: arbitrary underlying colimits need not lift to algebras.<fn>The corresponding general monadic-functor statement is developed in <xref ref="bib-cat-riehl" detail="Section 5.6, Theorem 5.6.5"/>. We have given the direct proof for the forgetful functor, so its use requires no later theory of algebraic categories.</fn></p>
+    <p>The theorem concerns all algebras, rather than just the free ones. Even a product of free algebras need not be free. In the word example, take the product of two free monoids on one generator. Its elements are pairs of powers of the two generators, and it is commutative. A free monoid is commutative only when its generating set has at most one element, since two distinct letters produce different words in opposite orders. Our product is not generated by one element: the two pairs with exponents <m>(1,0)</m> and <m>(0,1)</m> cannot both be powers of a single pair. Thus this product is not a free monoid. Creating limits in the Eilenberg–Moore category does not assert closure of the Kleisli comparison's image under those limits.</p>
+    <p>Initial objects illustrate the different behavior of colimits. If <m>0</m> is initial in <m>\mathcal C</m>, the free-algebra correspondence makes <m>F^T0</m> initial in <m>\mathcal C^T</m>, because a map from it is specified by the unique map from <m>0</m>. Its underlying object is <m>T0</m>, which need not be initial underneath. For the word monad it is the singleton empty-word monoid, whereas the initial set is empty and admits no word-algebra structure. The existence of a free initial algebra therefore does not make its underlying cocone an initial-set cocone.</p>
+  </section>
+
+  <section xml:id="cat-c09-colim-created">
+    <title>Colimits preserved by the monad</title>
+    <p>The construction of limits used maps into an underlying limit, and needed no preservation hypothesis on the monad. For colimits, constructing the algebra action requires maps out of the image of the colimit under the monad. Preservation supplies exactly this mapping property. A second application controls the algebra associativity equation.</p>
+    <theorem xml:id="cat-c09-colim-thm-created">
+      <idx>Creation of colimits</idx>
+      <statement>
+        <p>Let <m>(T,\eta,\mu)</m> be a monad on a set-encoded category <m>\mathcal C</m>, and let <m>D:J\to\mathcal C^T</m> be a diagram, with <m>J</m> any set-encoded category. Write <m>D_j=(A_j,a_j)</m>. Suppose the underlying diagram has a specified colimit cocone <m>i_j:A_j\to X</m>, and both <m>T</m> and <m>T^2</m> preserve this cocone. There is a unique algebra structure <m>a:TX\to X</m> making every <m>i_j</m> an algebra map. With this structure, the cocone is a colimit in <m>\mathcal C^T</m>.</p>
+      </statement>
+      <proof>
+        <p>The maps <m>i_ja_j:TA_j\to X</m> form a cocone on <m>TUD</m>. Indeed, for a diagram arrow <m>f:A_j\to A_k</m>, its algebra equation and cocone compatibility give
+          <md number="no">i_ka_kT(f)=i_kfa_j=i_ja_j.</md>
+          Since <m>(T(i_j):TA_j\to TX)</m> is a colimit cocone, it determines a unique map <m>a</m> with
+          <md number="no">aT(i_j)=i_ja_j.</md>
+          This is precisely the condition that the specified legs become algebra maps.</p>
+        <p>Every colimit cocone is jointly epic: two maps out of its vertex agree if they agree after all its legs. To verify the unit equation, calculate
+          <md number="no">a\eta_Xi_j=aT(i_j)\eta_{A_j}
+            =i_ja_j\eta_{A_j}=i_j.</md>
+          Joint epicity of the original legs gives <m>a\eta_X=\id_X</m>. For associativity, naturality of <m>\mu</m> and the defining equation for <m>a</m> give
+          <md number="no">\begin{aligned}
+            a\mu_XT^2(i_j)&amp;=i_ja_j\mu_{A_j},\\
+            aT(a)T^2(i_j)&amp;=aT\bigl(aT(i_j)\bigr)
+              =i_ja_jT(a_j).
+          \end{aligned}</md>
+          These are equal by the algebra law at <m>A_j</m>. The legs <m>T^2(i_j)</m> are jointly epic by the second preservation hypothesis, so <m>a\mu_X=aT(a)</m>.</p>
+        <p>Now take an algebra cocone <m>c_j:(A_j,a_j)\to(B,b)</m>. Its underlying maps induce a unique <m>h:X\to B</m> with <m>hi_j=c_j</m>. After each leg <m>T(i_j)</m>,
+          <md number="no">haT(i_j)=c_ja_j=bT(c_j)=bT(h)T(i_j).</md>
+          These legs are jointly epic, so <m>ha=bT(h)</m>. Thus <m>h</m> is an algebra map and gives the required factorization in the algebra category. Uniqueness follows from uniqueness of its underlying map.</p>
+        <p>Finally, any other structure making the specified legs algebra maps satisfies the same equation <m>aT(i_j)=i_ja_j</m>. Joint epicity of <m>T(i_j)</m> makes it equal to the constructed structure. This proves both the colimit property and the asserted uniqueness of its lift.</p>
+      </proof>
+    </theorem>
+    <p>Only the displayed colimit and its two preserved images are required; neither completeness nor cocompleteness of <m>\mathcal C</m> is assumed. The proof also covers an empty diagram: the relevant empty cocones are jointly epic by the same uniqueness property of maps from an initial object. All transformation and cocone collections here are ordinary sets. Allowing a larger set-encoded <m>J</m> does not assert that these sets belong to <m>\U</m> or that its colimit necessarily exists.</p>
+    <p>This is the explicit forgetful-functor case of <xref ref="bib-cat-riehl" detail="Theorem 5.6.5(ii); see also Exercise 5.6.ii"/>. Its two preservation conditions concern the particular cocone under consideration. The proof shows their different roles: the first constructs the action and tests maps out of it, whereas the second verifies associativity. Merely knowing that the underlying diagram has a colimit would provide neither check.</p>
+    <p>The conclusion retains the specified underlying vertex and legs. It therefore identifies an actual lift of that cocone, rather than merely producing some algebra whose underlying object happens to be isomorphic to its vertex. If another colimit cocone is chosen, its unique compatible comparison isomorphism transports the algebra structure as well, by the same uniqueness argument. Thus choosing a different presentation of the underlying colimit does not change the resulting algebra colimit up to its compatible isomorphism.</p>
+    <corollary xml:id="cat-c09-colim-cor-shape">
+      <statement>
+        <p>If <m>T</m> preserves all existing <m>J</m>-shaped colimits in <m>\mathcal C</m>, then <m>U^T</m> creates every such colimit of an underlying algebra diagram. In particular, if <m>\mathcal C</m> has all colimits of that shape, so does <m>\mathcal C^T</m>.</p>
+      </statement>
+      <proof>
+        <p>The preservation assumption first makes <m>T(i_j)</m> a colimit cocone, then applies again to that cocone to make <m>T^2(i_j)</m> one. Apply the theorem.</p>
+      </proof>
+    </corollary>
+    <definition xml:id="cat-c09-colim-def-finitary">
+      <title>Finitary functors and monads</title>
+      <idx>Finitary functor</idx><idx>Finitary monad</idx>
+      <statement>
+        <p>A functor between categories admitting small filtered colimits is finitary if it preserves them. A monad is finitary when its underlying endofunctor is finitary.</p>
+      </statement>
+    </definition>
+    <p>This is <xref ref="bib-cat-riehl" detail="Definition 5.5.4"/> at our fixed universe. The corollary immediately makes the forgetful functor of a finitary monad create small filtered colimits. Finitary is a preservation requirement, not an assertion that each algebra is a finite set or is generated by finitely many elements.</p>
+    <proposition xml:id="cat-c09-colim-prop-finitary-sets">
+      <statement>
+        <p>An endofunctor <m>F:\Set_\U\to\Set_\U</m> is finitary if and only if it preserves all small sifted colimits. Consequently, for a finitary monad on sets, its forgetful functor creates all small sifted colimits.</p>
+      </statement>
+      <proof>
+        <p>Let <m>\mathsf{Fin}</m> be the small category of finite cardinals <m>\underline n=\{0,\ldots,n-1\}</m> and all functions. For a set <m>X\in\U</m>, the category <m>(\mathsf{Fin}\downarrow X)</m> is small and filtered. The empty set gives an object. Coproducts of two finite sets over <m>X</m> give common targets, and coequalizers of parallel arrows over <m>X</m> remain finite and inherit maps to <m>X</m>. These give the three filteredness conditions.</p>
+        <p>The canonical diagram sending <m>(\underline n,u)</m> to <m>\underline n</m> has colimit <m>X</m>. Indeed, a compatible family of functions out of these finite sets is determined by its values on the singleton maps selecting each <m>x\in X</m>. Compatibility with the inclusions of points forces the value on every finite test, and every function out of <m>X</m> gives such a family. This proves the universal property, including <m>X=\varnothing</m>.</p>
+        <p>If <m>F</m> is finitary, applying it to this filtered presentation and using the element-category formula of <xref ref="cat-c08-prop-elements-coend"/> gives
+          <md number="no">F(X)\cong\operatorname{colim}_{(\underline n,u)\in(\mathsf{Fin}\downarrow X)}F(\underline n)
+            \cong\int^{\underline n\in\mathsf{Fin}}X^{\underline n}\times F(\underline n).</md>
+          Here the presheaf of weights is <m>\underline n\mapsto\Hom_{\Set}(\underline n,X)=X^{\underline n}</m>. The element category is precisely the comma category just used. Postcomposition with a map <m>X\to Y</m> induces its map of presentations, so the displayed isomorphisms are natural in <m>X</m>.</p>
+        <p>Each finite-power functor <m>X\mapsto X^{\underline n}</m> preserves sifted colimits by their definition, including the zeroth power. Multiplication by the fixed set <m>F(\underline n)</m> preserves all colimits, being a left adjoint. Finally a coend in sets is built from small coproducts and a coequalizer, and these colimits commute with another small colimit by the universal properties. The formula therefore proves that <m>F</m> preserves small sifted colimits. Conversely every filtered category is sifted, so preservation of all sifted colimits implies finitariness. The conclusion for a monad follows from <xref ref="cat-c09-colim-cor-shape"/>.</p>
+      </proof>
+    </proposition>
+    <example xml:id="cat-c09-colim-example-words">
+      <title>Sifted colimits of monoids</title>
+      <p>The word monad is finitary. Indeed,
+        <md number="no">T(X)=\coprod_{n\in\N}X^{\underline n},</md>
+        finite powers preserve filtered colimits of sets, and small colimits commute with coproducts. The preceding proposition therefore makes <m>T</m> preserve all small sifted colimits. In particular, its zeroth-power summand is compatible with these colimits because every sifted category is nonempty and connected.</p>
+      <p>The word-algebra identification in <xref ref="cat-c09-example-monoids"/> now shows that <m>\Mon_\U\to\Set_\U</m> creates small sifted colimits, including filtered colimits and reflexive coequalizers. The lifted multiplication is forced by the cocone equations. This does not include the empty colimit: the initial monoid consists of the empty word, whereas its singleton underlying set is not initial in sets.</p>
+    </example>
+    <example xml:id="cat-c09-colim-example-powerset">
+      <title>An underlying filtered union that is not an algebra colimit</title>
+      <p>Let <m>P</m> be the covariant powerset monad of <xref ref="cat-c09-example-powerset"/>. For the finite initial segments <m>\underline n=\{0,\ldots,n-1\}</m>, direct images along their inclusions give a filtered diagram of free algebras <m>F^P(\underline n)</m>. Its underlying sets are <m>P(\underline n)</m>. Their colimit in sets is
+        <md number="no">\bigcup_{n\in\N}P(\underline n)=P_{\mathrm{fin}}(\N),</md>
+        the finite subsets of <m>\N</m>. In contrast, applying <m>P</m> to the colimit of the initial segments gives <m>P(\N)</m>. The comparison includes the finite subsets and misses every infinite subset, so <m>P</m> is not finitary.</p>
+      <p>The free-algebra functor is a left adjoint by <xref ref="cat-c09-prop-free-adjunction"/>, and therefore preserves this colimit. Consequently the colimit of the displayed algebra diagram is
+        <md number="no">\operatorname{colim}_nF^P(\underline n)\cong F^P(\N),</md>
+        the complete join-semilattice <m>P(\N)</m>, whose joins are unions. The canonical comparison from the underlying finite-subset union to this underlying algebra colimit is the proper inclusion <m>P_{\mathrm{fin}}(\N)\to P(\N)</m>. Thus the forgetful functor does not preserve this filtered colimit.</p>
+      <p>In fact no powerset-algebra structure on that finite-subset set makes all its inclusion legs algebra maps. Two finite subsets lie in a common <m>P(\underline n)</m>, so such a structure would have to give their union as binary join. Its induced order would therefore be inclusion. But the family of all singleton subsets has no finite upper bound, so the required join does not exist there. The preservation hypothesis of <xref ref="cat-c09-colim-thm-created"/> fails on this underlying cocone.<fn>For this particular underlying cocone, applying <m>P</m> gives maps <m>P(P(\underline n))\to P(P_{\mathrm{fin}}(\N))</m>. Every family in the image has all its members contained in one common <m>\underline n</m>. The family <m>\{\{k\}:k\in\N\}</m> lies in no such image, so the canonical filtered-colimit comparison is not surjective. Thus the preservation condition fails on the actual cocone being tested.</fn></p>
+      <p>This failure does not mean that the algebra diagram lacks a filtered colimit: its colimit has already been constructed by the free adjunction. What fails is the assertion that the forgetful functor creates it on the particular colimit set computed underneath. Existence in the algebra category and creation from the underlying category remain separate claims.</p>
+    </example>
+  </section>
+
+  <section xml:id="cat-c09-split-forks">
+    <title>Reflexive pairs and split coequalizers</title>
+    <p>A coequalizer is often a quotient by relations. A splitting gives enough explicit equations to prove the universal property without examining all possible targets. These equations also explain why the relevant coequalizers survive application of an arbitrary functor.</p>
+    <definition xml:id="cat-c09-def-split">
+      <title>Two different splitting conditions</title>
+      <idx>Reflexive pair</idx><idx>Split coequalizer</idx>
+      <statement>
+        <p><ol>
+          <li><p>As in <xref ref="cat-c06-sifted-def-reflexive"/>, a parallel pair <m>f,g:A\rightrightarrows B</m> is reflexive if it has a common section <m>r:B\to A</m>, with <m>fr=gr=\id_B</m>.</p></li>
+          <li><p>A split coequalizer diagram consists of <m>f,g:A\rightrightarrows B</m>, <m>q:B\to Q</m>, and maps <m>s:Q\to B</m>, <m>t:B\to A</m>, satisfying
+            <md number="no">qf=qg,\qquad qs=\id_Q,\qquad gt=\id_B,\qquad ft=sq.</md>
+            The choices <m>s,t</m> are splitting data. They need not be morphisms preserving any additional structure on the objects.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <proposition xml:id="cat-c09-prop-split-absolute">
+      <statement>
+        <p>The map <m>q</m> in a split coequalizer diagram is a coequalizer of <m>f,g</m>, and every functor sends this fork to a coequalizer fork.</p>
+      </statement>
+      <proof>
+        <p>If <m>hf=hg</m>, set <m>\bar h=hs</m>. Then <m>\bar hq=hsq=hft=hgt=h</m>. A factorization is unique because <m>q</m> has section <m>s</m>: necessarily <m>\bar h=\bar hqs=hs</m>. Every functor preserves the four displayed equations, so the same proof applies to its image. This is the meaning of absolute here.</p>
+      </proof>
+    </proposition>
+    <p>The two conditions in the definition are different. For example, in sets let <m>A=B=\{0,1\}</m>, <m>g=\id</m>, <m>f</m> be constantly zero, and <m>Q</m> be a singleton. Take <m>s</m> to select zero and <m>t=\id</m>. This is a split fork. A common section of <m>f,g</m> would have to be the identity, because <m>g</m> is the identity, and cannot be a section of <m>f</m>. Thus a split fork need not start with a reflexive pair.<fn>Our orientation follows <xref ref="bib-cat-riehl" detail="Definition 5.4.4 and Lemma 5.4.6"/> and <xref ref="bib-cat-li2" detail="Definition–Proposition 7.6.9"/>. Interchanging the names of the two arrows changes which section equation is displayed; the full equations specify the convention.</fn></p>
+    <p>For a functor <m>G:\mathcal D\to\mathcal C</m>, a pair <m>f,g</m> in <m>\mathcal D</m> is <m>G</m>-split if its image extends to a split coequalizer diagram in <m>\mathcal C</m>. This does not demand a splitting in <m>\mathcal D</m>, or even a proposed quotient object there. It quantifies over pairs whose quotient problem becomes explicitly split after applying <m>G</m>. A split fork in the source is a sufficient special case; it is not the general hypothesis of the theorem below.</p>
+    <p>Only the map <m>g</m> in a split fork is required to have the displayed section <m>t</m>; the other composite <m>ft</m> is the endomorphism <m>sq</m>. This endomorphism is idempotent because <m>qs=\id_Q</m>. The factorization proof uses exactly that equation and equality after the pair. It does not require either <m>f</m> or <m>g</m> to be invertible. Likewise, a section of the quotient map is not enough by itself: the compatibility with the original parallel pair is supplied by <m>t</m>. These distinctions matter when checking whether an underlying quotient is one of the quotients to which Beck's criterion applies.</p>
+  </section>
+
+  <section xml:id="cat-c09-presentations">
+    <title>Quotients of free algebras</title>
+    <proposition xml:id="cat-c09-prop-split-created">
+      <statement>
+        <p>For algebra maps <m>f,g:(A,a)\rightrightarrows(B,b)</m>, suppose their underlying pair is supplied with a split coequalizer <m>q:B\to Q</m>. There is exactly one algebra structure <m>c:TQ\to Q</m> for which <m>q</m> is an algebra map, and the lifted fork is a coequalizer in <m>\mathcal C^T</m>.</p>
+      </statement>
+      <proof>
+        <p>The preceding proposition implies that <m>T(q)</m> and <m>T^2(q)</m> are coequalizers, and hence epimorphisms. Since
+          <md number="no">qbT(f)=qfa=qga=qbT(g),</md>
+          there is a unique <m>c</m> with <m>cT(q)=qb</m>. To prove its unit law, precompose with the epimorphism <m>q</m> and use <m>c\eta_Qq=cT(q)\eta_B=qb\eta_B=q</m>. For its associativity law, precompose both sides with <m>T^2(q)</m>. Naturality and the algebra law for <m>b</m> reduce both sides to <m>qb\mu_B=qbT(b)</m>. Cancellation gives the two laws.</p>
+        <p>If an algebra map <m>h:(B,b)\to(R,r)</m> coequalizes <m>f,g</m>, its underlying factorization <m>u:Q\to R</m> satisfies
+          <md number="no">ucT(q)=uqb=hb=rT(h)=rT(u)T(q).</md>
+          Cancel <m>T(q)</m> to make <m>u</m> an algebra map. Underlying uniqueness proves uniqueness in the algebra category. Uniqueness of the structure follows from <m>cT(q)=qb</m> and epimorphicity of <m>T(q)</m>.</p>
+      </proof>
+    </proposition>
+    <p>This is strict creation for the specified underlying fork: its object and arrow are fixed, and only the algebra structure is to be supplied. Transferring a quotient along an isomorphism is a different, equivalent way to present it. Keeping these meanings separate avoids strengthening an equivalence-invariant assertion into an unjustified literal uniqueness claim.<fn>Compare <xref ref="bib-cat-riehl" detail="Definition 5.4.8 and Proposition 5.4.10"/> and <xref ref="bib-cat-li2" detail="Lemma 7.6.12"/>. The proof uses that the particular underlying fork is split, not an assumption that the monad preserves every coequalizer.</fn></p>
+    <proposition xml:id="cat-c09-prop-canonical-presentation">
+      <statement>
+        <p>For an algebra <m>(A,a)</m>, the following is a coequalizer diagram of algebras:
+          <md number="no">F^T(TA)\ \underset{\mu_A}{\overset{T(a)}{\rightrightarrows}}\ F^T(A)\ \xrightarrow{a}\ (A,a).</md>
+          Its parallel pair is reflexive in the algebra category, and its underlying fork is split in <m>\mathcal C</m>.</p>
+      </statement>
+      <proof>
+        <p>The map <m>T(a)</m> is free on <m>a</m>, while <m>\mu_A</m> is an algebra map by associativity of the monad. The map <m>a</m> is an algebra map by its defining associativity equation. A common algebra-map section of the pair is <m>T(\eta_A)=F^T(\eta_A)</m>, because <m>T(a)T(\eta_A)=\id</m> and <m>\mu_AT(\eta_A)=\id</m>. Underneath, choose <m>f=T(a)</m>, <m>g=\mu_A</m>, <m>q=a</m>, <m>s=\eta_A</m>, <m>t=\eta_{TA}</m>. The four split-fork equations are the algebra laws, a monad unit law, and naturality of <m>\eta</m> at <m>a</m>. The previous proposition now gives the coequalizer.</p>
+      </proof>
+    </proposition>
+    <p>The splittings <m>\eta_A</m> and <m>\eta_{TA}</m> in this proof are generally not algebra maps, even though <m>T(\eta_A)</m> is an algebra map. Thus the presentation is split after forgetting; it need not be a split coequalizer in the algebra category. Its two relations compare evaluating inside a formal expression with first flattening the expression. This explains why a presentation by free objects is available for every algebra, even when the monad has no description by a selected list of generators and equations.<fn>This is <xref ref="bib-cat-riehl" detail="Proposition 5.4.2 and Example 5.4.7"/>. Li's corresponding split fork is <xref ref="bib-cat-li2" detail="Example 7.6.10"/>.</fn></p>
+    <p>The factorization in this presentation can be read explicitly. If an algebra map <m>h:F^TA\to(B,b)</m> coequalizes <m>T(a)</m> and <m>\mu_A</m>, put <m>u=h\eta_A</m>. Naturality of the unit and the coequalizing equation give <m>ua=hT(a)\eta_{TA}=h\mu_A\eta_{TA}=h</m>. Since <m>h</m> is an algebra map, <m>bT(u)=h\mu_AT(\eta_A)=h=ua</m>, so <m>u</m> is the required algebra map. Its uniqueness follows because <m>a\eta_A=\id_A</m>.</p>
+  </section>
+
+  <section xml:id="cat-c09-beck">
+    <title>Beck's monadicity criterion</title>
+    <theorem xml:id="cat-c09-thm-beck">
+      <title>Beck's monadicity theorem</title>
+      <idx>Beck monadicity theorem</idx>
+      <statement>
+        <p>Let <m>F:\mathcal C\to\mathcal D</m> be left adjoint to <m>G:\mathcal D\to\mathcal C</m>. Its comparison <m>K:\mathcal D\to\mathcal C^T</m> is an equivalence if and only if the following conditions hold:</p>
+        <p><ol>
+          <li><p><m>G</m> reflects isomorphisms.</p></li>
+          <li><p>Every <m>G</m>-split parallel pair in <m>\mathcal D</m> has a coequalizer there.</p></li>
+          <li><p><m>G</m> sends each such coequalizer fork to a coequalizer fork in <m>\mathcal C</m>.</p></li>
+        </ol></p>
+        <p>No existence or preservation of all coequalizers is assumed. The splitting is in <m>\mathcal C</m>, and the pairs quantified over are in <m>\mathcal D</m>.</p>
+      </statement>
+      <proof>
+        <p>If <m>K</m> is an equivalence, <m>G=U^TK</m> is conservative. A <m>G</m>-split pair becomes a pair split underneath in <m>\mathcal C^T</m>. The created coequalizer just proved transfers across the equivalence to a coequalizer in <m>\mathcal D</m>, whose image is the required underlying coequalizer. Uniqueness of colimits shows preservation for any choice of that coequalizer.</p>
+        <p>Assume now the three conditions. First, for each <m>Y\in\mathcal D</m>, the counit <m>\varepsilon_Y:FGY\to Y</m> is the coequalizer of
+          <md number="no">FGFGY\ \underset{\varepsilon_{FGY}}{\overset{FG(\varepsilon_Y)}{\rightrightarrows}}\ FGY.</md>
+          Its image fork is the canonical split fork for <m>K(Y)</m>. The pair therefore has a coequalizer <m>q:FGY\to Z</m> preserved by <m>G</m>. Naturality of <m>\varepsilon</m> shows that <m>\varepsilon_Y</m> coequalizes the pair, so <m>\varepsilon_Y=hq</m>. The map <m>G(h)</m> compares two coequalizers of the same pair and is invertible. Conservativity makes <m>h</m> invertible, proving the assertion about the counit.</p>
+        <p>To prove full faithfulness, abbreviate <m>a_Y=G\varepsilon_Y</m>. An algebra map <m>u:K(Y)\to K(Z)</m> satisfies <m>ua_Y=a_ZT(u)</m>. Put <m>k=\varepsilon_ZF(u):FGY\to Z</m>. Naturality of the counit at <m>k</m> gives
+          <md number="no">k\varepsilon_{FGY}=\varepsilon_ZFG(k)=\varepsilon_ZF(a_ZT(u))=\varepsilon_ZF(ua_Y)=kFG(\varepsilon_Y).</md>
+          Thus <m>k</m> factors uniquely as <m>h\varepsilon_Y</m>. Applying <m>G</m> gives <m>G(h)a_Y=u a_Y</m>. Since <m>a_Y</m> has section <m>\eta_{GY}</m>, cancel it to obtain <m>G(h)=u</m>. Conversely, if two maps <m>Y\to Z</m> have the same image under <m>G</m>, naturality of the counit shows that they agree after <m>\varepsilon_Y</m>; this coequalizer is epic, so they agree. This proves full faithfulness of <m>K</m>.</p>
+        <p>Finally take any algebra <m>(A,a)</m>. The pair <m>F(a),\varepsilon_{FA}:FTA\rightrightarrows FA</m> becomes its canonical split pair after applying <m>G</m>. Choose its preserved coequalizer <m>q:FA\to Y</m>. The canonical coequalizer <m>a:TA\to A</m> supplies an isomorphism <m>v:GY\to A</m> with <m>vG(q)=a</m>. It is an algebra map: after precomposition with <m>TG(q)</m>, naturality of <m>\varepsilon</m> and the algebra law give
+          <md number="no">vG(\varepsilon_Y)TG(q)=a\mu_A=aT(a)=aT(v)TG(q).</md>
+          The map <m>G(q)</m> is split epic, since it is isomorphic to <m>a</m>; hence <m>TG(q)</m> is epic and cancels. Thus <m>v:K(Y)\to(A,a)</m> is an algebra isomorphism. The comparison is fully faithful and essentially surjective, and therefore an equivalence.</p>
+      </proof>
+    </theorem>
+    <p>This is the conservative, existence-and-preservation form of <xref ref="bib-cat-li2" detail="Theorem 7.6.14, condition (iii)"/>. Riehl's <xref ref="bib-cat-riehl" detail="Theorem 5.5.1 with Definition 5.4.8"/> states an equivalent condition as creation of coequalizers of split pairs, with creation interpreted up to isomorphism. A literal unique lift instead corresponds to the strict version. The proof above states the three requirements separately, so no convention about the word creates is needed.</p>
+    <p>The proof also gives a reconstruction procedure: an algebra <m>(A,a)</m> is represented in <m>\mathcal D</m> by the coequalizer of <m>F(a)</m> and <m>\varepsilon_{FA}</m>. Choosing these coequalizers and using their universal properties on algebra morphisms constructs a quasi-inverse to <m>K</m>. The choices are indexed by the set of algebras and drawn from sets of possible cocones, so ordinary choice suffices. Conservative means reflection of invertibility, not faithfulness; faithfulness was a conclusion established using the counit presentations.</p>
+    <p>Merely being a right adjoint is not sufficient. On sets, the constant empty-set functor is left adjoint to the constant singleton functor: both sides of their mapping correspondence are singletons. The induced monad is the constant singleton monad. Its algebra objects are exactly singleton sets, since an algebra must retract the unique map to a singleton. The target of this adjunction is nevertheless all of <m>\Set</m>, so its comparison cannot be an equivalence. Its right adjoint fails conservativity: it sends every function, including noninvertible functions, to an identity. This example also shows why the existence of limits and their preservation by right adjoints cannot replace the quotient and detection hypotheses.</p>
+  </section>
+
+  <section xml:id="cat-c09-set-examples">
+    <title>Words and arbitrary joins</title>
+    <example xml:id="cat-c09-example-monoids">
+      <title>The finite-word monad recovers monoids</title>
+      <p>On <m>\Set_{\U}</m>, let <m>T(X)=\coprod_{n\in\N}X^n</m>, let <m>T(f)</m> apply <m>f</m> to each letter, and use singleton words and flattening for <m>\eta,\mu</m>. For an algebra <m>a:T(A)\to A</m>, define <m>e=a(())</m> and <m>x\cdot y=a((x,y))</m>. The algebra law says that evaluating a concatenation of words is the same as evaluating each word first and then evaluating the word of resulting values.</p>
+      <p>Apply this law to the word of words <m>((),(x))</m>, and then to <m>((x),())</m>; the singleton unit law gives <m>e\cdot x=x=x\cdot e</m>. Apply it to <m>((x,y),(z))</m> and <m>((x),(y,z))</m>, whose flattenings agree, to prove associativity. Splitting a nonempty word into a shorter word and its last singleton proves inductively that <m>a</m> is its product evaluation. Conversely, evaluating words in a monoid satisfies both algebra laws by associativity and the empty-product convention. A function is an algebra map exactly when it preserves the identity and multiplication, since these are evaluations of empty and two-letter words; those conditions conversely preserve all words by induction. Thus the comparison from <m>\Mon</m> is an equivalence, indeed an isomorphism for these explicit encodings.<fn>This elementary verification is <xref ref="bib-cat-li2" detail="Example 7.6.4"/>. The broader list of familiar monadic categories in <xref ref="bib-cat-riehl" detail="Corollary 5.5.3"/> requires its own identifications of algebra structures; it is not an automatic consequence of possessing a free functor.</fn></p>
+    </example>
+    <example xml:id="cat-c09-example-powerset">
+      <title>The covariant powerset monad</title>
+      <p>Let <m>P</m> send a set to its powerset and a function to direct image. Its unit is <m>x\mapsto\{x\}</m>, and its multiplication sends a set of subsets to their union. Direct images commute with unions, proving naturality; the monad laws are the singleton and iterated-union identities. This is a covariant monad. The inverse-image powerset functor discussed with representability has a different variance and is not this endofunctor.<fn>The monad data are <xref ref="bib-cat-riehl" detail="Example 5.1.5(i)"/>. We identify its algebras directly below, including the order and the empty join, rather than importing a separate theory of lattices.</fn></p>
+      <p>For an algebra <m>a:P(A)\to A</m>, the laws say <m>a(\{x\})=x</m> and
+        <md number="no">a\left(\bigcup\mathcal S\right)=a\bigl(\{a(S):S\in\mathcal S\}\bigr)\qquad(\mathcal S\subseteq P(A)).</md>
+        Define <m>x\le y</m> by <m>a(\{x,y\})=y</m>. Reflexivity and antisymmetry follow from the singleton identity and symmetry of the pair. For transitivity, the displayed law computes <m>a(\{x,y,z\})</m> both as <m>a(\{a(\{x,y\}),z\})</m> and as <m>a(\{x,a(\{y,z\})\})</m>. If <m>x\le y\le z</m>, these expressions give <m>z=a(\{x,z\})</m>.</p>
+      <p>For <m>x\in S</m>, applying the law to <m>\{\{x\},S\}</m> shows <m>x\le a(S)</m>. If every element of <m>S</m> is below <m>y</m>, apply it to <m>\{\{x,y\}:x\in S\}\cup\{\{y\}\}</m> to obtain <m>a(S\cup\{y\})=y</m>, including when <m>S</m> is empty. Applying it to <m>\{S,\{y\}\}</m> now gives <m>a(\{a(S),y\})=y</m>. Thus <m>a(S)</m> is precisely the least upper bound of <m>S</m>.</p>
+      <p>Conversely, in a complete join-semilattice, assigning each subset its join satisfies the algebra laws: the upper bounds of a union are exactly the common upper bounds of the individual joins. Algebra morphisms are exactly maps preserving all joins, including the empty join. This identifies the Eilenberg–Moore category with complete join-semilattices on small sets and join-preserving maps. In the Kleisli category, a map <m>X\to P(Y)</m> is a relation from <m>X</m> to <m>Y</m>, and the union in the composition formula is exactly relational composition. The same monad therefore describes both relations and evaluation by joins, in two different categories.</p>
+      <p>The completeness qualification is essential: the operation here is defined on every subset, not just on pairs or finite subsets. Its value on the empty set is the least element of the resulting order. Consequently an algebra morphism must preserve that least element as well as all other joins. A map preserving binary joins alone need not satisfy the algebra-morphism equation. All subsets of a fixed small underlying set remain small in our universe, so the example does not require a new universe to express the joins. This is an algebra of a covariant endofunctor, entirely separate from a statement that the contravariant powerset functor is monadic.</p>
+      <p>The free algebra on <m>X</m> is the powerset ordered by inclusion, whose joins are unions. Its universal property can also be seen directly. A function <m>f:X\to L</m> into a complete join-semilattice extends to <m>S\mapsto\bigvee_{x\in S}f(x)</m>. This extension preserves arbitrary unions as joins, including the empty one. Conversely, every subset is the union of its singleton subsets, so a join-preserving map is forced by its values on those singletons. Thus the abstract free-algebra correspondence becomes the familiar assertion that a powerset is freely generated by its singletons under arbitrary joins. The generators are elements of <m>X</m>; the subsets, including the empty subset, are the resulting formal joins.</p>
+    </example>
+  </section>
+
+  <section xml:id="cat-c09-idempotent">
+    <title>Idempotent monads and reflective subcategories</title>
+    <definition xml:id="cat-c09-def-idempotent">
+      <title>Idempotence</title>
+      <idx>Idempotent monad</idx>
+      <statement>
+        <p>A monad is idempotent if its multiplication <m>\mu:T^2\Rightarrow T</m> is a natural isomorphism. This requires an isomorphism supplied by the monad, not literal equality of the endofunctors <m>T^2</m> and <m>T</m>.</p>
+      </statement>
+    </definition>
+    <proposition xml:id="cat-c09-prop-idempotent">
+      <statement>
+        <p>For an idempotent monad, an object <m>A</m> admits an algebra structure exactly when <m>\eta_A</m> is invertible, and the only possible structure is <m>\eta_A^{-1}</m>. Every map between such objects is an algebra map. Thus <m>\mathcal C^T</m> identifies with the full subcategory of these objects, and that subcategory is reflective in <m>\mathcal C</m>. Conversely, every reflective full subcategory induces an idempotent monad and is equivalent, by its comparison, to its category of algebras.</p>
+      </statement>
+      <proof>
+        <p>The unit laws and invertibility of <m>\mu</m> give <m>T\eta=\eta T=\mu^{-1}</m>. If <m>a</m> is an algebra structure, naturality at <m>a</m> gives
+          <md number="no">\eta_Aa=T(a)\eta_{TA}=T(a)T(\eta_A)=\id_{TA}.</md>
+          Together with <m>a\eta_A=\id_A</m>, this makes <m>a=\eta_A^{-1}</m>. Conversely, if <m>\eta_A</m> is invertible, set <m>a=\eta_A^{-1}</m>. Then <m>T(a)=\mu_A</m>, so the associativity law follows, as does the unit law. Naturality of <m>\eta</m>, multiplied by its inverse components, proves that every map between these objects is an algebra map. The free-algebra adjunction is therefore a reflection onto this full subcategory.</p>
+        <p>For a reflective inclusion <m>G:\mathcal D\hookrightarrow\mathcal C</m> with left adjoint <m>F</m>, its counit is invertible because <m>G</m> is fully faithful. Hence <m>G\varepsilon F</m> is invertible. The image objects are fixed by the unit by the triangle identity. Conversely, an object with invertible unit is isomorphic to an image object <m>GFA</m>. Full faithfulness and this description of the essential image make the comparison an equivalence.</p>
+      </proof>
+    </proposition>
+    <p>This explains the difference between a general algebra structure and an idempotent one. In the latter case, forgetting loses no choices of structure or arrows; it only records that an object already satisfies a condition. For a poset viewed as a category, a monad is exactly a monotone closure operator: the unit says <m>x\le Tx</m>, and multiplication together with monotonicity gives <m>T^2x=Tx</m>. Its algebras are the fixed elements, and the reflection chooses the least fixed element above <m>x</m>.<fn>The general result and its connection to reflective subcategories are <xref ref="bib-cat-riehl" detail="Proposition 5.3.3"/>.</fn></p>
+    <p>Explicitly, if <m>B</m> is fixed by the unit, a map <m>f:X\to B</m> extends uniquely along <m>\eta_X</m> to <m>\eta_B^{-1}T(f):TX\to B</m>. This is the free-algebra adjunction, now between a category and a full subcategory of itself. The fixed objects form a replete subcategory, since invertibility of the unit is invariant under isomorphism. An originally chosen reflective full subcategory need not include every ambient object isomorphic to one of its objects; the comparison therefore states an equivalence with the replete category of fixed objects. It does not require equality of the two object sets or literal equality between the chosen reflector and its composite endofunctor.</p>
+    <p>For a concrete closure operator, fix an element <m>e</m> of a set <m>E</m> and order its subsets by inclusion. Sending <m>A</m> to <m>A\cup\{e\}</m> is extensive, monotone, and idempotent. Its fixed objects are the subsets containing <m>e</m>, and its universal arrow is the inclusion into the least such superset. This is a monad on the poset category of subsets of a fixed set. Its base category is different from the category of sets on which the powerset monad acts.</p>
+  </section>
+  <section xml:id="cat-c09-comonads">
+    <title>Comonads and the dual reconstruction theorem</title>
+    <p>All constructions in this chapter have opposite-category counterparts. We record their directions explicitly, since exchanging algebra and coalgebra also exchanges which adjoint is the forgetful functor. This is duality within ordinary category theory.</p>
+    <definition xml:id="cat-c09-def-comonad">
+      <title>Comonads and coalgebras</title>
+      <idx>Comonad</idx><idx>Coalgebra for a comonad</idx>
+      <statement>
+        <p><ol>
+          <li><p>A comonad on <m>\mathcal D</m> consists of <m>K:\mathcal D\to\mathcal D</m>, a counit <m>\varepsilon:K\Rightarrow\id</m>, and a comultiplication <m>\delta:K\Rightarrow K^2</m>, satisfying
+            <md number="no">\varepsilon_{KX}\delta_X=\id_{KX}=K(\varepsilon_X)\delta_X,\qquad
+              \delta_{KX}\delta_X=K(\delta_X)\delta_X.</md></p></li>
+          <li><p>A <m>K</m>-coalgebra is <m>(X,c:X\to KX)</m> with <m>\varepsilon_Xc=\id_X</m> and <m>\delta_Xc=K(c)c</m>. A coalgebra map <m>f:(X,c)\to(Y,d)</m> satisfies <m>K(f)c=df</m>. Write <m>\mathcal D_K</m> for this category and <m>U_K:\mathcal D_K\to\mathcal D</m> for its forgetful functor.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <p>Precisely, a comonad on <m>\mathcal D</m> is a monad on <m>\mathcal D^\op</m>, and <m>\mathcal D_K</m> is the opposite of that monad's algebra category. This identifies the laws and every structural result without an independent list of assumptions; compare <xref ref="bib-cat-riehl" detail="Definition 5.1.6"/> and <xref ref="bib-cat-li2" detail="Definitions 7.6.1 and 7.6.3"/>.</p>
+    <proposition xml:id="cat-c09-prop-cofree">
+      <idx>Cofree coalgebra</idx>
+      <statement>
+        <p>The functor <m>R_K:\mathcal D\to\mathcal D_K</m>, <m>X\mapsto(KX,\delta_X)</m>, is right adjoint to <m>U_K</m>. Its bijection and inverse are
+          <md number="no">\Hom_{\mathcal D_K}((A,a),R_KX)\cong\Hom_{\mathcal D}(A,X),\qquad
+            h\longmapsto\varepsilon_Xh,\quad f\longmapsto K(f)a.</md>
+          The forgetful functor creates all existing small colimits of underlying diagrams. An adjunction <m>F:\mathcal C\rightleftarrows\mathcal D:G</m>, with <m>F\dashv G</m>, induces the comonad
+          <md number="no">K=FG,\qquad \delta_X=F(\eta_{GX}),</md>
+          with the adjunction counit, and the comparison functor <m>\mathcal C\to\mathcal D_K</m> sends <m>A</m> to <m>(FA,F(\eta_A))</m>.</p>
+      </statement>
+      <proof>
+        <p>Apply the free-algebra adjunction and creation-of-limits theorem to the monad on <m>\mathcal D^\op</m>, then reverse arrows. The transpose formulas become exactly those displayed. Applying the adjunction-monad construction to <m>G^\op\dashv F^\op</m> gives the indicated comultiplication and comparison after reversing arrows. Thus no preservation of colimits by <m>K</m> is needed for the creation assertion.</p>
+      </proof>
+    </proposition>
+    <p>A split equalizer diagram is the dual of our split coequalizer convention. It consists of <m>i:E\to A</m>, <m>f,g:A\rightrightarrows B</m>, and <m>r:A\to E</m>, <m>t:B\to A</m> with
+      <md number="no">fi=gi,\qquad ri=\id_E,\qquad tg=\id_A,\qquad tf=ir.</md>
+      Such an <m>i</m> is an equalizer preserved by every functor. A pair in <m>\mathcal C</m> is <m>F</m>-split when its image under <m>F</m> extends to such a diagram in <m>\mathcal D</m>.</p>
+    <corollary xml:id="cat-c09-cor-comonadicity">
+      <title>Beck's comonadicity theorem</title>
+      <idx>Comonadic functor</idx>
+      <statement>
+        <p>For <m>F\dashv G</m> as above, the comparison <m>\mathcal C\to\mathcal D_{FG}</m> is an equivalence if and only if <m>F</m> is conservative and every <m>F</m>-split parallel pair has an equalizer in <m>\mathcal C</m> which <m>F</m> preserves. In this case <m>F</m> is called comonadic.</p>
+      </statement>
+      <proof>
+        <p>This is the Beck theorem already proved, applied to the right adjoint <m>F^\op:\mathcal C^\op\to\mathcal D^\op</m> and then translated by the displayed opposite-category identifications. Conservativity is self-dual, while split coequalizers become the stated split equalizers.</p>
+      </proof>
+    </corollary>
+    <example xml:id="cat-c09-example-product-comonad">
+      <title>A coalgebra can record a map to a fixed set</title>
+      <p>Fix <m>S\in\U</m>. On sets let <m>KX=S\times X</m>, let <m>\varepsilon_X(s,x)=x</m>, and let <m>\delta_X(s,x)=(s,(s,x))</m>. These formulas satisfy the comonad laws by evaluation on pairs. A coalgebra structure on <m>X</m> must be <m>c(x)=(a(x),x)</m> for a function <m>a:X\to S</m>, by the counit equation. Its coassociativity equation then holds automatically. A function <m>f:X\to Y</m> is a coalgebra map exactly when <m>b f=a</m>. Thus <m>\Set_K</m> is isomorphic to the slice <m>\Set/S</m>.</p>
+      <p>The forgetful functor is the domain functor <m>\Set/S\to\Set</m>; its cofree right adjoint sends <m>Y</m> to the projection <m>S\times Y\to S</m>. All formulas include <m>S=\varnothing</m>, when the coalgebra category has only the empty set. Coalgebras for a comonad need not be algebraic coalgebras over a field, just as algebras for a monad need not be rings or vector spaces. The specified endofunctor and structure maps determine the meaning.</p>
+    </example>
+  </section>
+</chapter>

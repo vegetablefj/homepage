@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "PreTeXt: Rebuild current note and refresh preview",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": [
+        "-X", "utf8",
+        "${workspaceFolder}/tools/editor_preview.py",
+        "--source", "${file}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "clear": true,
+        "showReuseMessage": false
+      },
+      "runOptions": {
+        "instanceLimit": 1,
+        "reevaluateOnRerun": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "PreTeXt: Rebuild entire website (local)",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["-X", "utf8", "${workspaceFolder}/build.py"],
+      "options": {"cwd": "${workspaceFolder}"},
+      "group": "build",
+      "presentation": {"reveal": "always", "focus": false, "panel": "dedicated"},
+      "runOptions": {"instanceLimit": 1},
+      "problemMatcher": []
+    }
+  ]
+}

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-darkmode="disabled">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette: blue-red                     *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Grothendieck categories and abelian localization</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Notes on homological algebra">
+<meta property="og:title" content="Notes on homological algebra">
+<meta property="book:title" content="Notes on homological algebra">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.53"></script><script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="../../vendor/lunr/lunr.min.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+<link rel="stylesheet" href="../../layout.css?v=fee08a8c1c">
+<script src="../../layout.js?v=e9391a21a7" defer></script><link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"C": "\\mathbb{C}", "Pone": "\\mathbb{P}^1_{\\mathbb{C}}", "cO": "\\mathcal{O}", "ord": "\\operatorname{ord}", "lt": "<", "gt": ">", "amp": "&", "Hom": "\\operatorname{Hom}", "End": "\\operatorname{End}", "Ext": "\\operatorname{Ext}", "Tor": "\\operatorname{Tor}", "colim": "\\operatorname{colim}", "im": "\\operatorname{im}", "coker": "\\operatorname{coker}", "Cone": "\\operatorname{Cone}", "Tot": "\\operatorname{Tot}", "Fun": "\\operatorname{Fun}", "Loc": "\\operatorname{Loc}", "thick": "\\operatorname{thick}", "Perf": "\\operatorname{Perf}", "id": "\\mathrm{id}", "op": "\\mathrm{op}", "Ab": "\\mathsf{Ab}", "Mod": "\\mathsf{Mod}", "Ch": "\\mathsf{C}", "K": "\\mathsf{K}", "D": "\\mathsf{D}", "RHom": "\\mathbf{R}\\!\\operatorname{Hom}", "Ltensor": "\\mathbin{\\otimes^{\\mathbf L}}", "Z": "\\mathbb Z", "N": "\\mathbb N", "Q": "\\mathbb Q"}}, "options": {"ignoreHtmlClass": "ignore-math", "processHtmlClass": "process-math", "enableMenu": false}};</script><script src="../../vendor/mathjax/tex-chtml.js" defer></script>
+</head>
+<body class="pretext book ignore-math note-page" data-page-format="note">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner"><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="homological-algebra-notes.html"><span class="title">Notes on homological algebra</span></a></div>
+<p class="byline"><a href="../../home.html">Jie Fu</a>'s <a href="../../notes.html">Notes</a></p>
+<p class="note-metadata"><span class="note-review-status">Under review and improvement</span> · <span class="note-last-updated">Last updated: <time datetime="2026-10-25">2026-10-25</time></span></p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Contents</span></button><a class="index-button button" href="ha-index.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Index</span></a><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true"></span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="treebuttons"><a class="previous-button button" href="ha-c01.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="up-button button" href="homological-algebra-notes.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Up</span></a><a class="next-button button" href="ha-c03.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a></span>
+</div></nav><div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth4 focused" data-preexpanded-levels="1" data-max-levels="4"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c00.html" class="internal"><span class="codenumber">0</span> <span class="title">Conventions and sources</span></a></div>
+<ul id="ptx-toc-group-ha-c00" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c00.html#ha-c00-conventions" class="internal"><span class="codenumber">0.1</span> <span class="title">Size, rings, and variance</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c00.html#ha-c00-signs" class="internal"><span class="codenumber">0.2</span> <span class="title">Degrees and signs</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c00.html#ha-c00-homology-language" class="internal"><span class="codenumber">0.3</span> <span class="title">Homology, cohomology, and dual terminology</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c00.html#ha-c00-dependencies" class="internal"><span class="codenumber">0.4</span> <span class="title">Reading and reference conventions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c01.html" class="internal"><span class="codenumber">1</span> <span class="title">Additive and abelian categories</span></a></div>
+<ul id="ptx-toc-group-ha-c01" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c01.html#ha-c01-additive" class="internal"><span class="codenumber">1.1</span> <span class="title">Addition and biproducts</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c01.html#ha-c01-abelian" class="internal"><span class="codenumber">1.2</span> <span class="title">Kernels, images, and exactness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c01.html#ha-c01-finiteness" class="internal"><span class="codenumber">1.3</span> <span class="title">Finiteness of objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c01.html#ha-c01-functors" class="internal"><span class="codenumber">1.4</span> <span class="title">Exact functors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c01.html#ha-c01-embeddings" class="internal"><span class="codenumber">1.5</span> <span class="title">Embedding and finite diagrams</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c01.html#ha-c01-diagram-lemmas" class="internal"><span class="codenumber">1.6</span> <span class="title">Diagram lemmas</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="ha-c02.html" class="internal"><span class="codenumber">2</span> <span class="title">Grothendieck categories and abelian localization</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-ha-c02">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c02.html#ha-c02-ab-conditions" class="internal"><span class="codenumber">2.1</span> <span class="title">Infinite exactness and generators</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c02.html#ha-c02-presentability" class="internal"><span class="codenumber">2.2</span> <span class="title">Finite generation and finite presentation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c02.html#ha-c02-examples" class="internal"><span class="codenumber">2.3</span> <span class="title">Examples and failures of duality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c02.html#ha-c02-localization" class="internal"><span class="codenumber">2.4</span> <span class="title">Serre quotients and exact localizations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c02.html#ha-c02-gabriel-popescu" class="internal"><span class="codenumber">2.5</span> <span class="title">Realization as a quotient of modules</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c03.html" class="internal"><span class="codenumber">3</span> <span class="title">Closed monoidal structures</span></a></div>
+<ul id="ptx-toc-group-ha-c03" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c03.html#ha-c03-monoidal" class="internal"><span class="codenumber">3.1</span> <span class="title">Monoidal data and linearity</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c03.html#ha-c03-closed" class="internal"><span class="codenumber">3.2</span> <span class="title">Internal Hom and adjunction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c03.html#ha-c03-exactness-duals" class="internal"><span class="codenumber">3.3</span> <span class="title">Exactness and dualizable objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c03.html#ha-c03-terminology" class="internal"><span class="codenumber">3.4</span> <span class="title">Tensor terminology and functors</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c04.html" class="internal"><span class="codenumber">4</span> <span class="title">Complexes and homotopy</span></a></div>
+<ul id="ptx-toc-group-ha-c04" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c04.html#ha-c04-complexes" class="internal"><span class="codenumber">4.1</span> <span class="title">Complexes and cohomology</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c04.html#ha-c04-homotopy" class="internal"><span class="codenumber">4.2</span> <span class="title">Hom complexes and homotopy</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c04.html#ha-c04-cones" class="internal"><span class="codenumber">4.3</span> <span class="title">Mapping cones</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c04.html#ha-c04-truncations" class="internal"><span class="codenumber">4.4</span> <span class="title">Truncations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c04.html#ha-c04-totalization" class="internal"><span class="codenumber">4.5</span> <span class="title">Double complexes and totalization</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c04.html#ha-c04-salamander" class="internal"><span class="codenumber">4.6</span> <span class="title">The salamander lemma</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c05.html" class="internal"><span class="codenumber">5</span> <span class="title">Resolutions and classical derived functors</span></a></div>
+<ul id="ptx-toc-group-ha-c05" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c05.html#ha-c05-resolutions" class="internal"><span class="codenumber">5.1</span> <span class="title">Resolutions and comparison</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c05.html#ha-c05-classical" class="internal"><span class="codenumber">5.2</span> <span class="title">Classical derived functors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c05.html#ha-c05-universality" class="internal"><span class="codenumber">5.3</span> <span class="title">Universality and effacement</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c05.html#ha-c05-acyclic" class="internal"><span class="codenumber">5.4</span> <span class="title">Acyclic resolutions and inverse limits</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c06.html" class="internal"><span class="codenumber">6</span> <span class="title">Ext, Tor, and homological dimension</span></a></div>
+<ul id="ptx-toc-group-ha-c06" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c06.html#ha-c06-ext" class="internal"><span class="codenumber">6.1</span> <span class="title">The two computations of Ext</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c06.html#ha-c06-yoneda" class="internal"><span class="codenumber">6.2</span> <span class="title">Extensions and their products</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c06.html#ha-c06-balanced-bifunctors" class="internal"><span class="codenumber">6.3</span> <span class="title">Balanced bifunctors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c06.html#ha-c06-tor" class="internal"><span class="codenumber">6.4</span> <span class="title">Tor and flat resolutions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c06.html#ha-c06-dimensions" class="internal"><span class="codenumber">6.5</span> <span class="title">Homological dimensions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c06.html#ha-c06-change-rings" class="internal"><span class="codenumber">6.6</span> <span class="title">Changing the ring</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c07.html" class="internal"><span class="codenumber">7</span> <span class="title">Filtered complexes and spectral sequences</span></a></div>
+<ul id="ptx-toc-group-ha-c07" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c07.html#ha-c07-filtrations" class="internal"><span class="codenumber">7.1</span> <span class="title">Filtrations and the abutment</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c07.html#ha-c07-construction" class="internal"><span class="codenumber">7.2</span> <span class="title">Construction from a filtered complex</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c07.html#ha-c07-exact-couples" class="internal"><span class="codenumber">7.3</span> <span class="title">Exact couples</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c07.html#ha-c07-convergence-variants" class="internal"><span class="codenumber">7.4</span> <span class="title">Convergence beyond finite filtrations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c07.html#ha-c07-double" class="internal"><span class="codenumber">7.5</span> <span class="title">The spectral sequences of a double complex</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c07.html#ha-c07-edge-products" class="internal"><span class="codenumber">7.6</span> <span class="title">Edges, extensions, and products</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c08.html" class="internal"><span class="codenumber">8</span> <span class="title">Triangulated categories and Verdier quotients</span></a></div>
+<ul id="ptx-toc-group-ha-c08" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c08.html#ha-c08-axioms" class="internal"><span class="codenumber">8.1</span> <span class="title">Triangles and exact functors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c08.html#ha-c08-homotopy" class="internal"><span class="codenumber">8.2</span> <span class="title">The homotopy category as an example</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c08.html#ha-c08-cone-maps" class="internal"><span class="codenumber">8.3</span> <span class="title">Cone maps and suspension signs</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c08.html#ha-c08-octahedron" class="internal"><span class="codenumber">8.4</span> <span class="title">The cone of a composite</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c08.html#ha-c08-quotients" class="internal"><span class="codenumber">8.5</span> <span class="title">Thick subcategories and quotients</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c08.html#ha-c08-orthogonals" class="internal"><span class="codenumber">8.6</span> <span class="title">Orthogonals and exact adjoints</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c09.html" class="internal"><span class="codenumber">9</span> <span class="title">Derived categories</span></a></div>
+<ul id="ptx-toc-group-ha-c09" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c09.html#ha-c09-construction" class="internal"><span class="codenumber">9.1</span> <span class="title">Inverting quasi-isomorphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c09.html#ha-c09-bounded" class="internal"><span class="codenumber">9.2</span> <span class="title">Bounded models and short exact sequences</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c09.html#ha-c09-examples" class="internal"><span class="codenumber">9.3</span> <span class="title">What derived morphisms retain</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c09.html#ha-c09-morphism-models" class="internal"><span class="codenumber">9.4</span> <span class="title">Morphism calculations and resolution models</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c09.html#ha-c09-cohomological-filtration" class="internal"><span class="codenumber">9.5</span> <span class="title">Cohomology layers and extension data</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c09.html#ha-c09-yoneda-and-subcategories" class="internal"><span class="codenumber">9.6</span> <span class="title">Yoneda extensions and full subcategories</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c10.html" class="internal"><span class="codenumber">10</span> <span class="title">Unbounded resolutions</span></a></div>
+<ul id="ptx-toc-group-ha-c10" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c10.html#ha-c10-homological" class="internal"><span class="codenumber">10.1</span> <span class="title">Homotopically injective and projective complexes</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c10.html#ha-c10-existence" class="internal"><span class="codenumber">10.2</span> <span class="title">Existence and its hypotheses</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c10.html#ha-c10-towers" class="internal"><span class="codenumber">10.3</span> <span class="title">Compatible towers of injective models</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c10.html#ha-c10-flat" class="internal"><span class="codenumber">10.4</span> <span class="title">K-flat complexes and a failure of termwise arguments</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c10.html#ha-c10-semi-free" class="internal"><span class="codenumber">10.5</span> <span class="title">A filtered construction of a replacement</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c11.html" class="internal"><span class="codenumber">11</span> <span class="title">Total derived functors and adjunctions</span></a></div>
+<ul id="ptx-toc-group-ha-c11" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c11.html#ha-c11-universal" class="internal"><span class="codenumber">11.1</span> <span class="title">The universal comparison</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c11.html#ha-c11-adapted-classes" class="internal"><span class="codenumber">11.2</span> <span class="title">Adapted classes and bounded computation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c11.html#ha-c11-composition" class="internal"><span class="codenumber">11.3</span> <span class="title">Composition and acyclicity</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c11.html#ha-c11-adjunction" class="internal"><span class="codenumber">11.4</span> <span class="title">Deriving an adjunction</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c12.html" class="internal"><span class="codenumber">12</span> <span class="title">Derived tensor and Hom</span></a></div>
+<ul id="ptx-toc-group-ha-c12" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c12.html#ha-c12-abstract-hom" class="internal"><span class="codenumber">12.1</span> <span class="title">Derived morphism complexes in an abelian category</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c12.html#ha-c12-abstract-tensor" class="internal"><span class="codenumber">12.2</span> <span class="title">Deriving a monoidal structure</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c12.html#ha-c12-constructions" class="internal"><span class="codenumber">12.3</span> <span class="title">Module models and replacement formulas</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c12.html#ha-c12-closed" class="internal"><span class="codenumber">12.4</span> <span class="title">The closed structure over a commutative ring</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c12.html#ha-c12-base" class="internal"><span class="codenumber">12.5</span> <span class="title">Change of rings and tensor comparisons</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c12.html#ha-c12-perfect" class="internal"><span class="codenumber">12.6</span> <span class="title">Finite resolutions and evaluation</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c13.html" class="internal"><span class="codenumber">13</span> <span class="title">t-structures and hearts</span></a></div>
+<ul id="ptx-toc-group-ha-c13" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c13.html#ha-c13-definition" class="internal"><span class="codenumber">13.1</span> <span class="title">Truncation as a universal construction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c13.html#ha-c13-heart" class="internal"><span class="codenumber">13.2</span> <span class="title">The abelian heart and its extensions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c13.html#ha-c13-examples" class="internal"><span class="codenumber">13.3</span> <span class="title">Standard, shifted, and degenerate examples</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c13.html#ha-c13-completeness" class="internal"><span class="codenumber">13.4</span> <span class="title">Detection and reconstruction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c13.html#ha-c13-exact-functors" class="internal"><span class="codenumber">13.5</span> <span class="title">Functors and t-exactness</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c14.html" class="internal"><span class="codenumber">14</span> <span class="title">Compact generation and representability</span></a></div>
+<ul id="ptx-toc-group-ha-c14" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c14.html#ha-c14-compact" class="internal"><span class="codenumber">14.1</span> <span class="title">Compact objects and generators</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c14.html#ha-c14-module-example" class="internal"><span class="codenumber">14.2</span> <span class="title">Derived categories of modules</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c14.html#ha-c14-brown" class="internal"><span class="codenumber">14.3</span> <span class="title">Brown representability and right adjoints</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c14.html#ha-c14-adjoints" class="internal"><span class="codenumber">14.4</span> <span class="title">Preservation and tests on generators</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c15.html" class="internal"><span class="codenumber">15</span> <span class="title">Localization and recollement</span></a></div>
+<ul id="ptx-toc-group-ha-c15" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c15.html#ha-c15-reflective" class="internal"><span class="codenumber">15.1</span> <span class="title">Local objects and localization triangles</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c15.html#ha-c15-compact-localization" class="internal"><span class="codenumber">15.2</span> <span class="title">Localization generated by compact objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c15.html#ha-c15-recollement" class="internal"><span class="codenumber">15.3</span> <span class="title">Recollement data</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c15.html#ha-c15-gluing" class="internal"><span class="codenumber">15.4</span> <span class="title">Gluing t-structures</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c16.html" class="internal"><span class="codenumber">16</span> <span class="title">Monoidal triangulated categories and duality</span></a></div>
+<ul id="ptx-toc-group-ha-c16" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c16.html#ha-c16-structures" class="internal"><span class="codenumber">16.1</span> <span class="title">Exact closed monoidal structures</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c16.html#ha-c16-dualizable" class="internal"><span class="codenumber">16.2</span> <span class="title">Duals and the tensor–Hom comparison</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c16.html#ha-c16-reflexive" class="internal"><span class="codenumber">16.3</span> <span class="title">Reflexivity and dualizing objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c16.html#ha-c16-compactness" class="internal"><span class="codenumber">16.4</span> <span class="title">Compactness and perfect complexes</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c16.html#ha-c16-tensor-localization" class="internal"><span class="codenumber">16.5</span> <span class="title">Tensor-compatible localization</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c16.html#ha-c16-traces" class="internal"><span class="codenumber">16.6</span> <span class="title">Trace and suspension</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c17.html" class="internal"><span class="codenumber">17</span> <span class="title">Monoidal adjunctions and formal duality</span></a></div>
+<ul id="ptx-toc-group-ha-c17" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c17.html#ha-c17-mates" class="internal"><span class="codenumber">17.1</span> <span class="title">Adjoint transposition of natural transformations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c17.html#ha-c17-one-pair" class="internal"><span class="codenumber">17.2</span> <span class="title">One monoidal adjunction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c17.html#ha-c17-second-pair" class="internal"><span class="codenumber">17.3</span> <span class="title">The second adjunction and the projection isomorphism</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c17.html#ha-c17-generation" class="internal"><span class="codenumber">17.4</span> <span class="title">Representability and extension from generators</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c17.html#ha-c17-dualizing-subcategories" class="internal"><span class="codenumber">17.5</span> <span class="title">Descriptions using dualizing objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c17.html#ha-c17-contexts" class="internal"><span class="codenumber">17.6</span> <span class="title">Grothendieck and Wirthmüller comparisons</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c17.html#ha-c17-traces" class="internal"><span class="codenumber">17.7</span> <span class="title">Counits and their compatibility with composition</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ha-c18.html" class="internal"><span class="codenumber">18</span> <span class="title">Indexed categories and the six operations</span></a></div>
+<ul id="ptx-toc-group-ha-c18" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-indexed" class="internal"><span class="codenumber">18.1</span> <span class="title">The base and the ordinary adjunction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-six-data" class="internal"><span class="codenumber">18.2</span> <span class="title">Exceptional operations and coherence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-pasting" class="internal"><span class="codenumber">18.3</span> <span class="title">Exchange maps and pasting</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-formal-consequences" class="internal"><span class="codenumber">18.4</span> <span class="title">Mates, proper comparisons, and relative duality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-external-products" class="internal"><span class="codenumber">18.5</span> <span class="title">External products and an abstract Künneth isomorphism</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-localization" class="internal"><span class="codenumber">18.6</span> <span class="title">Localization at an abstract decomposition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-compactification" class="internal"><span class="codenumber">18.7</span> <span class="title">Constructing exceptional direct images from factorizations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-c18.html#ha-c18-example" class="internal"><span class="codenumber">18.8</span> <span class="title">A system indexed by sets</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="homological-algebra-notes-23.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul id="ptx-toc-group-homological-algebra-notes-23" class="structural toc-item-list">
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="ha-exact.html" class="internal"><span class="codenumber">A.</span> <span class="title">Exact and quasi-abelian categories</span></a></div>
+<ul id="ptx-toc-group-ha-exact" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-exact.html#ha-exact-structures" class="internal"><span class="codenumber">A.1</span> <span class="title">A chosen class of exact sequences</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-exact.html#ha-exact-strictness" class="internal"><span class="codenumber">A.2</span> <span class="title">Preabelian categories and strict morphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-exact.html#ha-exact-quasi-abelian" class="internal"><span class="codenumber">A.3</span> <span class="title">The canonical exact structure</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-exact.html#ha-exact-filtered-example" class="internal"><span class="codenumber">A.4</span> <span class="title">Finite filtered vector spaces</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="ha-concordance.html" class="internal"><span class="codenumber">B.</span> <span class="title">Terminology and hypothesis comparisons</span></a></div>
+<ul id="ptx-toc-group-ha-concordance" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-concordance.html#ha-concordance-language" class="internal"><span class="codenumber">B.1</span> <span class="title">Names and structures</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="ha-concordance.html#ha-concordance-hypotheses" class="internal"><span class="codenumber">B.2</span> <span class="title">Conditions that must be checked separately</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="ha-references.html" class="internal"><span class="title">References</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="ha-index.html" class="internal"><span class="title">Index</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="chapter" id="ha-c02">
+<h1 class="heading">
+<span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Grothendieck categories and abelian localization</span>
+</h1>
+<section class="introduction" id="ha-c02-2">
+<div class="para" id="ha-c02-2-1">An abelian category provides finite exact constructions. Infinite resolutions and their comparison require further existence and exactness assumptions. Grothendieck categories give one common set of hypotheses: they have arbitrary small colimits, exact filtered colimits, and a generator. Abelian localization explains how such categories can be obtained from module categories while retaining an exact quotient functor. The basic references are <a href="ha-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-ha-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, §2.10 and Appendix A]</a> and <a href="ha-references.html#KS06" class="xref" data-knowl="./knowl/xref/bib-ha-ks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry KS06">[KS06, Chapters 8–9]</a>.</div></section>
+<section class="section" id="ha-c02-ab-conditions">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Infinite exactness and generators</span>
+</h2>
+<article class="definition definition-like" id="ha-c02-ab-definition"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Grothendieck’s conditions.</span>
+</h3>
+<div class="para" id="ha-c02-ab-definition-7-1">Let <span class="process-math">\(\mathcal A\)</span> be an abelian category. All indexing sets and indexing categories in the following conditions are small.</div>
+<div class="para logical" id="ha-c02-ab-definition-7-2">
+<ol class="decimal" id="ha-c02-ab-definition-7-2-1">
+<li id="ha-c02-ab-definition-7-2-1-1">
+<div class="para" id="ha-c02-ab-definition-7-2-1-1-1">
+<em class="emphasis">AB3</em> means that all coproducts exist. <em class="emphasis">AB4</em> means AB3 and exactness of coproducts. <em class="emphasis">AB5</em> means AB3 and exactness of filtered colimits.</div>
+</li>
+<li id="ha-c02-ab-definition-7-2-1-2">
+<div class="para" id="ha-c02-ab-definition-7-2-1-2-1">
+<em class="emphasis">AB3*</em> means that all products exist. <em class="emphasis">AB4*</em> means AB3* and exactness of products.</div>
+</li>
+<li id="ha-c02-ab-definition-7-2-1-3">
+<div class="para" id="ha-c02-ab-definition-7-2-1-3-1">An object <span class="process-math">\(G\)</span> is a <em class="emphasis">generator</em> if <span class="process-math">\(\Hom_{\mathcal A}(G,-)\)</span> is faithful. A <em class="emphasis">Grothendieck category</em> is an abelian category satisfying AB5 and having a generator.</div>
+</li>
+</ol>
+</div>
+</article>
+<div class="para" id="ha-c02-ab-conditions-3">In an additive category with cokernels, coproducts give all small colimits: a colimit of <span class="process-math">\(X:I\to\mathcal A\)</span> is the cokernel of the difference of the two maps from <span class="process-math">\(\bigoplus_{u:i\to j}X_i\)</span> to <span class="process-math">\(\bigoplus_iX_i\text{.}\)</span> Thus “AB5 with a generator” agrees with the convention using cocompleteness in the chapter introduction. See <a href="ha-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-ha-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Tag 079B]</a>.<a id="ha-c02-ab-conditions-3-5" href="#margin-ha-c02-ab-conditions-3-5" class="margin-note-marker" aria-label="Margin note 1">1</a>
+</div>
+<article class="proposition theorem-like" id="ha-c02-generator-criteria"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c02-generator-criteria-1-1">Suppose <span class="process-math">\(\mathcal A\)</span> has coproducts and <span class="process-math">\(G\in\mathcal A\text{.}\)</span> The following conditions are equivalent: <span class="process-math">\(G\)</span> is a generator; every object is a quotient of a coproduct of copies of <span class="process-math">\(G\text{;}\)</span> for every proper subobject <span class="process-math">\(N\subsetneq X\text{,}\)</span> some morphism <span class="process-math">\(G\to X\)</span> does not factor through <span class="process-math">\(N\text{.}\)</span> If these conditions hold, <span class="process-math">\(\mathcal A\)</span> is well-powered: the subobjects of each object form a small set up to isomorphism over that object.</div>
+</article>
+<details id="ha-c02-generator-criteria-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c02-generator-criteria-2-1">Consider the evaluation map <span class="process-math">\(e_X:\bigoplus_{u\in\Hom(G,X)}G\to X\text{.}\)</span> If <span class="process-math">\(G\)</span> is a generator and <span class="process-math">\(q:X\to\coker e_X\text{,}\)</span> then <span class="process-math">\(qu=0\)</span> for every <span class="process-math">\(u:G\to X\text{,}\)</span> so faithfulness gives <span class="process-math">\(q=0\text{.}\)</span> Thus <span class="process-math">\(e_X\)</span> is epic. If all objects are quotients of such coproducts and <span class="process-math">\(f\ne g:X\to Y\text{,}\)</span> some component of a covering coproduct distinguishes them. This proves faithfulness. The proper subobject criterion follows by applying the same argument to its inclusion and quotient.</div>
+<div class="para" id="ha-c02-generator-criteria-2-2">A subobject <span class="process-math">\(N\subseteq X\)</span> is determined by the subset of <span class="process-math">\(\Hom(G,X)\)</span> consisting of maps factoring through <span class="process-math">\(N\text{:}\)</span> the image of their evaluation map is <span class="process-math">\(N\text{.}\)</span> Subobjects therefore inject into a power set of a small set.</div>
+</article></details>
+<article class="proposition theorem-like" id="ha-c02-ab-five-consequences"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="ha-c02-ab-five-consequences-1-1">
+<div class="para">AB5 implies AB4. If <span class="process-math">\((X_i)\)</span> is a filtered diagram in an AB5 category and <span class="process-math">\(N\subseteq X=\colim_iX_i\text{,}\)</span> then</div>
+<div class="displaymath process-math" id="ha-c02-ab-five-consequences-1-1-3">
+\begin{equation*}
+N\simeq\colim_i(X_i\times_XN).
+\end{equation*}
+</div>
+<div class="para">In particular, a directed union of subobjects is a subobject, and taking that union commutes with intersection with a fixed subobject.</div>
+</div>
+</article>
+<details id="ha-c02-ab-five-consequences-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c02-ab-five-consequences-2-1">A coproduct is the filtered colimit of its finite partial biproducts. Finite biproducts are exact, so AB5 proves AB4. For the second assertion, apply exactness of the filtered colimit to the kernels defining <span class="process-math">\(X_i\times_XN\)</span> inside <span class="process-math">\(X_i\oplus N\text{.}\)</span> The colimit of the constant diagram <span class="process-math">\(N\)</span> is <span class="process-math">\(N\text{,}\)</span> since a filtered category is nonempty and connected. The resulting kernel is the pullback of <span class="process-math">\(\id_X\)</span> along <span class="process-math">\(N\to X\text{,}\)</span> hence is <span class="process-math">\(N\text{.}\)</span>
+</div>
+</article></details>
+<div class="para" id="ha-c02-ab-conditions-6">The generator need not be projective, small, or finitely presentable. Those are additional requirements on its Hom functor. A small family of generators can be replaced by its coproduct, but this replacement does not make the coproduct finitely presentable.</div>
+<div class="para" id="ha-c02-ab-conditions-7">Coproducts are always right exact when they exist, because they are colimits. Products are always left exact when they exist, because they are limits. Thus AB4 asks that coproducts preserve monomorphisms, and AB4* asks that products preserve epimorphisms. AB5 asks that filtered colimits preserve monomorphisms; it then preserves kernels and all finite limits by additivity. An arbitrary colimit functor need not be left exact. Even a coequalizer can destroy injectivity.</div>
+<article class="theorem theorem-like" id="ha-c02-injective-existence"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c02-injective-existence-1-1">Every Grothendieck category has all small limits and enough injectives: every object admits a monomorphism into an injective object. These assertions require no monoidal structure. For unbounded complexes, the stronger existence of K-injective resolutions is established in <a href="ha-c10.html" class="internal" title="Chapter 10: Unbounded resolutions">Chapter 10</a>.</div>
+</article>
+<div class="para" id="ha-c02-ab-conditions-9">We use this existence theorem from <a href="ha-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-ha-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, §2.10]</a>; the construction through accessible objects is given in <a href="ha-references.html#KS06" class="xref" data-knowl="./knowl/xref/bib-ha-ks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry KS06">[KS06, Chapter 9]</a>. Injective means that maps into the object extend across monomorphisms, as defined in <a href="ha-c05.html" class="internal" title="Chapter 5: Resolutions and classical derived functors">Chapter 5</a>. These hypotheses provide no corresponding general theorem for projective resolutions.</div>
+<article class="proposition theorem-like" id="ha-c02-injective-cogenerator"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="ha-c02-injective-cogenerator-1-1">
+<div class="para">A Grothendieck category has an injective cogenerator <span class="process-math">\(E\text{:}\)</span> the contravariant functor <span class="process-math">\(\Hom(-,E)\)</span> is faithful. Every object has a natural monomorphism</div>
+<div class="displaymath process-math" id="ha-c02-injective-cogenerator-1-1-3">
+\begin{equation*}
+X\longrightarrow\prod_{u\in\Hom(X,E)}E
+\end{equation*}
+</div>
+<div class="para">whose components are the maps <span class="process-math">\(u\text{.}\)</span> A product of injective objects is injective.</div>
+</div>
+</article>
+<details id="ha-c02-injective-cogenerator-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c02-injective-cogenerator-2-1">Choose a generator <span class="process-math">\(G\text{.}\)</span> Its quotients form a small set up to isomorphism by well-poweredness. For each quotient <span class="process-math">\(G/K\text{,}\)</span> choose a monomorphism to an injective object <span class="process-math">\(E_K\text{,}\)</span> and let <span class="process-math">\(E=\prod_KE_K\text{.}\)</span> Products of injectives are injective: a map to the product extends across a monomorphism by extending each component. To detect a nonzero morphism <span class="process-math">\(f:X\to Y\text{,}\)</span> choose a nonzero map <span class="process-math">\(G\to\im f\text{.}\)</span> Its image is a nonzero quotient <span class="process-math">\(G/K\)</span> inside <span class="process-math">\(Y\text{.}\)</span> Injectivity extends its chosen map to <span class="process-math">\(E_K\)</span> across this inclusion, giving <span class="process-math">\(Y\to E_K\)</span> nonzero on <span class="process-math">\(\im f\text{.}\)</span> The product <span class="process-math">\(E\)</span> therefore detects <span class="process-math">\(f\text{.}\)</span> The kernel of the displayed evaluation map must be zero by this detection property.</div>
+</article></details>
+<div class="para" id="ha-c02-ab-conditions-11">This proof uses enough injectives, all products, and a small collection of quotients of a generator. It explains the cogenerator conclusion of <a href="ha-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-ha-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Corollary 2.10.15]</a>. The evaluation construction is functorial, with the map between products given by precomposition on the indexing sets. That functor need not be additive. A functorial embedding into injectives as objects and a functorial K-injective replacement of unbounded complexes are different existence results.</div>
+</section>
+<section class="section" id="ha-c02-presentability">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Finite generation and finite presentation</span>
+</h2>
+<div class="para" id="ha-c02-presentability-2">The generator controls all objects through quotients of sums. Finiteness asks how much of such a sum, or of a filtered approximation, is needed for one map. The relevant notions are relative to the ambient category, rather than to a selected description of its objects.</div>
+<article class="definition definition-like" id="ha-c02-finite-definitions"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Finite objects and local finiteness conditions.</span>
+</h3>
+<div class="para" id="ha-c02-finite-definitions-7-1">Let <span class="process-math">\(\mathcal A\)</span> be Grothendieck.</div>
+<div class="para logical" id="ha-c02-finite-definitions-7-2">
+<ol class="decimal" id="ha-c02-finite-definitions-7-2-1">
+<li id="ha-c02-finite-definitions-7-2-1-1">
+<div class="para" id="ha-c02-finite-definitions-7-2-1-1-1">An object <span class="process-math">\(X\)</span> is <em class="emphasis">finitely generated</em> if, whenever it is the directed union of subobjects <span class="process-math">\(X_i\text{,}\)</span> one of those subobjects is <span class="process-math">\(X\text{.}\)</span>
+</div>
+</li>
+<li id="ha-c02-finite-definitions-7-2-1-2">
+<div class="para" id="ha-c02-finite-definitions-7-2-1-2-1">It is <em class="emphasis">finitely presentable</em> if <span class="process-math">\(\Hom(X,-)\)</span> commutes with all small filtered colimits. Thus the canonical map <span class="process-math">\(\colim_i\Hom(X,Y_i)\to\Hom(X,\colim_iY_i)\)</span> must be bijective for every filtered diagram.</div>
+</li>
+<li id="ha-c02-finite-definitions-7-2-1-3">
+<div class="para" id="ha-c02-finite-definitions-7-2-1-3-1">The category is <em class="emphasis">locally finitely generated</em> if it has a small generating family of finitely generated objects. It is <em class="emphasis">locally finitely presentable</em> if a small family of finitely presentable objects supplies every object as a filtered colimit. It is <em class="emphasis">locally coherent</em> if it is locally finitely presentable and its full subcategory of finitely presentable objects is abelian with exact inclusion. It is <em class="emphasis">locally noetherian</em> if it has a small generating family of noetherian objects.</div>
+</li>
+</ol>
+</div>
+</article>
+<div class="para" id="ha-c02-presentability-4">For filtered diagrams of monomorphisms, the finite-generation condition says that a map from <span class="process-math">\(X\)</span> into the union factors through one stage. Apply <a href="ha-c02.html#ha-c02-ab-five-consequences" class="xref" data-knowl="./knowl/xref/ha-c02-ab-five-consequences.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 2.3">Proposition 2.3</a> to its image, or pull the union back to <span class="process-math">\(X\text{,}\)</span> to obtain this factorization. The map between Hom colimits is then bijective, since transition monomorphisms detect equality. Finite presentation makes the same demand for filtered diagrams with arbitrary transition maps. It controls both the existence of a finite stage for a map and the relations identifying two such maps.<a id="ha-c02-presentability-4-4" href="#margin-ha-c02-presentability-4-4" class="margin-note-marker" aria-label="Margin note 2">2</a>
+</div>
+<div class="para" id="ha-c02-presentability-5">The finite-presentation condition is the case <span class="process-math">\(\kappa=\aleph_0\)</span> of the presentability conventions in <a href="ha-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-ha-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Appendix A.2]</a>; the diagrams are ordinary filtered diagrams. Larger regular cardinals provide different bounds. No fixed finite-presentation condition is part of the definition of a Grothendieck category.</div>
+<article class="proposition theorem-like" id="ha-c02-finite-properties"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.7</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c02-finite-properties-1-1">Finitely presentable objects are finitely generated, and noetherian objects are finitely generated. Finitely generated objects are closed under quotients and extensions. Finitely presentable objects are closed under finite colimits and direct summands. In a locally finitely generated Grothendieck category, every object is a directed union of finitely generated subobjects.</div>
+</article>
+<details id="ha-c02-finite-properties-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c02-finite-properties-2-1">Apply preservation of filtered colimits to a union covering a finitely presentable object and to its identity map. A noetherian object has a maximal member in any directed family of subobjects; directedness makes that member contain the whole family. For an extension with finitely generated outer terms, a union covering the middle term eventually covers its quotient and eventually contains its subobject, so eventually equals the middle term. Quotients use inverse images of a covering union. Finite colimits become finite limits under Hom, and filtered colimits of sets commute with finite limits; this proves the finite-presentation assertion. Direct summands follow by taking retracts of the Hom comparison maps. For the final assertion, cover an object by a sum of the finitely generated generators. The images of its finite partial sums are finitely generated and have union the whole object.</div>
+</article></details>
+<div class="para" id="ha-c02-presentability-7">For modules, these definitions recover finite generation and finite presentation by generators and relations. Every module is a filtered colimit of finitely presented modules, so <span class="process-math">\(\Mod(R)\)</span> is locally finitely presentable for every ring. It is locally noetherian exactly when <span class="process-math">\(R\)</span> is left noetherian. It is locally coherent exactly when <span class="process-math">\(R\)</span> is left coherent, meaning that every finitely generated left ideal is finitely presented, equivalently that kernels of maps between finitely presented left modules are finitely presented. A ring need not be coherent for its entire module category to be abelian; coherence concerns its smaller category of finitely presented modules.</div>
+<article class="example example-like" id="ha-c02-finite-counterexamples"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.8</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c02-finite-counterexamples-1">Let <span class="process-math">\(R=k[x_1,x_2,\ldots]\)</span> and <span class="process-math">\(I=(x_1,x_2,\ldots)\text{.}\)</span> The cyclic module <span class="process-math">\(R/I\)</span> is finitely generated but not finitely presented, because the kernel <span class="process-math">\(I\)</span> of its presentation by one free generator is not finitely generated. The free module <span class="process-math">\(R\)</span> is finitely presented but not noetherian. Thus neither “finitely generated” nor “finitely presented” may be replaced by “noetherian” over an arbitrary ring.</div>
+</article>
+<div class="para" id="ha-c02-presentability-9">A category described as locally finite requires a further convention. In the representation-theoretic terminology recalled in <a href="ha-c03.html" class="internal" title="Chapter 3: Closed monoidal structures">Chapter 3</a>, a locally finite <span class="process-math">\(k\)</span>-linear abelian category has finite-length objects and finite-dimensional Hom spaces. In some discussions of Grothendieck categories, local finiteness instead means that arbitrary objects are unions of finite-length subobjects. All vector spaces over <span class="process-math">\(k\)</span> satisfy the latter condition and include objects of infinite length; finite-dimensional vector spaces satisfy the former and lack infinite coproducts. We will state the actual finiteness conditions when using either convention.</div>
+</section>
+<section class="section" id="ha-c02-examples">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Examples and failures of duality</span>
+</h2>
+<article class="example example-like" id="ha-c02-groth-examples"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.9</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c02-groth-examples-1">For any ring <span class="process-math">\(R\text{,}\)</span> <span class="process-math">\(\Mod(R)\)</span> is Grothendieck, with generator <span class="process-math">\(R\text{.}\)</span> Filtered colimits are exact by the element criterion: an element vanishes in a filtered colimit precisely when it vanishes at some later stage. If <span class="process-math">\(I\)</span> is a small category, <span class="process-math">\(\Fun(I,\Mod(R))\)</span> is Grothendieck. Limits and colimits are computed pointwise. A generating family consists of the functors <span class="process-math">\(P_i(j)=\bigoplus_{I(i,j)}R\text{,}\)</span> since <span class="process-math">\(\Hom(P_i,F)\simeq F(i)\)</span> as abelian groups.</div>
+</article>
+<div class="para" id="ha-c02-examples-3">Another construction starts with a small abelian category <span class="process-math">\(\mathcal B\text{.}\)</span> Its category <span class="process-math">\(\operatorname{Ind}(\mathcal B)\)</span> of formal filtered colimits is Grothendieck, and the canonical inclusion is fully faithful and exact. The objects of <span class="process-math">\(\mathcal B\)</span> are precisely its finitely presentable objects, up to isomorphism. Here finitely presentable means that the Hom functor commutes with filtered colimits. See <a href="ha-references.html#KS06" class="xref" data-knowl="./knowl/xref/bib-ha-ks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry KS06">[KS06, §8.6]</a> and <a href="ha-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-ha-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Appendix B.5]</a>. This construction retains the original finite exact sequences while adding filtered colimits. It does not assert that an arbitrary small abelian category already has those colimits.</div>
+<div class="para logical" id="ha-c02-examples-4">
+<div class="para">The morphism formula explains the finite-presentation assertion. For filtered diagrams <span class="process-math">\((B_i)\)</span> and <span class="process-math">\((C_j)\)</span> in <span class="process-math">\(\mathcal B\text{,}\)</span>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/bib-ha-li2.html" id="ha-c02-examples-4-4">
+\begin{equation*}
+\Hom_{\operatorname{Ind}(\mathcal B)}\left(\underset{i}{\text{“}\colim\text{”}}B_i,\underset{j}{\text{“}\colim\text{”}}C_j\right)=\lim_i\colim_j\Hom_{\mathcal B}(B_i,C_j).
+\end{equation*}
+</div>
+<div class="para">An object of <span class="process-math">\(\mathcal B\)</span> therefore has Hom commuting with filtered colimits. Conversely, if an ind-object is finitely presentable, its identity factors through one of the objects in a filtered presentation, making it a retract of that object. Idempotents split in <span class="process-math">\(\mathcal B\text{,}\)</span> so this retract belongs to <span class="process-math">\(\mathcal B\)</span> up to isomorphism. The embedding and Grothendieck assertions are <a href="ha-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-ha-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Theorems B.5.1 and B.5.7]</a>; the Hom formula is the defining calculation of Ind-categories.</div>
+</div>
+<div class="para" id="ha-c02-examples-5">It follows that <span class="process-math">\(\operatorname{Ind}(\mathcal B)\)</span> is locally coherent. For a finite-dimensional <span class="process-math">\(k\)</span>-algebra <span class="process-math">\(A\text{,}\)</span> every <span class="process-math">\(A\)</span>-module is a union of finite-dimensional submodules, so the ind-category of finite-dimensional <span class="process-math">\(A\)</span>-modules is equivalent to <span class="process-math">\(\Mod(A)\text{.}\)</span> Taking <span class="process-math">\(\mathcal B\)</span> to be a small equivalent category of finite abelian groups instead gives the category of torsion abelian groups: finitely generated torsion groups are finite. The original small category determines which finite objects are being completed.<a id="ha-c02-examples-5-8" href="#margin-ha-c02-examples-5-8" class="margin-note-marker" aria-label="Margin note 3">3</a>
+</div>
+<article class="example example-like" id="ha-c02-torsion-example"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.10</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c02-torsion-example-1">The category <span class="process-math">\(\mathcal T\)</span> of torsion abelian groups is Grothendieck. Kernels, cokernels, coproducts, and filtered colimits are computed in <span class="process-math">\(\Ab\text{,}\)</span> and <span class="process-math">\(\bigoplus_{n\geq1}\Z/n\Z\)</span> is a generator. Products are the torsion subgroups of the products in <span class="process-math">\(\Ab\text{.}\)</span> They are not exact. Fix a prime <span class="process-math">\(p\)</span> and take the epimorphisms <span class="process-math">\(\Z/p^{n+1}\Z\to\Z/p\Z\)</span> for <span class="process-math">\(n\geq1\text{.}\)</span> The element with every coordinate equal to <span class="process-math">\(1\)</span> belongs to the target product. Any lift has components of unbounded order, so does not belong to the torsion subgroup of the source product. Thus <span class="process-math">\(\mathcal T\)</span> fails AB4*.</div>
+</article>
+<div class="para" id="ha-c02-examples-7">In fact, <span class="process-math">\(\mathcal T\)</span> has no nonzero projective object. Here is a direct argument, using the lifting definition from <a href="ha-c05.html" class="internal" title="Chapter 5: Resolutions and classical derived functors">Chapter 5</a>. Every torsion group is a quotient of a direct sum of finite cyclic groups. A projective <span class="process-math">\(P\)</span> would therefore be a direct summand of such a sum. If <span class="process-math">\(x\in P\)</span> is nonzero of order <span class="process-math">\(p^r\text{,}\)</span> some coordinate projection, followed by projection to a primary cyclic factor, gives <span class="process-math">\(f:P\to\Z/p^n\Z\)</span> with <span class="process-math">\(f(x)\ne0\text{.}\)</span> Projectivity lifts <span class="process-math">\(f\)</span> through <span class="process-math">\(\Z/p^{n+r}\Z\twoheadrightarrow\Z/p^n\Z\text{.}\)</span> Every lift of the nonzero element <span class="process-math">\(f(x)\)</span> has order greater than <span class="process-math">\(p^r\text{,}\)</span> contradicting the order of <span class="process-math">\(x\text{.}\)</span>
+</div>
+<div class="para" id="ha-c02-examples-8">This example separates three assertions: products exist, products are exact, and projectives are available. It also shows why the dual of a theorem about Grothendieck categories must be stated with dual hypotheses; it cannot be used in the same category merely by reversing arrows.</div>
+</section>
+<section class="section" id="ha-c02-localization">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Serre quotients and exact localizations</span>
+</h2>
+<article class="definition definition-like" id="ha-c02-serre-definition"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.11</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Serre and localizing subcategories.</span>
+</h3>
+<div class="para" id="ha-c02-serre-definition-4-1">A <em class="emphasis">Serre subcategory</em> <span class="process-math">\(\mathcal S\subseteq\mathcal A\)</span> is a full subcategory closed under isomorphisms, containing zero, and closed under subobjects, quotient objects, and extensions. When <span class="process-math">\(\mathcal A\)</span> is Grothendieck, we call <span class="process-math">\(\mathcal S\)</span> <em class="emphasis">localizing</em> if it is also closed under small coproducts.</div>
+</article>
+<div class="para" id="ha-c02-localization-3">The kernel of an exact functor is Serre. Conversely, a Serre quotient makes precisely the objects of <span class="process-math">\(\mathcal S\)</span> vanish. Its morphisms allow a domain to be restricted and a target to be divided by objects that vanish.<a id="ha-c02-localization-3-2" href="#margin-ha-c02-localization-3-2" class="margin-note-marker" aria-label="Margin note 4">4</a>
+</div>
+<article class="theorem theorem-like" id="ha-c02-serre-quotient"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.12</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="ha-c02-serre-quotient-1-1">
+<div class="para">Let <span class="process-math">\(\mathcal A\)</span> be Grothendieck and <span class="process-math">\(\mathcal S\)</span> Serre. There is an abelian category <span class="process-math">\(\mathcal A/\mathcal S\)</span> and an exact functor <span class="process-math">\(Q:\mathcal A\to\mathcal A/\mathcal S\)</span> with kernel <span class="process-math">\(\mathcal S\text{.}\)</span> Precomposition with <span class="process-math">\(Q\)</span> identifies exact functors out of the quotient, including their natural transformations, with exact functors out of <span class="process-math">\(\mathcal A\)</span> annihilating <span class="process-math">\(\mathcal S\text{.}\)</span> One may take the same objects and morphism groups</div>
+<div class="displaymath process-math" id="ha-c02-serre-quotient-1-1-9">
+\begin{equation*}
+\Hom_{\mathcal A/\mathcal S}(QX,QY)=\colim_{X',Y'}\Hom_{\mathcal A}(X',Y/Y'),
+\end{equation*}
+</div>
+<div class="para">where <span class="process-math">\(X'\subseteq X\text{,}\)</span> <span class="process-math">\(Y'\subseteq Y\text{,}\)</span> and <span class="process-math">\(X/X',Y'\in\mathcal S\text{.}\)</span> The transition maps restrict the domain and enlarge the quotient of the target.</div>
+</div>
+</article>
+<div class="para" id="ha-c02-localization-5">Well-poweredness makes this a small filtered colimit of groups: intersections refine domains and sums refine the subobjects divided out. Equivalently, <span class="process-math">\(Q\)</span> inverts exactly the morphisms whose kernel and cokernel lie in <span class="process-math">\(\mathcal S\text{.}\)</span> The fraction construction proves the theorem; see <a href="ha-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-ha-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Tag 02MN]</a>. Its universal property is understood up to natural isomorphism, independently of a chosen quotient model.</div>
+<div class="para logical" id="ha-c02-localization-6">
+<div class="para">The quotient is not generally a full subcategory of <span class="process-math">\(\mathcal A\text{.}\)</span> It keeps the objects and changes their morphisms. For an actual morphism <span class="process-math">\(f\)</span> in <span class="process-math">\(\mathcal A\text{,}\)</span> exactness gives the tests</div>
+<div class="displaymath process-math" id="ha-c02-localization-6-4">
+\begin{equation*}
+Qf=0\ \Longleftrightarrow\ \im f\in\mathcal S,\qquad Qf\text{ invertible}\ \Longleftrightarrow\ \ker f,\coker f\in\mathcal S.
+\end{equation*}
+</div>
+<div class="para">A representative <span class="process-math">\(X'\to Y/Y'\)</span> of a quotient morphism is zero precisely when its image belongs to <span class="process-math">\(\mathcal S\text{.}\)</span> These tests do not identify the quotient with the category of objects having no subobject in <span class="process-math">\(\mathcal S\text{.}\)</span> Such torsion-free objects can still acquire additional morphisms.</div>
+</div>
+<article class="theorem theorem-like" id="ha-c02-localizing-quotient"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.13</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c02-localizing-quotient-1-1">For a Serre subcategory <span class="process-math">\(\mathcal S\)</span> of a Grothendieck category, closure under coproducts is equivalent to the existence of a right adjoint <span class="process-math">\(S\)</span> to <span class="process-math">\(Q\text{.}\)</span> In that case <span class="process-math">\(\mathcal A/\mathcal S\)</span> is Grothendieck, <span class="process-math">\(S\)</span> is fully faithful and left exact, and the counit <span class="process-math">\(QS\to\id\)</span> is an isomorphism. The kernel and cokernel of the unit <span class="process-math">\(X\to SQX\)</span> belong to <span class="process-math">\(\mathcal S\text{.}\)</span>
+</div>
+</article>
+<div class="para" id="ha-c02-localization-8">The existence criterion is <a href="ha-references.html#Gab62" class="xref" data-knowl="./knowl/xref/bib-ha-gabriel.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Gab62">[Gab62, Chapter III, §4, Proposition 8]</a>. Since a Serre subcategory is closed under cokernels, closure under coproducts is equivalent to closure under all small colimits, the condition used there. In sources defining “localizing” by existence of the section functor <span class="process-math">\(S\text{,}\)</span> this theorem supplies the equivalence with our definition. Applying the exact functor <span class="process-math">\(Q\)</span> to the unit proves its kernel and cokernel assertion. An exact left adjoint with fully faithful right adjoint is called an <em class="emphasis">exact localization</em>; left exactness of the section does not assert that the section preserves epimorphisms.</div>
+<article class="proposition theorem-like" id="ha-c02-local-objects"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.14</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c02-local-objects-1-1">In the setting of <a href="ha-c02.html#ha-c02-localizing-quotient" class="xref" data-knowl="./knowl/xref/ha-c02-localizing-quotient.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.13">Theorem 2.13</a>, an object <span class="process-math">\(X\)</span> is in the essential image of <span class="process-math">\(S\)</span> if and only if every morphism from an object of <span class="process-math">\(\mathcal S\)</span> to <span class="process-math">\(X\)</span> is zero and every short exact sequence <span class="process-math">\(0\to X\to E\to T\to0\)</span> with <span class="process-math">\(T\in\mathcal S\)</span> splits.</div>
+</article>
+<details id="ha-c02-local-objects-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c02-local-objects-2-1">For <span class="process-math">\(X=SY\text{,}\)</span> the vanishing follows by adjunction. Apply <span class="process-math">\(Q\)</span> to an extension with inclusion <span class="process-math">\(j:SY\to E\text{.}\)</span> The map <span class="process-math">\(Qj\)</span> is an isomorphism, and its inverse corresponds by adjunction to a retraction <span class="process-math">\(E\to SY\text{.}\)</span> Conversely, the kernel of <span class="process-math">\(X\to SQX\)</span> belongs to <span class="process-math">\(\mathcal S\text{,}\)</span> so vanishes by the first condition. Its cokernel is some <span class="process-math">\(T\in\mathcal S\text{.}\)</span> The second condition splits that exact sequence. A summand <span class="process-math">\(T\subseteq SQX\)</span> must vanish, since adjunction gives <span class="process-math">\(\Hom(T,SQX)=0\text{.}\)</span> Thus the unit is an isomorphism.</div>
+</article></details>
+<div class="para" id="ha-c02-localization-10">Each object has a largest subobject <span class="process-math">\(tX\)</span> belonging to <span class="process-math">\(\mathcal S\text{:}\)</span> take the sum of all such subobjects. This is a small sum by well-poweredness, and its image belongs to <span class="process-math">\(\mathcal S\text{.}\)</span> The quotient <span class="process-math">\(X/tX\)</span> has no nonzero subobject in <span class="process-math">\(\mathcal S\text{,}\)</span> since any such subobject would lift to an extension of objects of <span class="process-math">\(\mathcal S\)</span> inside <span class="process-math">\(X\text{.}\)</span> The local object <span class="process-math">\(SQX\)</span> satisfies the further splitting condition in the proposition. Removing torsion and making an object local are therefore distinct operations; the unit performs both, with kernel <span class="process-math">\(tX\text{.}\)</span>
+</div>
+<article class="proposition theorem-like" id="ha-c02-localization-calculus"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.15</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c02-localization-calculus-1-1">For a localizing subcategory <span class="process-math">\(\mathcal S\)</span> of a Grothendieck category <span class="process-math">\(\mathcal A\text{:}\)</span>
+</div>
+<div class="para logical" id="ha-c02-localization-calculus-1-2">
+<ol class="decimal" id="ha-c02-localization-calculus-1-2-1">
+<li id="ha-c02-localization-calculus-1-2-1-1">
+<div class="para" id="ha-c02-localization-calculus-1-2-1-1-1">The category <span class="process-math">\(\mathcal S\)</span> is Grothendieck. Its inclusion is exact and preserves small colimits, and the torsion functor <span class="process-math">\(t:\mathcal A\to\mathcal S\)</span> is its right adjoint. In particular, <span class="process-math">\(t\)</span> is left exact.</div>
+</li>
+<li id="ha-c02-localization-calculus-1-2-1-2">
+<div class="para" id="ha-c02-localization-calculus-1-2-1-2-1">The quotient functor <span class="process-math">\(Q\)</span> preserves small colimits. Its section <span class="process-math">\(S\)</span> preserves small limits and takes injective objects of the quotient to injective objects of <span class="process-math">\(\mathcal A\text{.}\)</span>
+</div>
+</li>
+<li id="ha-c02-localization-calculus-1-2-1-3">
+<div class="para" id="ha-c02-localization-calculus-1-2-1-3-1">The full subcategory of local objects is closed under limits and extensions. The kernel of a map of local objects is its ambient kernel. Its cokernel in that subcategory is obtained by applying <span class="process-math">\(SQ\)</span> to its ambient cokernel.</div>
+</li>
+</ol>
+</div>
+</article>
+<details id="ha-c02-localization-calculus-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="ha-c02-localization-calculus-2-1">Colimits of objects of <span class="process-math">\(\mathcal S\)</span> are formed using sums and cokernels in <span class="process-math">\(\mathcal A\text{,}\)</span> so remain in <span class="process-math">\(\mathcal S\text{.}\)</span> AB5 is inherited. The quotients of a generator <span class="process-math">\(G\)</span> that belong to <span class="process-math">\(\mathcal S\)</span> form a small generating family there: the image of every map <span class="process-math">\(G\to T\)</span> with <span class="process-math">\(T\in\mathcal S\)</span> is one of these quotients, and their sum covers <span class="process-math">\(T\text{.}\)</span> Every map from a torsion object to <span class="process-math">\(X\)</span> factors through <span class="process-math">\(tX\text{,}\)</span> which proves the adjunction. The second assertion follows from the adjunctions; preservation of injectives uses the exactness of <span class="process-math">\(Q\text{.}\)</span> Local objects are closed under limits because they are the objects orthogonal to the morphisms inverted by <span class="process-math">\(Q\text{.}\)</span> They are closed under extensions by the Hom and splitting criterion, equivalently the vanishing of <span class="process-math">\(\Hom(T,-)\)</span> and <span class="process-math">\(\Ext^1(T,-)\)</span> for <span class="process-math">\(T\in\mathcal S\text{.}\)</span> Finally transport kernels and cokernels from the abelian quotient along its fully faithful section. Left exactness of <span class="process-math">\(S\)</span> gives the ambient kernel description.</div>
+</article></details>
+<div class="para" id="ha-c02-localization-12">The Ext formulation uses the extension interpretation developed in <a href="ha-c06.html" class="internal" title="Chapter 6: Ext, Tor, and homological dimension">Chapter 6</a>. The main local-object criterion above uses only short exact sequences. The section gives an abelian category of local objects, but its cokernels generally differ from the ambient cokernels. Calling its inclusion left exact records precisely this difference.<a id="ha-c02-localization-12-2" href="#margin-ha-c02-localization-12-2" class="margin-note-marker" aria-label="Margin note 5">5</a>
+</div>
+<article class="example example-like" id="ha-c02-rational-localization"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.16</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="ha-c02-rational-localization-1">In <span class="process-math">\(\Ab\text{,}\)</span> let <span class="process-math">\(\mathcal S\)</span> be all torsion groups. The exact functor <span class="process-math">\(\Q\otimes_{\Z}-\)</span> has kernel <span class="process-math">\(\mathcal S\)</span> and fully faithful right adjoint given by restriction of scalars from <span class="process-math">\(\Q\)</span>-vector spaces. Thus <span class="process-math">\(\Ab/\mathcal S\simeq\Mod(\Q)\text{.}\)</span> In particular, <span class="process-math">\(\Z\xrightarrow{n}\Z\)</span> becomes invertible for each nonzero <span class="process-math">\(n\text{.}\)</span> The quotient retains rational information, whereas the torsion category in the preceding example retains torsion information.</div>
+</article>
+<div class="para" id="ha-c02-localization-14">For this example the torsion-free group <span class="process-math">\(\Z\)</span> is not local: its unit is <span class="process-math">\(\Z\to\Q\text{.}\)</span> Local objects are uniquely divisible groups, equivalently <span class="process-math">\(\Q\)</span>-vector spaces. The torsion functor is not right exact; applying it to <span class="process-math">\(0\to\Z\to\Q\to\Q/\Z\to0\)</span> produces <span class="process-math">\(0\to0\to0\to\Q/\Z\text{.}\)</span> More generally, localization of modules at a multiplicative subset of a commutative ring is an exact quotient with fully faithful restriction as section. In that case the local objects are the modules on which all selected denominators act invertibly.</div>
+</section>
+<section class="section" id="ha-c02-gabriel-popescu">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Realization as a quotient of modules</span>
+</h2>
+<article class="theorem theorem-like" id="ha-c02-gabriel-popescu-theorem"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.17</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="ha-c02-gabriel-popescu-theorem-1-1">
+<div class="para">Let <span class="process-math">\(G\)</span> be a generator of a Grothendieck category <span class="process-math">\(\mathcal A\text{,}\)</span> and let <span class="process-math">\(R=\End_{\mathcal A}(G)^\op\text{.}\)</span> The functor</div>
+<div class="displaymath process-math" id="ha-c02-gabriel-popescu-theorem-1-1-4">
+\begin{equation*}
+H=\Hom_{\mathcal A}(G,-):\mathcal A\to\Mod(R)
+\end{equation*}
+</div>
+<div class="para">is fully faithful and has an exact left adjoint <span class="process-math">\(L\text{.}\)</span> Here an endomorphism <span class="process-math">\(e\text{,}\)</span> regarded as an element of <span class="process-math">\(R\text{,}\)</span> acts on <span class="process-math">\(u:G\to X\)</span> by <span class="process-math">\(u\circ e\text{.}\)</span> Consequently <span class="process-math">\(\mathcal A\simeq\Mod(R)/\ker L\text{.}\)</span>
+</div>
+</div>
+</article>
+<div class="para" id="ha-c02-gabriel-popescu-3">We use the Gabriel–Popescu theorem in <a href="ha-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-ha-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Appendix A.3]</a>; a proof is <a href="ha-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-ha-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Tag 0F5U]</a>. The opposite ring translates the right modules in that source into our left-module convention. The adjoint can be described without a projective generator: replace a free presentation <span class="process-math">\(R^{(J)}\to R^{(I)}\to M\to0\)</span> by the corresponding map <span class="process-math">\(G^{(J)}\to G^{(I)}\text{,}\)</span> and let <span class="process-math">\(L(M)\)</span> be its cokernel. The adjunction shows independence of the presentation. Exactness of this adjoint and full faithfulness of <span class="process-math">\(H\)</span> are the substantive assertions of the theorem.</div>
+<div class="para" id="ha-c02-gabriel-popescu-4">The embedding <span class="process-math">\(H\)</span> is generally only left exact: <span class="process-math">\(G\)</span> is not assumed projective. Hence an abelian category realized inside modules by this theorem need not inherit module cokernels through that embedding.<a id="ha-c02-gabriel-popescu-4-3" href="#margin-ha-c02-gabriel-popescu-4-3" class="margin-note-marker" aria-label="Margin note 6">6</a> The quotient description and an exact full embedding are different assertions. This distinction will remain necessary when exact localization is compared with localization of derived categories in <a href="ha-c15.html" class="internal" title="Chapter 15: Localization and recollement">Chapter 15</a>.</div>
+<div class="para" id="ha-c02-gabriel-popescu-5">If <span class="process-math">\(G\)</span> is projective and finitely presentable, its Hom functor is exact and preserves coproducts; a free-presentation argument then makes it an equivalence with modules. The precise recognition theorem is <a href="ha-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-ha-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Theorem 7.8.4]</a>. The additional assumptions are substantive. Even in <span class="process-math">\(\Ab\text{,}\)</span> the generator <span class="process-math">\(\Z\oplus\Z/n\Z\)</span> with <span class="process-math">\(n&gt;1\)</span> is not projective: its torsion projection cannot lift through <span class="process-math">\(\Z\twoheadrightarrow\Z/n\Z\text{.}\)</span> The associated Gabriel–Popescu section is therefore not exact. Choosing a generator does not choose an exact embedding.</div>
+<div class="para" id="ha-c02-gabriel-popescu-6">The Freyd–Mitchell theorem of <a href="ha-c01.html#ha-c01-freyd-mitchell" class="xref" data-knowl="./knowl/xref/ha-c01-freyd-mitchell.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 1.21">Theorem 1.21</a> and Gabriel–Popescu therefore answer different questions. The former embeds a small abelian category exactly and fully into modules and supports finite diagram arguments. The latter describes a Grothendieck category as an exact quotient of modules and supplies its section, which need not be exact. Neither theorem transports arbitrary monoidal structure or asserts that injective and projective objects correspond under the displayed embedding.</div>
+</section></section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="ha-c01.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Top</span></a><a class="next-button button" href="ha-c03.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a>
+</div></main>
+<div class="margin-notes" role="complementary" aria-label="Margin notes">
+<aside id="margin-ha-c02-ab-conditions-3-5" class="aside aside-like margin-note" data-margin-anchor="ha-c02-ab-conditions-3" data-margin-label="1" data-margin-inline="true"><h4 class="heading"><a href="#ha-c02-ab-conditions-3" class="margin-note-label">1</a></h4>
+<div class="para">The adjective Grothendieck here describes an abelian category. It does not specify a topology, a site, or a monoidal product. In particular, flat objects have no meaning until a tensor product has been chosen.
+</div></aside><aside id="margin-ha-c02-presentability-4-4" class="aside aside-like margin-note" data-margin-anchor="ha-c02-presentability-4" data-margin-label="2" data-margin-inline="true"><h4 class="heading"><a href="#ha-c02-presentability-4" class="margin-note-label">2</a></h4>
+<div class="para">Some category-theoretic texts call preservation of filtered colimits compactness. In these notes compactness in a triangulated category will mean preservation of coproducts by its Hom functor. These are different tests, so we use “finitely presentable” here.
+</div></aside><aside id="margin-ha-c02-examples-5-8" class="aside aside-like margin-note" data-margin-anchor="ha-c02-examples-5" data-margin-label="3" data-margin-inline="true"><h4 class="heading"><a href="#ha-c02-examples-5" class="margin-note-label">3</a></h4>
+<div class="para">Ind-completion adds formal filtered colimits. If the original category already has some filtered colimits, the inclusion need not preserve them. An existing colimit and its formal ind-object are distinct constructions unless the relevant preservation statement has been checked.
+</div></aside><aside id="margin-ha-c02-localization-3-2" class="aside aside-like margin-note" data-margin-anchor="ha-c02-localization-3" data-margin-label="4" data-margin-inline="true"><h4 class="heading"><a href="#ha-c02-localization-3" class="margin-note-label">4</a></h4>
+<div class="para">“Thick” has several uses: some abelian sources mean Serre, others mean closure under extensions, kernels, and cokernels of maps between objects of the subcategory. In triangulated categories it usually includes closure under direct summands. We use the explicit terms here; see <a href="ha-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-ha-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Tag 02MN]</a>.
+</div></aside><aside id="margin-ha-c02-localization-12-2" class="aside aside-like margin-note" data-margin-anchor="ha-c02-localization-12" data-margin-label="5" data-margin-inline="true"><h4 class="heading"><a href="#ha-c02-localization-12" class="margin-note-label">5</a></h4>
+<div class="para">A reflective full subcategory is closed under limits, but a reflector need not preserve them. Here the reflector is <span class="process-math">\(SQ\text{;}\)</span> the quotient <span class="process-math">\(Q\)</span> is exact, whereas <span class="process-math">\(S\)</span> is only asserted left exact.
+</div></aside><aside id="margin-ha-c02-gabriel-popescu-4-3" class="aside aside-like margin-note" data-margin-anchor="ha-c02-gabriel-popescu-4" data-margin-label="6" data-margin-inline="true"><h4 class="heading"><a href="#ha-c02-gabriel-popescu-4" class="margin-note-label">6</a></h4>
+<div class="para">If the generator is projective and finitely presentable, its Hom functor gives an equivalence with a module category. This is the stronger module recognition statement of <a href="ha-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-ha-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, §7.8]</a>. The general Gabriel–Popescu theorem allows a nonzero localization kernel.
+</div></aside>
+</div>
+</div>
+<footer id="site-copyright" class="site-copyright"><p>© 2026 Jie Fu. All rights reserved.</p></footer>
+</body>
+</html>

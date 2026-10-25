@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="hkg-derived-moduli">
+  <title>Stable objects and birational moduli spaces</title>
+  <introduction>
+    <p>Moduli spaces of sheaves can change when a polarization crosses a wall. Allowing complexes and varying a Bridgeland stability condition describes their birational models and the corresponding divisor cones. The numerical classes lie in the Mukai lattice, while the stability condition determines which objects represent them.</p>
+    <p>We assume the bounded derived category of coherent sheaves, distinguished triangles, derived tensor product and pushforward, and Serre duality. For the K3-specific background, see <xref ref="hkg-bib-huybrechts-k3" detail="Chapter 16"/>. We quote Bridgeland's existence and deformation theorems and the global moduli theorems of Bayer–Macrì, and prove the numerical consequences used here. Unless stated otherwise, <m>S</m> is a smooth projective K3 surface over <m>\mathbb C</m>.</p>
+  </introduction>
+  <section xml:id="hkg-derived-mukai">
+    <title>Complexes and numerical classes</title>
+    <p>Write <m>D^b(S)=D^b(\operatorname{Coh}(S))</m>. For objects <m>E,F</m>, let <m>\operatorname{Ext}^i(E,F)=\operatorname{Hom}_{D^b(S)}(E,F[i])</m>. These groups can occur in negative degrees for complexes. The Euler form is the finite sum <m>\chi(E,F)=\sum_i(-1)^i\dim\operatorname{Ext}^i(E,F)</m>.</p>
+    <p>We retain the Mukai lattice and pairing of <xref ref="hkg-def-mukai"/>. The Mukai vector extends to complexes by
+      <md number="no">v(E)=\sum_i(-1)^iv(\mathcal H^i(E))\in N(S),\qquad N(S):=\widetilde H_{\mathrm{alg}}(S,\mathbb Z)=\mathbb Z\oplus\operatorname{NS}(S)\oplus\mathbb Z.</md>
+      It is additive in distinguished triangles. Riemann–Roch becomes <m>\chi(E,F)=-\langle v(E),v(F)\rangle</m>, because both sides are additive in each variable and the sheaf formula was proved in <xref ref="hkg-mukai-rr"/>.</p>
+    <proposition xml:id="hkg-derived-numerical-group">
+      <statement><p>The Mukai vector identifies the numerical Grothendieck group <m>K_{\mathrm{num}}(S)=K_0(S)/\operatorname{rad}(\chi)</m> with <m>N(S)</m>. The numerical lattice has signature <m>(2,\rho(S))</m>.</p></statement>
+      <proof><p>The images of <m>\mathcal O_S</m> and a skyscraper sheaf generate the two outer summands. If <m>\ell\in\operatorname{NS}(S)</m>, choose a line bundle <m>L</m> of first Chern class <m>\ell</m>. Then <m>v(L)-v(\mathcal O_S)=(0,\ell,\ell^2/2)</m>; subtracting an integral multiple of the point vector gives <m>(0,\ell,0)</m>. Thus the Mukai map is surjective. The pairing on <m>N(S)</m> is nondegenerate, so the identity for Euler forms identifies its kernel with <m>\operatorname{rad}(\chi)</m>. Finally, <m>\operatorname{NS}(S)</m> has signature <m>(1,\rho(S)-1)</m>, while the outer summands form a hyperbolic plane. Their orthogonal sum has the asserted signature.</p></proof>
+    </proposition>
+    <p>The full lattice <m>\widetilde H(S,\mathbb Z)</m> is needed for Hodge isometries and the second cohomology of a moduli space. Its algebraic part <m>N(S)</m> is the lattice on which numerical stability conditions are defined. These are different roles for two related lattices.</p>
+    <proposition xml:id="hkg-derived-shift-tensor">
+      <statement><p>For <m>E\in D^b(S)</m> and a line bundle <m>L</m> of first Chern class <m>\ell</m>,
+        <md number="no">v(E[1])=-v(E),\qquad v(E\otimes L)=e^\ell v(E).</md>
+        In coordinates, <m>e^\ell(r,c,s)=(r,c+r\ell,s+c\cdot\ell+r\ell^2/2)</m>, and multiplication by <m>e^\ell</m> preserves the Mukai pairing.</p></statement>
+      <proof><p>The shift changes the sign in the alternating sum of cohomology sheaves. The tensor formula follows from <m>\operatorname{ch}(E\otimes L)=\operatorname{ch}(E)e^\ell</m>. Substitution gives
+        <md number="no">(c+r\ell)^2-2r(s+c\cdot\ell+r\ell^2/2)=c^2-2rs.</md>
+        Thus squares, and hence the polarized pairing, are preserved.</p></proof>
+    </proposition>
+    <p>For example, <m>v(I_Z)=(1,0,1-n)</m> when <m>Z</m> has length <m>n</m>. Tensoring by <m>L</m> gives <m>(1,\ell,1-n+\ell^2/2)</m> with the same square <m>2n-2</m>. Shifting gives its negative, which has the same square as well. A negative-rank Mukai vector is therefore allowed for a stable complex, even though it cannot be the rank of a nonzero sheaf.</p>
+  </section>
+  <section xml:id="hkg-bridgeland-definition">
+    <title>Stability conditions</title>
+    <p>A central charge assigns a complex number to a numerical class. A slicing specifies the semistable objects of each phase and the Harder–Narasimhan filtrations of arbitrary objects.</p>
+    <definition xml:id="hkg-def-bridgeland-stability">
+      <statement><p>A numerical <em>Bridgeland stability condition</em> on <m>D^b(S)</m> is a pair <m>\sigma=(Z,\mathcal P)</m> consisting of a group homomorphism <m>Z:N(S)\to\mathbb C</m> and full additive extension-closed subcategories <m>\mathcal P(\phi)\subset D^b(S)</m>, for <m>\phi\in\mathbb R</m>, satisfying the following conditions.</p>
+        <p><ol>
+          <li><p>If <m>0\ne E\in\mathcal P(\phi)</m>, then <m>Z(v(E))=m(E)e^{i\pi\phi}</m> with <m>m(E)&gt;0</m>.</p></li>
+          <li><p><m>\mathcal P(\phi+1)=\mathcal P(\phi)[1]</m>, and <m>\operatorname{Hom}(E_1,E_2)=0</m> when <m>E_j\in\mathcal P(\phi_j)</m> and <m>\phi_1&gt;\phi_2</m>.</p></li>
+          <li><p>Every nonzero object <m>E</m> has a finite filtration by distinguished triangles with nonzero factors <m>A_1,\ldots,A_k</m> lying in <m>\mathcal P(\phi_1),\ldots,\mathcal P(\phi_k)</m>, where <m>\phi_1&gt;\cdots&gt;\phi_k</m>.</p></li>
+          <li><p>For one, equivalently every, norm on <m>N(S)_\mathbb R</m>, there is a constant <m>C&gt;0</m> such that <m>\|v(E)\|\leq C|Z(v(E))|</m> for every nonzero <m>E\in\mathcal P(\phi)</m> and every <m>\phi</m>. This is the <em>support property</em>.</p></li>
+        </ol></p>
+        <p>The nonzero objects of <m>\mathcal P(\phi)</m> are <em>semistable of phase <m>\phi</m></em>. The category <m>\mathcal P(\phi)</m> is abelian, and its simple objects are called <em>stable</em>.</p></statement>
+    </definition>
+    <p>We use the support-property formulation in <xref ref="hkg-bib-bayer-macri-mmp" detail="Definitions 2.1–2.2"/>. The abelian property of the slicing categories, their Jordan–Hölder theory, and the deformation theorem for stability conditions are results of the general theory, not extra structures to construct separately here. The support property controls numerical classes of semistable factors and is essential to the wall theorem below.</p>
+    <p>A semistable object has stable Jordan–Hölder factors of the same phase. Two semistable objects are S-equivalent when the direct sums of their stable factors are isomorphic. The filtration in item three, whose phases strictly decrease, is the Harder–Narasimhan filtration; it is different from a Jordan–Hölder filtration within one phase.</p>
+    <p xml:id="hkg-stability-heart-anchor">The extension-closed subcategory <m>\mathcal A=\mathcal P((0,1])</m> is the heart of a bounded t-structure. It is an abelian category in which stability is tested by subobjects, but it need not be <m>\operatorname{Coh}(S)</m>. Crossing a stability wall can therefore produce stable complexes with nonzero cohomology in two degrees.</p>
+    <aside xml:id="margin-hkg-stability-heart">
+      <p>An exact triangle is not automatically a short exact sequence in every heart. To interpret a triangle as a destabilizing sequence, its three terms must lie in the chosen heart, with the corresponding phase inequalities.</p>
+    </aside>
+    <proposition xml:id="hkg-stable-object-dimension">
+      <statement><p>If <m>E</m> is stable for a Bridgeland stability condition, then
+        <md number="no">\operatorname{Ext}^0(E,E)=\mathbb C,\qquad\operatorname{Ext}^2(E,E)=\mathbb C,\qquad\dim\operatorname{Ext}^1(E,E)=v(E)^2+2.</md>
+        Its other self-Ext groups vanish. In particular, <m>v(E)^2\geq-2</m>.</p></statement>
+      <proof><p>A stable object is simple in its slicing category, so its endomorphisms form a finite-dimensional division algebra over <m>\mathbb C</m>, hence equal <m>\mathbb C</m>. Serre duality on a K3 surface identifies <m>\operatorname{Ext}^2(E,E)</m> with the dual of this space. If <m>i&lt;0</m>, then <m>E[i]</m> has smaller phase than <m>E</m>, so <m>\operatorname{Hom}(E,E[i])=0</m>. Serre duality gives the corresponding vanishing for <m>i&gt;2</m>. The Euler formula now gives <m>-v(E)^2=2-\dim\operatorname{Ext}^1(E,E)</m>.</p></proof>
+    </proposition>
+    <p>The calculation gives a necessary inequality and the tangent dimension of the eventual moduli space. Nonemptiness, properness, and projectivity require the moduli theorem; they do not follow from this numerical calculation.</p>
+  </section>
+  <section xml:id="hkg-geometric-stability">
+    <title>Geometric stability conditions</title>
+    <p>Let <m>B,\omega\in\operatorname{NS}(S)_\mathbb R</m>, with <m>\omega</m> ample. Put
+      <md xml:id="hkg-eq-geometric-central-charge" number="yes">\begin{aligned}Z_{B,\omega}(r,c,s)&amp;=\langle e^{B+i\omega},(r,c,s)\rangle\\&amp;=\frac{r\omega^2}{2}-s+B\cdot c-\frac{rB^2}{2}+i\,\omega\cdot(c-rB).\end{aligned}</md>
+      For a torsion-free sheaf of positive rank define <m>\mu_{B,\omega}(E)=\omega\cdot(c_1(E)-\operatorname{rk}(E)B)/\operatorname{rk}(E)</m>. Slope Harder–Narasimhan filtrations determine a torsion pair: <m>\mathcal F_{B,\omega}</m> consists of torsion-free sheaves whose factors have slope at most zero; <m>\mathcal T_{B,\omega}</m> consists of sheaves whose torsion-free quotients have factors of positive slope, including all torsion sheaves.</p>
+    <p>The tilted heart is
+      <md number="no">\mathcal A_{B,\omega}=\{E:\mathcal H^{-1}(E)\in\mathcal F_{B,\omega},\ \mathcal H^0(E)\in\mathcal T_{B,\omega},\ \mathcal H^i(E)=0\ (i\ne-1,0)\}.</md>
+      The fact that this is a heart is the tilting theorem used in Bridgeland's construction. Its role is visible in the sign of the imaginary part: in the large-volume region a slope-semistable torsion-free sheaf of slope zero has positive real central charge, and shifting it places it on the allowed negative real ray.</p>
+    <definition xml:id="hkg-def-spherical-object">
+      <statement><p>An object <m>A\in D^b(S)</m> is <em>spherical</em> if <m>\operatorname{Ext}^i(A,A)</m> is <m>\mathbb C</m> for <m>i=0,2</m> and zero otherwise. Its vector has square <m>-2</m>. Every line bundle is spherical.</p></statement>
+    </definition>
+    <p>The last assertions follow from the Euler formula and <m>\operatorname{Ext}^i(L,L)=H^i(S,\mathcal O_S)</m>. Conversely, a stable object of square <m>-2</m> is spherical by <xref ref="hkg-stable-object-dimension"/>. A <em>spherical class</em>, or <em>root</em>, means a lattice vector of square <m>-2</m>; the numerical class does not specify a particular spherical object.</p>
+    <theorem xml:id="hkg-geometric-stability-existence">
+      <title>(Bridgeland)</title>
+      <statement><p>If <m>\omega^2&gt;2</m>, the central charge <m>Z_{B,\omega}</m> and heart <m>\mathcal A_{B,\omega}</m> define a stability condition <m>\sigma_{B,\omega}</m>. All skyscraper sheaves are stable of phase one.</p></statement>
+    </theorem>
+    <p>Existence, including the Harder–Narasimhan and support properties, is proved in <xref ref="hkg-bib-bridgeland-k3" detail="Lemma 6.2 and §§7, 11"/>. The sufficient bound <m>\omega^2&gt;2</m> ensures the positivity condition for spherical sheaves in that lemma. Geometric stability conditions can also exist outside this region.</p>
+    <p>Let <m>\operatorname{Stab}^{\dagger}(S)</m> denote the connected component of numerical stability conditions containing the geometric conditions. The space of stability conditions has a complex-manifold structure for which the central-charge map is locally biholomorphic. A more precise global statement is useful here.</p>
+    <theorem xml:id="hkg-stability-covering">
+      <title>(Bridgeland)</title>
+      <statement><p>Let <m>\mathcal P(S)\subset N(S)_\mathbb C</m> consist of the vectors whose real and imaginary parts span a positive definite real two-plane. Let <m>\mathcal P^+(S)</m> be its connected component containing <m>e^{i\omega}</m> for an ample class <m>\omega</m>. Put
+        <md number="no">\mathcal P_0^+(S)=\mathcal P^+(S)\setminus\bigcup_{\delta\in N(S),\,\delta^2=-2}\delta^\perp.</md>
+        The map <m>\operatorname{Stab}^{\dagger}(S)\to\mathcal P_0^+(S)</m> sending <m>\sigma=(Z,\mathcal P)</m> to the vector <m>\Omega_\sigma</m> characterized by <m>Z(x)=\langle\Omega_\sigma,x\rangle</m> is a covering map.</p></statement>
+    </theorem>
+    <p>This is <xref ref="hkg-bib-bridgeland-k3" detail="Theorem 1.1"/>. It does not identify a stability condition with its central charge: the slicing is part of the lift. The component used throughout this chapter is the distinguished one specified above.</p>
+    <p xml:id="hkg-root-hyperplanes-anchor">The root hyperplanes <m>Z(\delta)=0</m> are omitted from the covering target. A wall for a fixed vector <m>v</m> instead imposes alignment of <m>Z(a)</m> with <m>Z(v)</m>, for a possible factor class <m>a</m>. The central charges of nonzero semistable factors are nonzero, and these phase-alignment equations are considered inside the stability manifold.</p>
+    <aside xml:id="margin-hkg-two-kinds-walls">
+      <p>A root hyperplane in the covering target has complex codimension one. Phase alignment for a fixed pair of numerical classes is a real equation. The two constructions have different purposes even though spherical classes occur in both.</p>
+    </aside>
+    <p>For a positive-rank vector and a <m>v</m>-generic ample class <m>H</m>, suitable large-volume stability conditions recover the <m>H</m>-Gieseker-stable sheaves. One can take <m>B</m> proportional to <m>H</m> on the appropriate side of the slope of <m>v</m>, and <m>\omega=tH</m> with <m>t</m> sufficiently large. We use this comparison from <xref ref="hkg-bib-bridgeland-k3" detail="Proposition 14.2"/>. In particular, the Hilbert scheme of points occurs as <m>M_\sigma(1,0,1-n)</m> in a Gieseker chamber. The comparison concerns a region of stability conditions; it does not identify every Bridgeland-stable complex with a sheaf.</p>
+  </section>
+  <section xml:id="hkg-derived-moduli-existence">
+    <title>The projective moduli theorem</title>
+    <p>Fix a nonzero primitive vector <m>v\in N(S)</m> and a stability condition <m>\sigma=(Z,\mathcal P)</m>. When <m>Z(v)\ne0</m>, choose a real lift <m>\phi</m> of its phase and consider objects in <m>\mathcal P(\phi)</m> with vector <m>v</m>. This choice is part of the moduli problem: <m>E[2k]</m> has the same numerical vector as <m>E</m> but a different phase. We suppress the chosen phase from the notation <m>M_\sigma(v)</m>. If <m>Z(v)=0</m>, there are no semistable objects of vector <m>v</m>, and we put <m>M_\sigma(v)=\varnothing</m>.</p>
+    <p>For fixed <m>v</m>, stability conditions admit a locally finite wall-and-chamber decomposition. The stable and semistable objects of vector <m>v</m> do not change within a chamber. For primitive <m>v</m>, a stability condition off the walls has no strictly semistable objects of that vector. Such a condition is called <em><m>v</m>-generic</em>. We quote this wall theorem from <xref ref="hkg-bib-bayer-macri-projectivity" detail="Proposition 2.3"/>.</p>
+    <theorem xml:id="hkg-derived-moduli-theorem">
+      <title>(Mukai–Yoshioka–Toda, Bayer–Macrì)</title>
+      <statement><p>Let <m>v\in N(S)</m> be nonzero and primitive, and let <m>\sigma\in\operatorname{Stab}^{\dagger}(S)</m> be <m>v</m>-generic. The coarse moduli space <m>M_\sigma(v)</m> is nonempty if and only if <m>v^2\geq-2</m>. When nonempty, it is smooth and projective of dimension <m>v^2+2</m>. If <m>v^2=-2</m> it is a point; if <m>v^2=0</m> it is a K3 surface; and if <m>v^2=2n-2&gt;0</m> it is IHS of <m>\mathrm{K3}^{[n]}</m> type. In the last case, the Mukai homomorphism gives an integral Hodge isometry
+        <md number="no">\theta_{\sigma,v}:v^\perp\xrightarrow{\sim}(H^2(M_\sigma(v),\mathbb Z),q_{M_\sigma(v)}).</md>
+        The orthogonal complement is taken in the full Mukai lattice.</p></statement>
+    </theorem>
+    <p>Projectivity is <xref ref="hkg-bib-bayer-macri-projectivity" detail="Theorem 1.3"/>. Nonemptiness and dimension are recorded in <xref ref="hkg-bib-bayer-macri-mmp" detail="Theorem 2.15"/>, and the deformation type and Mukai isometry in its Theorem 3.6. We use these global results without proof. The map <m>\theta_{\sigma,v}</m> has the convention of <xref ref="hkg-eq-mukai-homomorphism"/>, using a quasi-universal complex in place of a quasi-universal sheaf. For <m>v^2=0</m>, its domain is replaced by <m>v^\perp/\mathbb Zv</m>.</p>
+    <p>The zero-dimensional uniqueness assertion can also be checked directly after existence is known. Two distinct stable objects of the same phase have no morphisms in either direction. Serre duality and phase vanishing eliminate every Ext group between them except possibly <m>\operatorname{Ext}^1</m>. Their Euler characteristic is therefore nonpositive. For the same vector of square <m>-2</m> it would be <m>2</m>, a contradiction.</p>
+    <p>Primitivity and genericity have distinct roles. The former excludes decompositions into proportional integral vectors, and the latter excludes stable factors of other numerical directions at the same phase. Nonprimitive vectors can have strictly semistable objects even for generic stability, so the smooth IHS conclusion cannot simply be extended to them.</p>
+  </section>
+  <section xml:id="hkg-bayer-macri-positivity">
+    <title>The positive divisor attached to stability</title>
+    <p>Let <m>T</m> be a proper algebraic space and <m>\mathcal E</m> a family over <m>T</m> of <m>\sigma</m>-semistable objects of vector <m>v</m> and a fixed phase. For an integral projective curve <m>C\subset T</m>, the family gives an object
+      <md number="no">\Phi_{\mathcal E}(\mathcal O_C)=Rp_{S*}(\mathcal E|_{C\times S})\in D^b(S).</md>
+      Define the numerical divisor class <m>\ell_{\sigma,\mathcal E}</m> by
+      <md xml:id="hkg-eq-positivity-divisor" number="yes">\ell_{\sigma,\mathcal E}\cdot C=\operatorname{Im}\left(-\frac{Z(v(\Phi_{\mathcal E}(\mathcal O_C)))}{Z(v)}\right).</md>
+      The fact that this prescription defines a numerical Cartier divisor class, including its determinant-of-cohomology realization, belongs to the theorem.</p>
+    <theorem xml:id="hkg-positivity-lemma">
+      <title>(Bayer–Macrì)</title>
+      <statement><p>The class <m>\ell_{\sigma,\mathcal E}</m> is nef. Its degree on an integral curve <m>C</m> is zero if and only if the objects corresponding to two general points of <m>C</m> are S-equivalent. On the coarse moduli space for a generic stability condition, the resulting class is ample.</p></statement>
+    </theorem>
+    <p>This is <xref ref="hkg-bib-bayer-macri-projectivity" detail="Theorems 1.1 and 1.3"/>. For quasi-universal families one divides by their similitude; the class descends even when a universal complex does not exist. The positivity assertion is stronger than formal determinant-line-bundle construction: it identifies exactly the curves that acquire zero degree.</p>
+    <proposition xml:id="hkg-positivity-mukai-formula">
+      <statement><p>Assume <m>v^2&gt;0</m> and <m>\sigma</m> is generic. With the Mukai-homomorphism convention of this note, put
+        <md number="no">w_\sigma=\operatorname{Im}\left(\frac{\Omega_\sigma}{Z(v)}\right)\in N(S)_\mathbb R.</md>
+        Then <m>w_\sigma\in v^\perp</m>, <m>w_\sigma^2&gt;0</m>, and <m>\ell_\sigma=\theta_{\sigma,v}(w_\sigma)</m>.</p></statement>
+      <proof><p>The pairing of <m>\Omega_\sigma/Z(v)</m> with <m>v</m> is the real number one, so its imaginary part is orthogonal to <m>v</m>. Dividing a complex vector by a nonzero complex number preserves the positive plane spanned by its real and imaginary parts. They remain independent, and the imaginary part is therefore a nonzero vector of positive square.</p>
+        <p>For a curve <m>C</m> and a universal family, the formula defining <m>\theta_{\sigma,v}</m> gives
+          <md number="no">\theta_{\sigma,v}(x)\cdot C=-\langle x,v(\Phi_{\mathcal E}(\mathcal O_C))\rangle\qquad(x\in v^\perp).</md>
+          Indeed, the Mukai pairing is minus the integral of <m>x^\vee</m> times the Mukai vector. Applying Grothendieck–Riemann–Roch to the curve adds only a multiple of <m>v</m>, which disappears on pairing with <m>x</m>. Substituting <m>x=w_\sigma</m> gives exactly <xref ref="hkg-eq-positivity-divisor"/>. Dividing by the similitude gives the same calculation for a quasi-universal family.</p></proof>
+    </proposition>
+    <p xml:id="hkg-positivity-sign-anchor">Some references define the Mukai homomorphism by the dual determinant convention, changing its sign. With that convention the vector used to express <m>\ell_\sigma</m> also changes sign. Formula <xref ref="hkg-eq-positivity-divisor"/> fixes the geometric class independently of this notation.</p>
+    <aside xml:id="margin-hkg-positivity-sign">
+      <p>In particular, after normalizing <m>Z(v)=-1</m>, our formula reads <m>\ell_\sigma=-\theta_{\sigma,v}(\operatorname{Im}\Omega_\sigma)</m>. A source writing a plus sign in this normalization may be using the opposite Mukai homomorphism.</p>
+    </aside>
+  </section>
+  <section xml:id="hkg-derived-wall-crossing">
+    <title>Walls and contractions</title>
+    <p>Assume from now on that <m>v</m> is primitive and <m>v^2&gt;0</m>. A possible destabilizing decomposition <m>v=a+b</m> requires aligned central charges. One numerical equation is
+      <md number="no">\operatorname{Im}\left(\frac{Z(a)}{Z(v)}\right)=0.</md>
+      For actual Jordan–Hölder factors one also needs the positive-ray conditions <m>0&lt;Z(a)/Z(v)&lt;1</m> and the existence of semistable objects of classes <m>a,b</m> in the relevant slicing category. The equation alone defines a candidate wall.</p>
+    <p>Let <m>\sigma_0</m> be a generic point on an actual wall <m>W</m>, and let <m>\sigma_+,\sigma_-</m> be generic conditions in the adjacent chambers. Their stable objects become semistable at <m>\sigma_0</m>. The positivity construction gives big and nef classes <m>\ell_{0,+},\ell_{0,-}</m> on the two smooth moduli spaces. They induce birational contraction morphisms
+      <md number="no">\pi_\pm:M_{\sigma_\pm}(v)\longrightarrow Y_\pm.</md>
+      This is <xref ref="hkg-bib-bayer-macri-projectivity" detail="Theorem 1.4(a)"/>. One may take rational classes defining the same contractions; an arbitrary real nef class is not itself a line bundle to which semiampleness can be applied.</p>
+    <definition xml:id="hkg-def-wall-types">
+      <statement><p>A wall is <em>fake</em> if no curve on either adjacent moduli space consists of objects S-equivalent at <m>\sigma_0</m>; equivalently its contractions are isomorphisms. It is <em>divisorial</em> if the contractions contract divisors. It is <em>flopping</em> if the contractions are small and the induced birational transformation is a flop over their common target. Separately, it is <em>totally semistable</em> if no object of vector <m>v</m> is stable at <m>\sigma_0</m>.</p></statement>
+    </definition>
+    <p>These are the conventions of <xref ref="hkg-bib-bayer-macri-mmp" detail="Definition 2.20"/>. Total semistability describes objects on the wall; it is not a fourth mutually exclusive contraction type. A totally semistable wall can be divisorial or fake. A fake wall can change which objects represent a point even though the moduli spaces on the two sides are isomorphic.</p>
+    <p>More precisely, let <m>H_W\subset N(S)</m> be a primitive hyperbolic rank-two sublattice containing <m>v</m>. Here hyperbolic means signature <m>(1,1)</m>. A <em>potential wall</em> associated to it is a connected component of the real codimension-one locus where <m>Z(H_W)\subset\mathbb R Z(v)</m>. Actual walls have such a lattice. Write <m>P_W</m> for the nonzero vectors <m>a\in H_{W,\mathbb R}</m> with <m>a^2\geq0</m> and <m>\langle a,v\rangle&gt;0</m>. For the integral vectors in the theorem, this agrees with the positive-class convention of <xref ref="hkg-bib-bayer-macri-mmp" detail="Definition 5.4"/>. A spherical class <m>s\in H_W</m> is <em>effective at the wall</em> when <m>Z_{\sigma_0}(s)/Z_{\sigma_0}(v)&gt;0</m>. Such a class has a semistable representative of that phase by the existence theorem.</p>
+    <theorem xml:id="hkg-wall-numerical-classification">
+      <title>(Bayer–Macrì)</title>
+      <statement><p>For a potential wall with lattice <m>H_W</m> as above:</p>
+        <p><ol>
+          <li><p>It is totally semistable precisely when <m>H_W</m> contains an isotropic class <m>w</m> with <m>\langle v,w\rangle=1</m>, or an effective spherical class <m>s</m> with <m>\langle v,s\rangle&lt;0</m>.</p></li>
+          <li><p>It gives a divisorial contraction if there is a spherical class <m>s</m> with <m>\langle v,s\rangle=0</m>, or an isotropic class <m>w</m> with <m>\langle v,w\rangle=1</m> or <m>2</m>. These are the Brill–Noether, Hilbert–Chow, and Li–Gieseker–Uhlenbeck cases, respectively.</p></li>
+          <li><p>If none of the divisorial conditions holds, it gives a flopping contraction when <m>v=a+b</m> for integral <m>a,b\in P_W</m>, or when there is a spherical class <m>s</m> with <m>0&lt;\langle v,s\rangle\leq v^2/2</m>. In the remaining cases it is fake if totally semistable, and otherwise is not an actual wall.</p></li>
+        </ol></p>
+      </statement>
+    </theorem>
+    <p>This is the external classification in <xref ref="hkg-bib-bayer-macri-mmp" detail="Theorem 5.7"/>. The two requirements on a class in <m>P_W</m> specify the component of the nonnegative cone containing <m>v</m>; dropping the component condition gives incorrect decompositions. The theorem turns the numerical equation into an actual geometric classification, using existence and deformation results for objects.</p>
+    <example xml:id="hkg-hilbert-chow-wall">
+      <p>For the Hilbert-scheme vector <m>v=(1,0,1-n)</m>, <m>n\geq2</m>, the isotropic vector <m>w=(0,0,-1)</m> satisfies <m>\langle v,w\rangle=1</m>. The associated wall is of Hilbert–Chow type. In the Gieseker model its contraction is <m>S^{[n]}\to S^{(n)}</m>, recording the support cycle. The sign of <m>w</m> is consistent with a shifted skyscraper sheaf. This wall is also totally semistable. The interpretation follows from the isotropic-wall analysis in <xref ref="hkg-bib-bayer-macri-mmp" detail="§8"/>.<fn>The numerical alternatives for a divisorial wall need not be disjoint. If <m>n=2</m>, its lattice also contains <m>s=v-2w=(1,0,1)</m>, with <m>s^2=-2</m> and <m>\langle v,s\rangle=0</m>. Thus the same lattice satisfies both the spherical and the isotropic conditions.</fn></p>
+    </example>
+    <p>Across a totally semistable wall, a comparison can require a derived equivalence even when the birational map is an isomorphism: there is no stable locus of vector <m>v</m> on the wall to determine that comparison.</p>
+  </section>
+  <section xml:id="hkg-derived-movable-cone">
+    <title>Recovering birational models</title>
+    <theorem xml:id="hkg-bayer-macri-birationality">
+      <title>(Bayer–Macrì)</title>
+      <statement><p>For primitive <m>v\in N(S)</m> of positive square, all moduli spaces <m>M_\sigma(v)</m> with <m>\sigma\in\operatorname{Stab}^{\dagger}(S)</m> generic are birational. More precisely, a suitable derived autoequivalence or anti-autoequivalence relates the objects representing corresponding points on common open subsets whose complements have codimension at least two.</p></statement>
+    </theorem>
+    <p>We use <xref ref="hkg-bib-bayer-macri-mmp" detail="Theorem 1.1"/>. An anti-autoequivalence is contravariant; derived duality is an example. The theorem asserts the existence of suitable comparisons, rather than a prescribed autoequivalence working on every object.</p>
+    <p>Fix one generic <m>\sigma</m> and set <m>M=M_\sigma(v)</m>. Use these birational comparisons to identify divisor spaces of the chamber moduli spaces with <m>\operatorname{NS}(M)_\mathbb R</m>. The ample divisor attached to a stability condition in a chamber then gives a chamber map <m>\ell_C:C\to\operatorname{NS}(M)_\mathbb R</m>.</p>
+    <theorem xml:id="hkg-bayer-macri-movable-theorem">
+      <title>(Bayer–Macrì)</title>
+      <statement><p>The chamber maps glue to a continuous piecewise analytic map
+        <md number="no">\ell:\operatorname{Stab}^{\dagger}(S)\longrightarrow\operatorname{NS}(M)_\mathbb R.</md>
+        Its image is <m>\overline{\operatorname{Mov}}(M)\cap\operatorname{Big}(M)</m>. For each chamber <m>C</m>, its image is exactly the ample cone of <m>M_C(v)</m>, viewed in this fixed divisor space. Every smooth projective IHS manifold birational to <m>M</m> occurs as <m>M_\tau(v)</m> for some generic <m>\tau</m>.</p></statement>
+    </theorem>
+    <p>This is <xref ref="hkg-bib-bayer-macri-mmp" detail="Theorem 1.2"/>. <m>\operatorname{Big}(M)</m> denotes the cone of big real divisor classes. The source defines the movable cone by generated divisor classes; inside the big cone it agrees with its closure by the exceptional-chamber description in its Proposition 3.3. This accounts for the closure in our notation. The image includes walls inside the big movable cone and excludes its isotropic boundary. The theorem does not assert that every nef isotropic class is the image of an interior stability condition.</p>
+    <p>At a divisorial wall, the analytic continuations of the divisor map from the two sides differ by reflection in the contracted divisor. At fake and flopping walls the continuations agree. These are the alternatives in <xref ref="hkg-bib-bayer-macri-mmp" detail="Lemma 10.1"/>. Thus the global map uses the Mukai homomorphism appropriate to each chamber.</p>
+    <p>The scope is the birational class of a given moduli space on a fixed K3 surface. This theorem gives a complete moduli interpretation for its birational models. It does not assert that every deformation-equivalent IHS manifold is a moduli space on that surface, or on some K3 surface.</p>
+  </section>
+  <section xml:id="hkg-derived-torelli">
+    <title>Derived Torelli and transport of stability</title>
+    <p>An exact equivalence <m>\Phi:D^b(S)\to D^b(T)</m> between projective K3 surfaces is of Fourier–Mukai type: for some kernel <m>P\in D^b(S\times T)</m>,
+      <md number="no">\Phi(E)=Rp_{T*}(Lp_S^*E\otimes^{\mathbf L}P).</md>
+      Its cohomological transform is
+      <md number="no">\Phi^H(x)=p_{T*}\bigl(v(P)\smile p_S^*x\bigr),\qquad v(P)=\operatorname{ch}(P)\sqrt{\operatorname{td}(S\times T)}.</md>
+      Although written with rational characteristic classes, the transform of an equivalence is an integral Hodge isometry of the full Mukai lattices. Representability and this integrality are external theorems.</p>
+    <p>For a holomorphic two-form <m>\sigma_S</m> and a Kähler class <m>\omega</m>, the ordered vectors
+      <md number="no">\operatorname{Re}\sigma_S,\quad\operatorname{Im}\sigma_S,\quad (1,0,-\omega^2/2),\quad (0,\omega,0)</md>
+      orient a positive four-space in <m>\widetilde H(S,\mathbb R)</m>. This gives the natural positive orientation, independent of the choices. A Mukai isometry is <em>orientation preserving</em>, also called <em>signed</em>, if it preserves this positive orientation.</p>
+    <theorem xml:id="hkg-derived-torelli-theorem">
+      <title>(Mukai–Orlov, Huybrechts–Macrì–Stellari)</title>
+      <statement><p>A Hodge isometry <m>\varphi:\widetilde H(S,\mathbb Z)\to\widetilde H(T,\mathbb Z)</m> is induced by an exact equivalence <m>D^b(S)\to D^b(T)</m> if and only if it preserves the natural positive orientation. Given such an isometry, an inducing equivalence can be chosen to send <m>\operatorname{Stab}^{\dagger}(S)</m> to <m>\operatorname{Stab}^{\dagger}(T)</m>.</p></statement>
+    </theorem>
+    <p>The orientation necessity is <xref ref="hkg-bib-hms-orientation" detail="Corollary 4.10"/>. For the lifting statement and the choice preserving the distinguished components, see <xref ref="hkg-bib-bayer-macri-mmp" detail="Theorem 2.12"/> and <xref ref="hkg-bib-huybrechts-k3" detail="§16.3"/>. This is a theorem about the Mukai lattices of surfaces and their derived categories; it is different from Torelli for the second cohomology of an IHS manifold.</p>
+    <proposition xml:id="hkg-equivalence-stability-moduli">
+      <statement><p>An exact Fourier–Mukai equivalence <m>\Phi:D^b(S)\to D^b(T)</m> transports a stability condition by
+        <md number="no">\Phi(\sigma)=\bigl(Z\circ(\Phi^H)^{-1},\ \phi\mapsto\Phi(\mathcal P(\phi))\bigr).</md>
+        It gives an isomorphism of the corresponding moduli problems and, when the coarse spaces exist, an isomorphism
+        <md number="no">M_\sigma(v)\cong M_{\Phi(\sigma)}(\Phi^H(v)).</md></p></statement>
+      <proof><p>Exactness preserves shifts and distinguished triangles, so it preserves the slicing and filtration axioms. Full faithfulness preserves the Hom vanishing. Central charges and phases agree by construction. Pulling back a norm by the lattice isomorphism preserves the support inequality. The equivalence therefore sends stable objects of the selected vector and phase exactly to stable objects of the transformed vector and the same phase. A Fourier–Mukai kernel and its inverse act in families and commute with base change in the moduli problem. They give inverse transformations of these moduli problems, and hence inverse isomorphisms of their coarse spaces.</p></proof>
+    </proposition>
+    <p>Tensoring by a line bundle changes the vector by <m>e^\ell</m> and transports the slicing; the tensor product need not be stable for the original condition. A shift preserves stability for that condition, but <m>E[1]</m> has the negative vector and phase increased by one. In the transported stability condition of the proposition, the phase label is retained.</p>
+    <p>A spherical object <m>A</m> gives another exact autoequivalence, its spherical twist <m>T_A</m>. Its construction is the cone of the evaluation map <m>R\operatorname{Hom}(A,E)\otimes A\to E</m>; the functorial construction and equivalence theorem are used from spherical-twist theory, as presented in <xref ref="hkg-bib-huybrechts-k3" detail="Chapter 16"/>. Additivity gives
+      <md number="no">v(T_A(E))=v(E)-\chi(A,E)v(A)=v(E)+\langle v(A),v(E)\rangle v(A).</md>
+      Thus its cohomological action is the reflection in a square-<m>-2</m> vector. Such reflections explain why spherical objects occur in the analysis of walls. The formula by itself does not establish that a proposed root produces a particular destabilizing wall.</p>
+    <corollary xml:id="hkg-derived-equivalence-birational-moduli">
+      <statement><p>Suppose an orientation-preserving Mukai Hodge isometry sends a primitive positive-square vector <m>v</m> on <m>S</m> to <m>w</m> on <m>T</m>. Then the moduli spaces for any generic distinguished stability conditions on these surfaces are birational.</p></statement>
+      <proof><p>Choose an inducing equivalence preserving distinguished components by <xref ref="hkg-derived-torelli-theorem"/>. It gives an isomorphism to a moduli space on <m>T</m> by <xref ref="hkg-equivalence-stability-moduli"/>. The latter is birational to the moduli space for any other generic distinguished stability condition on <m>T</m>, by <xref ref="hkg-bayer-macri-birationality"/>.</p></proof>
+    </corollary>
+    <p>This implication requires an equivalence carrying the chosen vector, not merely an equivalence between the surfaces. It also does not construct an equivalence between the derived categories of the higher-dimensional moduli spaces. Such an assertion is a separate geometric problem.</p>
+  </section>
+  <section xml:id="hkg-extended-mukai-transport">
+    <title>The extended Mukai lattice and parallel transport</title>
+    <p>The Torelli theorem requires a Hodge isometry to be a parallel-transport operator. For manifolds of <m>\mathrm{K3}^{[n]}</m> type this condition can be tested integrally. The Mukai lattice also explains why the test involves more than the abstract BBF lattice.</p>
+    <p>We use the dual lattice and discriminant form of <xref ref="hkg-def-discriminant-group"/>.</p>
+    <p>Let <m>X</m> be of <m>\mathrm{K3}^{[n]}</m> type, with <m>n\geq2</m>, and let <m>d=2n-2</m>. By <xref ref="hkg-eq-hilbert-lattice"/>, its lattice is
+      <md number="no">L_n=\Lambda_{\mathrm{K3}}\oplus\Z\delta,\qquad q(\delta)=-d,</md>
+      where <m>\Lambda_{\mathrm{K3}}</m> is unimodular. Thus <m>A_{L_n}\cong\Z/d\Z</m>, generated by <m>[\delta/d]</m>, and <m>\bar q([\delta/d])=-1/d\bmod2\Z</m>.</p>
+    <p xml:id="hkg-k3n-monodromy-discriminant">By <xref ref="hkg-k3-hilbert-monodromy"/>, an orientation-preserving isometry belongs to <m>\Mon^2(X)</m> exactly when its action on this discriminant group is multiplication by <m>1</m> or <m>-1</m>. For <m>n=2</m> or <m>3</m>, every orientation-preserving lattice isometry satisfies this condition, since the discriminant group has order two or four. In higher dimensions it can be restrictive.</p>
+    <example xml:id="hkg-k3n-discriminant-seven">
+      <p>For <m>n=7</m>, the group <m>A_{L_n}</m> has order twelve. Multiplication by five preserves its quadratic form: <m>5^2-1=24</m> is divisible by <m>2d</m>. It is neither <m>1</m> nor <m>-1</m> on this group. Markman's lattice calculation in <xref ref="hkg-bib-markman-survey" detail="§9.1.1"/> gives surjectivity <m>O^+(L_n)\to O(A_{L_n},\bar q)</m>. Consequently orientation-preserving isometries with this discriminant action exist, and none is a monodromy operator. This example concerns integral isometries; it does not assert that such an isometry preserves the Hodge structure of a specified <m>X</m>.</p>
+    </example>
+    <p>For transport between two different manifolds, one must compare their distinguished embeddings in a larger lattice. Set
+      <md number="no">\widetilde\Lambda=\Lambda_{\mathrm{K3}}\oplus U,</md>
+      where <m>U</m> has a basis <m>e,f</m> with <m>e^2=f^2=0</m> and <m>q(e,f)=1</m>. This is the even unimodular Mukai lattice of signature <m>(4,20)</m>. An embedding of lattices is <em>primitive</em> if its cokernel is torsion-free.</p>
+    <theorem xml:id="hkg-markman-embedding-orbit">
+      <title>(Markman)</title>
+      <statement><p>Every manifold <m>X</m> of <m>\mathrm{K3}^{[n]}</m> type, <m>n\geq2</m>, has a distinguished <m>O(\widetilde\Lambda)</m>-orbit <m>\mathcal I_X</m> of primitive isometric embeddings
+        <md number="no">i_X:H^2(X,\Z)\hookrightarrow\widetilde\Lambda.</md>
+        Its orthogonal complement is generated by a primitive vector <m>v_X</m> of square <m>2n-2</m>. For two such manifolds <m>X,Y</m> and an integral isometry <m>g:H^2(X,\Z)\to H^2(Y,\Z)</m>, the map <m>g</m> is parallel transport if and only if it preserves positive orientation and
+        <md xml:id="hkg-eq-embedding-transport" number="yes">\mathcal I_X=\mathcal I_Y\circ g.</md>
+        The equality means that, for representatives <m>i_X,i_Y</m>, there exists <m>\widetilde g\in O(\widetilde\Lambda)</m> with <m>\widetilde g\circ i_X=i_Y\circ g</m>.</p></statement>
+    </theorem>
+    <p>The distinguished orbit and the transport criterion are <xref ref="hkg-bib-markman-survey" detail="Corollary 9.5 and Theorem 9.8"/>. We quote their geometric construction. The complement and its square follow already from the standard embedding
+      <md number="no">\Lambda_{\mathrm{K3}}\oplus\Z\delta\longrightarrow\Lambda_{\mathrm{K3}}\oplus U,
+        \qquad \delta\longmapsto e-(n-1)f,</md>
+      whose orthogonal complement is generated by <m>e+(n-1)f</m>. The vector <m>e-(n-1)f</m> is primitive, so this is a primitive embedding. The transitivity statement in <xref ref="hkg-bib-markman-survey" detail="Lemma 9.4"/> shows that every primitive embedding has the same complement type. For <m>n=2,3</m>, there is only one orbit; the additional choice can matter in higher dimensions.</p>
+    <p>Choosing a representative <m>i_X</m> gives <m>\widetilde\Lambda</m> a weight-two Hodge structure: its <m>(2,0)</m> line is <m>i_X(H^{2,0}(X))</m>, and the orthogonal complement <m>\Z v_X</m> is of type <m>(1,1)</m>. The resulting lattice with Hodge structure is called an <em>extended Mukai lattice</em> of <m>X</m>. Its embedding is specified only up to the distinguished orbit, and the sign of <m>v_X</m> is not specified.</p>
+    <proposition xml:id="hkg-unimodular-extension-test">
+      <statement><p>In the standard embedding above, an isometry <m>g\in O(L_n)</m> extends to an isometry of <m>\widetilde\Lambda</m> if and only if <m>\bar g=\pm\id</m> on <m>A_{L_n}</m>. An extension acting on the orthogonal vector <m>v=e+(n-1)f</m> by <m>v\mapsto\varepsilon v</m>, <m>\varepsilon\in\{1,-1\}</m>, exists exactly when <m>\bar g=\varepsilon\id</m>.</p></statement>
+      <proof><p>Write <m>w=e-(n-1)f</m>, the image of <m>\delta</m>. Inside <m>U_\Q</m>,
+        <md number="no">f=\frac{v-w}{d},\qquad e=w+\frac d2f.</md>
+        Consequently <m>U</m> is obtained from <m>\Z w\oplus\Z v</m> by adjoining <m>(v-w)/d</m>. The quotient has order <m>d</m>. Since <m>\Lambda_{\mathrm{K3}}</m> is unimodular, the same description gives the entire extension from <m>L_n\oplus\Z v</m> to <m>\widetilde\Lambda</m>.</p>
+        <p>On the two discriminant groups, the adjoined generator has class <m>(-[w/d],[v/d])</m>. Its multiples form the graph identifying their cyclic generators with opposite signs. The rational isometry <m>g\oplus\varepsilon</m> preserves the extended integral lattice exactly when it preserves this graph. If <m>\bar g</m> multiplies <m>A_{L_n}</m> by <m>a\in(\Z/d\Z)^*</m>, graph preservation says <m>a=\varepsilon\bmod d</m>. This is the required condition. Conversely any extension must preserve the rank-one orthogonal complement and hence sends <m>v</m> to one of these two signs, giving necessity.</p></proof>
+    </proposition>
+    <p>For <m>X=S^{[n]}</m>, take <m>v=(1,0,1-n)\in\widetilde H(S,\Z)</m>. The Mukai isometry of <xref ref="hkg-hilbert-lattice-from-mukai"/> identifies <m>H^2(X,\Z)</m> with <m>v^\perp</m>. The resulting inclusion in <m>\widetilde H(S,\Z)</m> represents <m>\mathcal I_X</m>; this is the universal-ideal-sheaf case of <xref ref="hkg-bib-markman-survey" detail="Example 9.6 and §9.1.3"/>. Thus the extra lattice used in the transport criterion is visible in the original moduli construction.</p>
+    <corollary xml:id="hkg-extended-mukai-torelli">
+      <statement><p>Let <m>X,Y</m> be of <m>\mathrm{K3}^{[n]}</m> type, <m>n\geq2</m>. They are bimeromorphic if and only if there is an integral Hodge isometry <m>g:H^2(X,\Z)\to H^2(Y,\Z)</m> satisfying <xref ref="hkg-eq-embedding-transport"/>. For a specified such <m>g</m>, there is a biholomorphism <m>f:Y\to X</m> with <m>f^*=g</m> if and only if <m>g</m> sends a Kähler class to a Kähler class.</p></statement>
+      <proof><p>If <m>g</m> reverses positive orientation, replace it by <m>-g</m>. This preserves the equality of embedding orbits, since <m>-\id\in O(\widetilde\Lambda)</m>. A Hodge isometry either preserves or reverses the positive-three-plane orientation according to the sign on the positive cone: on the oriented <m>(2,0)\oplus(0,2)</m> plane it preserves orientation. Thus one of the two signs is orientation preserving. The embedding theorem makes that sign a parallel-transport operator, and <xref ref="hkg-theorem-birational-torelli"/> gives bimeromorphism. Conversely, bimeromorphism induces Hodge parallel transport and therefore preserves the distinguished orbit.</p>
+        <p>If the specified <m>g</m> sends a Kähler class to a Kähler class, its sign on the positive cone is already positive. Hence it is orientation preserving, and <xref ref="hkg-theorem-strong-torelli"/> gives <m>f:Y\to X</m> with <m>f^*=g</m>. Conversely, a biholomorphism pulls back Kähler classes to Kähler classes.</p></proof>
+    </corollary>
+    <p>For a projective <m>X</m>, let <m>\widetilde\Lambda_{\mathrm{alg}}</m> be the integral <m>(1,1)</m> part of its extended Mukai lattice.</p>
+    <theorem xml:id="hkg-untwisted-moduli-hyperbolic-plane">
+      <title>(Addington)</title>
+      <statement><p>Let <m>X</m> be projective of <m>\mathrm{K3}^{[n]}</m> type, with <m>n\geq2</m>. The lattice <m>\widetilde\Lambda_{\mathrm{alg}}</m> contains an isometric copy of <m>U</m> if and only if <m>X</m> is birational to a moduli space <m>M_H(v)</m> on a projective K3 surface, for a primitive positive-rank Mukai vector <m>v</m> with <m>v^2=2n-2</m> and a <m>v</m>-generic polarization <m>H</m>.</p></statement>
+    </theorem>
+    <p>This is <xref ref="hkg-bib-addington-rationality" detail="Proposition 4"/>. The two outer summands of a surface's Mukai lattice give the necessary algebraic hyperbolic plane. Conversely, its orthogonal complement is a K3 lattice with a period determining a projective K3 surface; the global moduli and Torelli theorems then give the birational model. By <xref ref="hkg-bayer-macri-movable-theorem"/>, <m>X</m> itself is a moduli space of stable objects on that surface for a generic distinguished stability condition.</p>
+  </section>
+  <section xml:id="hkg-twisted-derived-moduli">
+    <title>Twisted K3 surfaces</title>
+    <p>A twisted K3 surface is a pair <m>(S,\alpha)</m> with <m>\alpha\in\operatorname{Br}(S)=H^2(S,\mathcal O_S^*)_{\mathrm{tors}}</m>. An <m>\alpha</m>-twisted sheaf has local transition isomorphisms whose triple products are the prescribed scalar cocycle representing <m>\alpha</m>. Their bounded derived category is denoted by <m>D^b(S,\alpha)</m>. This cocycle condition specifies what is being twisted; an arbitrary change of stability parameter is not a Brauer twist.</p>
+    <p>Choose a rational B-field lift <m>B\in H^2(S,\mathbb Q)</m> with <m>\exp(B^{0,2})=\alpha</m>. In the convention used here, <m>\widetilde H(S,B,\mathbb Z)</m> has the same underlying integral lattice and pairing as <m>\widetilde H(S,\mathbb Z)</m>, while its Hodge structure is changed by <m>e^B</m>. In particular,
+      <md number="no">\widetilde H^{2,0}(S,B)=e^B H^{2,0}(S).</md>
+      One takes the integral algebraic part of this twisted Hodge structure for numerical classes. Twisted Chern characters, Fourier–Mukai kernels, and their integral cohomological transforms are used from the external theory. We do not replace this lattice by the untwisted algebraic lattice when comparing moduli spaces.</p>
+    <theorem xml:id="hkg-twisted-derived-torelli">
+      <title>(Huybrechts–Stellari, Reinecke)</title>
+      <statement><p>For two complex projective twisted K3 surfaces with chosen B-field lifts, a Hodge isometry of their twisted Mukai lattices is induced by a twisted Fourier–Mukai equivalence if and only if it preserves the natural positive orientation.</p></statement>
+    </theorem>
+    <p>This is <xref ref="hkg-bib-reinecke-twisted" detail="Theorem B"/>. The orientation requirement remains present in the twisted case; it is not removed by choosing a B-field lift. The stability, projectivity, wall-crossing, and movable-cone results used above extend to twisted K3 surfaces with these numerical and Hodge conventions, as formulated throughout <xref ref="hkg-bib-bayer-macri-mmp"/>. This extension is useful when the obstruction to a universal sheaf is a nontrivial Brauer class.</p>
+    <p>The B-field lift used for a Brauer class can have a transcendental component. It should be distinguished from the real algebraic parameter <m>B\in\operatorname{NS}(S)_\mathbb R</m> used in <xref ref="hkg-eq-geometric-central-charge"/>. In the twisted construction both enter the exponential in the central charge, with separate roles.</p>
+  </section>
+  <section xml:id="hkg-abelian-derived-moduli">
+    <title>Stable objects on abelian surfaces</title>
+    <p>Let <m>A</m> be an abelian surface and <m>\widehat A=\operatorname{Pic}^0(A)</m>. We use the Mukai lattice of <xref ref="hkg-abelian-moduli"/>:
+      <m>\widetilde H(A,\Z)\cong U^{\oplus4}</m>, with algebraic part <m>N(A)=\Z\oplus\operatorname{NS}(A)\oplus\Z</m>. For a complex, <m>v(E)=\operatorname{ch}(E)</m>, interpreted additively in its cohomology sheaves. The slicing and support-property definition in <xref ref="hkg-def-bridgeland-stability"/> applies with <m>N(A)</m> in place of <m>N(S)</m>. Riemann–Roch still reads <m>\chi(E,F)=-\langle v(E),v(F)\rangle</m>.</p>
+    <p>The central charge <m>Z_{B,\omega}=\langle e^{B+i\omega},-\rangle</m> and tilted heart of <xref ref="hkg-geometric-stability"/> define a stability condition on <m>A</m> for every <m>B\in\operatorname{NS}(A)_\R</m> and ample <m>\omega</m>. No lower bound on <m>\omega^2</m> is required. These conditions lie in a distinguished component <m>\operatorname{Stab}^{\dagger}(A)</m>. Every condition in this component is obtained from a geometric one by the action of the universal cover of <m>\operatorname{GL}^+(2,\R)</m>: this changes the central charge by an orientation-preserving real linear map and relabels phases, without changing the stable objects. These are external results of <xref ref="hkg-bib-bridgeland-k3" detail="§15 and Theorem 15.2"/>.</p>
+    <p>There are no spherical objects on an abelian surface; indeed <m>\operatorname{Ext}^1(E,E)\ne0</m> for every nonzero object, by <xref ref="hkg-bib-bridgeland-k3" detail="Lemma 15.1"/>. For a stable object of any phase, the slicing gives <m>\operatorname{Hom}(E,E[i])=0</m> for <m>i&lt;0</m>, and Serre duality gives the same vanishing for <m>i&gt;2</m>. The calculation in <xref ref="hkg-stable-object-dimension"/> therefore gives <m>\dim\operatorname{Ext}^1(E,E)=v(E)^2+2</m>. The Mukai lattice is even, so this dimension is a positive even integer and <m>v(E)^2\geq0</m>. Shifting the object preserves its self-Ext groups and this inequality. Consequently spherical objects do not occur in the abelian wall descriptions.</p>
+    <p>As before, <m>M_\sigma(v)</m> denotes moduli at a fixed phase <m>\phi</m> with <m>Z(v)\in\R_{&gt;0}e^{i\pi\phi}</m>. Genericity means that every semistable object of vector <m>v</m> and this phase is stable. The full moduli space has an Albanese morphism, whose four-dimensional target accounts for the difference between its dimension and that of the associated IHS manifold.</p>
+    <p>Here is a determinant convention that also works for complexes. Fix a normalized Poincaré line bundle <m>\mathcal P</m> on <m>A\times\widehat A</m> and its Fourier–Mukai functor <m>\Phi_{\mathcal P}:D^b(A)\to D^b(\widehat A)</m>. Given a reference object <m>E_0\in M_\sigma(v)</m>, set
+      <md xml:id="hkg-eq-derived-albanese" number="yes">\begin{aligned}
+      a_\sigma(E)=\bigl(&amp;\det\Phi_{\mathcal P}(E)\otimes\det\Phi_{\mathcal P}(E_0)^{-1},\\
+      &amp;\det E\otimes\det E_0^{-1}\bigr)\in A\times\widehat A.
+      \end{aligned}</md>
+      The first factor uses <m>\operatorname{Pic}^0(\widehat A)=A</m>. Both determinant differences have zero first Chern class, since the numerical vectors agree. Determinants of perfect complexes, descent of this map to the coarse moduli space, and its Albanese property are external results; see <xref ref="hkg-bib-yoshioka-positive-cone" detail="§1.4"/>. Replacing <m>E_0</m> translates the target. The second-Chern-cycle convention in <xref ref="hkg-abelian-moduli"/> can differ by a change of coordinates on this target.</p>
+    <theorem xml:id="hkg-abelian-bridgeland-moduli">
+      <title>(Minamide–Yanagida–Yoshioka)</title>
+      <statement><p>Let <m>v\in N(A)</m> be primitive with <m>v^2=2m\geq6</m>, and let <m>\sigma\in\operatorname{Stab}^{\dagger}(A)</m> be <m>v</m>-generic. The moduli space <m>M_\sigma(v)</m> is nonempty, smooth, and projective of dimension <m>2m+2</m>. The map <m>a_\sigma:M_\sigma(v)\to A\times\widehat A</m> is a surjective Albanese morphism and an étale locally trivial fibration. Its fibre
+        <md number="no">K_\sigma(v):=a_\sigma^{-1}(0)</md>
+        is an IHS manifold of dimension <m>2m-2</m>, deformation equivalent to <m>K_{m-1}(A)</m>. The Mukai homomorphism, followed by restriction to the fibre, is an integral Hodge isometry
+        <md xml:id="hkg-eq-abelian-derived-mukai" number="yes">\theta_{\sigma,v}:v^\perp\xrightarrow{\ \sim\ }H^2(K_\sigma(v),\Z),</md>
+        with the Mukai pairing on the left and <m>q_{K_\sigma(v)}</m> on the right.</p></statement>
+    </theorem>
+    <p>The projectivity theorem is <xref ref="hkg-bib-myy-moduli" detail="Theorem 4.1.1"/>. For the Albanese morphism, deformation type, and integral Hodge isometry we use <xref ref="hkg-bib-yoshioka-positive-cone" detail="§1.4 and Theorem 1.13"/>. The extension from geometric conditions to their distinguished component uses the phase-relabeling action above. The proof reduces to moduli of stable sheaves through Fourier–Mukai transforms, sometimes on a twisted surface; we quote that reduction and the global moduli theorems. The homomorphism is constructed from a universal or quasi-universal complex as in <xref ref="hkg-eq-mukai-homomorphism"/>, with <m>\sqrt{\operatorname{td}(A)}=1</m>, and then restricted to <m>K_\sigma(v)</m>.</p>
+    <p>The dimension subtraction is <m>(v^2+2)-\dim(A\times\widehat A)=v^2-2</m>. It uses the smooth surjective Albanese morphism, rather than only a count of deformation parameters. In particular, <m>M_\sigma(v)</m> has nonzero <m>H^1(\mathcal O)</m> and is not IHS. The isometry <xref ref="hkg-eq-abelian-derived-mukai"/> describes the fibre's second cohomology; it is not an isometry onto the full moduli space's second cohomology.</p>
+    <corollary xml:id="hkg-abelian-derived-picard">
+      <statement><p>Under the hypotheses of <xref ref="hkg-abelian-bridgeland-moduli"/>,
+        <md number="no">b_2(K_\sigma(v))=7,\qquad \rho(K_\sigma(v))=\rho(A)+1.</md>
+        In particular, <m>\rho(K_\sigma(v))\geq2</m>.</p></statement>
+      <proof><p>The full Mukai lattice has rank eight, and the orthogonal complement of a vector of nonzero square has rank seven. Its algebraic part <m>N(A)</m> has rank <m>\rho(A)+2</m>. Pairing with <m>v</m> is a nonzero rational functional on this space, since <m>\langle v,v\rangle\ne0</m>. Its kernel therefore has rank <m>\rho(A)+1</m>. The Hodge isometry identifies this kernel with <m>\operatorname{NS}(K_\sigma(v))</m>, proving the assertion.</p></proof>
+    </corollary>
+    <example xml:id="hkg-abelian-derived-ideal">
+      <p>Take <m>v=(1,0,-m)</m>, <m>m\geq3</m>, and a large-volume chamber in which stability agrees with Gieseker stability. Its existence follows from the large-volume comparison recalled in <xref ref="hkg-bib-yoshioka-positive-cone" detail="Remark 1.11(2)"/>. The rank-one calculation in <xref ref="hkg-abelian-hilbert-moduli"/> gives
+        <md number="no">M_\sigma(1,0,-m)\cong A^{[m]}\times\widehat A,\qquad K_\sigma(1,0,-m)\cong K_{m-1}(A).</md>
+        With the cycle normalization of that example, the Albanese map is <m>(Z,L)\mapsto(s(Z),L)</m>. Thus the fibre condition fixes the determinant and the sum of the length-<m>m</m> cycle. Tensoring by <m>L\in\widehat A</m> changes the determinant and preserves the Mukai vector.</p>
+      <p>The small squares explain the lower bound in the cohomology theorem. For <m>m=1</m>, the same rank-one description gives <m>M\cong A\times\widehat A</m> and a point fibre. For <m>m=2</m>, the fibre is the Kummer K3 surface <m>K_1(A)</m>, whose second Betti number is twenty-two. In both cases <m>v^\perp</m> still has rank seven, so it cannot be the fibre's full second cohomology. The ranges <m>v^2=2,4</m> must therefore be separated from <m>v^2\geq6</m>. A stable object of isotropic vector has tangent dimension two; the theorem's four-dimensional Albanese target is then inapplicable.</p>
+    </example>
+    <example xml:id="hkg-abelian-derived-rank-two-lattice">
+      <p>Suppose <m>\operatorname{NS}(A)=\Z H</m> with <m>H^2=2d</m>, and keep <m>v=(1,0,-m)</m>, <m>m\geq3</m>. For <m>x=(r,c,s)</m>, the equation <m>\langle v,x\rangle=0</m> is <m>s=mr</m>. Hence
+        <md number="no">v^\perp\cap N(A)=\Z(0,H,0)\oplus\Z(1,0,m).</md>
+        Let <m>D,E</m> be their images under <m>\theta_{\sigma,v}</m>. They form an integral basis of the fibre's Néron–Severi lattice, with
+        <md number="no">q(D)=2d,\qquad q(E)=-2m,\qquad q(D,E)=0.</md>
+        Thus <m>q(xD+yE)=2dx^2-2my^2</m>. The two isotropic lines have slopes <m>y/x=\pm\sqrt{d/m}</m>; they are rational exactly when <m>dm</m> is a square. The stability walls cut out the ample cone within the positive cone, as in <xref ref="hkg-bib-yoshioka-positive-cone" detail="Proposition 3.15"/>.</p>
+    </example>
+    <p>Variation of stability also describes birational models of these fibres. Precisely, every smooth projective manifold with trivial canonical bundle that is birational to <m>K_\sigma(v)</m> is isomorphic to <m>K_\tau(v)</m> for a generic distinguished stability condition on the same surface and with the same vector; see <xref ref="hkg-bib-yoshioka-positive-cone" detail="Corollary 3.33(1)"/>. This is a theorem about the birational class of the specified moduli fibre. It does not identify all deformations of generalized Kummer type with fibres on abelian surfaces: the Picard-rank calculation already excludes projective deformations of Picard number one.</p>
+  </section>
+  <section xml:id="hkg-k3-categories-modularity">
+    <title>K3 categories and the meaning of a moduli interpretation</title>
+    <p>Moduli of stable objects enlarge the sheaf constructions without making every deformation a moduli space on a surface. There is an elementary obstruction already for projective K3 surfaces.</p>
+    <proposition xml:id="hkg-surface-moduli-picard-rank">
+      <statement><p>If <m>M=M_\sigma(v)</m> for a projective K3 surface, a primitive vector of positive square, and a generic distinguished stability condition, then
+        <md number="no">\rho(M)=\rho(S)+1\geq2.</md>
+        The same equality holds for a moduli space on a projective twisted K3 surface under the corresponding primitive-vector and generic-stability hypotheses. In particular, a projective IHS manifold of Picard number one is not birational to either kind of surface moduli space.</p></statement>
+      <proof><p>The full Mukai Hodge isometry identifies the integral <m>(1,1)</m> part of <m>H^2(M)</m> with <m>v^\perp\cap N(S)</m>. Since <m>N(S)</m> has rank <m>\rho(S)+2</m> and pairing with the nonzero positive vector <m>v</m> is a nonzero rational linear functional, this kernel has rank <m>\rho(S)+1</m>.</p>
+        <p>For a rational B-field lift, multiplication by <m>e^B</m> identifies the untwisted and twisted algebraic Mukai spaces over <m>\Q</m>. It need not preserve their integral lattices, but it preserves their ranks and rational pairings. The twisted algebraic lattice therefore also has rank <m>\rho(S)+2</m>. The twisted Mukai isometry identifies the Néron–Severi space of the moduli space with its orthogonal complement to <m>v</m>, giving the same count. Finally, birational IHS manifolds have Hodge-isometric second cohomology and hence the same Picard number.</p></proof>
+    </proposition>
+    <p>A broader construction uses categories having K3-type cohomology and Serre duality without requiring them to be derived categories of surfaces. Let <m>Y\subset\mathbb P^5</m> be a smooth cubic fourfold. Its <em>Kuznetsov component</em> is
+      <md number="no">\operatorname{Ku}(Y)=\{E\in D^b(Y):\operatorname{Hom}(\mathcal O_Y(i),E[k])=0\text{ for }i=0,1,2\text{ and all }k\in\mathbb Z\}.</md>
+      It is an admissible triangulated subcategory with Serre functor <m>[2]</m>. Thus it has the same two-dimensional Serre-duality relation as <m>D^b(S)</m>. These categorical properties and its Mukai lattice are external constructions, not consequences of the definition by orthogonality alone.</p>
+    <p>The category has an integral Mukai Hodge lattice <m>\widetilde H(\operatorname{Ku}(Y),\mathbb Z)</m> of signature <m>(4,20)</m>, constructed from topological K-theory, and an algebraic numerical part. We use this construction and the existence of a distinguished component of stability conditions from <xref ref="hkg-bib-blms-kuznetsov"/> and <xref ref="hkg-bib-blmnps-families" detail="§29"/>. The phrase <em>K3 category</em> refers here to this geometric example with its additional structure; abstract Calabi–Yau categories do not automatically satisfy every theorem for K3 surfaces.</p>
+    <theorem xml:id="hkg-cubic-category-moduli">
+      <title>(Bayer–Lahoz–Macrì–Nuer–Perry–Stellari)</title>
+      <statement><p>Let <m>Y</m> be a smooth cubic fourfold, and let <m>v</m> be a primitive algebraic class of positive square in <m>\widetilde H(\operatorname{Ku}(Y),\mathbb Z)</m>. Let <m>\sigma</m> be a <m>v</m>-generic stability condition in the distinguished component, and fix a phase <m>\phi</m> with <m>Z(v)\in\mathbb R_{&gt;0}e^{i\pi\phi}</m>. The moduli space of <m>\sigma</m>-stable objects of vector <m>v</m> and phase <m>\phi</m> is nonempty and is a smooth projective IHS manifold of dimension <m>v^2+2</m>, of <m>\mathrm{K3}^{[v^2/2+1]}</m> type. Its second cohomology is Hodge isometric to <m>v^\perp</m> in this Mukai lattice, and the inclusion represents its distinguished extended Mukai embedding.</p></statement>
+    </theorem>
+    <p>This is the positive-square case of <xref ref="hkg-bib-blmnps-families" detail="Theorem 29.2"/>. The proof uses stability conditions in families and deformation to categories of actual twisted K3 surfaces. The theorem is a moduli construction for every smooth cubic fourfold; it does not require its Kuznetsov component to be equivalent to the derived category of a K3 surface.</p>
+    <p>Its numerical difference from surface moduli is visible for a very general cubic. The algebraic Mukai lattice is then the positive definite lattice <m>A_2</m>, with basis <m>\lambda_1,\lambda_2</m> satisfying
+      <md number="no">\lambda_1^2=\lambda_2^2=2,\qquad\langle\lambda_1,\lambda_2\rangle=-1.</md>
+      Thus <m>(a\lambda_1+b\lambda_2)^2=2(a^2-ab+b^2)</m>. Its orthogonal complement to a nonzero vector inside <m>A_2</m> has rank one, giving Picard-number-one moduli spaces. The positive definite lattice <m>A_2</m> contains no copy of <m>U</m>, so <xref ref="hkg-untwisted-moduli-hyperbolic-plane"/> gives another obstruction to an untwisted surface-moduli interpretation. The rank calculation in <xref ref="hkg-surface-moduli-picard-rank"/> also excludes twisted projective surfaces.</p>
+    <p>The class <m>\lambda_1+\lambda_2</m> has square two and yields the Fano variety of lines on <m>Y</m> for the appropriate stability condition. The class <m>2\lambda_1+\lambda_2</m> has square six and yields the Lehn–Lehn–Sorger–van Straten eightfold when <m>Y</m> contains no plane. These identifications, including the restriction in the eightfold construction, are recorded in <xref ref="hkg-bib-blmnps-families" detail="Example 29.6"/>.<fn>That example also records a twenty-dimensional family of <m>\mathrm{OG}_{10}</m> manifolds associated with the nonprimitive vector <m>2\lambda_1+2\lambda_2</m>. Its construction requires resolution of a singular semistable moduli space, as in the surface examples of <xref ref="hkg-nonprimitive-moduli"/>; it is not a case of the primitive-vector theorem.</fn> The square calculations give the dimensions of the smooth moduli spaces; the identifications themselves are geometric theorems.</p>
+    <p>A moduli interpretation can therefore mean a moduli space of sheaves on a surface, stable objects on a twisted surface, or stable objects in a K3 category. It may identify the manifold itself or only one of its birational models; a universal family may be replaced by a twisted or quasi-universal one. Each claim must specify which of these data is present. The examples and theorems here give precise instances of this structure. They do not supply a theorem assigning a surface or a category and a stability condition to every IHS manifold.</p>
+  </section>
+</chapter>

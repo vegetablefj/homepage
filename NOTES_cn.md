@@ -7,21 +7,31 @@
 | 文件 | 用途 |
 | --- | --- |
 | `source/notes/fujita/fujita.ptx`、`source/notes/nagata/nagata.ptx`、`source/notes/cubic-fourfolds/cubic-fourfolds.ptx` | 三篇笔记的 book 根文件、宏和包含文件 |
-| `source/notes/category-theory/category-theory.ptx`、`chapter-00.ptx`、`chapter-01.ptx`、`references.ptx` | 普通范畴论初稿、约定章与第一章、参考文献 |
+| `source/notes/category-theory/category-theory.ptx`、`chapter-*.ptx`、`references.ptx` | 1-范畴论笔记、各章正文、参考文献 |
+| `source/notes/toric-geometry/toric-geometry.ptx`、`chapter-*.ptx`、`references.ptx` | Toric geometry 笔记、整体目录、英文正文与参考文献 |
+| `source/notes/hyperkahler/hyperkahler.ptx` 及其包含文件 | Hyperkähler geometry 笔记 |
+| `source/notes/cubic-k3/cubic-k3.ptx`、`source/notes/homological-algebra/homological-algebra.ptx`、`source/notes/hyperkahler-syz/hyperkahler-syz.ptx` 及其包含文件 | Cubic fourfolds 与 K3 structures、homological algebra、hyperkähler SYZ 三篇笔记 |
 | `source/notes/fujita/chapter-01.ptx` 至 `chapter-09.ptx` | Fujita 笔记的九章正文 |
 | `source/notes/fujita/references.ptx` | Fujita 笔记的参考文献 |
 | `publication/fujita.ptx`、`publication/nagata.ptx`、`publication/cubic-fourfolds.ptx` | 各篇笔记的搜索、目录、编号、证明折叠和引用预览 |
 | `publication/category-theory.ptx` | 范畴论笔记的设置，包括从 0 开始的章编号 |
+| `publication/toric-geometry.ptx` | Toric geometry 笔记的设置，包括从 0 开始的章编号 |
+| `publication/hyperkahler.ptx` | Hyperkähler geometry 笔记的发布配置 |
 | `publication/note-settings.json` | 按构建目标设置脚注、审阅状态与更新日期 |
 | `source/layout.css`、`source/layout.js` | 共用版式与响应式边注 |
 | `project.ptx` | 启用的构建目标 |
-| `source/notes-list.ptx` | Notes 与 Home 共用的列表链接 |
+| `source/notes-list.ptx` | Notes 页上显示的入口 |
+| `source/selected-notes-list.ptx` | Home 的独立精选列表，目前为空 |
 
-当前构建目标为主页的 `web`，以及笔记的 `note-fujita`、`note-nagata`、`note-cubic-fourfolds` 和 `note-category-theory`。四篇笔记均列入 Home 与 Notes 共用的公开列表。修改源文件后运行 `.\Rebuild.ps1`。生成的 HTML 和共用静态资源直接放在项目根目录。`.build/cache`、`.build/tmp`、`.build/reports` 保存运行文件和报告，均被版本控制忽略。环境配置与发布见 [README_cn.md](README_cn.md)。
+当前构建目标为主页的 `web`，以及 `project.ptx` 列出的九个独立 `note-*` 目标。Notes 页暂只保留范畴论、cubic fourfold rationality、Nagata、Fujita 四个原有入口；toric geometry、hyperkähler geometry、cubic fourfolds 与 K3 structures、homological algebra、hyperkähler SYZ 五份新增笔记会构建和上传，但暂不列入页面。Home 的 Selected Notes 使用独立精选列表，目前保持为空。各篇均使用共用的 `note-html.xsl`、布局、页眉与导航。修改源文件后运行 `.\Rebuild.ps1`。生成的 HTML 和共用静态资源直接放在项目根目录。`.build/cache`、`.build/tmp`、`.build/reports` 保存运行文件和报告，均被版本控制忽略。环境配置与当前入口设置见 [README_cn.md](README_cn.md)。
 
 `source/notes/affine-basics.ptx`、`divisors-p1.ptx`、`finite-maps.ptx`、`projective-line.ptx` 四份示例保留供复制，不列入生产构建目标及公开列表。原来的三份 PDF 笔记仍保留在 `pdfs/`，不显示列表条目。
 
 ## 添加一篇独立笔记
+
+新增或修改正文后，`Rebuild.ps1` 会先使用 `tools/validate_sources.py` 与本地 Jing 校验所有启用的正文目标。首次准备校验依赖、固定版本与下载校验和的说明见 [README_cn.md](README_cn.md)。校验失败或引擎不可用都会停止构建，不作为成功或跳过处理；`tools/test_validation.py` 提供真实有效／非法文档的回归控制。
+
+注意原生标记的容器要求：普通列表写在段落中（例如 `<p><ol>…</ol></p>`）；图片说明使用 `<description><p>…</p></description>`；多行 `<md>` 的交叉引用 ID 放在对应 `<mrow>` 上，不能放在外层 `<md>`。书籍 frontmatter 保留必需的 `<bibinfo>`，无信息时可用 `<bibinfo/>`。保持文字与数学公式不变的容器修正也应通过正式校验后再重建。
 
 1. 复制一份示例；长笔记可新建 `source/notes/my-note/`。将 `publication/demo-affine.ptx`、`demo-divisors.ptx` 或 `demo-finite.ptx` 复制为 `publication/my-note.ptx`。这些配置模板启用搜索、引用预览，并默认折叠证明。
 2. 修改标题、book ID、宏，以及实际的作者信息和来源说明。在复制的 publication 中，将 `<index-page ref="my-note"/>` 改为这篇笔记的实际 book ID。
@@ -36,7 +46,9 @@
 
 source、publication 和样式表路径分别相对于 `project.ptx` 中声明的对应目录。目标名以 `note-` 开头，构建程序据此应用笔记版式。
 
-4. 在 `source/notes-list.ptx` 中加入条目；Notes 与 Home 的精选笔记目前共用这份列表。若 Home 需要不同的精选范围，可将 `source/sections/home.ptx` 中的 include 改为独立列表：
+4. 在 `source/notes-list.ptx` 中加入条目，供 Notes 完整列表使用。Home 的 Selected Notes 单独维护在 `source/selected-notes-list.ptx` 中，目前为空；只有明确选为首页精选时，才向该文件加入条目：
+
+空的首页精选文件使用带 XML 注释的空 `<p>`，由 Home 小节直接包含。添加精选时，在这个段落内放入 `<ul>`，再把选中的 `<li>` 条目放入列表；不要将裸 `<li>` 直接插入 `<p>`。
 
 ~~~xml
 <li>
@@ -44,7 +56,7 @@ source、publication 和样式表路径分别相对于 `project.ptx` 中声明�
 </li>
 ~~~
 
-入口 HTML 的文件名由 book 的 `xml:id` 决定。例如 Fujita 笔记入口为 `notes/fujita/fujita-notes.html`。仅添加构建目标不会自动添加公开列表条目。
+入口 HTML 的文件名由 book 的 `xml:id` 决定。例如 Fujita 笔记入口为 `notes/fujita/fujita-notes.html`。仅添加构建目标不会自动添加列表条目，加入 Notes 列表也不会自动进入 Home 精选。应保留 [README_cn.md](README_cn.md) 中记录的入口设置。
 
 长笔记可以按章拆分：
 
@@ -180,6 +192,22 @@ publication 中的 `<knowl proof="yes"/>` 使证明默认折叠。保留语义�
 
 每条旁注都应锚定到它所解释的具体段落，可以包含行内公式、行间公式和带链接的引用。内容保持集中；较长的补充论证写成引理、注记、小节或附录，再从旁注链接过去。
 
+## 术语索引
+
+采用原生 `idx` 与 `index-list`，方便读者查找定义及其别名。相关定义或命题合并为一个编号条目时，把索引词放在标题之后、陈述之前，索引预览便会包含整个条目及其各部分：
+
+```xml
+<definition xml:id="my-note-definition">
+  <title>Related concepts</title>
+  <idx>First concept</idx><idx>Second concept</idx>
+  <statement>...</statement>
+</definition>
+```
+
+若把索引词放在列表第一项内，预览可能只显示该项。概念在独立段落中定义时，将索引词放在实际定义处，并给该段落稳定的 `xml:id`。别名若索引到一个定义，应在同一容器内解释该名称；可以参考范畴论笔记的写法。
+
+在原生 `backmatter` 中加入 `index` 分部，内含标题与空的 `index-list` 子元素。构建保留原生索引，并将没有对应字母分组的字母跳转改成普通文字。重新构建后，抽查索引的跳转位置和展开预览。
+
 ## 带字母标签的文献引用
 
 引用时使用实际的 bibliography ID：
@@ -208,6 +236,14 @@ publication 中的 `<knowl proof="yes"/>` 使证明默认折叠。保留语义�
 参考文献源文件仍保留在原生 `backmatter` 中。当 back matter 只有参考文献时，共用笔记模板会在目录和导航中直接显示 **References**，省略多余的 **Back Matter** 层级；若其中还包含其他分部，则保留正常的 back matter 结构。
 
 核对来源版本、假设和实际使用的定理或定义位置。文献链接或构建成功不能验证数学断言。补充文献才使用 “see also”。
+
+## 择要吸收原文献中的重要观点
+
+主动留意原文献中的重要观点，并根据需要择要引入。例如定义的动机、几何直观、证明策略、假设的作用、结果之间的联系、有启发性的例子、方法的局限和研究问题。取舍以笔记的主线与读者背景为依据，优先保留能够帮助理解论证或说明结果意义的内容。
+
+用笔记自身的语言重新组织这些观点，保留原文的适用范围、限定语，以及已证明结论、猜测、类比和解释性观点之间的区别。在实际使用处注明来源，尽量定位到相应章节、页码或注记；区分原作者的观点、笔记撰写者的解释及后续文献的发展。涉及研究问题时，说明原文的时间背景，并核对后续进展。
+
+影响主线理解的重要观点放在正文；简短解释与相关观察可放在旁注，较长讨论另设注记、小节或附录。每项补充都应有明确的叙述作用，并融入本篇笔记的组织方式。
 
 ## 统一的笔记页眉
 
@@ -272,3 +308,5 @@ Notes 页面保留了关于 LLM 辅助笔记可能含有错误的说明；修改
 ~~~
 
 可选的 `--compare PATH` 请求生成比较报告。这个导入程序针对当前 Fujita 稿件，只支持其中有限的一组 TeX 结构，不是通用 TeX 转换器。重新导入会再生成 Fujita PTX 文件，因此先保存或合并后续的 PTX 编辑；有意重新导入后，检查报告和重建页面。
+
+同调代数笔记的源文件位于 `source/notes/homological-algebra/`，出版设置为 `publication/homological-algebra.ptx`，构建目标为 `note-homological-algebra`。章节结构与参考文献由该目录中的源文件维护。

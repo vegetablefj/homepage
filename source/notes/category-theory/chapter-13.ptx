@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="cat-presentability">
+  <title>Presentability and accessible categories</title>
+  <introduction>
+    <p>Presentability describes when maps from an object into a filtered colimit are determined at individual stages. Accessibility requires every object to be a filtered colimit of objects from a small family of presentable objects. An accessible category with all small colimits is locally presentable.</p>
+    <p>All categories are set-encoded and locally <m>\U</m>-small. Small diagrams and small indexing sets mean <m>\U</m>-small ones. We develop the elementwise mechanisms and the presheaf example here, and quote the general structural existence theorems with their hypotheses. The main references are <xref ref="bib-cat-li2" detail="Appendix A.2"/> and <xref ref="bib-cat-ar" detail="Chapters 1–2"/>. Presentability in this chapter is a property internal to a category, not a choice of an algebraic presentation.</p>
+  </introduction>
+
+  <section xml:id="cat-c13-cardinals">
+    <title>Regular cardinals and larger filteredness</title>
+    <p>Fix an infinite regular cardinal <m>\kappa\in\U</m>. We use regularity in the form: the union of fewer than <m>\kappa</m> sets, each of cardinality less than <m>\kappa</m>, again has cardinality less than <m>\kappa</m>. For <m>\kappa=\aleph_0</m>, less than <m>\kappa</m> means finite. An index category is called <m>\kappa</m>-small here when its arrow set has cardinality less than <m>\kappa</m>; this includes its object set, since every object has an identity. Such a category can be re-encoded using object and arrow labels in <m>\U</m>. In all displayed set-valued limits and colimits below we use a <m>\U</m>-small encoding; this avoids mistaking a cardinal bound for literal membership of tuples with external labels.</p>
+    <definition xml:id="cat-c13-def-filtered">
+      <title><m>\kappa</m>-filtered categories</title>
+      <idx>Kappa-filtered category</idx>
+      <statement>
+        <p>A category <m>I</m> is <m>\kappa</m>-filtered if every diagram in <m>I</m> indexed by a category with fewer than <m>\kappa</m> arrows admits a cocone. In particular, the empty diagram must admit one, so <m>I</m> is nonempty. A poset has this property exactly when every subset of cardinality less than <m>\kappa</m> has an upper bound. The opposite condition is <m>\kappa</m>-cofiltered.</p>
+      </statement>
+    </definition>
+    <p>This agrees with filteredness for <m>\aleph_0</m>, by <xref ref="cat-c06-prop-finite-cocones"/>. If <m>\lambda\geq\kappa</m>, a <m>\lambda</m>-filtered category is <m>\kappa</m>-filtered. A larger cardinal imposes more requirements on the indexing category, and therefore leaves fewer diagrams on which preservation must be tested. Li first formulates the condition for posets in <xref ref="bib-cat-li2" detail="Definition A.2.1"/>; we retain arbitrary indexing categories as in our treatment of ordinary filtered colimits.</p>
+    <p>For a set <m>S\in\U</m>, the poset <m>[S]^{\lt\kappa}</m> of its subsets of cardinality less than <m>\kappa</m> is small and <m>\kappa</m>-filtered: a union supplies the upper bound, and regularity keeps that union within the poset. Its diagram of inclusions has colimit <m>S</m>. For <m>\kappa=\aleph_0</m> this is the familiar presentation by finite subsets.</p>
+    <proposition xml:id="cat-c13-prop-interchange">
+      <statement>
+        <p>Let <m>I</m> be small and <m>\kappa</m>-filtered, and let <m>K</m> have fewer than <m>\kappa</m> arrows. For <m>D:I\times K\to\Set_\U</m>, the canonical comparison is a bijection:
+          <md number="no">\operatorname{colim}_{i\in I}\lim_{k\in K}D(i,k)\longrightarrow
+            \lim_{k\in K}\operatorname{colim}_{i\in I}D(i,k).</md></p>
+      </statement>
+      <proof>
+        <p>We first make explicit the common-stage argument for fewer than <m>\kappa</m> equations. Suppose elements at a stage <m>i</m> become equal in the colimit, with fewer than <m>\kappa</m> equalities, possibly in different diagrams on <m>I</m>. For each equality, the ordinary filtered-colimit criterion supplies a transition <m>a_s:i\to j_s</m> witnessing it. The diagram consisting of these arrows and their common source has fewer than <m>\kappa</m> arrows. A cocone gives a single map <m>i\to j</m> factoring through every <m>a_s</m>, and hence enforces all equations at once. The same argument on a discrete set of fewer than <m>\kappa</m> stages brings their representatives to one stage.</p>
+        <p>An element on the right is a compatible family with fewer than <m>\kappa</m> components. Bring chosen representatives to one stage. There are fewer than <m>\kappa</m> compatibility equations, one for each arrow of <m>K</m>, so the preceding argument makes them all hold after one transition. This gives an element on the left. If two elements on the left have the same image, first bring their stages together and then enforce equality of every component after one transition. This proves injectivity. If <m>K</m> is empty, the assertion says that the filtered colimit of singleton sets is a singleton, using nonemptiness and connectedness of <m>I</m>.</p>
+      </proof>
+    </proposition>
+    <p>The proof is the finite-data proof of <xref ref="cat-filtered-cofinal"/> with the bound <m>\kappa</m> made explicit. It uses a common cocone on all chosen transitions, not a transfinite sequence of arbitrary choices whose composites might cease to exist. Regularity will also ensure that a collection of fewer than <m>\kappa</m> presentations, each of size less than <m>\kappa</m>, still has size less than <m>\kappa</m>.</p>
+  </section>
+
+  <section xml:id="cat-c13-presentable-objects">
+    <title>Presentable objects and eventual equality</title>
+    <definition xml:id="cat-c13-def-presentable">
+      <title><m>\kappa</m>-presentable and finitely presentable</title>
+      <idx>Kappa-presentable object</idx><idx>Finitely presentable object</idx><idx>Compact object</idx>
+      <statement>
+        <p>In a category <m>\mathcal E</m> admitting small <m>\kappa</m>-filtered colimits, an object <m>A</m> is <m>\kappa</m>-presentable if <m>\Hom_{\mathcal E}(A,-)</m> preserves all these colimits. Thus for each such <m>D:I\to\mathcal E</m> the canonical map
+          <md number="no">\operatorname{colim}_{i\in I}\Hom(A,D_i)\longrightarrow\Hom(A,\operatorname{colim}_iD_i)</md>
+          is bijective. For <m>\kappa=\aleph_0</m>, we say finitely presentable. Li calls these objects <m>\kappa</m>-compact, and calls finitely presentable objects compact; see <xref ref="bib-cat-li2" detail="Definition A.2.2 and Remark A.2.3"/>.</p>
+      </statement>
+    </definition>
+    <p>Surjectivity says that every map to the colimit factors through some stage. Injectivity says that two stage maps inducing the same map to the colimit agree after a common transition. The latter is an eventual uniqueness condition, not uniqueness of a factorization at its first chosen stage. The sharper same-stage criterion of <xref ref="cat-c06-thm-filtered-set-colimit"/> applies when the two maps already start at the same stage.</p>
+    <p>We use presentable to distinguish the precise colimit-preservation property from other uses of compact. Nor does small cardinality of an arbitrarily chosen underlying set define this property in a general category. A small projective object from <xref ref="cat-idempotents"/> preserves every small colimit under its Hom functor, which is a stronger requirement.</p>
+    <proposition xml:id="cat-c13-prop-set-presentable">
+      <statement>
+        <p><ol>
+          <li><p>A set <m>A\in\U</m> is <m>\kappa</m>-presentable in <m>\Set_\U</m> exactly when <m>|A|\lt\kappa</m>. In particular, finitely presentable sets are exactly finite sets.</p></li>
+          <li><p>The free monoid on one generator is finitely presentable in <m>\Mon_\U</m>, although its underlying set is countably infinite.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>If <m>|A|\lt\kappa</m>, its Hom functor is the power functor <m>(-)^A</m>. This is a product indexed by a set of size less than <m>\kappa</m>, and preserves <m>\kappa</m>-filtered colimits by the interchange proposition. Conversely, present <m>A</m> as the <m>\kappa</m>-filtered union of its subsets of cardinality less than <m>\kappa</m>. If <m>A</m> is presentable, its identity factors through one of those subset inclusions. That inclusion is then surjective, so that subset is all of <m>A</m>.</p>
+        <p>The underlying-set functor on monoids creates filtered colimits by <xref ref="cat-c09-colim-example-words"/>. A map from the free monoid on one generator is specified by the image of its generator, so its Hom functor is naturally isomorphic to the underlying-set functor. It therefore preserves filtered colimits.</p>
+      </proof>
+    </proposition>
+    <p>The first argument extends the finite-set example in <xref ref="bib-cat-li2" detail="Example A.2.4"/>. The monoid example shows why the categorical adjective is useful: one generator with its freely iterated products is finite information, although the collection of those products is infinite. In a category of algebraic structures, the issue concerns generators together with relations, rather than the cardinality of all elements.</p>
+  </section>
+
+  <section xml:id="cat-c13-stability">
+    <title>Colimits, retracts, and rank</title>
+    <proposition xml:id="cat-c13-prop-stability">
+      <statement>
+        <p>Assume <m>\mathcal E</m> admits small <m>\kappa</m>-filtered colimits.</p>
+        <p><ol>
+          <li><p>A colimit of <m>\kappa</m>-presentable objects indexed by a category with fewer than <m>\kappa</m> arrows is <m>\kappa</m>-presentable, whenever this colimit exists in <m>\mathcal E</m>.</p></li>
+          <li><p>A retract of a <m>\kappa</m>-presentable object is <m>\kappa</m>-presentable.</p></li>
+          <li><p>If <m>\lambda\geq\kappa</m> is regular and the relevant colimits exist, every <m>\kappa</m>-presentable object is <m>\lambda</m>-presentable.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>For the first assertion write <m>A=\operatorname{colim}_{k\in K}A_k</m>. The functor <m>\Hom(A,-)</m> is the limit over <m>K^\op</m> of <m>\Hom(A_k,-)</m>. Apply their preservation properties and then the set interchange proposition to commute this limit with a <m>\kappa</m>-filtered colimit. The resulting bijection is the canonical comparison, since every step commutes with the colimit maps.</p>
+        <p>If <m>A</m> is a retract of <m>B</m>, the functor <m>\Hom(A,-)</m> is a retract of <m>\Hom(B,-)</m>, naturally. Its comparison map for any fixed colimit is correspondingly a retract, in the arrow category of sets, of the comparison for <m>B</m>. A retract of an isomorphism is an isomorphism, as proved in <xref ref="cat-c10-prop-saturation"/>. Finally, a <m>\lambda</m>-filtered index is already <m>\kappa</m>-filtered, so the third assertion follows directly from the definition.</p>
+      </proof>
+    </proposition>
+    <p>In particular, finite colimits and retracts preserve finite presentability. The rank statement concerns an individual object; it does not by itself say that a <m>\kappa</m>-accessible category is <m>\lambda</m>-accessible for every larger regular cardinal. The latter would also require suitable presentations of every object by <m>\lambda</m>-filtered diagrams. Keeping these two issues separate avoids an unjustified change of cardinal in an adjoint-existence argument.</p>
+  </section>
+
+  <section xml:id="cat-c13-accessible">
+    <title>Accessible and locally presentable categories</title>
+    <definition xml:id="cat-c13-def-accessible">
+      <title>Small families of presentable generators</title>
+      <idx>Accessible category</idx><idx>Accessible functor</idx><idx>Locally presentable category</idx><idx>Locally finitely presentable category</idx>
+      <statement>
+        <p><ol>
+          <li><p>A category <m>\mathcal E</m> is <m>\kappa</m>-accessible if it admits small <m>\kappa</m>-filtered colimits and there is a small family <m>(A_s)_{s\in S}</m> of <m>\kappa</m>-presentable objects such that every object is a small <m>\kappa</m>-filtered colimit of objects from this family. Small family means <m>S\in\U</m>; its externally named values need not themselves belong to <m>\U</m>.</p></li>
+          <li><p>It is locally <m>\kappa</m>-presentable if it is <m>\kappa</m>-accessible and admits all small colimits. For <m>\kappa=\aleph_0</m>, these are finitely accessible and locally finitely presentable, respectively.</p></li>
+          <li><p>A category is accessible, or locally presentable, if it has the corresponding property for some infinite regular <m>\kappa\in\U</m>. A functor is <m>\kappa</m>-accessible if it preserves small <m>\kappa</m>-filtered colimits between categories admitting them. An accessible functor between accessible categories is one preserving these colimits for some regular cardinal at which its source and target are accessible.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <p>This is the convention of <xref ref="bib-cat-ar" detail="Chapters 1–2"/>, translated to the fixed universe, and of <xref ref="bib-cat-li2" detail="Definition A.2.11"/>. Li omits locally from the name of the cocomplete class; his footnote explains the comparison with the terminology of Adámek–Rosický. We retain locally throughout. The word locally does not mean that only some objects have presentations: every object has one. The generating collection is required to be small relative to the chosen universe.</p>
+    <p>The category of sets is locally <m>\kappa</m>-presentable for every infinite regular small <m>\kappa</m>. Choose one representative of each cardinal less than <m>\kappa</m>; these form a small family, are <m>\kappa</m>-presentable by the preceding proposition, and present every set through its small subsets. Arbitrary small colimits exist in sets. A discrete category on two objects is finitely accessible: every filtered diagram in it is constant, and the two objects form a finite family of finitely presentable objects. It is not locally presentable, since it has no initial object.</p>
+    <p>The category of nonempty sets and all functions gives another finitely accessible category. Its filtered colimits are the nonempty filtered colimits computed in sets, and its finite nonempty sets are finitely presentable and give every object as a filtered union. It has no initial object: from any nonempty candidate to a two-element set there are two distinct constant functions. Cocompleteness is therefore an additional requirement, not a consequence of accessibility alone.</p>
+    <proposition xml:id="cat-c13-prop-small-presentables">
+      <statement>
+        <p>In a <m>\kappa</m>-accessible category, every <m>\kappa</m>-presentable object is a retract of some member of a chosen small generating family. Consequently the full category of <m>\kappa</m>-presentable objects is essentially <m>\U</m>-small.</p>
+      </statement>
+      <proof>
+        <p>Write a presentable object <m>B</m> as a <m>\kappa</m>-filtered colimit of generating objects <m>A_i</m>. Preservation by <m>\Hom(B,-)</m> makes <m>\id_B</m> factor as <m>B\to A_i\to B</m>, so <m>B</m> is a retract. Each retract determines an idempotent endomorphism of <m>A_i</m>, and two splittings of the same idempotent give uniquely isomorphic retract objects with the structure fixed, by <xref ref="cat-idempotents"/>. There are only a small number of pairs consisting of a generator index and an idempotent in its small endomorphism set. Choose one splitting for each pair that splits. They give a small indexed family of representatives. Re-encode these representatives by their small indices, retaining the local Hom labels, to obtain a <m>\U</m>-small category equivalent to the full category in question.</p>
+      </proof>
+    </proposition>
+    <p>The conclusion is essential smallness; it is not literal membership of all externally named presentable objects in <m>\U</m>. This is the same distinction needed when choosing a skeleton or using a solution family in <xref ref="cat-adjunctions"/>.</p>
+  </section>
+  <section xml:id="cat-c13-restricted-nerve">
+    <title>Presentable generators determine maps</title>
+    <p>A small generating family can be made into a small category <m>\mathcal A</m>: its objects are the indices <m>s\in S</m>, and its Hom set from <m>s</m> to <m>t</m> is <m>\Hom_{\mathcal E}(A_s,A_t)</m>, with the inherited composition. The functor <m>K:\mathcal A\to\mathcal E</m> is fully faithful even if the chosen family includes repetitions. Using the indices as object names ensures strict <m>\U</m>-smallness.</p>
+    <proposition xml:id="cat-c13-prop-dense-generators">
+      <statement>
+        <p>For a small family of <m>\kappa</m>-presentable generators as in the definition of accessibility, the restricted nerve
+          <md number="no">N_K:\mathcal E\longrightarrow\widehat{\mathcal A},\qquad X\longmapsto\Hom_{\mathcal E}(K(-),X)</md>
+          is fully faithful and preserves small <m>\kappa</m>-filtered colimits. Thus <m>K</m> is dense. Every object has its canonical colimit presentation over <m>(K\downarrow X)</m>, even though <m>\mathcal E</m> need not have arbitrary small colimits.</p>
+      </statement>
+      <proof>
+        <p>Write <m>X=\operatorname{colim}_{i\in I}K(a_i)</m> with <m>I</m> small and <m>\kappa</m>-filtered, and denote the legs by <m>\iota_i</m>. If two arrows out of <m>X</m> give the same nerve transformation, their composites with every <m>\iota_i</m> agree; universality makes them equal. This proves faithfulness.</p>
+        <p>Let <m>\theta:N_KX\Rightarrow N_KY</m>. The maps <m>\theta_{a_i}(\iota_i):K(a_i)\to Y</m> form a cocone, by naturality along the arrows of the presentation. They induce <m>f:X\to Y</m>. Given any <m>u:K(a)\to X</m>, presentability factors it as <m>\iota_i v</m> for some <m>v:K(a)\to K(a_i)</m>. Full faithfulness of <m>K</m> lets us apply naturality of <m>\theta</m> to this arrow, giving
+          <md number="no">\theta_a(u)=\theta_{a_i}(\iota_i)v=f\iota_i v=fu.</md>
+          Therefore <m>\theta=N_Kf</m>, proving fullness. Presentability of every <m>K(a)</m> proves colimit preservation after evaluation at <m>a</m>, hence in the presheaf category. The canonical colimit assertion now follows from <xref ref="cat-c08-prop-density-criterion"/>.</p>
+      </proof>
+    </proposition>
+    <p>The proof explains the role of presentability beyond the bare existence of generating presentations. A map from any test object into <m>X</m> factors through a stage, so a transformation specified on tests has no extra freedom outside the chosen presentation. Mere detection of unequal arrows by a family would only give faithfulness, as the infinite-cyclic-group example in <xref ref="cat-c08-example-dense"/> shows.</p>
+    <p>The nerve realizes an accessible category as a full category of presheaves whose image is closed under its small <m>\kappa</m>-filtered colimits. It does not say that the image is the whole presheaf category or that it is closed under arbitrary colimits there. The definition of accessibility singles out the filtered approximation process; a free cocompletion permits every small colimit.</p>
+    <corollary xml:id="cat-c13-cor-reflective-presheaves">
+      <idx>Reflective realization of a locally presentable category</idx>
+      <statement>
+        <p>Let <m>\mathcal E</m> be locally <m>\kappa</m>-presentable, and let <m>K:\mathcal A\to\mathcal E</m> be the small category of chosen generators above. Then <m>N_K</m> has a left adjoint
+          <md number="no">L_K(P)=\int^{a\in\mathcal A}P(a)\cdot K(a)
+            \cong\operatorname{colim}_{(a,x)\in\operatorname{el}(P)}K(a).</md>
+          Its counit <m>L_KN_K\Rightarrow\id_{\mathcal E}</m> is invertible. Thus every locally presentable category is equivalent to a reflective full subcategory of a presheaf category on a small category. For a small diagram <m>D:J\to\mathcal E</m>, its colimit is given by
+          <md number="no">\operatorname{colim}_{j\in J}D_j
+            \cong L_K\left(\operatorname{colim}_{j\in J}N_KD_j\right),</md>
+          where the colimit inside parentheses is computed pointwise in <m>\widehat{\mathcal A}</m>.</p>
+      </statement>
+      <proof>
+        <p>Cocompleteness of <m>\mathcal E</m> gives <m>L_K\dashv N_K</m> by <xref ref="cat-c08-thm-free-cocompletion"/>. The preceding proposition makes <m>N_K</m> fully faithful, so its counit is invertible by <xref ref="cat-c05-prop-fully-faithful"/>. The last formula follows because <m>L_K</m> preserves small colimits and <m>L_KN_KD_j\cong D_j</m>.</p>
+      </proof>
+    </corollary>
+    <p>The essential image consists exactly of the presheaves <m>P</m> for which the unit <m>P\to N_KL_KP</m> is an isomorphism; this is the reflective-subcategory criterion of <xref ref="cat-c09-prop-idempotent"/>. The nerve preserves <m>\kappa</m>-filtered colimits, but other colimits may require the reflection in the displayed formula. For example, take <m>\mathcal E=\Set_\U</m> and <m>K:\mathsf{Fin}\to\Set_\U</m> the inclusion of the finite cardinals. At <m>\underline2</m>, the presheaf <m>N_K(1)\amalg N_K(1)</m> has two elements, whereas <m>N_K(1\amalg1)</m> has four. Reflection recovers the coproduct of the two singleton sets. Preservation of finite limits by the reflector is a separate condition.<fn>The conclusion specifies a reflective presheaf realization of a locally presentable category. It does not classify arbitrary reflective subcategories as locally presentable. Such a converse requires additional hypotheses on the inclusion or on the reflection.</fn></p>
+  </section>
+
+  <section xml:id="cat-c13-presheaves">
+    <title>Why presheaf categories are locally finitely presentable</title>
+    <theorem xml:id="cat-c13-thm-presheaf">
+      <statement>
+        <p>For every small category <m>\mathcal C</m>, its presheaf category <m>\widehat{\mathcal C}</m> is locally finitely presentable. A presheaf is finitely presentable exactly when it is isomorphic to a finite colimit of representables, equivalently when it is a retract of such a finite colimit. Here a finite colimit is indexed by a category with finitely many arrows, and may be empty.</p>
+      </statement>
+      <proof>
+        <p>Representables are finitely presentable: their Hom functors are evaluations by Yoneda, and all small colimits of presheaves are pointwise. Finite colimits and retracts of representables are therefore finitely presentable by <xref ref="cat-c13-prop-stability"/>.</p>
+        <p>Choose a small full category <m>\mathcal A</m> of finite colimits of representables which contains all representables and is closed under finite colimits up to isomorphism. Such a choice is possible without enlarging the universe: finite diagrams and maps among any small family form a small collection, and iterating finite-colimit closure through <m>\N\in\U</m> still gives a small family. All presheaf encodings here have small data because their source is small.</p>
+        <p>Finite iterations reduce to a single finite colimit of representables. Such an object has a presentation as a coequalizer of two maps between finite coproducts of representables. Finite coproducts of such presentations combine their generators and relations. For a coequalizer of maps <m>f,g:A\rightrightarrows B</m> between two such objects, consider the images under <m>f,g</m> of each of the finitely many representable generators of <m>A</m>. Each map from a representable to <m>B</m> lifts to a generator summand of its presenting coproduct: by Yoneda it is an element of a pointwise quotient, and every such element has a representative in that coproduct. Choose these finitely many lifts and add the equalities between the two lifted images to the existing relations for <m>B</m>. A map from the resulting quotient is exactly a map out of <m>B</m> equalizing <m>f,g</m>, since the generators of <m>A</m> are jointly epic. This gives another finite presentation. Finally, any such presentation is a finite colimit of representables, using one object for each generator and relation summand, and the two arrows from each relation summand to its designated generator summands. Closure under finite coproducts and coequalizers proves the claim.</p>
+        <p>For a presheaf <m>P</m>, the comma category <m>(\mathcal A\downarrow P)</m> is small and filtered. An initial presheaf in <m>\mathcal A</m> supplies an object. The coproduct of two candidate maps supplies their common target. For parallel arrows between two candidates, take their coequalizer in the presheaf category; it lies in <m>\mathcal A</m> up to the chosen comparison, and the common map to <m>P</m> descends to it. These are exactly the three filteredness conditions.</p>
+        <p>The inclusion of <m>\mathcal A</m> in the presheaf category is dense. To verify fullness of its nerve, let a natural transformation assign compatible maps between the Hom tests for <m>P,Q</m>. Restricting to the representables gives a unique map <m>v:P\to Q</m> by Yoneda. For <m>A\in\mathcal A</m> and <m>u:A\to P</m>, naturality with every <m>h_c\to A</m> implies that the assigned map <m>A\to Q</m> has the same composite as <m>vu</m> with every such map. Yoneda detects equality pointwise, so the assigned map is <m>vu</m>. The representables also detect faithfulness. The canonical density criterion therefore identifies
+          <md number="no">P\cong\operatorname{colim}_{(A,u)\in(\mathcal A\downarrow P)}A.</md>
+          This is a small filtered colimit of finitely presentable objects. Arbitrary small colimits already exist pointwise, proving local finite presentability.</p>
+        <p>Finally, if <m>P</m> is finitely presentable, applying <m>\Hom(P,-)</m> to this filtered presentation makes <m>\id_P</m> factor through one candidate <m>r:A\to P</m>. Choose <m>i:P\to A</m> with <m>ri=\id_P</m> and put <m>e=ir</m>. Then <m>r</m> is the coequalizer of <m>e,\id_A</m>: if <m>te=t</m>, the unique factor through <m>r</m> is <m>ti</m>. The finite-colimit closure proved above therefore makes <m>P</m> itself a finite colimit of representables. The reverse implication, including retracts, was proved in the first paragraph.</p>
+      </proof>
+    </theorem>
+    <p>Compare the representable compactness calculation in <xref ref="bib-cat-li2" detail="Proposition A.2.6"/>. The proof distinguishes two canonical presentations of the same presheaf. The diagram of all individual elements uses only representables and is generally not filtered. Allowing finite combinations and finite relations makes its category of candidates filtered. This is why finite presentability is weaker than being a retract of one representable, the small-projective condition in <xref ref="cat-idempotents"/>. Here the final retract is absorbed by one more finite coequalizer. The general Ind characterization in <xref ref="cat-c12-prop-finitely-presentable"/> allows only a single representable at this step, so its retract qualification cannot be removed in the same way.</p>
+    <p>For an empty <m>\mathcal C</m>, the presheaf category is terminal. Its only object is the empty colimit of representables and is finitely presentable, since filtered colimits of singleton Hom sets are singleton. It is not small projective, because its Hom functor fails to preserve the empty colimit. Thus the empty case also separates these two finiteness conditions.</p>
+  </section>
+
+  <section xml:id="cat-c13-adjoints">
+    <title>Solution sets and the accessible adjoint criterion</title>
+    <lemma xml:id="cat-c13-lem-solution-set">
+      <statement>
+        <p>Suppose <m>\mathcal E</m> is <m>\kappa</m>-accessible, <m>\mathcal D</m> admits small <m>\kappa</m>-filtered colimits, and <m>G:\mathcal E\to\mathcal D</m> preserves them. For a <m>\kappa</m>-presentable object <m>D\in\mathcal D</m>, the comma category <m>(D\downarrow G)</m> has a small weakly initial family. In particular, the solution-set condition at <m>D</m> holds.</p>
+      </statement>
+      <proof>
+        <p>Choose a small generating family <m>(A_s)_{s\in S}</m> for <m>\mathcal E</m>. Take every pair <m>(A_s,u:D\to G(A_s))</m>. This is a small indexed family: its index set is the union over <m>s\in S</m> of the small Hom sets <m>\Hom_{\mathcal D}(D,G(A_s))</m>. For <m>f:D\to G(X)</m>, write <m>X</m> as a small <m>\kappa</m>-filtered colimit of generators. Preservation by <m>G</m> and presentability of <m>D</m> factor <m>f</m> through one <m>G(A_s)</m>. The resulting comparison in the comma category proves weak initiality.</p>
+      </proof>
+    </lemma>
+    <p>This is the mechanism connecting accessibility to the solution-set hypothesis of Freyd's theorem. To use it for every object of <m>\mathcal D</m>, the ranks must be chosen so that the given object is presentable, the source still has generating presentations at that rank, and the functor preserves the corresponding filtered colimits. The general theory supplies compatible ranks. Merely increasing the object rank, while leaving the other two requirements unchecked, would not establish the solution-set condition.</p>
+    <theorem xml:id="cat-c13-thm-adjoint-criterion">
+      <statement>
+        <p>Let <m>F:\mathcal E\to\mathcal D</m> be a functor between locally presentable categories.</p>
+        <p><ol>
+          <li><p>It is a left adjoint if and only if it preserves all small colimits.</p></li>
+          <li><p>It is a right adjoint if and only if it is accessible and preserves all small limits.</p></li>
+        </ol></p>
+      </statement>
+    </theorem>
+    <p>We use this general structural theorem with its full stated hypotheses; see <xref ref="bib-cat-li2" detail="Theorem A.2.12"/> and the proof references there, in particular <xref ref="bib-cat-ar" detail="Theorem 1.66"/> for the second criterion. The general theory also proves that locally presentable categories are complete, so the limit condition includes every small diagram, including the empty one. These existence and rank results are invoked here rather than replaced by a proof that only covers objects of one fixed rank.</p>
+    <p>The necessary preservation directions follow immediately from adjunction. For the right-adjoint criterion, the fixed-rank lemma explains how accessibility contributes the otherwise missing size control in Freyd's theorem. For the left-adjoint criterion, cocompleteness together with presentability supplies the relevant smallness condition in the dual adjoint theorem. Limit preservation alone does not provide an adjoint: <xref ref="cat-c05-example-universe-obstruction"/> exhibits a limit-preserving functor whose required solution sets are too large. That example also explains why universe bounds enter the hypotheses; it is not an example between the locally presentable categories stipulated here.</p>
+    <example xml:id="cat-c13-example-ranks">
+      <title>Accessibility has a rank and does not alone give an adjoint</title>
+      <p>For a fixed set <m>S\in\U</m>, the power functor <m>(-)^S:\Set_\U\to\Set_\U</m> is a right adjoint to <m>(-)\times S</m>. It is <m>\kappa</m>-accessible for every regular small <m>\kappa</m> with <m>|S|\lt\kappa</m>, by the set interchange proposition. Such a regular cardinal exists; see <xref ref="bib-cat-li2" detail="Lemma A.2.10"/>. If <m>S</m> is infinite, it does not preserve all filtered colimits: apply <m>\Hom(S,-)</m> to the union of finite subsets of <m>S</m>. The identity of <m>S</m> cannot come from any finite stage. Thus a right adjoint need not be finitely accessible.</p>
+      <p>The constant two-element-set functor on <m>\Set_\U</m> is finitely accessible, since a filtered colimit of the constant diagram with identity maps is the same two-element set. It is neither a left nor a right adjoint: it preserves neither the initial set nor the terminal set. Accessibility is a colimit condition; it does not replace the preservation hypotheses in the theorem.</p>
+    </example>
+    <p>For applications, the theorem often replaces a direct construction of an adjoint by three checks: the two categories are locally presentable, the required limits or colimits are preserved, and, in the right-adjoint direction, an appropriate accessible rank exists. When one category lacks these structural hypotheses, the explicit solution-set formulation remains available and can be more informative.</p>
+  </section>
+</chapter>

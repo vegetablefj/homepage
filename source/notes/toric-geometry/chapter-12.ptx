@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="toric-multiplier-ideals">
+  <title>Monomial ideals, toric resolutions, and multiplier ideals</title>
+  <introduction>
+    <p>The normalized blowup and discrepancy calculations of <xref ref="toric-birational"/> combine into an exact computation of a birational invariant. For a monomial ideal on affine space, one toric log resolution makes the ideal invertible. Orders of vanishing and relative canonical coefficients are then lattice pairings, and the multiplier ideal is described by the interior of a shifted Newton polyhedron. The strict interior condition records the rounding in its birational definition.</p>
+    <p>Throughout this chapter <m>X=\A^n_{\C}</m>, with <m>n\ge1</m>, and <m>R=\C[x_1,\ldots,x_n]</m>. Let <m>I\subset R</m> be a nonzero proper monomial ideal. Write <m>M=\Z^n</m> for the exponent lattice, <m>N=\Hom(M,\Z)</m>, <m>\sigma=\R_{\ge0}^n\subset N_{\R}</m>, and <m>\mathbf1=(1,\ldots,1)\in M</m>. We use the general resolution independence of multiplier ideals as an external input, and prove the resulting monomial formula using the preceding toric dictionary. The main source is <xref ref="bib-toric-howald"/>.</p>
+  </introduction>
+
+  <section xml:id="toric-multiplier-newton-data">
+    <title>The Newton polyhedron and its lower support function</title>
+    <definition xml:id="toric-def-ideal-newton-polyhedron">
+      <title>Newton polyhedron of a monomial ideal</title>
+      <statement>
+        <p>Choose monomial generators <m>I=(x^{u_1},\ldots,x^{u_s})</m>, with <m>u_j\in\N^n</m>. Define
+          <md number="no">P=P(I)=\operatorname{conv}(u_1,\ldots,u_s)
+            +\R_{\ge0}^n\subset M_{\R},
+            \qquad
+            h_I(v)=\min_{u\in P}\langle u,v\rangle
+            =\min_j\langle u_j,v\rangle
+            \quad(v\in\sigma).</md>
+          This is an unbounded polyhedron, rather than the bounded convex hull of the displayed generators. For <m>c&gt;0</m>, <m>cP</m> means <m>\{cu:u\in P\}</m>, and <m>\operatorname{Int}(cP)</m> is its ordinary interior in <m>M_{\R}</m>.</p>
+      </statement>
+    </definition>
+    <p>The exponent set of <m>I</m> is the union of the sets <m>u_j+\N^n</m>; taking its convex hull gives exactly <m>P</m>. This proves independence of the chosen generators. The recession cone of <m>P</m> is the positive orthant, and <m>P</m> is full-dimensional, even for a principal ideal or an ideal supported on a coordinate hyperplane. Since <m>I</m> is proper, all generators have positive total degree, so <m>0\notin P</m>.</p>
+    <lemma xml:id="toric-lemma-newton-interior-tests">
+      <title>Support inequalities and finite ray tests</title>
+      <statement>
+        <p>The polyhedron and its interior satisfy
+          <md number="no">P=\{q:\langle q,v\rangle\ge h_I(v)
+            \text{ for every }v\in\sigma\},</md>
+          and, for <m>c&gt;0</m>,
+          <md number="no">q\in\operatorname{Int}(cP)
+            \quad\Longleftrightarrow\quad
+            \langle q,v\rangle&gt;c h_I(v)
+            \text{ for every nonzero }v\in\sigma.</md>
+          If <m>\Sigma</m> is a subdivision of <m>\sigma</m> on whose cones <m>h_I</m> is linear, it suffices in both tests to use the primitive generators of the finitely many rays of <m>\Sigma</m>.</p>
+      </statement>
+      <proof>
+        <p>Each displayed weak inequality holds on <m>P</m>. Conversely, separation of a point outside the closed convex polyhedron from <m>P</m> gives a linear functional bounded below on <m>P</m>. Its pairing with every recession direction must be nonnegative, so its vector belongs to <m>\sigma</m>. Its minimum on <m>P</m> is <m>h_I(v)</m>; the separating point fails that inequality. The minimum for <m>cP</m> is <m>c h_I(v)</m>.</p>
+        <p>An interior point cannot have equality in a nonzero supporting inequality. To prove the converse and the finite test, choose a cone <m>\tau\in\Sigma</m>. On it the function <m>\langle q,v\rangle-c h_I(v)</m> is linear. Every nonzero vector of <m>\tau</m> is a nonnegative combination of its ray generators, with at least one positive coefficient. Strict positivity on those generators gives strict positivity on every such vector; the same argument applies to weak inequalities. Finally, finitely many strict linear inequalities hold on a neighborhood of <m>q</m>. Their weak versions define <m>cP</m>, so that neighborhood lies in <m>cP</m>, proving interior membership.</p>
+      </proof>
+    </lemma>
+    <p>Some ray values <m>h_I(v)</m> can be zero. Those inequalities remain part of the polyhedron. For the shifted exponents <m>q=m+\mathbf1</m>, with <m>m\in\N^n</m>, they are automatically strict: every coordinate of <m>q</m> is positive and <m>v\in\sigma\setminus\{0\}</m>. They must still be distinguished from the positive-order inequalities when computing ratios below.</p>
+  </section>
+
+  <section xml:id="toric-multiplier-log-resolution">
+    <title>A toric log resolution and its two coefficients</title>
+    <proposition xml:id="toric-prop-monomial-log-resolution">
+      <title>Resolving the ideal globally</title>
+      <statement>
+        <p>There is a smooth fan <m>\Sigma</m> subdividing <m>\sigma</m> and a projective birational toric morphism <m>\pi:X'=X_\Sigma\to X</m> such that
+          <md number="no">I\mathcal O_{X'}=\mathcal O_{X'}(-F)</md>
+          is invertible, with <m>F</m> effective. The union of its support and the exceptional locus has simple normal crossings support. For a primitive ray vector <m>v\in\Sigma(1)</m>, writing <m>E_v</m> for its invariant divisor, one has
+          <md number="no">\operatorname{coeff}_{E_v}(F)=h_I(v),
+            \qquad
+            \operatorname{coeff}_{E_v}(K_{X'/X})
+            =\langle\mathbf1,v\rangle-1.</md></p>
+      </statement>
+      <proof>
+        <p>First take the normalized blowup of <m>I</m>, whose fan is described in <xref ref="toric-prop-normalized-monomial-blowup"/>. On the cone where <m>u_j</m> minimizes all pairings, each difference <m>u_i-u_j</m> belongs to the dual cone. Thus every generator <m>x^{u_i}</m> is a regular multiple of <m>x^{u_j}</m> on that chart, and <m>I</m> becomes the principal ideal generated by <m>x^{u_j}</m>. These principal ideals agree on overlaps: where both generators work, their ratio is a unit. They define one invertible ideal on the normalized blowup.</p>
+        <p>Apply the compatible smooth refinement theorem of <xref ref="toric-birational-higher-resolution"/> to this whole fan. Pullback preserves invertibility, and the composite morphism is projective and birational. This construction uses one global subdivision; independent resolutions of overlapping affine charts would not supply the required compatibility. All divisors in <m>F</m>, and all exceptional divisors, lie in the toric boundary. On a smooth toric variety that boundary has local coordinate equations, hence simple normal crossings; any union of its components has the same property. This is a log resolution of the ideal.</p>
+        <p>The order of a character along <m>E_v</m> is its lattice pairing with <m>v</m>. The coefficient of the ideal's divisor is the minimum order of its generators, namely <m>h_I(v)</m>. For the relative canonical coefficient, the height functional of the original smooth orthant takes value one on each coordinate ray, and is therefore <m>\mathbf1</m>. Now apply <xref ref="toric-prop-discrepancy-formula"/>. The original rays <m>e_i</m> have coefficient zero; they are included in the formula, although they are not exceptional.</p>
+      </proof>
+    </proposition>
+    <p>Write
+      <md number="no">A_X(v)=\langle\mathbf1,v\rangle
+        =v_1+\cdots+v_n.</md>
+      This is the log discrepancy of the ray valuation; its discrepancy is <m>A_X(v)-1</m>. The two coefficients used below are therefore the ideal order <m>h_I(v)</m> and the log discrepancy <m>A_X(v)</m>. Their meanings and the subtraction by one should be kept distinct.</p>
+  </section>
+
+  <section xml:id="toric-multiplier-howald">
+    <title>Multiplier ideals as shifted interior lattice points</title>
+    <definition xml:id="toric-def-multiplier-ideal">
+      <title>The birational definition</title>
+      <statement>
+        <p>For a real coefficient <m>c&gt;0</m>, use a log resolution as above to define
+          <md number="no">\mathcal J(I^c)
+            =\pi_*\mathcal O_{X'}
+              \bigl(K_{X'/X}-\lfloor cF\rfloor\bigr).</md>
+          The floor is coefficientwise. The notation <m>I^c</m> records this coefficient; it does not require a fractional power ideal in <m>R</m>. Since <m>X</m> is affine, we also write <m>\mathcal J(I^c)</m> for the corresponding ideal of <m>R</m>.</p>
+      </statement>
+    </definition>
+    <p>The general theory says that this is a coherent ideal sheaf, independent of the chosen log resolution. These are external birational inputs, not consequences of merely listing the rays of one fan. See <xref ref="bib-toric-howald" detail="Definition 1"/> for the construction and <xref ref="bib-toric-blickle-lazarsfeld" detail="Definition 2.9 and Theorem 2.15"/> for resolution independence. Independence for rational coefficients also gives independence for real coefficients: for two fixed resolutions, choose a rational <m>c'\ge c</m> sufficiently close to <m>c</m> that the floors of all coefficients of both divisors remain unchanged. In the monomial situation we now calculate this ideal completely.</p>
+    <theorem xml:id="toric-thm-howald">
+      <title>Howald's formula</title>
+      <statement>
+        <p>The multiplier ideal is monomial, and for <m>m\in\N^n</m>,
+          <md xml:id="toric-eq-howald-formula" number="yes">x^m\in\mathcal J(I^c)
+            \quad\Longleftrightarrow\quad
+            m+\mathbf1\in\operatorname{Int}(cP).</md>
+          Thus it is generated by all monomials with shifted exponent in that interior.</p>
+      </statement>
+      <proof>
+        <p>Use the toric log resolution above. Both <m>F</m> and the chosen relative canonical divisor are invariant, so the pushforward ideal is stable under the torus. A stable ideal in the polynomial ring is the direct sum of its character spaces. Explicitly, the torus coaction sends <m>\sum_m b_mx^m</m> to <m>\sum_m b_mx^m\otimes\chi^m</m>; extracting the linearly independent characters shows that each monomial term of an element of the ideal is itself in the ideal. It therefore suffices to determine monomial membership.</p>
+        <p>A rational function is a section of the indicated divisor sheaf on the smooth variety <m>X'</m> precisely when its divisor plus that divisor is effective. For <m>x^m</m>, all relevant divisors are invariant. The condition at every ray is
+          <md number="no">\langle m,v\rangle+A_X(v)-1
+            -\lfloor c h_I(v)\rfloor\ge0.</md>
+          Since <m>\langle m+\mathbf1,v\rangle</m> is an integer, this is equivalent to
+          <md number="no">\langle m+\mathbf1,v\rangle
+            \ge\lfloor c h_I(v)\rfloor+1
+            \quad\Longleftrightarrow\quad
+            \langle m+\mathbf1,v\rangle&gt;c h_I(v).</md>
+          The old coordinate rays impose the same test as the new rays, with discrepancy zero. Rays with <m>h_I(v)=0</m> cause no exception, by the positivity observation above.</p>
+        <p>The resolution fan refines the domains of linearity of <m>h_I</m>. Consequently its finite ray tests are equivalent, by <xref ref="toric-lemma-newton-interior-tests"/>, to strict inequalities for all nonzero <m>v\in\sigma</m>, and hence to <m>m+\mathbf1\in\operatorname{Int}(cP)</m>. This proves the formula for every real <m>c&gt;0</m>.</p>
+      </proof>
+    </theorem>
+    <p>This is the Main Theorem of <xref ref="bib-toric-howald"/>. The proof identifies the source of both features in the answer: the canonical coefficient supplies the shift by <m>\mathbf1</m>, and the floor supplies strict inequalities. Replacing interior by the closed polyhedron changes the ideal exactly at the thresholds where a shifted lattice point reaches a supporting facet.</p>
+  </section>
+
+  <section xml:id="toric-multiplier-threshold">
+    <title>The log canonical threshold</title>
+    <definition xml:id="toric-def-ideal-lct">
+      <title>Threshold of an ideal</title>
+      <statement>
+        <p>With the convention for arbitrary ideals used here, define
+          <md number="no">\operatorname{lct}(I)
+            =\sup\{c&gt;0:\mathcal J(I^c)=\mathcal O_X\}.</md>
+          There is no upper bound of one built into this definition.<fn>The displayed unit-ideal condition specifies our threshold convention. When comparing the early preprint's threshold discussion with this definition, use its Main Theorem: the threshold below is derived directly from that monomial membership formula.</fn></p>
+      </statement>
+    </definition>
+    <proposition xml:id="toric-prop-monomial-lct">
+      <title>Ray ratios and the diagonal</title>
+      <statement>
+        <p>For any toric log resolution fan as above,
+          <md number="no">\operatorname{lct}(I)
+            =\min_{\substack{v\in\Sigma(1)\\h_I(v)&gt;0}}
+              \frac{A_X(v)}{h_I(v)}
+            =\inf_{\substack{v\in\sigma\\h_I(v)&gt;0}}
+              \frac{v_1+\cdots+v_n}{h_I(v)}.</md>
+          In particular this number is positive, finite, rational, and attained at a primitive lattice ray. If
+          <md number="no">t_0=\min\{t&gt;0:t\mathbf1\in P\},</md>
+          then <m>\operatorname{lct}(I)=1/t_0</m>. The multiplier ideal is the unit ideal for <m>0&lt;c&lt;\operatorname{lct}(I)</m>, and is proper at equality.</p>
+      </statement>
+      <proof>
+        <p>A monomial ideal is the whole ring precisely when it contains <m>1</m>. Howald's formula says that this happens when <m>A_X(v)&gt;c h_I(v)</m> for every ray. Zero-order rays impose no restriction on <m>c</m>. Some order is positive: for <m>v=(1,\ldots,1)</m>, the minimum total degree of the generators is positive. Thus the finitely many positive-order rays give a nonempty list of positive rational bounds, and their minimum is the stated threshold. At that minimum one inequality becomes equality, excluding <m>1</m>.</p>
+        <p>To compare with all vectors, write <m>v=\sum_j\lambda_jv_j</m> in a cone where <m>h_I</m> is linear. If the minimum ray ratio is <m>\ell</m>, then <m>A_X(v_j)\ge\ell h_I(v_j)</m> also on its zero-order rays. Adding with coefficients <m>\lambda_j\ge0</m> gives <m>A_X(v)\ge\ell h_I(v)</m>. A ray attaining <m>\ell</m> proves equality with the infimum.</p>
+        <p>The diagonal meets <m>P</m> for all sufficiently large <m>t</m>, since <m>P</m> contains a translated positive orthant. It misses <m>P</m> for small <m>t</m>, since the minimum total degree is positive. Closedness gives a positive minimum <m>t_0</m>. The support inequalities give
+          <md number="no">t\mathbf1\in P
+            \quad\Longleftrightarrow\quad
+            t\ge\frac{h_I(v)}{A_X(v)}
+            \text{ for all nonzero }v\in\sigma.</md>
+          Taking the maximum, or reciprocating the positive-order minimum already found, proves the diagonal formula. The point <m>t_0\mathbf1</m> is on the boundary; a larger diagonal parameter satisfies every supporting inequality strictly.</p>
+      </proof>
+    </proposition>
+    <p>The formula computes the threshold from a finite fan without claiming that only toric valuations matter for an arbitrary ideal. Here the external resolution-independent invariant is computed on an actual log resolution of this monomial ideal.</p>
+  </section>
+
+  <section xml:id="toric-multiplier-examples">
+    <title>Rounding, jumping, and explicit ideals</title>
+    <example xml:id="toric-example-principal-multiplier">
+      <title>A principal monomial</title>
+      <p>If <m>I=(x^\alpha)</m>, with <m>\alpha\in\N^n\setminus\{0\}</m>, then <m>P=\alpha+\R_{\ge0}^n</m>. The interior test is <m>m_i+1&gt;c\alpha_i</m> for every <m>i</m>. Since the exponents are integral,
+        <md number="no">\mathcal J(I^c)
+          =\bigl(x_1^{\lfloor c\alpha_1\rfloor}\cdots
+            x_n^{\lfloor c\alpha_n\rfloor}\bigr),
+          \qquad
+          \operatorname{lct}(I)=
+            \min_{\alpha_i&gt;0}\frac1{\alpha_i}.</md>
+        The identity is already a log resolution: its divisor has coordinate normal crossings support. In particular, for <m>c=1</m> this multiplier ideal equals <m>I</m>.</p>
+    </example>
+    <example xml:id="toric-example-maximal-ideal-multiplier">
+      <title>An ideal threshold can exceed one</title>
+      <p>For <m>\mathfrak m=(x_1,\ldots,x_n)</m>, the Newton polyhedron is given by <m>u_i\ge0</m> and <m>\sum_i u_i\ge1</m>. Hence
+        <md number="no">\operatorname{lct}(\mathfrak m)=n,\qquad
+          \mathcal J(\mathfrak m^c)
+            =\mathfrak m^{\max\{0,\lfloor c\rfloor-n+1\}}.</md>
+        Indeed the interior condition is <m>|m|+n&gt;c</m>. In dimension two the threshold of <m>(x,y)</m> is two. Capping the ray-ratio answer at one would change the invariant of an ideal defined above.</p>
+    </example>
+    <example xml:id="toric-example-two-generator-multiplier">
+      <title>The ideal <m>(x^2,y^3)</m></title>
+      <p>More generally, for <m>I=(x^a,y^b)</m> with <m>a,b&gt;0</m>,
+        <md number="no">P=\{(u_1,u_2)\in\R_{\ge0}^2:
+          u_1/a+u_2/b\ge1\},
+          \qquad
+          \operatorname{lct}(I)=\frac1a+\frac1b.</md>
+        The relevant non-coordinate normal is <m>(b/g,a/g)</m>, with <m>g=\gcd(a,b)</m>. Its ideal order is <m>ab/g</m> and its log discrepancy is <m>(a+b)/g</m>.</p>
+      <p>For <m>(a,b)=(2,3)</m>, the normalized blowup inserts <m>(3,2)</m>. A smooth refinement has consecutive rays
+        <md number="no">(1,0),\ (2,1),\ (3,2),\ (1,1),\ (0,1).</md>
+        Each adjacent determinant is one. On the three new rays, the pairs <m>(h_I(v),A_X(v))</m> are respectively <m>(3,3),(6,5),(2,2)</m>. Consequently
+        <md number="no">F=3E_{(2,1)}+6E_{(3,2)}+2E_{(1,1)},
+          \qquad
+          K_{X'/X}=2E_{(2,1)}+4E_{(3,2)}+E_{(1,1)}.</md>
+        The minimum ratio is <m>5/6</m>, supplied by <m>(3,2)</m>, and the diagonal meets <m>P</m> at <m>(6/5,6/5)</m>.</p>
+      <p>The exact membership test for <m>x^p y^q</m>, <m>p,q\ge0</m>, is
+        <md number="no">\frac{p+1}{2}+\frac{q+1}{3}&gt;c.</md>
+        Thus <m>\mathcal J(I^c)=R</m> for <m>0&lt;c&lt;5/6</m>, whereas
+        <md number="no">\mathcal J(I^{5/6})=(x,y),
+          \qquad \mathcal J(I^1)=(x,y),
+          \qquad
+          \mathcal J(I^2)=(x^3,x^2y,xy^3,y^4).</md>
+        At the first threshold the shifted exponent of <m>1</m> is on the facet and is excluded. For <m>c=2</m>, the inequality becomes <m>3p+2q\ge8</m>. For <m>p=0,1,2,3</m>, the least allowed <m>q</m> is respectively <m>4,3,1,0</m>; these give exactly the four minimal generators above. In particular <m>xy^2</m> is excluded by equality in the strict test. The quotient has basis
+        <md number="no">1,\ y,\ y^2,\ y^3,\ x,\ xy,\ xy^2,\ x^2,</md>
+        and length eight. Counting the complementary lattice points computes colength when that complement is finite; finite colength is not automatic for an arbitrary monomial ideal.</p>
+    </example>
+  </section>
+
+  <section xml:id="toric-multiplier-scope">
+    <title>What the monomial calculation does and does not retain</title>
+    <p>The computation gives a finite procedure: find the lower supporting facets of <m>P</m>, apply their strict inequalities to <m>m+\mathbf1</m>, and retain the minimal monomial generators. One may use a smooth refinement to justify the birational definition and then discard its redundant inequalities. In particular, the final answer depends only on the Newton polyhedron, even if different monomial ideals with that polyhedron have different exponent sets. For instance, <m>(x^2,y^2)</m> and <m>(x,y)^2</m> have the same Newton polyhedron and all the same multiplier ideals, although <m>xy</m> belongs only to the second ideal.</p>
+    <p>That last statement is specific to monomial ideals. For a concrete comparison in <m>\A^2</m>, take <m>f=(x+y)^2</m>. In coordinates <m>z=x+y</m>, <m>w=y</m>, its divisor is twice a smooth line. The identity is a log resolution and
+      <md number="no">\mathcal J((f)^c)=(z^{\lfloor2c\rfloor}),
+        \qquad \operatorname{lct}((f))=\frac12.</md>
+      Its term ideal is <m>(x^2,xy,y^2)=(x,y)^2</m>, whose Newton polyhedron is <m>u_1+u_2\ge2</m> in the positive quadrant. The monomial formula gives threshold one for that ideal. At <m>c=1/2</m>, the first multiplier ideal is <m>(x+y)</m> and the second is the whole ring, despite the same convex hull of term exponents.</p>
+    <p>The line <m>x+y=0</m> meets the dense torus. Its divisor therefore has a component that is not among the orthant boundary valuations, and a toric subdivision preserves this dense torus. Applying the monomial facet test to the terms of a general polynomial omits such data. For a more general ideal one needs an actual log resolution or additional hypotheses that supply the missing information. A flat degeneration or equality of Hilbert functions, by itself, is not an identification of the divisors in the multiplier-ideal definition.</p>
+  </section>
+</chapter>

@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="hkg-degenerations">
+  <title>Degenerations and monodromy</title>
+  <introduction>
+    <p>When a family acquires a singular fiber, transport around that fiber acts on the cohomology of a nearby smooth member. The logarithm of this action is a nilpotent derivation. Its action on degree two has only three possibilities, whereas higher cohomology can contain much longer Jordan blocks. Nagai's conjecture predicts their lengths. The same linear algebra also relates degenerations to the topology of Lagrangian fibrations through compact <m>P=W</m>.</p>
+    <p>We use the BBF form, <m>\SH^*</m>, and the reduced LLV representation of <xref ref="hkg-cohomology"/>. The main references are <xref ref="hkg-bib-schmid"/>, <xref ref="hkg-bib-soldatenkov-limits"/>, <xref ref="hkg-bib-huybrechts-mauri-type-ii"/>, and <xref ref="hkg-bib-harder-li-shen-yin"/>.</p>
+  </introduction>
+  <section xml:id="hkg-degeneration-setup">
+    <title>The family and its logarithmic monodromy</title>
+    <definition xml:id="hkg-def-projective-degeneration">
+      <statement><p>Let <m>\Delta=\{t\in\C:|t|&lt;1\}</m> and <m>\Delta^*=\Delta\setminus\{0\}</m>. A <em>projective degeneration of IHS manifolds</em> is a flat projective holomorphic map <m>\pi:\mathcal X\to\Delta</m>, smooth over <m>\Delta^*</m>, whose fibers <m>X_t</m> for <m>t\ne0</m> are IHS of dimension <m>2n</m>. Projectivity means that <m>\pi</m> admits a relatively ample line bundle. The central fiber and the total space may be singular.</p></statement>
+    </definition>
+    <p>Fix <m>t_0\in\Delta^*</m> and write <m>X=X_{t_0}</m>. The cohomology groups of the smooth fibers form local systems <m>R^d\pi_*\Q|_{\Delta^*}</m>. Transport around a positively oriented generator of <m>\pi_1(\Delta^*,t_0)</m> gives
+      <md number="no">T_d:H^d(X,\Q)\longrightarrow H^d(X,\Q),\qquad T=\bigoplus_dT_d.</md>
+      Choosing another marking conjugates these operators. They preserve degree and cup product. The relatively ample class <m>h\in H^2(X,\Q)</m> is fixed by <m>T_2</m>.</p>
+    <theorem xml:id="hkg-local-monodromy-theorem">
+      <title>Monodromy theorem</title>
+      <statement><p>Each <m>T_d</m> is quasi-unipotent: some positive power is unipotent. After one finite base change <m>t=s^r</m>, all the <m>T_d</m> are unipotent. Their logarithms <m>N_d=\log T_d</m> satisfy
+        <md number="no">N_d^{d+1}=0\qquad(0\leq d\leq2n).</md>
+        In particular, <m>N_2^3=0</m>.</p></statement>
+    </theorem>
+    <p>See <xref ref="hkg-bib-schmid" detail="Lemma 4.5 and Theorem 6.1"/>. Finitely many cohomological degrees require only one common base change, which we make once, retaining the notation <m>\pi,T_d</m>.</p>
+    <definition xml:id="hkg-def-log-monodromy">
+      <statement><p>For a unipotent operator <m>T</m>, set
+        <md xml:id="hkg-eq-log-monodromy" number="yes">N=\log T:=\sum_{j\geq1}\frac{(-1)^{j+1}}j(T-\id)^j.</md>
+        The sum is finite. We use <m>N_d=N|_{H^d(X,\Q)}</m>. For a nonzero nilpotent operator <m>A</m>, its <em>nilpotency index</em> is
+        <md number="no">\nu(A):=\max\{j\geq0:A^j\ne0\},\qquad \nu(0):=0.</md>
+        Thus a largest Jordan block of length <m>r+1</m> gives <m>\nu(A)=r</m>. Write <m>\nu_d=\nu(N_d)</m>.</p></statement>
+    </definition>
+    <p>The finite power-series identities give <m>T=\exp N</m>. Moreover, <m>N=(T-\id)u(T-\id)</m> for a polynomial <m>u</m> with <m>u(0)=1</m>. The operator <m>u(T-\id)</m> is invertible and commutes with <m>T-\id</m>, so <m>N</m> and <m>T-\id</m> have the same kernels of powers and the same index. A further base change of degree <m>r</m> replaces <m>T</m> by <m>T^r</m> and <m>N</m> by <m>rN</m>. It changes neither the index nor the weight filtration defined below.<fn>Another common convention calls <m>r+1</m> the nilpotency index when <m>A^{r+1}=0</m> and <m>A^r\ne0</m>. In particular, the convention in <xref ref="hkg-bib-klsv" detail="Remark 6.4"/> is one larger than ours. The operator here is the rational logarithm <m>\log T</m>; factors such as <m>(2\pi i)^{-1}</m> in comparison formulas do not change its index.</fn></p>
+    <proposition xml:id="hkg-log-derivation">
+      <statement><p>The logarithmic monodromy is a degree-zero derivation of the cohomology ring:
+        <md number="no">N(u\smile v)=N(u)\smile v+u\smile N(v).</md>
+        On degree two,
+        <md number="no">q_X(N_2a,b)+q_X(a,N_2b)=0,\qquad N_2h=0.</md></p></statement>
+      <proof><p>The endomorphism <m>\exp(sN)</m> is polynomial in <m>s</m>. For every nonnegative integer <m>m</m> it equals <m>T^m</m>, which preserves cup product. Therefore
+        <md number="no">\exp(sN)(u\smile v)=\exp(sN)u\smile\exp(sN)v</md>
+        is an identity of vector-valued polynomials: it holds for infinitely many integers. Differentiating at <m>s=0</m> proves the derivation formula. Its degree is zero because every term of <m>\log T</m> preserves degree.</p>
+        <p>Parallel transport preserves the BBF form. Apply the same polynomial argument to
+        <m>q_X(\exp(sN_2)a,\exp(sN_2)b)=q_X(a,b)</m> and differentiate. Finally, <m>(T_2-\id)h=0</m> makes every term in <m>\log T_2(h)</m> vanish. This proof follows <xref ref="hkg-bib-huybrechts-mauri-type-ii" detail="Lemma 2.1"/>.</p></proof>
+    </proposition>
+    <proposition xml:id="hkg-monodromy-duality">
+      <statement><p>For <m>0\leq d\leq4n</m>, one has <m>\nu_d=\nu_{4n-d}</m>. Consequently,
+        <md number="no">\nu_d\leq\min(d,4n-d).</md></p></statement>
+      <proof><p>Monodromy acts trivially on top cohomology and preserves integration. Differentiating the Poincaré pairing gives
+        <m>\int_XN_du\smile v+\int_Xu\smile N_{4n-d}v=0</m>.
+        The two operators are therefore negative transposes under a perfect pairing, and their powers have the same ranks. The bound follows from the monodromy theorem in degrees at most <m>2n</m> and this equality.</p></proof>
+    </proposition>
+  </section>
+  <section xml:id="hkg-degeneration-types">
+    <title>The three types and the degree-two lower bound</title>
+    <definition xml:id="hkg-def-degeneration-types">
+      <statement><p>The degeneration is of <em>type I, II, or III</em> according to the following conditions:
+        <md number="no">\begin{array}{c|c|c}
+          \text{type}&amp;\text{condition on }N_2&amp;\nu_2\\\hline
+          \mathrm I&amp;N_2=0&amp;0\\
+          \mathrm{II}&amp;N_2\ne0,\ N_2^2=0&amp;1\\
+          \mathrm{III}&amp;N_2^2\ne0,\ N_2^3=0&amp;2.
+        \end{array}</md>
+        Type III is also called <em>maximally unipotent</em> in this setting.</p></statement>
+    </definition>
+    <example xml:id="hkg-type-one-singular-model">
+      <p>Type I does not require the given central fiber to be smooth. Start with <m>X\times\Delta\to\Delta</m> for a projective IHS manifold <m>X</m>, and blow up a point of <m>X\times\{0\}</m>. The new map is still projective and flat, and it agrees with the product over <m>\Delta^*</m>. Its monodromy is the identity. Its central fiber is the union of <m>\operatorname{Bl}_xX</m> and the exceptional <m>\PP^{2n}</m>, meeting along <m>\PP^{2n-1}</m>. The monodromy type records the punctured family, rather than the smoothness of one chosen model.</p>
+    </example>
+    <lemma xml:id="hkg-symmetric-nilpotency">
+      <statement><p>Let <m>A</m> be nilpotent on a nonzero vector space <m>V</m> over a field of characteristic zero. Its induced derivation <m>A^{(k)}</m> on <m>\Sym^kV</m> satisfies
+        <md number="no">\nu(A^{(k)})=k\nu(A)\qquad(k\geq1).</md></p></statement>
+      <proof><p>Let <m>r=\nu(A)</m>. If <m>A=0</m>, the assertion is immediate. Otherwise choose <m>x</m> with <m>A^rx\ne0</m>. Repeated use of the product rule gives
+        <md number="no">(A^{(k)})^m(x_1\cdots x_k)=\sum_{i_1+\cdots+i_k=m}\frac{m!}{i_1!\cdots i_k!}(A^{i_1}x_1)\cdots(A^{i_k}x_k).</md>
+        If <m>m&gt;kr</m>, one exponent exceeds <m>r</m>, so every summand vanishes. For <m>m=kr</m> and all <m>x_j=x</m>, the only nonzero summand has <m>i_1=\cdots=i_k=r</m> and gives
+        <md number="no">(A^{(k)})^{kr}(x^k)=\frac{(kr)!}{(r!)^k}(A^rx)^k\ne0.</md>
+        A nonzero vector has nonzero powers in its symmetric algebra. This proves both bounds.</p></proof>
+    </lemma>
+    <proposition xml:id="hkg-verbitsky-monodromy-bound">
+      <statement><p>For <m>0\leq k\leq n</m>, the restriction of <m>N_{2k}</m> to <m>\SH^{2k}(X)</m> has index <m>k\nu_2</m>. In particular,
+        <md xml:id="hkg-eq-nagai-lower-bound" number="yes">k\nu_2\leq\nu_{2k}\leq2k.</md></p></statement>
+      <proof><p>Monodromy preserves the subalgebra generated by degree two. By <xref ref="hkg-log-derivation"/>, the map <m>\Sym^kH^2(X,\Q)\to H^{2k}(X,\Q)</m> intertwines the derivation induced by <m>N_2</m> with <m>N_{2k}</m>. For <m>k\leq n</m> it is injective by <xref ref="hkg-verbitsky-theorem"/>. The preceding lemma computes the index on its image. The upper bound is the monodromy theorem; <m>k=0</m> gives the fixed unit.</p></proof>
+    </proposition>
+    <corollary xml:id="hkg-type-three-nagai">
+      <statement><p>For a type III degeneration,
+        <md number="no">\nu_{2k}=2\min(k,2n-k)\qquad(0\leq k\leq2n).</md></p></statement>
+      <proof><p>When <m>\nu_2=2</m>, the two bounds in <xref ref="hkg-eq-nagai-lower-bound"/> coincide. The remaining degrees follow from Poincaré duality.</p></proof>
+    </corollary>
+    <p>The lower bound is already forced by products of degree-two classes. A possible obstruction to equality in type II lies in the additional cohomology outside <m>\SH^*</m>. Computing the index on that subalgebra alone does not bound the index on its complement.</p>
+  </section>
+  <section xml:id="hkg-nagai-and-llv">
+    <title>Nagai's conjecture and type II estimates</title>
+    <conjecture xml:id="hkg-nagai-conjecture">
+      <title>(Nagai)</title>
+      <statement><p>For a projective degeneration of IHS <m>2n</m>-folds,
+        <md xml:id="hkg-eq-nagai-conjecture" number="yes">\nu_{2k}=k\nu_2\qquad(0\leq k\leq n).</md></p></statement>
+    </conjecture>
+    <p>See <xref ref="hkg-bib-nagai" detail="Conjecture 5.1"/>. The equality concerns even cohomology; odd-degree monodromy has separate estimates.</p>
+    <theorem xml:id="hkg-monodromy-reduced-llv">
+      <title>(Soldatenkov)</title>
+      <statement><p>Let <m>\rho:\mathfrak{so}(H^2(X,\Q),q_X)\to\End H^*(X,\Q)</m> be the reduced LLV representation. The logarithm of unipotent monodromy satisfies
+        <md number="no">N_d=\rho(N_2)|_{H^d(X,\Q)}\qquad(0\leq d\leq4n).</md></p></statement>
+    </theorem>
+    <p>See <xref ref="hkg-bib-gklr" detail="Theorem 4.9"/> and <xref ref="hkg-bib-soldatenkov-limits" detail="Proposition 3.5"/>. This identification is needed because degree two need not generate the cohomology ring.</p>
+    <corollary xml:id="hkg-type-one-nagai">
+      <statement><p>For a type I degeneration, <m>N_d=0</m> in every degree. In particular, Nagai's equality holds.</p></statement>
+      <proof><p>The reduced representation sends <m>N_2=0</m> to zero. Alternatively, <xref ref="hkg-bib-klsv" detail="Corollary 3.2"/> gives finite monodromy on total cohomology when it is finite on degree two; finite-order unipotent operators in characteristic zero are the identity.</p></proof>
+    </corollary>
+    <lemma xml:id="hkg-type-two-isotropic-plane">
+      <statement><p>In a projective type II degeneration, <m>\operatorname{im}N_2</m> is a totally isotropic rational plane in <m>h^\perp</m>. In particular, <m>b_2(X)\geq5</m>.</p></statement>
+      <proof><p>Skew-symmetry gives
+        <m>q_X(N_2a,N_2b)=-q_X(a,N_2^2b)=0</m>.
+        Also <m>q_X(N_2a,h)=-q_X(a,N_2h)=0</m>. Since <m>q_X(h)&gt;0</m>, the real form on <m>h^\perp</m> has signature <m>(2,b_2-3)</m>. Its totally isotropic subspaces have dimension at most two. The rank of <m>N_2</m> is even: through the nondegenerate form, it is the rank of the alternating bilinear form <m>(a,b)\mapsto q_X(N_2a,b)</m>. It is nonzero, so its rank is exactly two. A totally isotropic plane requires both indices of the restricted form to be at least two, giving <m>b_2-3\geq2</m>.</p></proof>
+    </lemma>
+    <p>We now use the Hodge structure on one smooth fiber to calculate the type II index. Choose a nonzero complex class <m>\beta\in H^{1,1}(X)</m> with <m>q_X(\beta)=0</m>, and a holomorphic symplectic form <m>\sigma</m>. Such <m>\beta</m> exists because the nondegenerate complex <m>(1,1)</m> space has dimension <m>b_2-2\geq3</m>. Let <m>D</m> be the reduced LLV element whose restriction to degree two is
+      <md xml:id="hkg-eq-type-two-model" number="yes">D_2(a)=q_X(\beta,a)\bar\sigma-q_X(\bar\sigma,a)\beta.</md>
+      This formula is skew for <m>q_X</m>, so <xref ref="hkg-llv-structure"/> defines a unique such element. It is a derivation. Moreover,
+      <md number="no">D\sigma=-q_X(\bar\sigma,\sigma)\beta,\qquad D\beta=D\bar\sigma=0.</md>
+      Nondegeneracy of <m>q_X|_{H^{1,1}}</m> gives a class <m>w\in H^{1,1}</m> with <m>q_X(\beta,w)=1</m>, so <m>D_2w=\bar\sigma</m>. Since <m>q_X(\bar\sigma,\sigma)\ne0</m>, it follows that
+      <md number="no">\operatorname{im}D_2=\langle\beta,\bar\sigma\rangle,\qquad D_2^2=0.</md>
+      </p>
+    <lemma xml:id="hkg-type-two-model-hodge">
+      <statement><p>The operator <m>D</m> has Hodge bidegree <m>(-1,1)</m>. The actual monodromy <m>N</m> is conjugate, by a graded complex algebra automorphism of cohomology, to a nonzero scalar multiple of <m>D</m>.</p></statement>
+      <proof><p>Let <m>f</m> be the Hodge operator, acting on <m>H^{p,q}</m> by <m>i(q-p)</m>; it belongs to the reduced algebra by <xref ref="hkg-llv-weight-hodge"/>. Formula <xref ref="hkg-eq-type-two-model"/> sends degree-two Hodge types successively from <m>(2,0)</m> to <m>(1,1)</m> to <m>(0,2)</m>. Thus <m>[f,D]=2iD</m> on degree two. Restriction there is faithful on the reduced algebra, so the same identity holds on all cohomology. Since <m>D</m> preserves total degree, it has the asserted bidegree.</p>
+        <p>The conjugacy is the external result <xref ref="hkg-bib-huybrechts-mauri-type-ii" detail="Corollary 2.10"/>, together with its equations (2.5)–(2.6). The operator used there has the degree-two action in <xref ref="hkg-eq-type-two-model"/> up to a nonzero scalar. It belongs to the reduced LLV algebra, so its full action is determined by that restriction. The preceding lemma proves <m>b_2\geq5</m> for the projective type II degenerations considered here.</p></proof>
+    </lemma>
+    <p>The conjugacy is graded and multiplicative; it need not preserve the chosen Hodge decomposition or the integral lattice.</p>
+    <proposition xml:id="hkg-type-two-middle-estimates">
+      <title>(Huybrechts–Mauri)</title>
+      <statement><p>For a type II degeneration,
+        <md number="no">\nu_{2n}=n,\qquad \nu_{2k}\leq n-1\quad(0\leq k&lt;n).</md>
+        For <m>2\leq k&lt;n</m>, one has the sharper combined estimate
+        <md number="no">k\leq\nu_{2k}\leq\min(n-1,2k-2).</md></p></statement>
+      <proof><p>It suffices to calculate with <m>D</m>. First we prove <m>D^{n+1}=0</m> in degrees at most <m>2n</m>. On <m>H^{p,q}</m> with <m>p\leq n</m>, this follows from its bidegree. If <m>p&gt;n</m>, let <m>r=p-n</m>. Symplectic linear algebra gives an isomorphism of holomorphic bundles
+        <md number="no">\sigma^r:\Omega_X^{n-r}\xrightarrow{\sim}\Omega_X^{n+r}.</md>
+        Applying cohomology expresses any <m>\alpha\in H^{p,q}</m> as <m>\alpha=\sigma^r\gamma</m>, with <m>\gamma\in H^{n-r,q}</m>. Since <m>D^2\sigma=0</m>, the product rule gives <m>D^i(\sigma^r)=0</m> for <m>i&gt;r</m>. Bidegree gives <m>D^j\gamma=0</m> for <m>j&gt;n-r</m>. In the expansion
+        <md number="no">D^{n+1}(\sigma^r\gamma)=\sum_{i+j=n+1}\binom{n+1}{i}D^i(\sigma^r)D^j\gamma,</md>
+        every term therefore vanishes. Thus <m>\nu_{2n}\leq n</m>, and the lower bound <xref ref="hkg-verbitsky-monodromy-bound"/> gives equality.</p>
+        <p>For <m>\alpha\in H^{p,q}</m> with <m>p+q=2k&lt;2n</m>, we prove the stronger <m>D^n\alpha=0</m>. It already holds if <m>p&lt;n</m>. Otherwise use the same factorization with <m>r=p-n</m>; here <m>0\leq r\leq2k-n&lt;k</m>. Only the term <m>i=r,j=n-r</m> can survive, so
+        <md number="no">D^n\alpha=c\,\beta^r\bar\sigma^{k-r}</md>
+        for some scalar <m>c</m>: the remaining factor has type <m>(0,2k-2r)</m>, whose space is generated by the indicated power of <m>\bar\sigma</m>. For the class <m>w</m> chosen above, <m>Dw=\bar\sigma</m> and <m>D^2w=0</m>. Since <m>w\alpha</m> has degree at most <m>2n</m>, the bound just proved yields
+        <md number="no">0=D^{n+1}(w\alpha)=(n+1)\bar\sigma D^n\alpha=(n+1)c\,\beta^r\bar\sigma^{k-r+1}.</md>
+        The last displayed product without its scalar is nonzero. Indeed, <m>\beta^r\ne0</m> by Verbitsky's injection, and multiplication by <m>\bar\sigma^{n-r}</m> is an isomorphism from <m>H^{r,r}</m> to <m>H^{r,2n-r}</m>. Consequently multiplication by <m>\bar\sigma^s</m> is injective on <m>H^{r,r}</m> for <m>s\leq n-r</m>. Here <m>s=k-r+1\leq n-r</m>. It follows that <m>c=0</m>.</p>
+        <p>For the remaining upper bound, choose an LLV-module complement <m>R</m> to the Verbitsky component. It is preserved by <m>D</m> and by the Hodge operator. In degree <m>2k</m>, the spaces of types <m>(2k,0)</m> and <m>(0,2k)</m> are already contained in <m>\SH^{2k}</m>, since they are generated by <m>\sigma^k</m> and <m>\bar\sigma^k</m>. Thus <m>R^{2k}</m> has Hodge types only with <m>1\leq p,q\leq2k-1</m>. Bidegree now gives <m>D^{2k-1}=0</m> on <m>R^{2k}</m>. On <m>\SH^{2k}</m> its index is <m>k</m>. For <m>k\geq2</m>, the full index is therefore at most <m>\max(k,2k-2)=2k-2</m>. Combining with the first bound and the degree-two lower bound proves the assertion.</p></proof>
+    </proposition>
+    <p>The calculation follows <xref ref="hkg-bib-huybrechts-mauri-type-ii" detail="Proposition 2.4, Remark 2.7(ii), and Theorem 1.2"/>. The bound <m>2k-2</m> also appears, with the other index convention, in <xref ref="hkg-bib-klsv" detail="Theorem 6.5"/>.</p>
+    <corollary xml:id="hkg-nagai-low-dimensions">
+      <statement><p>Nagai's equality holds for every projective degeneration with <m>\dim X\leq8</m>.</p></statement>
+      <proof><p>Types I and III have been settled. In type II, <m>k=1</m> is the definition, <m>k=n</m> is the middle-degree theorem, and <m>k=n-1</m> follows from <m>n-1\leq\nu_{2n-2}\leq n-1</m>. For <m>k=2&lt;n</m>, the estimate <m>2\leq\nu_4\leq2</m> gives the remaining equality. These cover every <m>k\leq n</m> when <m>n\leq4</m>. Compare the independent LLV argument in <xref ref="hkg-bib-gklr" detail="Proposition 6.5"/>.</p></proof>
+    </corollary>
+    <theorem xml:id="hkg-nagai-known-types">
+      <title>(Green–Kim–Laza–Robles)</title>
+      <statement><p>Nagai's equality holds for every projective degeneration whose smooth fibers are of <m>\mathrm{K3}^{[n]}</m>, generalized Kummer, <m>\mathrm{OG}_6</m>, or <m>\mathrm{OG}_{10}</m> type.</p></statement>
+    </theorem>
+    <p>This is <xref ref="hkg-bib-gklr" detail="Theorem 1.14 and Corollary 6.4"/>. Its Theorem 5.2 gives a representation criterion: for <m>b_2\geq5</m>, it suffices that every highest weight in the even LLV decomposition satisfy <m>\mu_0+\mu_1+\mu_2\leq n</m>, in the coordinates of <xref ref="hkg-llv-hodge-grading"/>. Conversely, Nagai's equality for a single type II degeneration forces this inequality.</p>
+    <p>The results quoted here leave the type II equalities in the remaining degrees open for arbitrary deformation types; see also <xref ref="hkg-bib-ito-monodromy" detail="§1.1"/>.</p>
+  </section>
+  <section xml:id="hkg-degenerating-hilbert-schemes">
+    <title>Families induced from K3 surfaces</title>
+    <p>Let <m>\mathcal S\to\Delta</m> be a projective family smooth with K3 fibers over <m>\Delta^*</m>. Its relative Hilbert scheme over <m>\Delta^*</m> is a smooth projective family with fibers <m>X_t=S_t^{[n]}</m>. For <m>n\geq2</m>, the Hilbert-scheme decomposition is an identity of local systems:
+      <md number="no">H^2(S_t^{[n]},\Q)=H^2(S_t,\Q)\oplus\Q\delta,\qquad T_2\delta=\delta.</md>
+      Here <m>2\delta</m> is the Hilbert–Chow exceptional divisor, defined in the relative family. Thus <m>N_2=N_{S,2}\oplus0</m>, and the Hilbert-scheme family has the same type as the K3 family. For <m>n=1</m>, the extra summand is absent.</p>
+    <p>Taking the flat closure of the smooth-family component in the relative Hilbert scheme over the full disc gives a projective degeneration. The monodromy computation uses only its restriction over <m>\Delta^*</m>; see <xref ref="hkg-bib-nagai" detail="§2 and Theorem 2.7"/>.</p>
+    <example xml:id="hkg-hilbert-square-nilpotency">
+      <p>For the Hilbert square, all cohomology belongs to the subalgebra generated by degree two, by <xref ref="hkg-hilbert-square-betti"/>. If <m>r=\nu(N_{S,2})\in\{0,1,2\}</m>, the indices in degrees zero, two, four, six, and eight are
+        <md number="no">(\nu_0,\nu_2,\nu_4,\nu_6,\nu_8)=(0,r,2r,r,0).</md>
+        The middle value follows from <m>H^4\cong\Sym^2H^2</m>, and degree six follows by duality. For larger Hilbert schemes, symmetric powers compute the Verbitsky component; <xref ref="hkg-nagai-known-types"/> controls the additional summands.</p>
+    </example>
+  </section>
+  <section xml:id="hkg-monodromy-weight-filtration">
+    <title>The weight filtration</title>
+    <definition xml:id="hkg-def-nilpotent-weight-filtration">
+      <statement><p>Let <m>A:V\to V</m> be nilpotent on a finite-dimensional rational vector space, and let <m>m\in\Z</m>. Its <em>weight filtration centered at <m>m</m></em> is the unique finite increasing filtration <m>W_\bullet(A)[m]</m>, with <m>W_j=0</m> for sufficiently negative <m>j</m> and <m>W_j=V</m> for sufficiently positive <m>j</m>, such that
+        <md number="no">A(W_j)\subset W_{j-2},\qquad A^r:\operatorname{Gr}_{m+r}^WV\xrightarrow{\sim}\operatorname{Gr}_{m-r}^WV\quad(r\geq0).</md>
+        Here <m>\operatorname{Gr}_j^WV=W_jV/W_{j-1}V</m>. The center is part of the notation: changing it from <m>m</m> to <m>m+c</m> replaces <m>W_j</m> by <m>W_{j-c}</m>.</p></statement>
+    </definition>
+    <proposition xml:id="hkg-weight-jordan-formula">
+      <statement><p>For a Jordan chain <m>e_0,\ldots,e_r</m> with <m>Ae_0=0</m> and <m>Ae_i=e_{i-1}</m>, assign <m>e_i</m> weight <m>m-r+2i</m>. Taking spans of vectors of weight at most <m>j</m> gives <m>W_j(A)[m]</m>. A basis-independent formula is
+        <md xml:id="hkg-eq-canonical-weight-filtration" number="yes">W_{m+\ell}(A)[m]=\sum_{j\geq\max(0,-\ell)}\bigl(\ker A^{j+\ell+1}\cap\operatorname{im}A^j\bigr).</md>
+        Only finitely many summands are nonzero.</p></statement>
+      <proof><p>On the displayed chain, the kernel in a summand is spanned by vectors with index at most <m>j+\ell</m>, and the image by those with index at most <m>r-j</m>. Summing over <m>j</m> therefore gives exactly the vectors with <m>2i\leq r+\ell</m>, as asserted. This verifies the formula on every Jordan block. It is basis-independent and satisfies both defining conditions, so it constructs the weight filtration.</p>
+        <p>For uniqueness, let <m>s=\nu(A)</m>. The defining isomorphisms force the filtration to have no jumps outside <m>[m-s,m+s]</m>, and force
+        <m>W_{m-s}=\operatorname{im}A^s</m> and <m>W_{m+s-1}=\ker A^s</m>.
+        The induced nilpotent operator on <m>\ker A^s/\operatorname{im}A^s</m> has smaller index. Induction on that quotient determines the remaining steps. For <m>A=0</m>, the only jump is at <m>m</m>. Compare <xref ref="hkg-bib-huybrechts-mauri" detail="Definition 3.1 and its construction"/>.</p></proof>
+    </proposition>
+    <example xml:id="hkg-weight-two-jordan-blocks">
+      <p>On <m>H^2</m> the monodromy weight filtration is centered at two. A block <m>e_2\mapsto e_1\mapsto e_0\mapsto0</m> has weights <m>4,2,0</m>, and
+        <md number="no">W_0=W_1=\Q e_0,\qquad W_2=W_3=\Q e_0\oplus\Q e_1,\qquad W_4=V.</md>
+        A length-two block instead has weights one and three: <m>W_0=0</m>, <m>W_1=W_2=\Q e_0</m>, and <m>W_3=V</m>. A length-one block has weight two. Thus the equalities <m>W_{2i}=W_{2i+1}</m> are a substantive assertion; they do not hold for every nilpotent operator.</p>
+    </example>
+    <p>For a degeneration, set
+      <md number="no">W_jH^d_{\mathrm{lim}}:=W_j(N_d)[d].</md>
+      The center on <m>H^d</m> is <m>d</m>. When <m>H^d\ne0</m>, the extreme nonzero graded indices are <m>d+\nu_d</m> and <m>d-\nu_d</m>.</p>
+    <theorem xml:id="hkg-limiting-mixed-hodge">
+      <title>(Schmid)</title>
+      <statement><p>There is a limiting Hodge filtration <m>F^\bullet_{\mathrm{lim}}</m> for which <m>(H^d(X,\Q),W_\bullet,F^\bullet_{\mathrm{lim}})</m> is a mixed Hodge structure. This means that the induced Hodge filtration on <m>\operatorname{Gr}_j^WH^d</m> defines a pure rational Hodge structure of weight <m>j</m>. The operator <m>N_d</m> lowers both Hodge indices by one and lowers weight by two.</p></statement>
+    </theorem>
+    <p>See <xref ref="hkg-bib-schmid" detail="Theorems 4.9 and 6.16"/>. Write <m>t=e^{2\pi iz}</m> on the universal cover and transport the Hodge filtration to a fixed vector space, denoting it by <m>F^\bullet(z)</m>. With the convention <m>F^\bullet(z+1)=TF^\bullet(z)</m>,
+      <md number="no">F^\bullet_{\mathrm{lim}}=\lim_{\operatorname{Im}z\to+\infty}e^{-zN}F^\bullet(z).</md>
+      The Hodge filtration is decreasing: <m>F^p=\bigoplus_{a\geq p}H^{a,d-a}</m> on a smooth fiber. Its limiting dimensions agree with those on the smooth fibers. A change of coordinate changes <m>F_{\mathrm{lim}}</m> by <m>e^{cN}</m>; the weight filtration does not change. Reversing the convention for the monodromy operator replaces <m>N</m> by <m>-N</m>, preserving all indices and weight filtrations.</p>
+    <p>The group <m>H^d_{\mathrm{lim}}</m> is nearby cohomology equipped with the limiting filtrations. Its comparison with <m>H^d(X_0)</m> uses specialization and the Clemens–Schmid theorem.</p>
+    <proposition xml:id="hkg-weight-filtration-product">
+      <statement><p>The monodromy weight filtration respects products:
+        <md number="no">W_aH^d_{\mathrm{lim}}\smile W_bH^e_{\mathrm{lim}}\subset W_{a+b}H^{d+e}_{\mathrm{lim}}.</md></p></statement>
+      <proof><p>For nilpotent operators on two vector spaces, the weight filtration of <m>A\otimes1+1\otimes B</m> centered at the sum of the centers is the convolution of the two weight filtrations. One can check this by extending each Jordan string to an <m>\mathfrak{sl}_2</m>-representation: tensor products add the weight eigenvalues, and their decomposition into <m>\mathfrak{sl}_2</m> strings satisfies the defining weight-filtration isomorphisms. The filtration is functorial for maps commuting with the nilpotent operators, as is also immediate from <xref ref="hkg-eq-canonical-weight-filtration"/>.</p>
+        <p>Cup product intertwines <m>N_d\otimes1+1\otimes N_e</m> with <m>N_{d+e}</m> by the derivation formula. The centers are <m>d,e,d+e</m>, respectively. Functoriality and convolution give the displayed inclusion.</p></proof>
+    </proposition>
+    <theorem xml:id="hkg-type-three-hodge-tate">
+      <title>(Soldatenkov)</title>
+      <statement><p>For a projective type III degeneration, every limiting mixed Hodge structure <m>H^d_{\mathrm{lim}}</m> is Hodge–Tate: its odd weight graded pieces vanish, and <m>\operatorname{Gr}_{2i}^WH^d_{\mathrm{lim}}</m> has Hodge type <m>(i,i)</m>. In particular,
+        <md number="no">W_{2i}H^d_{\mathrm{lim}}=W_{2i+1}H^d_{\mathrm{lim}}.</md></p></statement>
+    </theorem>
+    <p>See <xref ref="hkg-bib-soldatenkov-limits" detail="Theorem 3.8"/>.</p>
+  </section>
+  <section xml:id="hkg-compact-perverse-weight">
+    <title>Lagrangian fibrations and compact <m>P=W</m></title>
+    <p>Let <m>f:X\to B</m> be a Lagrangian fibration with <m>X</m> projective IHS. The base is normal and projective of dimension <m>n</m>. Choose an ample rational class <m>\alpha</m> on <m>B</m>, let <m>\beta=f^*\alpha</m>, and write <m>L_\beta</m> for cup product on total cohomology. Its index is <m>n</m>: <m>\beta^{n+1}=0</m>, whereas <m>\beta^n\ne0</m>. Denote its weight filtration, with the single center <m>n</m> on total cohomology, by
+      <md number="no">\mathcal W^\beta_j:=W_j(L_\beta)[n]\subset H^*(X,\Q).</md>
+      This filtration is graded because kernels and images of powers of <m>L_\beta</m> are graded subspaces.</p>
+    <theorem xml:id="hkg-perverse-cup-description">
+      <statement><p>The perverse filtration of <m>f</m>, normalized to range from zero to <m>2n</m>, is characterized by
+        <md xml:id="hkg-eq-perverse-cup-filtration" number="yes">P_iH^d(X,\Q)=\mathcal W^\beta_{i-d+2n}\cap H^d(X,\Q).</md>
+        It is independent of the chosen ample class on the base. Thus <m>P_i=0</m> for <m>i&lt;0</m> and <m>P_i=H^*</m> for <m>i\geq2n</m>.</p></statement>
+    </theorem>
+    <p>This description follows from the decomposition theorem and perverse hard Lefschetz; see <xref ref="hkg-bib-shen-yin" detail="§§1.1–1.3 and Proposition 1.1"/> and <xref ref="hkg-bib-huybrechts-mauri" detail="§3.1(ii)"/>.<fn>The normalization is
+      <m>P_iH^d=\operatorname{im}\bigl(\mathbb H^{d-n}(B,{}^p\tau_{\leq i}Rf_*\Q_X[n])\to H^d(X,\Q)\bigr)</m>.
+      Here <m>{}^p\tau</m> is middle perverse truncation. With the shift <m>[2n]</m>, the hypercohomology degree is <m>d-2n</m> and the truncation index is <m>i-n</m>.</fn></p>
+    <example xml:id="hkg-elliptic-k3-perverse-filtration">
+      <p>For an elliptic K3 surface <m>f:S\to\PP^1</m>, let <m>\beta</m> be the fiber class. Choose a rational class <m>\eta</m> with <m>\beta\cdot\eta=1</m> and <m>\eta^2=0</m>. Such a class is obtained by first choosing a class pairing to one with <m>\beta</m> and then subtracting half its square times <m>\beta</m>. The operator <m>L_\beta</m> has the two length-two strings
+        <md number="no">1\longmapsto\beta\longmapsto0,\qquad \eta\longmapsto[\mathrm{pt}]\longmapsto0,</md>
+        and annihilates the twenty-dimensional complement <m>\langle\beta,\eta\rangle^\perp\subset H^2(S,\Q)</m>. The center on total cohomology is one. Its weight-zero subspace is generated by <m>\beta,[\mathrm{pt}]</m>, its weight-one step adds that complement, and its weight-two step is all cohomology.</p>
+      <p>Using the degree shift in <xref ref="hkg-eq-perverse-cup-filtration"/> gives
+        <md number="no">P_0H^2=\Q\beta,\qquad P_1H^2=\beta^\perp,\qquad P_2H^2=H^2.</md>
+        The graded dimensions are <m>1,20,1</m>. Also <m>H^0=P_0H^0</m>, whereas <m>H^4</m> first occurs at <m>P_2</m>.</p>
+    </example>
+    <theorem xml:id="hkg-compact-p-equals-w">
+      <title>(Harder–Li–Shen–Yin)</title>
+      <statement><p>For every Lagrangian fibration <m>f:X\to B</m> with <m>X</m> projective IHS, there exist a projective type III degeneration <m>\pi:\mathcal Y\to\Delta</m> with smooth fibers deformation equivalent to <m>X</m> and an isomorphism of graded rational cohomology rings
+        <md number="no">\Psi:H^*(X,\Q)\xrightarrow{\sim}H^*_{\mathrm{lim}}(\mathcal Y,\Q)</md>
+        such that, in every degree,
+        <md xml:id="hkg-eq-compact-pw" number="yes">\Psi(P_iH^d(X,\Q))=W_{2i}H^d_{\mathrm{lim}}(\mathcal Y,\Q)=W_{2i+1}H^d_{\mathrm{lim}}(\mathcal Y,\Q).</md></p></statement>
+    </theorem>
+    <p>See <xref ref="hkg-bib-harder-li-shen-yin" detail="Theorem 3"/> and <xref ref="hkg-bib-huybrechts-mauri" detail="Theorem 3.3"/>. The equality compares the perverse filtration of <m>f</m> with the weight filtration of the particular degeneration constructed in this theorem.<fn>Here <m>P=W</m> concerns a degeneration of a compact IHS manifold. In the nonabelian Hodge correspondence, the same notation compares a Hitchin fibration with the mixed Hodge structure of a character variety. These are different comparisons.</fn></p>
+    <p>Choose an ample rational class <m>\eta_0</m> on <m>X</m>, and set
+      <md number="no">\eta=\eta_0-\frac{q_X(\eta_0)}{2q_X(\beta,\eta_0)}\beta.</md>
+      The denominator is positive by <xref ref="hkg-positive-lorentz"/>. Then <m>q_X(\eta)=0</m>, and <m>\eta</m> remains relatively ample because its difference from <m>\eta_0</m> is pulled back from the base. The plane spanned by <m>\beta,\eta</m> is hyperbolic. Choose a rational positive-square class <m>\rho</m> orthogonal to this plane, and define
+      <md number="no">A(a)=q_X(\beta,a)\rho-q_X(\rho,a)\beta.</md>
+      Then <m>A\beta=0</m>, <m>A\rho=-q_X(\rho)\beta</m>, and
+      <md number="no">A^2(a)=-q_X(\rho)q_X(\beta,a)\beta,\qquad A^3=0,\quad A^2\ne0.</md>
+      Thus it has type III. The orthogonal complement of <m>\langle\beta,\eta\rangle</m> has signature <m>(2,b_2-4)</m>, so its positive-square locus contains rational vectors <m>\rho</m>. Realization of a multiple of <m>A</m> as logarithmic monodromy and the comparison of filtrations are the external steps in <xref ref="hkg-bib-harder-li-shen-yin" detail="§§9–10"/>, adapting <xref ref="hkg-bib-soldatenkov-limits" detail="Theorem 4.6"/> using the isotropic class <m>\beta</m>.</p>
+    <corollary xml:id="hkg-perverse-multiplicativity">
+      <statement><p>The perverse filtration of a projective IHS Lagrangian fibration is multiplicative:
+        <md number="no">P_iH^d(X,\Q)\smile P_jH^e(X,\Q)\subset P_{i+j}H^{d+e}(X,\Q).</md></p></statement>
+      <proof><p>Use the ring isomorphism <m>\Psi</m> from <xref ref="hkg-compact-p-equals-w"/> and the product compatibility of the monodromy weight filtration. A product of weights at most <m>2i</m> and <m>2j</m> has weight at most <m>2(i+j)</m>, which is <m>\Psi(P_{i+j})</m>.</p></proof>
+    </corollary>
+    <theorem xml:id="hkg-perverse-hodge-numbers">
+      <title>(Shen–Yin)</title>
+      <statement><p>For the same fibration,
+        <md number="no">\dim_\Q\operatorname{Gr}_i^PH^{i+j}(X,\Q)=h^{i,j}(X).</md></p></statement>
+    </theorem>
+    <p>See <xref ref="hkg-bib-shen-yin" detail="Theorem 0.2"/>. The equality also follows from compact <m>P=W</m>, the type III Hodge–Tate theorem, and constancy of the ranks of the limiting Hodge filtration.</p>
+    <p>For the possibly singular base, let <m>\operatorname{IC}_B</m> be the intersection complex, normalized by <m>\operatorname{IC}_B|_{B_{\mathrm{reg}}}=\Q_{B_{\mathrm{reg}}}[n]</m>, and let <m>\operatorname{IH}^d(B,\Q)=\mathbb H^{d-n}(B,\operatorname{IC}_B)</m>. Ordinary cohomology acts on these groups; powers of the ample class <m>\alpha</m> below mean its repeated action on <m>1\in\operatorname{IH}^0(B,\Q)</m>.</p>
+    <theorem xml:id="hkg-base-intersection-cohomology">
+      <title>(Shen–Yin)</title>
+      <statement><p>For the same fibration,
+        <md number="no">\operatorname{IH}^d(B,\Q)=
+          \begin{cases}\Q\alpha^k,&amp;d=2k,\quad0\leq k\leq n,\\
+          0,&amp;\text{otherwise}.
+          \end{cases}</md>
+        Thus <m>\operatorname{IH}^*(B,\Q)\cong H^*(\PP^n,\Q)</m> as graded rational vector spaces.</p></statement>
+      <proof><p>We use the decomposition theorem and hard Lefschetz for intersection cohomology as external results. Since the smooth fibers are connected, the degree-zero perverse cohomology of <m>Rf_*\Q_X[n]</m> restricts to the shifted constant sheaf on the smooth-fibration locus. Semisimplicity therefore makes <m>\operatorname{IC}_B</m> a direct summand. Taking hypercohomology and using <xref ref="hkg-perverse-hodge-numbers"/> gives
+        <md number="no">\dim_\Q\operatorname{IH}^d(B,\Q)
+          \leq\dim_\Q\operatorname{Gr}_0^PH^d(X,\Q)
+          =h^{0,d}(X).</md>
+        This is zero for odd <m>d</m> and one for even <m>0\leq d\leq2n</m>. Hard Lefschetz makes <m>\alpha^n:\operatorname{IH}^0\to\operatorname{IH}^{2n}</m> an isomorphism, so every intermediate <m>\alpha^k</m> is nonzero. These classes attain the bounds.</p></proof>
+    </theorem>
+    <p>See <xref ref="hkg-bib-shen-yin" detail="Theorem 0.4(a) and §3.2"/>.</p>
+  </section>
+</chapter>

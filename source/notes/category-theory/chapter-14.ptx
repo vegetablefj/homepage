@@ -1,0 +1,285 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="cat-cartesian-closure">
+  <title>Cartesian closure and dependent products</title>
+  <introduction>
+    <p>A function of two inputs can be regarded as a function of the first input whose value is a function of the second. Cartesian closure expresses this operation inside a category: an exponential object represents maps with a product as domain. Dependent products extend the same idea to families whose output object varies with the input.</p>
+    <p>We use finite products, slices, pullbacks, and adjunctions from the preceding chapters. Categories are set-encoded and locally <m>\U</m>-small. The main references are <xref ref="bib-cat-riehl" detail="Definition 4.4.10, Lemma 4.4.11, and Section 4.6"/>. We first establish evaluation and currying, then construct exponentials of presheaves, and finally interpret dependent products through right adjoints to pullback. All products in this chapter are categorical cartesian products.</p>
+  </introduction>
+
+  <section xml:id="cat-c14-exponentials">
+    <title>Exponential objects and currying</title>
+    <p>Suppose <m>\mathcal C</m> has a terminal object <m>1</m> and binary products. Fix choices of these products and their projections. The resulting product functors use the universal property to define arrow maps; reassociation below always uses the canonical product isomorphisms.</p>
+    <definition xml:id="cat-c14-def-cartesian-closed">
+      <title>Exponentials and cartesian closure</title>
+      <idx>Exponential object</idx><idx>Cartesian closed category</idx><idx>Currying</idx>
+      <statement>
+        <p>For objects <m>A,B</m>, an exponential of <m>B</m> by <m>A</m> consists of an object <m>B^A</m> and an evaluation arrow
+          <md number="no">\operatorname{ev}_{A,B}:B^A\times A\longrightarrow B</md>
+          such that, for every <m>T</m>, the function
+          <md number="no">\Hom_{\mathcal C}(T,B^A)\longrightarrow
+            \Hom_{\mathcal C}(T\times A,B),\qquad
+            k\longmapsto\operatorname{ev}_{A,B}(k\times\id_A)</md>
+          is bijective. The inverse sends <m>q:T\times A\to B</m> to its transpose, or curried arrow, denoted <m>\Lambda(q):T\to B^A</m>. A category is cartesian closed if it has finite products, including a terminal object, and an exponential for every pair <m>A,B</m>.</p>
+      </statement>
+    </definition>
+    <p>The definition requires an object and its evaluation, not merely a bijection between two sets of the same cardinality. It says that <m>B^A</m> represents the presheaf <m>T\mapsto\Hom_{\mathcal C}(T\times A,B)</m>. Consequently it is unique up to a unique isomorphism preserving evaluation. It is an object of <m>\mathcal C</m>, whereas <m>\Hom_{\mathcal C}(A,B)</m> is an ordinary set; these are different kinds of data.</p>
+    <p>The test object <m>T</m> describes parameters. A map from <m>T</m> into the exponential is a family of maps from <m>A</m> to <m>B</m> varying over those parameters; evaluation converts it into one map with product domain. This interpretation uses arrows alone. It does not require points of <m>T</m>, an underlying-set functor, or a formula for the elements of the exponential. The universal property also requires uniqueness of the parameterized arrow, which is what makes transposition compatible with subsequent changes of parameters.</p>
+    <proposition xml:id="cat-c14-prop-currying-functoriality">
+      <statement>
+        <p>In a cartesian closed category, chosen exponentials have the following properties.</p>
+        <p><ol>
+          <li><p>Evaluation and transposition satisfy
+            <md number="no">\operatorname{ev}_{A,B}(\Lambda(q)\times\id_A)=q,\qquad
+              \Lambda\bigl(\operatorname{ev}_{A,B}(k\times\id_A)\bigr)=k.</md></p></li>
+          <li><p>For <m>a:A'\to A</m> and <m>b:B\to B'</m>, there is a unique arrow
+            <m>E(a,b):B^A\to(B')^{A'}</m> satisfying
+            <md number="no">\operatorname{ev}_{A',B'}(E(a,b)\times\id_{A'})
+              =b\,\operatorname{ev}_{A,B}(\id_{B^A}\times a).</md>
+            These arrows define a functor <m>E:\mathcal C^\op\times\mathcal C\to\mathcal C</m>, <m>E(A,B)=B^A</m>.</p></li>
+          <li><p>For <m>q:T\times A\to B</m>, <m>t:T'\to T</m>, and <m>a,b</m> as above, transposition satisfies
+            <md number="no">\Lambda\bigl(bq(t\times a)\bigr)
+              =E(a,b)\Lambda(q)t.</md>
+            In particular, for each fixed <m>A</m>, <m>-\times A</m> is left adjoint to <m>(-)^A</m>.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>The first equations say that the defining functions are inverse. Define <m>E(a,b)</m> by transposing the right side of its evaluation equation. Evaluating an identity or a composite of these arrows gives the corresponding identity or composite precomposition and postcomposition on product maps. Uniqueness of transposes proves the functor laws. Likewise, evaluation of <m>E(a,b)\Lambda(q)t</m> gives <m>bq(t\times a)</m>, proving the displayed naturality formula. Its cases with <m>a=\id_A</m> are exactly the two naturality conditions for the asserted adjunction.</p>
+      </proof>
+    </proposition>
+    <p>The parameter in the exponent is contravariant: a map <m>A'\to A</m> gives <m>B^A\to B^{A'}</m>. The output parameter is covariant. The evaluation equation above states their compatibility explicitly; one should not describe evaluation as an ordinary natural transformation in a single covariant copy of the exponent parameter. The opposite variance is already present in the definition of <m>E</m>.<fn>The functoriality is an instance of <xref ref="cat-c05-prop-parametrized-adjunction"/>, with <m>F(A,T)=T\times A</m>. Riehl treats these compatibilities as a two-variable adjunction in Section 4.4. Representability also assembles the right adjoints as in <xref ref="bib-cat-stacks" detail="Section 4.24, Lemma 4.24.2"/>.</fn></p>
+    <p>Applying the representing property successively gives canonical isomorphisms
+      <md number="no">B^1\cong B,\qquad 1^A\cong1,\qquad
+        (B\times D)^A\cong B^A\times D^A,\qquad
+        B^{A\times D}\cong(B^D)^A.</md>
+      For example, a map into the last object corresponds first to a map from <m>T\times A</m> into <m>B^D</m>, then to a map from <m>(T\times A)\times D</m> into <m>B</m>. Reassociation identifies this with the functor represented by <m>B^{A\times D}</m>. This proves the isomorphism naturally in the test object, including compatibility with evaluation.</p>
+    <p>The adjunction also explains preservation statements. For fixed exponent <m>A</m>, the functor <m>(-)^A</m> preserves any limits that exist, because it is a right adjoint. Product with <m>A</m> preserves existing colimits, because it is a left adjoint. These statements concern fixed parameters and existing constructions; cartesian closure itself assumes finite products but does not assert that arbitrary limits or colimits exist.</p>
+  </section>
+
+  <section xml:id="cat-c14-examples">
+    <title>Sets, orders, and an algebraic obstruction</title>
+    <p>In sets, an exponential is an actual function set. In an order, it is an implication operation. These two cases express the same universal property with very different kinds of objects and arrows.</p>
+    <example xml:id="cat-c14-example-sets-orders">
+      <title>Function sets and implication</title>
+      <p><ol>
+        <li><p>For <m>A,B\in\U</m>, let <m>B^A</m> be the set of functions <m>A\to B</m>, with <m>\operatorname{ev}(f,a)=f(a)</m>. The transpose of <m>q:T\times A\to B</m> is <m>t\mapsto[a\mapsto q(t,a)]</m>. The inverse sends <m>k:T\to B^A</m> to <m>(t,a)\mapsto k(t)(a)</m>. These formulas are mutually inverse, so <m>\Set_\U</m> is cartesian closed. Function sets stay in <m>\U</m>. In particular, <m>B^\varnothing</m> is a singleton for every <m>B</m>, while <m>\varnothing^A</m> is empty when <m>A</m> is nonempty and is a singleton when <m>A</m> is empty. The finite-set category is cartesian closed as well.</p></li>
+        <li><p>A poset has finite products exactly when it has a greatest element and binary meets. Its exponential <m>b^a</m>, when it exists, is the greatest element <m>a\Rightarrow b</m> such that
+          <md number="no">x\wedge a\le b\quad\Longleftrightarrow\quad x\le(a\Rightarrow b)</md>
+          for every <m>x</m>. Thus cartesian closure of such a poset is exactly the existence of all these relative implications.</p></li>
+        <li><p>For <m>S\in\U</m>, the powerset poset <m>\mathcal P(S)</m> has top <m>S</m>, meet given by intersection, and
+          <md number="no">A\Rightarrow B=(S\setminus A)\cup B.</md>
+          Indeed, <m>X\cap A\subseteq B</m> is equivalent to <m>X\subseteq(S\setminus A)\cup B</m>. This verifies the exponential property. It is the subset version of the predicate example in <xref ref="bib-cat-riehl" detail="Example 4.6.1"/>.</p></li>
+      </ol></p>
+    </example>
+    <p>A Heyting algebra is a bounded lattice with this implication operation. The cartesian closed poset condition itself asks only for the greatest element, binary meets, and relative implications; it does not add finite joins or a least element to the definition. The powerset example has that additional lattice structure and is Boolean, but complements are not required for the general implication property.</p>
+    <example xml:id="cat-c14-example-groups">
+      <title>Groups are not cartesian closed</title>
+      <p>The trivial group <m>1</m> is both initial and terminal in <m>\Grp_\U</m>. If <m>G^H</m> were an exponential, then
+        <md number="no">\Hom_{\Grp}(H,G)\cong
+          \Hom_{\Grp}(1\times H,G)\cong\Hom_{\Grp}(1,G^H)</md>
+        would be a singleton. Take <m>H=G=\Z</m>: its identity and zero homomorphism are distinct. Thus <m>\Z^\Z</m> does not exist as a cartesian exponential in the group category, despite the existence of finite products there.</p>
+    </example>
+    <p>The obstruction concerns the required representation by a group. The existence of a set of homomorphisms does not supply an object with the exponential property. More generally, taking <m>T=1</m> in the exponential bijection identifies global elements of <m>B^A</m> with arrows <m>A\to B</m>; the behavior of global elements in the particular category can therefore rule out exponentials.</p>
+    <p>The same argument gives a general obstruction. If the terminal object of a cartesian closed category is also initial, every Hom set is a singleton. There are then unique maps between every two objects, and their composites are the unique endomorphisms, hence the identities. Every object is isomorphic to the terminal object, so the category is equivalent to the terminal category.</p>
+  </section>
+
+  <section xml:id="cat-c14-presheaf-exponentials">
+    <title>Exponentials of presheaves</title>
+    <p>Let <m>\mathcal C</m> be <m>\U</m>-small, and let <m>\widehat{\mathcal C}=\Fun(\mathcal C^\op,\Set_\U)</m>. Products are pointwise and the terminal presheaf has singleton values. Exponentials require more than pointwise function sets, since their elements must compare values at different test objects.</p>
+    <theorem xml:id="cat-c14-thm-presheaf-exponential">
+      <statement>
+        <p>For presheaves <m>P,Q</m>, define
+          <md number="no">(Q^P)(c)=\Nat(h_c\times P,Q),\qquad h_c=\Hom_{\mathcal C}(-,c).</md>
+          For <m>a:c'\to c</m>, its restriction sends <m>\alpha</m> to
+          <m>\alpha(h_a\times\id_P)</m>. This defines a presheaf and an exponential, with evaluation
+          <md number="no">\operatorname{ev}_c(\alpha,p)=\alpha_c(\id_c,p).</md>
+          Consequently <m>\widehat{\mathcal C}</m> is cartesian closed.</p>
+      </statement>
+      <proof>
+        <p>The natural-transformation sets in the formula belong to <m>\U</m> by <xref ref="cat-functor-size-bound"/>. Precomposition with <m>h_a</m> has the stated contravariant direction and respects identities and composition. Thus <m>Q^P</m> is a presheaf with the required size.</p>
+        <p>Evaluation is natural. For <m>a:d\to c</m>, naturality of <m>\alpha:h_c\times P\Rightarrow Q</m> gives
+          <md number="no">Q(a)\bigl(\alpha_c(\id_c,p)\bigr)
+            =\alpha_d(a,P(a)(p)).</md>
+          The right side is evaluation at <m>d</m> of the restricted transformation and the restricted element <m>P(a)(p)</m>.</p>
+        <p>Given <m>\theta:R\times P\Rightarrow Q</m>, define <m>\beta:R\Rightarrow Q^P</m> by sending <m>r\in R(c)</m> to the transformation whose component at <m>d</m> is
+          <md number="no">\beta_c(r)_d(a,p)=\theta_d(R(a)(r),p),
+            \qquad a:d\to c,\quad p\in P(d).</md>
+          Naturality of <m>\theta</m> and the presheaf rules prove naturality of this transformation in <m>d</m>: restricting by <m>b:e\to d</m> gives <m>\theta_e(R(ab)(r),P(b)(p))</m> on either side. Likewise, restricting <m>r</m> along <m>u:c'\to c</m> replaces <m>a:d\to c'</m> by <m>ua</m>, exactly the arrow rule for <m>Q^P</m>. Hence <m>\beta</m> is natural in <m>c</m>.</p>
+        <p>Conversely, a transformation <m>\beta:R\Rightarrow Q^P</m> gives
+          <md number="no">\theta_c(r,p)=\beta_c(r)_c(\id_c,p).</md>
+          This is natural by evaluation. Starting with <m>\theta</m>, transposing and evaluating returns it because <m>R(\id_c)=\id_{R(c)}</m>. Starting with <m>\beta</m>, naturality along <m>a:d\to c</m> gives
+          <md number="no">\beta_d(R(a)(r))_d(\id_d,p)=\beta_c(r)_d(a,p),</md>
+          so the transpose of the evaluated transformation returns <m>\beta</m> at every component. These constructions are inverse, and evaluation gives precisely the defining exponential bijection.</p>
+      </proof>
+    </theorem>
+    <p>The formula is forced by Yoneda before its existence has been proved. If an exponential exists, its value at <m>c</m> must be
+      <md number="no">(Q^P)(c)\cong\Nat(h_c,Q^P)\cong\Nat(h_c\times P,Q).</md>
+      The proof turns this necessary formula into an actual presheaf and verifies evaluation. This is the argument of <xref ref="bib-cat-riehl" detail="Lemma 4.4.11"/>, applied to <m>\mathcal C^\op</m>. Smallness of the source ensures actual membership of the component-family sets in <m>\U</m>, rather than only an informal size comparison.</p>
+    <p>An element of this exponential at <m>c</m> therefore contains a compatible operation at every arrow into <m>c</m>. Its value at the identity yields the ordinary-looking evaluation at that stage, but the other components specify how evaluation behaves after restriction to another stage. They are the information missing from an independent function between the two values at <m>c</m>. Precomposition with a representable map transports the whole compatible family at once, which explains the restriction rule in the theorem.</p>
+    <p>For a concrete distinction from pointwise exponentiation, take <m>\mathcal C=[1]</m>. A presheaf is a function <m>P(1)\to P(0)</m>. The formula gives <m>(Q^P)(0)=\Set(P(0),Q(0))</m> and <m>(Q^P)(1)=\Nat(P,Q)</m>. If <m>P(1)=Q(1)=\varnothing</m>, <m>P(0)</m> is a singleton, and <m>Q(0)</m> has two elements, the latter transformation set has two elements, whereas <m>\Set(P(1),Q(1))</m> has one. Compatibility with all test arrows changes the exponential value.</p>
+  </section>
+
+  <section xml:id="cat-c14-pullback-adjunction">
+    <title>Pullback and the composition functor</title>
+    <p>To describe variable families, fix an object <m>B</m> and work in the slice <m>\mathcal C/B</m>. Its objects are arrows to <m>B</m>; its arrows commute with the maps to <m>B</m>. The terminal object is <m>\id_B</m>, and a binary product in the slice is a pullback over <m>B</m>. Thus a slice product requires agreement of the two base coordinates.</p>
+    <definition xml:id="cat-c14-def-base-change">
+      <title>Change of base and dependent sum</title>
+      <idx>Change of base</idx><idx>Dependent sum</idx>
+      <statement>
+        <p>Suppose <m>\mathcal C</m> has pullbacks, and let <m>f:A\to B</m>.</p>
+        <p><ol>
+          <li><p>The pullback functor <m>f^*:\mathcal C/B\to\mathcal C/A</m> sends <m>q:Y\to B</m> to the projection <m>A\times_B Y\to A</m>. On slice arrows, it uses the unique map induced between these pullbacks.</p></li>
+          <li><p>The composition functor, also called dependent sum, is
+            <md number="no">\Sigma_f:\mathcal C/A\longrightarrow\mathcal C/B,\qquad
+              (p:X\to A)\longmapsto(fp:X\to B).</md>
+            It sends each underlying arrow to itself.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <proposition xml:id="cat-c14-prop-sum-pullback">
+      <statement>
+        <p>There is an adjunction <m>\Sigma_f\dashv f^*</m>, with natural bijections
+          <md number="no">\Hom_{\mathcal C/B}(\Sigma_f p,q)
+            \cong\Hom_{\mathcal C/A}(p,f^*q).</md>
+          For composable <m>A\xrightarrow{f}B\xrightarrow{g}D</m>,
+          <m>\Sigma_{gf}=\Sigma_g\Sigma_f</m> and <m>(gf)^*\cong f^*g^*</m>, canonically.</p>
+      </statement>
+      <proof>
+        <p>A map on the left is <m>r:X\to Y</m> with <m>qr=fp</m>. The pullback property gives its unique lift <m>\langle p,r\rangle:X\to A\times_B Y</m> over <m>A</m>, and composing with the second projection recovers <m>r</m>. These operations commute with slice morphisms, proving naturality. The identity for composition is associativity in <m>\mathcal C</m>; the pullback comparison is the unique isomorphism between the iterated and direct pullbacks, preserving their projections.</p>
+      </proof>
+    </proposition>
+    <p>No sums in the ambient category were needed to define <m>\Sigma_f</m>. Its name will be explained by its action on fibers in sets. Pullback is a right adjoint here and therefore preserves existing limits. The choices of pullbacks generally give comparison isomorphisms for successive base changes, rather than equalities of the chosen objects.</p>
+    <p>When <m>f</m> is an isomorphism, <m>\Sigma_f</m> and <m>f^*</m> are inverse equivalences of slices. For a general <m>f</m>, the adjunction relates maps of families while retaining their base equations.</p>
+  </section>
+
+  <section xml:id="cat-c14-local-closure">
+    <title>Dependent products and local cartesian closure</title>
+    <p>A right adjoint to pullback answers a different question from the composition functor: it assembles all choices along one fiber into one output over the base. Its existence is additional structure.</p>
+    <definition xml:id="cat-c14-def-dependent-product">
+      <title>Dependent product and local closure</title>
+      <idx>Dependent product</idx><idx>Locally cartesian closed category</idx><idx>Exponentiable arrow</idx>
+      <statement>
+        <p>For <m>f:A\to B</m> in a category with pullbacks, a dependent-product functor is a right adjoint
+          <md number="no">f^*\dashv\Pi_f,\qquad
+            \Pi_f:\mathcal C/A\longrightarrow\mathcal C/B.</md>
+          It has natural bijections
+          <md number="no">\Hom_{\mathcal C/A}(f^*q,p)
+            \cong\Hom_{\mathcal C/B}(q,\Pi_f p).</md>
+          An arrow for which this right adjoint exists is called exponentiable. In these notes, a category is locally cartesian closed if it has finite limits and every slice <m>\mathcal C/B</m> is cartesian closed.</p>
+      </statement>
+    </definition>
+    <p>The counit <m>f^*\Pi_f p\to p</m> is dependent evaluation. A map into <m>\Pi_f p</m> corresponds to a map to <m>p</m> after pulling its domain back along <m>f</m>. Thus the represented mapping problem includes the maps to the bases; an adjunction between the underlying ambient objects alone would not express the same condition.</p>
+    <theorem xml:id="cat-c14-thm-local-closure">
+      <statement>
+        <p>For a category <m>\mathcal C</m> with pullbacks, the following are equivalent:</p>
+        <p><ol>
+          <li><p>Every slice <m>\mathcal C/B</m> is cartesian closed.</p></li>
+          <li><p>For every arrow <m>f</m>, pullback has a right adjoint <m>\Pi_f</m>.</p></li>
+        </ol></p>
+        <p>Under these conditions, <m>\Sigma_f\dashv f^*\dashv\Pi_f</m>. For objects <m>a:A\to B</m> and <m>p:Y\to B</m> in a slice, its exponential is
+          <md number="no">p^a\cong\Pi_a(a^*p).</md>
+        </p>
+      </statement>
+      <proof>
+        <p>Suppose first that all slices are cartesian closed. Fix <m>f:A\to B</m> and <m>p:X\to A</m>. Work inside <m>\mathcal D=\mathcal C/B</m>. The map <m>p</m> is an arrow in <m>\mathcal D</m> from the object <m>fp</m> to the object <m>f</m>. Exponentiating by <m>f</m> gives an arrow <m>p^f:(fp)^f\to f^f</m>. Let <m>e:1_{\mathcal D}\to f^f</m> be the transpose of <m>\id_f</m>, and define <m>\Pi_f p</m> by the pullback in <m>\mathcal D</m>
+          <md number="no">\Pi_f p=1_{\mathcal D}\times_{f^f}(fp)^f.</md>
+          Such a pullback exists: every slice has its identity object as terminal object and inherits pullbacks, hence has finite limits.</p>
+        <p>For an object <m>q:Y\to B</m>, a map <m>q\to\Pi_f p</m> is a map <m>v:q\to(fp)^f</m> with <m>p^fv=e!_q</m>. Transpose in the slice. The map <m>v</m> becomes <m>r:Y\times_B A\to X</m> over <m>B</m>, and the displayed equation becomes <m>pr=\operatorname{pr}_A</m>. This is exactly a map <m>f^*q\to p</m> over <m>A</m>, after the canonical interchange of the two pullback factors. The correspondence is natural in <m>q</m> and <m>p</m>, so it constructs the right adjoint and its arrow maps.</p>
+        <p>Conversely, suppose all dependent products exist. In <m>\mathcal C/B</m>, product with <m>a:A\to B</m> is the composite <m>\Sigma_a a^*</m>, up to its canonical product comparison. The two adjunctions
+          <m>\Sigma_a\dashv a^*</m> and <m>a^*\dashv\Pi_a</m> make this composite left adjoint to <m>\Pi_a a^*</m>. Hence every product functor in the slice has a right adjoint, with the displayed exponential formula. Its terminal object is already <m>\id_B</m>, so the slice is cartesian closed.</p>
+      </proof>
+    </theorem>
+    <p>The construction of the right adjoint can be read as imposing a section equation. In the slice over <m>B</m>, the exponential <m>(fp)^f</m> parametrizes maps from the fibers of <m>f</m> into the total fibers of <m>fp</m>. Postcomposition with <m>p</m> records their resulting self-maps of the fibers of <m>f</m>. A dependent choice must return a point over the input it was given, so this self-map must be the identity. Pulling back along the identity element of <m>f^f</m> imposes exactly that equation.</p>
+    <p>This is <xref ref="bib-cat-riehl" detail="Proposition 4.6.6"/>. No global terminal object is needed for the equivalence. If one exists, pullbacks give all finite limits and <m>\mathcal C\simeq\mathcal C/1</m> is cartesian closed. Riehl's Definition 4.6.2 uses all slices being cartesian closed as its definition of local closure without requiring that global terminal object; her Lemmas 4.6.3–4 distinguish these cases. Our terminology includes finite limits, while the theorem retains the broader pullback-only statement.</p>
+    <p>Global cartesian closure asks for exponentials in the one category <m>\mathcal C</m>. Local cartesian closure requires exponentials over every base object, with the fiber products of the slices as their products. The dependent-product criterion identifies the additional adjoints needed for these variable-base problems; the global exponential adjunction by itself supplies only the special base <m>1</m>.</p>
+    <p>For a cartesian closed poset, the relative condition can be checked directly. The slice over <m>b</m> is the principal downset of elements at most <m>b</m>. Its top is <m>b</m>, its meet is the original meet, and the exponential of <m>v</m> by <m>u</m> within this downset is
+      <md number="no">b\wedge(u\Rightarrow v).</md>
+      For a test element at most <m>b</m>, taking this meet with <m>b</m> preserves the defining implication equivalence. Thus a cartesian closed poset has cartesian closed slices, with the displayed relative exponentials.</p>
+  </section>
+
+  <section xml:id="cat-c14-set-dependent-products">
+    <title>Dependent products of sets</title>
+    <p>A map <m>p:X\to A</m> encodes the family of fibers <m>X_a=p^{-1}(a)</m>. Conversely, an <m>A</m>-indexed family gives its tagged disjoint union with projection to <m>A</m>. These operations identify the slice of sets with a category of indexed families, up to the evident natural isomorphisms.</p>
+    <proposition xml:id="cat-c14-prop-set-fibers">
+      <statement>
+        <p>For <m>f:A\to B</m> in <m>\Set_\U</m>, the slice adjunctions have the following fiber descriptions:
+          <md number="no">(\Sigma_f X)_b\cong\coprod_{a\in f^{-1}(b)}X_a,\qquad
+            (f^*Y)_a\cong Y_{f(a)},\qquad
+            (\Pi_f X)_b=\prod_{a\in f^{-1}(b)}X_a.</md>
+          A concrete total set for the last object consists of pairs <m>(b,s)</m>, where <m>s:f^{-1}(b)\to X</m> satisfies <m>p(s(a))=a</m>. It projects to <m>b</m>. A map <m>u:X\to X'</m> over <m>A</m> sends <m>(b,s)</m> to <m>(b,u\circ s)</m>.</p>
+      </statement>
+      <proof>
+        <p>The first two formulas are the fiber descriptions of composition and pullback. To prove the third adjunction, take <m>q:Y\to B</m>. A map <m>r:A\times_B Y\to X</m> over <m>A</m> assigns to each <m>y\in Y</m> a section <m>s_y</m> over <m>f^{-1}(q(y))</m>, by <m>s_y(a)=r(a,y)</m>. Send <m>y</m> to <m>(q(y),s_y)</m>. Conversely, from such a map to the dependent product, recover <m>r(a,y)=s_y(a)</m>. These assignments are inverse and commute with maps of families, proving the natural adjunction. All the sets in these constructions belong to <m>\U</m>, by its closure under small indexed products and disjoint unions.</p>
+      </proof>
+    </proposition>
+    <p>An empty fiber of <m>f</m> contributes a singleton to <m>\Pi_f X</m>, because it has exactly one empty section; it contributes an empty set to <m>\Sigma_f X</m>. If the indexing fiber is nonempty and one of the corresponding <m>X_a</m> is empty, the product fiber is empty. In particular, for <m>A=\varnothing</m>, dependent product along <m>A\to B</m> is the terminal object <m>\id_B</m> of the slice, not the empty object.</p>
+    <p>For the unique map <m>A\to1</m>, the formulas recover the indexed sum and indexed product of a family. When the family is constantly <m>B</m>, its product is the ordinary function set <m>B^A</m>. For a general base, the set of possible inputs, and the permitted outputs at each input, both vary with the base element. This explains the word dependent in the construction. These descriptions follow <xref ref="bib-cat-riehl" detail="Example 4.6.7"/>.</p>
+    <p>It follows either from the fiberwise exponential <m>(Y_a^{X_a})_{a\in A}</m>, or from the dependent-product criterion, that <m>\Set_\U</m> is locally cartesian closed. The exponential in a slice is a family of functions within corresponding fibers; it does not consist of arbitrary functions between the two total sets.</p>
+    <p>For an inclusion of a subset <m>A\subseteq B</m>, these formulas have a simple form. Pullback restricts a family on <m>B</m> to its indices in <m>A</m>. Dependent sum extends a family on <m>A</m> by empty fibers at the omitted indices, whereas dependent product extends it by singleton fibers there. The unique empty section is precisely what makes maps to the latter extension correspond to arbitrary maps on the retained indices. This example shows why the two adjoints to restriction give different answers even for an injective base map.</p>
+  </section>
+
+  <section xml:id="cat-c14-base-change">
+    <title>Composition and pullback comparison</title>
+    <p>Dependent products are compatible with changing the base. The comparison is an isomorphism for a pullback square, which ensures that the fibers being compared represent the same input data.</p>
+    <proposition xml:id="cat-c14-prop-base-change">
+      <idx>Beck–Chevalley comparison</idx>
+      <statement>
+        <p>Suppose <m>\mathcal C</m> has pullbacks. If <m>\Pi_f</m> and <m>\Pi_g</m> exist for composable <m>A\xrightarrow{f}B\xrightarrow{g}D</m>, then <m>\Pi_{gf}</m> exists and there is a canonical natural isomorphism
+          <md number="no">\Pi_{gf}\cong\Pi_g\Pi_f.</md>
+          If <m>f:A\to B</m>, <m>g:B'\to B</m>, <m>g':A'\to A</m>, and <m>f':A'\to B'</m> form a pullback square with <m>fg'=gf'</m>, and <m>\Pi_f,\Pi_{f'}</m> exist, there is a canonical natural isomorphism
+          <md number="no">g^*\Pi_f\cong\Pi_{f'}(g')^*:
+            \mathcal C/A\longrightarrow\mathcal C/B'.</md>
+        </p>
+      </statement>
+      <proof>
+        <p>Composition of adjunctions makes <m>\Pi_g\Pi_f</m> right adjoint to <m>f^*g^*</m>. The direct pullback functor <m>(gf)^*</m> is canonically isomorphic to that composite, so transporting the adjunction gives a right adjoint to <m>(gf)^*</m>. Uniqueness of right adjoints supplies the asserted canonical comparison with any chosen <m>\Pi_{gf}</m>, compatibly with the adjunction bijections.</p>
+        <p>For the square, the pullback property gives a canonical natural isomorphism
+          <m>f^*\Sigma_g\cong\Sigma_{g'}(f')^*</m>. Both sides applied to <m>q:Y\to B'</m> have underlying object canonically isomorphic to <m>A\times_B Y</m>, with its projection to <m>A</m>. Thus, for <m>p\in\mathcal C/A</m>, adjunction gives
+          <md number="no">\begin{aligned}
+            \Hom_{\mathcal C/B'}(q,g^*\Pi_f p)
+            &amp;\cong\Hom_{\mathcal C/B}(\Sigma_g q,\Pi_f p)\\
+            &amp;\cong\Hom_{\mathcal C/A}(f^*\Sigma_g q,p)\\
+            &amp;\cong\Hom_{\mathcal C/A}(\Sigma_{g'}(f')^*q,p)\\
+            &amp;\cong\Hom_{\mathcal C/A'}((f')^*q,(g')^*p)\\
+            &amp;\cong\Hom_{\mathcal C/B'}(q,\Pi_{f'}(g')^*p).
+          \end{aligned}</md>
+          The bijections are natural in <m>q</m> and <m>p</m>. Yoneda therefore gives the asserted natural isomorphism.</p>
+      </proof>
+    </proposition>
+    <p>The second comparison is the dependent-product Beck–Chevalley isomorphism; compare <xref ref="bib-cat-riehl" detail="Lemma 4.6.12"/>. Its proof uses the pullback condition on the square. Merely commuting does not make the intermediate comparison between <m>f^*\Sigma_g</m> and <m>\Sigma_{g'}(f')^*</m> an isomorphism.<fn>For any commuting square of this form, iterated pullback gives <m>(f')^*g^*\cong(g')^*f^*</m>. Under <m>(f')^*\dashv\Pi_{f'}</m> and <m>f^*\dashv\Pi_f</m>, its mate is <m>g^*\Pi_f\Rightarrow\Pi_{f'}(g')^*</m>, by <xref ref="cat-c05-def-mates"/>. The pullback hypothesis proves invertibility of this mate; the mates correspondence alone does not.</fn></p>
+    <p>These assertions need only the indicated right adjoints, not the existence of dependent products along every arrow. The composition statement can therefore construct another exponentiable arrow from two known ones. The pullback statement identifies dependent products when both relevant adjoints are present. In a locally cartesian closed category those existence conditions are automatic, so the same comparisons apply uniformly to every composable pair and every pullback square.</p>
+    <p>For sets, the composition isomorphism groups a dependent function according to its intermediate base value:
+      <md number="no">\prod_{a:gf(a)=d}X_a\cong
+        \prod_{b:g(b)=d}\ \prod_{a:f(a)=b}X_a.</md>
+      In a pullback square, the map <m>g'</m> identifies <m>(f')^{-1}(b')</m> with <m>f^{-1}(g(b'))</m>. Reindexing the factors by this bijection gives exactly the Beck–Chevalley comparison. These descriptions also account for empty fibers, without imposing any surjectivity assumption on the maps.</p>
+    <example xml:id="cat-c14-example-nonpullback">
+      <title>A commuting square without the base-change isomorphism</title>
+      <p>In sets, take <m>A=B=B'=1</m>, <m>A'=\varnothing</m>, and let <m>f</m> and <m>g</m> be identities, with the unique remaining maps. The square commutes but is not a pullback. For a two-element set over <m>A</m>, the functor <m>g^*\Pi_f</m> returns that same two-element set over the singleton base. Pulling first to <m>A'</m> gives the empty family, whose dependent product along <m>f'</m> is instead a singleton. The comparison is therefore not an isomorphism.</p>
+      <p>The indexing fiber has changed from a singleton to the empty set, even though <m>f</m> and <m>g</m> are identities.</p>
+    </example>
+  </section>
+
+  <section xml:id="cat-c14-presheaf-slices">
+    <title>Presheaf slices as families of elements</title>
+    <p>The presheaf exponential formula also applies after slicing. A slice can be described as another presheaf category, with the category of elements as its new indexing category. This explains local cartesian closure without an additional construction of exponentials over each presheaf.</p>
+    <proposition xml:id="cat-c14-prop-presheaf-slice">
+      <statement>
+        <p>For <m>\mathcal C</m> <m>\U</m>-small and <m>X\in\widehat{\mathcal C}</m>, there is an equivalence
+          <md number="no">\widehat{\mathcal C}/X\simeq
+            \Fun\bigl(\operatorname{el}(X)^\op,\Set_\U\bigr).</md>
+          In particular, <m>\widehat{\mathcal C}</m> is locally cartesian closed.</p>
+      </statement>
+      <proof>
+        <p>For <m>\alpha:E\Rightarrow X</m>, assign to <m>(c,x)\in\operatorname{el}(X)</m> the fiber
+          <md number="no">R(\alpha)(c,x)=\{e\in E(c):\alpha_c(e)=x\}.</md>
+          An arrow <m>a:(d,y)\to(c,x)</m> in the element category satisfies <m>X(a)(x)=y</m>. Restriction <m>E(a)</m> therefore gives a map from the fiber over <m>x</m> to the fiber over <m>y</m>, by naturality of <m>\alpha</m>. This defines a presheaf on <m>\operatorname{el}(X)</m>; maps over <m>X</m> restrict to maps of these fibers.</p>
+        <p>Conversely, given a presheaf <m>F</m> on <m>\operatorname{el}(X)</m>, set
+          <md number="no">E(c)=\coprod_{x\in X(c)}F(c,x).</md>
+          For <m>a:d\to c</m>, send <m>(x,z)</m> to
+          <m>(X(a)(x),F(a_x)(z))</m>, where <m>a_x:(d,X(a)(x))\to(c,x)</m> is the associated element-category arrow. The functor laws for <m>F</m> give the presheaf laws for <m>E</m>, and projection onto <m>x</m> gives <m>E\Rightarrow X</m>. Maps of presheaves induce maps of these sums. Passing from a family to its sum and back to its fibers gives the natural comparison isomorphisms, proving the equivalence.</p>
+        <p>The category <m>\operatorname{el}(X)</m> is <m>\U</m>-small by the element-category size bound. Its presheaf category is therefore cartesian closed by <xref ref="cat-c14-thm-presheaf-exponential"/>. Equivalences preserve the representing properties of products and exponentials, so the slice on the left is cartesian closed. Finally, finite limits of presheaves exist pointwise, which verifies our finite-limit convention for local closure.</p>
+      </proof>
+    </proposition>
+    <p>This is <xref ref="bib-cat-riehl" detail="Lemma 4.6.9"/>. Both directions retain the contravariant arrow action: an arrow between elements gives restriction from the target fiber to the source fiber. The indexing objects now specify an old test object together with one element of its base value. Thus the slice construction retains the same idea of a varying family that appeared for sets, with the presheaf restriction maps providing its additional compatibility.</p>
+    <p>In particular, for a representable base <m>X=h_c</m>, its category of elements is canonically isomorphic to <m>\mathcal C/c</m>. The slice of presheaves over <m>h_c</m> is therefore equivalent to presheaves on that ordinary slice category. An index now consists of a test object equipped with an arrow to <m>c</m>, and its fiber records the choices over that arrow. This makes explicit how changing from a global presheaf to one over a representable base modifies the permitted tests.</p>
+  </section>
+</chapter>

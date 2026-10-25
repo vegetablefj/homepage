@@ -2,6 +2,8 @@
 from pathlib import Path
 from copy import deepcopy
 from datetime import date
+from datetime import datetime, timezone
+import argparse
 import hashlib
 import json
 import re
@@ -9,6 +11,8 @@ import stat
 import shutil
 import subprocess
 import sys
+import time
+import uuid
 from urllib.parse import urlsplit, unquote
 
 ROOT = Path(__file__).resolve().parent
@@ -176,13 +180,15 @@ def update_banner(document):
     home_link.tail = ": "
     banner.append(current_title)
 
-def note_targets():
+def note_targets(selected=None):
     project = etree.parse(str(ROOT / "project.ptx"))
     settings_path = ROOT / "publication/note-settings.json"
     settings = json.loads(settings_path.read_text(encoding="utf-8")) if settings_path.exists() else {}
     defaults = settings.get("defaults", {})
     notes = []
     for target in project.xpath('//target[starts-with(@name, "note-")]'):
+        if selected is not None and target.get("name") not in selected:
+            continue
         source = etree.parse(str(ROOT / "source" / target.get("source")))
         source.xinclude()
         document = source.find("book") if source.find("book") is not None else source.find("article")
@@ -204,6 +210,7 @@ def note_targets():
                     "folded_proofs": knowl is not None and knowl.get("proof") == "yes"}
         notes.append({"target": target.get("name"), "directory": directory,
                       "entry": directory / (document_id + ".html"), "id": document_id,
+                      "source": ROOT / "source" / target.get("source"),
                       "macros": source_macros(source), "features": features, "footnotes": footnotes,
                       "latex_images": bool(source.xpath('//latex-image')), "metadata": metadata})
     return notes
@@ -248,6 +255,14 @@ def finish_pages(directory, is_note=False, macros=None, footnotes="margin", meta
         body = document.find("body")
         if document.get_element_by_id("ptx-content", None) is None:
             continue
+        # Native index navigation includes letters with no corresponding group.
+        # Keep those letters as plain text rather than broken fragment links.
+        index_groups = set(document.xpath('//*[contains(concat(" ", normalize-space(@class), " "), " indexletter ")]/@id'))
+        for jump in document.xpath('//*[contains(concat(" ", normalize-space(@class), " "), " indexjump ")]/a[starts-with(@href, "#indexletter-")]'):
+            if jump.get("href")[1:] not in index_groups:
+                jump.tag = "span"
+                jump.attrib.clear()
+                jump.set("class", "index-letter-empty")
         if is_note:
             # The title opens this note's entry; the byline links Home and Notes.
             title_containers = document.xpath('//*[@id="ptx-masthead"]//*[contains(concat(" ", normalize-space(@class), " "), " title-container ")]')
@@ -352,32 +367,47 @@ def verify(notes):
     pages = list(OUT.glob("*.html"))
     for note in notes:
         pages.extend(note["directory"].glob("*.html"))
-    broken, controls = [], []
+    broken, controls, documents, identifiers = [], [], {}, {}
+    site_root = OUT.resolve()
+
+    def parsed(path):
+        path = path.resolve()
+        if path not in documents:
+            documents[path] = html.document_fromstring(path.read_bytes())
+        return documents[path]
+
+    def has_fragment(path, fragment):
+        path = path.resolve()
+        if path not in identifiers:
+            identifiers[path] = set(parsed(path).xpath('//*[@id]/@id'))
+        return unquote(fragment) in identifiers[path]
+
     for path in pages:
-        document = html.document_fromstring(path.read_bytes())
+        document = parsed(path)
         note = next((note for note in notes if path.parent == note["directory"]), None)
         enhanced = note is not None and any(note["features"].values())
-        for node in document.xpath('//*[@href or @src]'):
-            value = node.get("href") or node.get("src")
-            url = urlsplit(value)
-            if url.scheme or url.netloc:
-                continue
-            target = path.parent / unquote(url.path) if url.path else path
-            if not target.exists():
-                broken.append({"page": path.relative_to(OUT).as_posix(), "target": value})
-            elif url.fragment and target.suffix == ".html":
-                target_doc = html.document_fromstring(target.read_bytes())
-                if not target_doc.xpath('//*[@id=$ref]', ref=unquote(url.fragment)):
-                    broken.append({"page": path.relative_to(OUT).as_posix(), "target": value})
-        for node in document.xpath('//*[@data-knowl]'):
-            value = node.get("data-knowl")
-            if value and not urlsplit(value).scheme and not (path.parent / urlsplit(value).path).exists():
-                broken.append({"page": path.relative_to(OUT).as_posix(), "knowl": value})
+        for node in document.xpath('//*[@href or @src or @data-knowl]'):
+            for attribute in ("href", "src", "data-knowl"):
+                value = node.get(attribute)
+                if not value:
+                    continue
+                url = urlsplit(value)
+                if url.scheme or url.netloc:
+                    continue
+                local_path = unquote(url.path)
+                if local_path.startswith('/'):
+                    target = (site_root / local_path.lstrip('/')).resolve()
+                else:
+                    target = (path.parent / local_path).resolve() if local_path else path.resolve()
+                if (not target.is_relative_to(site_root) or not target.is_file()
+                        or (url.fragment and target.suffix == ".html" and not has_fragment(target, url.fragment))):
+                    key = "knowl" if attribute == "data-knowl" else "target"
+                    broken.append({"page": path.relative_to(OUT).as_posix(), key: value})
         if document.xpath('//select | //iframe') or (not enhanced and document.xpath('//input | //details | //*[@data-knowl]')):
             controls.append(path.relative_to(OUT).as_posix())
     navigation = {}
     for path in pages:
-        document = html.document_fromstring(path.read_bytes())
+        document = parsed(path)
         body = document.find("body")
         kind = body.get("data-page-format") if body is not None else None
         if kind:
@@ -385,7 +415,7 @@ def verify(notes):
             navigation[path.relative_to(OUT).as_posix()] = {"format": kind, "reading_navigation": count > 0}
             if kind == "site" and count:
                 raise RuntimeError("Reading navigation left on ordinary page: " + path.name)
-    home = html.document_fromstring((OUT / "home.html").read_bytes())
+    home = parsed(OUT / "home.html")
     home_sections = [node.get("id") for node in home.xpath('//*[@id="home"]/section[@class="section"]')]
     expected_sections = ["home-research-interests", "home-publications", "home-preprints", "home-selected-notes"]
     if home_sections != expected_sections or len(home.xpath('//*[@id="home-profile"]')) != 1:
@@ -415,13 +445,16 @@ def check_generated_ignore_rules(generated):
     return {"git_ignore_check": "failed" if ignored else "passed", "ignored_generated_files": ignored}
 
 
-def publish_to_root():
+def publish_to_root(scopes=None, report_name="build-check.json"):
     """Synchronize generated files, preserving user files and repository data."""
     manifest_path = ROOT / ".site-files.json"
     previous = set(json.loads(manifest_path.read_text(encoding="utf-8"))) if manifest_path.exists() else set()
-    generated = {path.relative_to(OUT).as_posix() for path in OUT.rglob("*") if path.is_file()}
+    def in_scope(relative):
+        return scopes is None or any(relative == scope or relative.startswith(scope + "/") for scope in scopes)
+
+    generated = {path.relative_to(OUT).as_posix() for path in OUT.rglob("*") if path.is_file() and in_scope(path.relative_to(OUT).as_posix())}
     publishing = check_generated_ignore_rules(generated)
-    report_path = REPORTS / "build-check.json"
+    report_path = REPORTS / report_name
     report = json.loads(report_path.read_text(encoding="utf-8")) if report_path.exists() else {}
     report["publishing"] = publishing
     REPORTS.mkdir(parents=True, exist_ok=True)
@@ -447,20 +480,233 @@ def publish_to_root():
         if not target.is_file() or source.read_bytes() != target.read_bytes():
             if target.is_file():
                 target.chmod(target.stat().st_mode | stat.S_IWRITE)
-            shutil.copy2(source, target)
-    for relative in sorted(previous - generated):
+            for attempt in range(4):
+                try:
+                    shutil.copy2(source, target)
+                    break
+                except OSError as error:
+                    if getattr(error, 'winerror', None) != 1224 or attempt == 3:
+                        error.add_note(f'Updating generated file: {relative}')
+                        raise
+                    # Windows may briefly retain a mapped view of a web asset.
+                    time.sleep(0.5 * (attempt + 1))
+    for relative in sorted(relative for relative in previous - generated if in_scope(relative)):
         target = destination(relative)
         if Path(relative).parts[0] == 'pdfs':
             continue
         if target.is_file():
             target.chmod(target.stat().st_mode | stat.S_IWRITE)
             target.unlink()
-    manifest_path.write_text(json.dumps(sorted(generated), indent=2) + "\n", encoding="utf-8")
-    print("Updated the repository-root website. Existing attachments and domain settings were preserved.")
+    retained = {relative for relative in previous if not in_scope(relative)}
+    manifest_path.write_text(json.dumps(sorted(retained | generated), indent=2) + "\n", encoding="utf-8")
+    if scopes is None:
+        print("Updated the repository-root website. Existing attachments and domain settings were preserved.")
+    else:
+        print("Updated only the selected note and its redirect in the local website.")
 
 
-def main():
+def included_sources(source, seen=None):
+    """Find local XInclude dependencies without expanding or validating them."""
+    seen = set() if seen is None else seen
+    source = Path(source).resolve()
+    if source in seen:
+        return seen
+    seen.add(source)
+    try:
+        document = etree.parse(str(source), etree.XMLParser(no_network=True))
+    except (etree.XMLSyntaxError, OSError):
+        # An invalid current chapter must still be mapped to its note so that
+        # the real validator reports its error before output is replaced.
+        return seen
+    for include in document.xpath('//xi:include', namespaces={'xi': 'http://www.w3.org/2001/XInclude'}):
+        href = urlsplit(include.get('href', ''))
+        if href.scheme or href.netloc or not href.path:
+            continue
+        included = (source.parent / unquote(href.path)).resolve()
+        if include.get('parse') == 'text':
+            seen.add(included)
+        else:
+            included_sources(included, seen)
+    return seen
+
+
+def select_note(source_path=None, target_name=None):
+    project = etree.parse(str(ROOT / 'project.ptx'))
+    targets = project.xpath('//target[starts-with(@name, "note-")]')
+    by_name = {target.get('name'): target for target in targets}
+    if target_name is not None and target_name not in by_name:
+        raise ValueError('Choose a note target from: ' + ', '.join(by_name))
+    source = Path(source_path).expanduser().resolve() if source_path is not None else None
+    if source is not None:
+        if not source.is_file() or source.suffix.lower() != '.ptx' or not source.is_relative_to(ROOT.resolve()):
+            raise ValueError('Open an existing PTX chapter inside this project before rebuilding the current note.')
+        candidates = []
+        for target in targets:
+            entry = (ROOT / 'source' / target.get('source')).resolve()
+            publication = (ROOT / 'publication' / target.get('publication')).resolve()
+            if source == publication or source in included_sources(entry):
+                candidates.append(target.get('name'))
+            elif source.is_relative_to(entry.parent):
+                try:
+                    etree.parse(str(entry), etree.XMLParser(no_network=True))
+                except etree.XMLSyntaxError:
+                    # An unreadable root cannot reveal its dependencies. Map
+                    # its folder only so strict validation reports the broken
+                    # root; a valid root never treats an orphan draft as input.
+                    candidates.append(target.get('name'))
+        if target_name is not None:
+            if target_name not in candidates:
+                raise ValueError('The selected file does not belong to ' + target_name)
+        elif len(candidates) == 1:
+            target_name = candidates[0]
+        elif len(candidates) > 1:
+            raise ValueError('This source is shared by several notes. Choose --target explicitly or run the full rebuild.')
+        else:
+            raise ValueError('This file is not part of an independent note. Use the full-site rebuild for homepage or shared-template changes.')
+    return target_name, source
+
+
+def verify_note(note):
+    """Check the new note against its stage and the existing local website."""
+    directory = note['directory'].resolve()
+    pages = list(directory.glob('*.html')) + [OUT / (note['id'] + '.html')]
+    broken, controls, documents = [], [], {}
+
+    def parsed(path):
+        path = path.resolve()
+        if path not in documents:
+            documents[path] = html.document_fromstring(path.read_bytes())
+        return documents[path]
+
+    def is_local_note_redirect(document, page):
+        if document.get_element_by_id('ptx-content', None) is not None:
+            return False
+        redirects = document.xpath('//meta[translate(@http-equiv, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz")="refresh"]/@content')
+        if len(redirects) != 1:
+            return False
+        match = re.fullmatch(r'\s*\d+(?:\.\d+)?\s*;\s*url\s*=\s*(.*?)\s*', redirects[0], re.IGNORECASE)
+        if match is None:
+            return False
+        url = urlsplit(match.group(1).strip('\'"'))
+        if url.scheme or url.netloc or not url.path:
+            return False
+        target = (page.parent / unquote(url.path)).resolve()
+        if not target.is_relative_to(directory) or not target.is_file():
+            return False
+        destination = parsed(target)
+        body = destination.find('body')
+        return (body is not None and body.get('data-page-format') == 'note'
+                and (not url.fragment or bool(destination.xpath('//*[@id=$ref]', ref=unquote(url.fragment)))))
+
+    for page in pages:
+        document = parsed(page)
+        for node in document.xpath('//*[@href or @src or @data-knowl]'):
+            for attribute in ('href', 'src', 'data-knowl'):
+                value = node.get(attribute)
+                if not value:
+                    continue
+                url = urlsplit(value)
+                if url.scheme or url.netloc:
+                    continue
+                if url.path.startswith('/'):
+                    target = (OUT / unquote(url.path).lstrip('/')).resolve()
+                else:
+                    target = (page.parent / unquote(url.path)).resolve() if url.path else page.resolve()
+                if not target.is_relative_to(OUT.resolve()):
+                    broken.append({'page': page.relative_to(OUT).as_posix(), 'target': value})
+                    continue
+                # References into other notes or shared resources must be
+                # checked against the files that are actually being served.
+                if not target.is_relative_to(directory) and target != page.resolve():
+                    target = ROOT / target.relative_to(OUT.resolve())
+                if not target.is_file():
+                    broken.append({'page': page.relative_to(OUT).as_posix(), 'target': value})
+                elif url.fragment and target.suffix == '.html' and not parsed(target).xpath('//*[@id=$ref]', ref=unquote(url.fragment)):
+                    broken.append({'page': page.relative_to(OUT).as_posix(), 'target': value})
+        if document.xpath('//select | //iframe'):
+            controls.append(page.relative_to(OUT).as_posix())
+        if page.parent == directory and not is_local_note_redirect(document, page):
+            body = document.find('body')
+            if body is None or body.get('data-page-format') != 'note':
+                raise RuntimeError('Note postprocessing did not finish: ' + page.name)
+    report = {'target': note['target'], 'entry': note['entry'].relative_to(OUT).as_posix(),
+              'features': note['features'], 'footnotes': note['footnotes'],
+              'pages_checked': len(pages), 'broken_links': broken, 'unexpected_optional_controls': controls}
+    REPORTS.mkdir(parents=True, exist_ok=True)
+    (REPORTS / 'note-build-check.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
+    if broken or controls:
+        raise RuntimeError(json.dumps(report, indent=2))
+    print('Selected note postprocessing and local links: passed.')
+
+
+def editor_page_url(note, source):
+    destination = note['entry']
+    fragment = ''
+    if source is not None:
+        try:
+            document = etree.parse(str(source), etree.XMLParser(no_network=True))
+        except (etree.XMLSyntaxError, OSError):
+            # The editor may have changed again while the completed build was
+            # running. The successfully generated note still has a valid entry.
+            return '/' + destination.relative_to(OUT).as_posix()
+        identifiers = document.xpath('/*/@xml:id | /*/book/@xml:id | /*/article/@xml:id',
+                                     namespaces={'xml': 'http://www.w3.org/XML/1998/namespace'})
+        if identifiers:
+            identifier = identifiers[0]
+            for page in note['directory'].glob('*.html'):
+                rendered = html.document_fromstring(page.read_bytes())
+                anchors = rendered.xpath('//*[@id=$ref]', ref=identifier)
+                if anchors:
+                    destination = page
+                    if not rendered.xpath('//*[@id="ptx-content"]/*[@id=$ref]', ref=identifier):
+                        fragment = '#' + identifier
+                    break
+    return '/' + destination.relative_to(OUT).as_posix() + fragment
+
+
+def write_editor_preview(note, source):
+    prefix = '/' + note['directory'].relative_to(OUT).as_posix() + '/'
+    report = {'revision': uuid.uuid4().hex, 'target': note['target'],
+              'url': editor_page_url(note, source), 'note_prefix': prefix,
+              'source': str(source or note['source']),
+              'built_at': datetime.now(timezone.utc).isoformat()}
+    path = REPORTS / 'editor-preview.json'
+    pending = path.with_suffix('.json.tmp')
+    pending.write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
+    pending.replace(path)
+    print('Local preview ready: ' + report['url'])
+
+
+def build_note(target, source=None):
+    # Validate only the selected assembled note, retaining the exact same
+    # pinned schema and fail-closed behavior used by the full-site build.
+    subprocess.run([sys.executable, '-X', 'utf8', str(ROOT / 'tools/validate_sources.py'), target], cwd=ROOT, check=True)
+    note = note_targets({target})[0]
+    directory = note['directory'].resolve()
+    notes_area = (OUT / 'notes').resolve()
+    if not directory.is_relative_to(notes_area) or directory == notes_area:
+        raise RuntimeError('Unexpected note build directory')
+    if not (ROOT / 'home.html').is_file() or not (ROOT / 'layout.js').is_file():
+        raise RuntimeError('Build the full website once before using the current-note shortcut.')
+    if directory.exists():
+        remove_generated_tree(directory)
+    OUT.mkdir(parents=True, exist_ok=True)
+    if note['latex_images']:
+        subprocess.run([sys.executable, '-X', 'utf8', str(ROOT / 'tools/pretext_cli.py'), 'generate', 'latex-image', '-t', target, '--only-changed'], cwd=ROOT, check=True)
+    subprocess.run([sys.executable, '-X', 'utf8', str(ROOT / 'tools/pretext_cli.py'), 'build', target, '--no-generate'], cwd=ROOT, check=True)
+    finish_pages(note['directory'], is_note=True, macros=note['macros'], footnotes=note['footnotes'], metadata=note['metadata'])
+    write_note_redirects([note])
+    verify_note(note)
+    scopes = [note['directory'].relative_to(OUT).as_posix(), note['id'] + '.html']
+    publish_to_root(scopes=scopes, report_name='note-build-check.json')
+    write_editor_preview(note, source)
+
+
+def build_all():
     notes = note_targets()
+    # A failed or unavailable schema validator must stop before replacing output.
+    subprocess.run([sys.executable, '-X', 'utf8', str(ROOT / 'tools/validate_sources.py')],
+                   cwd=ROOT, check=True)
     if OUT.resolve() != (ROOT / ".build/site").resolve() or not OUT.resolve().is_relative_to(ROOT.resolve()):
         raise RuntimeError("Unexpected build output directory")
     if OUT.exists():
@@ -477,11 +723,19 @@ def main():
     write_note_redirects(notes)
     verify(notes)
     publish_to_root()
+
+
+def tidy_build_files():
     scratch = ROOT / '.build/tmp'
     if scratch.exists():
         for directory in scratch.iterdir():
             if directory.is_dir() and directory.name.startswith(('ptx-', 'ptxcli_')):
-                remove_generated_tree(directory)
+                try:
+                    remove_generated_tree(directory)
+                except PermissionError as error:
+                    if getattr(error, 'winerror', None) not in (32, 33):
+                        raise
+                    print(f'Retained temporary build directory while a file is in use: {directory.name}')
     native_logs = ROOT / 'logs'
     if native_logs.exists():
         stored_logs = ROOT / '.build/logs'
@@ -491,6 +745,22 @@ def main():
                 shutil.move(str(logfile), str(stored_logs / logfile.name))
         if not any(native_logs.iterdir()):
             native_logs.rmdir()
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--source', help='PTX file currently being edited; rebuild only its independent note')
+    parser.add_argument('--target', help='Rebuild only one note target from project.ptx')
+    arguments = parser.parse_args()
+    if arguments.source is not None or arguments.target is not None:
+        try:
+            target, source = select_note(arguments.source, arguments.target)
+        except ValueError as error:
+            parser.error(str(error))
+        build_note(target, source)
+    else:
+        build_all()
+    tidy_build_files()
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,79 @@
+<appendix xml:id="ha-exact">
+  <title>Exact and quasi-abelian categories</title>
+  <introduction>
+    <p>Some additive categories have a useful class of short exact sequences without being abelian. An exact structure specifies which sequences may be used in extension and resolution arguments. A quasi-abelian category has kernels and cokernels and supplies such a structure through strict morphisms. We record these definitions and their relation, using finite filtered vector spaces to distinguish categorical monomorphisms from admissible ones.</p>
+    <p>The main sources are <xref ref="bib-ha-buehler" detail="Section 2"/> and <xref ref="bib-ha-schneiders" detail="Section 1.1"/>. No general theory of derived categories of exact or quasi-abelian categories is assumed here.</p>
+  </introduction>
+  <section xml:id="ha-exact-structures">
+    <title>A chosen class of exact sequences</title>
+    <definition xml:id="ha-exact-definition">
+      <title>Exact structures and admissible morphisms</title><idx>Exact category</idx><idx>Conflation</idx><idx>Admissible monomorphism</idx><idx>Admissible epimorphism</idx><idx>Inflation</idx><idx>Deflation</idx>
+      <statement><p>Let <m>\mathcal E</m> be additive. A kernel–cokernel pair is a pair <m>A\xrightarrow{i}B\xrightarrow{p}C</m> with <m>i=\ker p</m> and <m>p=\coker i</m>, in the sense of their universal properties. An exact structure is a class of these pairs, closed under isomorphism, satisfying:
+        <ol>
+          <li><p>The identity of zero is admissible both as an epimorphism and as a monomorphism.</p></li>
+          <li><p>Composites of admissible monomorphisms are admissible monomorphisms, and composites of admissible epimorphisms are admissible epimorphisms.</p></li>
+          <li><p>The pullback of an admissible epimorphism along any morphism exists and is an admissible epimorphism.</p></li>
+          <li><p>The pushout of an admissible monomorphism along any morphism exists and is an admissible monomorphism.</p></li>
+        </ol>
+        Here a morphism is an admissible monomorphism, or <em>inflation</em>, if it is the first map of a chosen pair, and an admissible epimorphism, or <em>deflation</em>, if it is the second. A chosen pair, written <m>0\to A\to B\to C\to0</m>, is a <em>conflation</em>. The category together with this structure is an exact category.</p></statement>
+    </definition>
+    <p>The zeros in a conflation record its two universal properties. They do not assert that all morphisms in <m>\mathcal E</m> have kernels or cokernels. Even an existing kernel need not be admissible for the chosen structure. This is why an exact category consists of the additive category and the selected class of pairs.<fn>This version of Quillen's axioms is equivalent to the symmetric formulation in <xref ref="bib-ha-buehler" detail="Definition 2.1"/>. Reducing the identity axioms to the zero object is justified in his Remark 2.4.</fn></p>
+    <proposition xml:id="ha-exact-basic">
+      <statement><p>Every split short exact sequence is a conflation in any exact structure. Finite direct sums of conflations are conflations. An additive functor between exact categories is called exact if it takes conflations to conflations.</p></statement>
+      <proof><p>Pulling back the admissible identity of zero gives admissible identities on arbitrary objects. Their kernel pairs show that <m>0\to B</m> is admissible. Pushing this map out along <m>0\to A</m> gives the split sequence <m>0\to A\to A\oplus B\to B\to0</m>. The pushout and pullback axioms applied to the two summands, followed by composition of admissible maps, give finite direct sums of conflations. See <xref ref="bib-ha-buehler" detail="Section 2"/> for these elementary consequences.</p></proof>
+    </proposition>
+    <example xml:id="ha-exact-examples">
+      <p>Every additive category has the split exact structure, whose conflations are precisely the split short exact sequences. An abelian category has the exact structure consisting of all its short exact sequences. The same abelian category can therefore carry two different exact structures.</p>
+      <p>More generally, let <m>\mathcal E</m> be a full additive, extension-closed subcategory of an abelian category <m>\mathcal A</m>. The short exact sequences of <m>\mathcal A</m> with all three terms in <m>\mathcal E</m> give an exact structure on <m>\mathcal E</m>. For example, the pushout of an inflation has the same quotient and a new left term; extension-closure keeps its middle term in <m>\mathcal E</m>. The pullback argument is dual. Kernels or cokernels of arbitrary morphisms need not stay in <m>\mathcal E</m>.</p>
+    </example>
+    <p>Projectivity and injectivity in an exact category are relative to the chosen structure: projectives lift along deflations, and injectives extend along inflations. In the split exact structure every object is both projective and injective. Thus these words cannot be interpreted using all ambient epimorphisms or monomorphisms unless that is the specified exact structure.</p>
+    <p>The same distinction applies to acyclic complexes. An acyclic complex in an exact category has factorizations <m>d^n=i^{n+1}p^n</m> and conflations <m>0\to Z^n\xrightarrow{i^n}X^n\xrightarrow{p^n}Z^{n+1}\to0</m> for every <m>n</m>. In an abelian category with its usual exact structure, these are the usual cycle factorizations. A complex that is acyclic in a larger abelian category need not have its cycle objects or these conflations in the selected exact category. Resolution arguments must check this extra condition before being transferred.</p>
+  </section>
+  <section xml:id="ha-exact-strictness">
+    <title>Preabelian categories and strict morphisms</title>
+    <definition xml:id="ha-exact-preabelian">
+      <title>Preabelian categories, image, and coimage</title><idx>Preabelian category</idx><idx>Strict morphism</idx>
+      <statement><p>An additive category is preabelian if every morphism has a kernel and a cokernel. For <m>f:A\to B</m>, define
+        <md number="no">\operatorname{coim}f=\coker(\ker f\to A),\qquad \im f=\ker(B\to\coker f).</md>
+        The morphism factors canonically as <m>A\to\operatorname{coim}f\xrightarrow{\overline f}\im f\to B</m>. It is strict if <m>\overline f</m> is an isomorphism. A strict monomorphism or strict epimorphism is a morphism with both stated properties.</p></statement>
+    </definition>
+    <p>All morphisms of an abelian category are strict. Conversely, a preabelian category in which all morphisms are strict is abelian. The strictness condition therefore isolates the image–coimage property used throughout the abelian theory. The factorization itself exists before strictness is imposed.</p>
+    <proposition xml:id="ha-exact-kernel-strictness">
+      <statement><p>In a preabelian category, a monomorphism is strict if and only if it is a kernel of its cokernel; an epimorphism is strict if and only if it is a cokernel of its kernel. Every kernel is a strict monomorphism and every cokernel is a strict epimorphism.</p></statement>
+      <proof><p>For a monomorphism the coimage is its source, so strictness is exactly identification with the kernel of its cokernel. If <m>i=\ker f</m> and <m>q=\coker i</m>, then <m>f</m> factors through <m>q</m>. Consequently the kernel of <m>q</m> factors through <m>i</m>, and <m>i</m> factors through that kernel because <m>qi=0</m>. The two kernel universal properties make these factorizations inverse. The epimorphism assertions are dual.</p></proof>
+    </proposition>
+    <p>Every preabelian category has pullbacks and pushouts: they can be constructed as a kernel in a biproduct and a cokernel of a map into a biproduct. However, the existence of these finite limits and colimits does not say that strict epimorphisms or strict monomorphisms are preserved by them.</p>
+  </section>
+  <section xml:id="ha-exact-quasi-abelian">
+    <title>The canonical exact structure</title>
+    <definition xml:id="ha-exact-quasi-definition">
+      <title>Quasi-abelian categories</title><idx>Quasi-abelian category</idx><idx>Strict short exact sequence</idx>
+      <statement><p>A preabelian category is quasi-abelian if every pullback of a strict epimorphism is a strict epimorphism, and every pushout of a strict monomorphism is a strict monomorphism. A strict short exact sequence is a kernel–cokernel pair, written <m>0\to A\to B\to C\to0</m>.</p></statement>
+    </definition>
+    <proposition xml:id="ha-exact-canonical-structure">
+      <statement><p>The strict short exact sequences in a quasi-abelian category form an exact structure. Its inflations are precisely the strict monomorphisms, and its deflations are precisely the strict epimorphisms.</p></statement>
+      <proof><p>The preceding proposition identifies the two maps of a kernel–cokernel pair with strict monomorphisms and strict epimorphisms, and supplies the partner of each such map. The two base-change axioms are the quasi-abelian axioms. Strict monomorphisms and strict epimorphisms are closed under composition by <xref ref="bib-ha-schneiders" detail="Proposition 1.1.7"/>. Identities and the zero sequence supply the zero axioms. This verifies the exact-category axioms; compare <xref ref="bib-ha-schneiders" detail="Remark 1.1.11"/>.</p></proof>
+    </proposition>
+    <p>This canonical structure uses all kernel–cokernel pairs of the category. An arbitrary preabelian category need not satisfy the required stability axioms for those pairs. A quasi-abelian category may also be equipped with the smaller split exact structure, so the intended structure should still be stated when necessary.</p>
+    <p>Exactness of a functor for the canonical structures means preservation of strict short exact sequences. It does not automatically mean preservation of every kernel and cokernel. Schneiders distinguishes this from stronger exactness conditions; see <xref ref="bib-ha-schneiders" detail="Section 1.1.5"/>.<fn>Outside abelian categories, “left exact” can mean preservation of all finite limits or preservation of an appropriate class of strict exact sequences. These are different requirements. We specify the preserved sequences when using such a functor.</fn></p>
+  </section>
+  <section xml:id="ha-exact-filtered-example">
+    <title>Finite filtered vector spaces</title>
+    <p>Fix a field <m>k</m>. Consider finite-dimensional vector spaces <m>V</m> with increasing filtrations <m>F_pV</m> that are zero for sufficiently small <m>p</m> and equal <m>V</m> for sufficiently large <m>p</m>. Morphisms preserve every filtration step. This increasing convention is convenient for the example; it is converted to the decreasing convention of <xref ref="ha-c07"/> by <m>F^pV=F_{-p}V</m>.</p>
+    <proposition xml:id="ha-exact-filtered-calculus">
+      <statement><p>This category is quasi-abelian. For a filtered map <m>f:V\to W</m>, its kernel has the induced filtration on <m>\ker f</m>, and its cokernel has the quotient filtration on <m>W/fV</m>. Its coimage and image have underlying vector space <m>fV</m>, with filtrations <m>f(F_pV)</m> and <m>fV\cap F_pW</m>, respectively. Therefore
+        <md number="no">f\text{ is strict}\quad\Longleftrightarrow\quad f(F_pV)=fV\cap F_pW\quad\text{for all }p.</md>
+        A strict short exact sequence is precisely a short exact sequence of underlying vector spaces that is exact on every filtration step.</p></statement>
+      <proof><p>The induced and quotient filtrations have the kernel and cokernel universal properties, which gives the displayed coimage and image filtrations. A strict epimorphism is surjective on every filtration step. Given such an epimorphism <m>V\to W</m> and <m>W'\to W</m>, form their ordinary pullback with its induced filtration in <m>V\oplus W'</m>. An element in <m>F_pW'</m> lifts using surjectivity of <m>F_pV\to F_pW</m>; thus the pullback map is again surjective on every step. Dually, quotient filtrations on the ordinary pushout preserve strict monomorphisms. These verify the quasi-abelian axioms. The criterion for a strict short exact sequence follows from the kernel and quotient filtrations.</p></proof>
+    </proposition>
+    <p>Let <m>k(a)</m> be the one-dimensional vector space with <m>F_pk(a)=0</m> for <m>p&lt;a</m> and <m>F_pk(a)=k</m> for <m>p\geq a</m>. The identity of underlying vector spaces gives a filtered map <m>k(1)\to k(0)</m>. It is both a categorical monomorphism and a categorical epimorphism, but it is not an isomorphism: its inverse does not preserve filtration step zero. Its coimage is <m>k(1)</m> and its image is <m>k(0)</m>, so it is not strict. In particular this preabelian category is not abelian.</p>
+    <definition xml:id="ha-exact-strict-length">
+      <title>Chain conditions for strict subobjects</title><idx>Strict subobject</idx><idx>Finite length, quasi-abelian</idx>
+      <statement><p>In a quasi-abelian category with its canonical exact structure, a strict subobject is represented by a strict monomorphism. An object is strictly noetherian or strictly artinian if its increasing or decreasing chains of strict subobjects stabilize, respectively. We say it has finite strict length if it satisfies both conditions.</p></statement>
+    </definition>
+    <p>A proper strict subobject of a finite filtered vector space has smaller underlying dimension: a strict map with bijective underlying linear map has a filtered inverse. Thus these objects have finite strict length, bounded by their dimensions. In contrast,
+      <md number="no">\cdots\longrightarrow k(3)\longrightarrow k(2)\longrightarrow k(1)\longrightarrow k(0)</md>
+      is a nonstabilizing chain of categorical subobjects of <m>k(0)</m>, with every underlying map the identity. Its maps are not strict. Chain conditions on all categorical monomorphisms would give a different assertion.<fn>Sources often say simply “finite length” here, with strict subobjects understood. The abelian Jordan–Hölder statement in <xref ref="ha-c01"/> concerns all subobjects, since they are strict in an abelian category; it must not be transferred to an arbitrary exact structure without a separate theorem.</fn></p>
+    <p>The filtered example explains the scope of the generalization. Kernels, cokernels, and an image factorization remain available, but only the strict maps give the exact sequences stable under the required changes of base. This supplies enough structure to formulate extensions and admissible resolutions while preserving the distinction from abelian homological algebra.</p>
+  </section>
+</appendix>

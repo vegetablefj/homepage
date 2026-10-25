@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-darkmode="disabled">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette: blue-red                     *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Localizations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Notes on 1-category theory">
+<meta property="og:title" content="Notes on 1-category theory">
+<meta property="book:title" content="Notes on 1-category theory">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.53"></script><script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="../../vendor/lunr/lunr.min.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+<link rel="stylesheet" href="../../layout.css?v=fee08a8c1c">
+<script src="../../layout.js?v=e9391a21a7" defer></script><link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"C": "\\mathbb{C}", "Pone": "\\mathbb{P}^1_{\\mathbb{C}}", "cO": "\\mathcal{O}", "ord": "\\operatorname{ord}", "lt": "<", "gt": ">", "amp": "&", "Ob": "\\operatorname{Ob}", "Ar": "\\operatorname{Ar}", "Hom": "\\operatorname{Hom}", "Fun": "\\operatorname{Fun}", "Nat": "\\operatorname{Nat}", "End": "\\operatorname{End}", "Aut": "\\operatorname{Aut}", "Iso": "\\operatorname{Iso}", "Set": "\\mathsf{Set}", "Mon": "\\mathsf{Mon}", "Grp": "\\mathsf{Grp}", "Ring": "\\mathsf{Ring}", "CRing": "\\mathsf{CRing}", "Cat": "\\mathsf{Cat}", "id": "\\mathrm{id}", "op": "\\mathrm{op}", "N": "\\mathbb{N}", "Z": "\\mathbb{Z}", "Q": "\\mathbb{Q}", "U": "\\mathcal{U}", "V": "\\mathcal{V}"}}, "options": {"ignoreHtmlClass": "ignore-math", "processHtmlClass": "process-math", "enableMenu": false}};</script><script src="../../vendor/mathjax/tex-chtml.js" defer></script>
+</head>
+<body class="pretext book ignore-math note-page" data-page-format="note">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner"><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="category-theory-notes.html"><span class="title">Notes on 1-category theory</span></a></div>
+<p class="byline"><a href="../../home.html">Jie Fu</a>'s <a href="../../notes.html">Notes</a></p>
+<p class="note-metadata"><span class="note-review-status">Under review and improvement</span> · <span class="note-last-updated">Last updated: <time datetime="2026-10-24">2026-10-24</time></span></p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Contents</span></button><a class="index-button button" href="cat-index.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Index</span></a><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true"></span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="treebuttons"><a class="previous-button button" href="cat-monads.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="up-button button" href="category-theory-notes.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Up</span></a><a class="next-button button" href="cat-idempotents.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a></span>
+</div></nav><div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth4 focused" data-preexpanded-levels="1" data-max-levels="4"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-conventions.html" class="internal"><span class="codenumber">0</span> <span class="title">Conventions and foundations</span></a></div>
+<ul id="ptx-toc-group-cat-conventions" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-conventions.html#cat-conventions-language" class="internal"><span class="codenumber">0.1</span> <span class="title">Language and notation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-conventions.html#cat-universes" class="internal"><span class="codenumber">0.2</span> <span class="title">The ambient sets</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-conventions.html#cat-conventions-size" class="internal"><span class="codenumber">0.3</span> <span class="title">Small, locally small, and essentially small</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-conventions.html#cat-conventions-standard-categories" class="internal"><span class="codenumber">0.4</span> <span class="title">Categories of algebraic objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-conventions.html#cat-conventions-functor-size" class="internal"><span class="codenumber">0.5</span> <span class="title">Size of functors and natural transformations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-conventions.html#cat-conventions-choice-sources" class="internal"><span class="codenumber">0.6</span> <span class="title">Choices and comparisons with sources</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-language.html" class="internal"><span class="codenumber">1</span> <span class="title">Categories, functors, and natural transformations</span></a></div>
+<ul id="ptx-toc-group-cat-language" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-category-data" class="internal"><span class="codenumber">1.1</span> <span class="title">Objects, arrows, and composition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-isomorphisms-cancellation" class="internal"><span class="codenumber">1.2</span> <span class="title">Isomorphisms, retracts, and cancellation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-opposites-subcategories" class="internal"><span class="codenumber">1.3</span> <span class="title">Opposites and subcategories</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-functors" class="internal"><span class="codenumber">1.4</span> <span class="title">Functors and what they detect</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-natural-transformations" class="internal"><span class="codenumber">1.5</span> <span class="title">Natural transformations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-transformation-calculus" class="internal"><span class="codenumber">1.6</span> <span class="title">Composition and changing the source or target</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-functor-categories" class="internal"><span class="codenumber">1.7</span> <span class="title">Functor categories and natural isomorphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-language.html#cat-equivalences" class="internal"><span class="codenumber">1.8</span> <span class="title">Equivalence and the choice of representatives</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-constructions.html" class="internal"><span class="codenumber">2</span> <span class="title">Constructions and universal properties</span></a></div>
+<ul id="ptx-toc-group-cat-constructions" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-constructions.html#cat-c02-products-coproducts" class="internal"><span class="codenumber">2.1</span> <span class="title">Products and coproducts of categories</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-constructions.html#cat-c02-initial-terminal" class="internal"><span class="codenumber">2.2</span> <span class="title">Initial and terminal objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-constructions.html#cat-c02-arrows-slices" class="internal"><span class="codenumber">2.3</span> <span class="title">Arrows, slices, and coslices</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-constructions.html#cat-c02-comma" class="internal"><span class="codenumber">2.4</span> <span class="title">Comma categories and compatible data</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-constructions.html#cat-c02-induced-functors" class="internal"><span class="codenumber">2.5</span> <span class="title">Induced functors and their directions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-constructions.html#cat-c02-universal-arrows" class="internal"><span class="codenumber">2.6</span> <span class="title">Universal arrows and structural uniqueness</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="cat-constructions.html#cat-c02-universal-examples" class="internal"><span class="codenumber">2.7</span> <span class="title">Elementary universal specifications</span></a></div>
+<ul id="ptx-toc-group-cat-c02-universal-examples" class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cat-constructions.html#cat-c02-pairing-functions" class="internal"><span class="codenumber">2.7.1</span> <span class="title">A pair of maps and its common source</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cat-constructions.html#cat-c02-free-monoids" class="internal"><span class="codenumber">2.7.2</span> <span class="title">Words and the free monoid</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cat-constructions.html#cat-c02-quotient-groups" class="internal"><span class="codenumber">2.7.3</span> <span class="title">Quotients with a prescribed relation</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="cat-constructions.html#cat-c02-order-approximations" class="internal"><span class="codenumber">2.7.4</span> <span class="title">Least and greatest approximations</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-yoneda.html" class="internal"><span class="codenumber">3</span> <span class="title">Representability and the Yoneda lemma</span></a></div>
+<ul id="ptx-toc-group-cat-yoneda" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-yoneda.html#cat-c03-hom-functors" class="internal"><span class="codenumber">3.1</span> <span class="title">Hom functors and presheaves</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-yoneda.html#cat-c03-yoneda-lemma" class="internal"><span class="codenumber">3.2</span> <span class="title">Evaluation at the identity</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-yoneda.html#cat-c03-embedding-elements" class="internal"><span class="codenumber">3.3</span> <span class="title">The embedding and generalized elements</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-yoneda.html#cat-c03-representations" class="internal"><span class="codenumber">3.4</span> <span class="title">Representations and universal elements</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-yoneda.html#cat-c03-elements-categories" class="internal"><span class="codenumber">3.5</span> <span class="title">Categories of elements</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-yoneda.html#cat-c03-uniqueness-functoriality" class="internal"><span class="codenumber">3.6</span> <span class="title">Uniqueness and maps between representations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-yoneda.html#cat-c03-examples" class="internal"><span class="codenumber">3.7</span> <span class="title">Powers, algebra, and universal arrows</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-yoneda.html#cat-c03-obstructions" class="internal"><span class="codenumber">3.8</span> <span class="title">Obstructions and the role of naturality</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-limits.html" class="internal"><span class="codenumber">4</span> <span class="title">Limits and colimits</span></a></div>
+<ul id="ptx-toc-group-cat-limits" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-limits.html#cat-c04-cones" class="internal"><span class="codenumber">4.1</span> <span class="title">Cones, cocones, and their universal objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-limits.html#cat-c04-hom-formulas" class="internal"><span class="codenumber">4.2</span> <span class="title">The representing functors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-limits.html#cat-c04-basic-shapes" class="internal"><span class="codenumber">4.3</span> <span class="title">The basic shapes, including the empty shape</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-limits.html#cat-c04-existence-constructions" class="internal"><span class="codenumber">4.4</span> <span class="title">Building limits from products and equations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-limits.html#cat-c04-set-models" class="internal"><span class="codenumber">4.5</span> <span class="title">Compatible tuples and generated identifications in sets</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-limits.html#cat-c04-examples" class="internal"><span class="codenumber">4.6</span> <span class="title">Orders, actions, and algebraic structure</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-limits.html#cat-c04-functoriality" class="internal"><span class="codenumber">4.7</span> <span class="title">Maps between diagrams and choices of limits</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-limits.html#cat-c04-pointwise" class="internal"><span class="codenumber">4.8</span> <span class="title">Limits and colimits of functors are pointwise</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-limits.html#cat-c04-preservation" class="internal"><span class="codenumber">4.9</span> <span class="title">Preservation, reflection, and comparison maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-limits.html#cat-c04-commuting-limits" class="internal"><span class="codenumber">4.10</span> <span class="title">Iterated limits and simultaneous compatibility</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-adjunctions.html" class="internal"><span class="codenumber">5</span> <span class="title">Adjunctions and existence theorems</span></a></div>
+<ul id="ptx-toc-group-cat-adjunctions" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-hom-correspondence" class="internal"><span class="codenumber">5.1</span> <span class="title">The natural mapping correspondence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-unit-counit" class="internal"><span class="codenumber">5.2</span> <span class="title">The unit, the counit, and the triangle identities</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-universal-arrows" class="internal"><span class="codenumber">5.3</span> <span class="title">Constructing the adjoint object by object</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-order-examples" class="internal"><span class="codenumber">5.4</span> <span class="title">Order adjunctions and quantification</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-calculus" class="internal"><span class="codenumber">5.5</span> <span class="title">Uniqueness and composition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-mates" class="internal"><span class="codenumber">5.6</span> <span class="title">Mates of natural transformations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-parameters" class="internal"><span class="codenumber">5.7</span> <span class="title">Adjunctions with a parameter</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-full-faithful" class="internal"><span class="codenumber">5.8</span> <span class="title">Fully faithful adjoints and reflective subcategories</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-limits" class="internal"><span class="codenumber">5.9</span> <span class="title">Preservation of limits and colimits</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-weak-initial" class="internal"><span class="codenumber">5.10</span> <span class="title">From a family of candidates to an initial object</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-existence" class="internal"><span class="codenumber">5.11</span> <span class="title">The general adjoint functor theorem</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-subobjects-generators" class="internal"><span class="codenumber">5.12</span> <span class="title">Subobjects and families that distinguish maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-special-initial" class="internal"><span class="codenumber">5.13</span> <span class="title">An initial object from intersections</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-adjunctions.html#cat-c05-special-aft" class="internal"><span class="codenumber">5.14</span> <span class="title">The special adjoint functor theorem</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-filtered-cofinal.html" class="internal"><span class="codenumber">6</span> <span class="title">Filtered diagrams and cofinality</span></a></div>
+<ul id="ptx-toc-group-cat-filtered-cofinal" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-connected-components" class="internal"><span class="codenumber">6.1</span> <span class="title">Connected categories and components</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-final-initial" class="internal"><span class="codenumber">6.2</span> <span class="title">Final and initial functors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-cofinality-theorem" class="internal"><span class="codenumber">6.3</span> <span class="title">Restriction and extension of cocones</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-tests-adjoints" class="internal"><span class="codenumber">6.4</span> <span class="title">Tests for finality and the role of adjoints</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-filtered-categories" class="internal"><span class="codenumber">6.5</span> <span class="title">Filtered categories and finite cocones</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-filtered-set-colimits" class="internal"><span class="codenumber">6.6</span> <span class="title">Equality at a common stage</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-finite-data" class="internal"><span class="codenumber">6.7</span> <span class="title">Moving finite data to one stage</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-finite-limits" class="internal"><span class="codenumber">6.8</span> <span class="title">Finite limits commute with filtered colimits of sets</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-characterization-boundary" class="internal"><span class="codenumber">6.9</span> <span class="title">Characterization and the finite boundary</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-directed-reindexing" class="internal"><span class="codenumber">6.10</span> <span class="title">Reindexing filtered categories by directed posets</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-sifted-products" class="internal"><span class="codenumber">6.11</span> <span class="title">Sifted categories and the diagonal criterion</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-sifted-reflexive" class="internal"><span class="codenumber">6.12</span> <span class="title">Filtered diagrams and reflexive coequalizers</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-filtered-cofinal.html#cat-c06-sifted-boundaries" class="internal"><span class="codenumber">6.13</span> <span class="title">What siftedness does not imply</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-kan.html" class="internal"><span class="codenumber">7</span> <span class="title">Kan extensions</span></a></div>
+<ul id="ptx-toc-group-cat-kan" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-kan.html#cat-c07-universal-comparison" class="internal"><span class="codenumber">7.1</span> <span class="title">The universal comparison problem</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-kan.html#cat-c07-comma-diagrams" class="internal"><span class="codenumber">7.2</span> <span class="title">The diagrams attached to a new object</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-kan.html#cat-c07-left-formula" class="internal"><span class="codenumber">7.3</span> <span class="title">Constructing the left extension</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-kan.html#cat-c07-right-formula" class="internal"><span class="codenumber">7.4</span> <span class="title">Constructing the right extension</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-kan.html#cat-c07-existence-restriction" class="internal"><span class="codenumber">7.5</span> <span class="title">Existence and restriction along a fully faithful functor</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-kan.html#cat-c07-adjunction-composition" class="internal"><span class="codenumber">7.6</span> <span class="title">Adjoints to restriction and composition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-kan.html#cat-c07-index-adjoints-preservation" class="internal"><span class="codenumber">7.7</span> <span class="title">Adjoint indexing functors and preservation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-kan.html#cat-c07-nonpointwise" class="internal"><span class="codenumber">7.8</span> <span class="title">A universal extension that is not pointwise</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-kan.html#cat-c07-set-formulas-variance" class="internal"><span class="codenumber">7.9</span> <span class="title">Set-valued formulas and presheaf variance</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-kan.html#cat-c07-elementary-computations" class="internal"><span class="codenumber">7.10</span> <span class="title">Elementary computations</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-ends-density.html" class="internal"><span class="codenumber">8</span> <span class="title">Ends, coends, and density</span></a></div>
+<ul id="ptx-toc-group-cat-ends-density" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ends-density.html#cat-c08-wedges" class="internal"><span class="codenumber">8.1</span> <span class="title">Compatible diagonal families</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ends-density.html#cat-c08-constructions" class="internal"><span class="codenumber">8.2</span> <span class="title">Products, quotients, and existence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ends-density.html#cat-c08-natural-transformations" class="internal"><span class="codenumber">8.3</span> <span class="title">Natural transformations as an end</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ends-density.html#cat-c08-fubini" class="internal"><span class="codenumber">8.4</span> <span class="title">Iterating ends and coends</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ends-density.html#cat-c08-copowers" class="internal"><span class="codenumber">8.5</span> <span class="title">Copowers and weighted identifications</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ends-density.html#cat-c08-density-formula" class="internal"><span class="codenumber">8.6</span> <span class="title">Every presheaf is a colimit of representables</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ends-density.html#cat-c08-free-cocompletion" class="internal"><span class="codenumber">8.7</span> <span class="title">The free cocompletion of a small category</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ends-density.html#cat-c08-dense-functors" class="internal"><span class="codenumber">8.8</span> <span class="title">Dense functors and restricted Yoneda</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-monads.html" class="internal"><span class="codenumber">9</span> <span class="title">Monads and algebras</span></a></div>
+<ul id="ptx-toc-group-cat-monads" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-monad-data" class="internal"><span class="codenumber">9.1</span> <span class="title">Insertion, substitution, and the monad laws</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-algebras-free" class="internal"><span class="codenumber">9.2</span> <span class="title">Algebras and the free-algebra adjunction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-kleisli" class="internal"><span class="codenumber">9.3</span> <span class="title">The Kleisli category and its adjunction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-comparison" class="internal"><span class="codenumber">9.4</span> <span class="title">What an adjunction recovers from its monad</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-limits" class="internal"><span class="codenumber">9.5</span> <span class="title">The forgetful functor creates limits</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-colim-created" class="internal"><span class="codenumber">9.6</span> <span class="title">Colimits preserved by the monad</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-split-forks" class="internal"><span class="codenumber">9.7</span> <span class="title">Reflexive pairs and split coequalizers</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-presentations" class="internal"><span class="codenumber">9.8</span> <span class="title">Quotients of free algebras</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-beck" class="internal"><span class="codenumber">9.9</span> <span class="title">Beck’s monadicity criterion</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-set-examples" class="internal"><span class="codenumber">9.10</span> <span class="title">Words and arbitrary joins</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-idempotent" class="internal"><span class="codenumber">9.11</span> <span class="title">Idempotent monads and reflective subcategories</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monads.html#cat-c09-comonads" class="internal"><span class="codenumber">9.12</span> <span class="title">Comonads and the dual reconstruction theorem</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="cat-localization.html" class="internal"><span class="codenumber">10</span> <span class="title">Localizations</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-cat-localization">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-localization.html#cat-c10-universal-property" class="internal"><span class="codenumber">10.1</span> <span class="title">The universal problem and the path construction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-localization.html#cat-c10-transformations-comparisons" class="internal"><span class="codenumber">10.2</span> <span class="title">Natural transformations and comparison of models</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-localization.html#cat-c10-size" class="internal"><span class="codenumber">10.3</span> <span class="title">Existence and local size are different questions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-localization.html#cat-c10-saturation" class="internal"><span class="codenumber">10.4</span> <span class="title">Saturation and weaker closure conditions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-localization.html#cat-c10-ore" class="internal"><span class="codenumber">10.5</span> <span class="title">An oriented calculus of fractions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-localization.html#cat-c10-roofs" class="internal"><span class="codenumber">10.6</span> <span class="title">Roofs, refinements, and composition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-localization.html#cat-c10-monoid-examples" class="internal"><span class="codenumber">10.7</span> <span class="title">Monoids and the effect on arrows</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-localization.html#cat-c10-reflective" class="internal"><span class="codenumber">10.8</span> <span class="title">Reflective localizations</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-idempotents.html" class="internal"><span class="codenumber">11</span> <span class="title">Idempotents and Cauchy completion</span></a></div>
+<ul id="ptx-toc-group-cat-idempotents" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-idempotents.html#cat-c11-splittings" class="internal"><span class="codenumber">11.1</span> <span class="title">Projections and their missing objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-idempotents.html#cat-c11-existence" class="internal"><span class="codenumber">11.2</span> <span class="title">Equalizers, coequalizers, and absolute constructions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-idempotents.html#cat-c11-envelope" class="internal"><span class="codenumber">11.3</span> <span class="title">Adjoining the retracts</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-idempotents.html#cat-c11-universal-property" class="internal"><span class="codenumber">11.4</span> <span class="title">The universal property on functors and transformations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-idempotents.html#cat-c11-presheaf-realization" class="internal"><span class="codenumber">11.5</span> <span class="title">Retracts of representable presheaves</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-idempotents.html#cat-c11-small-projectives" class="internal"><span class="codenumber">11.6</span> <span class="title">Presheaves that preserve every small colimit through Hom</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-idempotents.html#cat-c11-absolute-weights" class="internal"><span class="codenumber">11.7</span> <span class="title">Why this is an absolute completion</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-idempotents.html#cat-c11-functor-categories" class="internal"><span class="codenumber">11.8</span> <span class="title">Completion and functor categories</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-ind-pro.html" class="internal"><span class="codenumber">12</span> <span class="title">Ind and Pro completions</span></a></div>
+<ul id="ptx-toc-group-cat-ind-pro" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ind-pro.html#cat-c12-formal-objects" class="internal"><span class="codenumber">12.1</span> <span class="title">Formal filtered colimits and their size</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ind-pro.html#cat-c12-hom-formula" class="internal"><span class="codenumber">12.2</span> <span class="title">The mapping formula</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ind-pro.html#cat-c12-elements" class="internal"><span class="codenumber">12.3</span> <span class="title">Recognizing an Ind object by its elements</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ind-pro.html#cat-c12-filtered-colimits" class="internal"><span class="codenumber">12.4</span> <span class="title">Filtered colimits and finitely presentable objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ind-pro.html#cat-c12-universal-property" class="internal"><span class="codenumber">12.5</span> <span class="title">The free filtered-colimit completion</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ind-pro.html#cat-c12-finite-colimits" class="internal"><span class="codenumber">12.6</span> <span class="title">Finite colimits in the source and left exact presheaves</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ind-pro.html#cat-c12-finite-sets" class="internal"><span class="codenumber">12.7</span> <span class="title">Recognition and the example of finite sets</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ind-pro.html#cat-c12-pro-objects" class="internal"><span class="codenumber">12.8</span> <span class="title">The dual completion and its mapping formula</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-ind-pro.html#cat-c12-realization" class="internal"><span class="codenumber">12.9</span> <span class="title">Formal inverse systems and their realized limits</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-presentability.html" class="internal"><span class="codenumber">13</span> <span class="title">Presentability and accessible categories</span></a></div>
+<ul id="ptx-toc-group-cat-presentability" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-presentability.html#cat-c13-cardinals" class="internal"><span class="codenumber">13.1</span> <span class="title">Regular cardinals and larger filteredness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-presentability.html#cat-c13-presentable-objects" class="internal"><span class="codenumber">13.2</span> <span class="title">Presentable objects and eventual equality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-presentability.html#cat-c13-stability" class="internal"><span class="codenumber">13.3</span> <span class="title">Colimits, retracts, and rank</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-presentability.html#cat-c13-accessible" class="internal"><span class="codenumber">13.4</span> <span class="title">Accessible and locally presentable categories</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-presentability.html#cat-c13-restricted-nerve" class="internal"><span class="codenumber">13.5</span> <span class="title">Presentable generators determine maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-presentability.html#cat-c13-presheaves" class="internal"><span class="codenumber">13.6</span> <span class="title">Why presheaf categories are locally finitely presentable</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-presentability.html#cat-c13-adjoints" class="internal"><span class="codenumber">13.7</span> <span class="title">Solution sets and the accessible adjoint criterion</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-cartesian-closure.html" class="internal"><span class="codenumber">14</span> <span class="title">Cartesian closure and dependent products</span></a></div>
+<ul id="ptx-toc-group-cat-cartesian-closure" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-cartesian-closure.html#cat-c14-exponentials" class="internal"><span class="codenumber">14.1</span> <span class="title">Exponential objects and currying</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-cartesian-closure.html#cat-c14-examples" class="internal"><span class="codenumber">14.2</span> <span class="title">Sets, orders, and an algebraic obstruction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-cartesian-closure.html#cat-c14-presheaf-exponentials" class="internal"><span class="codenumber">14.3</span> <span class="title">Exponentials of presheaves</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-cartesian-closure.html#cat-c14-pullback-adjunction" class="internal"><span class="codenumber">14.4</span> <span class="title">Pullback and the composition functor</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-cartesian-closure.html#cat-c14-local-closure" class="internal"><span class="codenumber">14.5</span> <span class="title">Dependent products and local cartesian closure</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-cartesian-closure.html#cat-c14-set-dependent-products" class="internal"><span class="codenumber">14.6</span> <span class="title">Dependent products of sets</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-cartesian-closure.html#cat-c14-base-change" class="internal"><span class="codenumber">14.7</span> <span class="title">Composition and pullback comparison</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-cartesian-closure.html#cat-c14-presheaf-slices" class="internal"><span class="codenumber">14.8</span> <span class="title">Presheaf slices as families of elements</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-images-regular.html" class="internal"><span class="codenumber">15</span> <span class="title">Images, quotients, and regular categories</span></a></div>
+<ul id="ptx-toc-group-cat-images-regular" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-subobjects" class="internal"><span class="codenumber">15.1</span> <span class="title">Subobjects and the direction of quotient maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-epimorphisms" class="internal"><span class="codenumber">15.2</span> <span class="title">Regular and strong epimorphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-relations" class="internal"><span class="codenumber">15.3</span> <span class="title">Kernel pairs and internal equivalence relations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-regularity" class="internal"><span class="codenumber">15.4</span> <span class="title">Regularity and image factorizations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-image-comparisons" class="internal"><span class="codenumber">15.5</span> <span class="title">Minimality, uniqueness, and maps between images</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-factorization-systems" class="internal"><span class="codenumber">15.6</span> <span class="title">Orthogonal factorization systems</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-images-base-change" class="internal"><span class="codenumber">15.7</span> <span class="title">Images under change of base</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-effective-relations" class="internal"><span class="codenumber">15.8</span> <span class="title">Effective relations and Barr exactness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-sets-groups" class="internal"><span class="codenumber">15.9</span> <span class="title">Quotients of sets and groups</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-non-effective-example" class="internal"><span class="codenumber">15.10</span> <span class="title">A regular category with a noneffective relation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-projective-injective" class="internal"><span class="codenumber">15.11</span> <span class="title">Projective and injective objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-enough-projectives" class="internal"><span class="codenumber">15.12</span> <span class="title">Enough objects, generators, and free objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-images-regular.html#cat-c15-presheaf-projectives" class="internal"><span class="codenumber">15.13</span> <span class="title">Projectives and injectives in a presheaf category</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-fibrations.html" class="internal"><span class="codenumber">16</span> <span class="title">Categories over a base</span></a></div>
+<ul id="ptx-toc-group-cat-fibrations" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-fibrations.html#cat-c16-cartesian-arrows" class="internal"><span class="codenumber">16.1</span> <span class="title">Fibers and cartesian arrows</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-fibrations.html#cat-c16-fibrations-cleavages" class="internal"><span class="codenumber">16.2</span> <span class="title">Fibrations and chosen restriction functors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-fibrations.html#cat-c16-coherence" class="internal"><span class="codenumber">16.3</span> <span class="title">Successive restrictions and their comparisons</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-fibrations.html#cat-c16-strict-construction" class="internal"><span class="codenumber">16.4</span> <span class="title">The Grothendieck construction for strict functors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-fibrations.html#cat-c16-coherent-construction" class="internal"><span class="codenumber">16.5</span> <span class="title">Coherent indexed categories and recovery</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-fibrations.html#cat-c16-discrete" class="internal"><span class="codenumber">16.6</span> <span class="title">Discrete fibrations and set-valued functors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-fibrations.html#cat-c16-codomain" class="internal"><span class="codenumber">16.7</span> <span class="title">The codomain fibration and slices</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-fibrations.html#cat-c16-maps-base-change-size" class="internal"><span class="codenumber">16.8</span> <span class="title">Maps, change of base, and size</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-monoidal.html" class="internal"><span class="codenumber">17</span> <span class="title">Monoidal categories and closed structures</span></a></div>
+<ul id="ptx-toc-group-cat-monoidal" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monoidal.html#cat-c17-monoidal-data" class="internal"><span class="codenumber">17.1</span> <span class="title">Multiplication with specified constraints</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monoidal.html#cat-c17-coherence" class="internal"><span class="codenumber">17.2</span> <span class="title">Coherence and strictness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monoidal.html#cat-c17-elementary-models" class="internal"><span class="codenumber">17.3</span> <span class="title">Products, coproducts, and discrete monoids</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monoidal.html#cat-c17-monoidal-functors" class="internal"><span class="codenumber">17.4</span> <span class="title">Lax, strong, and oplax functors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monoidal.html#cat-c17-braiding" class="internal"><span class="codenumber">17.5</span> <span class="title">Braiding and symmetry</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monoidal.html#cat-c17-monoid-objects" class="internal"><span class="codenumber">17.6</span> <span class="title">Monoid objects and their transport</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monoidal.html#cat-c17-endofunctors" class="internal"><span class="codenumber">17.7</span> <span class="title">Composition of endofunctors and monads</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monoidal.html#cat-c17-closed" class="internal"><span class="codenumber">17.8</span> <span class="title">Right and left internal Hom objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-monoidal.html#cat-c17-duality" class="internal"><span class="codenumber">17.9</span> <span class="title">Dual objects give particular internal Homs</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="cat-lawvere-theories.html" class="internal"><span class="codenumber">18</span> <span class="title">Lawvere theories and finitary monads</span></a></div>
+<ul id="ptx-toc-group-cat-lawvere-theories" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-lawvere-theories.html#cat-c18-theories-models" class="internal"><span class="codenumber">18.1</span> <span class="title">Operations as arrows</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-lawvere-theories.html#cat-c18-examples" class="internal"><span class="codenumber">18.2</span> <span class="title">Groups and commutative rings</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-lawvere-theories.html#cat-c18-free-models" class="internal"><span class="codenumber">18.3</span> <span class="title">Free models</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-lawvere-theories.html#cat-c18-from-monads" class="internal"><span class="codenumber">18.4</span> <span class="title">The theory of a finitary monad</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-lawvere-theories.html#cat-c18-correspondence" class="internal"><span class="codenumber">18.5</span> <span class="title">The correspondence and colimits of models</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-lawvere-theories.html#cat-c18-internal-models" class="internal"><span class="codenumber">18.6</span> <span class="title">Models in a category with finite products</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="category-theory-notes-23.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul id="ptx-toc-group-category-theory-notes-23" class="structural toc-item-list">
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="cat-concordance.html" class="internal"><span class="codenumber">A.</span> <span class="title">Notation, terminology, and construction guide</span></a></div>
+<ul id="ptx-toc-group-cat-concordance" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-concordance.html#cat-a-size" class="internal"><span class="codenumber">A.1</span> <span class="title">Size and basic notation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-concordance.html#cat-a-variance" class="internal"><span class="codenumber">A.2</span> <span class="title">Variance and adjoint notation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-concordance.html#cat-a-terms" class="internal"><span class="codenumber">A.3</span> <span class="title">Terminology across sources</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-concordance.html#cat-a-constructions" class="internal"><span class="codenumber">A.4</span> <span class="title">Choosing a construction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-concordance.html#cat-a-finiteness" class="internal"><span class="codenumber">A.5</span> <span class="title">Tests involving representables</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-concordance.html#cat-a-reading" class="internal"><span class="codenumber">A.6</span> <span class="title">Reading paths</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-concordance.html#cat-a-references" class="internal"><span class="codenumber">A.7</span> <span class="title">Using the references</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="cat-hypotheses.html" class="internal"><span class="codenumber">B.</span> <span class="title">Hypotheses and counterexamples</span></a></div>
+<ul id="ptx-toc-group-cat-hypotheses" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-hypotheses.html#cat-h-functorial-information" class="internal"><span class="codenumber">B.1</span> <span class="title">Natural data and information carried by objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-hypotheses.html#cat-h-size-existence" class="internal"><span class="codenumber">B.2</span> <span class="title">Size bounds in existence statements</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-hypotheses.html#cat-h-shape-preservation" class="internal"><span class="codenumber">B.3</span> <span class="title">Diagram shape and preservation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-hypotheses.html#cat-h-completion-realization" class="internal"><span class="codenumber">B.4</span> <span class="title">Formal completions and internal finiteness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="cat-hypotheses.html#cat-h-quotients-tensors" class="internal"><span class="codenumber">B.5</span> <span class="title">Quotients, multiplication, and duality</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="cat-references.html" class="internal"><span class="title">References</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="cat-index.html" class="internal"><span class="title">Index</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="chapter" id="cat-localization">
+<h1 class="heading">
+<span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Localizations</span>
+</h1>
+<section class="introduction" id="cat-localization-2">
+<div class="para" id="cat-localization-2-1">Localization makes a chosen collection of arrows invertible, imposing the relations necessary for this change and no further relations beyond their consequences. The objects can be kept fixed, but their morphism sets usually change: new composites become available, and existing arrows can become equal. The universal property describes precisely which information the construction retains.</div>
+<div class="para" id="cat-localization-2-2">We first construct localization by finite paths, including its effect on natural transformations and its size. We then give an explicitly oriented calculus of fractions, and relate reflective subcategories to localization. The main sources are <a href="cat-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-cat-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Section 1.9]</a>, <a href="cat-references.html#KS06" class="xref" data-knowl="./knowl/xref/bib-cat-ks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry KS06">[KS06, Section 7.1]</a>, and <a href="cat-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-cat-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Section 4.27]</a>. In this chapter, categories are set-encoded, but a localized category and an arbitrary target of its universal property are not assumed locally <span class="process-math">\(\U\)</span>-small. Such smallness will be stated when it is available.</div></section>
+<section class="section" id="cat-c10-universal-property">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The universal problem and the path construction</span>
+</h2>
+<div class="para" id="cat-c10-universal-property-2">Fix a category <span class="process-math">\(\mathcal C\)</span> and a subset <span class="process-math">\(W\subseteq\Ar(\mathcal C)\)</span> of its typed arrows. We impose no closure condition on <span class="process-math">\(W\text{.}\)</span> In particular, it need not contain the identities or be closed under composition, and it need not belong to <span class="process-math">\(\U\text{.}\)</span> It is an ordinary set because the entire arrow collection is a set.</div>
+<article class="definition definition-like" id="cat-c10-def-localization"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Localization at a family of arrows.</span>
+</h3>
+<div class="para logical" id="cat-c10-def-localization-4-1">
+<div class="para">A functor <span class="process-math">\(F:\mathcal C\to\mathcal D\)</span> is <span class="process-math">\(W\)</span>-inverting if <span class="process-math">\(F(w)\)</span> is an isomorphism for every <span class="process-math">\(w\in W\text{.}\)</span> Write <span class="process-math">\(\Fun_W(\mathcal C,\mathcal D)\)</span> for the full subcategory of such functors. A localization of <span class="process-math">\(\mathcal C\)</span> at <span class="process-math">\(W\)</span> is a <span class="process-math">\(W\)</span>-inverting functor <span class="process-math">\(Q:\mathcal C\to\mathcal L\)</span> such that, for every set-encoded category <span class="process-math">\(\mathcal D\text{,}\)</span> precomposition is an equivalence</div>
+<div class="displaymath process-math" id="cat-c10-def-localization-4-1-11">
+\begin{equation*}
+Q^*:\Fun(\mathcal L,\mathcal D)\longrightarrow
+\Fun_W(\mathcal C,\mathcal D).
+\end{equation*}
+</div>
+<div class="para">We denote a chosen localization by <span class="process-math">\(\mathcal C[W^{-1}]\text{,}\)</span> retaining its structure functor <span class="process-math">\(Q\text{.}\)</span>
+</div>
+</div>
+</article>
+<div class="para" id="cat-c10-universal-property-4">This formulation includes natural transformations. It asserts that every inverting functor factors up to natural isomorphism and that transformations between factorizations are uniquely determined on <span class="process-math">\(\mathcal C\text{.}\)</span> There is also a useful stricter model: its objects are exactly those of <span class="process-math">\(\mathcal C\text{,}\)</span> and every inverting functor factors by equality through a unique functor. Li uses this strict formulation in <a href="cat-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-cat-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Definition 1.9.1]</a>; the accompanying footnote compares the functor-category version.</div>
+<article class="theorem theorem-like" id="cat-c10-thm-formal-localization"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="cat-c10-thm-formal-localization-1-1">For every set-encoded <span class="process-math">\(\mathcal C\)</span> and every <span class="process-math">\(W\subseteq\Ar(\mathcal C)\text{,}\)</span> there is an identity-on-objects localization <span class="process-math">\(Q:\mathcal C\to\mathcal C[W^{-1}]\text{.}\)</span> In this model every <span class="process-math">\(W\)</span>-inverting <span class="process-math">\(F:\mathcal C\to\mathcal D\)</span> has a unique extension <span class="process-math">\(\overline F\)</span> with <span class="process-math">\(\overline FQ=F\text{.}\)</span> Precomposition is an isomorphism onto <span class="process-math">\(\Fun_W(\mathcal C,\mathcal D)\text{,}\)</span> rather than just an equivalence.</div>
+</article>
+<details id="cat-c10-thm-formal-localization-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="cat-c10-thm-formal-localization-2-1">
+<div class="para">Form a quiver with the objects of <span class="process-math">\(\mathcal C\text{.}\)</span> For each original arrow <span class="process-math">\(f:X\to Y\text{,}\)</span> include a forward edge <span class="process-math">\([f]:X\to Y\text{.}\)</span> For each <span class="process-math">\(w:X\to Y\)</span> in <span class="process-math">\(W\text{,}\)</span> include a separate reverse edge <span class="process-math">\([w]^{-1}:Y\to X\text{.}\)</span> Take finite composable paths, including an empty path at every object, and concatenate them. Impose the smallest congruence on parallel paths generated by</div>
+<div class="displaymath process-math" id="cat-c10-thm-formal-localization-2-1-7">
+\begin{equation*}
+[g][f]=[gf],\qquad [\id_X]=\id_X,\qquad
+[w]^{-1}[w]=\id_X,\qquad [w][w]^{-1}=\id_Y.
+\end{equation*}
+</div>
+<div class="para">A congruence here is an equivalence relation on each parallel-path set preserved by concatenation on either side. The smallest one exists as the intersection of all such congruences containing the displayed relations. The quotient therefore has well-defined associative composition and identity arrows. Let <span class="process-math">\(Q(f)\)</span> be the class of <span class="process-math">\([f]\text{;}\)</span> the relations make <span class="process-math">\(Q\)</span> a functor and make each <span class="process-math">\(Q(w)\)</span> invertible.</div>
+</div>
+<div class="para" id="cat-c10-thm-formal-localization-2-2">For an inverting functor <span class="process-math">\(F\text{,}\)</span> send each forward edge to <span class="process-math">\(F(f)\text{,}\)</span> each reverse edge to <span class="process-math">\(F(w)^{-1}\text{,}\)</span> and a path to the corresponding composite. The defining relations hold in <span class="process-math">\(\mathcal D\text{,}\)</span> so this gives <span class="process-math">\(\overline F\)</span> on the quotient. It is the unique possible extension because the forward edges and the stipulated inverses generate every path class. The natural-transformation part, proved immediately below, completes the asserted functor-category universal property.</div>
+</article></details>
+<div class="para" id="cat-c10-universal-property-6">One may visualize a path as a finite zigzag in <span class="process-math">\(\mathcal C\text{,}\)</span> with only arrows of <span class="process-math">\(W\)</span> traversed backward. The symbols for reverse edges are formal data until the quotient has been taken. They do not presume that these arrows already possess inverses in <span class="process-math">\(\mathcal C\text{.}\)</span> No arbitrary reversal of the other arrows is permitted.</div>
+<div class="para" id="cat-c10-universal-property-7">The construction handles the empty family as well. With no reverse edges, composition and identity relations reduce every path to its original composite, so the resulting category is canonically isomorphic to <span class="process-math">\(\mathcal C\text{.}\)</span> The same holds when all chosen arrows were already invertible. In general, one may first adjoin identities to <span class="process-math">\(W\)</span> and close it under finite composition without changing the inverting functors. This elementary normalization is different from the Ore conditions introduced later: it supplies no rule for rearranging a forward arrow and a reversed denominator.</div>
+</section>
+<section class="section" id="cat-c10-transformations-comparisons">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Natural transformations and comparison of models</span>
+</h2>
+<div class="para" id="cat-c10-transformations-comparisons-2">A factorization statement only about functors leaves out the comparison maps used in applications. The path model supplies these maps without any additional choices on the new arrows.</div>
+<article class="proposition theorem-like" id="cat-c10-prop-transformations"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="cat-c10-prop-transformations-1-1">
+<div class="para">For the path localization and functors <span class="process-math">\(A,B:\mathcal C[W^{-1}]\to\mathcal D\text{,}\)</span> restriction is a bijection</div>
+<div class="displaymath process-math" id="cat-c10-prop-transformations-1-1-2">
+\begin{equation*}
+\Nat(A,B)\longrightarrow\Nat(AQ,BQ).
+\end{equation*}
+</div>
+<div class="para">A restricted transformation is invertible exactly when the original one is invertible.</div>
+</div>
+</article>
+<details id="cat-c10-prop-transformations-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="cat-c10-prop-transformations-2-1">
+<div class="para">Because <span class="process-math">\(Q\)</span> is the identity on objects, a transformation <span class="process-math">\(\alpha:AQ\Rightarrow BQ\)</span> determines the only possible component family on the localization. It is natural for every forward edge by assumption. For <span class="process-math">\(w:X\to Y\)</span> in <span class="process-math">\(W\text{,}\)</span> the naturality equation</div>
+<div class="displaymath process-math" id="cat-c10-prop-transformations-2-1-5">
+\begin{equation*}
+\alpha_YA(Qw)=B(Qw)\alpha_X
+\end{equation*}
+</div>
+<div class="para">implies, by multiplication with the two inverse arrows,</div>
+<div class="displaymath process-math" id="cat-c10-prop-transformations-2-1-6">
+\begin{equation*}
+\alpha_XA(Qw)^{-1}=B(Qw)^{-1}\alpha_Y.
+\end{equation*}
+</div>
+<div class="para">Hence it is also natural for reverse edges. Naturality is preserved under composition, so it holds for every path class. This proves existence and uniqueness of the extension. Its components have not changed, so the componentwise criterion for a natural isomorphism proves the final assertion.</div>
+</div>
+</article></details>
+<div class="para" id="cat-c10-transformations-comparisons-4">The components of <span class="process-math">\(\alpha\)</span> need not be isomorphisms in this argument. Only the images of the chosen denominators are inverted. This distinction is what permits arbitrary natural transformations, rather than only natural isomorphisms, in the universal property. Compare <a href="cat-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-cat-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Proposition 1.9.4]</a> and <a href="cat-references.html#Rie" class="xref" data-knowl="./knowl/xref/bib-cat-riehl.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Rie">[Rie, Remark 6.4.6]</a>.</div>
+<article class="proposition theorem-like" id="cat-c10-prop-comparison-opposite"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="cat-c10-prop-comparison-opposite-1-1">
+<div class="para">Any localization in the functor-category sense is equivalent to the path localization, compatibly with the structure functors up to natural isomorphism. Two models with the strict extension property are uniquely isomorphic by an isomorphism commuting strictly with the structure functors. Moreover,</div>
+<div class="displaymath process-math" id="cat-c10-prop-comparison-opposite-1-1-1">
+\begin{equation*}
+\bigl(\mathcal C[W^{-1}]\bigr)^\op
+\cong\mathcal C^\op[(W^\op)^{-1}]
+\end{equation*}
+</div>
+<div class="para">for the path models, compatibly with <span class="process-math">\(Q^\op\text{.}\)</span>
+</div>
+</div>
+</article>
+<details id="cat-c10-prop-comparison-opposite-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="cat-c10-prop-comparison-opposite-2-1">Write <span class="process-math">\(P:\mathcal C\to\mathcal F\)</span> for the path model and <span class="process-math">\(Q:\mathcal C\to\mathcal L\)</span> for another localization. Strict extension gives <span class="process-math">\(H:\mathcal F\to\mathcal L\)</span> with <span class="process-math">\(HP=Q\text{;}\)</span> essential surjectivity of <span class="process-math">\(Q^*\)</span> gives <span class="process-math">\(K:\mathcal L\to\mathcal F\)</span> with <span class="process-math">\(KQ\cong P\text{.}\)</span> Full faithfulness of <span class="process-math">\(P^*\)</span> and <span class="process-math">\(Q^*\)</span> lifts these comparisons uniquely to <span class="process-math">\(KH\cong\id_{\mathcal F}\)</span> and <span class="process-math">\(HK\cong\id_{\mathcal L}\text{.}\)</span> Thus <span class="process-math">\(H\)</span> is an equivalence. With strict universal properties, the same argument uses equalities and uniqueness of extensions, giving strict inverse functors. Finally, reversing paths and all their generating relations gives the asserted isomorphism of opposite path models.</div>
+</article></details>
+<div class="para" id="cat-c10-transformations-comparisons-6">The compatibility condition is part of these uniqueness statements. There is no claim that the underlying category has a unique equivalence to another presentation after its structure functor is forgotten. In particular, keeping the objects fixed is a useful construction choice, not a requirement on every equivalent model of a localization.</div>
+<div class="para" id="cat-c10-transformations-comparisons-7">In the strict path model, a factorization is determined on objects as well as arrows. In an equivalent model, its object assignment may instead be specified only through an isomorphism with the original assignment. The functor-category definition retains these comparison isomorphisms and all the transformations between factorizations. It therefore allows one to replace a concrete construction by a more convenient category of representatives without altering the universal problem. The distinction between isomorphism and equivalence of models is useful here, rather than merely a difference in phrasing.</div>
+</section>
+<section class="section" id="cat-c10-size">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Existence and local size are different questions</span>
+</h2>
+<div class="para" id="cat-c10-size-2">The path construction is always available in the present set-encoded framework. This does not imply that the resulting local morphism sets belong to the fixed universe.</div>
+<article class="proposition theorem-like" id="cat-c10-prop-size"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="cat-c10-prop-size-1-1">The formal localization of a set-encoded category is set-encoded. If <span class="process-math">\(\mathcal C\)</span> is <span class="process-math">\(\U\)</span>-small, its path localization is <span class="process-math">\(\U\)</span>-small. If <span class="process-math">\(\mathcal C\)</span> is only locally <span class="process-math">\(\U\)</span>-small, its localization need not be locally <span class="process-math">\(\U\)</span>-small.</div>
+</article>
+<details id="cat-c10-prop-size-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="cat-c10-prop-size-2-1">The edge collection is a set, and the finite paths form a subset of a union, indexed by <span class="process-math">\(\N\text{,}\)</span> of finite powers of the edge collection, together with the empty paths labeled by objects. Taking a quotient and recording endpoints still gives a set. If all the original category data lie in <span class="process-math">\(\U\text{,}\)</span> then <span class="process-math">\(W\text{,}\)</span> the edges, and the finite-word set lie in <span class="process-math">\(\U\text{,}\)</span> using <span class="process-math">\(\N\in\U\text{.}\)</span> Subsets, quotient sets, and the endpoint data also lie in <span class="process-math">\(\U\text{.}\)</span> The counterexample below proves the last assertion.</div>
+</article></details>
+<article class="example example-like" id="cat-c10-example-large-hom"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Many intermediate objects create a large Hom set.</span>
+</h3>
+<div class="para logical" id="cat-c10-example-large-hom-2">
+<div class="para">Take objects <span class="process-math">\(A,B\)</span> and <span class="process-math">\(T_s\)</span> for <span class="process-math">\(s\in\U\text{,}\)</span> all distinct, and nonidentity arrows</div>
+<div class="displaymath process-math" id="cat-c10-example-large-hom-2-4">
+\begin{equation*}
+a_s:A\to T_s,\qquad b_s:B\to T_s.
+\end{equation*}
+</div>
+<div class="para">There are no other nonidentity arrows. Use the same small singleton of local arrow labels for each indicated pair of endpoints. This category is locally <span class="process-math">\(\U\)</span>-small, although its object set is not <span class="process-math">\(\U\)</span>-small. Invert the family <span class="process-math">\(W=\{b_s:s\in\U\}\text{.}\)</span> For every <span class="process-math">\(s\)</span> we obtain a morphism</div>
+<div class="displaymath process-math" id="cat-c10-example-large-hom-2-9">
+\begin{equation*}
+Q(b_s)^{-1}Q(a_s):A\longrightarrow B.
+\end{equation*}
+</div>
+</div>
+<div class="para" id="cat-c10-example-large-hom-3">These morphisms are distinct. Indeed, form an ordinary set-encoded category with two objects <span class="process-math">\(P,R\text{,}\)</span> with <span class="process-math">\(\Hom(P,R)=\U\text{,}\)</span> identities at its objects, and no arrows from <span class="process-math">\(R\)</span> to <span class="process-math">\(P\text{.}\)</span> Send <span class="process-math">\(A\)</span> to <span class="process-math">\(P\text{,}\)</span> all other objects to <span class="process-math">\(R\text{,}\)</span> each <span class="process-math">\(b_s\)</span> to <span class="process-math">\(\id_R\text{,}\)</span> and <span class="process-math">\(a_s\)</span> to the label <span class="process-math">\(s\text{.}\)</span> This is an inverting functor, so its extension sends the displayed morphisms to their distinct labels. Thus the localized Hom set contains at least <span class="process-math">\(|\U|\)</span> elements and cannot belong to <span class="process-math">\(\U\text{.}\)</span>
+</div>
+</article>
+<div class="para" id="cat-c10-size-5">The target in this example is deliberately not locally <span class="process-math">\(\U\)</span>-small, which is permitted in the universal property. Existence of the localization as an ordinary category remains intact. Passing to a larger scale can sometimes recover a relative smallness statement, but it should not be silently built into a claim at the original scale.</div>
+<div class="para" id="cat-c10-size-6">Li emphasizes the same separation between general existence and control of morphism sets in <a href="cat-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-cat-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, the discussion after Proposition 1.9.3 and Remark 1.9.15]</a>. The finite-zigzag construction supplies existence, while a calculus of fractions supplies a more usable description. Neither the word fraction nor local smallness of the starting category alone is a bound on the collection of all possible intermediate objects.</div>
+</section>
+<section class="section" id="cat-c10-saturation">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Saturation and weaker closure conditions</span>
+</h2>
+<div class="para" id="cat-c10-saturation-2">Inverting the prescribed arrows necessarily inverts further arrows. It is useful to distinguish the original input from the full collection detected by the resulting universal problem.</div>
+<article class="definition definition-like" id="cat-c10-def-saturation"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.7</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Localization saturation.</span>
+</h3>
+<div class="para logical" id="cat-c10-def-saturation-3-1">
+<div class="para">The saturation of <span class="process-math">\(W\)</span> is</div>
+<div class="displaymath process-math" id="cat-c10-def-saturation-3-1-2">
+\begin{equation*}
+W^{\mathrm{sat}}=
+\{f\in\Ar(\mathcal C):Q(f)\text{ is an isomorphism in }\mathcal C[W^{-1}]\}.
+\end{equation*}
+</div>
+<div class="para">We call <span class="process-math">\(W\)</span> saturated when <span class="process-math">\(W=W^{\mathrm{sat}}\text{.}\)</span> A compatible equivalence between localization models gives the same subset <span class="process-math">\(W^{\mathrm{sat}}\)</span> of <span class="process-math">\(\Ar(\mathcal C)\text{.}\)</span>
+</div>
+</div>
+</article>
+<article class="proposition theorem-like" id="cat-c10-prop-saturation"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.8</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="cat-c10-prop-saturation-1-1">
+<ol class="decimal" id="cat-c10-prop-saturation-1-1-1">
+<li id="cat-c10-prop-saturation-1-1-1-1">
+<div class="para" id="cat-c10-prop-saturation-1-1-1-1-1">An arrow belongs to <span class="process-math">\(W^{\mathrm{sat}}\)</span> if and only if every <span class="process-math">\(W\)</span>-inverting functor to every set-encoded target sends it to an isomorphism. Localizing at <span class="process-math">\(W^{\mathrm{sat}}\)</span> gives the same universal problem as localizing at <span class="process-math">\(W\text{,}\)</span> and <span class="process-math">\((W^{\mathrm{sat}})^{\mathrm{sat}}=W^{\mathrm{sat}}\text{.}\)</span>
+</div>
+</li>
+<li id="cat-c10-prop-saturation-1-1-1-2">
+<div class="para" id="cat-c10-prop-saturation-1-1-1-2-1">The class <span class="process-math">\(W^{\mathrm{sat}}\)</span> contains all isomorphisms and is closed under composition and retracts in the arrow category. It has the two-out-of-three property: for composable <span class="process-math">\(f,g\text{,}\)</span> membership of any two of <span class="process-math">\(f,g,gf\)</span> implies membership of the third. It also has the two-out-of-six property: if <span class="process-math">\(f,g,h\)</span> are consecutively composable and <span class="process-math">\(gf,hg\)</span> belong to it, then <span class="process-math">\(f,g,h,hgf\)</span> all belong to it.</div>
+</li>
+</ol>
+</div>
+</article>
+<details id="cat-c10-prop-saturation-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="cat-c10-prop-saturation-2-1">An inverting functor factors through <span class="process-math">\(Q\)</span> up to natural isomorphism and hence sends every member of <span class="process-math">\(W^{\mathrm{sat}}\)</span> to an isomorphism. The converse takes <span class="process-math">\(Q\)</span> itself as the target functor. Thus the <span class="process-math">\(W\)</span>-inverting functors and the <span class="process-math">\(W^{\mathrm{sat}}\)</span>-inverting functors coincide, proving the localization and idempotence assertions.</div>
+<div class="para" id="cat-c10-prop-saturation-2-2">It remains to recall the relevant facts about isomorphisms and apply them after <span class="process-math">\(Q\text{.}\)</span> Composition and two-out-of-three follow by composing inverses. If <span class="process-math">\(gf\)</span> and <span class="process-math">\(hg\)</span> are invertible, then <span class="process-math">\(f(gf)^{-1}\)</span> is a right inverse to <span class="process-math">\(g\text{,}\)</span> while <span class="process-math">\((hg)^{-1}h\)</span> is a left inverse. They coincide, so <span class="process-math">\(g\text{,}\)</span> and then <span class="process-math">\(f,h,hgf\text{,}\)</span> are invertible.</div>
+<div class="para" id="cat-c10-prop-saturation-2-3">For retracts, suppose an arrow <span class="process-math">\(f:A\to B\)</span> is a retract of an isomorphism <span class="process-math">\(g:C\to D\text{.}\)</span> Write the two commuting squares using maps <span class="process-math">\(a:A\to C\text{,}\)</span> <span class="process-math">\(b:B\to D\text{,}\)</span> <span class="process-math">\(r:C\to A\text{,}\)</span> <span class="process-math">\(s:D\to B\text{,}\)</span> with <span class="process-math">\(ra=\id_A\)</span> and <span class="process-math">\(sb=\id_B\text{.}\)</span> The commutation equations are <span class="process-math">\(ga=bf\)</span> and <span class="process-math">\(fr=sg\text{.}\)</span> Then <span class="process-math">\(rg^{-1}b\)</span> is an inverse to <span class="process-math">\(f\text{.}\)</span> Applying this calculation to the images of a retract diagram under <span class="process-math">\(Q\)</span> proves the claim.</div>
+</article></details>
+<div class="para" id="cat-c10-saturation-5">These closure properties are consequences of saturation, not hypotheses on the original <span class="process-math">\(W\text{.}\)</span> Adjoining identities and finite composites to <span class="process-math">\(W\)</span> gives exactly the same inverting functors, but need not produce a saturated set of arrows. Nor do we use weak saturation as an unspecified synonym for localization saturation: an assertion of two-out-of-three or retract closure must state those rules explicitly. For the stronger two-out-of-six rule and inverse images of isomorphisms, compare <a href="cat-references.html#Rie" class="xref" data-knowl="./knowl/xref/bib-cat-riehl.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Rie">[Rie, Lemma 6.4.2]</a>.</div>
+<div class="para" id="cat-c10-saturation-6">There is also a source-specific meaning of saturated multiplicative system. Stacks assumes both fraction calculi and adds an algebraic cancellation condition in <a href="cat-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-cat-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Tag 05Q8]</a>; <a href="cat-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-cat-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Tag 05Q9]</a> proves that its condition is equivalent to equality with the inverse image of isomorphisms. Those extra Ore hypotheses are part of that criterion. We will not apply it to an arbitrary collection <span class="process-math">\(W\text{.}\)</span>
+</div>
+</section>
+<section class="section" id="cat-c10-ore">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">An oriented calculus of fractions</span>
+</h2>
+<div class="para" id="cat-c10-ore-2">Arbitrary zigzags are difficult to compare. A fraction calculus gives conditions under which every zigzag reduces to a single roof. The direction of the roof is more reliable than the words left and right, which differ between our sources.</div>
+<article class="definition definition-like" id="cat-c10-def-right-fractions"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.9</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">A right multiplicative system, in the Stacks convention.</span>
+</h3>
+<div class="para" id="cat-c10-def-right-fractions-5-1">A subset <span class="process-math">\(S\subseteq\Ar(\mathcal C)\)</span> is a right multiplicative system for the conventions of this chapter if it satisfies the following conditions.</div> 
+<div class="para logical" id="cat-c10-def-right-fractions-5-2">
+<ol class="decimal" id="cat-c10-def-right-fractions-5-2-1">
+<li id="cat-c10-def-right-fractions-5-2-1-1">
+<div class="para" id="cat-c10-def-right-fractions-5-2-1-1-1">Every identity belongs to <span class="process-math">\(S\text{,}\)</span> and composites of composable members of <span class="process-math">\(S\)</span> belong to <span class="process-math">\(S\text{.}\)</span>
+</div>
+</li>
+<li id="cat-c10-def-right-fractions-5-2-1-2">
+<div class="para" id="cat-c10-def-right-fractions-5-2-1-2-1">For <span class="process-math">\(f:A\to B\)</span> and <span class="process-math">\(s:B'\to B\)</span> with <span class="process-math">\(s\in S\text{,}\)</span> there exist <span class="process-math">\(t:A'\to A\)</span> in <span class="process-math">\(S\)</span> and <span class="process-math">\(g:A'\to B'\)</span> such that <span class="process-math">\(ft=sg\text{.}\)</span> This is the Ore square condition.</div>
+</li>
+<li id="cat-c10-def-right-fractions-5-2-1-3">
+<div class="para" id="cat-c10-def-right-fractions-5-2-1-3-1">If <span class="process-math">\(f,g:A\to B\)</span> and <span class="process-math">\(s:B\to B'\)</span> in <span class="process-math">\(S\)</span> satisfy <span class="process-math">\(sf=sg\text{,}\)</span> there is <span class="process-math">\(t:A'\to A\)</span> in <span class="process-math">\(S\)</span> with <span class="process-math">\(ft=gt\text{.}\)</span> This is the cancellation condition.</div>
+</li>
+</ol>
+</div> 
+<div class="para" id="cat-c10-def-right-fractions-5-3">A left multiplicative system means a right multiplicative system in <span class="process-math">\(\mathcal C^\op\text{,}\)</span> with all arrows reversed. A system satisfying both sets of axioms is called a two-sided multiplicative system.</div>
+</article>
+<div class="para logical" id="cat-c10-ore-4">
+<div class="para">These are the right-system axioms in <a href="cat-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-cat-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Section 4.27, Definition 4.27.1]</a>. They lead to roofs</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/bib-cat-stacks.html ./knowl/xref/bib-cat-li2.html ./knowl/xref/bib-cat-ks.html" id="cat-c10-ore-4-2">
+\begin{equation*}
+X\xleftarrow{\ s\ }A\xrightarrow{\ f\ }Y,\qquad
+s\in S,\qquad Q(f)Q(s)^{-1}:X\to Y.
+\end{equation*}
+</div>
+<div class="para">Li calls this a left multiplicative system in <a href="cat-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-cat-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Definition 1.9.5]</a>. Kashiwara–Schapira use the same handedness as Li and discuss the reversal of names in <a href="cat-references.html#KS06" class="xref" data-knowl="./knowl/xref/bib-cat-ks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry KS06">[KS06, Remark 7.1.8]</a>. Our opposite system gives the other form, <span class="process-math">\(X\to A\leftarrow Y\text{,}\)</span> interpreted as <span class="process-math">\(Q(s)^{-1}Q(f)\text{.}\)</span>
+</div>
+</div>
+<div class="para" id="cat-c10-ore-5">The Ore condition allows an arrow and a reverse denominator to be interchanged inside a path, producing a new denominator. The cancellation condition ensures that equations already forced by an inverted denominator can be witnessed after refining a roof. These serve different purposes: a proposed rule for multiplying roofs is not enough unless their equivalence relation and the choices in that rule are also controlled.</div>
+</section>
+<section class="section" id="cat-c10-roofs">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Roofs, refinements, and composition</span>
+</h2>
+<div class="para" id="cat-c10-roofs-2">Fix a right multiplicative system in the preceding orientation. For a fixed source <span class="process-math">\(X\text{,}\)</span> let <span class="process-math">\(S/X\)</span> be the full subcategory of <span class="process-math">\(\mathcal C/X\)</span> whose objects are denominators <span class="process-math">\(s:A\to X\)</span> in <span class="process-math">\(S\text{.}\)</span> An arrow from <span class="process-math">\(s:A\to X\)</span> to <span class="process-math">\(t:B\to X\)</span> is any <span class="process-math">\(u:A\to B\)</span> with <span class="process-math">\(tu=s\text{.}\)</span> We do not require <span class="process-math">\(u\in S\text{.}\)</span>
+</div>
+<article class="proposition theorem-like" id="cat-c10-prop-denominators"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.10</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="cat-c10-prop-denominators-3-1">
+<div class="para">The category <span class="process-math">\(S/X\)</span> is cofiltered. For each <span class="process-math">\(Y\text{,}\)</span> roofs <span class="process-math">\((s:A\to X,f:A\to Y)\)</span> are equivalent precisely when they have a common refinement: two roofs <span class="process-math">\((s_1,f_1)\text{,}\)</span> <span class="process-math">\((s_2,f_2)\)</span> are equivalent if there exist <span class="process-math">\(u:B\to A_1\text{,}\)</span> <span class="process-math">\(v:B\to A_2\)</span> with</div>
+<div class="displaymath process-math" id="cat-c10-prop-denominators-3-1-8">
+\begin{equation*}
+s_1u=s_2v\in S,\qquad f_1u=f_2v.
+\end{equation*}
+</div>
+<div class="para">This is an equivalence relation, and the roof classes are the ordinary set colimit</div>
+<div class="displaymath process-math" id="cat-c10-prop-denominators-3-1-9">
+\begin{equation*}
+\operatorname{colim}_{(s:A\to X)\in(S/X)^\op}
+\Hom_{\mathcal C}(A,Y).
+\end{equation*}
+</div>
+</div>
+</article>
+<details id="cat-c10-prop-denominators-4" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="cat-c10-prop-denominators-4-1">The identity of <span class="process-math">\(X\)</span> is a denominator. For two denominators <span class="process-math">\(s:A\to X\text{,}\)</span> <span class="process-math">\(t:B\to X\text{,}\)</span> the Ore condition gives <span class="process-math">\(r:C\to A\)</span> in <span class="process-math">\(S\)</span> and <span class="process-math">\(v:C\to B\)</span> with <span class="process-math">\(sr=tv\text{.}\)</span> This common composite belongs to <span class="process-math">\(S\text{,}\)</span> providing a common source in <span class="process-math">\(S/X\text{.}\)</span> For parallel arrows <span class="process-math">\(u,v:s\to t\text{,}\)</span> the equation <span class="process-math">\(tu=tv\)</span> and cancellation give <span class="process-math">\(r:C\to A\)</span> in <span class="process-math">\(S\)</span> with <span class="process-math">\(ur=vr\text{.}\)</span> The denominator <span class="process-math">\(sr\)</span> and its map to <span class="process-math">\(s\)</span> equalize the pair. Thus <span class="process-math">\((S/X)^\op\)</span> is filtered.</div>
+<div class="para" id="cat-c10-prop-denominators-4-2">On that opposite category the displayed Hom functor acts by precomposition. Its common-stage relation from <a href="cat-filtered-cofinal.html#cat-c06-thm-filtered-set-colimit" class="xref" data-knowl="./knowl/xref/cat-c06-thm-filtered-set-colimit.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 6.10">Theorem 6.10</a> is exactly the common-refinement condition. The proof of that relation is an equivalence relation uses only finite witnesses, so it applies at the ordinary-set level even if the denominator category is not <span class="process-math">\(\U\)</span>-small.</div>
+</article></details>
+<div class="para" id="cat-c10-roofs-4">The refinement maps <span class="process-math">\(u,v\)</span> need not belong to <span class="process-math">\(S\text{;}\)</span> their common composite denominator must. Requiring both maps to lie in <span class="process-math">\(S\)</span> without an additional hypothesis would change the asserted equivalence relation. This filtered-colimit description is also <a href="cat-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-cat-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Lemma 1.9.8]</a> after translating handedness, and <a href="cat-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-cat-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Tag 05Q4]</a>.</div>
+<article class="theorem theorem-like" id="cat-c10-thm-roof-calculus"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.11</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="cat-c10-thm-roof-calculus-1-1">
+<div class="para">The roof classes define an identity-on-objects localization of <span class="process-math">\(\mathcal C\)</span> at <span class="process-math">\(S\text{.}\)</span> Write a roof class as <span class="process-math">\([s,f]\text{.}\)</span> For composable roofs <span class="process-math">\([s,f]:X\to Y\)</span> and <span class="process-math">\([t,g]:Y\to Z\text{,}\)</span> choose an Ore square</div>
+<div class="displaymath process-math" id="cat-c10-thm-roof-calculus-1-1-6">
+\begin{equation*}
+h:P\to A,\quad h\in S,\qquad k:P\to B,\qquad
+fh=tk,
+\end{equation*}
+</div>
+<div class="para">where <span class="process-math">\(s:A\to X\text{,}\)</span> <span class="process-math">\(f:A\to Y\text{,}\)</span> <span class="process-math">\(t:B\to Y\text{,}\)</span> and <span class="process-math">\(g:B\to Z\text{.}\)</span> Composition and identities are</div>
+<div class="displaymath process-math" id="cat-c10-thm-roof-calculus-1-1-11">
+\begin{equation*}
+[t,g]\,[s,f]=[sh,gk],\qquad
+\id_X=[\id_X,\id_X].
+\end{equation*}
+</div>
+<div class="para">The localization functor sends <span class="process-math">\(f:X\to Y\)</span> to <span class="process-math">\([\id_X,f]\text{.}\)</span> For a functor <span class="process-math">\(F\)</span> inverting <span class="process-math">\(S\text{,}\)</span> its extension is</div>
+<div class="displaymath process-math" id="cat-c10-thm-roof-calculus-1-1-16">
+\begin{equation*}
+\overline F([s,f])=F(f)F(s)^{-1}.
+\end{equation*}
+</div>
+</div>
+</article>
+<details id="cat-c10-thm-roof-calculus-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="cat-c10-thm-roof-calculus-2-1">The standard verification that this composition is independent of the Ore square and of the roof representatives, and is associative, is <a href="cat-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-cat-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Tag 04VH, Lemma 4.27.11]</a>, by its dual reference to Lemma 4.27.2. A proof in the present roof orientation is <a href="cat-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-cat-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Proposition 1.9.9 and Theorem 1.9.10]</a>, with that author’s left-system terminology. The denominator and refinement conventions in those results are exactly the ones stated here.</div>
+<div class="para logical" id="cat-c10-thm-roof-calculus-2-2">
+<div class="para">To verify the universal property, observe first that the inverse of <span class="process-math">\(Q(s)\text{,}\)</span> for <span class="process-math">\(s:A\to X\)</span> in <span class="process-math">\(S\text{,}\)</span> is the roof <span class="process-math">\([s,\id_A]:X\to A\text{.}\)</span> Every roof is consequently <span class="process-math">\(Q(f)Q(s)^{-1}\text{,}\)</span> so the asserted extension is forced. It respects common refinements: if <span class="process-math">\(d=s_1u=s_2v\in S\)</span> and <span class="process-math">\(f_1u=f_2v\text{,}\)</span> then</div>
+<div class="displaymath process-math" id="cat-c10-thm-roof-calculus-2-2-8">
+\begin{equation*}
+F(f_1)F(s_1)^{-1}
+=F(f_1u)F(d)^{-1}
+=F(f_2v)F(d)^{-1}
+=F(f_2)F(s_2)^{-1}.
+\end{equation*}
+</div>
+<div class="para">For composition, applying <span class="process-math">\(F\)</span> to <span class="process-math">\(fh=tk\)</span> and inverting <span class="process-math">\(F(h),F(t)\)</span> gives the required equality between the extension of <span class="process-math">\([sh,gk]\)</span> and the composite of the two extended roofs. Identities are preserved. This proves strict existence and uniqueness of the extension; natural transformations extend by the same inverse-arrow argument as before.</div>
+</div>
+</article></details>
+<div class="para logical" id="cat-c10-roofs-6">
+<div class="para">In particular, for parallel original arrows <span class="process-math">\(f,g:X\to Y\text{,}\)</span>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/bib-cat-stacks.html ./knowl/xref/bib-cat-li2.html" id="cat-c10-roofs-6-2">
+\begin{equation*}
+Q(f)=Q(g)\quad\Longleftrightarrow\quad
+ft=gt\text{ for some }t:X'\to X\text{ in }S.
+\end{equation*}
+</div>
+<div class="para">More generally, roofs with the same denominator <span class="process-math">\(s:A\to X\)</span> are equal exactly when their numerators become equal after precomposition by one member of <span class="process-math">\(S\)</span> into <span class="process-math">\(A\text{;}\)</span> see <a href="cat-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-cat-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Tag 04VJ]</a>. The former criterion is <a href="cat-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-cat-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Corollary 1.9.13]</a> in the translated orientation.</div>
+</div>
+<div class="para" id="cat-c10-roofs-7">To see the extra step in the same-denominator assertion, the filtered-colimit criterion first gives <span class="process-math">\(q:B\to A\)</span> with <span class="process-math">\(sq\in S\)</span> and <span class="process-math">\(fq=gq\text{.}\)</span> This does not say <span class="process-math">\(q\in S\text{.}\)</span> Apply Ore to <span class="process-math">\(s:A\to X\)</span> and <span class="process-math">\(sq:B\to X\text{,}\)</span> obtaining <span class="process-math">\(t:C\to A\)</span> in <span class="process-math">\(S\)</span> and <span class="process-math">\(r:C\to B\)</span> with <span class="process-math">\(st=sqr\text{.}\)</span> Cancellation against <span class="process-math">\(s\)</span> gives <span class="process-math">\(e:D\to C\)</span> in <span class="process-math">\(S\)</span> with <span class="process-math">\(te=qre\text{.}\)</span> Hence <span class="process-math">\(fte=gte\text{,}\)</span> and <span class="process-math">\(te\in S\)</span> is the required single denominator refinement. The converse is immediate from common refinement.</div>
+<div class="para" id="cat-c10-roofs-8">The opposite construction handles left fractions. If both calculi hold, their two roof models are canonically isomorphic over <span class="process-math">\(\mathcal C\)</span> by the strict universal property, as in <a href="cat-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-cat-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Tag 04VL]</a>. The arbitrary path model remains available when no Ore calculus holds; a two-arrow roof representation is an additional conclusion under these axioms.</div>
+<article class="proposition theorem-like" id="cat-c10-prop-finite-limits"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.12</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="cat-c10-prop-finite-limits-1-1">For a right multiplicative system in our orientation, the localization functor preserves every finite limit that exists in <span class="process-math">\(\mathcal C\text{.}\)</span> Dually, a left-fraction localization preserves existing finite colimits.</div>
+</article>
+<details id="cat-c10-prop-finite-limits-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="cat-c10-prop-finite-limits-2-1">
+<div class="para">Let <span class="process-math">\(D:K\to\mathcal C\)</span> have finite index and a limit <span class="process-math">\(L\text{.}\)</span> For each object <span class="process-math">\(X\text{,}\)</span> the roof formula gives bijections</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/cat-c06-thm-finite-limit-commutation.html" id="cat-c10-prop-finite-limits-2-1-4">
+\begin{equation*}
+\begin{aligned}
+\Hom_{\mathcal C[S^{-1}]}(QX,QL)
+&amp;\cong\operatorname{colim}_{(s:A\to X)\in(S/X)^\op}
+\Hom_{\mathcal C}(A,L)\\
+&amp;\cong\operatorname{colim}_{s}\lim_{k\in K}\Hom_{\mathcal C}(A,Dk)\\
+&amp;\cong\lim_{k\in K}\operatorname{colim}_{s}\Hom_{\mathcal C}(A,Dk)\\
+&amp;\cong\lim_{k\in K}\Hom_{\mathcal C[S^{-1}]}(QX,QDk).
+\end{aligned}
+\end{equation*}
+</div>
+<div class="para">The middle interchange is the filtered-colimit theorem of <a href="cat-filtered-cofinal.html#cat-c06-thm-finite-limit-commutation" class="xref" data-knowl="./knowl/xref/cat-c06-thm-finite-limit-commutation.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 6.13">Theorem 6.13</a>, since <span class="process-math">\((S/X)^\op\)</span> is filtered. If the indexing category is larger than <span class="process-math">\(\U\text{,}\)</span> use the same finite-representative proof for these ordinary sets; no assertion of membership in <span class="process-math">\(\U\)</span> is required. The bijections are induced by the images of the original projections. Every object of the localized category is <span class="process-math">\(QX\)</span> for an object <span class="process-math">\(X\text{,}\)</span> so the Hom criterion proves that those images form a limit cone. Opposites give the dual assertion.</div>
+</div>
+</article></details>
+<div class="para" id="cat-c10-roofs-10">This is <a href="cat-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-cat-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Lemma 1.9.16]</a> in the translated handedness, and <a href="cat-references.html#Stacks" class="xref" data-knowl="./knowl/xref/bib-cat-stacks.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Stacks">[Stacks, Lemma 4.27.17]</a>. Preservation concerns cones on diagrams already given in <span class="process-math">\(\mathcal C\text{,}\)</span> with a limit there. It does not say that every diagram in the localized category comes from such a diagram, or that missing limits automatically appear. The proof explains the role of filteredness: morphisms in the localization are filtered colimits of Hom sets, so the finite equations specifying a cone can be imposed at one denominator stage.</div>
+<div class="para" id="cat-c10-roofs-11">The same formula gives a useful local size criterion. Suppose <span class="process-math">\(\mathcal C\)</span> is locally <span class="process-math">\(\U\)</span>-small and, for each <span class="process-math">\(X\text{,}\)</span> the filtered category <span class="process-math">\((S/X)^\op\)</span> admits a final functor from a <span class="process-math">\(\U\)</span>-small category. Reindexing computes each displayed Hom colimit using a small diagram of sets in <span class="process-math">\(\U\text{.}\)</span> It therefore gives a bijection with a set belonging to <span class="process-math">\(\U\text{.}\)</span> This is the size criterion discussed in <a href="cat-references.html#LiII" class="xref" data-knowl="./knowl/xref/bib-cat-li2.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LiII">[LiII, Remark 1.9.15]</a>.</div>
+<div class="para" id="cat-c10-roofs-12">Our strict membership convention needs a qualification: the original set of roof classes may contain external object labels, so the bijection does not put that particular encoding inside <span class="process-math">\(\U\text{.}\)</span> One can use the small colimit sets as new local morphism sets and transport identities and composition across the bijections. This yields a locally <span class="process-math">\(\U\)</span>-small presentation with the same objects. Reindexings chosen over the set of source objects require only set-indexed choice. If <span class="process-math">\(\mathcal C\)</span> is already <span class="process-math">\(\U\)</span>-small, this relabeling issue is absent for the formal path construction, by <a href="cat-localization.html#cat-c10-prop-size" class="xref" data-knowl="./knowl/xref/cat-c10-prop-size.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 10.5">Proposition 10.5</a>.</div>
+</section>
+<section class="section" id="cat-c10-monoid-examples">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.7</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Monoids and the effect on arrows</span>
+</h2>
+<div class="para" id="cat-c10-monoid-examples-2">One-object categories make the formulas concrete without changing the categorical problem. The object stays fixed, and all the information lies in its endomorphism monoid.</div>
+<article class="example example-like" id="cat-c10-example-commutative-monoids"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.13</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Commutative fractions and group completion.</span>
+</h3>
+<div class="para" id="cat-c10-example-commutative-monoids-2">Let <span class="process-math">\(M\in\U\)</span> be a commutative monoid and <span class="process-math">\(S\subseteq M\)</span> a submonoid containing the identity. The right Ore square exists by commutativity: for elements <span class="process-math">\(f,s\text{,}\)</span> take <span class="process-math">\(t=s\)</span> and <span class="process-math">\(g=f\text{.}\)</span> If <span class="process-math">\(sf=sg\text{,}\)</span> then <span class="process-math">\(fs=gs\text{,}\)</span> giving cancellation with <span class="process-math">\(t=s\text{.}\)</span> Thus the fraction calculus applies, without assuming that <span class="process-math">\(M\)</span> is cancellative.</div>
+<div class="para logical" id="cat-c10-example-commutative-monoids-3">
+<div class="para">Its endomorphisms are fractions <span class="process-math">\(a/s\text{,}\)</span> with the relation</div>
+<div class="displaymath process-math" id="cat-c10-example-commutative-monoids-3-2">
+\begin{equation*}
+a/s=b/t\quad\Longleftrightarrow\quad
+u t a=u s b\text{ for some }u\in S.
+\end{equation*}
+</div>
+<div class="para">Multiplication is <span class="process-math">\((a/s)(b/t)=ab/(st)\text{.}\)</span> For example, the displayed witness gives a common refinement by multiplying the first roof by <span class="process-math">\(ut\)</span> and the second by <span class="process-math">\(us\text{.}\)</span> Conversely, from a common refinement <span class="process-math">\(sv=tw=d\in S\)</span> and <span class="process-math">\(av=bw\text{,}\)</span> multiplication shows <span class="process-math">\(dta=dsb\text{.}\)</span> This proves the stated relation directly from the roof criterion.</div>
+</div>
+<div class="para" id="cat-c10-example-commutative-monoids-4">For <span class="process-math">\(S=M\text{,}\)</span> all endomorphisms become invertible and the result is the group completion of the commutative monoid. For the additive monoid <span class="process-math">\((\N,+)\text{,}\)</span> the fraction represented by <span class="process-math">\((n,m)\)</span> is the integer <span class="process-math">\(n-m\text{,}\)</span> giving <span class="process-math">\((\Z,+)\text{.}\)</span> The arrows outside the image of the localization functor correspond to the negative integers.</div>
+<div class="para" id="cat-c10-example-commutative-monoids-5">Even a composition-closed denominator set can be smaller than its saturation. In <span class="process-math">\((\N,+)\text{,}\)</span> take <span class="process-math">\(S=2\N\text{.}\)</span> Inverting the element <span class="process-math">\(2\)</span> also inverts <span class="process-math">\(1\text{,}\)</span> whose inverse is represented by <span class="process-math">\(1-2\text{.}\)</span> Thus every original arrow belongs to <span class="process-math">\(S^{\mathrm{sat}}\text{,}\)</span> although <span class="process-math">\(1\notin S\text{.}\)</span>
+</div>
+</article>
+<div class="para" id="cat-c10-monoid-examples-4">Localization can also identify distinct arrows. In the monoid <span class="process-math">\(\{1,0\}\)</span> with absorbing zero, inverting <span class="process-math">\(0\)</span> forces <span class="process-math">\(1=0\text{,}\)</span> since <span class="process-math">\(0\cdot1=0\cdot0\)</span> can then be canceled. The localized monoid is trivial. More generally, whenever <span class="process-math">\(sf=sg\)</span> and <span class="process-math">\(s\)</span> is inverted, <span class="process-math">\(Q(f)=Q(g)\)</span> follows. A localization functor is therefore neither automatically faithful nor automatically full.</div>
+<div class="para" id="cat-c10-monoid-examples-5">Inverting the only nonidentity arrow of <span class="process-math">\([1]\)</span> gives the category with two distinct objects joined by a unique isomorphism in each direction. It is equivalent to the terminal category, but the path model has not identified the objects. This separates adjoining inverses from a literal quotient of the object set. An inverting functor may send these two objects to different isomorphic objects, so strict factorization through a one-object quotient would be too restrictive.</div>
+<div class="para" id="cat-c10-monoid-examples-6">If every arrow of a category is inverted, the result is its universal groupoid: every path class is invertible, and every functor to a groupoid factors through it. This operation retains more information than connected components. For a one-object category, there is only one component, but its universal group can be nontrivial, as the example of <span class="process-math">\(\N\)</span> shows. If <span class="process-math">\(\mathcal C\)</span> is already a groupoid, its path localization functor is an isomorphism. Thus adjoining inverses and replacing each connected component by a single point are different constructions.</div>
+</section>
+<section class="section" id="cat-c10-reflective">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.8</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Reflective localizations</span>
+</h2>
+<div class="para" id="cat-c10-reflective-2">A reflective subcategory provides a different presentation of localization: each object has a universal map to an object satisfying a chosen condition. Unlike the path construction, this presentation may replace the original objects by representatives in a full subcategory.</div>
+<article class="proposition theorem-like" id="cat-c10-prop-reflective-localization"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.14</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="cat-c10-prop-reflective-localization-1-1">
+<div class="para">Suppose <span class="process-math">\(L:\mathcal C\rightleftarrows\mathcal A:i\)</span> is an adjunction <span class="process-math">\(L\dashv i\)</span> with <span class="process-math">\(i\)</span> fully faithful. Put</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/cat-monads.html" id="cat-c10-prop-reflective-localization-1-1-4">
+\begin{equation*}
+W_L=\{f\in\Ar(\mathcal C):L(f)\text{ is invertible}\}.
+\end{equation*}
+</div>
+<div class="para">Then <span class="process-math">\(L\)</span> is a localization at <span class="process-math">\(W_L\)</span> in the functor-category sense. The induced functor <span class="process-math">\(\mathcal C[W_L^{-1}]\to\mathcal A\)</span> is an equivalence. The associated monad <span class="process-math">\(iL\)</span> is idempotent, as developed in <a href="cat-monads.html" class="internal" title="Chapter 9: Monads and algebras">Chapter 9</a>.</div>
+</div>
+</article>
+<details id="cat-c10-prop-reflective-localization-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="cat-c10-prop-reflective-localization-2-1">Write <span class="process-math">\(\eta:\id_{\mathcal C}\Rightarrow iL\)</span> and <span class="process-math">\(\epsilon:Li\Rightarrow\id_{\mathcal A}\)</span> for unit and counit. Full faithfulness makes <span class="process-math">\(\epsilon\)</span> invertible. The triangle identity implies that <span class="process-math">\(L(\eta_X)\)</span> is inverse to <span class="process-math">\(\epsilon_{LX}\text{,}\)</span> so each <span class="process-math">\(\eta_X\)</span> belongs to <span class="process-math">\(W_L\text{.}\)</span>
+</div>
+<div class="para" id="cat-c10-prop-reflective-localization-2-2">For any <span class="process-math">\(F:\mathcal C\to\mathcal D\)</span> inverting <span class="process-math">\(W_L\text{,}\)</span> the transformation <span class="process-math">\(F\eta:F\Rightarrow FiL\)</span> is a natural isomorphism. Thus <span class="process-math">\(F\)</span> factors up to natural isomorphism through <span class="process-math">\(L\text{,}\)</span> using <span class="process-math">\(Fi\text{.}\)</span> More precisely, restriction along <span class="process-math">\(i\)</span> is a quasi-inverse to <span class="process-math">\(L^*:\Fun(\mathcal A,\mathcal D)\to\Fun_{W_L}(\mathcal C,\mathcal D)\text{.}\)</span> The two required natural isomorphisms are supplied by <span class="process-math">\(H\epsilon:HLi\cong H\)</span> for a functor <span class="process-math">\(H\)</span> on <span class="process-math">\(\mathcal A\text{,}\)</span> and by <span class="process-math">\(F\eta:F\cong FiL\)</span> for an inverting <span class="process-math">\(F\text{.}\)</span> These comparisons are also natural in transformations, by naturality and whiskering. Hence <span class="process-math">\(L^*\)</span> is an equivalence. Comparison with the path model now follows from <a href="cat-localization.html#cat-c10-prop-comparison-opposite" class="xref" data-knowl="./knowl/xref/cat-c10-prop-comparison-opposite.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 10.4">Proposition 10.4</a>.</div>
+</article></details>
+<div class="para" id="cat-c10-reflective-4">For this example of localization, the universal property naturally uses equivalence of functor categories, since the reflector need not be the identity on objects. The path model and the reflective model answer the same universal problem, but their object sets can be very different.</div>
+<div class="para" id="cat-c10-reflective-5">A general localization need not have a fully faithful right adjoint. The localization of the one-object category <span class="process-math">\((\N,+)\)</span> to <span class="process-math">\((\Z,+)\)</span> is an elementary example. A fully faithful functor back would induce an injective monoid homomorphism <span class="process-math">\(\Z\to\N\text{.}\)</span> Such a homomorphism must send each integer to an invertible element of <span class="process-math">\(\N\text{,}\)</span> whose only invertible element is zero, so it cannot be injective. Consequently this localization has no reflective presentation inside the original one-object category. The reflector hypothesis adds substantive structure beyond universal inversion.</div>
+<div class="para logical" id="cat-c10-reflective-6">
+<div class="para">One can recognize the objects in the reflective image by their maps from inverted arrows. Call <span class="process-math">\(Z\in\mathcal C\)</span> <span class="process-math">\(W_L\)</span>-local if</div>
+<div class="displaymath process-math" id="cat-c10-reflective-6-3">
+\begin{equation*}
+\Hom_{\mathcal C}(Y,Z)\longrightarrow\Hom_{\mathcal C}(X,Z),\qquad
+a\longmapsto aw
+\end{equation*}
+</div>
+<div class="para">is bijective for every <span class="process-math">\(w:X\to Y\)</span> in <span class="process-math">\(W_L\text{.}\)</span> These are exactly the objects isomorphic to some <span class="process-math">\(iA\text{.}\)</span> Indeed, adjunction proves the condition for <span class="process-math">\(iA\text{.}\)</span> Conversely, localness at <span class="process-math">\(\eta_Z\)</span> supplies <span class="process-math">\(r:iLZ\to Z\)</span> with <span class="process-math">\(r\eta_Z=\id_Z\text{.}\)</span> The object <span class="process-math">\(iLZ\)</span> is itself local, so injectivity of precomposition by <span class="process-math">\(\eta_Z\)</span> gives <span class="process-math">\(\eta_Zr=\id_{iLZ}\text{.}\)</span> Thus <span class="process-math">\(\eta_Z\)</span> is an isomorphism, as required.</div>
+</div>
+<article class="example example-like" id="cat-c10-example-reflector-equalizers"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.15</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">A reflection that does not preserve equalizers.</span>
+</h3>
+<div class="para" id="cat-c10-example-reflector-equalizers-2">The full subcategory of <span class="process-math">\(\Set_\U\)</span> on the empty set and a chosen singleton is reflective. Its reflector sends an empty set to the empty set and every nonempty set to the singleton. To check the adjunction, maps into the singleton are always unique, while a map into the empty set exists exactly when the source is empty. These are precisely the two Hom comparisons required for the reflector. The empty set is retained as a separate object, so the reflection records whether an element exists without choosing one.</div>
+<div class="para" id="cat-c10-example-reflector-equalizers-3">Take two distinct maps from a singleton to a two-element set. Their equalizer is empty. After reflection both maps are the identity of the singleton, whose equalizer is the singleton. Thus this localization fails to preserve an existing finite limit.</div>
+<div class="para" id="cat-c10-example-reflector-equalizers-4">Its inverted class also fails the right cancellation axiom above. Postcompose the two distinct maps by the map from the two-element set to a singleton; this map is inverted and makes the composites equal. A proposed denominator into the original singleton would have to have nonempty source. Precomposing the two distinct constant maps by such a function cannot make them equal. This explains directly why the right-fraction preservation proposition does not apply. Reflective localization and a particular Ore calculus are distinct additional structures on the general localization problem.</div>
+</article>
+<article class="example example-like" id="cat-c10-example-poset-reflection"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.16</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">A closure operator on a poset.</span>
+</h3>
+<div class="para logical" id="cat-c10-example-poset-reflection-2">
+<div class="para">Let <span class="process-math">\(P\)</span> be a poset with a monotone map <span class="process-math">\(c:P\to P\)</span> satisfying <span class="process-math">\(x\le c(x)\)</span> and <span class="process-math">\(c(c(x))=c(x)\text{.}\)</span> Its fixed points form a full subposet <span class="process-math">\(P_c\text{.}\)</span> For a fixed point <span class="process-math">\(a\text{,}\)</span>
+</div>
+<div class="displaymath process-math" id="cat-c10-example-poset-reflection-2-7">
+\begin{equation*}
+c(x)\le a\quad\Longleftrightarrow\quad x\le a,
+\end{equation*}
+</div>
+<div class="para">so <span class="process-math">\(c:P\to P_c\)</span> is left adjoint to inclusion. It localizes the arrows <span class="process-math">\(x\le y\)</span> for which <span class="process-math">\(c(x)=c(y)\text{.}\)</span> The localized Hom set from <span class="process-math">\(x\)</span> to <span class="process-math">\(y\)</span> is a singleton if <span class="process-math">\(c(x)\le c(y)\text{,}\)</span> and empty otherwise, by the equivalence with <span class="process-math">\(P_c\text{.}\)</span>
+</div>
+</div>
+<div class="para" id="cat-c10-example-poset-reflection-3">For a concrete choice, round each natural number up to the next even number. The fixed-point poset is the even numbers, and the arrows from each odd number to its next even number become invertible. In particular, there is a new arrow from <span class="process-math">\(2\)</span> to <span class="process-math">\(1\)</span> in the localization. The fixed-point presentation chooses one representative for each such pair; the path presentation retains both objects and makes them isomorphic.</div>
+</article>
+<div class="para" id="cat-c10-reflective-9">These examples illustrate two useful ways to control localization: explicit fractions compute the altered morphism sets, while a reflection identifies a category of representatives through an adjunction. General localization assumes neither description. Its common foundation remains the universal factorization of functors and natural transformations.</div>
+</section></section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="cat-monads.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Top</span></a><a class="next-button button" href="cat-idempotents.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a>
+</div></main>
+</div>
+<footer id="site-copyright" class="site-copyright"><p>© 2026 Jie Fu. All rights reserved.</p></footer>
+</body>
+</html>

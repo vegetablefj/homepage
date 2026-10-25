@@ -1,0 +1,293 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="cat-fibrations">
+  <title>Categories over a base</title>
+  <introduction>
+    <p>A presheaf assigns a set to each object and a restriction map to each arrow. When the assigned objects form categories, restriction maps become functors, and successive restrictions need only agree up to specified natural isomorphisms. A Grothendieck fibration records these varying categories and their restrictions inside a single ordinary category equipped with a projection to the indexing category.</p>
+    <p>We develop this description through cartesian arrows, chosen lifts, and the Grothendieck construction. The examples use sets, slices, and pullback squares. No additional structure on the base is assumed. Our main references are <xref ref="bib-cat-stacks" detail="Sections 4.33, 4.36, and 4.38"/>; for the set-valued case compare <xref ref="bib-cat-riehl" detail="Definition 2.4.13 and Proposition 2.4.14"/>. All categories remain set-encoded as in <xref ref="cat-conventions"/>. Smallness conditions needed for the total category are discussed explicitly below.</p>
+  </introduction>
+
+  <section xml:id="cat-c16-cartesian-arrows">
+    <title>Fibers and cartesian arrows</title>
+    <p>Fix a functor <m>p:\mathcal E\to\mathcal B</m>. An object of <m>\mathcal E</m> has a base object, and an arrow has a base arrow. Keeping track of both is essential: an arrow between objects over the same base need not itself lie over the identity of that base.</p>
+    <definition xml:id="cat-c16-def-fiber-cartesian">
+      <title>Categories over a base and cartesian arrows</title>
+      <idx>Category over a base</idx><idx>Fiber category</idx><idx>Vertical arrow</idx><idx>Cartesian arrow</idx>
+      <statement>
+        <p><ol>
+          <li><p>A category over <m>\mathcal B</m> is a functor <m>p:\mathcal E\to\mathcal B</m>. Its fiber <m>\mathcal E_b</m> has objects <m>x</m> with <m>p(x)=b</m> and arrows <m>f:x\to y</m> with <m>p(f)=\id_b</m>. Such arrows are called vertical. A functor over <m>\mathcal B</m> from <m>p</m> to <m>q:\mathcal E'\to\mathcal B</m> is a functor <m>H:\mathcal E\to\mathcal E'</m> satisfying <m>qH=p</m>.</p></li>
+          <li><p>An arrow <m>\chi:x\to y</m>, with <m>p(x)=a</m>, <m>p(y)=b</m>, and <m>p(\chi)=u:a\to b</m>, is <term>cartesian</term> if the following factorization exists uniquely. For every <m>z\in\mathcal E</m>, every <m>v:p(z)\to a</m>, and every <m>f:z\to y</m> with <m>p(f)=uv</m>, there is a unique <m>g:z\to x</m> such that
+            <md number="no">p(g)=v,\qquad \chi g=f.</md>
+            In this situation <m>\chi</m> is a cartesian lift of <m>u</m> with target <m>y</m>.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <p>The test includes arbitrary objects <m>z</m> and arbitrary arrows <m>v</m> into <m>a</m>. Restricting it to vertical factorizations would give a weaker condition for a general functor <m>p</m>. Equivalently, for each <m>z</m> the map
+      <md number="no">\Hom_{\mathcal E}(z,x)\longrightarrow
+        \{(f,v):f:z\to y,\ v:p(z)\to a,\ p(f)=uv\},
+        \qquad g\longmapsto(\chi g,p(g))</md>
+      is a bijection. This expresses a relative version of a pullback mapping property: the base arrow and the arrow to the target determine the required arrow to the lift.<fn>Stacks calls this condition strongly cartesian: see <xref ref="bib-cat-stacks" detail="Definition 4.33.1, Tag 02XK"/>. We use cartesian for the displayed arbitrary-base-arrow condition throughout. The pullback interpretation follows the opening discussion of its Section 4.33.</fn></p>
+    <p>The fiber is generally not a full subcategory. For example, let the base be the one-object category of a nontrivial monoid, and take the identity projection from that category to itself. All objects of the total category lie over its single base object, but the fiber retains only the identity arrow. It is the terminal category, rather than the original monoid category. Thus even for a base with one object, retaining only the vertical arrows can change the category substantially; fixing an object of the base does not fix all its endomorphisms.</p>
+    <proposition xml:id="cat-c16-prop-cartesian-calculus">
+      <statement>
+        <p>For a category over <m>\mathcal B</m>, the following properties hold.</p>
+        <p><ol>
+          <li><p>Every isomorphism is cartesian. A cartesian arrow whose base arrow is an isomorphism is itself an isomorphism. In particular, a vertical arrow is cartesian if and only if it is an isomorphism.</p></li>
+          <li><p>Composites of cartesian arrows are cartesian. If <m>\psi:y\to z</m> and <m>\psi\chi:x\to z</m> are cartesian, then <m>\chi:x\to y</m> is cartesian.</p></li>
+          <li><p>If <m>\chi:x\to y</m> and <m>\chi':x'\to y</m> are cartesian lifts of the same <m>u:a\to b</m>, there is a unique vertical isomorphism <m>r:x\to x'</m> with <m>\chi'r=\chi</m>.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>For an isomorphism <m>\chi</m>, the only possible factor is <m>\chi^{-1}f</m>, and its base is the required <m>v</m>. Conversely, if <m>\chi</m> is cartesian and <m>u=p(\chi)</m> is invertible, apply its property to <m>(\id_y,u^{-1})</m>. It gives <m>s:y\to x</m> with <m>\chi s=\id_y</m>. Both <m>s\chi</m> and <m>\id_x</m> lie over <m>\id_a</m> and have composite <m>\chi</m>, so uniqueness gives <m>s\chi=\id_x</m>.</p>
+        <p>To factor through a composite, first factor through its second cartesian arrow and then through its first; these two uniqueness statements also give uniqueness for the composite. For cancellation, write <m>p(\chi)=u</m>. Given <m>f:t\to y</m> over <m>uv</m>, factor <m>\psi f</m> through <m>\psi\chi</m> over <m>v</m>, obtaining <m>g:t\to x</m>. Cartesian uniqueness for <m>\psi</m> shows <m>\chi g=f</m>. Uniqueness for <m>\psi\chi</m> proves uniqueness of <m>g</m>.</p>
+        <p>Finally, factor <m>\chi</m> through <m>\chi'</m> over <m>\id_a</m>, and factor <m>\chi'</m> through <m>\chi</m> in the same way. Uniqueness makes the two factors inverse. It also proves the asserted uniqueness of their comparison.</p>
+      </proof>
+    </proposition>
+    <p>The first two basic assertions also appear in <xref ref="bib-cat-stacks" detail="Lemma 4.33.2, Tag 02XL"/>. The final assertion concerns lifts with their arrows to the fixed target. Their sources alone may admit many automorphisms; only one is compatible with those arrows.</p>
+    <p>Cartesian does not imply monic in the total category. For the identity functor <m>\mathcal B\to\mathcal B</m>, every arrow is cartesian: the required factor is already specified by its base arrow <m>v</m>. Taking <m>\mathcal B=\Set_\U</m> gives cartesian arrows which are not injective. In a general projection, uniqueness likewise concerns factorizations with a prescribed base arrow. Two potential factors with different base arrows are not compared by the definition.</p>
+  </section>
+
+  <section xml:id="cat-c16-fibrations-cleavages">
+    <title>Fibrations and chosen restriction functors</title>
+    <definition xml:id="cat-c16-def-fibration-cleavage">
+      <title>Fibrations and cleavages</title>
+      <idx>Grothendieck fibration</idx><idx>Cleavage</idx>
+      <statement>
+        <p>A <term>Grothendieck fibration</term> is a functor <m>p:\mathcal E\to\mathcal B</m> such that every <m>u:a\to b</m> and every <m>y\in\mathcal E_b</m> admit a cartesian lift. A <term>cleavage</term> is a choice of one such lift for every pair:
+          <md number="no">\chi_{u,y}:u^*y\longrightarrow y,\qquad p(\chi_{u,y})=u.</md>
+          It is normalized if <m>(\id_b)^*y=y</m> and <m>\chi_{\id_b,y}=\id_y</m>.</p>
+      </statement>
+    </definition>
+    <p>The fibration property supplies existence, whereas a cleavage supplies particular representatives. Since the arrow and object collections are sets, ordinary choice selects all these lifts simultaneously. Choosing identity lifts to be identities gives a normalized cleavage. This does not impose strict compatibility for nonidentity composites.<fn>See <xref ref="bib-cat-stacks" detail="Definition 4.33.5, Tag 02XM, and Definition 4.33.6, Tag 02XN"/>. Its term choice of pullbacks means a cleavage. The definition does not assert that the base itself has pullbacks.</fn></p>
+    <proposition xml:id="cat-c16-prop-restriction-factorization">
+      <statement>
+        <p>A cleavage determines a functor <m>u^*:\mathcal E_b\to\mathcal E_a</m> for every <m>u:a\to b</m>. On a vertical <m>h:y\to y'</m>, its arrow <m>u^*h</m> is characterized by
+          <md number="no">\chi_{u,y'}\,u^*h=h\,\chi_{u,y}.</md>
+          Every <m>f:x\to y</m> over <m>u</m> factors uniquely as
+          <md number="no">x\xrightarrow{\bar f}u^*y\xrightarrow{\chi_{u,y}}y,
+            \qquad \bar f\in\Hom_{\mathcal E_a}(x,u^*y).</md>
+          It is cartesian if and only if <m>\bar f</m> is an isomorphism.</p>
+      </statement>
+      <proof>
+        <p>Apply the property of <m>\chi_{u,y'} </m> to <m>h\chi_{u,y}</m> over <m>u\id_a</m>. The resulting vertical arrow defines <m>u^*h</m>. Uniqueness, applied to identities and successive vertical arrows, gives the functor laws. The same property with <m>f</m> gives its unique factorization. If <m>\bar f</m> is invertible, the composite is cartesian. If <m>f</m> is cartesian, cancellation makes <m>\bar f</m> cartesian; being vertical, it is then invertible.</p>
+      </proof>
+    </proposition>
+    <p>A different cleavage gives naturally isomorphic restriction functors. At <m>y</m> use the unique vertical comparison between the two lifts; the equation defining restriction on arrows proves naturality. The comparison is characterized by compatibility with the lift arrows, rather than by an arbitrary choice of isomorphisms between the source objects.</p>
+    <p>A fiber can be empty. The fibration axiom only requires a source object when a target object and a base arrow into its base have been given. Thus the set of bases with nonempty fiber is closed under taking sources of arrows into it. The empty category over any base is a fibration, as is the projection from a product with a nonempty category. In the product example, the vertical arrows are the arrows of that category and may be noninvertible.</p>
+  </section>
+
+  <section xml:id="cat-c16-coherence">
+    <title>Successive restrictions and their comparisons</title>
+    <p>Take <m>u:a\to b</m> and <m>v:b\to c</m>. Both the direct lift along <m>vu</m> and the composite of the chosen lifts along <m>v</m> and <m>u</m> are cartesian. Their unique comparison need not be an equality.</p>
+    <proposition xml:id="cat-c16-prop-cleavage-coherence">
+      <statement>
+        <p>A cleavage determines natural isomorphisms
+          <md number="no">c_{u,v}:u^*v^*\xrightarrow{\ \cong\ }(vu)^*,
+            \qquad e_b:(\id_b)^*\xrightarrow{\ \cong\ }\id_{\mathcal E_b},</md>
+          characterized by
+          <md number="no">\chi_{vu,y}\,c_{u,v,y}
+              =\chi_{v,y}\,\chi_{u,v^*y},\qquad
+            e_{b,y}=\chi_{\id_b,y}.</md>
+          For <m>w:c\to d</m>, they satisfy
+          <md number="no">c_{u,wv}\circ u^*(c_{v,w})
+            =c_{vu,w}\circ(c_{u,v}w^*):
+            u^*v^*w^*\longrightarrow(wvu)^*.</md>
+          Their unit equations are
+          <md number="no">c_{\id_a,u}=e_a u^*,\qquad
+            c_{u,\id_b}=u^*e_b.</md>
+          Here juxtaposition with a functor denotes the whiskering of natural transformations from <xref ref="cat-language"/>.</p>
+      </statement>
+      <proof>
+        <p>The comparison of the two cartesian lifts supplies each <m>c_{u,v,y}</m> and its inverse; the vertical identity lift supplies <m>e_{b,y}</m>. For a vertical <m>h:y\to y'</m>, compose the two proposed naturality composites with <m>\chi_{vu,y'}</m>. The defining equations for <m>c</m> and for restriction make their composites equal to <m>h\chi_{v,y}\chi_{u,v^*y}</m>. Both lie over the identity in the source fiber, so cartesian uniqueness proves naturality. The equation for restriction along an identity proves naturality of <m>e</m> in exactly the same way.</p>
+        <p>For the associativity equation, compose each side at <m>y</m> with <m>\chi_{wvu,y}</m>. Each becomes the same three successive chosen lifts
+          <md number="no">\chi_{w,y}\,
+            \chi_{v,w^*y}\,\chi_{u,v^*w^*y}.</md>
+          Cartesian uniqueness gives equality. For the two unit equations, the same argument reduces to the defining identity lift and, for the second equation, to naturality of <m>\chi_u</m> in the vertical arrow <m>e_{b,y}</m>.</p>
+      </proof>
+    </proposition>
+    <p>These equations are the full associativity and unit data used here. They say that the two ways of comparing three restrictions agree. Thus replacing equalities by isomorphisms introduces a definite compatibility requirement, rather than permission to choose unrelated isomorphisms.<fn>Compare <xref ref="bib-cat-stacks" detail="Lemma 4.33.7, Tag 02XO"/>. Its comparison runs from <m>(vu)^*</m> to <m>u^*v^*</m>, the inverse of our <m>c_{u,v}</m>; its identity comparison likewise runs opposite to <m>e_b</m>.</fn></p>
+    <definition xml:id="cat-c16-def-split">
+      <title>Split cleavage</title>
+      <idx>Split fibration</idx>
+      <statement>
+        <p>A cleavage is <term>split</term> if it is normalized and, for every composable <m>u,v</m> and <m>y</m>,
+          <md number="no">(vu)^*y=u^*v^*y,\qquad
+            \chi_{vu,y}=\chi_{v,y}\chi_{u,v^*y}.</md>
+          These are strict equalities of objects and arrows. A split fibration is a fibration equipped with such a cleavage.</p>
+      </statement>
+    </definition>
+    <p>For a split cleavage, uniqueness forces <m>c</m> and <m>e</m> to be identities. The restriction functors then satisfy the strict functor laws and give an ordinary functor <m>\mathcal B^{\op}\to\Cat</m>, with an appropriate set-sized collection of categories as target. An arbitrary cleavage gives the comparison data above instead. Normalizing its identity choices alone does not turn its comparisons for composition into identities.</p>
+    <p>A concrete example separates these conditions. Let the base be the chain <m>0\to1\to2</m>, and let <m>\mathcal D</m> have two distinct objects and exactly one arrow between every ordered pair. All its arrows are isomorphisms. In the product fibration, choose restriction along <m>0\to1</m> to interchange the two objects of <m>\mathcal D</m>, and choose restriction along <m>1\to2</m> and <m>0\to2</m> to be the identity. The unique fiber arrows into the target provide cartesian lifts. These choices can be normalized, but successive restriction interchanges the objects while direct restriction fixes them. Their comparison is a natural isomorphism, not an equality of functors.</p>
+    <p>Comparisons between two cleavages retain the same compatibility. If their restriction functors are <m>u^*</m> and <m>\widetilde u^*</m>, write <m>\theta_u:u^*\to\widetilde u^*</m> for the lift comparison. The equation for a pair is
+      <md number="no">\theta_{vu}\,c_{u,v}
+        =\widetilde c_{u,v}\,
+          \widetilde u^*(\theta_v)\,(\theta_u v^*).</md>
+      Both sides identify the same two cartesian lifts of <m>vu</m>, so uniqueness proves equality. The identity equation is <m>\widetilde e_b\,\theta_{\id_b}=e_b</m>. These formulas specify how changing choices affects the coherent indexing data.</p>
+    <p>Restriction along an isomorphism in the base is an equivalence of fibers. Indeed, if <m>u:a\to b</m> is invertible, successive restriction along <m>u</m> and <m>u^{-1}</m>, followed by the composition and identity comparisons, gives natural isomorphisms from both composites to the relevant identity functors. Thus <m>(u^{-1})^*</m> is a quasi-inverse of <m>u^*</m>. This assertion uses no splitness. The chosen cartesian arrows over <m>u</m> are themselves isomorphisms in the total category, in agreement with the cartesian calculus.</p>
+    <p>An arbitrary base arrow need not give an equivalence of fibers. In the codomain example below, restricting families of sets along a proper subset inclusion forgets the omitted fibers, so the original family cannot in general be recovered from its restriction.</p>
+  </section>
+
+  <section xml:id="cat-c16-strict-construction">
+    <title>The Grothendieck construction for strict functors</title>
+    <p>Conversely, a contravariant family of categories and restriction functors can be assembled into a category over the indexing category. Begin with the strict case, in which the composition and identity laws are equalities. In the notation <m>\Cat</m> here, the target is a category containing the assigned set-indexed family of categories and the relevant functors, all within a sufficiently large set encoding. It does not mean a set of every set-encoded category. No local <m>\U</m>-smallness is imposed on this ambient target.</p>
+    <proposition xml:id="cat-c16-prop-strict-grothendieck">
+      <idx>Grothendieck construction</idx>
+      <statement>
+        <p>Let <m>F:\mathcal B^{\op}\to\Cat</m> be a strict functor, with every <m>F(b)</m> set-encoded, and write <m>u^*=F(u)</m>. Define <m>\int_{\mathcal B}F</m> by objects <m>(b,y)</m>, <m>y\in F(b)</m>, and arrows
+          <md number="no">(u,\alpha):(a,x)\longrightarrow(b,y),
+            \qquad u:a\to b,\quad\alpha:x\to u^*y\text{ in }F(a).</md>
+          Identities are <m>(\id_b,\id_y)</m>, and composition is
+          <md number="no">(v,\beta)\circ(u,\alpha)
+            =(vu,u^*(\beta)\alpha).</md>
+          Projection onto the base defines a split fibration. Its chosen lift is
+          <md number="no">(u,\id_{u^*y}):(a,u^*y)\longrightarrow(b,y).</md>
+        </p>
+      </statement>
+      <proof>
+        <p>The second component of the composite goes from <m>x</m> to <m>u^*v^*z=(vu)^*z</m>, as required. Functoriality of <m>u^*</m>, together with strict composition of restrictions, proves associativity. Strict identity restrictions prove the identity laws. All object and arrow collections are sets, since the base and the assigned categories are set-encoded.</p>
+        <p>For the cartesian property, suppose an arrow from <m>(d,t)</m> to <m>(b,y)</m> is <m>(us,\gamma)</m>, with <m>s:d\to a</m>. Its unique factor over <m>s</m> through the proposed lift is <m>(s,\gamma)</m>: its required target component is legitimate because <m>s^*u^*y=(us)^*y</m>. The composition rule verifies the factorization and its uniqueness. The chosen lifts of identities and composites are strictly the required identities and composites.</p>
+      </proof>
+    </proposition>
+    <p>This is the explicit construction of <xref ref="bib-cat-stacks" detail="Example 4.36.1, Tag 02XV"/>. The pair <m>(u,\alpha)</m> separates movement in the base from a morphism within one fiber. In particular, the second component need not be an identity or an isomorphism. Such an arrow is cartesian precisely when <m>\alpha</m> is invertible, by vertical factorization.</p>
+    <p>For a constant functor with value <m>\mathcal D</m>, the construction is <m>\mathcal B\times\mathcal D\to\mathcal B</m>. Its cartesian arrows are exactly the pairs whose <m>\mathcal D</m>-component is an isomorphism. Thus cartesianness does not mean that the arrow in the base is invertible. It concerns whether any extra, noninvertible change has occurred inside a fiber.</p>
+    <p>The construction also assembles strictly compatible maps of indexed categories. If functors <m>T_b:F(b)\to G(b)</m> satisfy <m>T_aF(u)=G(u)T_b</m> as equal functors for every <m>u:a\to b</m>, then
+      <md number="no">(b,y)\longmapsto(b,T_b y),\qquad
+        (u,\alpha)\longmapsto(u,T_a\alpha)</md>
+      defines a functor over the base. Its second component has the required target by that compatibility equation. The composition formula proves its functor laws; invertible second components remain invertible, so it preserves cartesian arrows. This strict case illustrates why a general map requires compatible comparisons when its restriction functors commute only up to isomorphism.</p>
+  </section>
+
+  <section xml:id="cat-c16-coherent-construction">
+    <title>Coherent indexed categories and recovery</title>
+    <p>The strict formula has a corresponding version with comparison isomorphisms. We spell out the data and composition, so that an unspecified appeal to agreement up to isomorphism cannot conceal an associativity assumption.</p>
+    <definition xml:id="cat-c16-def-coherent-indexed">
+      <title>Coherent contravariant indexing data</title>
+      <idx>Coherent indexed category</idx><idx>Pseudofunctor</idx>
+      <statement>
+        <p>A coherent indexed category over <m>\mathcal B</m> consists of categories <m>F(b)</m>, functors <m>u^*:F(b)\to F(a)</m> for <m>u:a\to b</m>, and natural isomorphisms <m>c_{u,v}:u^*v^*\to(vu)^*</m> and <m>e_b:(\id_b)^*\to\id_{F(b)}</m> satisfying exactly the associativity and unit equations in <xref ref="cat-c16-prop-cleavage-coherence"/>. These data are also called a contravariant pseudofunctor to categories.</p>
+      </statement>
+    </definition>
+    <p>Here that name abbreviates only the explicit functors, natural isomorphisms, and equations just given; no further formalism is required.</p>
+    <proposition xml:id="cat-c16-prop-coherent-recovery">
+      <statement>
+        <p>For coherent indexing data, use the same objects and arrows as in the strict Grothendieck construction, but define
+          <md number="no">(v,\beta)\circ(u,\alpha)
+            =(vu,c_{u,v,z}\,u^*(\beta)\,\alpha),\qquad
+            \id_{(b,y)}=(\id_b,e_{b,y}^{-1}),</md>
+          where <m>(v,\beta):(b,y)\to(c,z)</m>. This defines a fibration with chosen cartesian lifts <m>(u,\id_{u^*y})</m>. When the data come from a cleavage of <m>p:\mathcal E\to\mathcal B</m>, the functor
+          <md number="no">(b,y)\longmapsto y,\qquad
+            (u,\alpha)\longmapsto\chi_{u,y}\alpha</md>
+          is an isomorphism of categories over <m>\mathcal B</m>.</p>
+      </statement>
+      <proof>
+        <p>For a third arrow <m>(w,\delta):(c,z)\to(d,t)</m>, the second components of the two triple composites have the common initial factor <m>u^*v^*(\delta)\,u^*(\beta)\,\alpha</m>. Naturality moves this factor past the relevant comparison, and the remaining equality is
+          <md number="no">c_{u,wv}\,u^*(c_{v,w})
+            =c_{vu,w}\,(c_{u,v}w^*).</md>
+          This proves associativity. For the right identity, naturality of <m>e_a</m> and <m>c_{\id_a,u}=e_a u^*</m> cancel the factor <m>e_{a,x}^{-1}</m>. For the left identity, <m>c_{u,\id_b}=u^*e_b</m> cancels <m>u^*(e_{b,y}^{-1})</m>. Thus the displayed arrows are identities.</p>
+        <p>For an arrow <m>(us,\gamma):(d,t)\to(b,y)</m>, its unique factor over <m>s:d\to a</m> through <m>(u,\id_{u^*y})</m> has second component
+          <md number="no">c_{s,u,y}^{-1}\gamma:t\longrightarrow s^*u^*y.</md>
+          The composition formula proves existence and uniqueness, so projection is a fibration.</p>
+        <p>For data obtained from a cleavage, the proposed recovery functor preserves identities because <m>\chi_{\id_b,y}=e_{b,y}</m>. It preserves composition by the defining equation for <m>c</m> and the defining naturality equation for restriction. Every object of <m>\mathcal E</m> has exactly one base, so its object assignment is bijective. Unique vertical factorization makes its map on each hom-set bijective. It is therefore an isomorphism, and it sends the displayed lifts to the chosen cartesian arrows.</p>
+      </proof>
+    </proposition>
+    <p>Consequently a cleavage translates a fibration into coherent indexing data, and the assembly recovers the original category, including its arrows over each base arrow. Changes of cleavage change the restriction functors by their compatible comparison isomorphisms. Keeping these comparisons is what permits the original total category to be recovered without a strictness assumption.</p>
+    <p>Every fibration is equivalent over its base to a split fibration; see <xref ref="bib-cat-stacks" detail="Lemma 4.36.4, Tag 004A"/> for the strict replacement construction. This statement permits replacement of the total category by an equivalent one. It does not assert that an arbitrary cleavage on the original total category is split, or that its comparison maps can simply be discarded. Our coherent construction already handles the original cleavage, so that replacement theorem is not needed for any proof here.</p>
+  </section>
+
+  <section xml:id="cat-c16-discrete">
+    <title>Discrete fibrations and set-valued functors</title>
+    <definition xml:id="cat-c16-def-discrete-op">
+      <title>Discrete fibrations and the dual notions</title>
+      <idx>Discrete fibration</idx><idx>Opfibration</idx><idx>Cocartesian arrow</idx>
+      <statement>
+        <p>A functor <m>p:\mathcal E\to\mathcal B</m> is a <term>discrete fibration</term> if, for every <m>u:a\to b</m> and <m>y\in\mathcal E_b</m>, there is exactly one arrow with target <m>y</m> lying over <m>u</m>, including its source as part of that unique arrow. An <term>opfibration</term> is a functor whose opposite is a fibration. Its chosen universal arrows, called cocartesian, have specified source and base arrow. A discrete opfibration has exactly one arrow with specified source over each base arrow starting there.</p>
+      </statement>
+    </definition>
+    <proposition xml:id="cat-c16-prop-discrete-presheaves">
+      <statement>
+        <p>For any set-encoded base, a functor is a discrete fibration if and only if it is a fibration with discrete fibers. Every arrow in a discrete fibration is cartesian. A presheaf <m>P:\mathcal B^{\op}\to\Set_\U</m> gives the discrete fibration <m>\operatorname{el}(P)\to\mathcal B</m>, with arrows
+          <md number="no">u:(a,x)\longrightarrow(b,y)
+            \quad\Longleftrightarrow\quad
+            u:a\to b,\quad P(u)(y)=x.</md>
+          Its fiber object set is <m>\{(b,x):x\in P(b)\}</m>, canonically bijective to <m>P(b)</m>.</p>
+        <p>For the categorical classification, assume <m>\mathcal B</m> is <m>\U</m>-small. Let <m>\mathsf{DFib}_{\V,\U}(\mathcal B)</m> have as objects the discrete fibrations with <m>\V</m>-small total category and with each fiber object set bijective to some member of <m>\U</m>; its morphisms are functors over <m>\mathcal B</m>. No strict local <m>\U</m>-bound is imposed on the inherited labels of these totals. Then the element construction gives an equivalence of set-encoded categories
+          <md number="no">\Fun(\mathcal B^{\op},\Set_\U)
+            \simeq\mathsf{DFib}_{\V,\U}(\mathcal B).</md>
+          No strict local <m>\U</m>-smallness of the category on the right is asserted.</p>
+      </statement>
+      <proof>
+        <p>Unique lifts force every vertical arrow into <m>y</m> to equal <m>\id_y</m>, so fibers are discrete. Such a lift is cartesian: to factor an arrow over <m>uv</m>, take the unique lift of <m>v</m> into the source of the unique lift of <m>u</m>. Its composite must be the original arrow by uniqueness of the lift of <m>uv</m>. Conversely, in a fibration with discrete fibers, vertical factorization expresses every arrow over <m>u</m> as a chosen lift preceded by a vertical arrow. The latter can only be an identity. This proves unique lifting and also proves that all arrows are cartesian.</p>
+        <p>In the element category the unique lift into <m>(b,y)</m> over <m>u</m> starts at <m>(a,P(u)y)</m>. A transformation <m>P\Rightarrow Q</m> acts on element objects by its components and on arrows by the same base arrows. Its naturality is exactly the condition that this preserves element arrows. Conversely a functor over the base gives functions <m>P(b)\to Q(b)</m> by its action on the tagged objects in each fiber. Preservation of the unique lifts gives the naturality equation. These two assignments are inverse on each hom-set, so the element construction is fully faithful.</p>
+        <p>For essential surjectivity, start with a discrete fibration in the stated target category. Write <m>u^\sharp:\Ob(\mathcal E_b)\to\Ob(\mathcal E_a)</m> for the function taking a target to the source of its unique lift. These functions satisfy identity and composition laws strictly. Choose sets <m>S_b\in\U</m> and bijections <m>\theta_b:S_b\to\Ob(\mathcal E_b)</m>. Define
+          <md number="no">P_{\mathcal E}(b)=S_b,\qquad
+            P_{\mathcal E}(u)=\theta_a^{-1}u^\sharp\theta_b.</md>
+          The strict laws for <m>u^\sharp</m> give the presheaf laws. The functor <m>\operatorname{el}(P_{\mathcal E})\to\mathcal E</m> sends <m>(b,s)</m> to <m>\theta_b(s)</m> and an element arrow over <m>u</m> to the unique arrow over <m>u</m> with the prescribed target. The defining element equation makes its source the prescribed one. It is bijective on objects and on each hom-set, hence is an isomorphism over <m>\mathcal B</m>.</p>
+        <p>The source presheaf category is set-encoded at the <m>\V</m> scale. The target also has a set of objects and arrows: its category and projection data range over encodings in the fixed set <m>\V</m>, as do functors between two fixed <m>\V</m>-small totals. For <m>\mathcal B</m> <m>\U</m>-small, each element category is in fact <m>\U</m>-small, so it lies in this target. Full faithfulness and essential surjectivity now prove the equivalence. The recovery comparisons are isomorphisms, not literal equalities of encodings: in the unrelabeled recovery, an object <m>x</m> corresponds to <m>(p(x),x)</m>; on a presheaf value the corresponding bijection is <m>x\mapsto(b,x)</m>.</p>
+      </proof>
+    </proposition>
+    <p>The objectwise construction and recovery remain valid for an arbitrary set-encoded base and total category, without assuming they are small in either specified universe. The required hypothesis for recovery as a <m>\Set_\U</m>-valued presheaf is that each fiber object set admit a bijection from some <m>S_b\in\U</m>. Ordinary choice over the set of base objects selects these labels; the same formulas give <m>P_{\mathcal E}</m> and the isomorphism over the base. Different choices give naturally isomorphic presheaves, through the maps <m>(\theta'_b)^{-1}\theta_b</m>. This is an assertion about each given fibration, not a category of every possible set-encoded total category.</p>
+    <p>The original fiber object sets need not themselves belong to <m>\U</m>. In the element model they contain tagged objects <m>(b,x)</m>, and <m>b</m> may lie outside <m>\U</m>. Indeed, if the base has more than <m>|\U|</m> objects and the presheaf is constantly a singleton, there can be no presentation over that base with every actual fiber object set in <m>\U</m>: all total objects would then lie in <m>\U</m>, yet would have to map onto the larger base object set. Small independent label sets avoid this obstruction without changing the fibers up to bijection.</p>
+    <p>Compare <xref ref="bib-cat-stacks" detail="Example 4.38.5 and Lemma 4.38.6"/> for the classification before these universe restrictions. Local smallness of a discrete fiber alone places no bound on its object set. For a representable presheaf <m>h_b</m>, the total category is <m>\mathcal B/b\to\mathcal B</m>. This discrete fibration exists without any pullback hypothesis on <m>\mathcal B</m>.</p>
+    <p>A discrete fibration is faithful, since at most one arrow with a given target can lie over a specified base arrow. It need not be full: a base arrow between the images of two chosen objects lifts to an arrow between those objects only when the prescribed restriction of the target is the chosen source. The element-category equation makes this obstruction explicit. Uniqueness of lifting therefore does not identify the total category with a full subcategory of the base, and several different element objects may lie over the same base object.</p>
+    <p>Dually, a covariant functor <m>Q:\mathcal B\to\Set_\U</m> gives a discrete opfibration with arrows <m>(a,x)\to(b,y)</m> over <m>u:a\to b</m> when <m>Q(u)(x)=y</m>. It is the opposite of the contravariant element construction on <m>\mathcal B^{\op}</m>. The two formulas must be distinguished when using the same phrase category of elements.<fn>Riehl calls these discrete left and discrete right fibrations: the left version is our discrete opfibration, and the right version is our discrete fibration. See <xref ref="bib-cat-riehl" detail="Definition 2.4.13 and Proposition 2.4.14"/>.</fn></p>
+    <p>A cocartesian lift <m>\kappa:x\to u_!x</m> over <m>u:a\to b</m> has the following property. Whenever <m>f:x\to z</m> has base <m>vu</m> for <m>v:b\to p(z)</m>, there is a unique <m>g:u_!x\to z</m> over <m>v</m> with <m>g\kappa=f</m>. A choice of such lifts gives covariant functors <m>u_!:\mathcal E_a\to\mathcal E_b</m>. If the projection is both a fibration and an opfibration, vertical factorization in the two directions gives natural bijections
+      <md number="no">\Hom_{\mathcal E_b}(u_!x,y)
+        \cong\{f:x\to y:p(f)=u\}
+        \cong\Hom_{\mathcal E_a}(x,u^*y).</md>
+      Thus <m>u_!\dashv u^*</m>. The adjunction follows from the two lifting properties and does not identify either functor with the other.</p>
+  </section>
+
+  <section xml:id="cat-c16-codomain">
+    <title>The codomain fibration and slices</title>
+    <p>Let <m>\mathcal B^{[1]}</m> be the arrow category. The codomain functor sends <m>r:X\to b</m> to <m>b</m>, and sends a commuting square to its arrow between codomains. Its fiber at <m>b</m> is the slice <m>\mathcal B/b</m>, with the evident identification of arrows.</p>
+    <proposition xml:id="cat-c16-prop-codomain">
+      <statement>
+        <p>An arrow in the arrow category, represented by a commuting square
+          <md number="no">r:X\to a,\quad s:Y\to b,\quad
+            h:X\to Y,\quad u:a\to b,\quad sh=ur,</md>
+          is cartesian for codomain if and only if this square is a pullback. Hence codomain is a fibration if and only if <m>\mathcal B</m> has pullbacks. Its restriction functors are the slice pullback functors <m>u^*:\mathcal B/b\to\mathcal B/a</m>.</p>
+      </statement>
+      <proof>
+        <p>Suppose the square is a pullback. A square from <m>t:Z\to d</m> to <m>s</m> over <m>uv:d\to b</m> consists of <m>k:Z\to Y</m> with <m>sk=uvt</m>. The pullback property gives a unique <m>l:Z\to X</m> with <m>hl=k</m> and <m>rl=vt</m>. Thus <m>(l,v)</m> is exactly the unique factor through <m>(h,u)</m> in the arrow category.</p>
+        <p>Conversely take <m>k:Z\to Y</m> and <m>j:Z\to a</m> with <m>sk=uj</m>. Use the object <m>\id_Z:Z\to Z</m> in the arrow category and the square into <m>s</m> with upper arrow <m>k</m> and lower arrow <m>sk=uj</m>. Cartesian factorization over <m>j</m> gives precisely the unique <m>l</m> with <m>hl=k</m>, <m>rl=j</m>. This is the pullback property. The existence equivalence and the formula for restriction now follow.</p>
+      </proof>
+    </proposition>
+    <p>Codomain is also an opfibration without a pullback assumption: its cocartesian lift from <m>r:X\to a</m> along <m>u:a\to b</m> is the square from <m>r</m> to <m>ur</m> with upper arrow <m>\id_X</m>. Its factorization property is direct composition of squares. The resulting pushforward is postcomposition <m>\Sigma_u</m>. When pullbacks exist, this is the same pair <m>\Sigma_u\dashv u^*</m> studied in <xref ref="cat-cartesian-closure"/>. Thus a single total category contains both the slice categories and their base-change operations.</p>
+  </section>
+
+  <section xml:id="cat-c16-maps-base-change-size">
+    <title>Maps, change of base, and size</title>
+    <definition xml:id="cat-c16-def-fibered-functor">
+      <title>Cartesian functors</title>
+      <idx>Cartesian functor</idx><idx>Fibered functor</idx>
+      <statement>
+        <p>A <term>cartesian functor</term>, also called a fibered functor, between fibrations over <m>\mathcal B</m> is a functor over <m>\mathcal B</m> that sends cartesian arrows to cartesian arrows. A natural transformation over <m>\mathcal B</m> has vertical components. An equivalence over <m>\mathcal B</m> consists of functors over the base with inverse comparison natural isomorphisms over the base.</p>
+      </statement>
+    </definition>
+    <p>A functor over the base need not be cartesian. For example let <m>\mathcal B=[1]</m>. Every arrow is cartesian for <m>\id_{\mathcal B}</m>, but the diagonal functor <m>b\mapsto(b,b)</m> into <m>\mathcal B\times[1]\to\mathcal B</m> sends its nonidentity arrow to a pair whose second component is not invertible. That image is not cartesian. On the other hand, an equivalence over the base preserves cartesian arrows: transfer a factorization problem through a quasi-inverse, solve it, and use the vertical comparison isomorphisms to transfer it back; full faithfulness gives uniqueness.<fn>These distinctions are recorded in <xref ref="bib-cat-stacks" detail="Lemma 4.33.8 and Definition 4.33.9"/>. Our discussion uses only functors and natural transformations over a fixed base.</fn></p>
+    <p>For cleavages on two fibrations, a cartesian functor <m>H</m> determines natural isomorphisms
+      <md number="no">H_a u^*\cong u^*H_b.</md>
+      Compare <m>H(\chi_{u,y})</m> with the chosen lift into <m>H(y)</m>. Their unique vertical comparison supplies the isomorphism. Its naturality and compatibility with the composition and identity comparisons follow by composing with those lifts and using uniqueness. Thus preservation of cartesian arrows gives compatibility with restriction, without requiring strict preservation of the chosen lifts.</p>
+    <p>There is a useful test requiring only the chosen lifts. Any functor <m>H</m> over the base has a canonical vertical comparison
+      <md number="no">\rho_{u,y}:H(u^*y)\longrightarrow u^*H(y),\qquad
+        \chi_{u,H(y)}\rho_{u,y}=H(\chi_{u,y}),</md>
+      obtained by factoring through the target cleavage. The functor <m>H</m> is cartesian precisely when every such comparison is invertible. In one direction, the two lift arrows are cartesian and their comparison is a vertical isomorphism. Conversely, invertibility makes every image of a chosen lift cartesian. Every other cartesian arrow is a chosen lift preceded by a vertical isomorphism, whose image remains invertible. Composition then proves that its image is cartesian as well.</p>
+    <p>The same factorization proves naturality of the comparisons even before invertibility is assumed. For a vertical arrow <m>h:y\to y'</m> in <m>\mathcal E_b</m>, compose the two proposed naturality arrows with <m>\chi_{u,H(y')}</m>. Their composites agree by functoriality of <m>H</m> and the definition of restriction. Cartesian uniqueness gives equality. Thus the comparison arrows exist for any functor over the base; their invertibility detects preservation of cartesian arrows.</p>
+    <proposition xml:id="cat-c16-prop-base-change">
+      <statement>
+        <p>Let <m>p:\mathcal E\to\mathcal B</m> be a fibration and <m>q:\mathcal A\to\mathcal B</m> a functor. The ordinary categorical pullback <m>\mathcal A\times_{\mathcal B}\mathcal E</m> has objects <m>(a,x)</m> with <m>q(a)=p(x)</m> and arrows <m>(v,f)</m> with <m>q(v)=p(f)</m>. Projection to <m>\mathcal A</m> is a fibration. An arrow <m>(v,f)</m> is cartesian exactly when <m>f</m> is <m>p</m>-cartesian.</p>
+      </statement>
+      <proof>
+        <p>A chosen lift of <m>q(v)</m> into <m>x</m> gives the arrow <m>(v,\chi_{q(v),x})</m> into <m>(a,x)</m>. A factorization problem for this arrow has its first component fixed in <m>\mathcal A</m>; the unique second component is supplied by cartesianness in <m>\mathcal E</m>. The same argument proves that every pair with cartesian second component is cartesian.</p>
+        <p>Conversely factor <m>f</m> as a vertical arrow followed by the chosen lift of <m>q(v)</m>. This gives the same factorization of <m>(v,f)</m> in the pullback category. If the pair is cartesian, its vertical factor is an isomorphism by cancellation. Its second component is therefore invertible, so <m>f</m> is cartesian by vertical factorization in <m>\mathcal E</m>.</p>
+      </proof>
+    </proposition>
+    <p>The new fiber at <m>a</m> is naturally isomorphic to <m>\mathcal E_{q(a)}</m>, and the induced restriction along <m>v</m> is the old restriction along <m>q(v)</m>. For a strict indexed category this is simply precomposition with <m>q^{\op}</m>; for coherent data it also retains their comparison maps. Here the categorical pullback uses equality of base objects, as specified in its definition.</p>
+    <p>The categorical pullback has the following universal property: functors <m>K:\mathcal T\to\mathcal A</m> and <m>L:\mathcal T\to\mathcal E</m> satisfying <m>qK=pL</m> determine the unique functor into the pullback with components <m>K,L</m>. On objects and arrows it forms the corresponding pairs. The condition is equality of these composite functors; a specified natural isomorphism <m>qK\cong pL</m> would require a different construction.</p>
+    <p>Finally, the Grothendieck hom-set has the explicit label set
+      <md number="no">\Hom_{\int F}((a,x),(b,y))
+        =\coprod_{u\in\Hom_{\mathcal B}(a,b)}
+          \Hom_{F(a)}(x,u^*y).</md>
+      If the base and all fibers are locally <m>\U</m>-small, this set belongs to <m>\U</m>: the indexing set and every summand belong to the universe. Thus the assembled category is locally <m>\U</m>-small. If additionally <m>\mathcal B</m> and each <m>F(b)</m> are strictly <m>\U</m>-small, its total object and arrow encodings belong to <m>\U</m>, by the same small-indexed-union bounds.</p>
+    <p>For an arbitrarily encoded fibration, vertical factorization gives a bijection from each original hom-set to the displayed label set. It therefore provides an isomorphic locally <m>\U</m>-small presentation under those fiber and base hypotheses; it does not force the original labels themselves into <m>\U</m>. This is the strict-membership distinction of <xref ref="cat-size-conventions"/>. Our default assumption that an original total category is locally <m>\U</m>-small is compatible with these constructions, while the explicit estimate explains how to choose such an encoding when assembling one from indexed data.</p>
+    <p>For example, start with the identity fibration over <m>[1]</m>, but rename its unique nonidentity arrow by the set <m>\U</m> itself. Leave the identity labels small. Its fibers still have small object and arrow sets, but its hom-set between the two distinct objects is <m>\{\U\}</m>, which does not belong to <m>\U</m>. Replacing that arrow label by its base arrow restores the small presentation. This example changes no categorical mapping property; it isolates why a smallness assertion about literal encodings needs the explicit presentation used above.</p>
+  </section>
+</chapter>

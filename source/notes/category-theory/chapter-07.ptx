@@ -1,0 +1,307 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="cat-kan">
+  <title>Kan extensions</title>
+  <introduction>
+    <p>A functor can be viewed as a diagram whose indexing category records the permitted comparisons. Kan extension changes that indexing category and solves a universal comparison problem. At each new object <m>b</m>, its pointwise construction collects the values <m>F(a)</m> indexed by arrows <m>u(a)\to b</m>, or by arrows <m>b\to u(a)</m>. A colimit or a limit combines these values, respectively.</p>
+    <p>Throughout, <m>u:\mathcal A\to\mathcal B</m> and <m>F:\mathcal A\to\mathcal C</m> are functors between set-encoded categories. The main sources are <xref ref="bib-cat-li2" detail="Sections 1.7–1.8"/> and <xref ref="bib-cat-riehl" detail="Sections 6.1–6.3"/>; compare also <xref ref="bib-cat-ks" detail="Section 2.3"/>. We use the comma categories of <xref ref="cat-constructions"/>, the limits of <xref ref="cat-limits"/>, and the adjunctions of <xref ref="cat-adjunctions"/>. Size hypotheses are imposed where they ensure existence of the required limits, rather than being built into the definition of Kan extension.</p>
+  </introduction>
+
+  <section xml:id="cat-c07-universal-comparison">
+    <title>The universal comparison problem</title>
+    <p>The functor <m>u</m> need not be an inclusion. Even if it is, a proposed functor <m>L:\mathcal B\to\mathcal C</m> need not restrict to <m>F</m>. Instead of demanding equality, we specify a natural comparison and require it to be universal. Write
+      <md number="no">u^*:\Fun(\mathcal B,\mathcal C)\longrightarrow\Fun(\mathcal A,\mathcal C),\qquad H\longmapsto Hu</md>
+      for precomposition, acting on natural transformations by restriction of their components.</p>
+    <definition xml:id="cat-c07-def-kan">
+      <title>Left and right Kan extensions</title>
+      <idx>Left Kan extension</idx><idx>Right Kan extension</idx>
+      <statement>
+        <p><ol>
+          <li><p>A <term>left Kan extension</term> of <m>F</m> along <m>u</m> is a functor <m>L:\mathcal B\to\mathcal C</m> with a natural transformation <m>\eta:F\Rightarrow Lu</m> such that, for every <m>H:\mathcal B\to\mathcal C</m>, the map
+            <md number="no">\Nat(L,H)\longrightarrow\Nat(F,Hu),\qquad \beta\longmapsto(\beta u)\eta</md>
+            is a bijection. We write <m>L=\operatorname{Lan}_uF</m>, with the chosen comparison understood.</p></li>
+          <li><p>A <term>right Kan extension</term> of <m>F</m> along <m>u</m> is a functor <m>R:\mathcal B\to\mathcal C</m> with a natural transformation <m>\varepsilon:Ru\Rightarrow F</m> such that, for every <m>H:\mathcal B\to\mathcal C</m>, the map
+            <md number="no">\Nat(H,R)\longrightarrow\Nat(Hu,F),\qquad \gamma\longmapsto\varepsilon(\gamma u)</md>
+            is a bijection. We write <m>R=\operatorname{Ran}_uF</m>.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <p>The transformations <m>\eta</m> and <m>\varepsilon</m> are called the unit and counit of these extensions. A given <m>\alpha:F\Rightarrow Hu</m> must factor through <m>\eta</m> by exactly one transformation <m>L\Rightarrow H</m>; in the right-hand version, <m>\alpha:Hu\Rightarrow F</m> must factor through <m>\varepsilon</m> by exactly one transformation <m>H\Rightarrow R</m>. The bijections are automatically natural in <m>H</m>, because their formulas use composition. No invertibility of the unit or counit has been required.<fn>These are the two universal properties in <xref ref="bib-cat-li2" detail="Definition 1.7.1"/> and <xref ref="bib-cat-riehl" detail="Definition 6.1.1"/>. Li motivates them by the possible failure of an extension with <m>F\cong Lu</m>: if <m>u</m> makes an arrow invertible and <m>F</m> does not, such an isomorphism cannot exist. The universal comparison remains a meaningful question.</fn></p>
+    <proposition xml:id="cat-c07-prop-uniqueness">
+      <statement>
+        <p>For left extensions <m>(L,\eta)</m> and <m>(L',\eta')</m>, there is exactly one natural isomorphism <m>\theta:L\Rightarrow L'</m> satisfying <m>(\theta u)\eta=\eta'</m>. For right extensions <m>(R,\varepsilon)</m> and <m>(R',\varepsilon')</m>, there is exactly one natural isomorphism <m>\theta:R\Rightarrow R'</m> satisfying <m>\varepsilon'(\theta u)=\varepsilon</m>.</p>
+      </statement>
+      <proof>
+        <p>The left pairs are initial objects of <m>(F\downarrow u^*)</m>; the right pairs are terminal objects of <m>(u^*\downarrow F)</m>. The uniqueness result for initial and terminal objects gives the assertions, including their compatibility equations.</p>
+      </proof>
+    </proposition>
+    <p>Thus the notation for an extension suppresses part of its data. An arbitrary isomorphism between the resulting functors need not be the comparison isomorphism. Since all category encodings are sets, the natural-transformation collections in the definition are ordinary sets. They need not belong to <m>\U</m>; the definition does not assume that both functor categories are locally <m>\U</m>-small.</p>
+    <example xml:id="cat-c07-example-collapse-arrow">
+      <title>Collapsing a single arrow</title>
+      <p>Let <m>u:[1]\to\mathbf1</m> collapse the walking arrow, and let <m>F</m> be a function <m>f:X\to Y</m>, regarded as a set-valued diagram. A functor on <m>\mathbf1</m> selects a set <m>T</m>. A transformation from <m>F</m> to its constant diagram is a pair of functions <m>p:X\to T</m>, <m>q:Y\to T</m> with <m>qf=p</m>. Choosing such a pair is therefore exactly choosing <m>q</m>. The left extension is <m>Y</m>, with comparison components <m>f</m> and <m>\id_Y</m>.</p>
+      <p>In the other direction, a transformation from the constant diagram at <m>T</m> to <m>F</m> consists of <m>p:T\to X</m>, <m>q:T\to Y</m> with <m>fp=q</m>. It is determined by <m>p</m>, so the right extension is <m>X</m>, with comparison components <m>\id_X</m> and <m>f</m>. These assertions follow directly from the universal definitions. When <m>f</m> is not invertible, neither the unit of this left extension nor the counit of this right extension is invertible.</p>
+    </example>
+  </section>
+
+  <section xml:id="cat-c07-comma-diagrams">
+    <title>The diagrams attached to a new object</title>
+    <p>Fix <m>b\in\mathcal B</m>. The two comma categories retain an old object together with the arrow connecting its image to <m>b</m>. Their directions determine which universal construction is relevant.</p>
+    <p>An object of <m>(u\downarrow b)</m> is <m>(a,t:ua\to b)</m>. An arrow to <m>(a',t')</m> is <m>h:a\to a'</m> with <m>t'u(h)=t</m>. An object of <m>(b\downarrow u)</m> is <m>(a,t:b\to ua)</m>, and its arrows satisfy <m>u(h)t=t'</m>. Let <m>p_b</m> and <m>q_b</m> denote their respective projections to <m>\mathcal A</m>. The diagrams to be combined are <m>Fp_b</m> and <m>Fq_b</m>; the comparison arrows in <m>\mathcal B</m> index the diagrams, while their values are the objects <m>Fa</m> of <m>\mathcal C</m>.</p>
+    <p>An arrow <m>s:b\to b'</m> induces functors
+      <md number="no"><mrow>s_*:(u\downarrow b)\longrightarrow(u\downarrow b'),\qquad(a,t)\longmapsto(a,st),</mrow><mrow>s^*:(b'\downarrow u)\longrightarrow(b\downarrow u),\qquad(a,t)\longmapsto(a,ts).</mrow></md>
+      Both send the underlying arrow <m>h</m> to itself. Their comma equations follow by composing the old equations with <m>s</m>. Notice that the second reindexing functor reverses direction; the maps between its limits will reverse that direction once more.</p>
+    <definition xml:id="cat-c07-def-pointwise">
+      <title>Pointwise Kan extensions</title>
+      <idx>Pointwise Kan extension</idx>
+      <statement>
+        <p><ol>
+          <li><p>A pair <m>(L,\eta:F\Rightarrow Lu)</m> is a <term>pointwise left Kan extension</term> if, for every <m>b</m>, the cocone
+            <md number="no">Fa\xrightarrow{\eta_a}L(ua)\xrightarrow{L(t)}L(b),\qquad(a,t)\in(u\downarrow b),</md>
+            is a colimit cocone for <m>Fp_b</m>.</p></li>
+          <li><p>A pair <m>(R,\varepsilon:Ru\Rightarrow F)</m> is a <term>pointwise right Kan extension</term> if, for every <m>b</m>, the cone
+            <md number="no">R(b)\xrightarrow{R(t)}R(ua)\xrightarrow{\varepsilon_a}Fa,\qquad(a,t)\in(b\downarrow u),</md>
+            is a limit cone for <m>Fq_b</m>.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <p>Naturality of <m>\eta</m> or <m>\varepsilon</m> ensures the indicated compatibility along comma morphisms. The adjective pointwise includes the displayed cocones or cones, not just an isomorphism of their vertices with some colimit or limit. The next two sections prove that these conditions imply the corresponding universal properties.<fn>This is <xref ref="bib-cat-riehl" detail="Definition 6.2.6"/>. The formulas in <xref ref="bib-cat-li2" detail="Theorem 1.8.1"/> construct these extensions without first introducing separate pointwise terminology. A universal Kan extension need not satisfy these pointwise conditions; <xref ref="cat-c07-nonpointwise"/> gives a finite example.</fn></p>
+    <p>The relevant size estimate is particularly useful. If <m>\mathcal A</m> is <m>\U</m>-small and <m>\mathcal B</m> is locally <m>\U</m>-small, then both comma categories are <m>\U</m>-small. Their object sets are, respectively,
+      <md number="no">\coprod_{a\in\Ob(\mathcal A)}\Hom_{\mathcal B}(ua,b),\qquad
+        \coprod_{a\in\Ob(\mathcal A)}\Hom_{\mathcal B}(b,ua).</md>
+      Each belongs to <m>\U</m>, and each local morphism set is a subset of a hom-set in <m>\mathcal A</m>. This uses our untagged local hom-label convention: the object pair is <m>(a,t)</m>, with <m>a,t\in\U</m>, even when the external names <m>b</m> and <m>ua</m> do not belong to <m>\U</m>. No smallness of the entire object set of <m>\mathcal B</m> is needed.</p>
+  </section>
+
+  <section xml:id="cat-c07-left-formula">
+    <title>Constructing the left extension</title>
+    <p>Suppose that <m>Fp_b</m> has a colimit for every <m>b\in\mathcal B</m>. Choose its vertex <m>L_b</m> and write its structure maps as <m>\lambda^b_{a,t}:Fa\to L_b</m>. The choices range over the set <m>\Ob(\mathcal B)</m>, so ordinary set-indexed choice suffices. The colimit property will determine every remaining part of the construction.</p>
+    <theorem xml:id="cat-c07-thm-left-formula">
+      <statement>
+        <p>The chosen colimits assemble into a functor and a pointwise left Kan extension
+          <md number="no">L=\operatorname{Lan}_uF,\qquad L(b)=\operatorname{colim}_{(a,t)\in(u\downarrow b)}Fa.</md>
+          Its action on <m>s:b\to b'</m> and its unit are uniquely specified by
+          <md number="no">L(s)\lambda^b_{a,t}=\lambda^{b'}_{a,st},\qquad
+            \eta_a=\lambda^{ua}_{a,\id_{ua}}.</md></p>
+      </statement>
+      <proof>
+        <p>The maps <m>\lambda^{b'}_{a,st}</m> form a cocone on <m>Fp_b</m>, by restriction along <m>s_*</m>. They therefore determine a unique map <m>L(s):L_b\to L_{b'}</m>. The identity map satisfies the required equation for <m>s=\id_b</m>. For <m>s:b\to b'</m> and <m>s':b'\to b''</m>, both <m>L(s')L(s)</m> and <m>L(s's)</m> have composite <m>\lambda^{b''}_{a,s'st}</m> with every <m>\lambda^b_{a,t}</m>. Uniqueness from the colimit gives the functor laws.</p>
+        <p>For <m>h:a\to a'</m>, the arrow <m>h</m> defines a comma morphism
+          <md number="no">(a,u(h))\longrightarrow(a',\id_{ua'})\quad\text{in }(u\downarrow ua').</md>
+          Its cocone equation, together with the definition of <m>L(u(h))</m>, gives
+          <md number="no">L(u(h))\eta_a=\lambda^{ua'}_{a,u(h)}
+            =\lambda^{ua'}_{a',\id_{ua'}}F(h)=\eta_{a'}F(h).</md>
+          Thus <m>\eta</m> is natural. Applying the defining equation for <m>L(t)</m> to the identity-indexed leg also recovers every chosen structure map:
+          <md number="no">\lambda^b_{a,t}=L(t)\eta_a.</md>
+          This proves the pointwise assertion once the universal extension property has been established.</p>
+        <p>Let <m>H:\mathcal B\to\mathcal C</m> and <m>\alpha:F\Rightarrow Hu</m>. For each <m>b</m>, form the maps <m>H(t)\alpha_a:Fa\to Hb</m>. They constitute a cocone. Indeed, if <m>t'u(h)=t</m>, naturality of <m>\alpha</m> gives
+          <md number="no">H(t')\alpha_{a'}F(h)=H(t')H(u(h))\alpha_a=H(t)\alpha_a.</md>
+          There is consequently a unique <m>\beta_b:L_b\to Hb</m> such that
+          <md number="no">\beta_b\lambda^b_{a,t}=H(t)\alpha_a</md>
+          for every comma object.</p>
+        <p>For <m>s:b\to b'</m>, compose the proposed naturality equation with every leg <m>\lambda^b_{a,t}</m>. Its two sides become
+          <md number="no">H(s)\beta_b\lambda^b_{a,t}=H(st)\alpha_a
+            =\beta_{b'}L(s)\lambda^b_{a,t}.</md>
+          The colimit property implies <m>H(s)\beta_b=\beta_{b'}L(s)</m>. Hence <m>\beta:L\Rightarrow H</m> is natural. At <m>b=ua</m> and <m>t=\id_{ua}</m>, its defining equation reads <m>\beta_{ua}\eta_a=\alpha_a</m>. Therefore <m>(\beta u)\eta=\alpha</m>.</p>
+        <p>Finally, any natural transformation <m>\beta'</m> satisfying this factorization must satisfy
+          <md number="no">\beta'_b\lambda^b_{a,t}=\beta'_bL(t)\eta_a
+            =H(t)\beta'_{ua}\eta_a=H(t)\alpha_a.</md>
+          These composites determine <m>\beta'_b</m> uniquely, so <m>\beta'=\beta</m>. This is exactly the left Kan extension property.</p>
+      </proof>
+    </theorem>
+    <xi:include href="diagram-c07-left-comparison.ptx"/>
+    <p>The proof also shows why choosing vertices alone would be insufficient. The structure maps define the action on arrows, the unit, and the universal comparison. A different choice of colimit cocones produces the unique compatible isomorphism of Kan extensions, rather than an equality of their chosen encodings.<fn>The construction and its uniqueness proof follow <xref ref="bib-cat-li2" detail="Theorem 1.8.1(i)"/> and <xref ref="bib-cat-riehl" detail="Theorem 6.2.1"/>. In both, the crucial identity is that the whole cocone can be recovered from the unit by <m>\lambda^b_{a,t}=L(t)\eta_a</m>; this turns pointwise uniqueness into uniqueness of a natural transformation.</fn></p>
+    <p>Computations need not enumerate every object of the comma category. If <m>j_b:\mathcal J_b\to(u\downarrow b)</m> is final, the cofinality theorem of <xref ref="cat-c06-thm-cofinality"/> replaces the formula by the colimit of <m>Fp_bj_b</m>. A terminal comma object is the simplest instance: its selection is a final functor from <m>\mathbf1</m>. More generally, a convenient final subcategory may expose a presentation or a sequence that the original comma category obscures. The hypothesis is finality, not merely that each comma object maps to some selected object; connectedness of the comparison categories is what makes all the induced cocone maps independent of the chosen comparison.</p>
+    <p>Separate simplifications for separate objects still have to retain their colimit structure. A map in <m>\mathcal B</m> might not carry one chosen simplifying subcategory into the next one. This does not prevent computation: use the induced cocones on the original comma diagrams to define the arrow map by the theorem. What would fail is to choose only a list of isomorphic vertices and then treat its functoriality as automatic. The universal comparison specifies the maps even when the chosen descriptions of the vertices do not themselves form a visibly functorial family.</p>
+  </section>
+
+  <section xml:id="cat-c07-right-formula">
+    <title>Constructing the right extension</title>
+    <p>The right construction uses the other comma category. For every <m>b</m>, suppose that <m>Fq_b</m> has a chosen limit <m>R_b</m>, with projections <m>\pi^b_{a,t}:R_b\to Fa</m> for <m>t:b\to ua</m>. A comma arrow <m>h</m> gives the cone equation <m>F(h)\pi^b_{a,t}=\pi^b_{a',t'}</m>.</p>
+    <theorem xml:id="cat-c07-thm-right-formula">
+      <statement>
+        <p>The chosen limits assemble into a functor and a pointwise right Kan extension
+          <md number="no">R=\operatorname{Ran}_uF,\qquad R(b)=\lim_{(a,t)\in(b\downarrow u)}Fa.</md>
+          Its arrow maps and counit satisfy
+          <md number="no">\pi^{b'}_{a,t}R(s)=\pi^b_{a,ts}\quad(s:b\to b'),\qquad
+            \varepsilon_a=\pi^{ua}_{a,\id_{ua}}.</md></p>
+      </statement>
+      <proof>
+        <p>For <m>s:b\to b'</m>, restricting the cone from <m>R_b</m> along <m>s^*</m> gives a cone on <m>Fq_{b'}</m>. Its limit property determines <m>R(s):R_b\to R_{b'}</m> with the displayed projections. Identity and composition follow by comparing all projections: the corresponding composites agree, so the arrows into the limit agree.</p>
+        <p>For <m>h:a\to a'</m>, the comma arrow <m>(a,\id_{ua})\to(a',u(h))</m> in <m>(ua\downarrow u)</m> implies
+          <md number="no">\varepsilon_{a'}R(u(h))=\pi^{ua}_{a',u(h)}
+            =F(h)\pi^{ua}_{a,\id_{ua}}=F(h)\varepsilon_a.</md>
+          The counit is therefore natural. The formula for <m>R(t)</m> gives
+          <md number="no">\pi^b_{a,t}=\varepsilon_aR(t).</md>
+          Thus the original limit cones are the cones required in the pointwise definition.</p>
+        <p>Given <m>H:\mathcal B\to\mathcal C</m> and <m>\alpha:Hu\Rightarrow F</m>, the maps <m>\alpha_aH(t):Hb\to Fa</m> form a cone on <m>Fq_b</m>. For a comma arrow <m>h</m>, this follows from
+          <md number="no">F(h)\alpha_aH(t)=\alpha_{a'}H(u(h))H(t)=\alpha_{a'}H(t').</md>
+          Hence there is a unique <m>\gamma_b:Hb\to R_b</m> with <m>\pi^b_{a,t}\gamma_b=\alpha_aH(t)</m>. For <m>s:b\to b'</m>, composing <m>R(s)\gamma_b</m> and <m>\gamma_{b'}H(s)</m> with any <m>\pi^{b'}_{a,t}</m> gives the same arrow <m>\alpha_aH(ts)</m>. The limit property proves naturality of <m>\gamma</m>.</p>
+        <p>The identity-indexed projection gives <m>\varepsilon_a\gamma_{ua}=\alpha_a</m>. If another natural transformation has this property, then its composite with <m>\pi^b_{a,t}=\varepsilon_aR(t)</m> is forced by naturality to be <m>\alpha_aH(t)</m>. The limit property gives uniqueness. Thus <m>\varepsilon(\gamma u)=\alpha</m> has exactly one solution, as required.</p>
+      </proof>
+    </theorem>
+    <p>Both formulas can be remembered by the direction of the comparison with <m>b</m>: arrows <m>ua\to b</m> yield maps <m>Fa\to Lb</m> and a colimit; arrows <m>b\to ua</m> yield maps <m>Rb\to Fa</m> and a limit. Replacing all three categories by their opposites exchanges the two constructions. Reversing only the indexing category, without checking the value category and the comparison map, does not do so.</p>
+    <p>For a right extension the useful reduction is an initial functor into <m>(b\downarrow u)</m>, by the dual cofinality theorem. In particular, an initial object computes this limit, whereas a terminal object computed the left formula's colimit. Interchanging these two objects would reverse the universal mapping problem: a terminal object alone does not generally compute a limit of a covariant diagram. Writing the cone arrows before selecting a simplification is a reliable way to check the direction.</p>
+  </section>
+
+  <section xml:id="cat-c07-existence-restriction">
+    <title>Existence and restriction along a fully faithful functor</title>
+    <p>The formulas require particular limits, one for each <m>b</m>. Completeness or cocompleteness is a convenient uniform sufficient condition; it need not be a necessary condition on the value category.</p>
+    <corollary xml:id="cat-c07-cor-existence">
+      <statement>
+        <p>Assume <m>\mathcal A</m> is <m>\U</m>-small and <m>\mathcal B</m> is set-encoded and locally <m>\U</m>-small. If <m>\mathcal C</m> has all <m>\U</m>-small colimits, every <m>F:\mathcal A\to\mathcal C</m> has a pointwise left Kan extension along <m>u</m>. If <m>\mathcal C</m> has all <m>\U</m>-small limits, every such <m>F</m> has a pointwise right Kan extension.</p>
+      </statement>
+      <proof>
+        <p>The comma categories are <m>\U</m>-small by the estimate in <xref ref="cat-c07-comma-diagrams"/>. Apply the two construction theorems.</p>
+      </proof>
+    </corollary>
+    <p>In particular, both extensions exist for <m>\mathcal C=\Set_{\U}</m>. A large number of objects of <m>\mathcal B</m> does not enlarge any one comma shape beyond <m>\U</m>. It can enlarge the set of components of a natural transformation on <m>\mathcal B</m>. Accordingly, these results use ordinary sets of natural transformations even when <m>\Fun(\mathcal B,\mathcal C)</m> is not locally <m>\U</m>-small. Membership of its complete encoding in <m>\V</m> would require the relevant further size assumptions.<fn>Compare <xref ref="bib-cat-li2" detail="Remark 1.8.2"/> and <xref ref="bib-cat-riehl" detail="Corollary 6.2.9"/>. Our explicit hom-label estimate supplies the strict-membership interpretation of smallness; it does not replace it by a cardinality estimate up to relabelling.</fn></p>
+    <proposition xml:id="cat-c07-prop-fully-faithful">
+      <statement>
+        <p>If <m>u</m> is fully faithful, the unit of any pointwise left Kan extension is invertible, and the counit of any pointwise right Kan extension is invertible:
+          <md number="no">F\cong(\operatorname{Lan}_uF)u,\qquad
+            (\operatorname{Ran}_uF)u\cong F.</md>
+          Each assertion is made when the indicated pointwise extension exists.</p>
+      </statement>
+      <proof>
+        <p>For <m>a\in\mathcal A</m>, the object <m>(a,\id_{ua})</m> is terminal in <m>(u\downarrow ua)</m>. Indeed, each <m>t:ua'\to ua</m> has a unique lift <m>h:a'\to a</m> with <m>u(h)=t</m>, by full faithfulness. The colimit of a diagram indexed by a category with a terminal object is its value there; its terminal-object structure map is invertible. That structure map is <m>\eta_a</m>. Dually, <m>(a,\id_{ua})</m> is initial in <m>(ua\downarrow u)</m>, and its limit projection is <m>\varepsilon_a</m>.</p>
+      </proof>
+    </proposition>
+    <p>Thus fully faithful indexing functors give extensions of the original diagram up to the specified natural isomorphism. The identity functor is a useful extreme case: the relevant comma categories always have these terminal or initial objects, so both extensions along the identity exist without any completeness hypothesis. The pointwise hypothesis in the proposition is essential; it will remain explicit in the finite counterexample below.<fn>See <xref ref="bib-cat-li2" detail="Theorem 1.8.1(iii)"/> and <xref ref="bib-cat-riehl" detail="Corollary 6.2.16"/>. The conclusion concerns the canonical unit or counit, which contains the restriction compatibility, not merely an abstract isomorphism of the two diagrams.</fn></p>
+  </section>
+
+  <section xml:id="cat-c07-adjunction-composition">
+    <title>Adjoints to restriction and composition</title>
+    <p>For a single <m>F</m>, Kan extension is a universal arrow involving <m>u^*</m>. When all these universal arrows exist, their functorial behavior is forced, exactly as in the objectwise construction of adjoints.</p>
+    <proposition xml:id="cat-c07-prop-restriction-adjoints">
+      <statement>
+        <p>If every <m>F:\mathcal A\to\mathcal C</m> has a left Kan extension along <m>u</m>, choose these extensions. They determine a functor <m>u_!</m> left adjoint to <m>u^*</m>. If all right extensions exist, their choices determine a functor <m>u_*</m> right adjoint to <m>u^*</m>. Thus, when both exist,
+          <md number="no">u_!\dashv u^*\dashv u_*,\qquad
+            u_!F=\operatorname{Lan}_uF,\quad u_*F=\operatorname{Ran}_uF.</md></p>
+      </statement>
+      <proof>
+        <p>For <m>\alpha:F\Rightarrow F'</m>, define <m>u_!(\alpha)</m> by the unique equation
+          <md number="no">(u_!(\alpha)u)\eta^F=\eta^{F'}\alpha.</md>
+          Identity and composition follow from this uniqueness. The defining bijection for left extensions is natural in <m>H</m>; the displayed equation makes it natural in <m>F</m> as well, proving <m>u_!\dashv u^*</m>. The right-hand construction is dual. Equivalently, these are the universal-arrow criterion applied in the two functor categories. Their object sets are sets, so choosing the extensions uses ordinary choice.</p>
+      </proof>
+    </proposition>
+    <p>The component at <m>F</m> of the first adjunction's unit is precisely <m>\eta^F</m>; the component at <m>F</m> of the second adjunction's counit is <m>\varepsilon^F</m>. If <m>u</m> is fully faithful and these extensions are pointwise, <m>u_!</m> and <m>u_*</m> are fully faithful, by the unit and counit criteria of <xref ref="cat-adjunctions"/>. This does not make restriction fully faithful: values and maps away from the image of <m>u</m> can contain additional information.<fn>This organization is <xref ref="bib-cat-li2" detail="Proposition 1.7.2"/> and <xref ref="bib-cat-riehl" detail="Proposition 6.1.5"/>. The notation <m>u_!,u^*,u_*</m> records their adjoint positions; its use here concerns functor categories and does not introduce geometric direct-image constructions.</fn></p>
+    <proposition xml:id="cat-c07-prop-composition">
+      <statement>
+        <p>Let <m>v:\mathcal B\to\mathcal D</m>. If <m>(L,\eta)</m> is a left extension of <m>F</m> along <m>u</m> and <m>(M,\theta)</m> is a left extension of <m>L</m> along <m>v</m>, then
+          <md number="no">(M,(\theta u)\eta)</md>
+          is a left extension of <m>F</m> along <m>vu</m>. Dually, if <m>(R,\varepsilon)</m> is a right extension along <m>u</m> and <m>(S,\delta)</m> a right extension of <m>R</m> along <m>v</m>, then <m>(S,\varepsilon(\delta u))</m> is a right extension along <m>vu</m>.</p>
+      </statement>
+      <proof>
+        <p>For <m>H:\mathcal D\to\mathcal C</m>, compose the natural bijections
+          <md number="no">\Nat(M,H)\cong\Nat(L,Hv)\cong\Nat(F,Hvu).</md>
+          The composite sends <m>\beta</m> to <m>(\beta vu)(\theta u)\eta</m>, so its specified comparison is exactly the one in the statement. The right-hand case follows from <m>\Nat(H,S)\cong\Nat(Hv,R)\cong\Nat(Hvu,F)</m>.</p>
+      </proof>
+    </proposition>
+    <p>Consequently, independently chosen extensions admit canonical isomorphisms
+      <md number="no">\operatorname{Lan}_v(\operatorname{Lan}_uF)\cong\operatorname{Lan}_{vu}F,
+        \qquad \operatorname{Ran}_v(\operatorname{Ran}_uF)\cong\operatorname{Ran}_{vu}F</md>
+      whenever the indicated successive and direct extensions exist. The word canonical means compatibility with the composite unit or counit. For three indexing functors, the two iterated comparison isomorphisms agree: both are the unique isomorphism respecting the same composite comparison. This argument establishes universality of the composite; it does not assume a pointwise formula for the individual extensions.</p>
+  </section>
+
+  <section xml:id="cat-c07-index-adjoints-preservation">
+    <title>Adjoint indexing functors and preservation</title>
+    <idx>Absolute Kan extension</idx>
+    <p>An adjoint for the indexing functor can simplify every comma diagram at once. The direction of that adjunction matters: it is the existence of a terminal or initial comma object that determines the formula.</p>
+    <proposition xml:id="cat-c07-prop-index-adjoints">
+      <statement>
+        <p><ol>
+          <li><p>If <m>u\dashv r</m>, with unit <m>\zeta:\id_{\mathcal A}\Rightarrow ru</m> and counit <m>\xi:ur\Rightarrow\id_{\mathcal B}</m>, then <m>(Fr,F\zeta)</m> is a pointwise left Kan extension of every <m>F</m> along <m>u</m>.</p></li>
+          <li><p>If <m>l\dashv u</m>, with unit <m>\kappa:\id_{\mathcal B}\Rightarrow ul</m> and counit <m>\rho:lu\Rightarrow\id_{\mathcal A}</m>, then <m>(Fl,F\rho)</m> is a pointwise right Kan extension of every <m>F</m> along <m>u</m>.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>In the first case, <m>(rb,\xi_b)</m> is terminal in <m>(u\downarrow b)</m>. The unique arrow to it from <m>(a,t)</m> is the transpose <m>a\to rb</m> of <m>t:ua\to b</m>. Evaluating <m>F</m> at this terminal object gives the required colimit <m>F(rb)</m>. At <m>b=ua</m>, the arrow from <m>(a,\id_{ua})</m> to the terminal object is <m>\zeta_a</m>, so the resulting unit is <m>F(\zeta_a)</m>. This verifies the functor, the pointwise cocones, and their comparison with <m>F</m>.</p>
+        <p>In the second case, <m>(lb,\kappa_b)</m> is initial in <m>(b\downarrow u)</m>. Its unique arrow to <m>(a,t)</m> is the transpose <m>lb\to a</m> of <m>t:b\to ua</m>. The limit is <m>F(lb)</m>, and its identity-indexed projection at <m>ua</m> is <m>F(\rho_a)</m>.</p>
+      </proof>
+    </proposition>
+    <p>No completeness hypothesis on <m>\mathcal C</m> was needed: diagrams with these terminal or initial indexing objects always have the indicated colimits or limits. Setting <m>F=\id_{\mathcal A}</m> recovers <m>r=\operatorname{Lan}_u\id_{\mathcal A}</m> when <m>u\dashv r</m>, and <m>l=\operatorname{Ran}_u\id_{\mathcal A}</m> when <m>l\dashv u</m>.<fn>Compare <xref ref="bib-cat-li2" detail="Example 1.7.5"/>, which expresses an adjunction by these Kan extensions. Our comma calculation proves the corresponding statement for arbitrary <m>F</m>, and keeps the adjunction direction visible.</fn></p>
+    <p>A functor <m>T:\mathcal C\to\mathcal E</m> <term>preserves</term> a left extension <m>(L,\eta)</m> if <m>(TL,T\eta)</m> is a left extension of <m>TF</m> along <m>u</m>; the right version uses <m>(TR,T\varepsilon)</m>. An extension preserved by every such functor is called <term>absolute</term>. The extensions in the proposition are absolute: the same formula applies to <m>TF</m>, and no new limit needs to be preserved. For a general pointwise extension, preservation by <m>T</m> follows if <m>T</m> preserves every individual colimit or limit used in its formula.<fn>Preservation and absoluteness are defined in <xref ref="bib-cat-li2" detail="Definition 1.7.6"/>; compare <xref ref="bib-cat-riehl" detail="Definition 6.3.1"/> for preservation. For the implication from absolute to pointwise in locally small categories, see <xref ref="bib-cat-riehl" detail="Theorem 6.3.7"/>. The terminal-object and initial-object calculations above prove absoluteness directly in the adjoint-indexing cases.</fn></p>
+    <p>There is also a useful preservation statement for extensions that have not been constructed pointwise. If <m>T\dashv Q</m>, then a left extension <m>L</m> gives, for every <m>H:\mathcal B\to\mathcal E</m>, natural bijections
+      <md number="no">\Nat(TL,H)\cong\Nat(L,QH)\cong\Nat(F,QHu)\cong\Nat(TF,Hu).</md>
+      Componentwise transposition, followed by the triangle identity, shows that the composite sends <m>\beta</m> to <m>(\beta u)T\eta</m>. Thus left adjoints preserve all left Kan extensions. Dually, right adjoints preserve all right Kan extensions. For the pointwise constructions this also follows by preserving their colimits or limits, but the natural-bijection argument proves the stronger universal assertion.<fn>This is <xref ref="bib-cat-riehl" detail="Lemma 6.3.2"/> and its dual. Distinguishing the two arguments prevents a pointwise construction hypothesis from being imposed on a result that does not need it.</fn></p>
+  </section>
+
+  <section xml:id="cat-c07-nonpointwise">
+    <title>A universal extension that is not pointwise</title>
+    <p>The distinction between the universal and pointwise conditions already occurs for finite posets. This example also tests the word extension: the indexing functor is fully faithful, yet the universal unit fails to be invertible.</p>
+    <example xml:id="cat-c07-example-nonpointwise">
+      <title>A finite obstruction to the pointwise formula</title>
+      <p>Let <m>\mathcal A</m> be discrete on two objects <m>a_0,a_1</m>, and let <m>\mathcal B</m> be the poset category
+        <md number="no">b_0\longleftarrow b_*\longrightarrow b_1.</md>
+        Let <m>u</m> include the two endpoints. Take <m>\mathcal C</m> to be the five-object poset with precisely the following strict inequalities:
+        <md number="no">x\lt x^+,\qquad z\lt x^+,\qquad z\lt y^+,\qquad y\lt y^+.</md>
+        Let <m>F(a_0)=x</m> and <m>F(a_1)=y</m>.</p>
+      <xi:include href="diagram-c07-nonpointwise.ptx"/>
+      <p>A pair <m>(H,\alpha:F\Rightarrow Hu)</m> requires <m>H(b_0)</m> to lie above <m>x</m>, <m>H(b_1)</m> to lie above <m>y</m>, and <m>H(b_*)</m> to lie below both. The possible first two values lie in <m>\{x,x^+\}</m> and <m>\{y,y^+\}</m>. Of the four possible pairs, only <m>(x^+,y^+)</m> has a common lower bound, and its only common lower bound is <m>z</m>. Thus exactly one such pair exists: its values are <m>x^+,z,y^+</m>, and its comparison components are the indicated strict inequalities.</p>
+      <p>There is only one endomorphism of this pair, since the target is a poset. It is therefore an initial object in the category of candidate pairs, hence a left Kan extension. However, <m>(u\downarrow b_*)</m> is empty: neither endpoint maps to the middle object. The target <m>\mathcal C</m> has no initial object, so the colimit required at <m>b_*</m> does not exist. This extension is not pointwise. Its unit components are not isomorphisms, even though <m>u</m> is fully faithful.</p>
+    </example>
+    <p>This is the mechanism of <xref ref="bib-cat-riehl" detail="Example 6.2.17"/>, with renamed objects. The universal property compares complete functors on <m>\mathcal B</m>, so the constraints at different objects can force a unique candidate even when one local comma diagram has no colimit. The pointwise formula asks for those local colimits themselves. Their existence is sufficient to construct the universal extension, and is not a consequence of its existence in this generality.</p>
+    <p>Under the hypotheses of <xref ref="cat-c07-cor-existence"/>, the distinction causes no ambiguity for computation: the formulas construct a pointwise extension, and every universal extension is uniquely isomorphic to it with its comparison preserved. Transport along that isomorphism transports each colimit cocone or limit cone. The distinction matters when those existence hypotheses are absent, not when the required pointwise constructions have already been supplied.</p>
+  </section>
+
+  <section xml:id="cat-c07-set-formulas-variance">
+    <title>Set-valued formulas and presheaf variance</title>
+    <p>For a set-valued diagram, the pointwise constructions have explicit elements and equations. This description is useful both for computation and for checking variance. Assume first that <m>\mathcal A</m> is <m>\U</m>-small, <m>\mathcal B</m> is locally <m>\U</m>-small, and <m>F:\mathcal A\to\Set_{\U}</m> is covariant. The comma shapes are small, so all the following sets belong to <m>\U</m>.</p>
+    <p>An element of <m>(\operatorname{Lan}_uF)(b)</m> is represented by a triple <m>(a,t,x)</m>, where <m>t:ua\to b</m> and <m>x\in Fa</m>. Start with the disjoint union of these triples and impose the equivalence relation generated by
+      <md number="no">(a,t,x)\sim(a',t',F(h)(x))\quad\text{whenever }h:a\to a'\text{ and }t'u(h)=t.</md>
+      Denote the resulting class by <m>[a,t,x]</m>. Every comma morphism identifies an element with its transported image, and the generated equivalence relation imposes exactly the identifications required by a cocone. A function from this quotient to a set is the same thing as a family of functions on its summands satisfying those equations, which verifies the colimit property directly.</p>
+    <p>The words generated equivalence relation matter. A comparison need not point toward a common later object, and a general comma category need not be filtered. Equality of classes can require a finite sequence of generating relations and their reverses. A single common-target test is available under appropriate filteredness hypotheses, as explained in <xref ref="cat-filtered-cofinal"/>; it is not part of this unrestricted construction. Distinct arrows <m>t</m> from the same image object initially label distinct summands, and can only be identified through the stated relations.</p>
+    <p>For <m>s:b\to b'</m>, the arrow map and the unit become
+      <md number="no">[a,t,x]\longmapsto[a,st,x],\qquad
+        x\longmapsto[a,\id_{ua},x].</md>
+      The first function is well defined because multiplying a relation's comma equation by <m>s</m> produces another permitted relation. Its compatibility with composition can be read on representatives. The construction therefore offers a concrete check of the abstract functoriality proof, without replacing that proof by a choice of representatives for equivalence classes.</p>
+    <p>An element of <m>(\operatorname{Ran}_uF)(b)</m>, on the other hand, is a family
+      <md number="no">(x_{a,t})_{(a,t)\in(b\downarrow u)},\qquad x_{a,t}\in Fa,</md>
+      satisfying <m>F(h)(x_{a,t})=x_{a',t'}</m> whenever <m>u(h)t=t'</m>. It is a subset of the product of all the indicated values. For <m>s:b\to b'</m>, the output family's component indexed by <m>t:b'\to ua</m> is <m>x_{a,ts}</m>. The counit reads the component indexed by <m>(a,\id_{ua})</m>. Thus the left formula forms classes of possible inputs, while the right formula requires simultaneous compatible outputs. Empty index categories give an empty quotient on the left and one empty compatible family on the right.</p>
+    <p>These descriptions do not say that a limit-preserving or colimit-preserving forgetful functor preserves both kinds of formulas. For algebraic targets, the same comma shape is evaluated using limits or colimits in that target category. Underlying sets of limits often are compatible families, but underlying sets of algebraic coproducts generally require additional algebraic constructions. The value category remains part of the formula, even when its diagram has been explicitly enumerated. The preservation criterion in <xref ref="cat-c07-index-adjoints-preservation"/> tells us when passing to underlying data commutes with the construction.</p>
+    <p>Now suppose <m>\mathcal A,\mathcal B</m> are both <m>\U</m>-small, and write their presheaf categories as <m>\widehat{\mathcal A}=\Fun(\mathcal A^{\op},\Set_{\U})</m> and <m>\widehat{\mathcal B}</m>. Restriction of presheaves is precomposition with <m>u^{\op}</m>. Consequently its left and right adjoints are
+      <md number="no">u_!P=\operatorname{Lan}_{u^{\op}}P,\qquad
+        u_*P=\operatorname{Ran}_{u^{\op}}P.</md>
+      The indexing functor is now <m>u^{\op}</m>, not <m>u</m>. Translating its comma categories back into the original categories gives
+      <md number="no"><mrow>(u_!P)(b)=\operatorname{colim}_{(b\downarrow u)^{\op}}P(a),</mrow><mrow>(u_*P)(b)=\lim_{(u\downarrow b)^{\op}}P(a).</mrow></md>
+      Here each diagram uses the evident projection to <m>\mathcal A^{\op}</m>. For example, an arrow in the first indexing category is represented by <m>h:a'\to a</m> in <m>\mathcal A</m> satisfying <m>u(h)t'=t</m>. The presheaf gives the correctly directed map <m>P(h):P(a)\to P(a')</m>.</p>
+    <p>The opposites in these formulas are essential: they specify the arrows of the indexing categories, not just the collection of pairs being considered. A morphism <m>b\to b'</m> must induce a map from the value at <m>b'</m> to the value at <m>b</m>, because the resulting extension is a presheaf. Applying the covariant formula to <m>u</m> while merely reversing the arrows in the displayed values would not define this functor. Translating through <m>u^{\op}</m> supplies both the correct comma directions and their functoriality.</p>
+    <p>For a minimal example, let <m>u:\mathbf1\to[1]</m> select the source <m>0</m> of <m>0\to1</m>, and start with a set <m>S</m>. A presheaf on <m>[1]</m> is a function from its value at <m>1</m> to its value at <m>0</m>. The left extension is the presheaf <m>\varnothing\to S</m>: there is no arrow <m>1\to0</m> in the original category, so the left comma shape at <m>1</m> is empty. The right extension is <m>S\xrightarrow{\id}S</m>, since each arrow set <m>\Hom_{[1]}(0,b)</m> is a singleton. Both restrict to the prescribed value, as full faithfulness predicts.</p>
+    <p>This presheaf discussion uses only ordinary set-valued functors. It prepares the variance conventions for later constructions without introducing a topology or any extra condition on a presheaf. The covariant quotient formula and the contravariant formulas are applications of the same theorem, after their domains have been correctly identified.</p>
+    <p>One useful consistency check comes from representable presheaves. Write <m>h_a=\Hom_{\mathcal A}(-,a)</m> and <m>h_{ua}=\Hom_{\mathcal B}(-,ua)</m> in their respective presheaf categories. Applying <m>u</m> to arrows defines a transformation <m>h_a\Rightarrow u^*h_{ua}</m>. For every presheaf <m>Q</m> on <m>\mathcal B</m>, Yoneda gives
+      <md number="no">\Nat(h_{ua},Q)\cong Q(ua)\cong\Nat(h_a,u^*Q).</md>
+      The composite is exactly restriction followed by this comparison: its effect can be checked on the identity of <m>a</m>. Therefore it proves directly that <m>h_{ua}</m>, with this comparison, is the left Kan extension of <m>h_a</m>. The canonical identification <m>u_!h_a\cong h_{ua}</m> follows.</p>
+    <p>This last statement does not require full faithfulness of the indexing functor. Full faithfulness instead says that the comparison on the old presheaf is invertible, since its components are the maps on the original hom-sets. The distinction separates two questions that are easily conflated: identifying the extended representable, and recovering the original representable after restriction. It also provides a quick test for the variance conventions; the representing object moves forward along the original functor, although the presheaf is contravariant in its test object.</p>
+  </section>
+
+  <section xml:id="cat-c07-elementary-computations">
+    <title>Elementary computations</title>
+    <p>The formulas become concrete once the comma categories are identified. Often the useful step is to recognize a discrete category, a terminal object, or an initial object, before trying to construct a general colimit or limit.</p>
+    <example xml:id="cat-c07-example-to-one">
+      <title>Limits, colimits, and empty indexing</title>
+      <p>For the unique functor <m>!:\mathcal A\to\mathbf1</m>, a functor <m>\mathbf1\to\mathcal C</m> is an object of <m>\mathcal C</m>. A unit <m>F\Rightarrow L!</m> is a cocone, and a counit <m>R!\Rightarrow F</m> is a cone. Their Kan properties are exactly the colimit and limit properties:
+        <md number="no">\operatorname{Lan}_!F=\operatorname{colim}_{\mathcal A}F,
+          \qquad \operatorname{Ran}_!F=\lim_{\mathcal A}F.</md>
+        Here both comma categories identify with <m>\mathcal A</m>. These statements are equivalences of existence, directly from the universal definitions, with no completeness hypothesis on the whole category.</p>
+      <p>For the unique functor <m>u:\mathbf0\to\mathcal B</m>, every comma shape in the pointwise formulas is empty. If <m>\mathcal C</m> has an initial object, the constant functor at it is a pointwise left extension of the empty diagram. If <m>\mathcal C</m> has a terminal object, its constant functor is a pointwise right extension. The empty colimit and empty limit account for these two different answers.<fn>The reduction to limits and colimits is <xref ref="bib-cat-li2" detail="Example 1.7.4"/>. The empty case also shows why a pointwise existence statement must include empty comma categories; a nonempty source does not ensure that every new object receives an arrow from it.</fn></p>
+    </example>
+    <example xml:id="cat-c07-example-discrete">
+      <title>A map between discrete indexing sets</title>
+      <p>Regard a function <m>u:I\to J</m> as a functor between discrete categories. For <m>j\in J</m>, both comma categories are discrete on the fiber <m>u^{-1}(j)</m>. For a family <m>(F_i)_{i\in I}</m>, the formulas are therefore
+        <md number="no">(\operatorname{Lan}_uF)(j)=\coprod_{i\in u^{-1}(j)}F_i,\qquad
+          (\operatorname{Ran}_uF)(j)=\prod_{i\in u^{-1}(j)}F_i,</md>
+        provided these particular constructions exist. For an inclusion of indexing sets, an old value is retained; an unrepresented index receives an initial object on the left and a terminal object on the right.</p>
+      <p>If several indices map to the same <m>j</m>, the unit on the left consists of the coproduct injections, and the counit on the right consists of the product projections. They need not be invertible. For example, two singleton sets indexed by a two-point discrete category extend along its map to <m>\mathbf1</m> to a two-element coproduct on the left and a singleton product on the right. The unit distinguishes the two original indices, even though the new indexing category has identified them.</p>
+    </example>
+    <example xml:id="cat-c07-example-monoid-actions">
+      <title>Free and cofree monoid actions</title>
+      <p>Let <m>M\in\U</m> be a monoid, and let <m>BM</m> be its one-object category, with composition given by monoid multiplication. A functor <m>BM\to\Set</m> is a set with a left <m>M</m>-action. The functor <m>i:\mathbf1\to BM</m> selects the object and its identity, so restriction along <m>i</m> forgets the action. A functor <m>S:\mathbf1\to\Set</m> selects a set, also denoted <m>S</m>.</p>
+      <p>Both comma categories at the sole object of <m>BM</m> are discrete on <m>M</m>, because their source category has only an identity arrow. Thus the left extension has underlying set <m>M\times S</m> and the right extension has underlying set <m>S^M</m>. Their action maps come from the reindexing formulas, not from an additional choice:
+        <md number="no">m\cdot(n,s)=(mn,s),\qquad
+          (m\cdot\varphi)(n)=\varphi(nm).</md>
+        The second is a left action: applying <m>m</m> and then <m>m'</m> gives the function <m>n\mapsto\varphi(nm'm)</m>, which is the action of <m>m'm</m>. Its right multiplication inside the argument is forced by precomposition in <m>(b\downarrow i)</m>.</p>
+      <p>The unit is <m>s\mapsto(1_M,s)</m>, and the counit is evaluation <m>\varphi\mapsto\varphi(1_M)</m>. For an <m>M</m>-set <m>X</m>, a function <m>f:S\to X</m> extends uniquely to the equivariant map <m>(m,s)\mapsto m\cdot f(s)</m>. A function <m>g:X\to S</m> corresponds uniquely to the equivariant map
+        <md number="no">X\longrightarrow S^M,\qquad x\longmapsto[n\longmapsto g(n\cdot x)].</md>
+        Evaluating at <m>1_M</m> recovers <m>g</m>, and equivariance forces all other values. These are exactly the two adjunctions with restriction. The formulas work for monoids; inverses are unnecessary.<fn>Compare the group-action example in <xref ref="bib-cat-riehl" detail="Example 6.1.4"/>. The same discrete-comma calculation gives the monoid case here. It also explains the different multiplication directions in the free and cofree action formulas.</fn></p>
+    </example>
+    <p>Cocompleteness supplies the comma colimits for left extensions, and completeness supplies the comma limits for right extensions. Recognizing their indexing categories can reduce these constructions to products, coproducts, or evaluations at terminal or initial objects. Under the smallness hypotheses of <xref ref="cat-c07-set-formulas-variance"/>, the set-valued formulas also reduce to the quotient and compatible-family constructions of <xref ref="cat-limits"/>.</p>
+  </section>
+</chapter>

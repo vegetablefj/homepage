@@ -1,0 +1,249 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="cat-yoneda">
+  <title>Representability and the Yoneda lemma</title>
+  <introduction>
+    <p>Many constructions are specified by the maps into them, or by the maps out of them. A product, for example, answers the question of how a pair of arrows with common source can be assembled into one arrow. Representability expresses this pattern using a set-valued functor. The Yoneda lemma explains why its universal property determines both the representing object and all maps between such objects.</p>
+    <p>We begin with the two Hom functors, prove the Yoneda lemma with its naturality, and then translate between natural isomorphisms, universal elements, and initial or terminal objects. The main references are <xref ref="bib-cat-li1" detail="Section 2.5"/>, <xref ref="bib-cat-ks" detail="Section 1.4"/>, and <xref ref="bib-cat-riehl" detail="Sections 2.1–2.4"/>. The elementary constructions of <xref ref="cat-constructions"/> supply the examples; no general theory of limits is needed.</p>
+  </introduction>
+
+  <section xml:id="cat-c03-hom-functors">
+    <title>Hom functors and presheaves</title>
+    <p>Fix a locally <m>\U</m>-small category <m>\mathcal C</m>, with the set encoding specified in <xref ref="cat-size-conventions"/>. An arrow can be composed at either end. These two operations give functors with opposite variances, so their notation must record which variable is allowed to move.</p>
+    <definition xml:id="cat-c03-def-hom-presheaf">
+      <title>The two Hom functors</title>
+      <idx>Hom functor</idx><idx>Presheaf</idx>
+      <statement>
+        <p>For <m>X\in\mathcal C</m>, define the functors
+          <md number="no">h_X=\Hom_{\mathcal C}(-,X):\mathcal C^\op\longrightarrow\Set_\U,\qquad
+            h^X=\Hom_{\mathcal C}(X,-):\mathcal C\longrightarrow\Set_\U.</md>
+          On an arrow <m>a:S\to T</m>, their actions are
+          <md number="no">h_X(a)(f)=fa\quad(f:T\to X),\qquad
+            h^X(a)(g)=ag\quad(g:X\to S).</md>
+          A <em>presheaf of sets</em> on <m>\mathcal C</m> means a functor <m>F:\mathcal C^\op\to\Set_\U</m>. For <m>\mathcal C</m> <m>\U</m>-small, we write
+          <md number="no">\widehat{\mathcal C}=\Fun(\mathcal C^\op,\Set_\U)</md>
+          for its presheaf category, with natural transformations as arrows.</p>
+      </statement>
+    </definition>
+    <p>The identity and composition rules for both Hom functors follow from the corresponding rules in <m>\mathcal C</m>. For a presheaf, <m>F(a):F(T)\to F(S)</m> is often called restriction along <m>a:S\to T</m>. This language refers to the direction of the map and does not require the objects of <m>\mathcal C</m> to be spaces or the arrows to be inclusions.</p>
+    <p>An arrow <m>u:X\to Y</m> gives a natural transformation <m>h_u:h_X\Rightarrow h_Y</m> by postcomposition:
+      <md number="no">(h_u)_T(f)=uf.</md>
+      It also gives <m>u^*:h^Y\Rightarrow h^X</m> by precomposition, with <m>u^*_T(g)=gu</m>. The first assignment is covariant in the representing object; the second is contravariant. In particular, the covariant Hom functors form a functor <m>\mathcal C^\op\to\Fun(\mathcal C,\Set_\U)</m>.<fn>The subscript and superscript convention is not universal. Here <m>h_X</m> is contravariant in its test object and <m>h^X</m> is covariant. In <xref ref="bib-cat-li1" detail="Section 2.5"/> and <xref ref="bib-cat-ks" detail="Section 1.4"/>, the category denoted by a superscript <m>\vee</m> is the opposite of the category of covariant set-valued functors. Their covariant-Hom embedding therefore has a different displayed direction.</fn></p>
+    <p>There are two distinct objects moving in this discussion: the test object and the object being tested. Keeping them separate prevents a common variance error. For the contravariant Hom functor, changing the test object uses precomposition, while changing the representing object uses postcomposition. The two operations commute by associativity:
+      <md number="no">u(fa)=(uf)a.</md>
+      This equality is exactly the naturality of <m>h_u</m>. The analogous equality proves naturality of <m>u^*</m>. Thus the notation for a family of Hom functors already contains the compatibility needed to discuss natural transformations between its members.</p>
+    <p>If <m>\mathcal C</m> is <m>\U</m>-small, <m>\widehat{\mathcal C}</m> is locally <m>\U</m>-small and is <m>\V</m>-small, by <xref ref="cat-functor-size-bound"/>. Without that hypothesis, natural transformations between two fixed presheaves still form an ordinary set: they are families indexed by the set <m>\Ob(\mathcal C)</m>, satisfying naturality equations. We will use the Yoneda lemma in this generality, without asserting that this particular set of families belongs to <m>\U</m>.<fn>A bijection with a member of <m>\U</m> gives a cardinality bound; under our strict membership convention it does not by itself put the original set in <m>\U</m>. This matters when the components of a natural transformation are indexed by object names outside <m>\U</m>.</fn></p>
+  </section>
+
+  <section xml:id="cat-c03-yoneda-lemma">
+    <title>Evaluation at the identity</title>
+    <p>A transformation out of <m>h_X</m> appears to require a function on every set <m>\Hom_{\mathcal C}(T,X)</m>. Naturality forces all these functions to be determined by one value. The relevant value is the image of <m>\id_X</m>, because every arrow into <m>X</m> is obtained from this identity by precomposition.</p>
+    <theorem xml:id="cat-c03-thm-yoneda">
+      <title>Yoneda lemma</title>
+      <idx>Yoneda lemma</idx>
+      <statement>
+        <p>Let <m>\mathcal C</m> be locally <m>\U</m>-small and set-encoded, and let <m>X\in\mathcal C</m>.</p>
+        <p><ol>
+          <li><p>For <m>F:\mathcal C^\op\to\Set_\U</m>, evaluation at the identity is a bijection
+            <md number="no">\Phi_{X,F}:\Nat(h_X,F)\longrightarrow F(X),\qquad
+              \eta\longmapsto\eta_X(\id_X).</md>
+            Its inverse sends <m>z\in F(X)</m> to the transformation <m>\eta^z</m> given by
+            <md number="no">\eta^z_T(f)=F(f)(z)\qquad(f:T\to X).</md></p></li>
+          <li><p>For <m>G:\mathcal C\to\Set_\U</m>, there is a bijection
+            <md number="no">\Psi_{X,G}:\Nat(h^X,G)\longrightarrow G(X),\qquad
+              \eta\longmapsto\eta_X(\id_X),</md>
+            whose inverse sends <m>z\in G(X)</m> to the transformation with component
+            <md number="no">\eta^z_T(f)=G(f)(z)\qquad(f:X\to T).</md></p></li>
+        </ol></p>
+        <p>Both bijections are natural in the object and in the set-valued functor.</p>
+      </statement>
+      <proof>
+        <p>For the contravariant assertion, let <m>z\in F(X)</m>. If <m>a:S\to T</m> and <m>f:T\to X</m>, then
+          <md number="no">F(a)\bigl(\eta^z_T(f)\bigr)
+            =F(a)F(f)(z)=F(fa)(z)=\eta^z_S\bigl(h_X(a)(f)\bigr).</md>
+          Thus the proposed components are natural. Evaluation gives
+          <m>\eta^z_X(\id_X)=F(\id_X)(z)=z</m>.</p>
+        <p>Conversely, let <m>\eta:h_X\Rightarrow F</m> be natural, and put <m>z=\eta_X(\id_X)</m>. Apply its naturality equation for <m>f:T\to X</m> to <m>\id_X\in h_X(X)</m>. It gives
+          <md number="no">\eta_T(f)=\eta_T\bigl(h_X(f)(\id_X)\bigr)
+            =F(f)\bigl(\eta_X(\id_X)\bigr)=F(f)(z).</md>
+          Hence <m>\eta=\eta^z</m>, proving that the displayed maps are inverse.</p>
+        <p>We spell out the two naturality assertions. If <m>\alpha:F\Rightarrow F'</m>, then
+          <md number="no">\Phi_{X,F'}(\alpha\eta)=\alpha_X\bigl(\Phi_{X,F}(\eta)\bigr).</md>
+          If <m>u:X'\to X</m>, then precomposition by <m>h_u:h_{X'}\Rightarrow h_X</m> satisfies
+          <md number="no">\Phi_{X',F}(\eta h_u)
+            =\eta_{X'}(u)
+            =F(u)\bigl(\Phi_{X,F}(\eta)\bigr).</md>
+          The first equality follows by evaluation, and the second is the naturality equation just used. These are precisely compatibility with arrows in the functor variable and in the object variable.</p>
+        <p>The covariant assertion is the contravariant assertion for <m>\mathcal C^\op</m>. Explicitly, naturality at <m>a:S\to T</m> reads <m>G(a)G(f)(z)=G(af)(z)</m> for <m>f:X\to S</m>, and recovery from the identity uses an arrow <m>f:X\to T</m>. For <m>u:X\to Y</m>, precomposition by <m>u^*:h^Y\Rightarrow h^X</m> corresponds under <m>\Psi</m> to <m>G(u):G(X)\to G(Y)</m>. Naturality in <m>G</m> again follows by evaluation.</p>
+      </proof>
+    </theorem>
+    <p>The proof provides the computational content: to specify a natural transformation from a Hom functor, choose one element, and transport it by the functor's arrow maps. Conversely, recover that element by evaluation at an identity. This is the form of Yoneda used in <xref ref="bib-cat-li1" detail="Theorem 2.5.1"/>, <xref ref="bib-cat-ks" detail="Proposition 1.4.3"/>, and <xref ref="bib-cat-stacks" detail="Tag 001P"/>; <xref ref="bib-cat-riehl" detail="Theorem 2.2.4"/> takes the covariant form as its starting point.</p>
+    <p>The evaluation formula alone would not establish the theorem: one must show that its proposed inverse is natural, and that every transformation is recovered. These two steps use different parts of the functorial structure. Functoriality constructs a transformation from an element, while naturality of an already given transformation forces its components to have that form. The identity arrow connects the two steps. This proof pattern is useful whenever a universal property appears to require an independent choice for every test object.</p>
+  </section>
+
+  <section xml:id="cat-c03-embedding-elements">
+    <title>The embedding and generalized elements</title>
+    <p>The functor <m>h_X</m> records how every test object maps to <m>X</m>, together with how these maps change when the test object changes. Yoneda says that this record loses no information about objects or arrows. This gives a precise version of viewing an object through its relationships with other objects, a perspective emphasized in <xref ref="bib-cat-li1" detail="Introduction, page 2"/>.</p>
+    <proposition xml:id="cat-c03-prop-embedding-detection">
+      <idx>Yoneda embedding</idx>
+      <statement>
+        <p>For a locally <m>\U</m>-small, set-encoded category <m>\mathcal C</m>, the following hold.</p>
+        <p><ol>
+          <li><p>The Yoneda functor <m>h:\mathcal C\to\Fun(\mathcal C^\op,\Set_\U)</m>, <m>X\mapsto h_X</m>, <m>u\mapsto h_u</m>, is fully faithful. In particular,
+            <md number="no">\Nat(h_X,h_Y)\cong\Hom_{\mathcal C}(X,Y).</md>
+            Dually, <m>X\mapsto h^X</m> is fully faithful as a functor from <m>\mathcal C^\op</m>, and
+            <md number="no">\Nat(h^X,h^Y)\cong\Hom_{\mathcal C}(Y,X).</md></p></li>
+          <li><p>An arrow <m>u:X\to Y</m> is invertible if and only if all maps
+            <md number="no">\Hom_{\mathcal C}(T,u):\Hom_{\mathcal C}(T,X)\to\Hom_{\mathcal C}(T,Y)</md>
+            are bijective. Equivalently, all maps
+            <md number="no">\Hom_{\mathcal C}(u,T):\Hom_{\mathcal C}(Y,T)\to\Hom_{\mathcal C}(X,T)</md>
+            are bijective.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>Apply the Yoneda lemma to <m>F=h_Y</m>. Its inverse sends <m>u:X\to Y</m> to postcomposition by <m>u</m>, which is exactly the arrow map of <m>h</m>; identity and composition are preserved. The covariant assertion follows by taking opposites.</p>
+        <p>If all maps <m>\Hom(T,u)</m> are bijective, surjectivity for <m>T=Y</m> supplies <m>v:Y\to X</m> with <m>uv=\id_Y</m>. Injectivity for <m>T=X</m>, applied to <m>u(vu)=u=u\id_X</m>, gives <m>vu=\id_X</m>. The converse follows by composing with <m>u^{-1}</m>, and the final equivalence is dual.</p>
+      </proof>
+    </proposition>
+    <p xml:id="cat-c03-generalized-element"><idx>Generalized element</idx>An arrow <m>t:T\to X</m> is called a generalized element of <m>X</m> of shape <m>T</m>. Precomposition changes its shape, and a map <m>u:X\to Y</m> sends it to <m>ut:T\to Y</m>. This terminology allows element arguments in a category without choosing an underlying-set functor. To prove <m>a,b:X\to Y</m> equal, it suffices to prove <m>at=bt</m> for all generalized elements: take <m>T=X</m> and <m>t=\id_X</m>. The point is useful when an arrow is itself defined through its effect on tests.<fn>See <xref ref="bib-cat-riehl" detail="Remark 3.5.14"/> for the use of generalized elements in categorical arguments, and <xref ref="bib-cat-ks" detail="Corollary 1.4.7"/> for the isomorphism criterion.</fn></p>
+    <p>The test objects must be adequate for the assertion being made. Maps from a terminal object alone can miss information. In <m>\Grp</m>, there is exactly one homomorphism from the trivial group to any group; testing only this object cannot distinguish the trivial group from a nontrivial group. All test objects together, with compatibility under their arrows, give the fully faithful record above. Merely listing the cardinalities of the Hom sets omits that compatibility.</p>
+    <p>Consequently <m>h_X\cong h_Y</m> if and only if <m>X\cong Y</m>. Once a natural isomorphism between the Hom functors is specified, it determines a particular isomorphism between the objects. This does not mean that two isomorphic objects have only one isomorphism between them.</p>
+    <p>For a small source, we can therefore work with the full subcategory of <m>\widehat{\mathcal C}</m> consisting of representable presheaves, without changing the arrows of <m>\mathcal C</m>. This is an equivalence onto that full subcategory, rather than a claim that the original object names literally become presheaves. The larger presheaf category also contains objects outside this subcategory. Describing a presheaf does not by itself construct a representing object in <m>\mathcal C</m>; the existence of such an object is the representability problem studied next.</p>
+  </section>
+
+  <section xml:id="cat-c03-representations">
+    <title>Representations and universal elements</title>
+    <p>A set-valued functor describes a problem whose answers vary with a test object. A representation identifies those answers with arrows to or from one object, by a specified natural isomorphism. Naming the object alone does not determine this identification.</p>
+    <definition xml:id="cat-c03-def-representation">
+      <title>Representability and a chosen representation</title>
+      <idx>Representable functor</idx><idx>Universal element</idx>
+      <statement>
+        <p><ol>
+          <li><p>A presheaf <m>F:\mathcal C^\op\to\Set_\U</m> is representable if there exist <m>X\in\mathcal C</m> and a natural isomorphism <m>\rho:h_X\cong F</m>. A chosen representation is the pair <m>(X,\rho)</m>. Its universal element is <m>u=\rho_X(\id_X)\in F(X)</m>.</p></li>
+          <li><p>A covariant functor <m>G:\mathcal C\to\Set_\U</m> is representable if there exist <m>X\in\mathcal C</m> and a natural isomorphism <m>\rho:h^X\cong G</m>. Its universal element is again <m>u=\rho_X(\id_X)\in G(X)</m>.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <p>We always state the variance rather than relying on the term corepresentable, whose use varies. A representation of <m>F</m> by <m>X</m> need not be an equality <m>F=h_X</m>: it gives specified, compatible bijections. The isomorphism <m>\rho</m> tells us which element of <m>F(T)</m> a particular arrow corresponds to.</p>
+    <proposition xml:id="cat-c03-prop-universal-element">
+      <statement>
+        <p>For a presheaf <m>F</m>, a pair <m>(X,u)</m> with <m>u\in F(X)</m> determines a representation exactly when, for every <m>T\in\mathcal C</m>, the function
+          <md number="no">\Hom_{\mathcal C}(T,X)\longrightarrow F(T),\qquad f\longmapsto F(f)(u)</md>
+          is bijective. For a covariant functor <m>G</m>, the corresponding criterion is bijectivity of
+          <md number="no">\Hom_{\mathcal C}(X,T)\longrightarrow G(T),\qquad f\longmapsto G(f)(u).</md>
+          Thus choosing a representation is equivalent to choosing such a universal pair.</p>
+      </statement>
+      <proof>
+        <p>The Yoneda lemma constructs a natural transformation from <m>u</m>, with precisely these component functions. A natural transformation is invertible exactly when every component is bijective. Conversely, evaluation at the identity recovers <m>u</m> from the representation.</p>
+      </proof>
+    </proposition>
+    <p>Existence and uniqueness of the arrow in the criterion are both essential. Existence says that every answer is obtained from the universal one; uniqueness says that the arrow recording the answer is determined. Naturality need not be checked separately once the component functions have this specific form, because functoriality already proves it.<fn>Li calls this element a universal family in <xref ref="bib-cat-li1" detail="Remark 2.5.3"/>. Stacks uses universal object in <xref ref="bib-cat-stacks" detail="Section 4.3, discussion following Definition 4.3.6"/>. We use universal element for <m>u\in F(X)</m> and universal pair for <m>(X,u)</m>; in examples the element may itself encode a family of mathematical objects.</fn></p>
+    <p>In contrast, independently chosen bijections <m>\Hom(T,X)\cong F(T)</m> are not enough unless they are compatible with every arrow between test objects. The example at the end of this chapter shows that even the existence of such a bijection for every object need not imply representability.</p>
+    <p>A universal element is also more than an arbitrarily distinguished element. For the presheaf <m>h_X</m> itself, an element of <m>h_X(X)</m> is an endomorphism <m>e:X\to X</m>. It is universal at <m>X</m> exactly when postcomposition by <m>e</m> gives bijections on all incoming Hom sets, hence exactly when <m>e</m> is an automorphism by <xref ref="cat-c03-prop-embedding-detection"/>. In particular, the identity is universal, but it need not be the only universal element at that same object. Fixing the universal element fixes how answers are encoded, even when the representing object is already known.</p>
+  </section>
+
+  <section xml:id="cat-c03-elements-categories">
+    <title>Categories of elements</title>
+    <p>The universal-element criterion can be expressed as a universal property of a single object in another category. The direction of its arrows depends on variance and is worth fixing explicitly.</p>
+    <definition xml:id="cat-c03-def-category-elements">
+      <title>Categories of elements, in both variances</title>
+      <idx>Category of elements</idx>
+      <statement>
+        <p>For either a presheaf <m>F</m> or a covariant set-valued functor <m>G</m> on <m>\mathcal C</m>, objects of its category of elements are pairs <m>(T,t)</m>, where <m>T\in\mathcal C</m> and <m>t</m> belongs to the functor's value at <m>T</m>.</p>
+        <p><ol>
+          <li><p>In <m>\operatorname{el}(F)</m>, an arrow <m>(T,t)\to(S,s)</m> is an arrow <m>a:T\to S</m> such that <m>F(a)(s)=t</m>.</p></li>
+          <li><p>In <m>\operatorname{el}(G)</m>, an arrow <m>(T,t)\to(S,s)</m> is an arrow <m>a:T\to S</m> such that <m>G(a)(t)=s</m>.</p></li>
+        </ol></p>
+        <p>Identities and composition are inherited from <m>\mathcal C</m>. In both cases the projection sending <m>(T,t)</m> to <m>T</m> and <m>a</m> to <m>a</m> is a functor to <m>\mathcal C</m>.</p>
+      </statement>
+    </definition>
+    <p>For example, in the contravariant case, <m>F(a)(s)=t</m> and <m>F(b)(r)=s</m> give <m>F(ba)(r)=F(a)F(b)(r)=t</m>, so composition is defined as claimed. Local arrow sets are subsets of those of <m>\mathcal C</m>. If <m>\mathcal C</m> is <m>\U</m>-small, the element category is <m>\U</m>-small as well.<fn>Our convention follows <xref ref="bib-cat-riehl" detail="Definitions 2.4.1–2.4.2"/>. Applying the covariant construction to <m>F:\mathcal C^\op\to\Set_\U</m> instead gives the opposite of the category we call <m>\operatorname{el}(F)</m>. Stating the arrow condition avoids ambiguity between these conventions.</fn></p>
+    <proposition xml:id="cat-c03-prop-elements-universal">
+      <statement>
+        <p>A pair <m>(X,u)</m> represents a presheaf <m>F</m> if and only if it is terminal in <m>\operatorname{el}(F)</m>. A pair <m>(X,u)</m> represents a covariant functor <m>G</m> if and only if it is initial in <m>\operatorname{el}(G)</m>.</p>
+      </statement>
+      <proof>
+        <p>An arrow <m>(T,t)\to(X,u)</m> in <m>\operatorname{el}(F)</m> is exactly an arrow <m>f:T\to X</m> satisfying <m>F(f)(u)=t</m>. Terminality is therefore precisely existence and uniqueness in the contravariant universal-element criterion. In the covariant case, an arrow <m>(X,u)\to(T,t)</m> instead satisfies <m>G(f)(u)=t</m>, giving initiality.</p>
+      </proof>
+    </proposition>
+    <p>This characterization is <xref ref="bib-cat-riehl" detail="Proposition 2.4.8"/> and its dual. In particular,
+      <md number="no">\operatorname{el}(h_X)\cong\mathcal C/X,\qquad
+        \operatorname{el}(h^X)\cong X/\mathcal C,</md>
+      using the descriptions of slices in <xref ref="cat-c02-def-arrow-slice"/>. Their distinguished terminal and initial objects are both supplied by <m>\id_X</m>. The formulas explain why opposite variances require opposite universal properties.</p>
+    <p>A natural transformation <m>\alpha:F\Rightarrow F'</m> induces a functor <m>\operatorname{el}(F)\to\operatorname{el}(F')</m> over <m>\mathcal C</m>, sending <m>(T,t)</m> to <m>(T,\alpha_T(t))</m> and acting as the identity on underlying arrows of <m>\mathcal C</m>. Naturality verifies its arrow condition. This functor need not preserve terminal objects: that additional property would assert a universal-element condition for the transformed element.</p>
+    <p>The element category makes the relevant quantifiers visible. Its objects include every answer at every test object. Terminality in the presheaf case says that each such answer has exactly one arrow to the universal answer, and that arrow records the required substitution of test objects. Initiality in the covariant case says instead that each answer is obtained by exactly one arrow out of the universal answer. Neither condition refers only to the number of answers. Both require that the arrows carrying answers between tests have the prescribed behavior.</p>
+  </section>
+
+  <section xml:id="cat-c03-uniqueness-functoriality">
+    <title>Uniqueness and maps between representations</title>
+    <p>Uniqueness belongs to the full universal data. The representing object by itself may have many automorphisms, while a comparison required to preserve a given universal element is forced.</p>
+    <proposition xml:id="cat-c03-prop-representations-comparison">
+      <statement>
+        <p><ol>
+          <li><p>If <m>(X,u)</m> and <m>(Y,v)</m> represent the same presheaf <m>F</m>, there is a unique arrow <m>a:X\to Y</m> satisfying <m>F(a)(v)=u</m>. It is an isomorphism. Equivalently, for the corresponding representations <m>\rho_X:h_X\cong F</m> and <m>\rho_Y:h_Y\cong F</m>, it is the unique arrow with <m>\rho_Yh_a=\rho_X</m>.</p></li>
+          <li><p>Let <m>F,G</m> be presheaves represented by <m>(X,u)</m> and <m>(Y,v)</m>. Every natural transformation <m>\alpha:F\Rightarrow G</m> corresponds to a unique arrow <m>a:X\to Y</m>, characterized by
+            <md number="no">G(a)(v)=\alpha_X(u).</md>
+            Under the representing bijections, its action is
+            <md number="no">\alpha_T\bigl(F(f)(u)\bigr)=G(af)(v)\qquad(f:T\to X).</md>
+            Identity transformations correspond to identity arrows, composites to composites, and natural isomorphisms to isomorphisms.</p></li>
+          <li><p>For covariant functors <m>F,G</m> represented by <m>(X,u)</m> and <m>(Y,v)</m>, a transformation <m>\alpha:F\Rightarrow G</m> instead corresponds to an arrow <m>a:Y\to X</m>, characterized by <m>G(a)(v)=\alpha_X(u)</m>.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>In the first assertion, universality of <m>(Y,v)</m> gives the unique <m>a</m>. Universality of <m>(X,u)</m> gives <m>b:Y\to X</m> with <m>F(b)(u)=v</m>. Then <m>F(ba)(u)=F(a)F(b)(u)=u</m>, so uniqueness forces <m>ba=\id_X</m>; likewise <m>ab=\id_Y</m>.</p>
+        <p>For the second assertion, represent <m>\alpha_X(u)\in G(X)</m> using <m>(Y,v)</m>. Naturality of <m>\alpha</m> gives the displayed component formula, which determines it on every element. Equivalently, conjugate <m>\alpha</m> by the chosen representing isomorphisms and use the full faithfulness of Yoneda. That description also proves the claims about identities, composites, and inverses. The covariant assertion follows from <m>\Nat(h^X,h^Y)\cong\Hom(Y,X)</m>.</p>
+      </proof>
+    </proposition>
+    <p>The first assertion is uniqueness up to unique isomorphism <em>compatible with the representations</em>, as in <xref ref="bib-cat-li1" detail="Lemma 2.5.4"/>. Removing the compatibility condition changes the assertion: a representing object can have nonidentity automorphisms. This is the same qualification that accompanies uniqueness of universal objects in <xref ref="cat-c02-prop-universal-uniqueness"/>.</p>
+    <p>It also explains how objectwise constructions become functors. Given a set-indexed diagram of representable presheaves and a chosen representation at each object of the diagram, assign to each transformation its unique representing arrow. The identity and composition statements prove functoriality without further choices on arrows. The representing isomorphisms then form a natural isomorphism of diagrams. Our choice assumption permits choices indexed by a set; no choice from a proper class is being asserted.</p>
+    <p>Different choices of representations lead to uniquely compatible comparison isomorphisms. Their compatibility with the arrows of the diagram follows from the same uniqueness, so they form a natural isomorphism between the resulting representing functors. This is often the useful meaning of a construction being independent of choices. It does not require the two constructed functors to be equal. In the covariant version the arrows between representing objects run in the reverse direction, so a covariant diagram of covariantly representable functors produces a contravariant diagram of representatives.</p>
+  </section>
+
+  <section xml:id="cat-c03-examples">
+    <title>Powers, algebra, and universal arrows</title>
+    <p>The preceding statements apply to <m>\Set_\U</m> and <m>\Grp_\U</m>, even though these categories are not <m>\U</m>-small: the Yoneda bijections are understood as bijections of ordinary sets, as specified above. The representing objects and all the values in the following set and group examples remain at the <m>\U</m> scale.</p>
+    <example xml:id="cat-c03-example-powers-subsets">
+      <title>Powers and subsets</title>
+      <p><ol>
+        <li><p>Fix sets <m>I,A\in\U</m>. The presheaf <m>T\mapsto\Set(T,A)^I</m>, with precomposition in each coordinate, is represented by the set <m>A^I</m> of functions <m>I\to A</m>. Its universal element is the family of projections <m>(p_i:A^I\to A)_{i\in I}</m>. The representing bijection sends <m>f:T\to A^I</m> to <m>(p_if)_{i\in I}</m>; its inverse sends a family <m>(f_i)</m> to the function <m>t\mapsto(i\mapsto f_i(t))</m>. The formulas show naturality by precomposition. When <m>I</m> is empty, <m>A^I</m> is a singleton, including when <m>A</m> is empty.</p></li>
+        <li><p>The powerset presheaf <m>\mathcal P:\Set_\U^\op\to\Set_\U</m>, whose arrow maps are inverse images, is represented by <m>2=\{0,1\}</m>. The universal element is the subset <m>\{1\}\subseteq2</m>. A function <m>f:T\to2</m> corresponds to <m>f^{-1}(\{1\})</m>, and the inverse correspondence sends a subset to its characteristic function. Thus <m>(gf)^{-1}=f^{-1}g^{-1}</m> supplies exactly the required compatibility. This example appears in <xref ref="bib-cat-li1" detail="Section 2.5"/> and <xref ref="bib-cat-riehl" detail="Example 2.4.12(i)"/>.</p></li>
+      </ol></p>
+    </example>
+    <p>The product of two objects <m>A,B</m> in an arbitrary category represents the presheaf
+      <m>T\mapsto\Hom(T,A)\times\Hom(T,B)</m>, if that product exists. Its universal element is its pair of projections. Dually, a coproduct represents the covariant functor
+      <m>T\mapsto\Hom(A,T)\times\Hom(B,T)</m>, with its pair of injections as universal element. These universal properties are included among the basic limit and colimit shapes in <xref ref="cat-c04-def-basic-shapes"/>. The two factors in these displayed formulas are sets; their cartesian product exists regardless of whether the categorical product or coproduct exists.</p>
+    <p>There is a related covariant example with a different representing object. For a fixed set <m>I\in\U</m>, the functor <m>T\mapsto T^I</m>, using postcomposition on functions, is represented by <m>I</m>, since <m>T^I=\Set(I,T)</m>. Its universal element is the identity function on <m>I</m>, viewed as an <m>I</m>-indexed tuple of elements of <m>I</m>. Thus a functor of tuples in the variable set is represented by the indexing set. By contrast, the preceding contravariant functor of families of maps into a fixed set is represented by a power of that fixed set. Writing the arrow action resolves the apparent similarity of these formulas.</p>
+    <example xml:id="cat-c03-example-groups-comma">
+      <title>Underlying elements and universal arrows</title>
+      <p><ol>
+        <li><p>The underlying-set functor <m>W:\Grp_\U\to\Set_\U</m> is represented covariantly by <m>(\Z,1)</m>. For every group <m>G</m>, a homomorphism <m>\Z\to G</m> is determined by the image <m>g</m> of <m>1</m>; conversely, <m>n\mapsto g^n</m> is that homomorphism. Thus elements of groups are generalized elements of shape <m>\Z</m>, not of shape the trivial group. This is the one-generator case of <xref ref="bib-cat-riehl" detail="Example 2.4.12(iv)"/>.</p></li>
+        <li><p>Let <m>H:\mathcal C\to\mathcal D</m> and <m>S\in\mathcal D</m>, with <m>\mathcal D</m> locally <m>\U</m>-small. The presheaf <m>T\mapsto\Hom_{\mathcal D}(HT,S)</m> has category of elements naturally identified with <m>(H\downarrow S)</m>: its objects are arrows <m>HT\to S</m>, and its arrow condition is their commuting triangle. A representation is therefore a terminal object in this comma category. Similarly, the covariant functor <m>T\mapsto\Hom_{\mathcal D}(S,HT)</m> has element category <m>(S\downarrow H)</m>, and a representation is an initial object there. These are the two orientations of a universal arrow in <xref ref="cat-c02-def-universal-arrow"/>.</p></li>
+      </ol></p>
+    </example>
+    <p>Representability therefore unifies a collection of familiar universal properties while retaining their direction. Finding the universal element usually provides the actual construction; the Yoneda lemma then supplies its naturality and comparison maps. It does not guarantee that the representing object exists in the chosen category.</p>
+    <p>The comma-category example is especially useful when a problem is already phrased as solving a triangle. One first identifies which side of the triangle varies and which object is fixed. The resulting Hom functor determines whether the sought universal solution is initial or terminal. If such solutions are subsequently chosen for a family of fixed objects, the comparison proposition determines how they depend on that family. This procedure separates the existence of universal solutions from the formal work of organizing them into a functor.</p>
+  </section>
+
+  <section xml:id="cat-c03-obstructions">
+    <title>Obstructions and the role of naturality</title>
+    <p>To disprove representability, one must identify a property shared by every possible representation. Failure to recognize a candidate is not such an obstruction. The universal-element and element-category formulations provide elementary tests.</p>
+    <proposition xml:id="cat-c03-prop-elementary-obstructions">
+      <statement>
+        <p>A representable presheaf takes an initial object, when one exists, to a singleton. A representable covariant functor takes a terminal object to a singleton. On a nonempty category, the functor with empty value at every object is not representable in either variance.</p>
+      </statement>
+      <proof>
+        <p>If <m>F\cong h_X</m> and <m>0</m> is initial, then <m>F(0)\cong\Hom(0,X)</m> is a singleton. The covariant assertion is dual. An everywhere-empty functor has no possible universal element at any representing object.</p>
+      </proof>
+    </proposition>
+    <example xml:id="cat-c03-example-nonrepresentability">
+      <title>Three failures of representation</title>
+      <p><ol>
+        <li><p>The covariant powerset functor on <m>\Set_\U</m>, using direct images of subsets, is not representable: its value at a singleton has two elements, whereas <m>\Set(X,1)</m> has one element for every set <m>X</m>. Its object assignment is the same as the representable inverse-image powerset presheaf above. The arrow maps and variance change the conclusion.</p></li>
+        <li><p>Consider the three-object poset with <m>a&lt;t</m>, <m>b&lt;t</m>, and <m>a,b</m> incomparable. Define a presheaf by <m>F(a)=F(b)=\{*\}</m> and <m>F(t)=\varnothing</m>; all required restriction maps are unique. Its category of elements consists of the two objects <m>(a,*)</m> and <m>(b,*)</m>, with no arrows between them. It has no terminal object, so <m>F</m> is not representable. More generally, a presheaf on a poset with values either empty or singleton is specified by a downward-closed subset; it is representable exactly when that subset is <m>\{y:y\le x\}</m> for some <m>x</m>.</p></li>
+        <li><p>Let <m>\mathcal C</m> be the one-object category of a nontrivial finite group <m>M</m> whose underlying set belongs to <m>\U</m>. Its only representable presheaf has value <m>M</m>, and an arrow <m>a\in M</m> acts by <m>f\mapsto fa</m>. Let <m>K</m> instead be the constant presheaf with value the underlying set of <m>M</m> and with every arrow acting by the identity. There is an objectwise bijection <m>h_*(*)\cong K(*)</m>, since these are the same set. Nevertheless every natural transformation <m>h_*\Rightarrow K</m> is constant on that set: by the Yoneda formula it sends <m>f</m> to <m>K(f)(z)=z</m>. None is bijective, so <m>K</m> is not representable. There are no other candidate objects in <m>\mathcal C</m>.</p></li>
+      </ol></p>
+    </example>
+    <p>The last example separates two assertions that can look similar in informal calculations: having the right sets of answers, and having the right functor of answers. A universal element controls both the answers and their transport. This compatibility is what makes uniqueness and functoriality follow from the same argument.</p>
+    <p>The poset example has a similarly concrete interpretation. A downward-closed support contains every test below one it already contains, as required by contravariant restriction. A representing object would have to be a greatest element of that support: its incoming arrows would then describe precisely all supported tests. Having several supported objects is no obstruction by itself; lacking such a greatest supported object is the obstruction. In the example the two supported objects are incomparable and neither can serve this role. The larger object above them is excluded by its empty value.</p>
+    <p>Finally, when <m>\mathcal C</m> is empty, there is one presheaf and its category of elements is empty. The presheaf is not representable, because there is no object to represent it. There is likewise one covariant set-valued functor and no representation for it. Thus even the simplest existence question retains the requirement that a representing object actually belong to the source category; vacuous compatibility conditions cannot supply a missing object.</p>
+  </section>
+</chapter>

@@ -602,18 +602,12 @@ def main():
     original_statements = Counter(re.findall(r'\\begin\{(theorem|lemma|proposition|corollary)\}', body))
     converted_statements = {tag: len(expanded.xpath('//' + tag)) for tag in original_statements}
     original_citations = Counter(key.strip() for value in re.findall(r'\\cite(?:[tp])?(?:\[[^]]*\])?\{([^}]+)\}', body) for key in value.split(','))
-    # Preserve a diagnostic if this libxml2 cannot compile the pinned vendor
-    # grammar. Formula/reference coverage remains mandatory; the native HTML
-    # build and browser review provide separate checks of the transferred text.
-    try:
-        from pretext import resources
-        resources._RESOURCE_BASE_PATH = ROOT / '.build/cache'
-        rng = etree.RelaxNG(etree.parse(str(resources.resource_base_path() / 'core/schema/pretext.rng')))
-        valid = rng.validate(expanded)
-        schema_errors = [str(error) for error in rng.error_log]
-    except etree.RelaxNGParseError as error:
-        valid = None
-        schema_errors = ['Validator unavailable: ' + str(error)]
+    # Jing handles external grammar scopes correctly; a missing validator fails
+    # explicitly rather than leaving an unchecked source with a null result.
+    from validate_sources import content_schema, validate_file
+    schema_result = validate_file(output, content_schema(), ROOT / '.build/reports/fujita-validation.xml')
+    valid = schema_result['valid']
+    schema_errors = schema_result['messages'].splitlines()
     report = {
         'source': str(SOURCE), 'source_sha256': hashlib.sha256(SOURCE.read_bytes()).hexdigest(),
         'entry': 'notes/fujita/fujita-notes.html', 'chapters': chapter_files,
@@ -627,7 +621,7 @@ def main():
         'source_display_formulas': sum(original_display.values()), 'converted_display_formulas': sum(actual_display.values()),
         'missing_inline_formulas': dict(lost_inline), 'missing_display_formulas': dict(lost_display),
         'missing_citations': dict(original_citations - Counter(CITATIONS)),
-        'schema_valid': valid, 'schema_errors': schema_errors,
+        'schema_valid': valid, 'schema_engine': 'Jing 20241231', 'schema_errors': schema_errors,
     }
     if arguments.compare:
         earlier = arguments.compare.read_text(encoding='utf-8-sig').split('\\begin{document}', 1)[1].split('\\begin{thebibliography}', 1)[0]

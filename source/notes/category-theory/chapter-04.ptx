@@ -1,0 +1,259 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="cat-limits">
+  <title>Limits and colimits</title>
+  <introduction>
+    <p>A product collects independent choices, a pullback imposes agreement, and a quotient identifies prescribed data. Limits and colimits organize these constructions by the shape of a diagram and the maps allowed into or out of it. The universal property specifies the structure maps as well as the object. It is therefore meaningful even when no underlying elements, subsets, or quotient sets are available.</p>
+    <p>Throughout this chapter, indexing categories <m>J</m> are <m>\U</m>-small, and ambient categories are set-encoded and locally <m>\U</m>-small, unless another size is stated. A diagram is a functor <m>D:J\to\mathcal C</m>; write <m>D_j=D(j)</m>. We use the comma-category language developed earlier and the representable functors <m>h_X=\Hom_{\mathcal C}(-,X)</m> and <m>h^X=\Hom_{\mathcal C}(X,-)</m>. The main references are <xref ref="bib-cat-riehl" detail="Sections 3.1–3.5"/>, <xref ref="bib-cat-li1" detail="Section 2.7"/>, and <xref ref="bib-cat-stacks" detail="Tags 002D and 002U"/>. We first establish the universal properties, then construct limits and compare them under functors.</p>
+  </introduction>
+
+  <section xml:id="cat-c04-cones">
+    <title>Cones, cocones, and their universal objects</title>
+    <p>The constant diagram functor <m>\Delta:\mathcal C\to\Fun(J,\mathcal C)</m> sends an object to its constant diagram and a morphism to the constant family of that morphism. Every arrow of <m>J</m> acts as an identity in a constant diagram. This last condition is essential when the indexing category has nontrivial endomorphisms.</p>
+    <definition xml:id="cat-c04-def-cone">
+      <title>Cones and cocones</title>
+      <idx>Cone</idx><idx>Cocone</idx>
+      <statement>
+        <p><ol>
+          <li><p>A cone over <m>D</m> with vertex <m>X</m> is a natural transformation <m>\lambda:\Delta X\Rightarrow D</m>. Its legs <m>\lambda_j:X\to D_j</m> satisfy <m>D(a)\lambda_j=\lambda_k</m> for every arrow <m>a:j\to k</m> of <m>J</m>. A morphism from <m>(X,\lambda)</m> to <m>(Y,\mu)</m> is a morphism <m>u:X\to Y</m> satisfying <m>\mu_j u=\lambda_j</m> for every <m>j</m>. These form the category <m>\operatorname{Cone}(D)</m>.</p></li>
+          <li><p>A cocone under <m>D</m> with vertex <m>X</m> is a natural transformation <m>\iota:D\Rightarrow\Delta X</m>. Its legs satisfy <m>\iota_kD(a)=\iota_j</m>. A morphism from <m>(X,\iota)</m> to <m>(Y,\kappa)</m> is a morphism <m>u:X\to Y</m> with <m>u\iota_j=\kappa_j</m> for all <m>j</m>. These form <m>\operatorname{Cocone}(D)</m>.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <p>Identities and composition in these categories are inherited from <m>\mathcal C</m>. In comma notation they are <m>(\Delta\downarrow D)</m> and <m>(D\downarrow\Delta)</m>. A cone is thus a way to map one object coherently to the entire diagram. A cocone reverses the role of the common vertex. The words over and under describe these directions, rather than a choice of how a picture is placed on the page.<fn>Riehl uses cones over and cones under, explaining this choice in <xref ref="bib-cat-riehl" detail="Section 3.1, Definition 3.1.2 and the following discussion"/>. We use cocone for the latter throughout. Both usages describe the same natural transformations.</fn></p>
+    <definition xml:id="cat-c04-def-limit">
+      <title>Limits and colimits</title>
+      <idx>Limit</idx><idx>Colimit</idx>
+      <statement>
+        <p><ol>
+          <li><p>A limit of <m>D</m> is a terminal object <m>(L,p)</m> of <m>\operatorname{Cone}(D)</m>. Thus every cone <m>\lambda</m> with vertex <m>X</m> factors uniquely as <m>\lambda_j=p_j u</m>, where <m>u:X\to L</m>. We write <m>L=\lim_J D</m> when the structure cone is understood.</p></li>
+          <li><p>A colimit of <m>D</m> is an initial object <m>(Q,\iota)</m> of <m>\operatorname{Cocone}(D)</m>. Thus every cocone <m>\kappa</m> with vertex <m>X</m> factors uniquely as <m>\kappa_j=v\iota_j</m>, where <m>v:Q\to X</m>. We write <m>Q=\operatorname{colim}_J D</m>.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <p>Two limit cones are uniquely isomorphic as cones: their terminal properties give maps in both directions, and uniqueness makes both composites identities. This does not make their vertices uniquely isomorphic after the projections are forgotten. The corresponding assertion holds for colimits and their inclusions. Reversing arrows identifies a colimit of <m>D</m> in <m>\mathcal C</m> with a limit of <m>D^{\mathrm{op}}:J^{\mathrm{op}}\to\mathcal C^{\mathrm{op}}</m>. This duality will carry constructions and proofs between the two theories.</p>
+    <p>The projections of a limit are jointly monic: two maps into its vertex are equal if their composites with every projection agree. Indeed, those composites define one cone, whose factorization is unique. This does not make each projection monic; a projection from a product of two two-element sets onto one factor is not injective. Dually, the inclusions of a colimit are jointly epic, without each inclusion having to be epic. Joint uniqueness is the cancellation property used in many computations below.</p>
+    <p>Our notation distinguishes limits from colimits by the words <m>\lim</m> and <m>\operatorname{colim}</m>, leaving the actual variance in the domain of the diagram. In particular, a limit need not be indexed by a reversed ordered set, and a colimit need not be indexed by an ordered set at all.<fn>In <xref ref="bib-cat-li1" detail="Definition 2.7.2 and its terminology table"/>, the terms projective or inverse limit and inductive or direct limit are compared with limit and colimit. That presentation writes diagrams with domains <m>I^{\mathrm{op}}</m> and <m>I</m>, respectively. To translate a formula, keep its displayed domain and arrows; a directional name alone does not determine them.</fn></p>
+  </section>
+
+  <section xml:id="cat-c04-hom-formulas">
+    <title>The representing functors</title>
+    <p>Write <m>\Phi_D(X)=\Nat(\Delta X,D)</m> and <m>\Psi_D(X)=\Nat(D,\Delta X)</m> for the sets of cones and cocones with prescribed vertex. Precomposition makes <m>\Phi_D:\mathcal C^{\mathrm{op}}\to\Set</m> a functor; postcomposition makes <m>\Psi_D:\mathcal C\to\Set</m> a functor. These values belong to <m>\U</m>: each is a subset of a product of local morphism sets indexed by <m>\Ob(J)\in\U</m>. No smallness assumption on <m>\Ob(\mathcal C)</m> is needed.</p>
+    <proposition xml:id="cat-c04-prop-representation">
+      <statement>
+        <p>A cone <m>p</m> with vertex <m>L</m> is limiting exactly when composition with its legs gives bijections, natural in <m>X</m>,
+          <md number="no">\Hom_{\mathcal C}(X,L)\longrightarrow\Phi_D(X),\qquad u\longmapsto(p_ju)_j.</md>
+          Dually, a cocone <m>\iota</m> with vertex <m>Q</m> is colimiting exactly when
+          <md number="no">\Hom_{\mathcal C}(Q,X)\longrightarrow\Psi_D(X),\qquad v\longmapsto(v\iota_j)_j</md>
+          is a bijection for every <m>X</m>. In particular, limits represent <m>\Phi_D</m>, and colimits represent <m>\Psi_D</m>.</p>
+      </statement>
+      <proof>
+        <p>Surjectivity of the first function says that every cone factors through <m>p</m>; injectivity says that the factorization is unique. Naturality follows from associativity: precomposing <m>u</m> by <m>b:X'\to X</m> gives the cone with legs <m>p_jub</m>. This proves the first equivalence and its naturality. Reversing arrows proves the second.</p>
+        <p>Conversely, suppose an abstract natural isomorphism <m>\alpha:h_L\to\Phi_D</m> is given. Its value on <m>\id_L</m> is a cone <m>p</m>. Naturality at <m>u:X\to L</m> forces <m>\alpha_X(u)=(p_ju)_j</m>, so the previous equivalence applies. The same argument with <m>h^Q</m> treats cocones. Thus representability includes the required structure maps; it does not merely assert a collection of unrelated cardinality equalities.</p>
+      </proof>
+    </proposition>
+    <p>Concretely, a cone is a compatible family in the diagram of sets <m>j\mapsto\Hom_{\mathcal C}(X,D_j)</m>. A cocone is a compatible family in the <m>J^{\mathrm{op}}</m>-diagram <m>j\mapsto\Hom_{\mathcal C}(D_j,X)</m>, whose arrows act by precomposition. Consequently, whenever the indicated categorical limit or colimit exists,
+      <md number="yes"><mrow xml:id="cat-c04-eq-hom-formulas">\Hom_{\mathcal C}(X,\lim_JD)&amp;\cong\lim_{j\in J}\Hom_{\mathcal C}(X,D_j),</mrow>
+        <mrow number="no">\Hom_{\mathcal C}(\operatorname{colim}_JD,X)&amp;\cong\lim_{j\in J^{\mathrm{op}}}\Hom_{\mathcal C}(D_j,X).</mrow></md>
+      Both limits on the right are limits of sets. In the second line the indexing direction reverses. A colimit inside the first argument of Hom becomes a limit of sets, rather than a colimit of morphism sets.</p>
+    <p>These formulas are useful tests even before a proposed construction has been proved universal. One may describe all arrows from a variable object into it, or all arrows from it to a variable object, and compare with compatible families. The variable must range over every object, not merely a convenient test object.<fn>This is the generalized-element viewpoint emphasized in <xref ref="bib-cat-riehl" detail="Remark 3.5.14"/>: an arrow <m>X\to A</m> is an element of shape <m>X</m>. Our proofs below often use precisely these variable-source arrows. For the variance of the two representing functors, compare <xref ref="bib-cat-li1" detail="Proposition 2.7.9 and formula (2.10)"/>.</fn></p>
+    <p>For example, testing only the trivial group would lose essentially all information in <m>\Grp</m>. There is exactly one homomorphism from it to every group. For a nontrivial group <m>G</m>, the homomorphism <m>1\to G</m> is a cone over the one-object identity diagram at <m>G</m>. It is not a limit cone, because such a cone must have its leg invertible. Yet the test using only <m>\Hom(1,-)</m> gives a bijection of singleton sets. Generalized elements must retain their variable shapes unless a sufficient family of test objects has separately been established.</p>
+  </section>
+
+  <section xml:id="cat-c04-basic-shapes">
+    <title>The basic shapes, including the empty shape</title>
+    <p>The following constructions are instances of the definitions, with no extra structure assumed on <m>\mathcal C</m>. A familiar name never changes which objects are allowed as test vertices.</p>
+    <definition xml:id="cat-c04-def-basic-shapes">
+      <title>Products, equalizers, and their relatives</title>
+      <idx>Product</idx><idx>Coproduct</idx><idx>Equalizer</idx><idx>Coequalizer</idx><idx>Pullback</idx><idx>Pushout</idx>
+      <statement>
+        <p><ol>
+          <li><p>For the empty indexing category there is exactly one cone and one cocone with each vertex. Its limits are terminal objects, and its colimits are initial objects. A terminal object is denoted <m>1</m>, and an initial object <m>0</m>, when these objects have been chosen.</p></li>
+          <li><p>For the discrete category on a <m>\U</m>-small set <m>I</m>, a limit of the family <m>(A_i)_{i\in I}</m> is its product <m>\prod_i A_i</m>, with projections to every <m>A_i</m>. Giving a map into the product is equivalent to giving these component maps, without compatibility conditions between different indices. Its dual is the coproduct <m>\coprod_i A_i</m>, with maps from the summands. The empty product and coproduct are <m>1</m> and <m>0</m>.</p></li>
+          <li><p>An equalizer of a parallel pair <m>f,g:A\rightrightarrows B</m> is a map <m>e:E\to A</m> with <m>fe=ge</m>, through which every map <m>u:X\to A</m> satisfying <m>fu=gu</m> factors uniquely. It is the limit of the parallel-pair diagram. A coequalizer is a map <m>q:B\to Q</m> with <m>qf=qg</m>, universal among maps out of <m>B</m> with this equality.</p></li>
+          <li><p>A pullback of <m>f:A\to C</m> and <m>g:B\to C</m> is an object <m>A\times_C B</m> with maps <m>p</m> to <m>A</m> and <m>q</m> to <m>B</m> satisfying <m>fp=gq</m>. A pair <m>a:X\to A</m>, <m>b:X\to B</m> factors uniquely through it exactly when <m>fa=gb</m>. Dually, a pushout of a span <m>A\xleftarrow{f}C\xrightarrow{g}B</m> is <m>A\coprod_C B</m>, with maps <m>i_A:A\to A\coprod_C B</m> and <m>i_B:B\to A\coprod_C B</m>, universal subject to <m>i_Af=i_Bg</m>.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <figure xml:id="diagram-c04-pullback">
+      <caption>A pullback square records a compatible pair and its universal factorization. The corner mark denotes the universal property, not just commutativity.</caption>
+      <image xml:id="cat-c04-image-pullback" width="36%">
+        <latex-image>
+\begin{tikzcd}[row sep=large, column sep=large]
+  A\times_C B \arrow[r, "q"] \arrow[d, "p"'] \arrow[dr, phantom, "\lrcorner", very near start] \amp B \arrow[d, "g"] \\
+  A \arrow[r, "f"'] \amp C
+\end{tikzcd}
+        </latex-image>
+        <description><p>The object A times_C B maps right to B and down to A; B and A map to C. The square commutes and is marked as a pullback.</p></description>
+      </image>
+    </figure>
+    <p>An equalizer map is monic: if <m>eu=ev</m>, then both <m>u</m> and <m>v</m> factor the same equalized arrow through <m>e</m>, so uniqueness gives <m>u=v</m>. Dually, a coequalizer map is epic. A pullback is more than an equalizing equation: that equation supplies the condition on pairs, while universality supplies the object parametrizing all such pairs. We also call pullbacks fibre products and pushouts amalgamated coproducts, without implying any particular set-theoretic model.</p>
+    <p>For the one-object category with only its identity, the limit and colimit of a diagram are its value. More generally, if <m>J</m> has an initial object <m>j_0</m>, then <m>D_{j_0}</m>, with legs given by its unique arrows to the other objects, is a limit: any cone is determined by its leg at <m>j_0</m>. A terminal indexing object similarly computes the colimit. These assertions concern initial or terminal objects in the indexing category; a terminal object of <m>J</m> does not generally compute its limit.</p>
+  </section>
+
+  <section xml:id="cat-c04-existence-constructions">
+    <title>Building limits from products and equations</title>
+    <definition xml:id="cat-c04-def-completeness">
+      <title>Completeness at a specified size</title>
+      <idx>Complete category</idx><idx>Cocomplete category</idx><idx>Finite completeness</idx>
+      <statement>
+        <p>A category is <m>\U</m>-complete if every <m>\U</m>-small diagram in it has a limit, and <m>\U</m>-cocomplete if every such diagram has a colimit. We suppress <m>\U</m> when it is fixed. It is finitely complete or finitely cocomplete when this holds for every finite indexing category, including the empty one. Finite means that both the object set and the total arrow set are finite.</p>
+      </statement>
+    </definition>
+    <p>The requirement on arrows matters. A category with one object may have an infinite monoid of endomorphisms and impose infinitely many compatibility equations. Conversely, compatibility for generators implies compatibility for their composites, so a diagram can sometimes be computed using fewer equations than the full arrow set suggests. The number of objects alone is not the definition of a finite shape.<fn>See <xref ref="bib-cat-stacks" detail="Tag 04AS, Section 4.18"/> for the finite-category convention and a precise reduction for categories with finitely many objects and generating arrows.</fn></p>
+    <theorem xml:id="cat-c04-thm-products-equalizer">
+      <statement>
+        <p>Let <m>D:J\to\mathcal C</m>. Suppose the two products
+          <md number="no">P=\prod_{j\in\Ob(J)}D_j,\qquad R=\prod_{a:j\to k\text{ in }J}D_k</md>
+          exist, and that the equalizer <m>e:L\to P</m> of the maps <m>d_0,d_1:P\rightrightarrows R</m> exists, where
+          <md number="no">\pi_a d_0=\pi_k,\qquad \pi_a d_1=D(a)\pi_j\quad(a:j\to k).</md>
+          Then <m>(L,(\pi_j e)_j)</m> is a limit of <m>D</m>. Consequently, small products and equalizers imply completeness; finite products and equalizers imply finite completeness.</p>
+      </statement>
+      <proof>
+        <p>The equalizer equation gives <m>D(a)\pi_j e=\pi_k e</m> for every <m>a</m>, so the displayed legs form a cone. Given a cone <m>\lambda</m> with vertex <m>X</m>, the product property gives a unique <m>u:X\to P</m> with <m>\pi_j u=\lambda_j</m>. At the coordinate indexed by <m>a:j\to k</m>, the two maps <m>d_0u</m> and <m>d_1u</m> have components <m>\lambda_k</m> and <m>D(a)\lambda_j</m>. These agree by the cone equations. Equality after every projection implies <m>d_0u=d_1u</m>, so <m>u</m> factors uniquely through <m>e</m>. Any factorization with the prescribed cone legs gives that same <m>u</m> by the product property, and hence the same map to <m>L</m> by the equalizer property. This proves universality.</p>
+      </proof>
+    </theorem>
+    <p>The theorem requires only the stated products and one equalizer for the particular diagram. It does not require all products or all equalizers in the category. Identity arrows contribute redundant equations, harmlessly, and the construction still covers the empty diagram.<fn>The diagram-specific statement is <xref ref="bib-cat-stacks" detail="Tag 002N, Lemma 4.14.11"/>. The argument here supplies the universal-property proof. Compare <xref ref="bib-cat-riehl" detail="Theorem 3.5.11 and Remark 3.5.14"/> for the dual construction and its interpretation by generalized elements.</fn></p>
+    <p>Reversing arrows gives the dual formula. Form <m>S=\coprod_{a:j\to k}D_j</m> and <m>T=\coprod_jD_j</m>. Define <m>s_0,s_1:S\rightrightarrows T</m> on the summand indexed by <m>a:j\to k</m> to be the inclusion at <m>j</m> and the composite of <m>D(a)</m> with the inclusion at <m>k</m>. Their coequalizer <m>T\to Q</m>, if it exists, makes <m>Q</m> a colimit. Indeed, a map from <m>T</m> is a family of maps from the <m>D_j</m>, and it coequalizes <m>s_0,s_1</m> exactly when that family is a cocone. This also proves the dual existence criteria.</p>
+    <proposition xml:id="cat-c04-prop-finite-completeness">
+      <statement>
+        <p>A category is finitely complete if and only if it has a terminal object and all pullbacks. Dually, it is finitely cocomplete if and only if it has an initial object and all pushouts.</p>
+      </statement>
+      <proof>
+        <p>Necessity follows because these are finite limits. Conversely, a terminal object gives unique maps <m>A\to1</m> and <m>B\to1</m>, whose pullback is a binary product: its compatibility condition is automatic. Iteration gives finite products, including the empty one. For <m>f,g:A\rightrightarrows B</m>, form the pullback of <m>(f,g):A\to B\times B</m> along the diagonal <m>\delta:B\to B\times B</m>. If its projection to <m>A</m> is <m>e</m> and its projection to <m>B</m> is <m>t</m>, the pullback equation says <m>fe=t=ge</m>. Whenever <m>fu=gu</m>, the pair <m>(u,fu)</m> determines a unique map to this pullback. Thus <m>e</m> is an equalizer. Apply the finite case of the preceding theorem, and dualize for colimits.</p>
+      </proof>
+    </proposition>
+    <p>In this proof, products specify independent maps, equalizers impose equalities between their composites, and pullbacks express both requirements at once. The terminal-object and pullback criterion is also <xref ref="bib-cat-riehl" detail="Theorem 3.5.17"/>.</p>
+  </section>
+
+  <section xml:id="cat-c04-set-models">
+    <title>Compatible tuples and generated identifications in sets</title>
+    <theorem xml:id="cat-c04-thm-set-limits">
+      <statement>
+        <p>The category <m>\Set=\Set_{\U}</m> is complete and cocomplete. For <m>D:J\to\Set</m>, a limit and a colimit are given by
+          <md number="no">L=\left\{(x_j)_j\in\prod_jD_j:\ D(a)(x_j)=x_k\text{ for every }a:j\to k\right\},</md>
+          with coordinate projections, and
+          <md number="no">Q=\left(\coprod_jD_j\right)\big/\sim,</md>
+          with the maps to equivalence classes, where <m>\sim</m> is the smallest equivalence relation containing <m>(j,x)\sim(k,D(a)(x))</m> for every <m>a:j\to k</m> and <m>x\in D_j</m>.</p>
+      </statement>
+      <proof>
+        <p>Products, disjoint unions, and subsets indexed by the small sets in this formula belong to <m>\U</m>. The generated equivalence relation exists as the intersection of all equivalence relations containing the specified pairs; at least the indiscrete relation is available. Its quotient belongs to <m>\U</m> as a subset of the power set of the disjoint union.</p>
+        <p>For a cone <m>\lambda_j:X\to D_j</m>, send <m>x</m> to <m>(\lambda_j(x))_j</m>. Naturality puts the tuple in <m>L</m>, and the coordinates force this function uniquely. Thus <m>L</m> is a limit. For a cocone <m>\kappa_j:D_j\to X</m>, its values on the disjoint union agree on every generating pair. The equivalence relation of having the same value contains the generated relation, so <m>[j,x]\mapsto\kappa_j(x)</m> is well-defined on <m>Q</m>. Every equivalence class has a representative, and hence the factorization is unique. This proves the colimit property.</p>
+      </proof>
+    </theorem>
+    <p>These are models for the universal constructions, not additional definitions of limits in other categories. The descriptions agree with <xref ref="bib-cat-stacks" detail="Tag 002U, Section 4.15"/> and <xref ref="bib-cat-li1" detail="Example 2.7.5"/>. One benefit of describing the relation as generated is that no special assumption on the shape is hidden in the formula.</p>
+    <example xml:id="cat-c04-example-set-shapes">
+      <title>Three checks on the formulas</title>
+      <p><ol>
+        <li><p>For an empty diagram, the product of no sets has exactly one tuple, while the disjoint union is empty. Thus the limiting set is a singleton and the colimiting set is empty. For a nonempty discrete shape there are no nonidentity compatibility conditions or identifications, recovering products and disjoint unions.</p></li>
+        <li><p>A pullback of functions <m>A\to C\leftarrow B</m> is the subset of <m>A\times B</m> where the two images agree. A pushout of <m>A\leftarrow C\to B</m> is the disjoint union with the two images of each <m>c\in C</m> identified. Its structure maps need not be injective: if <m>C=\{0,1\}</m> maps bijectively to <m>A=\{a_0,a_1\}</m> and constantly to a singleton <m>B</m>, then the pushout has one element and identifies the two elements of <m>A</m>.</p></li>
+        <li><p>The generators of <m>\sim</m> need not already form an equivalence relation. For the maps <m>f,g:\N\rightrightarrows\N</m> given by <m>f(n)=n</m> and <m>g(n)=n+1</m>, their coequalizer identifies adjacent integers and therefore all integers. A single generating pair does not identify zero and two; the transitive closure does. For a general diagram, equality of classes is witnessed by a finite chain of generating identifications or their reverses, rather than necessarily by a single diagram arrow.</p></li>
+      </ol></p>
+    </example>
+    <p>A compatible tuple makes simultaneous choices at every object. A colimit class instead permits representatives from different objects to describe the same result. Neither construction guarantees that the individual sets embed into the outcome, or that any one coordinate determines a limit tuple. These distinctions prevent misleading elementwise pictures from replacing the actual universal property.</p>
+    <p>Even a sequence of nonempty sets can have empty limit. For <m>n\in\N</m>, let <m>D_n=\{m\in\N:m\ge n\}</m>, with the inclusions <m>D_{n+1}\to D_n</m>. Regard this as a diagram indexed by the opposite of the usual order on <m>\N</m>. A compatible tuple must have every coordinate equal, since each transition function is an inclusion of subsets of <m>\N</m>. Its common value would belong to every <m>D_n</m>, which is impossible. Choice can select an element in each set independently; it does not make the selections compatible with these transition maps.</p>
+  </section>
+
+  <section xml:id="cat-c04-examples">
+    <title>Orders, actions, and algebraic structure</title>
+    <example xml:id="cat-c04-example-orders-actions">
+      <title>Two interpretations of compatibility</title>
+      <p><ol>
+        <li><p>View a poset <m>P</m> as a category. A cone with vertex <m>x</m> exists exactly when <m>x\le D_j</m> for every object <m>j</m>; all cone equations are automatic because parallel arrows are unique. A limit is therefore the greatest lower bound of the image objects. A colimit is their least upper bound. Repetitions and additional arrows do not change these particular bounds. For an empty image they are, respectively, the greatest and least elements of the poset. In a preorder these universal objects are determined up to its equivalence relation, and need not be equal as labelled objects.</p></li>
+        <li><p>Let <m>G\in\U</m> be a group and let <m>BG</m> be its one-object category. A functor <m>D:BG\to\Set</m> is a left action on a set <m>S</m>. A cone corresponds to a function into <m>S</m> whose image is fixed by every <m>g\in G</m>. Its limit is the fixed-point set <m>S^G</m>. Its colimit is the orbit set <m>S/G</m>, since the generated identifications are exactly <m>x\sim gx</m>. These two constructions generally differ: a nontrivial group acting on itself by left multiplication has no fixed points and has one orbit.</p></li>
+      </ol></p>
+    </example>
+    <example xml:id="cat-c04-example-group-limits">
+      <title>Limits of groups without changing the underlying sets</title>
+      <p>For a small diagram of groups, form the compatible-tuple subset of the product of the underlying sets. It is a group under coordinatewise multiplication: if <m>x,y</m> are compatible, then <m>D(a)(x_jy_j)=D(a)(x_j)D(a)(y_j)=x_ky_k</m>. Identity and inverses satisfy the same conditions. Its projections are homomorphisms. A cone of homomorphisms from a group <m>H</m> factors through this group by the tuple function, which respects multiplication coordinatewise and is unique as a function. Thus it is also unique as a homomorphism. The underlying group and all operations are small at our fixed universe.</p>
+      <p>This proves existence of all small limits in <m>\Grp</m>, and shows that their underlying cones are limits in <m>\Set</m>. The colimit formula in <m>\Set</m> does not in general compute colimits in <m>\Grp</m> after forgetting the group structure: group colimits must be tested by cocones of homomorphisms, whereas the set formula was proved using functions.</p>
+    </example>
+    <p>Finite limits do not force all small limits. The category of finite sets has finite limits by the explicit tuple construction: a finite product and its subset are finite. It has no product of countably many two-element sets. Were such a finite product object to exist, its maps from a singleton would, by the product property, be in bijection with all binary sequences; there are infinitely many such sequences. The required indexing category is small but not finite. This example separates a size condition on diagrams from a finiteness condition on individual objects.</p>
+  </section>
+
+  <section xml:id="cat-c04-functoriality">
+    <title>Maps between diagrams and choices of limits</title>
+    <p>Suppose <m>D,E:J\to\mathcal C</m> have chosen limits <m>(L_D,p^D)</m> and <m>(L_E,p^E)</m>. A natural transformation <m>\alpha:D\Rightarrow E</m> produces an <m>E</m>-cone with vertex <m>L_D</m> and legs <m>\alpha_jp^D_j</m>. Its unique factorization defines a map
+      <md number="no">\lim_J\alpha:L_D\longrightarrow L_E,\qquad p^E_j(\lim_J\alpha)=\alpha_jp^D_j.</md>
+      Naturality of <m>\alpha</m> is what makes those legs a cone; arbitrary maps on the individual objects would not suffice.</p>
+    <proposition xml:id="cat-c04-prop-limit-functor">
+      <statement>
+        <p>If <m>\mathcal C</m> has all limits of shape <m>J</m>, choices of one limit cone for each diagram give a functor <m>\lim_J:\Fun(J,\mathcal C)\to\mathcal C</m>. Dually, choices of colimit cocones give <m>\operatorname{colim}_J</m>. A natural isomorphism between diagrams induces an isomorphism between their chosen limits or colimits.</p>
+      </statement>
+      <proof>
+        <p>The identity map of <m>L_D</m> has exactly the projections required for the identity transformation of <m>D</m>, so uniqueness identifies the induced map with that identity. If <m>\beta:E\Rightarrow H</m>, then the composite of the maps induced by <m>\alpha</m> and <m>\beta</m> has <m>j</m>th projection <m>\beta_j\alpha_jp^D_j</m>. Uniqueness identifies it with the map induced by <m>\beta\cdot\alpha</m>. Thus the construction is functorial. Applying it to a transformation and its inverse proves the last assertion. Reverse arrows for colimits.</p>
+      </proof>
+    </proposition>
+    <p>For this fixed shape, the diagrams form a set because both categories are set-encoded. Possible cones for each diagram also form a set. The axiom of choice therefore suffices to select the universal cones simultaneously; no choice indexed by a proper class is being used. Different choices give naturally isomorphic limit functors: the unique isomorphisms preserving the legs commute with the induced maps by the same uniqueness argument. This is the precise content behind writing a limit as though it were a specified object.<fn>For diagram functoriality and the role of natural isomorphisms, see <xref ref="bib-cat-riehl" detail="Section 3.3"/>. The representative choices belong to the set-encoded framework of these notes; a formulation allowing proper classes requires a separate treatment of such choices.</fn></p>
+    <p>Restriction along a functor <m>u:I\to J</m> also restricts any <m>D</m>-cone to a <m>Du</m>-cone, and hence gives a map <m>\lim_J D\to\lim_I Du</m> when both limits exist. Reversing arrows gives <m>\operatorname{colim}_I Du\to\operatorname{colim}_J D</m>. These maps need not be isomorphisms. Their existence follows here from restriction and universality alone; criteria for computing a limit after changing the indexing category require additional hypotheses.</p>
+  </section>
+
+  <section xml:id="cat-c04-pointwise">
+    <title>Limits and colimits of functors are pointwise</title>
+    <p>Let <m>A</m> be any set-encoded category. For a diagram <m>D:J\to\Fun(A,\mathcal C)</m>, evaluation at <m>a\in A</m> gives a diagram <m>D(a):J\to\mathcal C</m>. The notation <m>D_j(f)</m> refers to the action of the functor <m>D_j</m> on an arrow <m>f:a\to b</m> of <m>A</m>. The construction below works at this generality: the functor category is set-encoded, but is not assumed locally <m>\U</m>-small in this section. If <m>A</m> is <m>\U</m>-small, it is locally <m>\U</m>-small by the small-source estimate, even when the object set of <m>\mathcal C</m> is larger.</p>
+    <theorem xml:id="cat-c04-thm-pointwise">
+      <idx>Pointwise limits and colimits</idx>
+      <statement>
+        <p>If every <m>D(a)</m> admits a limit, choose a limit cone <m>(L(a),p_{j,a})</m> for each <m>a</m>. There is a unique functor structure on <m>L</m> for which all <m>p_j:L\Rightarrow D_j</m> are natural, and this cone is a limit of <m>D</m>. Dually, pointwise colimits assemble into a colimit functor. In particular, if <m>\mathcal C</m> has all limits or all colimits of shape <m>J</m>, so does <m>\Fun(A,\mathcal C)</m>; evaluations preserve them, and the family of evaluations jointly reflects them.</p>
+      </statement>
+      <proof>
+        <p>For <m>f:a\to b</m>, the maps <m>D_j(f)p_{j,a}</m> form a cone over <m>D(b)</m>, since the structure maps of the diagram are natural in <m>a</m>. The universal property at <m>b</m> gives a unique <m>L(f):L(a)\to L(b)</m> such that
+          <md number="no">p_{j,b}L(f)=D_j(f)p_{j,a}\quad\text{for every }j.</md>
+          Identity maps and the composite <m>L(g)L(f)</m> satisfy the corresponding equations for identities and composites in <m>A</m>. Uniqueness proves the functor axioms, and the displayed equations prove naturality of the projections.</p>
+        <p>Given a cone <m>\mu_j:T\Rightarrow D_j</m>, its values at <m>a</m> factor uniquely through <m>L(a)</m>, giving <m>v_a:T(a)\to L(a)</m>. For <m>f:a\to b</m>, compare <m>L(f)v_a</m> and <m>v_bT(f)</m> after every projection <m>p_{j,b}</m>. The first gives <m>D_j(f)\mu_{j,a}</m> and the second <m>\mu_{j,b}T(f)</m>, which agree by naturality of <m>\mu_j</m>. The limit property at <m>b</m> makes the two maps equal. Thus <m>v</m> is natural, and pointwise uniqueness makes it the unique factorization. This proves the limit property in the functor category.</p>
+        <p>Under the existence hypothesis, any other limiting cone is uniquely isomorphic to this one. Evaluating that isomorphism proves preservation by each evaluation. Conversely, if a cone is limiting at every object, the same factorization argument proves that it is limiting in the functor category. This is joint reflection; it does not say that a single evaluation reflects limits. Duality proves all colimit assertions.</p>
+      </proof>
+    </theorem>
+    <p>The choices here are indexed by the set <m>\Ob(A)</m>, with possible limit cones drawn from sets, so ordinary choice suffices. Smallness of the source is needed for the standing local size convention, rather than for this universal-property proof. It is not legitimate to infer local <m>\U</m>-smallness for an arbitrary large source simply from the existence of the pointwise formulas.</p>
+    <p>For <m>A</m> small, the category of presheaves <m>\Fun(A^{\mathrm{op}},\Set)</m> is therefore complete and cocomplete, with both operations evaluated at each object. The new arrows of a pointwise construction are forced by universal properties, rather than supplied by arbitrary choices of identifications.<fn>Compare <xref ref="bib-cat-li1" detail="Proposition 2.7.8 and its proof"/> for set-valued functors. In the online version dated 20 September 2026, an intermediate step identifies the colimit of a constant diagram at a set with that set for arbitrary small index. This identification requires a nonempty connected index. In general the answer is the product of the set with the component set of the index, as proved in <xref ref="cat-c06-prop-components-colimit"/>; a discrete two-object index gives two copies. The componentwise uniqueness argument above proves naturality directly and does not use that intermediate identification.</fn></p>
+  </section>
+
+  <section xml:id="cat-c04-preservation">
+    <title>Preservation, reflection, and comparison maps</title>
+    <definition xml:id="cat-c04-def-preservation">
+      <title>Transporting universal cones</title>
+      <idx>Preservation of limits</idx><idx>Reflection of limits</idx>
+      <statement>
+        <p>For a functor <m>T:\mathcal C\to\mathcal E</m>, applying <m>T</m> to the legs of a cone over <m>D</m> gives a cone over <m>TD</m>. The functor preserves limits of shape <m>J</m> if it sends every limiting cone of that shape to a limiting cone. It reflects such limits if a cone in <m>\mathcal C</m> is limiting whenever its image is limiting. Preservation and reflection of colimits are defined using cocones in the same way.</p>
+      </statement>
+    </definition>
+    <p>Preservation is a statement about universal cones that already exist. It does not by itself assert existence of a limit in either category. If <m>(L,p)</m> is a limit of <m>D</m> and <m>(M,q)</m> is a limit of <m>TD</m>, universality gives a canonical comparison
+      <md number="no">c:T(L)\longrightarrow M,\qquad q_jc=T(p_j).</md>
+      The image cone is limiting exactly when <m>c</m> is invertible, since the invertible comparison then transports the universal factorization. For colimits the canonical comparison has the opposite placement of <m>T</m>:
+      <md number="no">\operatorname{colim}_J(TD)\longrightarrow T(\operatorname{colim}_JD).</md>
+      Reversing this arrow without an established isomorphism changes the assertion.<fn>For the comparison-map formulation and the distinction between preservation and reflection, see <xref ref="bib-cat-riehl" detail="Section 3.4"/>. In particular, comparison maps record compatibility with the legs; an unspecified isomorphism of the two vertices is weaker.</fn></p>
+    <proposition xml:id="cat-c04-prop-preservation">
+      <statement>
+        <p><ol>
+          <li><p>Every covariant representable <m>\Hom_{\mathcal C}(X,-)</m> preserves small limits. The contravariant functor <m>\Hom_{\mathcal C}(-,X)</m> sends colimit cocones to limit cones of sets indexed by the opposite category.</p></li>
+          <li><p>Every fully faithful functor reflects limits and colimits. An equivalence preserves and reflects both, and existence of a limit or colimit for a given diagram is invariant under applying an equivalence.</p></li>
+        </ol></p>
+      </statement>
+      <proof>
+        <p>The first claims are precisely the compatible-family bijections in <xref ref="cat-c04-eq-hom-formulas"/>. For reflection, let <m>T</m> be fully faithful and suppose the image of <m>(L,p)</m> is limiting. A cone <m>\lambda</m> with vertex <m>X</m> gives a unique map <m>b:TX\to TL</m> with <m>T(p_j)b=T(\lambda_j)</m>. Fullness lifts <m>b</m> to <m>u:X\to L</m>; faithfulness gives <m>p_ju=\lambda_j</m>. Any competing factorization has the same image by uniqueness in <m>\mathcal E</m>, and is equal to <m>u</m> by faithfulness.</p>
+        <p>If <m>T</m> is also essentially surjective, start with a limiting cone in <m>\mathcal C</m> and a cone over its image with arbitrary vertex <m>Y\in\mathcal E</m>. Choose an isomorphism <m>t:TX\to Y</m>. Precomposing its legs with <m>t</m> and using full faithfulness yields a cone in <m>\mathcal C</m> with vertex <m>X</m>. Its unique factorization, followed by <m>t^{-1}</m> on the source after applying <m>T</m>, gives a factorization from <m>Y</m>. The same procedure proves uniqueness. Thus an equivalence preserves limits as well as reflecting them.</p>
+        <p>A quasi-inverse is itself an equivalence, so it too preserves limits. If <m>TD</m> admits a limit, apply the quasi-inverse and then the natural isomorphism between the resulting diagram and <m>D</m> to obtain a limit of <m>D</m>. This proves the assertion about existence. All colimit statements follow by reversing arrows.</p>
+      </proof>
+    </proposition>
+    <p>Full faithfulness alone does not imply preservation. The full subcategory of <m>\Set</m> whose only object is the empty set has that object as its terminal object. Its fully faithful inclusion into <m>\Set</m> does not preserve this terminal object. Reflection tests cones with vertices from the source; preservation must allow every test vertex in the target. Essential surjectivity bridges exactly that gap in the preceding proof. The earlier construction of limits in <m>\Grp</m> supplies another preservation example: the underlying-set functor sends its limiting cones to limiting cones of sets.</p>
+    <p>The construction theorem also reduces preservation checks. Suppose the source has small products and equalizers, and <m>T</m> preserves them. Apply <m>T</m> to the product-and-equalizer construction of a limit. Its two image products are products with the images of the original projections, and its image equalizer is an equalizer of the resulting two maps. Their coordinate equations are the equations for the diagram <m>TD</m>, since a functor respects composition. The same construction theorem shows that the image cone is limiting. Thus <m>T</m> preserves all small limits. The corresponding finite assertion needs only finite products and equalizers; alternatively, a functor between finitely complete categories preserving terminal objects and pullbacks preserves finite limits, by the explicit constructions of products and equalizers above. Reversing arrows gives the coproduct-and-coequalizer and initial-object-and-pushout criteria for preserving colimits.</p>
+  </section>
+
+  <section xml:id="cat-c04-commuting-limits">
+    <title>Iterated limits and simultaneous compatibility</title>
+    <p>Let <m>I,J</m> be small categories and <m>B:I\times J\to\mathcal C</m> a functor. Suppose all limits used in each of the following two iterated constructions exist:
+      <md number="no">L=\lim_{i\in I}\lim_{j\in J}B(i,j),\qquad M=\lim_{j\in J}\lim_{i\in I}B(i,j).</md>
+      The inner limit objects form diagrams by the functoriality already proved. Choices are again indexed by sets. If <m>\mathcal C</m> is complete, these existence assumptions hold automatically.</p>
+    <proposition xml:id="cat-c04-prop-commuting-limits">
+      <statement>
+        <p>Both iterated limits above are limits of <m>B</m> over <m>I\times J</m>. There is a unique isomorphism <m>L\cong M</m> preserving all maps to <m>B(i,j)</m>. Dually, whenever both iterated colimits exist, they are canonically isomorphic as colimits of the product-indexed diagram.</p>
+      </statement>
+      <proof>
+        <p>A map from <m>X</m> into <m>L</m> is a family of maps from <m>X</m> into the inner limits, compatible in <m>i</m>. Expanding each inner universal property gives maps <m>x_{i,j}:X\to B(i,j)</m> compatible in <m>j</m>. Compatibility in <m>i</m> is equivalent to the component equations in every <m>j</m>, since maps to each inner limit are determined by its projections. Thus the resulting families are precisely those compatible separately in both variables.</p>
+        <p>Such a family is a cone over <m>B</m>. Indeed, an arrow <m>(a,b):(i,j)\to(i',j')</m> factors as the arrow changing <m>i</m> and the arrow changing <m>j</m>. Separate compatibility gives compatibility with their composite; the converse follows by taking one arrow to be an identity. The same expansion for <m>M</m> describes exactly the same cones. The bijections preserve every leg, so both objects are limiting cones of <m>B</m>, and uniqueness of limits gives the asserted isomorphism. Duality proves the colimit assertion.</p>
+      </proof>
+    </proposition>
+    <p>The reason for this commutation is that the two constructions impose the same two families of equations on generalized elements. It asserts no general commutation between limits and colimits.<fn>Compare <xref ref="bib-cat-riehl" detail="Section 3.8"/> for the distinction between the two same-variance commutation statements and mixed limit–colimit questions. We use only the same-variance argument here.</fn> Already in <m>\Set</m>, the canonical map
+      <md number="no">(A\times B)\coprod(C\times D)\longrightarrow(A\coprod C)\times(B\coprod D)</md>
+      generally omits the cross terms. If all four sets are singletons, its source has two elements and its target four. Interchanging a product and a coproduct therefore requires further information, rather than a formal application of universality.</p>
+  </section>
+</chapter>

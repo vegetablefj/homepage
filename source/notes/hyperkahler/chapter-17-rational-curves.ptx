@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="hkg-rational-curves">
+  <title>Rational curves and coisotropic subvarieties</title>
+  <introduction>
+    <p>Rational curves on an IHS manifold move in unexpectedly large families. The symplectic form constrains the locus swept out by such a family: its characteristic directions are precisely the directions of a rational quotient. We begin with the deformation estimate, calculate the family of lines in a Lagrangian projective space, and then establish the linear algebra and foliation behind this relationship.</p>
+  </introduction>
+  <section xml:id="hkg-rational-curve-deformations">
+    <title>Deformations of rational curves</title>
+    <p>Let <m>X</m> be an IHS manifold of dimension <m>2n</m>. A rational curve <m>C\subset X</m> is reduced and irreducible, with normalization <m>\PP^1</m>. We write <m>f:\PP^1\to X</m> for its normalization map followed by the inclusion. Thus <m>f</m> is birational onto its image; multiple covers are not part of this convention.</p>
+    <p>There are two local deformation spaces to distinguish. The space of maps with source <m>\PP^1</m> fixed remembers a parametrization. Dividing by <m>\operatorname{Aut}(\PP^1)=\operatorname{PGL}_2</m> removes three dimensions. Near a map birational onto its image the stabilizer is trivial, and this quotient describes the local family of rational curves. If <m>C</m> is smooth, its embedded deformation space is the corresponding open part of the Douady space, or of the Hilbert scheme when <m>X</m> is projective.</p>
+    <proposition xml:id="hkg-map-deformation-estimate">
+      <statement><p>Let <m>Y</m> be a complex manifold and <m>f:\PP^1\to Y</m> a holomorphic map. The tangent space to the local space of maps is <m>H^0(\PP^1,f^*T_Y)</m>, and every irreducible component through <m>f</m> has dimension at least
+        <md number="no">\chi(\PP^1,f^*T_Y)=\dim Y+\deg f^*T_Y.</md>
+        If <m>C\subset Y</m> is a smooth embedded compact curve, the embedded deformation space has tangent space <m>H^0(C,N_{C/Y})</m>, with obstructions in <m>H^1(C,N_{C/Y})</m>.</p></statement>
+    </proposition>
+    <p>These are external deformation-theoretic facts: locally the map space has at most <m>h^1(f^*T_Y)</m> equations in a smooth space of dimension <m>h^0(f^*T_Y)</m>. See <xref ref="hkg-bib-ran-hodge-maps" detail="§§2–3"/> and the discussion preceding <xref ref="hkg-bib-amerik-verbitsky-curves" detail="Theorem 4.1"/>. The equality for the Euler characteristic is Riemann–Roch on <m>\PP^1</m>.</p>
+    <p>Since <m>c_1(X)=0</m>, this estimate applied directly to <m>X</m> gives only <m>2n-3</m> dimensions after removing parametrizations. Deforming the map into the twistor space increases this Euler-characteristic bound by one.</p>
+    <theorem xml:id="hkg-ran-rational-bound">
+      <title>(Ran)</title>
+      <statement><p>Every irreducible component of the local deformation space of a rational curve in an IHS manifold of dimension <m>2n</m> has dimension at least <m>2n-2</m>.</p></statement>
+      <proof><p>Choose a hyperkähler metric on <m>X</m>, with Kähler form <m>\omega</m>, and consider its twistor space <m>p:\mathcal Z\to\PP^1</m>. Take the coordinate <m>\zeta</m> centered at the original complex structure. The holomorphic symplectic form on the fiber is, by <xref ref="hkg-eq-twistor-symplectic"/>,
+          <md number="no">\sigma_\zeta=\sigma-2\zeta\omega-\zeta^2\bar\sigma.</md>
+          Put <m>\beta=f_*[\PP^1]</m>. The integral of a holomorphic or antiholomorphic two-form over <m>C</m> vanishes, whereas <m>a=\int_\beta\omega&gt;0</m>. Therefore
+          <md number="no">\int_\beta\sigma_\zeta=-2a\zeta.</md>
+          In a sufficiently small neighborhood of <m>0</m>, the class <m>\beta</m> can consequently be represented by a holomorphic curve in a twistor fiber only over <m>\zeta=0</m>.</p>
+        <p>Now deform <m>f</m> as a map into <m>\mathcal Z</m>. The degree of its composition with <m>p</m> is locally constant and initially zero. A holomorphic map <m>\PP^1\to\PP^1</m> of degree zero is constant, so every nearby map lies in one fiber. Its homology class, identified using the smooth product underlying the twistor family, remains <m>\beta</m>. The preceding integral forces that fiber to be <m>X</m>. Thus the reduced map germs into <m>\mathcal Z</m> and into <m>X</m> have the same underlying local space and the same dimensions.</p>
+        <p>On the original fiber, the tangent sequence of the twistor projection gives
+          <md number="no">0\longrightarrow f^*T_X\longrightarrow f^*T_{\mathcal Z}\longrightarrow\cO_{\PP^1}\longrightarrow0.</md>
+          The middle bundle has rank <m>2n+1</m> and degree zero, hence Euler characteristic <m>2n+1</m>. The map deformation estimate gives this lower bound for every component of its map germ. Removing the three-dimensional parametrization group proves the assertion.</p></proof>
+    </theorem>
+    <p>The theorem is <xref ref="hkg-bib-ran-hodge-maps" detail="Corollary 5.1"/>. The twistor argument is also presented in <xref ref="hkg-bib-amerik-verbitsky-curves" detail="Theorem 4.1"/>.<fn>The conclusion concerns curves through the normalization map. For an arbitrary multiple cover, subtracting the parametrization group gives a bound for a space of maps and does not by itself give the same bound for their image curves. Also, equality of the reduced germs in the proof does not assert equality of their infinitesimal deformation functors.</fn></p>
+  </section>
+  <section xml:id="hkg-lines-lagrangian-projective-space">
+    <title>Lines in a Lagrangian projective space</title>
+    <proposition xml:id="hkg-line-normal-splitting">
+      <statement><p>Let <m>P\cong\PP^n</m> be a Lagrangian submanifold of an IHS manifold <m>X</m>, and let <m>C\subset P</m> be a line. Then
+        <md number="no">N_{C/X}\cong\cO_{\PP^1}(1)^{\oplus(n-1)}\oplus\cO_{\PP^1}(-1)^{\oplus(n-1)}\oplus\cO_{\PP^1}(-2).</md>
+        In particular, <m>h^0(N_{C/X})=2n-2</m> and <m>h^1(N_{C/X})=1</m>. The local embedded deformation space of <m>C</m> in <m>X</m> is smooth, and all sufficiently small deformations are lines in <m>P</m>.</p></statement>
+      <proof><p>By <xref ref="hkg-lagrangian-normal-tangent"/>, the symplectic form identifies <m>N_{P/X}</m> with <m>\Omega_P^1</m>.</p>
+        <p>A line in projective space has <m>N_{C/P}\cong\cO(1)^{\oplus(n-1)}</m>. For instance, its ideal is generated by <m>n-1</m> independent linear equations, so its conormal bundle is <m>\cO(-1)^{\oplus(n-1)}</m>. The tangent sequence
+          <md number="no">0\longrightarrow\cO(2)\longrightarrow T_P|_C\longrightarrow\cO(1)^{\oplus(n-1)}\longrightarrow0</md>
+          splits because <m>\operatorname{Ext}^1(\cO(1),\cO(2))=H^1(\PP^1,\cO(1))=0</m>. Dualizing gives
+          <md number="no">\Omega_P^1|_C\cong\cO(-2)\oplus\cO(-1)^{\oplus(n-1)}.</md></p>
+        <p>The normal sequence for <m>C\subset P\subset X</m> is therefore
+          <md number="no">0\longrightarrow\cO(1)^{\oplus(n-1)}\longrightarrow N_{C/X}\longrightarrow\cO(-2)\oplus\cO(-1)^{\oplus(n-1)}\longrightarrow0.</md>
+          Its extension class belongs to
+          <md number="no">H^1\bigl(\PP^1,\cO(3)^{\oplus(n-1)}\oplus\cO(2)^{\oplus(n-1)^2}\bigr)=0.</md>
+          This proves the splitting. The elementary formulas <m>h^0(\cO(1))=2</m>, <m>h^0(\cO(-1))=h^0(\cO(-2))=0</m>, <m>h^1(\cO(-1))=0</m>, and <m>h^1(\cO(-2))=1</m> give the stated dimensions.</p>
+        <p>The lines in <m>P</m> form the Grassmannian <m>G=\operatorname{Gr}(2,n+1)</m>, of dimension <m>2n-2</m>. Their universal family gives a map from <m>G</m> to the embedded deformation space in <m>X</m>. Its tangent map at <m>C</m> is
+          <md number="no">H^0(N_{C/P})\longrightarrow H^0(N_{C/X}),</md>
+          which is an isomorphism by the normal sequence and <m>H^0(\Omega_P^1|_C)=0</m>. Distinct lines give distinct embedded curves, so the local deformation space has dimension at least <m>2n-2</m>. Its tangent space has exactly that dimension. Its local ring is consequently regular, and the map from <m>G</m> is a local isomorphism. This proves smoothness and the final assertion. Since <m>G</m> is compact, its image is also a whole irreducible component of the embedded deformation space; its swept locus is <m>P</m>.</p></proof>
+    </proposition>
+    <p>The nonzero obstruction space <m>H^1(N_{C/X})</m> does not imply that there are actual obstructions. Here the explicit family realizes the whole tangent space. Its dimension is the lower bound of <xref ref="hkg-ran-rational-bound"/>, while the ordinary normal-bundle Euler characteristic is only <m>2n-3</m>.</p>
+    <example xml:id="hkg-lines-small-dimensions">
+      <p>For <m>n=1</m>, the projective space is the curve itself, <m>N_{C/X}\cong\cO(-2)</m>, and the curve is rigid on the K3 surface. For <m>n=2</m>, a Lagrangian plane contains a two-dimensional family of lines, parametrized by the dual plane. Blowing up the plane and contracting along the other ruling gives the local Mukai transformation of <xref ref="hkg-cones-flops"/>. The normal calculation identifies its curve family without asserting that an arbitrary normal bundle determines a whole analytic neighborhood.</p>
+    </example>
+  </section>
+  <section xml:id="hkg-coisotropic-foliation">
+    <title>Coisotropic subvarieties and characteristic foliations</title>
+    <p>For this section <m>(X,\sigma)</m> can be any holomorphic symplectic manifold of dimension <m>2n</m>. Compactness and irreducibility are unnecessary.</p>
+    <definition xml:id="hkg-def-coisotropic">
+      <statement><p>In a symplectic vector space <m>(E,\sigma)</m>, let <m>W^\perp=\{v\in E:\sigma(v,w)=0\text{ for all }w\in W\}</m>. A subspace is <em>isotropic</em> if <m>W\subset W^\perp</m>, and <em>coisotropic</em> if <m>W^\perp\subset W</m>. An irreducible reduced subvariety <m>Z\subset X</m> is coisotropic if its tangent spaces on <m>Z_{\mathrm{reg}}</m> are coisotropic. For such a subvariety its <em>characteristic distribution</em> is
+        <md number="no">\mathscr F_Z=\ker\bigl(\sigma|_{Z_{\mathrm{reg}}}:T_{Z_{\mathrm{reg}}}\to\Omega^1_{Z_{\mathrm{reg}}}\bigr).</md></p></statement>
+    </definition>
+    <proposition xml:id="hkg-coisotropic-linear-algebra">
+      <statement><p>Let <m>W\subset E</m> have codimension <m>c</m>, where <m>\dim E=2n</m>. Then
+        <md number="no">\ker(\sigma|_W)=W\cap W^\perp,\qquad \dim W^\perp=c.</md>
+        Coisotropy is equivalent to <m>\dim\ker(\sigma|_W)=c</m>, and implies <m>c\leq n</m>. In that case the rank of the restricted alternating form is <m>2n-2c</m>. Every hyperplane is coisotropic, and an <m>n</m>-dimensional subspace is coisotropic precisely when it is Lagrangian.</p></statement>
+      <proof><p>The first kernel equality is the definition of orthogonality. The symplectic isomorphism <m>E\to E^*</m> takes <m>W^\perp</m> to the annihilator of <m>W</m>, which has dimension <m>c</m>. Thus the kernel has dimension at most <m>c</m>, with equality exactly when <m>W^\perp\subset W</m>. This inclusion requires <m>c\leq2n-c</m>. The rank formula follows by subtracting the kernel dimension from <m>\dim W=2n-c</m>.</p>
+        <p>For a hyperplane the restriction is an alternating form on an odd-dimensional space. Its kernel is nonzero and has dimension at most one, so it has dimension one. Finally, when <m>c=n</m>, equality <m>W=W^\perp</m> is precisely the Lagrangian condition.</p></proof>
+    </proposition>
+    <p>More generally the kernel dimension is at most <m>\min(c,2n-c)</m>, so the restricted form has rank at least <m>2\max(0,n-c)</m>. Throughout this chapter, rank means the rank of the map to the dual vector space.<fn>Some symplectic-geometry references use half this rank for a two-form; in that convention a coisotropic codimension-<m>c</m> subspace has restricted rank <m>n-c</m>.</fn></p>
+    <proposition xml:id="hkg-characteristic-frobenius">
+      <statement><p>For a coisotropic <m>Z</m> of codimension <m>c</m>, the distribution <m>\mathscr F_Z</m> is a holomorphic subbundle of rank <m>c</m> and is closed under Lie brackets. Locally on <m>Z_{\mathrm{reg}}</m> there is a holomorphic submersion
+        <md number="no">p:U\to S,\qquad \dim S=2n-2c,</md>
+        whose fibers are its leaves, and a holomorphic symplectic form <m>\sigma_S</m> with <m>\sigma|_U=p^*\sigma_S</m>.</p></statement>
+      <proof><p>Constant rank makes the kernel a holomorphic subbundle. Write <m>\tau=\sigma|_{Z_{\mathrm{reg}}}</m>; it is closed. If <m>u,v</m> are local sections of the kernel, Cartan's formula gives
+          <md number="no">\mathcal L_u\tau=d(\iota_u\tau)+\iota_u d\tau=0,\qquad \iota_{[u,v]}\tau=\mathcal L_u(\iota_v\tau)-\iota_v(\mathcal L_u\tau)=0.</md>
+          Thus their bracket remains in the kernel.</p>
+        <p>The local holomorphic Frobenius argument is as follows. A nonvanishing section can be made a coordinate vector field by its holomorphic local flow. Involutivity makes that flow preserve the distribution. Choose a transverse slice, apply the same construction to the induced distribution of rank one less on the slice, and transport its coordinates by the first flow. Induction produces coordinates
+          <md number="no">(t_1,\ldots,t_c,z_1,\ldots,z_{2n-2c})</md>
+          in which the distribution is spanned by the <m>\partial/\partial t_i</m>. Projection to the <m>z</m> coordinates is the required submersion.</p>
+        <p>The kernel condition says that <m>\tau</m> has no <m>dt_i</m> terms. The equations <m>\mathcal L_{\partial/\partial t_i}\tau=0</m> say that its remaining coefficients are independent of the <m>t_i</m>. Hence it is the pullback of a two-form on <m>S</m>. This form is closed; it is nondegenerate because the entire kernel of <m>\tau</m> consists of the vertical directions.</p></proof>
+    </proposition>
+    <corollary xml:id="hkg-divisor-characteristic-line">
+      <statement><p>Every smooth hypersurface <m>D\subset X</m> has a characteristic line bundle
+        <md number="no">\mathscr F_D\cong\cO_D(-D)\cong K_D^{-1}.</md>
+        If a compact characteristic leaf <m>C\subset D</m> is isomorphic to <m>\PP^1</m>, then <m>D\cdot C=-2</m>.</p></statement>
+      <proof><p>The symplectic isomorphism takes the conormal line <m>N^*_{D/X}</m> to the symplectic orthogonal of <m>T_D</m>, which is exactly <m>\mathscr F_D</m>. This gives the first isomorphism; adjunction and <m>K_X\cong\cO_X</m> give the second. Along a smooth compact leaf the line distribution is its tangent bundle. Thus <m>\cO_D(-D)|_C\cong T_C\cong\cO_{\PP^1}(2)</m>, giving the intersection number.</p></proof>
+    </corollary>
+    <p>The intersection calculation uses <m>T_C=\mathscr F_D|_C</m>, so it applies to a compact leaf contained in the smooth hypersurface.</p>
+    <example xml:id="hkg-characteristic-nonalgebraic-leaves">
+      <p>A characteristic foliation need not have compact leaves. Let <m>E=\mathbb C/(\mathbb Z+i\mathbb Z)</m>, let <m>X=E^4</m>, and choose a real irrational number <m>\alpha</m>. The translation-invariant form
+        <md number="no">\sigma=(dz_2-\alpha dz_1)\wedge dz_3+dz_1\wedge dz_4</md>
+        is holomorphic symplectic. On the hypersurface <m>Z=E^3\times\{0\}</m>, its kernel is spanned by <m>\partial_{z_1}+\alpha\partial_{z_2}</m>. A leaf has parametrization <m>t\mapsto(t,\alpha t,z_3,0)</m>. There is no nonzero <m>t</m> with both <m>t</m> and <m>\alpha t</m> in <m>\mathbb Z+i\mathbb Z</m>. Consequently this immersed complex line cannot be a compact elliptic subtorus and is not closed. This example is a holomorphic symplectic torus; it illustrates the distinction between a local leaf space and an algebraic quotient.</p>
+    </example>
+  </section>
+  <section xml:id="hkg-rational-quotients-coisotropic">
+    <title>Rational quotients and swept loci</title>
+    <p>In this section <m>X</m> is projective. A variety is <em>uniruled</em> if a family of rational curves covers it. It is <em>rationally chain connected</em> if two general points can be joined by a connected chain of rational curves, and <em>rationally connected</em> if one rational curve suffices. For smooth projective varieties over <m>\mathbb C</m>, these last two conditions are equivalent. Their general theory is an external result here.</p>
+    <p>We also use the maximal rationally connected quotient: for a smooth projective variety <m>Y</m> there is an almost holomorphic rational map <m>r:Y\dashrightarrow B</m>, unique up to birational equivalence, whose general fibers are rationally connected and whose base is not uniruled. After restricting the base and resolving indeterminacies, it is represented by a smooth proper morphism with connected fibers. The rational quotient and bend-and-break arguments used below are those in <xref ref="hkg-bib-amerik-verbitsky-curves" detail="§4, proof of Theorem 4.4"/>; they are not consequences of local Frobenius theory.</p>
+    <definition xml:id="hkg-def-algebraically-coisotropic">
+      <statement><p>A codimension-<m>c</m> coisotropic subvariety <m>Z\subset X</m> is <em>algebraically coisotropic</em> if there is a dominant rational map <m>r:Z\dashrightarrow B</m>, with <m>\dim B=2n-2c</m>, whose general fibers are the closures of its characteristic leaves. Equivalently, on suitable dense smooth open sets it is a submersion with connected fibers and
+        <md number="no">\sigma|_Z=r^*\sigma_B</md>
+        for a holomorphic symplectic form <m>\sigma_B</m> on that open part of <m>B</m>. The form is not required to extend nondegenerately across a compactification of <m>B</m>.</p></statement>
+    </definition>
+    <lemma xml:id="hkg-two-form-rational-fibers">
+      <statement><p>Let <m>p:Y\to B</m> be a smooth proper morphism of complex manifolds with connected fibers <m>F</m>, and suppose <m>H^0(F,\Omega_F^1)=H^0(F,\Omega_F^2)=0</m> for every fiber. Every closed holomorphic two-form <m>\tau</m> on <m>Y</m> is the pullback of a unique closed holomorphic two-form on <m>B</m>.</p></statement>
+      <proof><p>The restriction of <m>\tau</m> to a fiber is zero by the second vanishing. Fix <m>b\in B</m> and <m>w\in T_bB</m>. For a vertical tangent vector <m>v</m> along <m>F=p^{-1}(b)</m>, define <m>\eta_w(v)=\tau(v,\widetilde w)</m> using any local holomorphic lift of <m>w</m>. Two lifts differ by a vertical vector, so the definition is independent of the lift and gives a global holomorphic one-form on <m>F</m>. The first vanishing makes it zero. Thus <m>\tau</m> annihilates every vertical tangent vector.</p>
+        <p>For a vertical local vector field <m>v</m>, closedness gives <m>\mathcal L_v\tau=0</m>. In local submersion coordinates the form therefore has only base components, with coefficients constant along the fiber directions. Connected fibers make these local descended forms agree; equivalently, properness and connectedness give <m>p_*\cO_Y=\cO_B</m>. They define a unique form on <m>B</m>, and its closedness follows by pullback through a submersion.</p></proof>
+    </lemma>
+    <p>Smooth projective rationally connected varieties have no nonzero holomorphic forms of positive degree. We use this external consequence of rational connectedness in applying the lemma to general fibers of the rational quotient. It follows that those fibers are isotropic for the restriction of <m>\sigma</m>. At a general smooth point of a codimension-<m>c</m> subvariety <m>Z\subset X</m>, their tangent space lies in <m>\ker(\sigma|_{T_Z})</m>, so their dimension is at most <m>c</m>. The opposite inequality for loci swept out by all deformations of a rational curve is the global part of the following theorem.</p>
+    <theorem xml:id="hkg-av-swept-coisotropic">
+      <title>(Amerik–Verbitsky)</title>
+      <statement><p>Let <m>C\subset X</m> be a rational curve on a projective IHS manifold. Let <m>Z</m> be an irreducible component of the locus swept out by the full deformations of <m>C</m> in <m>X</m>, and let <m>c=\operatorname{codim}_X Z</m>. Then <m>Z</m> is coisotropic. The general fibers of the maximal rationally connected quotient of a desingularization of <m>Z</m> have dimension <m>c</m>. On a dense smooth open set they are its characteristic leaves. In particular <m>Z</m> is algebraically coisotropic.</p></statement>
+    </theorem>
+    <p>We quote <xref ref="hkg-bib-amerik-verbitsky-curves" detail="Theorem 4.4"/>, in its projective specialization. The lower bound on the rational-quotient fibers uses <xref ref="hkg-ran-rational-bound"/> and bend-and-break. The descent argument above gives their inclusion in the characteristic distribution; equality follows from the dimension statement. Choosing an arbitrary smaller subfamily of curves does not give the same theorem.</p>
+    <corollary xml:id="hkg-uniruled-divisor-leaves">
+      <statement><p>Every uniruled prime divisor on a projective IHS manifold is algebraically coisotropic. The closure of a general characteristic leaf is a rational curve, and the base of its rational quotient has dimension <m>2n-2</m>.</p></statement>
+      <proof><p>First, <m>X</m> is not uniruled. Indeed, a covering family would, after slicing its parameter space and making a generically finite base change, give a smooth family of rational curves <m>p:U\to T</m> with <m>\dim U=2n</m> and a dominant generically finite evaluation map to <m>X</m>. Pullback would give a nonzero holomorphic top form on <m>U</m>. But on every fiber of <m>p</m>, the canonical bundle of <m>U</m> restricts to <m>\cO_{\PP^1}(-2)</m>. Any holomorphic top form vanishes along every such fiber and hence vanishes, a contradiction.</p>
+        <p>Let <m>D</m> be the uniruled divisor, and choose a covering family of rational curves on it. Complete this family to an irreducible component of the rational-curve deformation space in <m>X</m>. Its swept locus contains <m>D</m>; it cannot be all of <m>X</m> by the preceding argument. Its irreducible closure is therefore <m>D</m>. Apply <xref ref="hkg-av-swept-coisotropic"/> with <m>c=1</m>. The general rational-quotient fiber on a resolution is a smooth rationally connected curve, hence <m>\PP^1</m>. Its image is the closure of a characteristic leaf on <m>D_{\mathrm{reg}}</m>; the leaf itself can omit points in the singular locus of <m>D</m>.</p></proof>
+    </corollary>
+    <proposition xml:id="hkg-rational-chains-constant-cycle">
+      <statement><p>If two points of <m>X</m> can be joined by a chain of rational curves, they have the same class in <m>\operatorname{CH}_0(X)</m>. In particular, the image in <m>X</m> of a proper rationally chain connected fiber is a constant-cycle subvariety: all of its points determine the same zero-cycle class.</p></statement>
+      <proof><p>On <m>\PP^1</m>, the difference of any two points is the divisor of a rational function. Push this relation forward along the normalization map of a rational curve. Its points consequently have the same class in <m>\operatorname{CH}_0(X)</m>. Applying this successively along a connected chain proves the assertion. For a proper rationally chain connected variety over <m>\mathbb C</m>, any two points can be joined by such a chain; this extension from general points is part of the standard rational-connectedness theory.</p></proof>
+    </proposition>
+    <p>This is a geometric source of the constant-cycle loci considered in <xref ref="hkg-cycles"/>. For the Lagrangian <m>\PP^n</m> in <xref ref="hkg-line-normal-splitting"/>, no rational quotient theorem is needed: lines join any two points, so the whole projective space has one zero-cycle class in <m>X</m>.</p>
+  </section>
+  <section xml:id="hkg-rational-curves-hodge-locus">
+    <title>Curve classes under deformations</title>
+    <p>We return to an arbitrary compact IHS manifold <m>X</m>. Let <m>\beta=[C]\in H_2(X,\mathbb Z)</m> be the class of a rational curve, and define its BBF-dual class <m>z_\beta\in H^2(X,\mathbb Q)</m> by
+      <md number="no">q_X(z_\beta,a)=\int_\beta a\qquad(a\in H^2(X,\mathbb Q)).</md>
+      This is the convention of <xref ref="hkg-no-curves-kahler"/>. The class is nonzero by Kähler positivity. It has type <m>(1,1)</m> because integration over <m>\beta</m> annihilates <m>H^{2,0}(X)\oplus H^{0,2}(X)</m> and the BBF form has Hodge orthogonality.</p>
+    <p>Transport <m>\beta</m> and <m>z_\beta</m> through a small deformation. The Poincaré dual of <m>\beta</m> has type <m>(2n-1,2n-1)</m> exactly when <m>z_\beta</m> has type <m>(1,1)</m>. In period coordinates this locus is
+      <md number="no">\operatorname{Hdg}(\beta)=\{t:q_X(z_\beta,\sigma_t)=0\}.</md>
+      It is a smooth hypersurface through the original point by <xref ref="hkg-proposition-hodge-loci-codimension"/>. This is the necessary Hodge condition for the curve to deform. A sufficient condition concerns the dimension of its own deformation space.</p>
+    <theorem xml:id="hkg-minimal-curve-hodge-persistence">
+      <title>(Amerik–Verbitsky)</title>
+      <statement><p>Let <m>C\subset X</m> be a rational curve, and let <m>Z</m> be an irreducible component of the locus swept out by its full deformations. Suppose <m>C</m> is minimal: with respect to a fixed Kähler form, it has the smallest degree among rational curves in <m>Z</m> through a general point of <m>Z</m>. Then its deformation family has dimension <m>2n-2</m>, and <m>C</m> deforms over every sufficiently small deformation of <m>X</m> in <m>\operatorname{Hdg}([C])</m>.</p></statement>
+    </theorem>
+    <p>This is <xref ref="hkg-bib-amerik-verbitsky-curves" detail="Corollaries 4.6 and 4.8"/>. Minimality concerns the Kähler degree of curves in the swept locus. A line in a Lagrangian projective space satisfies it: every effective curve class on <m>\PP^n</m> is a positive integral multiple of the line class, and <xref ref="hkg-line-normal-splitting"/> computes the full local family.</p>
+    <p>There is also a dimension criterion for projective families that does not require choosing a minimal curve. To state it precisely, write <m>\overline{\mathcal M}_0(X,\beta)</m> for the moduli stack of genus-zero stable maps of class <m>\beta</m>: the source is a connected nodal curve of arithmetic genus zero, and the map has only finitely many automorphisms. Near the normalization map of an irreducible rational curve, smooth domains form an open subset and this is the unparametrized map space considered earlier. Existence and properness of the relative stable-map space are external results in the following theorem; no assertion of smoothness is implicit in this notation.</p>
+    <theorem xml:id="hkg-cmp-minimal-dimension-persistence">
+      <title>(Charles–Mongardi–Pacienza)</title>
+      <statement><p>Let <m>\pi:\mathcal X\to B</m> be a smooth projective morphism over a smooth connected quasiprojective complex variety, with IHS fibers of dimension <m>2n</m>. Fix <m>0\in B</m>, and a global flat integral class
+        <md number="no">\alpha\in H^0(B,R^{4n-2}\pi_*\mathbb Z)</md>
+        of type <m>(2n-1,2n-1)</m> on every fiber. Let <m>f:\PP^1\to X_0</m> be the normalization map of a rational curve with Poincaré-dual class <m>\alpha_0</m>. If <m>M\subset\overline{\mathcal M}_0(X_0,f_*[\PP^1])</m> is an irreducible component through <m>[f]</m> of dimension <m>2n-2</m>, every irreducible component of the relative stable-map space that contains <m>M</m> dominates <m>B</m>. In particular, <m>[f]</m> lies in a component that dominates <m>B</m>.</p></statement>
+    </theorem>
+    <p>We quote <xref ref="hkg-bib-charles-mongardi-pacienza" detail="Proposition 3.1"/>. Its more general statement allows a nodal genus-zero source, provided the map is generically unramified on every irreducible component. Our normalization map satisfies that hypothesis. The dimensions are dimensions of stable-map stacks; at this birational map there are no stabilizer dimensions to subtract. A dominating relative component is proper over <m>B</m>, so its image is also closed and is therefore all of <m>B</m>. After a suitable generically finite base change it gives a family of stable maps; special domains may be reducible.</p>
+    <p>For a line in a Lagrangian projective space the dimension hypothesis follows from <xref ref="hkg-line-normal-splitting"/>. The first persistence theorem applies to its full small analytic Hodge locus. The second applies to projective families carrying its flat Hodge class and also controls stable limits. The minimality or dimension hypothesis is what proves persistence along the Hodge locus. These are the persistence results for curve classes used in <xref ref="hkg-cones"/>.</p>
+  </section>
+</chapter>

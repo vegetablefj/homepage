@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="hkg-twistor">
+  <title>Twistor families</title>
+  <introduction>
+    <p>Fix a hyperkähler structure <m>(M,g,I,J,K)</m>. Rotating <m>I</m> through the induced sphere changes the complex structure while keeping the smooth manifold and metric fixed. The rotations form a holomorphic family over <m>\mathbb P^1</m>. Its period map is a conic in a three-dimensional subspace of <m>H^2(M,\mathbb R)</m>, and this description determines exactly which degree-two integral classes remain of type <m>(1,1)</m>.</p>
+    <p>The construction in the first three sections works without compactness or irreducibility. The period and Picard statements assume that the fibers are IHS, and use the Beauville–Bogomolov–Fujiki form from <xref ref="hkg-bbf"/>. We follow the coordinate convention of <xref ref="hkg-bib-glover-sawon" detail="§3, Lemma 2"/>. The classical twistor construction is due to Hitchin, Karlhede, Lindström, and Roček; see <xref ref="hkg-bib-hitchin" detail="§3(F)"/>.</p>
+  </introduction>
+  <section xml:id="hkg-twistor-sphere">
+    <title>The sphere and its holomorphic parameter</title>
+    <p>Write <m>\sigma=\omega_J+i\omega_K</m>. The sphere of induced complex structures is <m>I_u=aI+bJ+cK</m>, with <m>u=(a,b,c)\in S^2</m>. Each <m>I_u</m> is integrable and <m>g</m> is Kähler for it by <xref ref="hkg-lemma-parallel-complex"/>. Identify the sphere with <m>\mathbb P^1</m> by the coordinate
+      <md xml:id="hkg-eq-induced-coordinate" number="yes">I_\zeta=\frac{1-|\zeta|^2}{1+|\zeta|^2}I+\frac{2\operatorname{Re}\zeta}{1+|\zeta|^2}J+\frac{2\operatorname{Im}\zeta}{1+|\zeta|^2}K,\qquad I_\infty=-I.</md>
+      Thus <m>\zeta=0,1,i,\infty</m> correspond to <m>I,J,K,-I</m>, respectively. The antipodal map is <m>\zeta\mapsto-1/\bar\zeta</m>.</p>
+    <proposition xml:id="hkg-prop-twistor-symplectic-polynomial">
+      <statement><p>For finite <m>\zeta</m>, a holomorphic symplectic form on <m>(M,I_\zeta)</m> is
+        <md xml:id="hkg-eq-twistor-symplectic" number="yes">\sigma_\zeta=\sigma-2\zeta\omega_I-\zeta^2\bar\sigma.</md>
+        Its coefficients as a differential form on the fixed smooth manifold are holomorphic in <m>\zeta</m>. On the chart <m>w=1/\zeta</m>, use
+        <md number="no">\widetilde\sigma_w=w^2\sigma_{1/w}=w^2\sigma-2w\omega_I-\bar\sigma.</md>
+        At <m>w=0</m> this is <m>-\bar\sigma</m>, a holomorphic symplectic form for <m>-I</m>.</p></statement>
+      <proof>
+        <p>Let <m>\zeta=x+iy</m> and <m>r=1+x^2+y^2</m>. Define endomorphisms <m>J_\zeta,K_\zeta</m> by the same coefficient rows that express the real and imaginary parts of <m>\sigma_\zeta/r</m>:
+          <md number="no">\begin{pmatrix}I_\zeta\\J_\zeta\\K_\zeta\end{pmatrix}=\frac1r\begin{pmatrix}
+            1-x^2-y^2&amp;2x&amp;2y\\
+            -2x&amp;1-x^2+y^2&amp;-2xy\\
+            -2y&amp;-2xy&amp;1+x^2-y^2
+          \end{pmatrix}\begin{pmatrix}I\\J\\K\end{pmatrix}.</md>
+          The row vectors have squared length <m>r^2</m> before division by <m>r</m>, and their pairwise dot products are zero. For example, the first and second have dot product
+          <md number="no">-2x(1-x^2-y^2)+2x(1-x^2+y^2)-4xy^2=0.</md>
+          The other two pairings follow by interchanging <m>x,y</m> or by the same expansion. The matrix is orthogonal, and its determinant is <m>1</m>, since the determinant is continuous and equals <m>1</m> at <m>x=y=0</m>. Thus it is a rotation. Formula <xref ref="hkg-eq-quaternion-product"/> makes <m>(I_\zeta,J_\zeta,K_\zeta)</m> a parallel orthogonal quaternionic triple.</p>
+        <p>Expanding the polynomial in <xref ref="hkg-eq-twistor-symplectic"/> gives
+          <md number="no">\begin{aligned}
+            \operatorname{Re}\sigma_\zeta&amp;=-2x\omega_I+(1-x^2+y^2)\omega_J-2xy\omega_K,\\
+            \operatorname{Im}\sigma_\zeta&amp;=-2y\omega_I-2xy\omega_J+(1+x^2-y^2)\omega_K.
+          \end{aligned}</md>
+          Hence <m>\sigma_\zeta=r(\omega_{J_\zeta}+i\omega_{K_\zeta})</m>. The metric construction of <xref ref="hkg-prop-hk-symplectic-form"/> proves that it is holomorphic symplectic for <m>I_\zeta</m>. The second chart formula and its value at infinity follow by multiplying the polynomial by <m>w^2</m>.</p>
+      </proof>
+    </proposition>
+    <p>The normalized form <m>\sigma_\zeta/(1+|\zeta|^2)</m> is compatible with the fixed metric; the polynomial <m>\sigma_\zeta</m> varies holomorphically in <m>\zeta</m>.<fn>The signs depend on the stereographic coordinate and on whether the Kähler form is written <m>g(I-,-)</m> or <m>g(-,I-)</m>. Our conventions agree with <xref ref="hkg-bib-glover-sawon" detail="§3"/>, whose introduction explains its sign difference from HKLR.</fn></p>
+    <p>At the two equatorial points above, the formula becomes <m>\sigma_1=2i(\omega_K+i\omega_I)</m> and <m>\sigma_i=-2i(\omega_I+i\omega_J)</m>. This checks that rotating from <m>I</m> to <m>J</m> or <m>K</m> cycles the three Kähler forms with the stated conventions.</p>
+  </section>
+  <section xml:id="hkg-twistor-total-space">
+    <title>The holomorphic family</title>
+    <definition xml:id="hkg-def-twistor-space">
+      <statement><p>On the smooth product <m>Z=M\times\mathbb P^1</m>, define the almost complex structure
+        <md number="no">\mathcal I_{(x,\zeta)}(v,w)=(I_\zeta v,iw),\qquad (v,w)\in T_xM\oplus T_\zeta\mathbb P^1.</md>
+        The resulting complex manifold, once integrability is established, is the <em>twistor space</em>. Projection <m>\pi:Z\to\mathbb P^1</m> is its <em>twistor family</em>.</p></statement>
+    </definition>
+    <lemma xml:id="hkg-lemma-closed-top-form-integrability">
+      <statement><p>Let <m>A</m> be an almost complex structure on a smooth manifold of real dimension <m>2d</m>. If every point has a neighborhood with a nowhere vanishing closed form <m>\Psi</m> of type <m>(d,0)</m>, then <m>A</m> is integrable.</p></statement>
+      <proof>
+        <p>The subbundle <m>T^{0,1}</m> consists precisely of the complexified tangent vectors <m>U</m> satisfying <m>\iota_U\Psi=0</m>. For local sections <m>U,V</m> of this subbundle, Cartan's formula gives
+          <md number="no">\iota_{[U,V]}\Psi=\mathcal L_U(\iota_V\Psi)-\iota_V(\mathcal L_U\Psi)=0,</md>
+          because <m>\mathcal L_U\Psi=\iota_Ud\Psi+d(\iota_U\Psi)=0</m>. Thus <m>T^{0,1}</m> is closed under the Lie bracket. The Newlander–Nirenberg theorem gives integrability.</p>
+      </proof>
+    </lemma>
+    <theorem xml:id="hkg-thm-twistor-family">
+      <statement><p>The almost complex structure <m>\mathcal I</m> on <m>Z</m> is integrable. Projection <m>\pi:Z\to\mathbb P^1</m> is a holomorphic submersion with fiber <m>X_\zeta=(M,I_\zeta)</m>. If <m>M</m> is compact, <m>\pi</m> is proper.</p></statement>
+      <proof>
+        <p>On the finite coordinate chart, regard <m>\sigma_\zeta</m> as a two-form on <m>M\times\mathbb C</m> vanishing on tangent vectors to the base. Its type is <m>(2,0)</m> for <m>\mathcal I</m>. Hence
+          <md number="no">\Psi=\sigma_\zeta^n\wedge d\zeta</md>
+          has type <m>(2n+1,0)</m> and never vanishes. The three forms <m>\omega_I,\omega_J,\omega_K</m> are closed on <m>M</m>, and the coefficients of <m>\sigma_\zeta</m> are polynomials in <m>\zeta</m>. Therefore
+          <md number="no">d\Psi=n\sigma_\zeta^{n-1}\wedge\left(\frac{\partial\sigma_\zeta}{\partial\zeta}\,d\zeta\right)\wedge d\zeta=0.</md>
+          The same computation with <m>\widetilde\sigma_w^n\wedge dw</m> works near infinity. Apply <xref ref="hkg-lemma-closed-top-form-integrability"/>.</p>
+        <p>The differential of <m>\pi</m> intertwines <m>\mathcal I</m> with the standard complex structure on the base and is surjective, so <m>\pi</m> is a holomorphic submersion. The induced structure on each fiber is its defining <m>I_\zeta</m>. For compact <m>M</m>, projection from the smooth product is proper.</p>
+      </proof>
+    </theorem>
+    <p>See <xref ref="hkg-bib-glover-sawon" detail="§3"/> for this differential-form proof and <xref ref="hkg-bib-newlander-nirenberg"/> for the integrability theorem.</p>
+    <p>The smooth product gives flat identifications <m>H^k(X_\zeta,\Z)=H^k(M,\Z)</m>, while the Hodge decomposition varies with <m>\zeta</m>.</p>
+    <proposition xml:id="hkg-prop-relative-twistor-form">
+      <statement><p>The local forms <m>\sigma_\zeta,\widetilde\sigma_w</m> define a nowhere degenerate holomorphic section
+        <md number="no">\Omega\in H^0\!\left(Z,\Omega^2_{Z/\mathbb P^1}\otimes\pi^*\mathcal O_{\mathbb P^1}(2)\right).</md>
+        It is closed in the fiber directions. Consequently,
+        <md number="no">K_{Z/\mathbb P^1}\cong\pi^*\mathcal O_{\mathbb P^1}(-2n),\qquad K_Z\cong\pi^*\mathcal O_{\mathbb P^1}(-2n-2).</md></p></statement>
+      <proof>
+        <p>The transformation <m>\widetilde\sigma_w=w^2\sigma_{1/w}</m> is the transition rule for a section twisted by <m>\mathcal O(2)</m>. In each chart the form has relative type <m>(2,0)</m>, and
+          <md number="no">d\sigma_\zeta=d\zeta\wedge\frac{\partial\sigma_\zeta}{\partial\zeta}.</md>
+          Its exterior derivative is zero after quotienting differential forms by those containing <m>d\zeta</m>. Taking the <m>(2,1)</m> component shows that its relative <m>\bar\partial</m> is zero, which proves holomorphicity as a relative form. The same identity gives relative closedness. Fiberwise nondegeneracy was proved in <xref ref="hkg-prop-twistor-symplectic-polynomial"/>.</p>
+        <p>The exterior power <m>\Omega^n</m> is a nowhere vanishing section of <m>K_{Z/\mathbb P^1}\otimes\pi^*\mathcal O(2n)</m>. It trivializes that line bundle. Finally, the canonical-bundle formula for a holomorphic submersion gives <m>K_Z=K_{Z/\mathbb P^1}\otimes\pi^*K_{\mathbb P^1}</m>, with <m>K_{\mathbb P^1}=\mathcal O(-2)</m>.</p>
+      </proof>
+    </proposition>
+    <p>The twist <m>\mathcal O(2)</m> records why a symplectic form can be chosen holomorphically on a coordinate chart of the base but not as one nowhere vanishing untwisted relative form over the entire sphere. The fibers have trivial canonical bundle, although the canonical bundle of the total space is not trivial.</p>
+  </section>
+  <section xml:id="hkg-twistor-sections">
+    <title>Sections, real structure, and the total space</title>
+    <proposition xml:id="hkg-prop-twistor-sections">
+      <statement><p>For <m>x\in M</m>, the map <m>s_x:\mathbb P^1\to Z</m> given by <m>s_x(\zeta)=(x,\zeta)</m> is a holomorphic section. Its normal bundle is
+        <md number="no">N_{s_x/Z}\cong\mathcal O_{\mathbb P^1}(1)^{\oplus 2n}.</md>
+        The map <m>\tau(x,\zeta)=(x,-1/\bar\zeta)</m> is an antiholomorphic involution of <m>Z</m>, and it preserves each curve <m>s_x(\mathbb P^1)</m> as a set.</p></statement>
+      <proof>
+        <p>The differential of <m>s_x</m> sends <m>w</m> to <m>(0,w)</m>, so it intertwines the complex structures. Along this section the normal bundle is the vertical tangent bundle, with fiber <m>(T_xM,I_\zeta)</m>. To determine its holomorphic structure, let <m>E=T_xM</m>, <m>F=E_I^{0,1}</m>, and use <m>J:F\to E_I^{1,0}</m>. A substitution in <xref ref="hkg-eq-induced-coordinate"/> gives
+          <md number="no">E_{I_\zeta}^{0,1}=\{v+i\zeta Jv:v\in F\}\subset E\otimes\mathbb C.</md>
+          For example, <m>Iv=-iv</m> and <m>I(Jv)=iJv</m>; the coefficients of <m>v</m> and <m>Jv</m> in <m>(I_\zeta+i)(v+i\zeta Jv)</m> both vanish. These subspaces form the holomorphic subbundle <m>F\otimes\mathcal O(-1)</m> of the trivial bundle <m>E\otimes\mathbb C\otimes\mathcal O</m>. At infinity the same subspace is generated by <m>wv+iJv</m>, giving the stated degree <m>-1</m>.</p>
+        <p>The normal bundle is the holomorphic quotient by this subbundle. Indeed, differentiation in the base direction uses the product splitting, so its <m>\bar\partial</m> is the quotient of the trivial bundle's <m>\bar\partial</m>. Under <m>E\otimes\mathbb C=F\oplus JF</m>, the inclusion is the tensor product with <m>F</m> of the tautological inclusion <m>\mathcal O(-1)\to\mathcal O^{\oplus2}</m>, with one constant factor <m>i</m>. The quotient in the Euler sequence is <m>\mathcal O(1)</m>. This proves <m>N_{s_x/Z}\cong F\otimes\mathcal O(1)</m>.</p>
+        <p>The antipodal point has complex structure <m>-I_\zeta</m>, so the identity on <m>T_xM</m> is complex antilinear between the two vertical tangent spaces. The antipodal map is antiholomorphic on <m>\mathbb P^1</m> as well. Thus <m>\tau</m> is antiholomorphic on <m>Z</m>. It squares to the identity and sends <m>s_x(\zeta)</m> to <m>s_x(-1/\bar\zeta)</m>.</p>
+      </proof>
+    </proposition>
+    <p>The curves <m>s_x(\mathbb P^1)</m> are called <em>real twistor lines</em>. A <em>twistor line in the period domain</em> instead means the conic of periods constructed below.</p>
+    <p>The normal bundle has <m>4n</m> complex global sections and zero first cohomology. The real structure selects <m>4n</m> real infinitesimal deformations of a real twistor line. Conversely, suitable real families of sections with this normal bundle and an <m>\mathcal O(2)</m>-valued relative symplectic form reconstruct a hyperkähler metric; the real and positivity conditions are specified in <xref ref="hkg-bib-hitchin" detail="§3(F), Theorem 3.3"/>.<fn>A holomorphic section of <m>\pi</m> need not be one of the sections <m>s_x</m>.</fn></p>
+    <proposition xml:id="hkg-prop-twistor-not-kahler">
+      <statement><p>If <m>M</m> is compact and has positive dimension, its twistor space <m>Z</m> is not Kähler. There is no line bundle on <m>Z</m> whose restriction to every fiber is ample.</p></statement>
+      <proof>
+        <p>Suppose <m>\Theta</m> were a Kähler form on <m>Z</m>. The inclusions of the fibers into the smooth product are homotopic. Their restrictions of the closed form <m>\Theta</m> therefore represent the same class <m>a\in H^2(M,\mathbb R)</m>. On the fiber <m>(M,I)</m>, positivity of two Kähler forms gives
+          <md number="no">\int_Ma[\omega_I]^{2n-1}&gt;0.</md>
+          On the antipodal fiber <m>(M,-I)</m>, the metric Kähler form is <m>-\omega_I</m>, so positivity instead gives <m>\int_Ma[-\omega_I]^{2n-1}&gt;0</m>. The complex orientations of <m>I</m> and <m>-I</m> agree because the complex dimension <m>2n</m> is even. Since <m>2n-1</m> is odd, the two integrals are negatives of one another, a contradiction.</p>
+        <p>If a line bundle were ample on every fiber, its first Chern class would have the same flat value <m>a</m> on every fiber. Ample classes are Kähler by the projective embedding definition of ampleness, so exactly the two integrals above would again have to be positive. This gives the second assertion.</p>
+      </proof>
+    </proposition>
+    <p>The fibers and base are Kähler, although the total space is not. No degree-two class is Kähler on both antipodal fibers.</p>
+  </section>
+  <section xml:id="hkg-twistor-period-conic">
+    <title>The positive three-plane and the period conic</title>
+    <p>Assume from now on that the hyperkähler metric has holonomy exactly <m>\mathrm{Sp}(n)</m> and <m>M</m> is compact. Every fiber is then IHS. Let
+      <md number="no">\alpha=[\omega_I],\qquad\beta=[\omega_J],\qquad\gamma=[\omega_K],\qquad s=[\sigma]=\beta+i\gamma,</md>
+      and let <m>q_X</m> be the primitive integral BBF form, transported to the fixed group <m>H^2(M,\mathbb Z)</m>. Its deformation invariance makes this one form serve the whole family. Define the oriented real three-plane
+      <md number="no">P_g=\mathbb R\alpha\oplus\mathbb R\beta\oplus\mathbb R\gamma,</md>
+      with orientation given by <m>(\alpha,\beta,\gamma)</m>.</p>
+    <proposition xml:id="hkg-prop-twistor-positive-plane">
+      <statement><p>The three classes <m>\alpha,\beta,\gamma</m> are pairwise orthogonal for <m>q_X</m> and have the same positive square <m>t</m>. Thus <m>q_X|_{P_g}</m> is positive definite. Its orthogonal complement in <m>H^2(M,\mathbb R)</m> is negative definite.</p></statement>
+      <proof>
+        <p>For the fiber <m>(M,I)</m>, the Hodge orthogonality of the BBF form gives <m>q_X(\alpha,s)=0</m> and <m>q_X(s)=0</m>. Taking real and imaginary parts yields
+          <md number="no">q_X(\alpha,\beta)=q_X(\alpha,\gamma)=q_X(\beta,\gamma)=0,\qquad q_X(\beta)=q_X(\gamma).</md>
+          All three classes are Kähler on their respective induced complex manifolds, so their squares are positive. The metric volume is the same for these three complex structures, and their complex orientations agree. Hence
+          <md number="no">\int_M\omega_I^{2n}=\int_M\omega_J^{2n}=\int_M\omega_K^{2n}=(2n)!\operatorname{Vol}_g(M).</md>
+          Fujiki's relation, with the same transported form and constant, gives equality of the positive <m>n</m>th powers of their squares; positivity gives equality of the squares. The BBF signature is <m>(3,b_2-3)</m>, so the orthogonal complement of this positive three-plane is negative definite.</p>
+      </proof>
+    </proposition>
+    <p>Replacing <m>(I,J,K)</m> by an oriented orthogonal rotation rotates the three cohomology classes and preserves the oriented plane <m>P_g</m>. In the irreducible case, this plane therefore depends on the metric rather than on a choice of basis for its induced sphere. The statement uses the irreducible assumption: a reducible metric may admit several different choices of parallel quaternionic structure.</p>
+    <definition xml:id="hkg-def-twistor-period-map">
+      <statement><p>For the fixed cohomology identification, the <em>period</em> of <m>X_\zeta</m> is its holomorphic two-form line. The twistor period map is
+        <md number="no">\mathcal P_g:\mathbb P^1\longrightarrow\mathbb P(H^2(M,\mathbb C)),\qquad \mathcal P_g(\zeta)=\mathbb C\bigl(s-2\zeta\alpha-\zeta^2\bar s\bigr).</md>
+        The line at infinity is <m>\mathbb C\bar s</m>.</p></statement>
+    </definition>
+    <proposition xml:id="hkg-prop-twistor-period-conic">
+      <statement><p>The period map is a holomorphic isomorphism onto the smooth conic
+        <md number="no">C_g=\{[z]\in\mathbb P(P_g\otimes\mathbb C):q_X(z)=0\}.</md>
+        Every point of this conic satisfies <m>q_X(z,\bar z)&gt;0</m>, so <m>C_g</m> lies in the period domain of <xref ref="hkg-period-domain"/>. For finite <m>\zeta</m>,
+        <md number="no">q_X(s-2\zeta\alpha-\zeta^2\bar s,\overline{s-2\zeta\alpha-\zeta^2\bar s})=2t(1+|\zeta|^2)^2.</md></p></statement>
+      <proof>
+        <p>We have <m>q_X(s)=q_X(\bar s)=q_X(\alpha,s)=q_X(\alpha,\bar s)=0</m>, <m>q_X(\alpha)=t</m>, and <m>q_X(s,\bar s)=2t</m>. Therefore the square of <m>s-2\zeta\alpha-\zeta^2\bar s</m> is <m>-4t\zeta^2+4t\zeta^2=0</m>. Pairing it with its conjugate gives <m>2t+4t|\zeta|^2+2t|\zeta|^4</m>, as claimed.</p>
+        <p>In homogeneous coordinates <m>[u:v]</m> on <m>\mathbb P^1</m>, the map is
+          <md number="no">[u:v]\longmapsto\mathbb C(u^2s-2uv\alpha-v^2\bar s).</md>
+          The three displayed cohomology vectors are a basis of <m>P_g\otimes\mathbb C</m>, so this is the quadratic Veronese embedding followed by an invertible linear change of coordinates. Its image is the entire nonsingular conic cut out by the nondegenerate quadratic form on this projective plane.</p>
+        <p>There is also a coordinate-free positivity check. Write a nonzero isotropic vector in <m>P_g\otimes\mathbb C</m> as <m>z=a+ib</m>, with <m>a,b\in P_g</m>. Isotropy says <m>q_X(a)=q_X(b)</m> and <m>q_X(a,b)=0</m>. Positive definiteness then forces both to be nonzero and gives <m>q_X(z,\bar z)=2q_X(a)&gt;0</m>.</p>
+      </proof>
+    </proposition>
+    <p>This is the period description in <xref ref="hkg-bib-huybrechts" detail="§1.17"/>. A period line determines an oriented real two-plane
+      <md number="no">L_\zeta=\mathbb R\operatorname{Re}[\sigma_\zeta]\oplus\mathbb R\operatorname{Im}[\sigma_\zeta]\subset P_g.</md>
+      Its positive normal line is <m>\mathbb R[\omega_{I_\zeta}]</m>. Thus the same sphere can be read as induced complex structures, as oriented two-planes in <m>P_g</m>, or as isotropic complex lines in <m>P_g\otimes\mathbb C</m>.</p>
+    <figure xml:id="hkg-figure-twistor-period-plane">
+      <caption>In <m>P_g</m>, the induced complex structure <m>I</m> corresponds to its normalized Kähler class. Its period corresponds to the oriented orthogonal plane <m>\langle[\omega_J],[\omega_K]\rangle</m>. The antipodal structure <m>-I</m> has the same underlying plane with the opposite orientation, and hence the conjugate period.</caption>
+      <image source="twistor-period-plane.svg" width="100%"><description><p>The normalized Kähler classes form a sphere in the positive three-plane. The class omega I is normal to the oriented period plane spanned by omega J and omega K. The antipodal point corresponds to minus I.</p></description></image>
+    </figure>
+    <p>In particular, the period varies nontrivially. At <m>\zeta=0</m>, the derivative of its chosen representative is <m>-2\alpha</m>, considered modulo <m>\mathbb Cs</m>. Under the deformation-theoretic identification by contraction with <m>\sigma</m>, the twistor deformation direction is therefore the line generated by the Kähler class <m>\alpha</m>; see <xref ref="hkg-bib-huybrechts" detail="§1.13"/>. The scalar depends on the coordinate and the convention for the Kodaira–Spencer map, while this line does not.</p>
+  </section>
+  <section xml:id="hkg-twistor-hodge-classes">
+    <title>Integral Hodge classes along a twistor line</title>
+    <p>Let <m>\Lambda=H^2(M,\mathbb Z)</m> and define
+      <md number="no">\Lambda_g=\Lambda\cap P_g^\perp.</md>
+      By <xref ref="hkg-picard-identification"/>, the first Chern class identifies
+      <md number="no">\operatorname{Pic}(X_\zeta)=\operatorname{NS}(X_\zeta)=\Lambda\cap L_\zeta^\perp</md>
+      for each fiber.</p>
+    <proposition xml:id="hkg-prop-twistor-picard">
+      <statement><p>Every class in <m>\Lambda_g</m> has type <m>(1,1)</m> on every fiber. A class <m>\lambda\in\Lambda\setminus\Lambda_g</m> has type <m>(1,1)</m> at exactly two antipodal points of the twistor sphere. Consequently, outside a countable set of parameters,
+        <md xml:id="hkg-eq-twistor-picard" number="yes">\operatorname{Pic}(X_\zeta)\cong\Lambda_g.</md>
+        The restriction of <m>q_X</m> to the real span of this group is negative definite.</p></statement>
+      <proof>
+        <p>For a real degree-two class, type <m>(1,1)</m> is equivalent to orthogonality to both the real and imaginary parts of the period. Hence <m>\lambda</m> has this type exactly when <m>q_X(\lambda,L_\zeta)=0</m>. Let <m>\lambda_P</m> be its orthogonal projection to <m>P_g</m>. If <m>\lambda_P=0</m>, this condition holds for all <m>\zeta</m>. Otherwise, the condition says that the two-plane <m>L_\zeta</m> has normal line <m>\mathbb R\lambda_P</m>. There are exactly two oriented unit normals on this line. They correspond to antipodal parameters, or equivalently to the two complex structures with opposite signs.</p>
+        <p>The lattice <m>\Lambda</m> is countable. Removing the two points for every class not in <m>\Lambda_g</m> therefore removes at most a countable set. At every remaining parameter, its integral <m>(1,1)</m> classes are precisely <m>\Lambda_g</m>. Negative definiteness follows from <m>\Lambda_g\subset P_g^\perp</m> and <xref ref="hkg-prop-twistor-positive-plane"/>.</p>
+      </proof>
+    </proposition>
+    <p>Here <em>very general on the twistor line</em> means outside a countable set of parameters, rather than very general in the full deformation space. Such a fiber has zero Picard group exactly when <m>\Lambda_g=0</m>; the classes in <m>\Lambda_g</m> persist on the whole sphere.</p>
+    <example xml:id="hkg-example-twistor-picard-positive-rank">
+      <p>Let <m>X=(M,I)</m> be projective IHS with Picard number <m>\rho</m>, and choose the hyperkähler metric whose Kähler class is an integral ample class <m>h</m>. Since <m>P_g</m> is spanned by <m>h,\operatorname{Re}[\sigma],\operatorname{Im}[\sigma]</m>, we have
+        <md number="no">\Lambda_g=\operatorname{NS}(X)\cap h^\perp.</md>
+        The rational linear functional <m>q_X(h,-)</m> is nonzero on <m>\operatorname{NS}(X)\otimes\mathbb Q</m>, because <m>q_X(h)&gt;0</m>. Its kernel has dimension <m>\rho-1</m>. Thus the very general twistor fiber has Picard number <m>\rho-1</m>, and its Picard lattice is negative definite. For <m>\rho\geq2</m> this supplies nonzero Picard classes that persist even though the very general fiber has no effective divisors. Projective K3 surfaces of Picard number at least two already give examples.</p>
+    </example>
+    <p>The <em>algebraic dimension</em> of a compact complex manifold is the transcendence degree over <m>\C</m> of its field of meromorphic functions.</p>
+    <corollary xml:id="hkg-cor-twistor-no-divisors-curves">
+      <statement><p>Outside a countable set of parameters, an IHS twistor fiber has no nonzero effective divisors and no compact curves. In particular it is not projective and has algebraic dimension zero.</p></statement>
+      <proof>
+        <p>First choose a parameter satisfying <xref ref="hkg-eq-twistor-picard"/>. If <m>D</m> were a nonzero effective divisor, its class <m>\lambda=c_1(\mathcal O(D))</m> would lie in <m>\Lambda_g</m>. The polarized Fujiki formula gives
+          <md number="no">\int_{X_\zeta}\lambda[\omega_{I_\zeta}]^{2n-1}=c_Xq_X([\omega_{I_\zeta}])^{n-1}q_X(\lambda,[\omega_{I_\zeta}])=0.</md>
+          On the other hand, this integral is the positive Kähler volume <m>\int_D\omega_{I_\zeta}^{2n-1}</m>. This excludes effective divisors.</p>
+        <p>The same parameter choice controls rational <m>(1,1)</m> classes, since an integer multiple of any rational class is integral. If <m>C\subset X_\zeta</m> were a compact irreducible curve, nondegeneracy and rationality of <m>q_X</m> would give a unique <m>v_C\in H^2(M,\mathbb Q)</m> such that
+          <md number="no">q_X(v_C,a)=\int_Ca\qquad\text{for every }a\in H^2(M,\mathbb Q).</md>
+          The integral of a holomorphic or antiholomorphic two-form over a curve is zero. Hence <m>q_X(v_C,[\sigma_\zeta])=q_X(v_C,[\bar\sigma_\zeta])=0</m>, which means <m>v_C</m> has type <m>(1,1)</m>. Our parameter choice forces <m>v_C\in P_g^\perp</m>. But then <m>\int_C\omega_{I_\zeta}=q_X(v_C,[\omega_{I_\zeta}])=0</m>, contradicting Kähler positivity.</p>
+        <p>A projective manifold of positive dimension has effective hyperplane divisors, so these fibers are not projective. A nonconstant meromorphic function on a compact complex manifold has a nonzero polar divisor: if it had none, extension across subsets of codimension at least two would make it holomorphic everywhere, and compactness would make it constant. With no effective divisors, every meromorphic function is constant. This is algebraic dimension zero.</p>
+      </proof>
+    </corollary>
+    <p>See also <xref ref="hkg-bib-huybrechts" detail="§1.17"/>, following Fujiki. In dimensions at least four, the degree-two argument does not exclude subvarieties of intermediate dimension.</p>
+    <corollary xml:id="hkg-cor-twistor-meromorphic-functions">
+      <statement><p>For an IHS twistor family, every meromorphic function on <m>Z</m> is the pullback of a meromorphic function on <m>\mathbb P^1</m>. Consequently, the algebraic dimension of <m>Z</m> is <m>1</m>. In particular, <m>Z</m> is not the analytification of a proper algebraic variety.</p></statement>
+      <proof>
+        <p>Let <m>F</m> be meromorphic on <m>Z</m>. On a very general fiber its restriction is defined as a meromorphic function and is constant by <xref ref="hkg-cor-twistor-no-divisors-curves"/>. Only a proper analytic set of parameters can have a whole fiber inside the polar or indeterminacy set, so this applies on a dense set of fibers.</p>
+        <p>Choose a point where <m>F</m> is holomorphic and finite, and the real twistor section <m>s_x</m> through that point. Then <m>f=F\circ s_x</m> is a meromorphic function on <m>\mathbb P^1</m>. On every very general fiber where both restrictions are defined, constancy gives <m>F=f\circ\pi</m>. These fibers meet a dense subset of the open set where both functions are holomorphic, so the identity theorem gives equality as meromorphic functions on <m>Z</m>. Pullback in the other direction is available for every rational function on <m>\mathbb P^1</m>. Hence the meromorphic function field has transcendence degree <m>1</m>.</p>
+        <p>A proper algebraic variety has a rational function field of transcendence degree its dimension, and rational functions become meromorphic on its analytification. Here <m>\dim Z=2n+1&gt;1</m>, so the field calculation rules out such an algebraic realization.</p>
+      </proof>
+    </corollary>
+  </section>
+</chapter>

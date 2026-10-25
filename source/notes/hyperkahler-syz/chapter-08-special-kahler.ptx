@@ -1,0 +1,181 @@
+<chapter xml:id="hks-special-kahler">
+  <title>Special Kähler geometry and semi-flat metrics</title>
+
+  <introduction>
+    <p>Over its regular values, a holomorphic Lagrangian fibration is a family of complex tori. Its holomorphic symplectic form turns fibre cycles into closed one-forms on the base. A polarization then gives a Kähler metric. We derive the resulting affine structures and local potentials before constructing the associated semi-flat hyperkähler metric. These constructions concern the smooth part of a given fibration.</p>
+  </introduction>
+
+  <section xml:id="hks-special-periods">
+    <title>The period lattice</title>
+
+    <p>Let <m>f:Z\to U</m> be a proper holomorphic submersion with connected Lagrangian fibres of dimension <m>n</m>, where <m>(Z,\sigma)</m> is holomorphic symplectic and <m>U</m> is smooth of dimension <m>n</m>. Assume a locally constant family of integral polarizations on the fibres. The restriction of a relatively ample line bundle supplies such a family. This is the smooth part of an algebraic completely integrable system in the terminology of <xref ref="hks-bib-freed" detail="Definition 3.1"/>.<fn>The total space and base may be analytic open sets. The adjective <q>algebraic</q> here refers to the polarized, hence algebraic, torus fibres. A fibre has no preferred origin unless a section is specified.</fn></p>
+
+    <p>A base covector <m>\alpha\in T_u^*U</m> defines a vertical vector field on <m>Z_u</m> by <m>\iota_{V_\alpha}\sigma=-f^*\alpha</m>. The Lagrangian condition and nondegeneracy of <m>\sigma</m> make this an isomorphism from base covectors to invariant fibre vector fields. For a local function <m>h</m>, the field <m>V_{dh}</m> is Hamiltonian. Hamiltonians pulled back from the base Poisson commute, so these vertical fields commute. Their flows give a transitive action of <m>T_u^*U</m> on the compact fibre. Its kernel is a full real lattice <m>\Lambda_u</m> of rank <m>2n</m>, and <m>Z_u</m> is a torsor under <m>T_u^*U/\Lambda_u</m>.</p>
+
+    <proposition xml:id="hks-prop-action-angle">
+      <statement>
+        <p>After shrinking <m>U</m> about any point, there is a holomorphic Lagrangian section of <m>f</m> and a holomorphic symplectic isomorphism
+          <md number="no">Z\simeq T^*U/\Lambda</md>
+          over <m>U</m>. Each local section of <m>\Lambda\subset T^*U</m> is a closed holomorphic one-form. The holomorphic symplectic form on the quotient is induced by <m>\sigma_{\rm can}=-d\vartheta</m>, where <m>\vartheta</m> is the tautological one-form.</p>
+      </statement>
+      <proof>
+        <p>Choose a local holomorphic section <m>s</m> of the submersion. Exponentiating the vertical fields gives a local covering <m>\Phi:T^*U\to Z</m> whose kernel in each fibre is <m>\Lambda</m>. The contraction identity for <m>V_\alpha</m> gives
+          <md number="no">\Phi^*\sigma=\sigma_{\rm can}+\pi^*(s^*\sigma),</md>
+          where <m>\pi:T^*U\to U</m> is the projection. Both sides have the same contraction with every vertical vector, so their difference is pulled back from the base; restriction to the zero section determines that difference.</p>
+
+        <p>Translation by a local lattice section <m>\alpha</m> does not change <m>\Phi</m>. On the cotangent bundle, that translation sends <m>\sigma_{\rm can}</m> to <m>\sigma_{\rm can}-\pi^*d\alpha</m>. Thus <m>d\alpha=0</m>. The closed holomorphic two-form <m>s^*\sigma</m> is locally <m>d\gamma</m> by the holomorphic Poincaré lemma. Replacing <m>s</m> by its translate by <m>\gamma</m> makes its pullback of <m>\sigma</m> zero. The covering therefore descends to the asserted symplectic isomorphism.</p>
+      </proof>
+    </proposition>
+
+    <p>The lattice is the local system of fibre one-cycles, embedded in <m>T^*U</m> by integration of <m>\sigma</m>. Explicitly, for a locally transported cycle <m>\gamma</m> and <m>v\in T_uU</m>, its period covector is <m>\int_{\gamma_u}\iota_{\widetilde v}\sigma</m>, up to the common sign determined by the Hamiltonian convention. Here <m>\widetilde v</m> is any lift of <m>v</m>. Two lifts differ by a vertical field, and <m>\sigma</m> vanishes on two vertical vectors, so the covector is well-defined. Closedness also follows from fibre integration and <m>d\sigma=0</m>. These are the period forms used below <xref ref="hks-bib-freed" detail="Section 3"/>.</p>
+
+    <p>The quotient <m>J=T^*U/\Lambda</m> has a zero section and is the associated family of abelian varieties. The original <m>Z</m> is locally isomorphic to <m>J</m> after choosing a Lagrangian section. The lattice and its periods make sense without a global section.</p>
+  </section>
+
+  <section xml:id="hks-special-prepotential">
+    <title>Special coordinates and the prepotential</title>
+
+    <p>The polarization gives a flat nondegenerate alternating form on <m>\Lambda_\R</m>. Choose a real symplectic frame of this local system, with period forms denoted <m>dz_1,\ldots,dz_n,dw_1,\ldots,dw_n</m>. They have holomorphic primitives by <xref ref="hks-prop-action-angle"/>. The Riemann bilinear relations imply that the <m>z_i</m> are holomorphic coordinates and
+      <md number="no">dw_i=\sum_j\tau_{ij}\,dz_j,\qquad \tau^t=\tau,\qquad Y:=\Im\tau&gt;0.</md>
+      Thus <m>\tau</m> takes values in Siegel upper half-space. It is the period matrix in this frame.</p>
+
+    <p xml:id="hks-p-polarization-type">A real symplectic frame need not be an integral basis. If the polarization has type <m>(d_1,\ldots,d_n)</m>, choose integral cycles <m>\gamma_i,\delta_i</m> with pairing <m>\langle\gamma_i,\delta_j\rangle=d_i\delta_{ij}</m>. The normalized frame <m>\gamma_i/d_i,\delta_i</m> is real symplectic, and the actual period lattice is generated by <m>d_i dz_i,dw_i</m>. The formulas in normalized coordinates hold for every polarization type. In the principally polarized case all <m>d_i=1</m>, and this normalized frame is integral.<fn>Changes of integral cycle basis preserve the alternating form of the given polarization type. Only in the principal case can every such basis be described by the usual matrix group <m>\Sp(2n,\Z)</m> with the unimodular standard form.</fn></p>
+
+    <p xml:id="hks-prepotential-definition"><idx>Prepotential</idx>Since <m>\tau</m> is symmetric, the holomorphic one-form <m>\sum_iw_i dz_i</m> is closed. There is a local holomorphic function <m>F</m>, called a <term>prepotential</term>, such that
+      <md number="no">w_i=\frac{\partial F}{\partial z_i},\qquad \tau_{ij}=\frac{\partial^2F}{\partial z_i\partial z_j}.</md>
+      The closedness of the period forms makes <m>\partial_k\tau_{ij}</m> symmetric in all three indices. This is the local cubic condition on the period map. It is an extra condition on a family of polarized abelian varieties: a general such family, even with base dimension <m>n</m>, need not arise from a holomorphic Lagrangian system <xref ref="hks-bib-freed" detail="Remark 3.6"/>.</p>
+
+    <p>Write <m>z=x+iu</m> and <m>w=p+iv</m>, and set <m>y=-p</m>. All four symbols denote real <m>n</m>-tuples. Taking real parts in <m>dw=\tau dz</m> gives
+      <md number="no">dy=-(\Re\tau)\,dx+Y\,du.</md>
+      Since <m>Y</m> is positive definite, <m>(x,y)</m> are local real coordinates. Define
+      <md number="no">\omega_B=\sum_i dx_i\wedge dy_i=\frac{i}{2}\sum_{i,j}Y_{ij}\,dz_i\wedge d\overline z_j.</md>
+      The associated Riemannian metric is
+      <md number="no">g_B=\sum_{i,j}Y_{ij}(dx_i\otimes dx_j+du_i\otimes du_j).</md>
+      These formulas agree on overlaps because the normalized period frames differ by constant real symplectic transformations. They give a global Kähler structure once the polarization and <m>\sigma</m> have been fixed <xref ref="hks-bib-freed" detail="Theorem 3.4"/>.</p>
+
+    <p>A Kähler potential is <m>K=\frac12\Im\sum_i\overline z_iw_i</m>: differentiation gives <m>\omega_B=i\partial\bar\partial K</m>. Changes in the primitives or in the symplectic frame can change this potential while preserving the form. The potential <m>F</m> and its coordinates are local; the period lattice is the globally defined object.</p>
+  </section>
+
+  <section xml:id="hks-special-affine">
+    <title>Two integral affine structures and a Hessian metric</title>
+
+    <definition xml:id="hks-def-integral-affine">
+      <idx>Integral affine structure</idx>
+      <statement>
+        <p>An <term>integral affine structure</term> on a real <m>r</m>-manifold is an atlas whose coordinate changes are <m>q\mapsto Aq+b</m>, with <m>A\in\mathrm{GL}(r,\Z)</m> and <m>b\in\R^r</m>. Equivalently, it is a full lattice in the real cotangent bundle locally generated by closed one-forms.</p>
+      </statement>
+    </definition>
+
+    <p>Taking real parts of lattice period forms gives a lattice in <m>T_\R^*U</m>. Taking imaginary parts gives another. Both are locally generated by closed forms, so they define two integral affine structures. In normalized coordinates, the first connection makes <m>dx_i,dy_i</m> parallel, and the second makes <m>du_i,dv_i</m> parallel. For polarization type <m>(d_i)</m>, integral affine coordinates can be taken as <m>(d_ix_i,y_i)</m> and <m>(d_iu_i,v_i)</m>, with harmless sign changes in the chosen basis. The normalized coordinates give the same flat connections.</p>
+
+    <p>The first flat connection has an intrinsic compatibility with the Kähler structure. Denote the complex structure on <m>U</m> by <m>I_B</m>.</p>
+
+    <definition xml:id="hks-def-affine-special-kahler">
+      <idx>Affine special Kähler structure</idx>
+      <statement>
+        <p>An <term>affine special Kähler structure</term> consists of a Kähler manifold <m>(U,I_B,g_B,\omega_B)</m> and a real connection <m>\nabla</m> on <m>T_\R U</m> such that <m>\nabla</m> is flat and torsion-free, <m>\nabla\omega_B=0</m>, and
+          <md number="no">d^\nabla I_B=0.</md>
+          The last condition means <m>(\nabla_aI_B)b=(\nabla_bI_B)a</m> for real vector fields <m>a,b</m>.</p>
+      </statement>
+    </definition>
+
+    <p>This is Freed's special Kähler structure <xref ref="hks-bib-freed" detail="Definition 1.1"/>. The adjective <q>affine</q> distinguishes it from projective special Kähler geometry, a different notion. The base itself can be an open set in a projective variety; that does not change which definition applies.</p>
+
+    <proposition xml:id="hks-prop-special-hessian">
+      <statement>
+        <p>The connection with parallel coframe <m>(dx,dy)</m> makes <m>(U,I_B,g_B,\omega_B)</m> affine special Kähler. In these affine coordinates the metric is the Hessian of
+          <md number="no">H(x,y)=\Im F(z)+\sum_i u_i y_i.</md>
+          The connection with parallel coframe <m>(dv,du)</m> is dual to <m>\nabla</m> with respect to <m>g_B</m>.</p>
+      </statement>
+      <proof>
+        <p>The closed coordinate coframe gives flatness and zero torsion. The expression <m>\omega_B=\sum_i dx_i\wedge dy_i</m> gives <m>\nabla\omega_B=0</m>. Holomorphicity of <m>z,w</m> implies
+          <md number="no">du_i=-dx_i\circ I_B,\qquad dv_i=dy_i\circ I_B.</md>
+          Both right-hand sides are closed. In a parallel frame this is exactly <m>d^\nabla I_B=0</m>.</p>
+
+        <p>Let <m>A=\Re\tau</m>. Since <m>dF=\sum_iw_i dz_i</m>, one has
+          <md number="no">dH=\sum_i(v_i dx_i+u_i dy_i).</md>
+          The period relation gives <m>du=Y^{-1}(dy+A\,dx)</m> and <m>dv=Y\,dx+A\,du</m>. Consequently, in the order <m>q=(x,y)</m>,
+          <md number="no">\operatorname{Hess}_q H=\begin{pmatrix}Y+AY^{-1}A&amp;AY^{-1}\\Y^{-1}A&amp;Y^{-1}\end{pmatrix}.</md>
+          Substitution in the formula for <m>g_B</m> gives exactly this matrix. It is positive definite. Its determinant is one, by taking the Schur complement of <m>Y^{-1}</m>.</p>
+
+        <p>For a Hessian metric <m>g_{ab}=\partial_a\partial_bH</m>, define the dual connection <m>\nabla^*</m> by
+          <md number="no">a\bigl(g_B(b,c)\bigr)=g_B(\nabla_a b,c)+g_B(b,\nabla_a^*c).</md>
+          Its parallel coordinates are the gradient coordinates <m>r_a=\partial H/\partial q_a</m>, since <m>dr_a=\sum_b g_{ab}dq_b</m> and the displayed identity makes these forms parallel. Here <m>r=(v,u)</m>. This proves the assertion about the second connection.</p>
+      </proof>
+    </proposition>
+
+    <p>The Legendre transform <m>H^*(r)=\sum_a q_ar_a-H(q)</m> has <m>q=\nabla_rH^*</m> and <m>\operatorname{Hess}_rH^*=(\operatorname{Hess}_qH)^{-1}</m>. Thus the two real affine structures are related by the metric and Legendre duality. The equation <m>\det\operatorname{Hess}_qH=1</m> is a real Monge–Ampère equation in normalized symplectic affine coordinates. An integral affine change for a nonprincipal polarization changes its constant by a fixed positive factor.</p>
+
+    <p xml:id="hks-p-dual-connection">The dual connection can also be written <m>\nabla_a^*b=I_B^{-1}\nabla_a(I_Bb)</m>. Indeed, use <m>g_B(b,c)=\omega_B(b,I_Bc)</m> and <m>\nabla\omega_B=0</m> in its defining identity. The condition <m>d^\nabla I_B=0</m> gives zero torsion for <m>\nabla^*</m>. It does not say <m>\nabla I_B=0</m>; that stronger condition would force <m>g_B</m> to be flat.</p>
+  </section>
+
+  <section xml:id="hks-special-curvature">
+    <title>Variation and curvature</title>
+
+    <p>The third derivatives of <m>F</m> measure both the variation of the fibres and the curvature of the base metric. Put <m>C_{ijk}=\partial_i\partial_j\partial_kF</m>. With the curvature convention for the Hermitian matrix <m>Y</m>
+      <md number="no">R_{i\overline j k\overline\ell}=-\partial_i\partial_{\overline j}Y_{k\ell}+\sum_{p,q}Y^{pq}(\partial_iY_{kq})(\partial_{\overline j}Y_{p\ell}),</md>
+      the holomorphicity of <m>\tau</m> gives
+      <md number="no">R_{i\overline j k\overline\ell}=\frac14\sum_{p,q}Y^{pq}C_{ikq}\overline{C_{j\ell p}}.</md>
+      Here <m>Y^{pq}</m> denotes the inverse matrix. To verify the factor, use <m>\partial_iY_{kq}=C_{ikq}/(2i)</m> and <m>\partial_{\overline j}Y_{p\ell}=-\overline{C_{jp\ell}}/(2i)</m>. The mixed second derivative of <m>Y</m> vanishes.</p>
+
+    <p>For tangent vectors <m>a,b</m>, the bisectional curvature is a positive multiple of the squared <m>Y^{-1}</m>-norm of <m>C(a,b,\cdot)</m>, hence is nonnegative. The metric is flat exactly when <m>C=0</m>, or equivalently when <m>\tau</m> is locally constant. Its Ricci curvature in direction <m>a</m> vanishes exactly when <m>d\tau(a)=0</m>. In particular, an immersive period map gives positive Ricci curvature. These are the curvature relations used by Li–Tosatti in their proof of the smooth-base theorem <xref ref="hks-bib-li-tosatti" detail="Section 2.3"/>.<fn>The coefficient attached to the cubic changes with the convention for the Hermitian metric and curvature tensor. We have specified the matrix and curvature formula together; the sign and the vanishing criteria are independent of these constant normalizations.</fn></p>
+
+    <p>The flat connection <m>\nabla</m> is different from the Levi-Civita connection of <m>g_B</m>. Flatness of the integral affine structure is compatible with a curved Kähler metric because the Hessian <m>\operatorname{Hess}H</m> varies in its affine coordinates. The logarithmic example below exhibits this distinction in dimension one.</p>
+  </section>
+
+  <section xml:id="hks-special-semiflat">
+    <title>The semi-flat hyperkähler metric</title>
+
+    <p xml:id="hks-semiflat-definition"><idx>Semi-flat metric</idx>The connection <m>\nabla</m> splits the tangent bundle of the real cotangent bundle into horizontal and vertical summands. Write a tangent vector in this splitting as <m>(a,\alpha)\in T_bU\oplus T_b^*U</m>. Define
+      <md number="no">g_{\rm sf}\bigl((a,\alpha),(b,\beta)\bigr)=g_B(a,b)+g_B^{-1}(\alpha,\beta).</md>
+      This is the <term>semi-flat metric</term>. Its restriction to each cotangent fibre is flat.</p>
+
+    <proposition xml:id="hks-prop-semiflat">
+      <statement>
+        <p>The metric <m>g_{\rm sf}</m> is hyperkähler on <m>T^*U</m>. It descends to the quotient <m>J=T^*U/\Lambda</m>. In the complex structure of the holomorphic cotangent bundle, its holomorphic symplectic form is <m>\sigma_{\rm can}</m>.</p>
+      </statement>
+      <proof>
+        <p>Identify a real covector <m>\alpha</m> with the holomorphic covector <m>\alpha-i\alpha\circ I_B</m>. The special Kähler condition makes the horizontal splitting compatible with this complex structure <xref ref="hks-bib-freed" detail="Proposition 1.22"/>. In the splitting define
+          <md number="no">I(a,\alpha)=(I_Ba,I_B^*\alpha),\qquad J(a,\alpha)=(-g_B^{-1}\alpha,g_Ba),\qquad K=IJ,</md>
+          where <m>I_B^*\alpha=\alpha\circ I_B</m> and <m>g_Ba</m> is metric duality. Hermitian compatibility gives <m>I_B^*g_B=-g_BI_B</m>. Hence <m>I^2=J^2=K^2=-1</m> and <m>IJ=-JI</m>, and all three are orthogonal for <m>g_{\rm sf}</m>.</p>
+
+        <p>The forms defined by <m>\omega_T(\xi,\eta)=g_{\rm sf}(T\xi,\eta)</m> satisfy <m>\omega_J+i\omega_K=\sigma_{\rm can}</m>, so <m>\omega_J,\omega_K</m> are closed. In affine Darboux coordinates <m>(x,y)</m>, write a real fibre covector as <m>\sum_i(a_i dx_i+b_i dy_i)</m>. The remaining form is
+          <md number="no">\omega_I=\sum_i dx_i\wedge dy_i-\sum_i da_i\wedge db_i.</md>
+          It is closed as well. The closedness criterion for an almost hyperkähler triple gives integrability and parallelness of <m>I,J,K</m>; this is the argument of <xref ref="hks-bib-freed" detail="Theorem 2.1"/>.</p>
+
+        <p>Lattice sections are parallel for the connection induced on the cotangent bundle: their real parts are the defining parallel forms. Translation by any such section preserves the horizontal splitting, the metric and the three forms. The construction therefore descends to <m>J</m>.</p>
+      </proof>
+    </proposition>
+
+    <p>The same metric has an explicit period expression. For a principal polarization, let <m>\theta_i,\phi_i</m> be real fibre coordinates modulo integers and set <m>\eta_i=d\theta_i+\sum_j\tau_{ij}d\phi_j</m>. Then
+      <md number="no">g_{\rm sf}=\sum_{i,j}Y_{ij}\,dz_i\,d\overline z_j+\sum_{i,j}Y^{ij}\eta_i\overline\eta_j,\qquad \sigma_{\rm can}=\sum_i dz_i\wedge\eta_i.</md>
+      In the metric expression a product with its conjugate denotes its real symmetric part. The fibre holomorphic coordinates on the universal cover are <m>\zeta_i=\theta_i+\sum_j\tau_{ij}\phi_j</m>. Symmetry of <m>\partial_k\tau_{ij}</m> gives <m>\sum_i dz_i\wedge d\zeta_i=\sum_i dz_i\wedge\eta_i</m>. Thus the apparent additional terms involving <m>d\tau</m> cancel. For polarization type <m>(d_i)</m>, the same expression holds with <m>\theta_i</m> taken modulo <m>d_i\Z</m> and <m>\phi_i</m> modulo <m>\Z</m>.</p>
+
+    <p xml:id="hks-p-semiflat-torsor">A chosen local Lagrangian section transfers this metric from <m>J</m> to <m>Z</m>. A different section may translate by a closed one-form that is not parallel. Such a translation changes the horizontal splitting and can change the metric. The Jacobian has the canonical zero section; a torsor requires additional gluing choices for a global semi-flat metric. The period lattice and the special Kähler metric on its base do not have this ambiguity.</p>
+
+    <p>Replacing the fibre term by <m>\varepsilon</m> times that term gives another hyperkähler metric, with holomorphic symplectic form <m>\sqrt\varepsilon\,\sigma_{\rm can}</m>. Locally it is the pullback of the preceding metric by fibre dilation by <m>\sqrt\varepsilon</m>, so the claim follows from the same construction and descends by parallel lattice translations. Its fibre diameters are of order <m>\sqrt\varepsilon</m>, while the horizontal metric is <m>g_B</m>. This describes a local collapse model on the regular locus.</p>
+  </section>
+
+  <section xml:id="hks-special-examples">
+    <title>Examples and collapse near the discriminant</title>
+
+    <example xml:id="hks-example-constant-periods">
+      <statement><p>Let <m>\tau</m> be a constant symmetric matrix with positive imaginary part. On a coordinate ball in <m>\C^n</m>, take <m>F(z)=\frac12z^t\tau z</m>. Both affine structures are linear, <m>g_B</m> is flat, and the semi-flat total space is locally a product with a flat polarized torus. Nontrivial integral monodromy may still occur after taking a quotient of the base; local constancy of periods is a local statement.</p></statement>
+    </example>
+
+    <example xml:id="hks-example-log-periods">
+      <statement><p>On a punctured disk <m>0&lt;|z|&lt;1</m>, choose a branch of the logarithm and let
+        <md number="no">\tau(z)=\frac{\log z}{2\pi i},\qquad w(z)=\frac{z(\log z-1)}{2\pi i}.</md>
+        Then <m>dw=\tau dz</m> and <m>\Im\tau=-\log|z|/(2\pi)&gt;0</m>. A local primitive of <m>w\,dz</m> is a prepotential. The lattice generated by <m>dz,dw</m> defines a torus fibration over the punctured disk: after one positive circuit, <m>dw</m> becomes <m>dw+dz</m>, so the lattice is preserved.</p>
+      <p>The base metric and the first affine monodromy are
+        <md number="no">g_B=\frac{-\log|z|}{2\pi}|dz|^2,\qquad (x,y)\longmapsto(x,y-x).</md>
+        The second monodromy is <m>(u,v)\mapsto(u,v+u)</m>. The affine connections are flat, but <m>\tau'(z)\ne0</m>, so the Kähler metric is curved. The puncture is at finite radial distance because <m>\int_0^r\sqrt{-\log t}\,dt&lt;\infty</m>. The lattice and the semi-flat metric have singular behaviour there. Extending across that point requires a singular-fibre model.</p></statement>
+    </example>
+
+    <p>For a compact IHS fibration <m>f:X\to\PP^n</m>, the preceding formulas apply on the complement <m>B^\circ</m> of the critical values. They do not determine how a Ricci-flat metric behaves uniformly near singular fibres. That comparison is an analytic theorem.</p>
+
+    <p>Tosatti–Zhang prove the following for an existing projective hyperkähler fibration <xref ref="hks-bib-tosatti-zhang" detail="Theorem 1.2"/>. Choose Kähler forms <m>\omega_B</m> on <m>\PP^n</m> and <m>\omega_X</m> on <m>X</m>, and let <m>\omega_t</m> be the Ricci-flat representative of <m>f^*[\omega_B]+t[\omega_X]</m>. As <m>t\to0</m>, these metrics converge on compact subsets of the regular locus to the pullback of a special Kähler metric on <m>B^\circ</m>. Their Gromov–Hausdorff limit is the metric completion of that base metric. The completion is compact and homeomorphic to <m>\PP^n</m>, and its complement of <m>B^\circ</m> has real Hausdorff codimension at least two. The special Kähler normalization is the one associated with the chosen limiting metric and fibre polarization.</p>
+
+    <p>This theorem begins with a holomorphic fibration and studies its collapsing Ricci-flat metrics. The metric existence theorem used in <xref ref="hks-metric-syz"/> begins instead with a degeneration and produces special Lagrangian tori in a specified class. Hyperkähler rotation connects these questions, but the period calculation and the semi-flat model alone do not prove either global analytic theorem.</p>
+  </section>
+</chapter>

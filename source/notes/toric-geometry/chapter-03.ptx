@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="toric-divisors">
+  <title>Divisors and line bundles</title>
+  <introduction>
+    <p>A fan records more than affine charts. Its rays provide a finite set of divisors that generate the class group, and its cones test which combinations of these divisors are Cartier. This chapter establishes those statements, keeps the possible kernel in the character-to-divisor map, and derives the canonical divisor. The final calculations distinguish a divisor class from a line bundle and show how torsion can survive on a singular affine chart.</p>
+    <p>We use the orbit<ndash/>cone correspondence and the affine charts constructed in <xref ref="toric-fans"/>. The main toric references are <xref ref="bib-toric-cls" detail="Sections 4.1–4.2 and 8.2"/> and <xref ref="bib-toric-fulton" detail="Sections 3.3–3.4"/>. The general facts about normal schemes and divisors used below are stated explicitly before they are applied. The proofs and calculations work over the algebraically closed field of arbitrary characteristic fixed in <xref ref="toric-conventions"/>.</p>
+  </introduction>
+
+  <section xml:id="toric-divisors-background">
+    <title>The normal-scheme interface</title>
+    <p>Let <m>X</m> be a normal variety with function field <m>k(X)</m>. A prime divisor is an integral closed subvariety of codimension one. At its generic point <m>\eta_E</m>, the ring <m>\mathcal O_{X,\eta_E}</m> is a discrete valuation ring. Write <m>\ord_E:k(X)^*\to\Z</m> for its normalized valuation, so a uniformizer has value <m>1</m>. This uses the Noetherian and normal hypotheses; see <xref ref="bib-toric-stacks" detail="Tag 00PD"/>.</p>
+    <definition xml:id="toric-def-divisor-groups">
+      <title>Weil divisors, Cartier divisors, and classes</title>
+      <statement>
+        <p><ol>
+          <li><p>The group <m>\operatorname{Div}(X)</m> of Weil divisors is the free abelian group on the prime divisors. Its elements have finite support. For <m>f\in k(X)^*</m>, its principal divisor is
+            <md number="no">\divisor(f)=\sum_E\ord_E(f)E.</md>
+            The class group is
+            <md number="no">\Cl(X)=\operatorname{Div}(X)/\{\divisor(f):f\in k(X)^*\}.</md></p></li>
+          <li><p>A Cartier divisor is given by rational local equations <m>f_i\in k(X)^*</m> on an open cover, with <m>f_i/f_j</m> an invertible regular function on overlaps. Its associated Weil divisor uses the valuations of these equations. A Weil divisor is Cartier when it comes from such data.</p></li>
+          <li><p>The Picard group <m>\Pic(X)</m> consists of isomorphism classes of invertible sheaves, with tensor product as its operation. A Cartier divisor <m>D</m> defines the invertible sheaf <m>\mathcal O_X(D)</m>; if <m>f_i</m> is a local equation for <m>D</m>, then <m>f_i^{-1}</m> is a local frame for this sheaf.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <p>For a Weil divisor <m>D</m>, regard <m>\mathcal O_X(D)</m> as the subsheaf of rational functions whose sections on a nonempty open set <m>V</m> are <m>0</m> and the functions satisfying
+      <md number="no">\ord_E(f)+\operatorname{coeff}_E(D)\geq0</md>
+      for every prime divisor meeting <m>V</m>. This is a coherent rank-one reflexive sheaf; it is invertible exactly when <m>D</m> is Cartier. The codimension-one description uses
+      <md number="no">A=\bigcap_{\operatorname{ht}\mathfrak p=1}A_{\mathfrak p}\quad\text{inside }\Frac(A)</md>
+      for a Noetherian normal domain <m>A</m>. These are general normal-scheme facts, not additional toric hypotheses; see <xref ref="bib-toric-stacks" detail="Tags 031T, 0BE0, and 0EBM"/>.</p>
+    <p>Cartier divisors modulo principal divisors identify with <m>\Pic(X)</m>. A nonzero rational section of an invertible sheaf supplies its Cartier divisor; changing that section changes the divisor by a principal divisor. Normality makes the map from Cartier divisors to Weil divisors injective: a rational local equation of valuation zero at all codimension-one points is a unit, by applying the intersection identity to it and its inverse. Hence
+      <md number="no">\Pic(X)\hookrightarrow\Cl(X).</md>
+      Its image consists of classes having a Cartier representative. See <xref ref="bib-toric-stacks" detail="Section 31.28, Tag 02SE"/> for this construction and its injectivity.</p>
+    <p>A line bundle therefore corresponds to a locally principal class, while an arbitrary Weil divisor class need not have that property. On a smooth variety all Weil divisors are Cartier because the local rings are regular and factorial. The toric local criterion will give a second explanation of that fact.</p>
+    <p>There is a related distinction for addition. For Cartier divisors, the correspondence with line bundles gives <m>\mathcal O_X(D+E)\cong\mathcal O_X(D)\otimes\mathcal O_X(E)</m>, with the isomorphism obtained by multiplying local rational functions. For arbitrary Weil divisors on a normal variety, the corresponding formula requires the reflexive hull <m>(\mathcal O_X(D)\otimes\mathcal O_X(E))^{**}</m>. Here the double dual is taken with respect to <m>\mathcal O_X</m>. The formula follows from the codimension-one description, where the sheaves are invertible, and the uniqueness of reflexive extension across subsets of codimension at least two; see <xref ref="bib-toric-stacks" detail="Tags 0EBL and 0EBM"/>. If one divisor is Cartier, its invertible sheaf preserves reflexivity under tensor product, and the double dual can be omitted. This is why addition in the class group and tensor product of arbitrary divisorial sheaves should not be identified without qualification.</p>
+  </section>
+
+  <section xml:id="toric-divisors-invariant">
+    <title>Boundary divisors and character valuations</title>
+    <p>Let <m>X=X_\Sigma</m>, with dense torus <m>T=T_N</m>. Write <m>O(\tau)</m> for the orbit associated to a cone and <m>V(\tau)</m> for its closure. The orbit<ndash/>cone correspondence gives <m>\codim_XV(\tau)=\dim\tau</m>. For a ray <m>\rho</m>, set <m>D_\rho=V(\rho)</m>.</p>
+    <proposition xml:id="toric-prop-invariant-primes">
+      <title>The invariant prime divisors</title>
+      <statement><p>The torus-invariant prime divisors are precisely the <m>D_\rho</m>, for <m>\rho\in\Sigma(1)</m>. They are also the codimension-one irreducible components of <m>X\setminus T</m>.</p></statement>
+      <proof>
+        <p>An invariant proper closed subset cannot meet <m>T</m>, since translating a torus point gives all of <m>T</m>, whose closure is <m>X</m>. An invariant prime divisor is consequently a union of boundary orbits. There are finitely many orbits, so irreducibility implies that one of their closures is the whole divisor. Its codimension is one, so the cone is a ray. Conversely, a ray closure is invariant, irreducible, and has codimension one. Every nonzero cone contains a ray; the orbit closure order therefore also shows that the boundary is the union of these divisors.</p>
+      </proof>
+    </proposition>
+    <proposition xml:id="toric-prop-character-divisor">
+      <title>Order of a character</title>
+      <statement>
+        <p>For <m>m\in M</m> and the primitive generator <m>u_\rho</m>,
+          <md number="no">\ord_{D_\rho}(\chi^m)=\langle m,u_\rho\rangle.</md>
+          Consequently
+          <md xml:id="toric-eq-character-divisor" number="yes">\divisor(\chi^m)=\sum_{\rho\in\Sigma(1)}\langle m,u_\rho\rangle D_\rho.</md></p>
+      </statement>
+      <proof>
+        <p>Extend <m>u_1=u_\rho</m> to a basis <m>u_1,\ldots,u_n</m> of <m>N</m>, with dual basis <m>e_1,\ldots,e_n</m>. The ray chart has coordinate ring
+          <md number="no">k[\rho^\vee\cap M]=k[t,y_2^{\pm1},\ldots,y_n^{\pm1}],\qquad t=\chi^{e_1},\quad y_i=\chi^{e_i}.</md>
+          Its boundary is <m>t=0</m>, whose generic local ring is a discrete valuation ring with uniformizer <m>t</m> and residue field <m>k(y_2,\ldots,y_n)</m>.</p>
+        <p>If <m>m=\sum_i b_ie_i</m>, then <m>\chi^m=t^{b_1}\prod_{i=2}^ny_i^{b_i}</m>. The second factor is a unit at the generic point, so the order is <m>b_1=\langle m,u_\rho\rangle</m>. A character is invertible on <m>T</m>, hence its divisor has no component meeting <m>T</m>. The invariant boundary list accounts for all remaining coefficients.</p>
+      </proof>
+    </proposition>
+    <p>The use of a primitive vector is essential: replacing it by a multiple would multiply the pairing without changing the normalized valuation. No division by a lattice index or group order has occurred, so the proof works in every characteristic. Compare <xref ref="bib-toric-cls" detail="Proposition 4.1.2"/>.</p>
+    <lemma xml:id="toric-lem-laurent-valuation">
+      <title>No cancellation at the minimum weight</title>
+      <statement><p>For a nonzero Laurent polynomial <m>f=\sum_m c_m\chi^m</m>,
+        <md number="no">\ord_{D_\rho}(f)=\min_{c_m\ne0}\langle m,u_\rho\rangle.</md></p></statement>
+      <proof><p>In the preceding coordinates, factor out the smallest power of <m>t</m>. Its coefficient is a nonzero Laurent polynomial in the remaining coordinates: distinct exponents with the same <m>t</m>-power have distinct remaining exponents. This coefficient is nonzero in the residue field of the divisor. The remaining factor is therefore a unit in the discrete valuation ring.</p></proof>
+    </lemma>
+  </section>
+
+  <section xml:id="toric-divisors-class-groups">
+    <title>The class group and the missing left-hand zero</title>
+    <p>Write <m>\operatorname{Div}_T(X)=\bigoplus_{\rho\in\Sigma(1)}\Z D_\rho</m>. This finitely generated group of invariant divisors will present <m>\Cl(X)</m>, although most prime divisors of <m>X</m> are not invariant.</p>
+    <lemma xml:id="toric-lem-divisor-localization">
+      <title>Restriction to an open subset</title>
+      <statement><p>For a nonempty open subset <m>U</m> of a normal variety <m>X</m>, there is an exact sequence
+        <md number="no">\bigoplus_{E\subset X\setminus U\atop\codim_XE=1}\Z E\longrightarrow\Cl(X)\longrightarrow\Cl(U)\longrightarrow0.</md></p></statement>
+      <proof><p>A prime divisor of <m>U</m> extends to its closure in <m>X</m>, with the same generic local ring. Restriction on divisor groups is surjective and its kernel is generated by prime divisors in the complement. Principal divisors restrict to principal divisors because the function field is unchanged. If <m>D|_U=\divisor(f)|_U</m>, then <m>D-\divisor(f)</m> is supported in the complement. This proves the assertion on class groups.</p></proof>
+    </lemma>
+    <theorem xml:id="toric-thm-class-group-sequence">
+      <title>The toric divisor-class sequence</title>
+      <statement>
+        <p>Every Weil divisor class on <m>X_\Sigma</m> has an invariant representative. There is an exact sequence
+          <md xml:id="toric-eq-class-group-sequence" number="yes">M\xrightarrow{\delta}\bigoplus_{\rho\in\Sigma(1)}\Z D_\rho\longrightarrow\Cl(X)\longrightarrow0,\qquad\delta(m)=\sum_\rho\langle m,u_\rho\rangle D_\rho.</md>
+          Its left-hand kernel is
+          <md number="no">\ker\delta=M\cap|\Sigma|^\perp=\{m\in M:\langle m,u\rangle=0\text{ for every }u\in|\Sigma|\}.</md>
+          The map <m>m\mapsto\chi^m</m> identifies this kernel with <m>\Gamma(X,\mathcal O_X)^*/k^*</m>.</p>
+      </statement>
+      <proof>
+        <p>The Laurent polynomial ring <m>k[M]</m> is a UFD, being a localization of a polynomial ring, and therefore <m>\Cl(T)=0</m>. Apply <xref ref="toric-lem-divisor-localization"/> to <m>T\subset X</m> and use the boundary divisors above. This gives invariant representatives and surjectivity.</p>
+        <p>If an invariant divisor is <m>\divisor(f)</m>, its restriction to <m>T</m> is zero. Apply the normal-domain intersection criterion on <m>T</m> to <m>f</m> and <m>f^{-1}</m>; both are regular, so <m>f</m> is an invertible Laurent polynomial. Such units are exactly <m>c\chi^m</m> with <m>c\in k^*</m>, by unique factorization in the polynomial ring before its variables are inverted. The character valuation formula puts the divisor in <m>\im\delta</m>. Conversely, the image of <m>\delta</m> consists of principal divisors.</p>
+        <p>The kernel annihilates the ray generators, equivalently every cone, since cones are generated by rays. A global unit restricts to <m>c\chi^m</m>. Both <m>\chi^m</m> and its inverse extend to <m>U_\sigma</m> exactly when <m>m,-m\in\sigma^\vee</m>, or <m>m\in\sigma^\perp</m>. Checking all charts proves the assertion about global units.</p>
+      </proof>
+    </theorem>
+    <p xml:id="toric-anchor-class-sequence-kernel">A zero may be added before <m>M</m> exactly when the support spans <m>N_\R</m>. Completeness is sufficient but is not necessary. More generally,
+      <md number="no">\rk\ker\delta=n-\dim\operatorname{span}_\R|\Sigma|,\qquad\rk\Cl(X)=\#\Sigma(1)-\dim\operatorname{span}_\R|\Sigma|.</md>
+      These ranks do not detect torsion in the cokernel.</p>
+    <aside xml:id="margin-toric-class-sequence-kernel"><p>The commonly used short exact sequence with an initial zero assumes the absence of a torus factor, equivalently the spanning condition. The kernel matters even for the smooth variety <m>\P^1\times\Gm</m>. Compare <xref ref="bib-toric-cls" detail="Theorem 4.1.3"/>.</p></aside>
+    <p>The presentation is computationally effective over <m>\Z</m>. After choosing a basis of <m>M</m> and ordering the rays, form the matrix with rows <m>u_\rho</m>. Integer row and column operations put this map into Smith normal form. Its nonzero diagonal entries give the torsion orders in the cokernel, while any remaining target coordinates give its free part. Solving only over <m>\Q</m> recovers the rank and loses this torsion. This is an integral calculation attached to the fan; changing the characteristic of <m>k</m> does not change this presentation of the divisor class group.</p>
+  </section>
+
+  <section xml:id="toric-divisors-cartier">
+    <title>Cartier equations and support functions</title>
+    <p>Fix <m>D=\sum_\rho a_\rho D_\rho</m>. On an affine chart its sections decompose as
+      <md xml:id="toric-eq-local-divisor-sections" number="yes">\Gamma(U_\sigma,\mathcal O_X(D))=\bigoplus_{m\in M\atop\langle m,u_\rho\rangle\geq-a_\rho\ (\rho\in\sigma(1))}k\chi^m.</md>
+      A section restricts to a regular Laurent polynomial on <m>T</m>. The minimum-weight lemma says that its boundary valuations satisfy these inequalities exactly when every monomial does. There are no other poles: any prime divisor outside the boundary meets <m>T</m>, where the Laurent polynomial is regular. The normal-scheme description of <m>\mathcal O_X(D)</m> proves the formula without assuming that <m>D</m> is Cartier.</p>
+    <theorem xml:id="toric-thm-cartier-criterion">
+      <title>Local character equations</title>
+      <statement>
+        <p>The invariant divisor <m>D</m> is Cartier if and only if for each cone <m>\sigma</m> there is <m>m_\sigma\in M</m> such that
+          <md xml:id="toric-eq-cartier-data" number="yes">\langle m_\sigma,u_\rho\rangle=-a_\rho\qquad(\rho\in\sigma(1)).</md>
+          Then <m>\chi^{-m_\sigma}</m> is a local equation for <m>D</m>, and <m>\chi^{m_\sigma}</m> is a nowhere-zero local frame of <m>\mathcal O_X(D)</m>. Testing maximal cones suffices.</p>
+      </statement>
+      <proof>
+        <p>Suppose first that <m>D</m> is Cartier on <m>U_\sigma</m>. Let <m>x_\sigma</m> be the distinguished point of the unique closed orbit <m>O(\sigma)</m>, where the invertible characters have value <m>1</m>. Since the chart is affine, the invertible sheaf <m>\mathcal O_X(D)</m> is generated by global sections. Choose a section with nonzero value in the one-dimensional fiber at <m>x_\sigma</m>.</p>
+        <p>Its character decomposition in <xref ref="toric-eq-local-divisor-sections"/> has at least one summand <m>\chi^{m_\sigma}</m> nonzero in that fiber. The zero locus of this section is invariant: translation preserves <m>D</m> and multiplies a character section by a nonzero scalar under the natural action on the divisorial sheaf. Every nonempty invariant closed subset of <m>U_\sigma</m> contains the closed orbit, by the orbit closure order. Since the zero locus does not contain <m>x_\sigma</m>, it is empty. The character therefore trivializes the sheaf on the whole chart.</p>
+        <p>The divisor of this section is <m>\divisor(\chi^{m_\sigma})+D=0</m>, giving the pairing equations. This argument does not assume that line bundles on arbitrary affine schemes are trivial.</p>
+        <p>Conversely, the equations and the character divisor formula give <m>D|_{U_\sigma}=\divisor(\chi^{-m_\sigma})</m>. On <m>U_{\sigma\cap\tau}</m>, the difference <m>m_\sigma-m_\tau</m> vanishes on all rays and hence on the whole cone. Its character and its inverse are regular there, so the ratio of the proposed local equations is a unit. They define Cartier data. Data on maximal cones restrict to their faces, proving the last assertion.</p>
+      </proof>
+    </theorem>
+    <p>The local equation and the local frame have opposite exponents. Some sources use <m>m_\sigma</m> for the exponent of the equation; that convention is the negative of ours. Our convention is fixed by the support function <m>\psi_D(u_\rho)=-a_\rho</m>. The local criterion is <xref ref="bib-toric-cls" detail="Theorem 4.2.8"/>.</p>
+    <corollary xml:id="toric-cor-affine-picard">
+      <title>Affine toric line bundles</title>
+      <statement><p>Every line bundle on <m>X_\Sigma</m> has an invariant Cartier representative. For every cone, <m>\Pic(U_\sigma)=0</m>.</p></statement>
+      <proof><p>Start with a Cartier divisor for the line bundle, and replace its Weil divisor class by an invariant representative. Their difference is principal, so the new representative remains Cartier and defines the same line bundle. On <m>U_\sigma</m>, the local criterion provides one character equation on the whole chart, making the divisor principal.</p></proof>
+    </corollary>
+    <definition xml:id="toric-def-integral-support-functions">
+      <title>Integral support functions</title>
+      <statement><p>Let <m>\operatorname{PL}(\Sigma)</m> be the group of functions <m>\psi:|\Sigma|\to\R</m> whose restriction to each cone is <m>u\mapsto\langle m_\sigma,u\rangle</m> for some <m>m_\sigma\in M</m>. Values on overlaps agree as part of being a single function; such functions are continuous. The support function of <m>D</m> has ray values <m>\psi_D(u_\rho)=-a_\rho</m>.</p></statement>
+    </definition>
+    <p>If a cone is not full dimensional, its <m>m_\sigma</m> is determined only modulo <m>M\cap\sigma^\perp</m>. Its function on the cone is nevertheless unique. The function is determined by its ray values, but arbitrary integer ray values need not be linear on each cone.</p>
+    <proposition xml:id="toric-prop-picard-support-functions">
+      <title>The Picard group as a piecewise linear quotient</title>
+      <statement>
+        <p>The map <m>D\mapsto\psi_D</m> identifies invariant Cartier divisors with <m>\operatorname{PL}(\Sigma)</m>. There is an exact sequence
+          <md number="no">M\longrightarrow\operatorname{PL}(\Sigma)\longrightarrow\Pic(X)\longrightarrow0,</md>
+          where <m>m</m> maps to the restricted linear function <m>\langle m,\ \rangle</m>, and <m>\psi</m> maps to
+          <md number="no">\left[\mathcal O_X\left(-\sum_\rho\psi(u_\rho)D_\rho\right)\right].</md>
+          Thus the quotient uses restrictions of global integral linear functions, whether or not restriction is injective.</p>
+      </statement>
+      <proof><p>The Cartier criterion constructs the function from its divisor and constructs the divisor back from its function. These inverse constructions preserve addition. Every line bundle has an invariant representative. Such a divisor is principal exactly when it is the divisor of a character, up to a constant, as in the class-group proof. The support function of <m>\divisor(\chi^m)</m> is <m>-\langle m,\ \rangle</m>; these functions form the same subgroup as all global linear restrictions.</p></proof>
+    </proposition>
+    <proposition xml:id="toric-prop-rational-cartier">
+      <title>Rational Cartier divisors and factoriality tests</title>
+      <statement><p>An integral Weil divisor is called <m>\Q</m>-Cartier when some positive integer multiple is Cartier. An invariant integral divisor has this property exactly when the local pairing equations have solutions in <m>M_\Q</m>. The variety is <m>\Q</m>-factorial, meaning every Weil divisor is <m>\Q</m>-Cartier, exactly when every cone is simplicial. Every Weil divisor is Cartier exactly when every cone is smooth; in that case <m>\Pic(X)=\Cl(X)</m>.</p></statement>
+      <proof>
+        <p>A positive multiple of the divisor is Cartier precisely when the rational solutions become integral after a common denominator is cleared. There are finitely many cones, so the denominators can be cleared simultaneously.</p>
+        <p>For one cone, arbitrary rational ray coefficients are values of a linear function precisely when its primitive ray generators are linearly independent. This is the simplicial condition. Invariant representatives reduce the test for all Weil divisors to this one. For a smooth cone, the primitive generators form part of a lattice basis, so arbitrary integer ray values extend to an element of <m>M</m>. The integral criterion gives the last assertion.</p>
+        <p>Conversely, if every invariant Weil divisor is Cartier, arbitrary integer coefficients on the rays of a fixed cone must satisfy its local criterion. Thus the pairing map <m>M\to\Z^{\sigma(1)}</m> is surjective. This surjection of free abelian groups splits. Its dual identifies the ray generators with a basis of a direct summand of <m>N</m>, so they extend to a lattice basis. The cone is smooth. This integral argument also explains why testing only over <m>\Q</m> detects simpliciality rather than smoothness.</p>
+      </proof>
+    </proposition>
+    <p>A nonsimplicial cone already has an obstruction over <m>\Q</m>, from linear relations between its rays. A simplicial nonsmooth cone can instead have an integrality obstruction. The two failures should be distinguished.</p>
+    <p>The support function retains a choice that the isomorphism class of the line bundle forgets. Replacing <m>D</m> by <m>D+\divisor(\chi^q)</m> replaces <m>\psi_D</m> by <m>\psi_D-\langle q,\ \rangle</m>. Multiplication by <m>\chi^{-q}</m> identifies the two divisorial sheaves as ordinary line bundles. It shifts their character labels. Thus a computation of a line bundle's torus weights must retain a chosen invariant representative, or equivalently the corresponding equivariant information, rather than just its Picard class.</p>
+    <proposition xml:id="toric-prop-cartier-pullback">
+      <title>Pullback follows the lattice map</title>
+      <statement>
+        <p>Let <m>f:X_{\Sigma_1}\to X_{\Sigma_2}</m> be the toric morphism defined by a compatible map <m>\varphi_N:N_1\to N_2</m>. For an invariant Cartier divisor <m>D</m> on the target, its Cartier pullback is defined, is invariant, and satisfies
+          <md number="no">\psi_{f^*D}=\psi_D\circ\varphi_{N,\R}.</md>
+          The associated line bundle is <m>f^*\mathcal O(D)=\mathcal O(f^*D)</m>. For a ray <m>\eta\in\Sigma_1(1)</m>, its coefficient in the pulled-back divisor is <m>-\psi_D(\varphi_N(u_\eta))</m>.</p>
+      </statement>
+      <proof>
+        <p>Choose a source cone <m>\tau</m> and a target cone <m>\sigma</m> containing <m>\varphi_N(\tau)</m>. A local equation for <m>D</m> is <m>\chi^{-m_\sigma}</m>. Pullback of characters changes this to <m>\chi^{-\varphi_M(m_\sigma)}</m>, a nonzero rational function since it is invertible on the source torus. Ratios of local equations remain units, so these equations define <m>f^*D</m>. Their inverse characters pull back the local frames of the line bundle, proving the sheaf identity.</p>
+        <p>On <m>\tau</m> the support function is therefore <m>\langle\varphi_M(m_\sigma),\ \rangle=\langle m_\sigma,\varphi_N(\ )\rangle</m>. This is the required composition. The ray coefficient formula follows from the sign convention. If another target cone can be chosen, the functions agree on its overlap, so the construction is independent of this choice.</p>
+      </proof>
+    </proposition>
+    <p>This pullback formula is for Cartier divisors, whose local equations can be pulled back. There is no automatic pullback operation on arbitrary Weil divisors along an arbitrary morphism. Even for a Cartier divisor, a restriction to a subvariety contained in its support must be made at the level of the line bundle rather than by restricting its vanishing local equation. A toric morphism avoids that latter problem for invariant divisors because it maps its dense torus into the target torus.</p>
+  </section>
+
+  <section xml:id="toric-divisors-canonical">
+    <title>The canonical divisor and the Gorenstein condition</title>
+    <p>A normal variety is regular in codimension one; over the perfect field <m>k</m>, these points are smooth. A nonzero rational top differential form has a well-defined order along each prime divisor. Its divisor is a canonical Weil divisor. Changing the form by a rational factor changes that divisor by a principal divisor, so its class is intrinsic.</p>
+    <theorem xml:id="toric-thm-canonical-divisor">
+      <title>The toric canonical divisor</title>
+      <statement><p>For a lattice basis <m>e_1,\ldots,e_n</m> and torus coordinates <m>z_i=\chi^{e_i}</m>, the rational form
+        <md number="no">\omega=\frac{dz_1}{z_1}\wedge\cdots\wedge\frac{dz_n}{z_n}</md>
+        has divisor
+        <md xml:id="toric-eq-canonical-divisor" number="yes">K_X=-\sum_{\rho\in\Sigma(1)}D_\rho.</md>
+        This formula holds in every characteristic.</p></statement>
+      <proof>
+        <p>The form is regular and nowhere zero on <m>T</m>. At the generic point of <m>D_\rho</m>, choose a basis adapted to the primitive vector as in the valuation proof. The form becomes, up to a nonzero constant,
+          <md number="no">\frac{dt}{t}\wedge\frac{dy_2}{y_2}\wedge\cdots\wedge\frac{dy_n}{y_n}.</md>
+          Here <m>dt\wedge dy_2\wedge\cdots\wedge dy_n</m> is a local frame on the smooth ray chart, and all <m>y_i</m> are units. The order along <m>t=0</m> is therefore <m>-1</m>.</p>
+        <p>A lattice basis change multiplies the logarithmic top form by a unimodular integer determinant, equal to <m>1</m> or <m>-1</m>. It is nonzero in every characteristic. Thus every boundary coefficient is <m>-1</m>, and no other coefficient occurs because the form is nowhere zero on the torus. In dimension zero the empty wedge is <m>1</m> and the divisor is zero.</p>
+      </proof>
+    </theorem>
+    <p>Compare <xref ref="bib-toric-cls" detail="Theorem 8.2.3"/>. The basis condition matters in positive characteristic: the differential of a nonprimitive character can vanish, whereas a unimodular change of coordinates never acquires zero determinant.</p>
+    <p>We use <term>Gorenstein</term> in its local-ring sense. Relating this to the canonical divisor requires an additional result: normal affine semigroup rings over a field are Cohen<ndash/>Macaulay. Hence normal toric varieties are Cohen<ndash/>Macaulay. We invoke Hochster's theorem for this assertion in arbitrary characteristic; see <xref ref="bib-toric-hochster"/> and <xref ref="bib-toric-cls" detail="Theorem 9.2.9"/> for a toric account.</p>
+    <p>A Cohen<ndash/>Macaulay variety over a field has a dualizing sheaf, and is Gorenstein exactly when that sheaf is invertible. On a normal variety this canonical sheaf is the rank-one reflexive sheaf <m>\mathcal O_X(K_X)</m>. These duality facts, beyond the existence of a canonical Weil divisor, justify the criterion below; see <xref ref="bib-toric-stacks" detail="Tag 0DW9"/> for the dualizing-complex formulation.</p>
+    <corollary xml:id="toric-cor-gorenstein-criterion">
+      <title>Height-one hyperplanes</title>
+      <statement><p>The variety <m>X_\Sigma</m> is Gorenstein exactly when every cone has an element <m>m_\sigma\in M</m> such that
+        <md number="no">\langle m_\sigma,u_\rho\rangle=1\qquad(\rho\in\sigma(1)).</md>
+        It is <m>\Q</m>-Gorenstein, meaning that <m>K_X</m> is <m>\Q</m>-Cartier, exactly when these elements can be chosen in <m>M_\Q</m>.</p></statement>
+      <proof><p>Insert the canonical coefficients <m>a_\rho=-1</m> into the integral and rational Cartier criteria. The Cohen<ndash/>Macaulay and duality facts identify the integral condition with Gorenstein local rings.</p></proof>
+    </corollary>
+    <p>For a full-dimensional affine cone, the rational height-one functional, if it exists, is unique. Its Cartier index is the smallest positive integer <m>r</m> for which <m>rm_\sigma\in M</m>. This records when <m>rK</m> becomes Cartier and is not a smoothness criterion.</p>
+  </section>
+
+  <section xml:id="toric-divisors-examples">
+    <title>Four computations of classes and local equations</title>
+    <example xml:id="toric-example-p2-divisors">
+      <title>Projective space in dimension two</title>
+      <p>The fan of <m>\P^2</m> has rays
+        <md number="no">u_1=(1,0),\qquad u_2=(0,1),\qquad u_3=(-1,-1),</md>
+        and maximal cones spanned by adjacent pairs. For <m>m=(p,q)</m>,
+        <md number="no">\delta(p,q)=pD_1+qD_2-(p+q)D_3.</md>
+        Thus <m>[D_1]=[D_2]=[D_3]=H</m> and <m>\Cl(\P^2)=\Z H</m>. Every adjacent pair is a lattice basis, so all divisors are Cartier and <m>\Pic(\P^2)=\Z H</m>.</p>
+      <p>For <m>D=D_3</m>, support-function data on the cones <m>12,23,31</m> are
+        <md number="no">m_{12}=(0,0),\qquad m_{23}=(1,0),\qquad m_{31}=(0,1).</md>
+        They give the required ray values <m>0,0,-1</m>. Their inverse characters are local divisor equations, and the characters themselves frame <m>\mathcal O(D_3)</m>. The canonical formula gives <m>[K_{\P^2}]=-3H</m>.</p>
+    </example>
+    <example xml:id="toric-example-quadric-class-group">
+      <title>A singular affine surface with two-torsion</title>
+      <p>In <m>N=\Z^2</m>, take <m>\sigma=\Cone((1,0),(1,2))</m>. Its dual semigroup is generated by <m>(0,1),(1,0),(2,-1)</m>, giving
+        <md number="no">U_\sigma=\Spec k[x,y,z]/(xz-y^2),\qquad x=\chi^{(0,1)},\quad y=\chi^{(1,0)},\quad z=\chi^{(2,-1)}.</md>
+        To check generation, a lattice pair <m>(p,q)</m> is in the dual cone when <m>p\geq0</m> and <m>p+2q\geq0</m>. If <m>q\geq0</m>, use <m>(1,0)</m> and <m>(0,1)</m>. If <m>q&lt;0</m>, subtract <m>-q</m> copies of <m>(2,-1)</m>, leaving a nonnegative multiple of <m>(1,0)</m>.</p>
+      <p>The displayed equation is the full relation ideal, rather than just one relation. Modulo <m>xz-y^2</m>, every monomial reduces to one of <m>x^iy^j</m> with <m>i,j\geq0</m>, or <m>y^jz^\ell</m> with <m>j\geq0</m> and <m>\ell\geq1</m>. Their lattice exponents are, respectively, <m>(j,i)</m> and <m>(j+2\ell,-\ell)</m>. All are distinct: the first list has nonnegative second coordinate, while the second has negative second coordinate. Their images in the semigroup algebra are linearly independent. Thus no further relation remains, proving the coordinate-ring presentation over every field.</p>
+      <p>With boundary divisors ordered by the rays,
+        <md number="no">\divisor(x)=2D_2,\qquad\divisor(y)=D_1+D_2,\qquad\divisor(z)=2D_1.</md>
+        Thus <m>\delta(p,q)=(p,p+2q)</m>. Its cokernel is <m>\Z/2\Z</m>, generated by <m>[D_1]</m>, with <m>[D_2]=-[D_1]</m>. The Cartier equations for <m>D_1</m> require <m>p=-1</m> and <m>p+2q=0</m>, forcing <m>q=1/2</m>. So <m>D_1</m> is not Cartier, whereas <m>2D_1=\divisor(z)</m>. Here <m>\Pic(U_\sigma)=0</m> is strictly smaller than <m>\Cl(U_\sigma)</m>.</p>
+      <p>The functional <m>(1,0)</m> has value <m>1</m> on both rays. The surface is Gorenstein and <m>K=-D_1-D_2=-\divisor(y)</m> is principal. It is still singular at the origin: the local dimension is two, but its maximal ideal requires the three generators <m>x,y,z</m>, because the relation has no linear term. These computations, including the class group, hold in characteristic two. No quotient by an étale group is being assumed.</p>
+      <p>Deleting the closed orbit gives a further useful comparison. Its fan consists of the two rays and the zero cone, with the two-dimensional cone removed. This open surface is smooth, since each ray is primitive and its charts are <m>\A^1\times\Gm</m>. Its ray matrix is unchanged, so its class group is still <m>\Z/2\Z</m>. Now every Weil divisor is Cartier, hence its Picard group is <m>\Z/2\Z</m> as well. Thus smoothness does not make the Picard group torsion-free for a noncomplete toric variety. The affine cone and its punctured surface have the same class group but different Cartier subgroups.</p>
+    </example>
+    <example xml:id="toric-example-p1-times-torus-divisors">
+      <title>A nonzero character in the kernel</title>
+      <p>The fan with rays <m>(1,0)</m> and <m>(-1,0)</m> in <m>\Z^2</m> gives <m>\P^1\times\Gm</m>. Its maximal cones have dimension one, while the variety has dimension two. For its two boundary divisors,
+        <md number="no">\delta(p,q)=pD_+-pD_-.</md>
+        The subgroup <m>\Z(0,1)</m> is the kernel, corresponding to the global units in the second coordinate, modulo constants.</p>
+      <p>The cokernel is <m>\Z H</m>, with <m>H=[D_+]=[D_-]</m>. The cones are smooth, so <m>\Pic(X)=\Cl(X)=\Z H</m>, and <m>[K_X]=-2H</m>. An initial zero in the character-to-divisor sequence would therefore give an incorrect statement even in this smooth example.</p>
+    </example>
+    <example xml:id="toric-example-hirzebruch-divisors">
+      <title>Hirzebruch surfaces before intersection theory</title>
+      <p>For <m>a\in\N</m>, use the cyclic rays
+        <md number="no">u_1=(1,0),\quad u_2=(0,1),\quad u_3=(-1,a),\quad u_4=(0,-1),</md>
+        with maximal cones spanned by adjacent pairs. This is the Hirzebruch fan. Every adjacent determinant is <m>1</m>, so all Weil divisors on <m>\mathbb F_a</m> are Cartier. The character relations are
+        <md number="no">D_1-D_3\sim0,\qquad D_2+aD_3-D_4\sim0.</md>
+        They give <m>\Pic(\mathbb F_a)=\Cl(\mathbb F_a)\cong\Z^2</m>. Set <m>F=[D_1]=[D_3]</m> and <m>S=[D_2]</m>; then <m>[D_4]=S+aF</m>.</p>
+      <p>The projection <m>N\to\Z</m>, <m>(p,q)\mapsto p</m>, is compatible with the fan of <m>\P^1</m> and defines the ruling. The divisors <m>D_1,D_3</m> are its two invariant fibers, and the quotient fans show that <m>D_2,D_4</m> map isomorphically to the base. This explains the notation without presupposing intersection numbers.</p>
+      <p>For <m>D_2</m>, the support data on cones <m>12,23,34,41</m> are
+        <md number="no">(0,-1),\qquad(-a,-1),\qquad(0,0),\qquad(0,0).</md>
+        They agree on common rays and give value <m>-1</m> on <m>u_2</m>. The parameter <m>a</m> is already visible in the transition characters, although the abstract Picard group is always <m>\Z^2</m>. Summing the boundary classes yields
+        <md number="no">[K_{\mathbb F_a}]=-2S-(a+2)F.</md>
+        Positivity and intersection numbers will require the additional constructions of the next chapters; none has been used here.</p>
+    </example>
+  </section>
+
+  <section xml:id="toric-divisors-working-route">
+    <title>Using the dictionary</title>
+    <p>A divisor calculation now has a definite order. Assemble the integer matrix whose rows are the primitive ray generators; its cokernel gives the class group and its kernel records global units. Solve the local pairing equations on maximal cones to select Cartier classes. Their support functions retain local data forgotten by the abstract class group. The boundary sum gives a canonical representative, and the height-one equations test its Cartier index.</p>
+    <p>These operations use different information. The class group depends on the rays and their lattice, while the Cartier subgroup also depends on which rays lie together in cones. The next chapter adds inequalities and lattice points to recover sections and positivity. Keeping the local equations, global class, and sheaf distinct is what makes that further translation reliable.</p>
+  </section>
+</chapter>

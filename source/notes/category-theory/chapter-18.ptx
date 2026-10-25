@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="cat-lawvere-theories">
+  <title>Lawvere theories and finitary monads</title>
+  <introduction>
+    <p>A group law consists of operations on a set and equations between their composites. A Lawvere theory records all the resulting operations, including projections and substitution, in an ordinary category with finite products. A finitary monad records the free algebra on each set. The correspondence between these descriptions explains why finite products and sifted colimits occur together in algebra.</p>
+    <p>We use the monads and free algebras of <xref ref="cat-monads"/>, the element-category formula of <xref ref="cat-c08-prop-elements-coend"/>, and the set-theoretic commutation results of <xref ref="cat-filtered-cofinal"/>. Borceux's <xref ref="bib-cat-borceux2" detail="Chapter 3"/> treats algebraic theories systematically. The definitions and correspondence used here are also stated in <xref ref="bib-cat-garner-lawvere" detail="Sections 4.1, 4.3 and Proposition 5.4"/>; our constructions below use ordinary categories.</p>
+  </introduction>
+
+  <section xml:id="cat-c18-theories-models">
+    <title>Operations as arrows</title>
+    <p>Let <m>\mathsf{Fin}</m> be the <m>\U</m>-small category of finite cardinals <m>\underline n=\{0,\ldots,n-1\}</m> and all functions. Its opposite has finite products: the product of the objects <m>n</m> and <m>m</m> is <m>n+m</m>, and <m>0</m> is terminal. We use natural numbers as object labels, distinguishing them from their finite sets when a function is written explicitly.</p>
+    <definition xml:id="cat-c18-def-theory-model">
+      <title>Lawvere theories and models</title>
+      <idx>Lawvere theory</idx><idx>Algebraic theory</idx><idx>Model of a Lawvere theory</idx>
+      <statement>
+        <p>A Lawvere theory is a <m>\U</m>-small category <m>\mathbb L</m> with object set <m>\N</m>, together with an identity-on-objects functor <m>j:\mathsf{Fin}^{\op}\to\mathbb L</m> preserving finite products. Thus the arrows <m>p_i:n\to1</m> obtained from the singleton inclusions exhibit <m>n</m> as the chosen <m>n</m>-fold product of <m>1</m>, and <m>0</m> is terminal.</p>
+        <p>A morphism of theories <m>H:\mathbb L\to\mathbb L'</m> satisfies <m>Hj=j'</m>. A set-valued model is a finite-product-preserving functor <m>M:\mathbb L\to\Set_\U</m>. Model morphisms are natural transformations. We denote their category by <m>\operatorname{Mod}_\U(\mathbb L)</m>, and its evaluation at <m>1</m> by <m>U_{\mathbb L}</m>.</p>
+      </statement>
+    </definition>
+    <p>The product projections give a specified comparison bijection <m>M(n)\cong M(1)^{\underline n}</m>. An arrow <m>t:n\to1</m> therefore acts as an <m>n</m>-ary operation on the carrier <m>M(1)</m>. Every arrow <m>n\to m</m> is uniquely a tuple of <m>m</m> such operations. Composition is simultaneous substitution. Arrows <m>0\to1</m> are constants, and the unique arrow <m>n\to0</m> expresses the empty tuple.<fn>The object label <m>1</m> denotes the carrier sort, not a singleton carrier. The functor <m>j</m> need not be faithful: equations may identify structural operations such as different projections. Requiring faithfulness would exclude such theories.</fn></p>
+    <p>For a model morphism <m>\alpha:M\Rightarrow N</m>, naturality for the projections determines <m>\alpha_n</m> from <m>\alpha_1</m>. Under the comparison bijections, it is the power <m>\alpha_1^{\underline n}</m>. Naturality for <m>t:n\to1</m> says exactly that <m>\alpha_1</m> preserves that operation. Consequently <m>U_{\mathbb L}</m> is faithful and reflects isomorphisms.</p>
+    <p>These are single-sorted finitary theories. There may be infinitely many operations and equations; finitary refers to the finite number of arguments of each operation.<fn>A many-sorted theory replaces powers of one carrier by finite products of several specified sorts. A finite-limit theory allows finite-limit conditions, for example the domain of a partially defined composition operation. These are different choices of categorical structure, not alternate names for the definition above. A Lawvere theory need not have a presentation with finitely many symbols or equations.</fn></p>
+  </section>
+
+  <section xml:id="cat-c18-examples">
+    <title>Groups and commutative rings</title>
+    <example xml:id="cat-c18-example-algebraic">
+      <p>Let <m>G_n</m> be the free group on <m>\underline n</m>. The group theory has
+        <md number="no">\mathbb L_{\mathrm{grp}}(n,m)=\Hom_{\Grp}(G_m,G_n).</md>
+        An arrow is an <m>m</m>-tuple of group words in <m>n</m> variables. Its interpretation in a group substitutes group elements for those variables. The arrows for multiplication, inverse, and the identity element satisfy the group equations. Conversely, a model interprets those three arrows as operations satisfying the same equations and therefore defines a group. Every word is a composite of those operations and projections, so the two constructions give an equivalence with <m>\Grp_\U</m> compatible with underlying sets. The object <m>0</m> represents the trivial free group; it remains the terminal object of the theory.</p>
+      <p>For commutative unital rings, let <m>R_n=\Z[x_0,\ldots,x_{n-1}]</m>. Then
+        <md number="no">\mathbb L_{\mathrm{cring}}(n,m)=\Hom_{\CRing}(R_m,R_n)\cong R_n^{\underline m}.</md>
+        Composition substitutes polynomials. The models are commutative unital rings, with the zero ring allowed, and their morphisms are unital homomorphisms. Constants form <m>\mathbb L_{\mathrm{cring}}(0,1)\cong\Z</m>: in each ring model the integer <m>k</m> acts as <m>k\cdot1</m>. The polynomial description includes all consequences of the ring equations, rather than only a chosen list of generating operations.</p>
+    </example>
+    <p>The reversal of the homomorphisms between free algebras is essential. A homomorphism <m>G_m\to G_n</m> specifies <m>m</m> words that can be evaluated on an <m>n</m>-tuple. Evaluation thus goes from the <m>n</m>th power of the carrier to its <m>m</m>th power. For the theory <m>\mathsf{Fin}^{\op}</m> itself, the only operations select variables, and its model category is equivalent to <m>\Set_\U</m>.</p>
+  </section>
+
+  <section xml:id="cat-c18-free-models">
+    <title>Free models</title>
+    <p>For each <m>n</m>, the covariant representable <m>R^n=\Hom_{\mathbb L}(n,-)</m> preserves products and is a model. Yoneda and the product comparison give
+      <md number="no">\Hom_{\operatorname{Mod}_\U(\mathbb L)}(R^n,M)\cong M(n)\cong\Hom_{\Set}(\underline n,U_{\mathbb L}M).</md>
+      Thus <m>R^n</m> is free on <m>n</m> generators. The comparison respects changes of variables: a function <m>f:\underline n\to\underline m</m> induces <m>R^n\to R^m</m> by precomposition with <m>j(f^{\op}):m\to n</m>.</p>
+    <proposition xml:id="cat-c18-prop-free-model">
+      <statement>
+        <p>The functor <m>U_{\mathbb L}</m> has a left adjoint <m>F_{\mathbb L}</m>. For <m>X\in\U</m>, it can be computed pointwise by
+          <md number="no">F_{\mathbb L}(X)(k)=\operatorname{colim}_{(\underline n,u)\in(\mathsf{Fin}\downarrow X)}\mathbb L(n,k).</md>
+          The induced monad <m>T_{\mathbb L}=U_{\mathbb L}F_{\mathbb L}</m> is finitary, with a natural coend formula
+          <md number="no">T_{\mathbb L}(X)\cong\int^{\underline n\in\mathsf{Fin}}X^{\underline n}\times\mathbb L(n,1).</md>
+        </p>
+      </statement>
+      <proof>
+        <p>The category <m>(\mathsf{Fin}\downarrow X)</m> is <m>\U</m>-small and filtered, and its diagram of finite sets has colimit <m>X</m>, as proved in <xref ref="cat-c09-colim-prop-finitary-sets"/>. Apply the preceding change-of-variables maps to obtain a diagram of the models <m>R^n</m>. Its pointwise colimit is again a model by <xref ref="cat-c06-sifted-prop-product-models"/>. Each value belongs to <m>\U</m>. Denote this model by <m>F_{\mathbb L}(X)</m>.</p>
+        <p>A model map out of this colimit is a compatible family of maps <m>R^n\to M</m>, one for each <m>u:\underline n\to X</m>. Under Yoneda these are functions <m>\underline n\to U_{\mathbb L}M</m>, compatible with every change of variables over <m>X</m>. Since the finite sets in that diagram have colimit <m>X</m>, this is exactly one function <m>X\to U_{\mathbb L}M</m>. All comparisons commute with model maps. Postcomposition <m>X\to Y</m> gives a functor between the comma categories and hence the induced map of free models. The bijection is therefore natural in both variables and proves the adjunction.</p>
+        <p>At <m>k=1</m>, the element-category formula for a coend gives the displayed formula, using the presheaf <m>\underline n\mapsto X^{\underline n}</m>. Here <m>\underline n\mapsto\mathbb L(n,1)</m> is covariant on <m>\mathsf{Fin}</m> through the change-of-variables maps. The finite-power functors preserve filtered colimits of sets. Products with the fixed sets <m>\mathbb L(n,1)</m> preserve colimits, and small coends commute with small colimits. Thus the formula makes <m>T_{\mathbb L}</m> preserve filtered colimits, including diagrams whose colimit is empty.</p>
+      </proof>
+    </proposition>
+    <p>A representative of a free element is a pair consisting of a finite tuple of elements of <m>X</m> and an operation <m>n\to1</m>. The coend identifies two representatives whenever one is obtained from the other by a change of finite variables. Equations in the theory have already been imposed in the hom sets of <m>\mathbb L</m>. The adjunction unit inserts a generator as the corresponding variable; the monad multiplication evaluates an operation whose arguments are themselves free elements by substitution.<fn>For <m>X=\varnothing</m>, the comma category has only <m>(\underline0,!)</m>, so <m>T_{\mathbb L}(\varnothing)\cong\mathbb L(0,1)</m>. This can be empty, as for the theory of sets, or nonempty, as for groups and rings. Nullary operations are therefore part of the construction.</fn></p>
+  </section>
+
+  <section xml:id="cat-c18-from-monads">
+    <title>The theory of a finitary monad</title>
+    <p>Let <m>(T,\eta,\mu)</m> be a finitary monad on <m>\Set_\U</m>. Define a category with object set <m>\N</m> by
+      <md number="no">\mathbb L_T(n,m)=\Hom_{\Set}(\underline m,T(\underline n)).</md>
+      If <m>u:n\to m</m> and <m>v:m\to k</m> are represented by functions <m>u:\underline m\to T(\underline n)</m> and <m>v:\underline k\to T(\underline m)</m>, their composite is represented by
+      <md number="no">\underline k\xrightarrow{v}T(\underline m)\xrightarrow{T(u)}T^2(\underline n)\xrightarrow{\mu_{\underline n}}T(\underline n).</md>
+      The identity at <m>n</m> is <m>\eta_{\underline n}</m>. These are the opposite of the Kleisli composition laws in <xref ref="cat-c09-def-kleisli"/>, restricted to finite cardinals.</p>
+    <proposition xml:id="cat-c18-prop-monad-theory">
+      <statement>
+        <p>The category <m>\mathbb L_T</m> is a Lawvere theory. Every <m>T</m>-algebra <m>(A,a)</m> defines a model <m>M_{A,a}</m>, whose values are <m>A^{\underline n}</m> and whose operation associated with <m>u:\underline m\to T(\underline n)</m> sends a tuple <m>x:\underline n\to A</m> to
+          <md number="no">a\,T(x)\,u:\underline m\to A.</md>
+          This construction gives an equivalence <m>\Set_\U^T\simeq\operatorname{Mod}_\U(\mathbb L_T)</m> compatible with evaluation at <m>1</m> up to the canonical singleton-power bijection.</p>
+      </statement>
+      <proof>
+        <p>For a function <m>f:\underline m\to\underline n</m>, define <m>j(f^{\op})</m> by <m>\eta_{\underline n}f</m>. The monad laws make <m>j</m> a functor. The function-set bijection
+          <md number="no">\mathbb L_T(r,n+m)\cong\mathbb L_T(r,n)\times\mathbb L_T(r,m)</md>
+          has components induced by the two coproduct inclusions. These are the designated product projections. The set <m>\mathbb L_T(r,0)</m> is a singleton, so the terminal object is included. All hom sets and the total encoding are <m>\U</m>-small.</p>
+        <p>The algebra unit law interprets structural arrows as variable selections. Naturality of <m>\mu</m> and the algebra associativity law identify interpretation of a Kleisli composite with successive interpretation. An algebra map acts on tuples by its finite powers, so the displayed construction is functorial. The equivalence with all models is the model part of <xref ref="bib-cat-garner-lawvere" detail="Proposition 5.4"/>. Its inverse can be described concretely: put <m>A=M(1)</m> and interpret <m>t\in T(\underline n)=\mathbb L_T(n,1)</m> on every tuple <m>x:\underline n\to A</m>. The finite presentation
+          <md number="no">T(A)\cong\operatorname{colim}_{(\underline n,x)\in(\mathsf{Fin}\downarrow A)}T(\underline n)</md>
+          makes these interpretations a map <m>T(A)\to A</m>. Compatibility with changes of variables makes it well-defined. Variable selection gives the unit law, and interpretation of substitution gives the algebra associativity law. The product comparisons recover <m>M</m> up to natural isomorphism.</p>
+      </proof>
+    </proposition>
+    <p>The same finite Kleisli construction exists for any monad on sets. Finitariness is used in recovering the entire algebra action from its operations on finite tuples. It states exactly that the displayed finite presentation computes <m>T(A)</m>. The powerset monad of <xref ref="cat-c09-colim-example-powerset"/> illustrates why that assumption cannot be dropped: its restrictions to finite sets record finite unions, whereas its algebras must interpret arbitrary joins.</p>
+  </section>
+
+  <section xml:id="cat-c18-correspondence">
+    <title>The correspondence and colimits of models</title>
+    <theorem xml:id="cat-c18-thm-correspondence">
+      <statement>
+        <p>The constructions <m>\mathbb L\mapsto T_{\mathbb L}</m> and <m>T\mapsto\mathbb L_T</m> give an equivalence between Lawvere theories and finitary monads on <m>\Set_\U</m>. For each theory, the free-model adjunction is monadic, so
+          <md number="no">\operatorname{Mod}_\U(\mathbb L)\simeq\Set_\U^{T_{\mathbb L}}.</md>
+          Small limits and small sifted colimits of models exist and are computed pointwise; evaluation at <m>1</m> preserves them.</p>
+      </statement>
+      <proof>
+        <p>For monadicity, apply <xref ref="cat-c09-thm-beck"/>. Evaluation reflects isomorphisms. For a pair of model maps whose evaluated pair has a split coequalizer, apply each finite-power functor to that split fork. Split coequalizers are absolute by <xref ref="cat-c09-prop-split-absolute"/>, so the coequalizers at the objects <m>n</m> are the finite powers of the evaluated coequalizer. The pointwise coequalizer is therefore a model, and evaluation preserves it. These are precisely Beck's remaining hypotheses.</p>
+        <p>The finite-set presentation of a finitary functor gives <m>T_{\mathbb L_T}\cong T</m>, naturally on all sets. The unit and multiplication agree because their finite operations are variable insertion and Kleisli substitution. Conversely, the free model on <m>\underline n</m> is <m>R^n</m>, so
+          <md number="no">\mathbb L_{T_{\mathbb L}}(n,m)\cong\mathbb L(n,1)^{\underline m}\cong\mathbb L(n,m).</md>
+          The adjunction unit sends the <m>i</m>th generator to the original projection <m>p_i:n\to1</m>. Thus a structural arrow represented by <m>f:\underline m\to\underline n</m> maps to the tuple <m>(p_{f(i)})_{i\in\underline m}</m>, which is the original <m>j(f^{\op})</m>. Monad multiplication is substitution, so the bijections also preserve composition. They are therefore isomorphisms of theories respecting the specified <m>j</m>.</p>
+        <p>A map of theories induces a map between the coend formulas for their monads. A monad morphism <m>\alpha:T\Rightarrow S</m> induces the theory map <m>u\mapsto\alpha_{\underline n}u</m> on <m>\mathbb L_T(n,m)</m>. The unit and multiplication compatibilities are exactly preservation of variables and substitution. This makes the two comparisons natural and gives the stated equivalence; compare <xref ref="bib-cat-garner-lawvere" detail="Proposition 5.4"/>.<fn>Here a monad morphism is a natural transformation satisfying <m>\alpha_X\eta_X^T=\eta_X^S</m> and <m>\alpha_X\mu_X^T=\mu_X^S S(\alpha_X)\alpha_{TX}</m>. Its direction agrees with the map of theories. Restriction of models along a theory map goes in the reverse direction.</fn></p>
+        <p>For limits, form the pointwise limit in the functor category. Limits of sets commute with finite products, so the resulting functor is a model. Sifted colimits are pointwise by <xref ref="cat-c06-sifted-prop-product-models"/>. Fullness of the model subcategory retains the corresponding universal properties.</p>
+      </proof>
+    </theorem>
+    <p>Thus the finite-product formulation and the monad formulation impose the same algebraic structure on sets. The former lists finite operations and their substitutions; the latter evaluates all formal expressions on an arbitrary set of generators. Their common colimits include filtered colimits and reflexive coequalizers. In an algebra presentation, these permit finite data to be represented at stages and relations to be imposed through quotient maps.<fn>A general model preserves products by comparison isomorphisms; its value at <m>n</m> need not literally equal a chosen power of its carrier. One can normalize these values using those comparisons. The equivalences above allow these choices and assert natural isomorphism, rather than equality of functors or a literal bijection of model objects.</fn></p>
+  </section>
+
+  <section xml:id="cat-c18-internal-models">
+    <title>Models in a category with finite products</title>
+    <definition xml:id="cat-c18-def-internal-model">
+      <title>Internal model</title>
+      <idx>Internal model</idx><idx>Group object</idx>
+      <statement>
+        <p>Let <m>\mathcal C</m> have finite products. A model of <m>\mathbb L</m> in <m>\mathcal C</m> is a finite-product-preserving functor <m>\mathbb L\to\mathcal C</m>, with natural transformations as morphisms. We denote this category by <m>\operatorname{Mod}(\mathbb L,\mathcal C)</m>.</p>
+      </statement>
+    </definition>
+    <p>A group model has a carrier <m>A</m>, multiplication <m>A\times A\to A</m>, inverse <m>A\to A</m>, and unit <m>1_{\mathcal C}\to A</m>. The group laws are equalities of arrows, with diagonals and projections expressing repeated or omitted variables. This is a group object in <m>\mathcal C</m>. For <m>\mathcal C=\Set_\U/B</m>, such a model is a family of groups indexed by <m>B</m>: products in the slice are fiber products, so every group operation is performed within a fiber.</p>
+    <p>Precomposition with a theory map restricts models. Postcomposition with a finite-product-preserving functor <m>\mathcal C\to\mathcal D</m> sends models to models. Only the finite powers of the carrier, including its zeroth power, enter these descriptions. The same definition consequently works when <m>\mathcal C</m> has all finite powers, using power preservation; this is the formulation in <xref ref="bib-cat-garner-lawvere" detail="Section 6"/>. For a fixed carrier, the required powers alone suffice to interpret its operations.</p>
+    <p>The free-model and colimit assertions above concern set-valued models. In another category, free models require their own existence hypotheses. The definition of an internal model itself needs only the indicated finite products, so it remains useful before any such adjoint is constructed.</p>
+  </section>
+</chapter>

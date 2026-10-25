@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="hkg-automorphisms">
+  <title>Automorphisms, cones, and dynamics</title>
+  <introduction>
+    <p>Throughout this chapter, <m>X</m> is an IHS manifold of dimension <m>2n</m>. An automorphism preserves its integral BBF form, its Hodge decomposition, and its Kähler cone. These three conditions explain both the rigidity of polarized automorphisms and the possibility of infinite groups when the cone has an infinite symmetry group. We first relate automorphisms to cohomology, then study the cone action and the growth of iterates.</p>
+  </introduction>
+  <section xml:id="hkg-automorphism-cohomology">
+    <title>The action on second cohomology</title>
+    <p>For a complex manifold <m>X</m>, write <m>\Aut(X)</m> for its biholomorphic automorphisms and <m>\Bir(X)</m> for its bimeromorphic self-maps. The latter are holomorphic on dense open subsets and need not be holomorphic everywhere. For IHS manifolds their action on <m>H^2</m> was described in <xref ref="hkg-birational-identification"/>.</p>
+    <p>Pullback reverses composition: <m>(f\circ g)^*=g^*f^*</m>. Thus the homomorphism associated to the left action of <m>\Aut(X)</m> is
+      <md number="no">\rho_2:\Aut(X)\longrightarrow O(H^2(X,\Z),q_X),
+        \qquad f\longmapsto(f^{-1})^*.</md>
+      We also use <m>f^*</m> when studying an individual automorphism. The image subgroup is the same with either convention. We use the same inverse-pullback convention for the action of <m>\Bir(X)</m> on <m>H^2(X,\Z)</m> and on <m>\NS(X)</m>.</p>
+    <proposition xml:id="hkg-polarized-automorphisms-finite">
+      <statement><p>Let <m>\alpha\in\mathcal K_X</m>. The group
+        <m>\Aut(X,\alpha)=\{f\in\Aut(X):f^*\alpha=\alpha\}</m>
+        is finite. In particular, <m>\ker\rho_2</m> is finite.</p></statement>
+      <proof><p>The Calabi–Yau theorem gives a unique Ricci-flat Kähler metric <m>g_\alpha</m> in the class <m>\alpha</m>. For <m>f\in\Aut(X,\alpha)</m>, its pullback is another such metric, so <m>f^*g_\alpha=g_\alpha</m>. The group in question is therefore the group of isometries of <m>g_\alpha</m> preserving the complex structure. It is a closed subgroup of the compact Lie group of isometries of a compact Riemannian manifold.</p>
+        <p>Contraction with <m>\sigma</m> gives <m>T_X\cong\Omega_X^1</m>, and <m>H^0(X,\Omega_X^1)=0</m>. Hence <m>H^0(X,T_X)=0</m>. The Lie algebra of the closed subgroup is zero: its elements are real holomorphic Killing fields, whose <m>(1,0)</m> parts are holomorphic vector fields. A compact Lie group of dimension zero is finite. The kernel of <m>\rho_2</m> fixes <m>\alpha</m>, so it is a subgroup of this finite group.</p></proof>
+    </proposition>
+    <p>The differential-geometric facts about isometry groups used here are the Myers–Steenrod theorem and compactness of the isometry group for a compact manifold. The uniqueness of the Ricci-flat metric is the geometric reason a fixed Kähler class gives a finite group.</p>
+    <corollary xml:id="hkg-picard-one-automorphisms">
+      <statement><p>If <m>X</m> is projective with <m>\rho(X)=1</m>, then <m>\Aut(X)</m> is finite.</p></statement>
+      <proof><p>The primitive integral generator of the ample ray is fixed by every automorphism. Apply <xref ref="hkg-polarized-automorphisms-finite"/> to its Kähler class.</p></proof>
+    </corollary>
+    <corollary xml:id="hkg-automorphism-torelli-image">
+      <statement><p>Assume <m>b_2(X)\geq5</m>. The image of <m>\rho_2</m> consists of the Hodge monodromy isometries preserving <m>\mathcal K_X</m>. Equivalently, a Hodge monodromy isometry is induced by an automorphism if it takes some Kähler class to a Kähler class.</p></statement>
+      <proof><p>An automorphism acts by a Hodge isometry and preserves the Kähler cone. Its action is also a monodromy operator: for <m>f\in\Aut(X)</m>, the quotient of <m>X\times\mathbb C</m> by <m>(x,z)\sim(f(x),z+1)</m> is a proper, locally trivial holomorphic family over <m>\mathbb C/\mathbb Z\cong\mathbb C^*</m>. Along the loop lifted by <m>z=t</m>, <m>0\leq t\leq1</m>, cohomological parallel transport is <m>f^*</m>. Thus <m>f^*\in\Mon^2(X)</m>.</p>
+        <p>Conversely, apply <xref ref="hkg-theorem-strong-torelli"/> with source and target both equal to <m>X</m>. A Hodge monodromy isometry <m>g</m> taking a Kähler class to a Kähler class has the form <m>g=f^*</m> for an automorphism <m>f</m>. Thus <m>g=\rho_2(f^{-1})</m>, proving the asserted description of the image.</p></proof>
+    </corollary>
+    <example xml:id="hkg-kummer-trivial-second-action">
+      <p>Let <m>n\geq2</m>, let <m>m=n+1</m>, and consider <m>K_n(A)\subset A^{[m]}</m>. Translation by <m>a\in A[m]</m> preserves the zero-sum fiber, since the sum changes by <m>ma=0</m>. It acts trivially on the <m>H^2(A,\Z)</m> summand of <m>H^2(K_n(A),\Z)</m> and fixes the exceptional class <m>\delta</m>; see <xref ref="hkg-eq-kummer-lattice"/>. Thus it acts trivially on <m>H^2(K_n(A),\Z)</m>.</p>
+      <p>A nonzero translation acts nontrivially on <m>K_n(A)</m>: choose a reduced zero-sum configuration of <m>m</m> points that is not invariant under it. Such configurations exist, since translation-invariant configurations are unions of orbits of the nonzero torsion point and form a proper subset of the zero-sum configuration space. This gives concrete nonidentity elements of <m>\ker\rho_2</m>. They are symplectic, because translation preserves the surface symplectic form and its induced form on the Hilbert scheme.</p>
+    </example>
+  </section>
+  <section xml:id="hkg-finite-symplectic-actions">
+    <title>Finite-order automorphisms</title>
+    <definition xml:id="hkg-def-symplectic-automorphism">
+      <statement><p>An automorphism <m>f</m> is <em>symplectic</em> if <m>f^*\sigma=\sigma</m>, and <em>non-symplectic</em> otherwise. Every automorphism acts on <m>H^{2,0}(X)=\C\sigma</m> by a scalar. For a finite-order automorphism this scalar is a root of unity.<fn>A finite-order automorphism is called <em>purely non-symplectic</em> when the order of its scalar on <m>H^{2,0}</m> equals the order of the automorphism. Non-symplecticity alone does not require equality of these orders.</fn></p></statement>
+    </definition>
+    <proposition xml:id="hkg-finite-symplectic-fixed-locus">
+      <statement><p>The fixed locus of a finite-order symplectic automorphism is a disjoint union of smooth holomorphic symplectic submanifolds. Its components have even dimension. A nonidentity symplectic automorphism of finite order has no fixed divisor.</p></statement>
+      <proof><p>Let <m>x</m> be fixed, let the automorphism have order <m>r</m>, and write <m>A=df_x</m>. Start with local coordinates <m>z</m> centered at <m>x</m> and shrink to a neighborhood on which all iterates are defined. The averaged coordinates
+        <md number="no">\Phi=\frac1r\sum_{j=0}^{r-1}A^{-j}(z\circ f^j)</md>
+        have derivative the identity at <m>x</m> and satisfy <m>\Phi\circ f=A\Phi</m>. The inverse-function theorem gives local coordinates in which the fixed locus is the linear subspace <m>\ker(A-1)</m>. It is therefore smooth.</p>
+        <p>For a nonzero fixed vector <m>v</m>, choose <m>w</m> with <m>\sigma(v,w)\ne0</m>. Averaging <m>w</m> under <m>A</m> gives a fixed vector <m>\bar w</m> with the same pairing, since <m>A</m> preserves <m>\sigma</m> and fixes <m>v</m>. Thus the restriction of <m>\sigma</m> to the fixed tangent space is nondegenerate. Every component has even dimension and hence even codimension. A divisor would have odd codimension. A component of codimension zero would imply that <m>f</m> is the identity on an open set and hence on <m>X</m>.</p></proof>
+    </proposition>
+    <p>For a finite group of symplectic automorphisms, the same averaging argument works with the whole group. Averaging a Kähler class also gives a group-invariant Kähler class; its Ricci-flat metric is invariant. Thus a finite symplectic action can be studied using a single invariant hyperkähler metric. Its fixed submanifolds need not be IHS: simple connectedness and the dimension of their spaces of two-forms require separate arguments.</p>
+    <corollary xml:id="hkg-nonsymplectic-fixed-locus">
+      <statement><p>Every component of the fixed locus of a finite-order non-symplectic automorphism is a smooth isotropic submanifold. Its dimension is at most <m>n</m>; a component of dimension <m>n</m> is Lagrangian.</p></statement>
+      <proof><p>The averaged-coordinate proof in <xref ref="hkg-finite-symplectic-fixed-locus"/> proves smoothness for any finite-order automorphism. Write <m>f^*\sigma=\zeta\sigma</m> with <m>\zeta\ne1</m>, and let <m>F</m> be a fixed component. Restricting to <m>F</m>, where <m>f</m> is the identity, gives <m>\sigma|_F=\zeta\sigma|_F</m>, so <m>\sigma|_F=0</m>. An isotropic subspace of a symplectic vector space of dimension <m>2n</m> has dimension at most <m>n</m>, with equality exactly for Lagrangian subspaces.</p></proof>
+    </corollary>
+  </section>
+  <section xml:id="hkg-cone-conjecture">
+    <title>Fundamental domains for the cone action</title>
+    <p>Assume in this section that <m>X</m> is projective, and let <m>N=\NS(X)</m>. The BBF form on <m>N_\R</m> has signature <m>(1,\rho(X)-1)</m>. In the notation of <xref ref="hkg-cones"/>, the nef and closed movable cones are cones in this real vector space.</p>
+    <definition xml:id="hkg-def-rational-hull-cones">
+      <statement><p>Define
+        <md number="no">\operatorname{Nef}^+(X)=
+          \operatorname{cone}\bigl(\operatorname{Nef}(X)\cap N_\Q\bigr),
+          \qquad
+          \operatorname{Mov}^+(X)=
+          \operatorname{cone}\bigl(\overline{\operatorname{Mov}}(X)\cap N_\Q\bigr).</md>
+        Here <m>\operatorname{cone}(S)</m> means the set of finite nonnegative real linear combinations of elements of <m>S</m>. These cones contain the respective interiors and the rationally generated part of their boundary; they need not be closed.</p>
+        <p>A <em>rational polyhedral cone</em> is generated by finitely many vectors of <m>N_\Q</m>. For a group <m>\Gamma</m> acting on a cone <m>C</m>, a cone <m>\Pi\subset C</m> is a <em>fundamental domain</em> if its translates cover <m>C</m> and the interiors of two translates are disjoint unless the translates are equal. We use the image group on <m>N</m>, so a kernel acting trivially does not affect this definition.</p></statement>
+    </definition>
+    <theorem xml:id="hkg-mbm-boundedness">
+      <title>(Amerik–Verbitsky)</title>
+      <statement><p>If <m>b_2(X)\geq5</m>, there is a constant <m>B_X&gt;0</m>, depending only on the deformation type, such that every primitive integral MBM class <m>z\in H^2(X,\Z)</m> satisfies <m>-B_X\leq q_X(z)&lt;0</m>. There are finitely many monodromy orbits of these classes.</p></statement>
+    </theorem>
+    <p>This is <xref ref="hkg-bib-amerik-verbitsky-bounded" detail="Theorem 3.17"/>. Its proof uses homogeneous dynamics and is quoted here. The lower bound on <m>b_2</m> belongs to this boundedness theorem; it was not required in the definition or basic chamber description of MBM classes.</p>
+    <proposition xml:id="hkg-bounded-hyperplanes-locally-finite">
+      <statement><p>Let <m>L</m> be a lattice of signature <m>(1,r)</m>, fix a component <m>C</m> of its positive cone, and let <m>B&gt;0</m>. The hyperplanes <m>z^\perp</m>, for <m>z\in L</m> with <m>-B\leq q(z)&lt;0</m>, form a locally finite collection in <m>C</m>.</p></statement>
+      <proof><p>The case <m>r=0</m> is vacuous, since there are no negative vectors. Assume <m>r\geq1</m>, and fix a nonempty compact subset <m>K\subset C</m> and a Euclidean norm <m>\|\cdot\|</m> on <m>L_\R</m>. For every <m>x\in K</m>, the form <m>-q</m> is positive definite on <m>x^\perp</m>. Compactness gives a uniform number <m>c&gt;0</m> with
+        <md number="no">-q(v)\geq c\|v\|^2
+          \qquad(x\in K,\ v\in x^\perp).</md>
+        Indeed, the minimum of <m>-q(v)</m> on the compact set of pairs with <m>x\in K</m>, <m>v\in x^\perp</m>, and <m>\|v\|=1</m> is positive. If <m>z^\perp</m> meets <m>K</m>, the inequality gives <m>\|z\|^2\leq B/c</m>. A lattice has finitely many points in a bounded ball. Only finitely many of the hyperplanes can therefore meet <m>K</m>.</p></proof>
+    </proposition>
+    <p>The conclusion concerns compact sets inside the positive cone. Infinitely many walls may still accumulate toward its isotropic boundary. Local finiteness by itself does not produce a finite fundamental domain for the automorphism action.</p>
+    <theorem xml:id="hkg-cone-fundamental-domains">
+      <title>(Markman; Amerik–Verbitsky)</title>
+      <statement><p>Let <m>X</m> be projective IHS with <m>b_2(X)\geq5</m>. The image of <m>\Bir(X)</m> has a rational polyhedral fundamental domain on <m>\operatorname{Mov}^+(X)</m>, and the image of <m>\Aut(X)</m> has one on <m>\operatorname{Nef}^+(X)</m>. There are finitely many isomorphism classes of IHS manifolds bimeromorphic to <m>X</m>.</p></statement>
+    </theorem>
+    <p>For the movable cone see <xref ref="hkg-bib-markman-survey" detail="Theorem 6.25"/>. For the nef cone see <xref ref="hkg-bib-amerik-verbitsky-cone" detail="§5.2"/>, together with the improved MBM bound above, which includes <m>b_2=5</m>. Finiteness of birational models follows from the boundedness argument in that paper's Theorem 1.9 and its proof, which applies Markman–Yoshioka's finiteness criterion. The later bound above supplies its boundedness hypothesis also for <m>b_2=5,6</m>. A geometric description is given in <xref ref="hkg-bib-amerik-verbitsky-hyperbolic" detail="§3.2 and Corollary 3.9"/>. The fundamental domains here lie in the rational hulls in <m>N_\R</m>.</p>
+    <corollary xml:id="hkg-polyhedral-nef-finite-aut">
+      <statement><p>For a projective IHS manifold, a rational polyhedral nef cone implies that <m>\Aut(X)</m> is finite. If <m>b_2(X)\geq5</m>, the converse also holds.</p></statement>
+      <proof><p>In the first direction, an automorphism permutes the finitely many extremal rays of the nef cone. A subgroup of finite index fixes all these rays. It fixes their primitive integral generators, hence acts trivially on <m>N</m>, since the nef cone has nonempty interior and spans <m>N_\R</m>. This subgroup fixes an ample class, so it is finite by <xref ref="hkg-polarized-automorphisms-finite"/>. The entire automorphism group is finite.</p>
+        <p>For the converse, let <m>\Pi</m> be the fundamental domain in <xref ref="hkg-cone-fundamental-domains"/>. If the image group is finite, its translates form a finite union equal to <m>\operatorname{Nef}^+(X)</m>. This union is convex and equals the cone generated by the finitely many rational generators of the translates. It is therefore rational polyhedral and closed. Since it contains the ample cone, its closure is the full nef cone. Hence it is already the full nef cone.</p></proof>
+    </corollary>
+  </section>
+  <section xml:id="hkg-automorphism-dynamical-degrees">
+    <title>Dynamical degrees</title>
+    <definition xml:id="hkg-def-dynamical-degrees">
+      <statement><p>For an automorphism <m>f</m> of a compact Kähler manifold of dimension <m>d</m>, its <em><m>k</m>-th dynamical degree</em> is
+        <md number="no">d_k(f)=\rho\bigl(f^*|_{H^{k,k}(X,\R)}\bigr)
+          \qquad(0\leq k\leq d),</md>
+        where <m>\rho</m> denotes spectral radius. This use of the letter <m>\rho</m> is separate from the Picard number <m>\rho(X)</m>.</p></statement>
+    </definition>
+    <p>We use three general theorems of compact Kähler dynamics: the same spectral radius is obtained on <m>H^{2k}(X,\R)</m>; the numbers <m>\log d_k(f)</m> are concave in <m>k</m>; and the topological entropy satisfies
+      <md number="no">h_{\mathrm{top}}(f)=\max_k\log d_k(f).</md>
+      The last identity is the Gromov–Yomdin theorem. Concavity, duality, and entropy are recalled with their sources in <xref ref="hkg-bib-dinh-sibony" detail="§4.1"/>. The equality with the spectral radius on all of <m>H^{2k}</m>, together with the intersection-growth definition of <m>d_k</m>, is stated explicitly in <xref ref="hkg-bib-oguiso-dynamics" detail="§2"/>. We use these results from compact Kähler dynamics.</p>
+    <theorem xml:id="hkg-oguiso-dynamical-degrees">
+      <title>(Oguiso)</title>
+      <statement><p>For an automorphism <m>f</m> of an IHS <m>2n</m>-fold,
+        <md number="no">d_k(f)=d_{2n-k}(f)=d_1(f)^k
+          \qquad(0\leq k\leq n),\qquad
+          h_{\mathrm{top}}(f)=n\log d_1(f).</md></p></statement>
+      <proof><p>By Verbitsky's injection, <m>\Sym^kH^2(X,\R)</m> is an <m>f^*</m>-stable subspace of <m>H^{2k}(X,\R)</m> for <m>k\leq n</m>. After triangularizing <m>f^*</m> over <m>\C</m>, the eigenvalues on its symmetric power are the products of <m>k</m> eigenvalues, with repetition allowed. Its spectral radius is therefore <m>d_1(f)^k</m>, giving a lower bound for <m>d_k(f)</m>. Concavity and <m>d_0=1</m> give the reverse bound <m>\log d_k\leq k\log d_1</m>.</p>
+        <p>The BBF form makes <m>f^*|_{H^2}</m> similar to its inverse transpose, so <m>d_1(f^{-1})=d_1(f)</m>. Poincaré duality gives <m>d_{2n-k}(f)=d_k(f^{-1})</m>. Apply the first part to <m>f^{-1}</m>, and then the entropy theorem. This is the proof of <xref ref="hkg-bib-oguiso-dynamics" detail="Theorem 1.1"/>.</p></proof>
+    </theorem>
+    <p>Thus all dynamical degrees equal one when <m>d_1(f)=1</m>. If <m>d_1(f)&gt;1</m>, they increase strictly up to degree <m>n</m> and then decrease strictly. The proof uses the subalgebra generated by <m>H^2(X)</m>.</p>
+    <proposition xml:id="hkg-expanding-eigenclasses">
+      <statement><p>Let <m>0\ne v\in H^{1,1}(X,\R)</m> satisfy <m>f^*v=\lambda v</m> with <m>\lambda&gt;0</m>. If <m>\lambda\ne1</m>, then <m>q_X(v)=0</m>. If the ray <m>\R_{&gt;0}v</m> is rational, then <m>\lambda=1</m>.</p></statement>
+      <proof><p>The isometry identity gives <m>q_X(v)=\lambda^2q_X(v)</m>, proving isotropy. For a rational ray, choose its primitive integral generator <m>v_0</m>. An integral lattice automorphism takes primitive vectors to primitive vectors. The equality <m>f^*v_0=\lambda v_0</m> therefore forces <m>\lambda=1</m> when <m>\lambda&gt;0</m>.</p></proof>
+    </proposition>
+    <proposition xml:id="hkg-nef-dynamical-eigenclasses">
+      <statement><p>If <m>d_1(f)&gt;1</m>, there are nonzero classes <m>v_+,v_-\in\overline{\mathcal K_X}</m> such that
+        <md number="no">f^*v_+=d_1(f)v_+,\qquad f^*v_-=d_1(f)^{-1}v_-.</md>
+        Their rays are irrational, both classes are isotropic, and <m>q_X(v_+,v_-)&gt;0</m>.</p></statement>
+      <proof><p>The cone <m>\overline{\mathcal K_X}</m> is closed and convex with nonempty interior, contains no line, and is preserved by <m>f^*</m> and its inverse. The Perron–Frobenius theorem for cones gives a nonzero eigenvector in this cone with eigenvalue the spectral radius; we use the version recalled in <xref ref="hkg-bib-dinh-sibony" detail="§4.1"/>. Apply it to <m>f^*</m> and <m>(f^{-1})^*</m>. As proved in <xref ref="hkg-oguiso-dynamical-degrees"/>, their spectral radii on <m>H^{1,1}(X,\R)</m> are both <m>d_1(f)</m>. This gives the two asserted eigenvectors.</p>
+        <p>Isotropy and irrationality follow from <xref ref="hkg-expanding-eigenclasses"/>. Both classes lie in the closure of the same positive-cone component and belong to distinct rays, since their eigenvalues differ. For a form of signature <m>(1,b_2-3)</m>, two nonzero isotropic vectors in that closure have nonnegative pairing, with equality only if they are proportional. Thus their pairing is strictly positive.</p></proof>
+    </proposition>
+    <p>Let <m>L</m> be a nontrivial nef line bundle with <m>q_X(c_1(L))=0</m>. If <m>f^*L\cong L</m> and <m>L</m> is semiample, an isomorphism <m>f^*L\cong L</m> gives a linear action on the sections of a generated power, well-defined up to scalar. Its projectivization makes the resulting morphism equivariant. Passing to Stein factorization gives an automorphism of the base and an equivariant Lagrangian fibration by <xref ref="hkg-isotropic-semiample-fibration"/>. The automorphism need not fix each fiber individually.</p>
+  </section>
+  <section xml:id="hkg-explicit-dynamics">
+    <title>An explicit positive-entropy example</title>
+    <p>Let <m>E</m> be an elliptic curve and <m>A=E\times E</m>. The matrix
+      <md number="no">M=\begin{pmatrix}2&amp;1\\1&amp;1\end{pmatrix}\in\operatorname{SL}_2(\Z)</md>
+      defines an automorphism <m>u(x,y)=(2x+y,x+y)</m> of <m>A</m>. Its eigenvalues are
+      <md number="no">\lambda=\frac{3+\sqrt5}{2},\qquad\lambda^{-1}=\frac{3-\sqrt5}{2}.</md>
+      It commutes with inversion and therefore induces an automorphism <m>g</m> of the Kummer K3 surface resolving <m>A/\{\pm1\}</m>. To see the lift directly, blow up the sixteen two-torsion points equivariantly before taking the quotient. The automorphism permutes these centers and lifts to the blowup; the resulting quotient is the smooth Kummer resolution.</p>
+    <proposition xml:id="hkg-kummer-salem-example">
+      <statement><p>For this Kummer K3 automorphism,
+        <m>d_1(g)=\lambda^2=(7+3\sqrt5)/2</m>.
+        For its induced automorphism <m>g^{[n]}</m> on the Hilbert scheme,
+        <md number="no">d_k(g^{[n]})=
+          \lambda^{2\min(k,2n-k)},\qquad
+          h_{\mathrm{top}}(g^{[n]})=2n\log\lambda.</md></p></statement>
+      <proof><p>On <m>H^{1,0}(A)</m> the eigenvalues are <m>\lambda,\lambda^{-1}</m>, and the same eigenvalues occur on <m>H^{0,1}(A)</m>, since they are real. On <m>H^2(A,\R)</m> the largest absolute value is therefore <m>\lambda^2</m>; it occurs in type <m>(1,1)</m>. The second rational cohomology of the Kummer resolution is the direct sum of the correspondence image of <m>H^2(A,\Q)</m> and the sixteen exceptional classes. On the latter <m>g^*</m> is a permutation. It contributes only roots of unity, so the spectral radius on <m>H^2</m> is <m>\lambda^2</m>.</p>
+        <p>For <m>n\geq2</m>, the Hilbert-scheme decomposition <xref ref="hkg-eq-hilbert-lattice"/> is equivariant, and <m>g^{[n]}</m> fixes <m>\delta</m>. Its first dynamical degree is again <m>\lambda^2</m>. Apply <xref ref="hkg-oguiso-dynamical-degrees"/>. The case <m>n=1</m> is the K3 computation itself.</p></proof>
+    </proposition>
+    <p>The determinant of <m>M</m> is one, so <m>u</m> preserves the translation-invariant holomorphic two-form on <m>A</m>. The induced automorphisms <m>g</m> and <m>g^{[n]}</m> are symplectic as well. They have infinite order and positive entropy. Symplecticity alone therefore does not imply finiteness; a preserved Kähler class, as in <xref ref="hkg-polarized-automorphisms-finite"/>, is an additional condition.</p>
+  </section>
+</chapter>

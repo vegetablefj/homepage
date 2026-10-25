@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="cat-ends-density">
+  <title>Ends, coends, and density</title>
+  <introduction>
+    <p>Many universal constructions ask for one map for each object, together with an equation for each arrow. An end collects compatible families; a coend imposes the corresponding identifications. We use them to express every presheaf as a colimit of representables and to extend functors from a small category to its presheaf category. The colimit-preserving extension exists for a cocomplete target and is unique up to a unique natural isomorphism compatible with its restriction.</p>
+    <p>Throughout this chapter <m>\mathcal C</m> is <m>\U</m>-small unless otherwise specified, and target categories are set-encoded and locally <m>\U</m>-small. All colimits, limits, and copowers asserted to exist are indexed by sets or categories in <m>\U</m>. The main references are <xref ref="bib-cat-loregian" detail="Sections 1.1–1.4 and 2.2"/>, <xref ref="bib-cat-riehl" detail="Section 6.5"/>, and <xref ref="bib-cat-li2" detail="Appendix A.1"/>. Only ordinary categories and set-valued presheaves are needed.</p>
+  </introduction>
+
+  <section xml:id="cat-c08-wedges">
+    <title>Compatible diagonal families</title>
+    <p>Let <m>H:\mathcal C^\op\times\mathcal C\to\mathcal D</m>. Although we write the same object in both arguments of <m>H(c,c)</m>, the assignment <m>c\mapsto H(c,c)</m> does not in general define a functor on <m>\mathcal C</m>. An arrow acts in opposite directions in the two variables. The following compatibility equations replace a nonexistent diagonal diagram.</p>
+    <definition xml:id="cat-c08-def-wedge">
+      <title>Wedges, cowedges, ends, and coends</title>
+      <idx>Wedge</idx><idx>Cowedge</idx><idx>End</idx><idx>Coend</idx>
+      <statement>
+        <p><ol>
+          <li><p>A wedge from <m>E\in\mathcal D</m> to <m>H</m> is a family <m>e_c:E\to H(c,c)</m> such that, for every <m>f:c\to d</m>,
+            <md number="no">H(c,f)e_c=H(f,d)e_d:E\longrightarrow H(c,d).</md>
+            A morphism from <m>(E,e)</m> to <m>(E',e')</m> is an arrow <m>a:E\to E'</m> with <m>e'_ca=e_c</m> for every <m>c</m>. An end of <m>H</m> is a terminal wedge, denoted <m>\int_{c\in\mathcal C}H(c,c)</m>.</p></li>
+          <li><p>A cowedge from <m>H</m> to <m>Q\in\mathcal D</m> is a family <m>q_c:H(c,c)\to Q</m> such that
+            <md number="no">q_cH(f,c)=q_dH(d,f):H(d,c)\longrightarrow Q</md>
+            for every <m>f:c\to d</m>. Its morphisms are arrows between vertices commuting with every structure map. A coend is an initial cowedge, denoted <m>\int^{c\in\mathcal C}H(c,c)</m>.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <p>The notation <m>H(f,d)</m> means that <m>f</m> acts in the contravariant first variable while the second is fixed at <m>d</m>; thus it maps <m>H(d,d)</m> to <m>H(c,d)</m>. In the cowedge equation the common source is instead <m>H(d,c)</m>. Writing these sources and targets is an effective way to check a coend formula.</p>
+    <p>End and coend objects are unique up to the unique isomorphism preserving all structure maps. The variable under or above the integral is bound: replacing <m>c</m> by another symbol changes nothing. An end is indicated by a subscript and a coend by a superscript. This is notation for universal properties; no measure or integration operation is present.<fn>The wedge equations are special cases of dinaturality; compare <xref ref="bib-cat-loregian" detail="Definitions 1.1.1, 1.1.4, and 1.1.6"/>. Arbitrary dinatural transformations cannot in general be composed componentwise; see his Exercise 1.2. Here we use the explicitly defined categories of wedges and cowedges, whose comparison maps do compose. No calculus of arbitrary dinatural transformations is assumed.</fn></p>
+  </section>
+
+  <section xml:id="cat-c08-constructions">
+    <title>Products, quotients, and existence</title>
+    <proposition xml:id="cat-c08-prop-equalizer">
+      <statement>
+        <p>For a small <m>\mathcal C</m> and a bifunctor <m>H</m> as above:</p>
+        <p><ol>
+          <li><p>If the displayed products and equalizer exist, its end is
+            <md number="no">\operatorname{eq}\left(\prod_cH(c,c)\rightrightarrows\prod_{f:c\to d}H(c,d)\right),</md>
+            where the two <m>f</m>-components are <m>H(c,f)\operatorname{pr}_c</m> and <m>H(f,d)\operatorname{pr}_d</m>.</p></li>
+          <li><p>If the displayed coproducts and coequalizer exist, its coend is
+            <md number="no">\operatorname{coeq}\left(\coprod_{f:c\to d}H(d,c)\rightrightarrows\coprod_cH(c,c)\right).</md>
+            The two maps on the <m>f</m>-summand are <m>\operatorname{in}_cH(f,c)</m> and <m>\operatorname{in}_dH(d,f)</m>.</p></li>
+        </ol></p>
+        <p>Consequently a <m>\U</m>-complete target has all such ends, and a <m>\U</m>-cocomplete target has all such coends.</p>
+      </statement>
+      <proof>
+        <p>A map into the first product is a family of maps into <m>H(c,c)</m>. It equalizes the indicated pair precisely when it satisfies every wedge equation. The equalizer therefore represents wedges with any vertex. Dually, a map out of the second coproduct is a family of maps out of <m>H(c,c)</m>, and it coequalizes the pair precisely when it is a cowedge. These correspondences commute with maps between vertices, giving the required universal properties.</p>
+      </proof>
+    </proposition>
+    <p>These are the formulas of <xref ref="bib-cat-loregian" detail="Remark 1.2.4"/>. They also handle the empty category: its end is a terminal object and its coend is an initial object. For a discrete index, an end is a product and a coend is a coproduct. These cases are useful checks on variance and empty-index conventions.</p>
+    <p>For <m>H:\mathcal C^\op\times\mathcal C\to\Set_\U</m>, the end consists of families <m>(x_c)_c</m> satisfying <m>H(c,f)(x_c)=H(f,d)(x_d)</m>. Its coend is the quotient of <m>\coprod_cH(c,c)</m> by the equivalence relation generated by
+      <md number="no">[c,H(f,c)(z)]\sim[d,H(d,f)(z)],\qquad f:c\to d,\quad z\in H(d,c).</md>
+      The brackets initially record the summand and subsequently its quotient class. One must take the equivalence relation generated by these pairs: a single elementary identification need not describe every equality in the quotient.</p>
+    <proposition xml:id="cat-c08-prop-functoriality">
+      <statement>
+        <p>A natural transformation <m>H\Rightarrow H'</m> induces maps between their ends, and between their coends, whenever the relevant objects exist. These maps respect identities and composition. A functor preserving the products and equalizer in the end construction preserves that end. A functor preserving the coproducts and coequalizer in the coend construction preserves that coend. In particular, right adjoints preserve small ends and left adjoints preserve small coends.</p>
+      </statement>
+      <proof>
+        <p>Compose the universal wedge with the diagonal components of <m>H\Rightarrow H'</m>; naturality makes it a wedge for <m>H'</m>. Universality gives the end map, and uniqueness proves its compatibility with composition. For coends, compose the components with the universal cowedge for <m>H'</m>. Preservation under the stated product/equalizer or coproduct/coequalizer hypotheses follows from the explicit constructions.</p>
+        <p>For the assertion about adjoints, no existence of those auxiliary products is necessary. If <m>F\dashv G</m> and <m>E</m> is an existing end of a bifunctor <m>H</m> with values in the domain of <m>G</m>, the adjunction bijections identify wedges <m>X\to GH</m> with wedges <m>FX\to H</m>. Naturality of the bijections carries each wedge equation to its corresponding equation. These families are represented by <m>\Hom(FX,E)\cong\Hom(X,GE)</m>, so <m>GE</m> is the required end. Reversing arrows proves the assertion for left adjoints and coends.</p>
+      </proof>
+    </proposition>
+    <p>A constant bifunctor at a set <m>S</m> need not have end <m>S</m> or coend <m>S</m>. The end is <m>S^{\pi_0(\mathcal C)}</m> and the coend is <m>\pi_0(\mathcal C)\times S</m>: compatibility identifies the choices exactly along zigzags. Both reduce to <m>S</m> when the index is connected. The same formulas include the empty index, with empty power a singleton and empty product with <m>S</m> empty.</p>
+  </section>
+
+  <section xml:id="cat-c08-natural-transformations">
+    <title>Natural transformations as an end</title>
+    <proposition xml:id="cat-c08-prop-nat-end">
+      <statement>
+        <p>For <m>F,G:\mathcal C\to\mathcal D</m> there is a canonical bijection
+          <md number="no">\Nat(F,G)\cong\int_{c\in\mathcal C}\Hom_{\mathcal D}(F(c),G(c)).</md>
+          The bifunctor on the right sends <m>(c,d)</m> to <m>\Hom_{\mathcal D}(F(c),G(d))</m>, with precomposition by <m>F</m> and postcomposition by <m>G</m>. The bijection is natural contravariantly in <m>F</m> and covariantly in <m>G</m>.</p>
+      </statement>
+      <proof>
+        <p>A diagonal family is a collection <m>\alpha_c:F(c)\to G(c)</m>. For <m>f:c\to d</m>, its wedge equation reads <m>G(f)\alpha_c=\alpha_dF(f)</m>, exactly the naturality equation. Precomposing a family by a natural transformation to <m>F</m>, or postcomposing by one from <m>G</m>, gives the corresponding map of ends.</p>
+      </proof>
+    </proposition>
+    <p>The end in the proposition is the set of component families satisfying all the naturality equations; see <xref ref="bib-cat-loregian" detail="Theorem 1.4.1"/>. For large set-encoded <m>\mathcal C</m>, the same family-and-equations description still gives an ordinary set of natural transformations. The formula is then an end computed in an ambient category of sets large enough to contain those families. The assumption that <m>\mathcal C</m> is small ensures that this end belongs to <m>\Set_\U</m>.</p>
+    <p>For a one-object category defined by a monoid <m>M</m>, functors to <m>\Set_\U</m> are left <m>M</m>-sets. The end above consists of functions <m>a:F(*)\to G(*)</m> such that <m>a(mx)=ma(x)</m> for all <m>m\in M</m>. Thus its equations recover equivariant maps, including all operations of the monoid rather than only its invertible elements.</p>
+    <p>Yoneda becomes the end formula
+      <md number="no">P(c)\cong\int_{d\in\mathcal C^\op}\Set_\U\bigl(\Hom_{\mathcal C}(d,c),P(d)\bigr)</md>
+      for <m>P:\mathcal C^\op\to\Set_\U</m>. This is the preceding proposition applied to the functors <m>h_c,P</m> on <m>\mathcal C^\op</m>: the bifunctor is <m>(a,b)\mapsto\Set_\U(\Hom_{\mathcal C}(a,c),P(b))</m>, on <m>\mathcal C\times\mathcal C^\op</m>. Writing the diagonal alone suppresses this variance information. The intended object is <m>\Nat(h_c,P)</m>, so this is a compact expression of the already proved Yoneda lemma.</p>
+  </section>
+
+  <section xml:id="cat-c08-fubini">
+    <title>Iterating ends and coends</title>
+    <proposition xml:id="cat-c08-prop-fubini">
+      <title>Fubini formulas</title>
+      <idx>Fubini formulas</idx>
+      <statement>
+        <p>Let <m>H:\mathcal C^\op\times\mathcal C\times\mathcal A^\op\times\mathcal A\to\mathcal D</m>, with both index categories small.</p>
+        <p><ol>
+          <li><p>If <m>\mathcal D</m> is <m>\U</m>-complete, there are canonical isomorphisms
+            <md number="no">\int_c\int_a H(c,c,a,a)\cong\int_{(c,a)}H(c,c,a,a)\cong\int_a\int_c H(c,c,a,a).</md></p></li>
+          <li><p>If <m>\mathcal D</m> is <m>\U</m>-cocomplete, there are canonical isomorphisms
+            <md number="no">\int^c\int^a H(c,c,a,a)\cong\int^{(c,a)}H(c,c,a,a)\cong\int^a\int^c H(c,c,a,a).</md></p></li>
+        </ol></p>
+        <p>In the middle terms the two pairs of variables have been reordered to give a bifunctor on <m>(\mathcal C\times\mathcal A)^\op\times(\mathcal C\times\mathcal A)</m>. The isomorphisms are natural in <m>H</m>.</p>
+      </statement>
+      <proof>
+        <p>A wedge into the iterated end is a family of maps into <m>H(c,c,a,a)</m> satisfying the wedge equations separately in <m>c</m> and in <m>a</m>. The inner end's universal property translates outer compatibility into the first set of componentwise equations, since its structure maps are jointly monic. Separate compatibility is equivalent to compatibility for the product index: any product arrow factors into one arrow in each variable, and the two actions commute by bifunctoriality. Therefore all three objects represent the same wedges. The coend argument reverses these maps; the structure maps of an inner coend are jointly epic, and separate cowedge equations give precisely a cowedge on the product. Uniqueness of the representing comparisons also proves naturality.</p>
+      </proof>
+    </proposition>
+    <p>This is <xref ref="bib-cat-loregian" detail="Theorem 1.3.1"/>. It is a universal-property version of the fact that limits commute with limits and colimits with colimits. It does not interchange an end with a coend. Such a mixed interchange would require extra hypotheses, just as interchanging a limit with a colimit does; the finite-limit result for filtered set colimits is one specific instance of that different question.</p>
+  </section>
+
+  <section xml:id="cat-c08-copowers">
+    <title>Copowers and weighted identifications</title>
+    <definition xml:id="cat-c08-def-copower">
+      <title>Copowers by sets</title>
+      <idx>Copower</idx>
+      <statement>
+        <p>For <m>S\in\U</m> and <m>D\in\mathcal D</m>, a copower <m>S\cdot D</m> is the coproduct of a constant family of copies of <m>D</m> indexed by <m>S</m>. Thus
+          <md number="no">\Hom_{\mathcal D}(S\cdot D,E)\cong\Set_\U\bigl(S,\Hom_{\mathcal D}(D,E)\bigr),</md>
+          naturally in <m>E</m>. A function <m>S\to S'</m> and an arrow <m>D\to D'</m> induce the map between copowers carrying each summand to the indicated new summand.</p>
+      </statement>
+    </definition>
+    <p>The empty copower is initial and a singleton copower is canonically isomorphic to <m>D</m>. In <m>\Set_\U</m>, the copower is <m>S\times D</m>. In a functor category with pointwise coproducts, it is formed pointwise. Some literature calls this a tensor by a set; that name here means only an indexed coproduct, and presupposes no additional tensor-product structure on <m>\mathcal D</m>.</p>
+    <p xml:id="cat-c08-weighted-colimit"><idx>Weighted colimit</idx>Let <m>P:\mathcal C^\op\to\Set_\U</m> and <m>A:\mathcal C\to\mathcal D</m>, with <m>\mathcal D</m> cocomplete. The expression
+      <md number="no">P\star A:=\int^{c\in\mathcal C}P(c)\cdot A(c)</md>
+      means the coend of <m>H(c,d)=P(c)\cdot A(d)</m>. Consequently a map <m>P\star A\to D</m> is a family of arrows <m>t_{c,x}:A(c)\to D</m>, one for each <m>x\in P(c)</m>, satisfying
+      <md number="no">t_{c,P(f)(y)}=t_{d,y}A(f),\qquad f:c\to d,\quad y\in P(d).</md>
+      This is often called the colimit of <m>A</m> weighted by <m>P</m>. The displayed family description is its full ordinary-category meaning here; no separate theory of weights is needed.</p>
+    <proposition xml:id="cat-c08-prop-elements-coend">
+      <statement>
+        <p>Let <m>\pi:\operatorname{el}(P)\to\mathcal C</m> be the projection for the contravariant element category. Then
+          <md number="no">P\star A\cong\operatorname{colim}_{(c,x)\in\operatorname{el}(P)}A(c).</md>
+          The element category is <m>\U</m>-small under the present assumptions.</p>
+      </statement>
+      <proof>
+        <p>An arrow <m>(c,x)\to(d,y)</m> is an <m>f:c\to d</m> with <m>P(f)(y)=x</m>. A cocone on <m>A\pi</m> is therefore exactly a family <m>t_{c,x}</m> satisfying the preceding equation. The two universal problems agree. The object set of <m>\operatorname{el}(P)</m> is a small union of the sets <m>P(c)</m> and its arrow set a small union of subsets of the Hom sets of <m>\mathcal C</m>, with the same small labels attached; both belong to <m>\U</m>.</p>
+      </proof>
+    </proposition>
+    <p>This comparison translates between two useful descriptions of the same construction. The element category records generators and their restrictions explicitly. The coend records copies of the objects <m>A(c)</m> and the identifications required by those restrictions. The second notation is shorter in calculations; the first often makes the relevant universal property easier to see.</p>
+  </section>
+  <section xml:id="cat-c08-density-formula">
+    <title>Every presheaf is a colimit of representables</title>
+    <p>Write <m>h:\mathcal C\to\widehat{\mathcal C}</m> for the Yoneda embedding <m>c\mapsto h_c=\Hom_{\mathcal C}(-,c)</m>. For <m>x\in P(c)</m>, Yoneda gives a map <m>\widehat x:h_c\to P</m> with <m>\widehat x_d(f)=P(f)(x)</m>. These maps form a cocone on <m>h\pi:\operatorname{el}(P)\to\widehat{\mathcal C}</m>: the equation <m>P(f)(y)=x</m> says precisely <m>\widehat y\,h_f=\widehat x</m>.</p>
+    <theorem xml:id="cat-c08-thm-density">
+      <title>Density formula</title>
+      <idx>Density formula</idx><idx>Co-Yoneda formula</idx>
+      <statement>
+        <p>The preceding cocone is a colimit cocone. Equivalently, naturally in <m>P</m>,
+          <md number="no">P\cong\operatorname{colim}_{(c,x)\in\operatorname{el}(P)}h_c\cong\int^{c\in\mathcal C}P(c)\cdot h_c.</md>
+          Evaluating at <m>d\in\mathcal C</m> gives the co-Yoneda formula
+          <md number="no">P(d)\cong\int^{c\in\mathcal C}P(c)\times\Hom_{\mathcal C}(d,c).</md>
+          The forward map from the displayed coend sends the class of <m>(x,f:d\to c)</m> to <m>P(f)(x)</m>.</p>
+      </statement>
+      <proof>
+        <p>Colimits of presheaves are pointwise, so fix <m>d</m>. The coend is the quotient of pairs <m>(x,f)</m> by the relations
+          <md number="no">(P(a)(y),f)\sim(y,af),\qquad a:c\to c',\quad y\in P(c'),\quad f:d\to c.</md>
+          The proposed map respects these relations because <m>P(f)P(a)=P(af)</m>. It has an inverse sending <m>z\in P(d)</m> to the class of <m>(z,\id_d)</m>. One composite is immediately the identity. For the other, use the relation with <m>a=f:d\to c</m> to obtain
+          <md number="no">[x,f]=[P(f)(x),\id_d].</md>
+          Thus both maps are inverse without choosing representatives in a noncanonical way.</p>
+        <p>For an arrow <m>b:d'\to d</m>, the presheaf transition sends <m>[x,f]</m> to <m>[x,fb]</m>, whose image is <m>P(b)P(f)(x)</m>. This proves naturality in <m>d</m>. For a natural transformation <m>\alpha:P\to P'</m>, the map of coends sends <m>[x,f]</m> to <m>[\alpha_c(x),f]</m>, and naturality of <m>\alpha</m> proves compatibility with evaluation. The resulting isomorphism of presheaves has cocone components exactly <m>\widehat x</m>. The element-category comparison from <xref ref="cat-c08-prop-elements-coend"/> identifies its other colimit description.</p>
+      </proof>
+    </theorem>
+    <p>Compare <xref ref="bib-cat-riehl" detail="Theorems 6.5.9–6.5.10"/> and <xref ref="bib-cat-loregian" detail="Proposition 2.2.1"/>. The proof explains the word canonical: every generalized element <m>x</m> supplies a representable map, and every restriction supplies a comparison. There is no preliminary choice of generators or presentation. It does not say that a presheaf is a coproduct of representables: the arrows in the element category encode essential identifications.<fn>Co-Yoneda, the density formula, and, in some sources, the ninja Yoneda lemma refer to these related expressions. Loregian's Proposition 2.2.1 groups both end and coend versions. Our two names distinguish the evaluated coend formula from the canonical presentation in the presheaf category.</fn></p>
+    <p>For a one-object monoid category <m>M</m>, a presheaf is a right <m>M</m>-set. The coend <m>P\star A</m>, with <m>A</m> a left <m>M</m>-set, becomes
+      <md number="no">(P\times A)/\bigl((xm,a)\sim(x,ma)\bigr).</md>
+      This quotient is often written <m>P\times_M A</m>, the balanced product of the two actions. The relation is generated for all <m>m\in M</m>; invertibility is unnecessary. Taking <m>A</m> to be the representable regular left action gives the corresponding co-Yoneda bijection. This example makes concrete the operation of moving an arrow from one variable to the other.</p>
+  </section>
+
+  <section xml:id="cat-c08-free-cocompletion">
+    <title>The free cocompletion of a small category</title>
+    <p>The density formula has a useful consequence for constructing functors. To specify a colimit-preserving functor out of <m>\widehat{\mathcal C}</m>, it suffices to specify its values on representables. Those values must form a functor on <m>\mathcal C</m>, and there are no further choices up to natural isomorphism.</p>
+    <theorem xml:id="cat-c08-thm-free-cocompletion">
+      <idx>Free cocompletion</idx><idx>Restricted nerve</idx>
+      <statement>
+        <p>Let <m>A:\mathcal C\to\mathcal D</m>, with <m>\mathcal D</m> <m>\U</m>-cocomplete. Define
+          <md number="no">L_A(P)=\int^cP(c)\cdot A(c),\qquad N_A(D)(c)=\Hom_{\mathcal D}(A(c),D).</md>
+          There is an adjunction <m>L_A\dashv N_A</m>, and a canonical natural isomorphism <m>L_Ah\cong A</m>. Moreover, restriction along <m>h</m> gives an equivalence
+          <md number="no">\Fun_{\U\text{-colim}}(\widehat{\mathcal C},\mathcal D)\longrightarrow\Fun(\mathcal C,\mathcal D),</md>
+          where the subscript denotes the full subcategory of functors preserving <m>\U</m>-small colimits. Every such functor is a left adjoint.</p>
+      </statement>
+      <proof>
+        <p>A map <m>L_A(P)\to D</m> is a compatible family <m>t_{c,x}:A(c)\to D</m>. Sending <m>x</m> to <m>t_{c,x}</m> identifies it with a map <m>P(c)\to N_A(D)(c)</m> for each <m>c</m>. The compatibility equation from <xref ref="cat-c08-prop-elements-coend"/> says exactly that these maps form a natural transformation. Thus
+          <md number="no">\Hom_{\mathcal D}(L_A(P),D)\cong\Nat(P,N_A(D)),</md>
+          naturally in both variables. Universal maps make <m>L_A</m> functorial; ordinary choice supplies one colimit for each presheaf, if no choices have been fixed. Since the collection of presheaves is an ordinary set, this uses the choice convention of <xref ref="cat-conventions"/>. The formula gives the adjunction and therefore preservation of small colimits.</p>
+        <p>Setting <m>P=h_c</m> and applying Yoneda identifies the right side with <m>\Hom_{\mathcal D}(A(c),D)</m>, naturally in <m>c,D</m>. Uniqueness of representing objects gives <m>L_Ah_c\cong A(c)</m>. Explicitly, the cocone consists of <m>A(f):A(d)\to A(c)</m> for <m>f:d\to c</m>; the category of these pairs has terminal object <m>(c,\id_c)</m>.</p>
+        <p>Now let <m>T:\widehat{\mathcal C}\to\mathcal D</m> preserve small colimits. Applying it to the density presentation gives, naturally in <m>P</m>,
+          <md number="no">T(P)\cong\operatorname{colim}_{(c,x)\in\operatorname{el}(P)}T(h_c)\cong L_{Th}(P).</md>
+          This recovers every colimit-preserving functor from its restriction; essential surjectivity of restriction follows from <m>L_Ah\cong A</m>. A natural transformation <m>a:A\Rightarrow B</m> induces <m>L_A\Rightarrow L_B</m> by applying <m>a_c</m> to every colimit summand. Conversely, a transformation between two colimit-preserving functors is determined by its components on representables: its component at <m>P</m> must commute with every map <m>\widehat x:h_c\to P</m>, and the colimit cocone is jointly epic. The induced transformation has exactly that property, proving fullness as well as faithfulness. Finally <m>T\cong L_{Th}</m> gives its right adjoint <m>N_{Th}</m>.</p>
+      </proof>
+    </theorem>
+    <p>The adjunction is the one in <xref ref="bib-cat-riehl" detail="Proposition 6.5.12"/> and <xref ref="bib-cat-li2" detail="Proposition A.1.5"/>; Li's Theorem A.1.3 gives the density presentation used in its proof. It also identifies <m>L_A</m> with the pointwise left Kan extension of <m>A</m> along <m>h</m>. Indeed, <m>(h\downarrow P)\cong\operatorname{el}(P)</m> by Yoneda, and the pointwise formula in <xref ref="cat-kan"/> is precisely the colimit above. The universal property of a presheaf category thus concerns small colimits, even though the presheaf category itself is usually not <m>\U</m>-small.</p>
+    <p>The equivalence is a statement about functors and natural transformations, not an equality of collections of formulas. The functor category on the left may have Hom sets outside <m>\U</m> under our strict encoding conventions; the equivalence and its bijections are assertions about ordinary sets. No local <m>\U</m>-smallness of a functor category with the large source <m>\widehat{\mathcal C}</m> is being inferred.</p>
+    <p>For the terminal category <m>\mathcal C=1</m>, presheaves are sets. A functor <m>A:1\to\mathcal D</m> selects one object <m>D_0</m>; its extension is <m>S\mapsto S\cdot D_0</m>, with right adjoint <m>D\mapsto\Hom(D_0,D)</m>. Thus the general construction includes the familiar fact that a coproduct-preserving extension from one chosen generator sends a set to that many copies of the generator.</p>
+  </section>
+
+  <section xml:id="cat-c08-dense-functors">
+    <title>Dense functors and restricted Yoneda</title>
+    <definition xml:id="cat-c08-def-dense">
+      <title>The restricted nerve</title>
+      <idx>Dense functor</idx>
+      <statement>
+        <p>For a functor <m>K:\mathcal A\to\mathcal D</m> with small source, its restricted nerve is
+          <md number="no">N_K:\mathcal D\to\widehat{\mathcal A},\qquad D\longmapsto\Hom_{\mathcal D}(K(-),D).</md>
+          We call <m>K</m> dense if <m>N_K</m> is fully faithful. Equivalently, for every <m>D,E</m> the map
+          <md number="no">\Hom_{\mathcal D}(D,E)\longrightarrow\Nat(N_KD,N_KE),\qquad f\longmapsto(f\circ-)</md>
+          is bijective. The definition does not require <m>K</m> to be fully faithful.</p>
+      </statement>
+    </definition>
+    <proposition xml:id="cat-c08-prop-density-criterion">
+      <statement>
+        <p>For <m>K</m> as above, the following are equivalent:</p>
+        <p><ol>
+          <li><p>The functor <m>K</m> is dense.</p></li>
+          <li><p>For every <m>D\in\mathcal D</m>, the cocone with legs <m>u:K(a)\to D</m> exhibits <m>D</m> as the colimit of the canonical diagram <m>(K\downarrow D)\to\mathcal D</m>, sending <m>(a,u)</m> to <m>K(a)</m>.</p></li>
+        </ol></p>
+        <p>The equivalence does not require <m>\mathcal D</m> to be cocomplete. If it is cocomplete, these are also equivalent to invertibility of the counit <m>L_KN_K\Rightarrow\id_{\mathcal D}</m> of the preceding adjunction.</p>
+      </statement>
+      <proof>
+        <p>The category <m>(K\downarrow D)</m> is the element category of <m>N_KD</m>. A cocone from its canonical diagram to <m>E</m> assigns a map <m>K(a)\to E</m> to each <m>u:K(a)\to D</m>, compatibly with precomposition by arrows of <m>\mathcal A</m>. Such a family is exactly a natural transformation <m>N_KD\Rightarrow N_KE</m>. The canonical cocone is universal precisely when postcomposition gives the displayed bijection in the definition of density. This proves both directions, including existence of these particular colimits under the first condition. In the cocomplete case the canonical comparison is the adjunction counit; a right adjoint is fully faithful exactly when its counit is invertible, by <xref ref="cat-c05-prop-fully-faithful"/>.</p>
+      </proof>
+    </proposition>
+    <p>Compare <xref ref="bib-cat-riehl" detail="Definition 6.5.11"/>. Faithfulness of <m>N_K</m> says that maps can be distinguished by precomposing with the test objects <m>K(a)</m>; fullness says that every compatible rule on those tests comes from an actual map. The second requirement is stronger. It supplies the universal presentation, rather than merely a way to detect equality of maps.</p>
+    <example xml:id="cat-c08-example-dense">
+      <title>Tests that detect and tests that reconstruct</title>
+      <p><ol>
+        <li><p>The functor <m>1\to\Set_\U</m> selecting a singleton is dense: its nerve is naturally the identity functor on sets, since <m>\Hom(1,S)\cong S</m>. Its canonical presentation writes a set as the coproduct of its singleton elements.</p></li>
+        <li><p>Let <m>\mathsf{Fin}</m> be the small category of finite ordinals and all functions between them. Its inclusion in <m>\Set_\U</m> is dense. A natural transformation between its restricted nerves is determined on the singleton by a function <m>v:S\to T</m>. For <m>s:n\to S</m>, naturality with every point <m>1\to n</m> forces its image to be <m>vs:n\to T</m>; for <m>n=0</m> there is only one possible function. Hence it is postcomposition by <m>v</m>, proving fullness, and the singleton also proves faithfulness.</p></li>
+        <li><p>The functor <m>1\to\Grp_\U</m> selecting the infinite cyclic group has a faithful nerve, since <m>\Hom(\Z,G)</m> identifies with the underlying set of <m>G</m>. It is not dense. Natural transformations between these nerves are arbitrary functions between their single underlying sets, since the source <m>1</m> imposes no operations. A constant function with nonidentity value in a nontrivial target group is not induced by a homomorphism.</p></li>
+        <li><p>A dense functor need not be faithful. Let <m>\mathcal A</m> be the one-object category of a nontrivial small monoid, and send its object to a singleton and every arrow to the identity in <m>\Set_\U</m>. Its restricted nerve sends a set to the corresponding trivial right monoid action. Every function between two trivial actions is equivariant, so this nerve is fully faithful. The original functor identifies all monoid arrows.</p></li>
+      </ol></p>
+    </example>
+    <p>These examples separate three properties: enough tests to distinguish maps, enough tests and their comparisons to recover maps, and faithful behavior of the testing functor itself. Density refers to the second property. The Yoneda embedding is dense by the density formula, and is additionally fully faithful by Yoneda; these are separate conclusions.</p>
+  </section>
+</chapter>

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="hkg-hyperholomorphic">
+  <title>Hyperholomorphic bundles and trianalytic subvarieties</title>
+  <introduction>
+    <p>Fix a hyperkähler structure <m>(M,g,I,J,K)</m>, of real dimension <m>4n</m>. A connection is hyperholomorphic when it defines a holomorphic bundle for every induced complex structure. A subvariety is trianalytic when it is analytic for every induced complex structure. On compact <m>M</m>, both have invariance criteria under the fiberwise <m>SU(2)</m>-action, applied respectively to curvature forms and cycle classes.</p>
+    <p>The main references are <xref ref="hkg-bib-verbitsky-hyperholomorphic"/>, <xref ref="hkg-bib-verbitsky-generic-sheaves"/>, and <xref ref="hkg-bib-verbitsky-hypercomplex"/>.</p>
+  </introduction>
+  <section xml:id="hkg-hyperholomorphic-su2">
+    <title>The action on forms and Hodge types</title>
+    <p>The unit quaternions form <m>SU(2)</m>. They act on each tangent space through <m>I,J,K</m>, and on differential forms by the dual action
+      <md number="no">(u\cdot\eta)(v_1,\ldots,v_k)=\eta(u^{-1}v_1,\ldots,u^{-1}v_k),\qquad u\in SU(2).</md>
+      This is an action on the fibers of the exterior algebra bundle. It does not require an action of <m>SU(2)</m> on the points of <m>M</m>. For forms valued in a complex vector bundle, the group acts on the exterior-form factor and acts trivially on the coefficient bundle.</p>
+    <lemma xml:id="hkg-lemma-su2-hodge-types">
+      <statement><p>A complex differential form of degree <m>2p</m> is <m>SU(2)</m>-invariant if and only if it has type <m>(p,p)</m> for every induced complex structure. In particular, an endomorphism-valued two-form is invariant if and only if it has type <m>(1,1)</m> for every induced complex structure.</p></statement>
+      <proof>
+        <p>For an induced complex structure <m>L</m>, consider the circle <m>u(t)=\cos t+L\sin t</m> of unit quaternions. On forms of type <m>(a,b)</m>, its action is multiplication by <m>e^{-i(a-b)t}</m>. Its fixed subspace in degree <m>2p</m> is therefore exactly type <m>(p,p)</m>. Every element of <m>SU(2)</m> lies in one of these circles. A form is fixed by all circles exactly when it is fixed by the group. The same calculation applies coefficient by coefficient to a bundle-valued form.</p>
+      </proof>
+    </lemma>
+    <p>For compact <m>M</m>, the action commutes with the Riemannian Laplacian and hence acts on cohomology through harmonic representatives; see <xref ref="hkg-bib-verbitsky-hyperholomorphic" detail="Proposition 1.1"/>. The fiberwise action need not commute with the de Rham differential.<fn>It fixes functions, but <m>(u\cdot df)(v)=df(u^{-1}v)</m> need not equal <m>df(v)</m>.</fn></p>
+    <p>The circle for <m>L</m> acts on cohomology through the Hodge decomposition of <m>(M,L)</m>, with the same weights. Thus the preceding lemma holds for cohomology classes as well. The cohomological action preserves cup product: the Hodge decomposition is multiplicative, so each Hodge circle preserves cup product, and the circles generate <m>SU(2)</m>. It also preserves integration on top cohomology.</p>
+    <lemma xml:id="hkg-lemma-invariant-two-form-primitive">
+      <statement><p>Let <m>\eta</m> be an <m>SU(2)</m>-invariant two-form, possibly with vector-bundle coefficients. For every induced complex structure <m>L</m>,
+        <md number="no">\Lambda_L\eta=0,</md>
+        where <m>\Lambda_L</m> is the pointwise adjoint of multiplication by the Kähler form <m>\omega_L</m>.</p></statement>
+      <proof>
+        <p>It suffices to treat <m>L=I</m> after rotating the quaternionic triple. The unit quaternion <m>J</m> fixes <m>\eta</m> and sends <m>\omega_I</m> to <m>-\omega_I</m>. Its action on forms is orthogonal. Consequently,
+          <md number="no">\langle\eta,\omega_I\rangle=\langle J\cdot\eta,J\cdot\omega_I\rangle=-\langle\eta,\omega_I\rangle=0.</md>
+          On two-forms, contraction <m>\Lambda_I</m> is this inner product with <m>\omega_I</m>. For a bundle-valued form, apply the argument to each coefficient.</p>
+      </proof>
+    </lemma>
+    <p>Invariance refers to the chosen metric and quaternionic structure. On an IHS manifold, the nonzero classes in <m>\Lambda_g=H^2(M,\mathbb Z)\cap P_g^\perp</m> from <xref ref="hkg-example-twistor-picard-positive-rank"/> remain of type <m>(1,1)</m> on that metric's twistor sphere. Their Hodge loci in the full local period domain are proper hyperplanes, by local Torelli.</p>
+  </section>
+  <section xml:id="hkg-hyperholomorphic-connections">
+    <title>Hyperholomorphic connections</title>
+    <p>Let <m>E</m> be a smooth complex vector bundle with a Hermitian metric <m>h</m>. A <em>unitary connection</em> <m>\nabla</m> is a complex-linear connection preserving <m>h</m>; its curvature is <m>F_\nabla=\nabla^2\in\Omega^2(M,\operatorname{End}E)</m>. Relative to a complex structure <m>L</m> on the base, write <m>\bar\partial_{E,L}=\nabla^{0,1}_L</m>. Then
+      <md number="no">\bar\partial_{E,L}^{\,2}=F_\nabla^{0,2;L}.</md>
+      The integrability theorem for bundle-valued <m>\bar\partial</m>-operators says that square zero gives a unique holomorphic structure with this operator. For a unitary connection, vanishing of the <m>(0,2)</m> part also gives vanishing of the <m>(2,0)</m> part by conjugate transpose. Thus the curvature has type <m>(1,1)</m>. See <xref ref="hkg-bib-kobayashi-bundles" detail="Proposition 1.4.17 in the 2013 re-typesetting"/>.</p>
+    <definition xml:id="hkg-def-hyperholomorphic-connection">
+      <statement><p>A unitary connection on <m>E</m> is <em>hyperholomorphic</em> if <m>\nabla^{0,1}_L</m> is integrable for every induced complex structure <m>L</m>. A holomorphic vector bundle on <m>(M,I)</m> is <em>hyperholomorphic</em> if it admits a Hermitian metric and a hyperholomorphic connection whose <m>(0,1)</m> part is its given holomorphic structure operator.</p></statement>
+    </definition>
+    <proposition xml:id="hkg-prop-hyperholomorphic-curvature">
+      <statement><p>For a unitary connection <m>\nabla</m>, the following conditions are equivalent: it is hyperholomorphic; its curvature has type <m>(1,1)</m> for every induced complex structure; its curvature is <m>SU(2)</m>-invariant. Each implies <m>\Lambda_LF_\nabla=0</m> for every induced <m>L</m>.</p></statement>
+      <proof><p>The integrability identity and its unitary conjugate give the first equivalence. The second is <xref ref="hkg-lemma-su2-hodge-types"/>, applied to the endomorphism-valued curvature. The contraction vanishes by <xref ref="hkg-lemma-invariant-two-form-primitive"/>.</p></proof>
+    </proposition>
+    <p>Write <m>E_L=(E,\nabla_L^{0,1})</m> for the induced holomorphic bundles.<fn>Some sources allow complex connections preserving no Hermitian metric and call the invariant-curvature condition <em>autodual</em>. The complex twistor correspondence below includes these connections; our unqualified hyperholomorphic connection is unitary.</fn></p>
+    <proposition xml:id="hkg-prop-hyperholomorphic-chern-operations">
+      <statement><p>If <m>M</m> is compact, every Chern class <m>c_j(E)</m> of a hyperholomorphic bundle is <m>SU(2)</m>-invariant in real cohomology. Direct sums, tensor products, duals, and exterior powers of hyperholomorphic connections are hyperholomorphic, without a compactness assumption.</p></statement>
+      <proof>
+        <p>The Chern–Weil representatives are the coefficients of
+          <md number="no">\det\!\left(1+\frac{i}{2\pi}F_\nabla\right).</md>
+          Exterior multiplication and invariant polynomials in the endomorphism coefficients preserve invariance of the curvature form. The resulting closed forms are invariant. When <m>M</m> is compact, their harmonic projections are invariant because the Laplacian commutes with <m>SU(2)</m>, giving the cohomological assertion.</p>
+        <p>The curvature of a tensor product is <m>F_E\otimes1+1\otimes F_F</m>, and that of a dual is <m>-{}^tF_E</m>. Direct sums and exterior powers have the corresponding induced curvature formulas. Each preserves the invariance condition and the induced Hermitian metric.</p>
+      </proof>
+    </proposition>
+    <example xml:id="hkg-example-hyperholomorphic-tangent">
+      <p>The Levi-Civita connection gives a hyperholomorphic connection on <m>T_{(M,I)}^{1,0}</m>. It commutes with <m>I</m> and preserves the induced Hermitian metric. For every parallel induced complex structure <m>L</m>, the Kähler curvature identity is <m>R(Lu,Lv)=R(u,v)</m>. Therefore its two-form indices have type <m>(1,1)</m> for every <m>L</m>, even though the coefficient bundle has been fixed using <m>I</m>. Tensor constructions from the tangent bundle give further examples. Hyperholomorphicity does not mean flatness: on a K3 surface this connection has nontrivial holonomy <m>\mathrm{Sp}(1)</m>.</p>
+    </example>
+  </section>
+  <section xml:id="hkg-hyperholomorphic-stability">
+    <title>Stability and the Hermitian–Einstein correspondence</title>
+    <p>Let <m>(X,\omega)</m> be compact Kähler of dimension <m>d</m>. For a torsion-free coherent sheaf <m>\mathcal F</m> of positive rank, set
+      <md number="no">\deg_\omega(\mathcal F)=\int_Xc_1(\mathcal F)\frac{\omega^{d-1}}{(d-1)!},\qquad \mu_\omega(\mathcal F)=\frac{\deg_\omega(\mathcal F)}{\operatorname{rk}\mathcal F}.</md>
+      It is <em>slope stable</em> if every coherent subsheaf of rank strictly between zero and its rank has strictly smaller slope. A vector bundle is <em>slope polystable</em> if it is a direct sum of slope stable bundles of the same slope. These are slope conditions for the Kähler class; no projective embedding or integral polarization is assumed.<fn>The factor <m>(d-1)!</m> changes all slopes by the same positive number and does not change stability. With a real Kähler class the slope is a real number, and need not be rational.</fn></p>
+    <definition xml:id="hkg-def-hermitian-einstein">
+      <statement><p>A Hermitian metric on a holomorphic vector bundle is <em>Hermitian–Einstein</em> if the curvature of its Chern connection satisfies
+        <md number="no">i\Lambda_\omega F_\nabla=\lambda\operatorname{id}_E</md>
+        for a real constant <m>\lambda</m>.</p></statement>
+    </definition>
+    <p>Our Chern class convention is <m>c_1(E)=[\frac{i}{2\pi}\operatorname{Tr}F_\nabla]</m>. Let <m>V_\omega=\int_X\omega^d/d!</m>. Taking the trace of the equation and using the pointwise identity
+      <md number="no">\eta\wedge\frac{\omega^{d-1}}{(d-1)!}=(\Lambda_\omega\eta)\frac{\omega^d}{d!}\qquad\text{for a two-form of type }(1,1)</md>
+      gives <m>\lambda=2\pi\mu_\omega(E)/V_\omega</m>. In particular, zero slope is exactly the equation <m>\Lambda_\omega F_\nabla=0</m>. Older sources often call this the Hermitian Yang–Mills equation; the curvature condition here is stronger than the general Yang–Mills equation <m>d_\nabla^*F_\nabla=0</m>.</p>
+    <theorem xml:id="hkg-thm-duy">
+      <title>(Donaldson–Uhlenbeck–Yau)</title>
+      <statement><p>A holomorphic vector bundle on a compact Kähler manifold admits a Hermitian–Einstein metric if and only if it is slope polystable. For such a metric it admits an orthogonal parallel decomposition into stable bundles of the same slope. The bundle is stable if and only if that connection has no nonzero proper parallel complex subbundle. A stable bundle's Hermitian–Einstein metric is unique up to a positive constant. In general, any two Hermitian–Einstein metrics are related by a holomorphic bundle automorphism, which intertwines their Chern connections.</p></statement>
+    </theorem>
+    <p>See <xref ref="hkg-bib-uhlenbeck-yau"/> for existence and <xref ref="hkg-bib-kobayashi-bundles" detail="Theorem 5.8.3 in the 2013 re-typesetting"/> for the parallel stable decomposition.</p>
+    <corollary xml:id="hkg-cor-hyperholomorphic-polystable">
+      <statement><p>On a compact hyperkähler manifold, every hyperholomorphic bundle <m>E_L</m> is slope polystable of slope zero for <m>\omega_L</m>. If its connection is irreducible, it is stable for every induced complex structure.</p></statement>
+      <proof><p>Its curvature has type <m>(1,1)</m> and satisfies <m>\Lambda_LF_\nabla=0</m>, so it is Hermitian–Einstein with <m>\lambda=0</m>. The trace calculation gives zero slope, and <xref ref="hkg-thm-duy"/> gives polystability. Irreducibility is a property of the fixed connection, so the stable conclusion applies for every <m>L</m>.</p></proof>
+    </corollary>
+  </section>
+  <section xml:id="hkg-chern-curvature-norm">
+    <title>Chern classes and the curvature norm</title>
+    <p>The Hermitian–Einstein equation also gives a useful positivity statement. We fix the normalization of the curvature norm so that the constants in this statement are unambiguous.</p>
+    <proposition xml:id="hkg-curvature-energy-decomposition">
+      <statement><p>Let <m>\nabla</m> be a unitary connection on a Hermitian vector bundle over a compact Kähler manifold <m>(X,\omega)</m> of dimension <m>d\geq2</m>. Decompose its curvature orthogonally as
+        <md number="no">F=F^{1,1}_0+F_\perp+F_\omega,\qquad
+          F_\perp=F^{2,0}+F^{0,2},\qquad
+          F_\omega=\frac{\Lambda_\omega F}{d}\,\omega,</md>
+        where <m>F^{1,1}_0</m> is primitive of type <m>(1,1)</m>. Give the skew-Hermitian endomorphisms the inner product <m>(A,B)=-\operatorname{Tr}(AB)</m>, and use the resulting <m>L^2</m> norm on forms. Then
+        <md xml:id="hkg-eq-curvature-energy-decomposition" number="yes">\int_X\operatorname{Tr}(F\wedge F)\frac{\omega^{d-2}}{(d-2)!}
+          =\|F\|_{L^2}^2-2\|F_\perp\|_{L^2}^2-d\|F_\omega\|_{L^2}^2.</md>
+        In particular, the left side is at most <m>\|F\|_{L^2}^2</m>, with equality exactly when <m>F</m> is primitive of type <m>(1,1)</m>.</p></statement>
+      <proof><p>For a real two-form <m>\eta</m>, the Kähler Hodge-star identities on the three orthogonal summands are
+        <md number="no">\begin{aligned}
+          *\eta&amp;=-\eta\frac{\omega^{d-2}}{(d-2)!}
+            &amp;\text{if }\eta\in\Lambda^{1,1}_0,\\
+          *\eta&amp;=\eta\frac{\omega^{d-2}}{(d-2)!}
+            &amp;\text{if }\eta\in(\Lambda^{2,0}\oplus\Lambda^{0,2})_\R,\\
+          *\omega&amp;=\frac{\omega^{d-1}}{(d-1)!}.&amp;
+        \end{aligned}</md>
+        These are pointwise identities in a unitary real coframe <m>e_j^*,f_j^*</m> with <m>\omega=\sum_j e_j^*\wedge f_j^*</m>. The primitive <m>(1,1)</m> identity is checked explicitly in the next proof. For the second identity, let <m>\omega_j=e_j^*\wedge f_j^*</m>. On the four-plane indexed by <m>j,k</m>, the Hodge star fixes both
+          <md number="no">e_j^*\wedge e_k^*-f_j^*\wedge f_k^*,\qquad e_j^*\wedge f_k^*+f_j^*\wedge e_k^*.</md>
+          For either form <m>\eta</m>, the full Hodge star is <m>\eta\wedge\prod_{\ell\ne j,k}\omega_\ell=\eta\omega^{d-2}/(d-2)!</m>. These real and imaginary parts of <m>(e_j^*+if_j^*)\wedge(e_k^*+if_k^*)</m> span the required summand. Expanding <m>\omega^{d-1}</m> proves the third identity.</p>
+        <p>Apply these identities coefficientwise to skew-Hermitian endomorphism-valued forms. The three summands have no mixed terms in the integral: the operator <m>\eta\mapsto *\bigl(\eta\omega^{d-2}/(d-2)!\bigr)</m> preserves the orthogonal decomposition. With the negative trace in the norm, their contributions are respectively
+          <md number="no">\|F^{1,1}_0\|_{L^2}^2,\qquad
+            -\|F_\perp\|_{L^2}^2,\qquad
+            -(d-1)\|F_\omega\|_{L^2}^2.</md>
+          For the last coefficient, use <m>|\omega|^2=d</m> and <m>\omega^d/(d-2)!=d(d-1)\,dV_g</m>. Adding the three contributions and using orthogonality proves the formula. Both subtracted terms are nonnegative, and their vanishing is the stated curvature condition.</p></proof>
+    </proposition>
+    <proposition xml:id="hkg-lubke-norm-identity">
+      <title>(Lübke)</title>
+      <statement><p>Let <m>E</m> be a holomorphic vector bundle of rank <m>r</m> on a compact Kähler manifold <m>(X,\omega)</m> of dimension <m>d\geq2</m>. Suppose its Hermitian metric is Hermitian–Einstein, with curvature <m>F</m>, and put
+        <md number="no">F^0=F-\frac1r\operatorname{Tr}(F)\operatorname{id}_E,\qquad
+          \Delta(E)=2r c_2(E)-(r-1)c_1(E)^2.</md>
+        Use the inner product <m>(A,B)=-\operatorname{Tr}(AB)</m> on skew-Hermitian endomorphisms, and set
+        <md number="no">\|F^0\|_{L^2}^2=-\int_X\operatorname{Tr}(F^0\wedge *F^0).</md>
+        Then
+        <md xml:id="hkg-eq-lubke-norm" number="yes">\int_X\Delta(E)\,\omega^{d-2}
+          =\frac{r(d-2)!}{4\pi^2}\|F^0\|_{L^2}^2\geq0.</md>
+        Equality holds if and only if the connection is projectively flat, meaning <m>F^0=0</m>.</p></statement>
+      <proof><p>The curvature has type <m>(1,1)</m>. Taking its trace-free part in the Hermitian–Einstein equation gives <m>\Lambda_\omega F^0=0</m>, so it is primitive. For a primitive real <m>(1,1)</m>-form <m>\eta</m>, the Hodge-star identity is
+        <md number="no">*\eta=-\eta\wedge\frac{\omega^{d-2}}{(d-2)!}.</md>
+        To check the sign and factorial, diagonalize <m>\eta</m> in a unitary real coframe: write <m>\omega=\sum_j\omega_j</m> and <m>\eta=\sum_j a_j\omega_j</m>, with <m>\omega_j=e_j^*\wedge f_j^*</m> and <m>\sum_j a_j=0</m>. The coefficient of <m>\prod_{j\ne k}\omega_j</m> in <m>\eta\omega^{d-2}/(d-2)!</m> is <m>\sum_{j\ne k}a_j=-a_k</m>, whereas <m>*\omega_k=\prod_{j\ne k}\omega_j</m>. This proves the identity. It applies coefficientwise to <m>F^0</m> in an orthonormal basis of skew-Hermitian endomorphisms.</p>
+        <p>Expanding the Chern–Weil determinant <m>\det(1+iF/(2\pi))</m> gives representatives
+          <md number="no">c_1(E,F)=\frac{i}{2\pi}\operatorname{Tr}F,\qquad
+            c_2(E,F)=\frac{\operatorname{Tr}(F\wedge F)-\operatorname{Tr}F\wedge\operatorname{Tr}F}{8\pi^2}.</md>
+          Consequently the discriminant is represented by
+          <md number="no">\Delta(E,F)=\frac{r}{4\pi^2}\operatorname{Tr}(F^0\wedge F^0).</md>
+          Wedge with <m>\omega^{d-2}</m>, use the star identity, and integrate. The left side depends only on the Chern classes, while the right side is the stated squared norm. It vanishes exactly when <m>F^0</m> vanishes everywhere.</p></proof>
+    </proposition>
+    <p>This is the curvature calculation underlying Lübke's inequality; see <xref ref="hkg-bib-kobayashi-bundles" detail="§4.4, especially (4.4.7)"/>. Together with <xref ref="hkg-thm-duy"/>, it proves the discriminant inequality for slope polystable vector bundles. The equality concerns their Hermitian–Einstein connection; it does not require its scalar curvature component to vanish.</p>
+    <corollary xml:id="hkg-positive-second-chern">
+      <statement><p>For an IHS <m>2n</m>-fold and any Kähler class <m>\omega</m>,
+        <md number="no">\int_X c_2(X)\omega^{2n-2}&gt;0,\qquad C_X(c_2(X))&gt;0.</md>
+        More precisely, if <m>F</m> is the curvature of the Ricci-flat metric in this class, with the norm above, then
+        <md number="no">\int_X c_2(X)\omega^{2n-2}
+          =\frac{(2n-2)!}{8\pi^2}\|F\|_{L^2}^2.</md></p></statement>
+      <proof><p>The Levi-Civita connection on <m>T_X^{1,0}</m> is its Chern connection. The Kähler curvature identities and Ricci-flatness give <m>\operatorname{Tr}F=0</m> and <m>\Lambda_\omega F=0</m>. Thus <m>F^0=F</m> and <m>c_1(X,F)=0</m>. Apply <xref ref="hkg-eq-lubke-norm"/> with <m>r=d=2n</m> and divide by <m>2r</m>. The curvature cannot vanish identically: its restricted holonomy is <m>\Sp(n)</m> by <xref ref="hkg-thm-ihs-metric-equivalence"/>, whereas a flat connection has trivial restricted holonomy. This proves strict positivity. Finally,
+        <md number="no">\int_X c_2(X)\omega^{2n-2}=C_X(c_2(X))q_X(\omega)^{n-1},</md>
+        by <xref ref="hkg-generalized-fujiki"/>. Since <m>q_X(\omega)&gt;0</m>, the generalized Fujiki constant is positive.</p></proof>
+    </corollary>
+    <p>The coefficient of <m>t^{n-1}</m> in <m>\operatorname{RR}_X(t)</m> is therefore
+      <md number="no">\frac{C_X(c_2(X))}{12(2n-2)!}&gt;0.</md>
+      This follows from <m>\operatorname{td}_2=c_2/12</m> in <xref ref="hkg-eq-rr-polynomial"/>. Thus the first two coefficients of the Riemann–Roch polynomial have a geometric positivity explanation, even though the full polynomial can depend on the deformation type.</p>
+  </section>
+  <section xml:id="hkg-hyperholomorphic-chern-criterion">
+    <title>The Chern-class criterion</title>
+    <theorem xml:id="hkg-thm-verbitsky-chern-criterion">
+      <title>(Verbitsky)</title>
+      <statement><p>Let <m>M</m> be compact hyperkähler, and let <m>E</m> be a slope polystable holomorphic vector bundle on <m>(M,I)</m>, for the metric Kähler form <m>\omega_I</m>. Then <m>E</m> admits a hyperholomorphic connection if and only if <m>c_1(E)</m> and <m>c_2(E)</m> are <m>SU(2)</m>-invariant in real cohomology. In that case its Hermitian–Einstein connection is hyperholomorphic, and its slope is zero.</p></statement>
+      <proof><p>Necessity is <xref ref="hkg-prop-hyperholomorphic-chern-operations"/>. Conversely, an invariant class <m>c_1(E)</m> has an invariant harmonic representative, which is primitive by <xref ref="hkg-lemma-invariant-two-form-primitive"/>. Its degree against <m>\omega_I</m> is therefore zero. By <xref ref="hkg-thm-duy"/>, polystability gives a Hermitian–Einstein connection <m>\nabla</m>. Its curvature <m>F</m> has type <m>(1,1)</m> for <m>I</m> and satisfies <m>\Lambda_I F=0</m>, since the slope is zero.</p>
+        <p>For each induced complex structure <m>L</m>, put
+          <md number="no">\mathcal E_L=\int_M\operatorname{Tr}(F\wedge F)\frac{\omega_L^{d-2}}{(d-2)!},\qquad d=2n.</md>
+          The Chern–Weil class of <m>\operatorname{Tr}(F\wedge F)</m> is
+          <md number="no">8\pi^2\left(c_2(E)-\frac12c_1(E)^2\right).</md>
+          This class is <m>SU(2)</m>-invariant by hypothesis. The cohomological action preserves cup product and integration, and takes <m>[\omega_I]</m> to <m>[\omega_L]</m>. Hence <m>\mathcal E_L=\mathcal E_I</m>. The energy identity at <m>I</m> gives <m>\mathcal E_I=\|F\|_{L^2}^2</m>. The Riemannian metric and complex orientation are the same for every induced structure, so this norm is independent of <m>L</m>. Applying <xref ref="hkg-eq-curvature-energy-decomposition"/> at <m>L</m> now gives
+          <md number="no">2\|F^{2,0;L}+F^{0,2;L}\|_{L^2}^2
+            +d\left\|\frac{\Lambda_LF}{d}\omega_L\right\|_{L^2}^2=0.</md>
+          Both terms vanish. Thus <m>F</m> is primitive of type <m>(1,1)</m> for every induced structure, and <xref ref="hkg-prop-hyperholomorphic-curvature"/> proves hyperholomorphicity.</p></proof>
+    </theorem>
+    <p>The stable case is <xref ref="hkg-bib-verbitsky-hyperholomorphic" detail="Theorem 2.5, proved in §5"/>; the polystable formulation is <xref ref="hkg-bib-verbitsky-generic-sheaves" detail="Theorem 3.9"/>.</p>
+    <p>The higher Chern classes are invariant by <xref ref="hkg-prop-hyperholomorphic-chern-operations"/>. Polystability cannot be omitted from the converse, as the following example shows.</p>
+    <example xml:id="hkg-hyperholomorphic-nonpolystable-extension">
+      <p>Let <m>A</m> be a complex torus of dimension two with a flat hyperkähler metric. A nonzero class in <m>H^1(A,\mathcal O_A)</m> defines a nonsplit extension
+        <md number="no">0\longrightarrow\mathcal O_A\longrightarrow E\longrightarrow\mathcal O_A\longrightarrow0.</md>
+        The Whitney formula gives <m>c_1(E)=c_2(E)=0</m>. The subbundle <m>\mathcal O_A</m> has the same slope as <m>E</m>, so <m>E</m> is not stable. If it were polystable, it would be a sum of two line bundles of degree zero. A nonzero section of either summand has no zeros: an effective divisor of degree zero on a compact Kähler manifold is zero. Thus that summand is trivial, and <m>\det E\cong\mathcal O_A</m> makes the other summand trivial as well. But the cohomology sequence of the nonsplit extension gives <m>h^0(A,E)=1</m>, whereas <m>h^0(A,\mathcal O_A^{\oplus2})=2</m>. Hence <m>E</m> is not polystable and, by <xref ref="hkg-cor-hyperholomorphic-polystable"/>, is not hyperholomorphic despite the invariance of all its Chern classes.</p>
+    </example>
+  </section>
+  <section xml:id="hkg-hyperholomorphic-examples">
+    <title>Line bundles, surfaces, and the projective variant</title>
+    <proposition xml:id="hkg-prop-hyperholomorphic-line-bundles">
+      <statement><p>A holomorphic line bundle on <m>(M,I)</m>, for compact hyperkähler <m>M</m>, is hyperholomorphic if and only if its first Chern class is <m>SU(2)</m>-invariant. Such a line bundle has degree zero for every induced complex structure. For IHS fibers, the possible first Chern classes are exactly <m>H^2(M,\mathbb Z)\cap P_g^\perp</m>.</p></statement>
+      <proof><p>A line bundle is slope stable and has <m>c_2=0</m>, so the assertion follows from <xref ref="hkg-thm-verbitsky-chern-criterion"/>. The last group is the set of degree-two integral classes of type <m>(1,1)</m> for every induced complex structure by <xref ref="hkg-prop-twistor-picard"/>. The degree-zero statement follows from <xref ref="hkg-cor-hyperholomorphic-polystable"/>.</p></proof>
+    </proposition>
+    <p>On an IHS manifold, a nonzero first Chern class of a hyperholomorphic line bundle has negative BBF square because <m>P_g^\perp</m> is negative definite. Such bundles can exist on very general twistor fibers with no effective divisors. An ample bundle has positive degree and is never hyperholomorphic for the chosen metric.</p>
+    <proposition xml:id="hkg-prop-hyperholomorphic-surface">
+      <statement><p>On a hyperkähler surface with its complex orientation, a unitary connection is hyperholomorphic if and only if its curvature is anti-self-dual. Every slope stable degree-zero bundle on a compact hyperkähler surface is therefore hyperholomorphic.</p></statement>
+      <proof>
+        <p>In real dimension four, the three metric Kähler forms <m>\omega_I,\omega_J,\omega_K</m> are self-dual and span <m>\Lambda^2_+</m>. For any one induced complex structure, its real primitive forms of type <m>(1,1)</m> are precisely <m>\Lambda^2_-</m>. This follows in a unitary real coframe by applying the Hodge star to the six basis wedge products: <m>\mathbb R\omega_I</m> and the real and imaginary parts of <m>\sigma</m> have star <m>+1</m>, and their orthogonal complement has star <m>-1</m>.</p>
+        <p>Hyperholomorphic curvature is primitive of type <m>(1,1)</m>, so it is anti-self-dual. Conversely, anti-self-dual curvature lies in the primitive <m>(1,1)</m> subspace for every induced complex structure, since the self-dual three-plane is the same throughout the sphere. It is therefore hyperholomorphic. For a stable degree-zero bundle, its Hermitian–Einstein connection is primitive of type <m>(1,1)</m>, giving the second assertion.</p>
+      </proof>
+    </proposition>
+    <p>The surface argument explains why degree zero alone suffices there. In higher dimension, being primitive of type <m>(1,1)</m> for one complex structure does not imply invariance under <m>SU(2)</m>, and the second Chern class condition in Verbitsky's theorem has content.</p>
+    <definition xml:id="hkg-def-projectively-hyperholomorphic">
+      <statement><p>A unitary connection on a rank <m>r</m> bundle is <em>projectively hyperholomorphic</em> if its trace-free curvature
+        <md number="no">F_\nabla^0=F_\nabla-\frac1r\operatorname{Tr}(F_\nabla)\operatorname{id}_E</md>
+        is <m>SU(2)</m>-invariant.</p></statement>
+    </definition>
+    <p>The induced connection on <m>\operatorname{End}E</m> has curvature <m>T\mapsto[F_\nabla,T]=[F_\nabla^0,T]</m>. The adjoint representation is injective on trace-free endomorphisms, so projective hyperholomorphicity is equivalent to hyperholomorphicity of this endomorphism connection. It allows a noninvariant scalar part of curvature and a nonzero slope. Every Hermitian–Einstein connection on a hyperkähler surface is projectively hyperholomorphic, because its trace-free curvature is primitive of type <m>(1,1)</m>. For rank one the projective condition imposes no restriction. These distinctions are discussed in <xref ref="hkg-bib-verbitsky-hyperholomorphic" detail="§11"/>.</p>
+    <proposition xml:id="hkg-projective-hyperholomorphic-discriminant">
+      <statement><p>Let <m>E</m> be a holomorphic vector bundle of rank <m>r</m> on a compact hyperkähler manifold. Suppose <m>E</m> is slope polystable with respect to <m>\omega_I</m>. Its Hermitian–Einstein connection is projectively hyperholomorphic if and only if
+        <md number="no">\Delta(E)=2r c_2(E)-(r-1)c_1(E)^2</md>
+        is <m>SU(2)</m>-invariant in real cohomology.</p></statement>
+      <proof><p>The induced connection on <m>\operatorname{End}E</m> is Hermitian–Einstein of slope zero: its contracted curvature sends <m>T</m> to <m>[\Lambda_I F_\nabla,T]=0</m>. Thus <m>\operatorname{End}E</m> is slope polystable by <xref ref="hkg-thm-duy"/>. Multiplying <m>\operatorname{ch}(E)</m> and <m>\operatorname{ch}(E^\vee)</m> in degrees at most four gives
+        <md number="no">c_1(\operatorname{End}E)=0,\qquad c_2(\operatorname{End}E)=2r c_2(E)-(r-1)c_1(E)^2.</md>
+        Apply <xref ref="hkg-thm-verbitsky-chern-criterion"/> to this Hermitian–Einstein connection. It is hyperholomorphic exactly when <m>\Delta(E)</m> is invariant. By the injectivity of the adjoint representation on trace-free endomorphisms, this is equivalent to invariance of <m>F_\nabla^0</m>.</p></proof>
+    </proposition>
+    <p>For a line bundle <m>L</m>, the isomorphism <m>\operatorname{End}(E\otimes L)\cong\operatorname{End}E</m> gives <m>\Delta(E\otimes L)=\Delta(E)</m>. Tensoring preserves slope polystability because it adds <m>\deg_\omega(L)</m> to every slope. Thus the criterion depends on the projective bundle and not on a choice of its vector-bundle lift.<fn>This is the same reason that endomorphisms of local universal families can descend even when the families themselves differ by line bundles. Gieseker stability behaves differently under tensor product by an arbitrary line bundle; see <xref ref="hkg-mukai-line-twist"/> and the paragraph following it.</fn></p>
+  </section>
+  <section xml:id="hkg-hyperholomorphic-twistor-transform">
+    <title>The twistor transform</title>
+    <p>Let <m>Z=M\times\mathbb P^1</m> be the twistor space, with holomorphic projection <m>\pi:Z\to\mathbb P^1</m> and smooth projection <m>p:Z\to M</m>. The latter is not holomorphic for a fixed complex structure on <m>M</m>. Let <m>s_x(\mathbb P^1)=\{x\}\times\mathbb P^1</m> denote the real twistor sections.</p>
+    <proposition xml:id="hkg-prop-direct-twistor-transform">
+      <statement><p>Let <m>\nabla</m> be a complex connection on <m>E\to M</m> with <m>SU(2)</m>-invariant curvature. Then
+        <md number="no">\operatorname{Tw}(E,\nabla):=\bigl(p^*E,(p^*\nabla)^{0,1}\bigr)</md>
+        is a holomorphic vector bundle on <m>Z</m>. Its restriction to every real twistor section is holomorphically trivial, and its restriction to <m>X_L</m> is <m>(E,\nabla_L^{0,1})</m>.</p></statement>
+      <proof>
+        <p>The curvature of <m>p^*\nabla</m> is <m>p^*F_\nabla</m>. It vanishes whenever one argument is tangent to <m>\mathbb P^1</m>. On two vertical arguments at <m>(x,L)</m>, its <m>(0,2)</m> component is <m>F_\nabla^{0,2;L}=0</m>, since invariance implies type <m>(1,1)</m> for <m>L</m>. Thus <m>((p^*\nabla)^{0,1})^2=0</m>, which gives the holomorphic structure.</p>
+        <p>On <m>s_x(\mathbb P^1)</m>, the pulled-back connection is the ordinary constant connection on the fixed vector space <m>E_x</m>. Its holomorphic bundle is <m>E_x\otimes\mathcal O_{\mathbb P^1}</m>. Restricting to a fiber instead restricts the operator to <m>\nabla_L^{0,1}</m>.</p>
+      </proof>
+    </proposition>
+    <theorem xml:id="hkg-thm-inverse-twistor-transform">
+      <title>(Kaledin–Verbitsky)</title>
+      <statement><p>The direct twistor transform gives an equivalence between complex vector bundles on <m>M</m> with a connection of <m>SU(2)</m>-invariant curvature, with parallel bundle morphisms, and holomorphic vector bundles on <m>Z</m> whose restriction to every real twistor section is holomorphically trivial, with holomorphic bundle morphisms.</p></statement>
+    </theorem>
+    <p>This is <xref ref="hkg-bib-kaledin-verbitsky" detail="Theorem 5.12"/>, also stated as <xref ref="hkg-bib-verbitsky-generic-sheaves" detail="Theorem 6.2"/>. The inverse recovers the fiber at <m>x</m> as the space of holomorphic sections of the restriction to <m>s_x</m>; evaluation identifies this space with any fiber on that section. Recovering the connection from the holomorphic structure uses the first-order variation of these identifications in <m>x</m>.</p>
+    <p>The theorem concerns complex connections and does not by itself produce a unitary connection. Write <m>\mathcal E=\operatorname{Tw}(E,\nabla)</m> and <m>\tau(x,\zeta)=(x,-1/\bar\zeta)</m>. If <m>\nabla</m> preserves a positive Hermitian metric <m>h</m>, linear in its first argument, there is a holomorphic pairing
+      <md number="no">B:\mathcal E\otimes\tau^*\overline{\mathcal E}\longrightarrow\mathcal O_Z,\qquad B_{(x,L)}(e,\bar f)=h_x(e,f).</md>
+      Here <m>\overline{\mathcal E}</m> is the conjugate holomorphic bundle on the conjugate complex manifold <m>\overline Z</m>, and <m>\tau:Z\to\overline Z</m> is holomorphic. The two factors are twistor transforms of the connection and its conjugate; their pairing is holomorphic because <m>\nabla h=0</m>. It satisfies
+      <md number="no">B_{\tau(z)}(f,\bar e)=\overline{B_z(e,\bar f)}.</md>
+      On a real twistor section, constant holomorphic sections identify both antipodal fibers with <m>E_x</m>, and <m>B</m> gives the positive Hermitian form <m>h_x</m>. These are additional Hermitian reality and positivity conditions, rather than a quaternionic endomorphism of <m>E</m> with square <m>-1</m>.</p>
+    <p>Tensoring a twistor transform by <m>\pi^*\mathcal O(1)</m> preserves its restriction to each fiber up to isomorphism, but changes its restriction to each real section from <m>\mathcal O^{\oplus r}</m> to <m>\mathcal O(1)^{\oplus r}</m>. Thus an extension to <m>Z</m> must still satisfy the theorem's triviality condition on real sections.</p>
+  </section>
+  <section xml:id="hkg-trianalytic-subvarieties">
+    <title>Trianalytic subvarieties and calibration</title>
+    <definition xml:id="hkg-def-trianalytic">
+      <statement><p>A closed reduced subset <m>Y\subset M</m> is <em>trianalytic</em> if it is a complex analytic subset of <m>(M,L)</m> for every induced complex structure <m>L</m>. For a compact analytic subvariety of pure dimension <m>d</m>, write <m>\operatorname{cl}(Y)\in H^{4n-2d}(M,\mathbb Z)</m> for the Poincaré dual of its fundamental cycle.</p></statement>
+    </definition>
+    <lemma xml:id="hkg-lemma-trianalytic-totally-geodesic">
+      <statement><p>A smooth trianalytic submanifold has even dimension, inherits the ambient hyperkähler structure, and is totally geodesic.</p></statement>
+      <proof>
+        <p>Its real tangent bundle is preserved by <m>I,J,K</m>, so each tangent space is quaternionic and has real dimension divisible by four. Its orthogonal normal bundle is also preserved. Orthogonal projection of the ambient Levi-Civita connection to the tangent bundle is the induced Levi-Civita connection and commutes with <m>I,J,K</m>. The induced metric and the restricted triple are therefore hyperkähler.</p>
+        <p>Let <m>B(u,v)</m> be the second fundamental form. Symmetry of <m>B</m>, parallelness of the ambient structures, and preservation of the normal bundle give <m>B(Au,v)=B(u,Av)=AB(u,v)</m> for <m>A=I,J,K</m>. Hence
+          <md number="no">B(Iu,Jv)=IJ B(u,v)=K B(u,v),\qquad B(Iu,Jv)=JI B(u,v)=-K B(u,v).</md>
+          Thus <m>B=0</m>, which is total geodesy.</p>
+      </proof>
+    </lemma>
+    <theorem xml:id="hkg-thm-trianalytic-class-criterion">
+      <title>(Verbitsky)</title>
+      <statement><p>Let <m>M</m> be compact hyperkähler, and let <m>Y\subset(M,I)</m> be a closed reduced analytic subvariety of pure dimension. Then <m>Y</m> is trianalytic if and only if <m>\operatorname{cl}(Y)</m> is <m>SU(2)</m>-invariant.</p></statement>
+    </theorem>
+    <p>The implication from invariant cycle class to trianalyticity, including singular subvarieties, is <xref ref="hkg-bib-verbitsky-trianalytic" detail="Theorem 3.1"/>. For the reverse implication, the fundamental cycle has type <m>(2n-d,2n-d)</m> for every induced structure, so invariance follows from the cohomological form of <xref ref="hkg-lemma-su2-hodge-types"/>. The geometric reason for the forward implication is equality in the Kähler volume inequality, which we now prove for a smooth subvariety.</p>
+    <lemma xml:id="hkg-lemma-wirtinger">
+      <statement><p>Let <m>(V,g,L)</m> be a Hermitian real vector space, and <m>U\subset V</m> an oriented real subspace of dimension <m>2d</m>. Then
+        <md number="no">\left|\frac{\omega_L^d}{d!}\Big|_U\right|\leq\operatorname{vol}_U.</md>
+        Equality holds exactly when <m>U</m> is <m>L</m>-invariant. Equality without the absolute value uses its complex orientation.</p></statement>
+      <proof>
+        <p>The restriction of <m>\omega_L</m> is represented by the skew-adjoint operator <m>S=\operatorname{pr}_U L|_U</m>. In an orthonormal basis of <m>U</m>, its skew-normal form has <m>d</m> two-dimensional blocks with parameters <m>\lambda_1,\ldots,\lambda_d</m>, all of absolute value at most <m>1</m>, because orthogonal projection does not increase length. The coefficient of <m>\omega_L^d/d!</m> relative to the oriented volume is, up to the orientation sign, <m>\lambda_1\cdots\lambda_d</m>. This proves the inequality.</p>
+        <p>Equality requires every singular value of <m>S</m> to be <m>1</m>, so <m>|\operatorname{pr}_ULv|=|Lv|</m> for every <m>v\in U</m>. The component of <m>Lv</m> perpendicular to <m>U</m> then vanishes, proving <m>L(U)=U</m>. Conversely an <m>L</m>-complex subspace has its Kähler volume form <m>\omega_L^d/d!</m>, positive for its complex orientation.</p>
+      </proof>
+    </lemma>
+    <proposition xml:id="hkg-prop-smooth-trianalytic-calibration">
+      <statement><p>Let <m>Y\subset(M,I)</m> be a smooth closed complex submanifold of a compact hyperkähler manifold. If <m>\operatorname{cl}(Y)</m> is <m>SU(2)</m>-invariant, then <m>Y</m> is trianalytic.</p></statement>
+      <proof>
+        <p>Let <m>d=\dim Y</m>. The group rotates the metric Kähler forms transitively. Since it preserves cup product and integration and fixes the cycle class, the number
+          <md number="no">\frac1{d!}\int_Y\omega_L^d=\frac1{d!}\int_M\operatorname{cl}(Y)[\omega_L]^d</md>
+          is independent of the induced <m>L</m>. For <m>L=I</m>, this equals the Riemannian volume of <m>Y</m>.</p>
+        <p>For any <m>L</m>, <xref ref="hkg-lemma-wirtinger"/> gives <m>\omega_L^d/d!\leq\operatorname{vol}_Y</m> pointwise with the fixed <m>I</m>-orientation. Their integrals are equal, so their continuous nonnegative difference is identically zero. Equality in the lemma makes every tangent space of <m>Y</m> invariant under <m>L</m>, with the induced complex orientation. The restricted structure is integrable and the inclusion is holomorphic. Thus <m>Y</m> is an analytic submanifold for every <m>L</m>.</p>
+      </proof>
+    </proposition>
+    <p>For singular subvarieties the same calculation applies on the regular locus, whose complement has zero volume in its fundamental cycle. Extending the analytic conclusion across the singular set is part of the full theorem cited above. The closure of an arbitrary analytic subset of an open set need not be analytic, so that extension cannot be replaced by a bare closure assertion.</p>
+    <example xml:id="hkg-example-trianalytic-diagonal">
+      <p>In the product of a hyperkähler manifold with itself, with the componentwise triple, the diagonal is trianalytic. Its tangent space is the diagonal quaternionic subspace and its induced metric is twice the original metric. A factor <m>M_1\times\{x\}</m> in a product is another example. By contrast, a positive-dimensional holomorphic Lagrangian submanifold cannot be trianalytic: the ambient holomorphic symplectic form vanishes on it, whereas its restriction to a trianalytic tangent space is nondegenerate.</p>
+    </example>
+  </section>
+  <section xml:id="hkg-trianalytic-normalization">
+    <title>Normalization and very general induced structures</title>
+    <theorem xml:id="hkg-thm-trianalytic-normalization">
+      <title>(Verbitsky)</title>
+      <statement><p>The normalization of a reduced trianalytic subvariety is smooth and carries an induced hypercomplex structure, independent of the induced complex structure used to take the normalization. Locally it separates the smooth analytic branches. The normalization map is a triholomorphic immersion into the ambient manifold.</p></statement>
+    </theorem>
+    <p>For smoothness and the hypercomplex structure, see <xref ref="hkg-bib-verbitsky-hypercomplex" detail="Theorem 6.2"/>. Its proof describes the normalization locally as the disjoint union of smooth branches, each embedded in the original analytic subvariety; composing with the ambient embedding gives the immersion assertion. Pulling back the metric therefore gives a positive definite metric. The connection argument of <xref ref="hkg-lemma-trianalytic-totally-geodesic"/> proves that this metric is hyperkähler and that the immersion is totally geodesic. For a compact subvariety its normalization is compact, so every connected component admits the decomposition of <xref ref="hkg-cor-symplectic-decomposition"/>. It need not be IHS.</p>
+    <proposition xml:id="hkg-prop-generic-twistor-trianalytic">
+      <statement><p>For a compact hyperkähler manifold with fixed metric, there is a countable set of parameters in its induced sphere such that every closed analytic subvariety of every remaining fiber is trianalytic. Consequently, such a fiber has no odd-dimensional analytic subvarieties.</p></statement>
+      <proof>
+        <p>Let <m>\eta\in H^{2p}(M,\mathbb Q)</m> be a noninvariant class. If it were of type <m>(p,p)</m> for two nonantipodal induced structures <m>L_1,L_2</m>, both Hodge circles would fix it. The corresponding two independent elements of <m>\mathfrak{su}(2)</m> annihilate <m>\eta</m>; their bracket also annihilates it. Those three elements span <m>\mathfrak{su}(2)</m>, forcing invariance under the connected group <m>SU(2)</m>, a contradiction. Thus a noninvariant class is Hodge at at most two antipodal parameters.</p>
+        <p>Rational cohomology in all degrees is countable. Remove these exceptional points for every noninvariant rational class. On every remaining fiber, all rational classes of type <m>(p,p)</m> are invariant. The cycle class of an analytic subvariety has this type in its codimension, so <xref ref="hkg-thm-trianalytic-class-criterion"/> makes every reduced irreducible component trianalytic. At a smooth point its tangent space is quaternionic, so its complex dimension is even.</p>
+      </proof>
+    </proposition>
+    <p>See <xref ref="hkg-bib-verbitsky-trianalytic" detail="Proposition 2.2"/>. Even-dimensional trianalytic subvarieties can remain on these fibers.</p>
+    <p>A class that remains Hodge under every sufficiently small IHS deformation satisfies a stronger condition. Every chosen metric gives a local twistor deformation through the original point, so persistence in the full deformation germ makes the class Hodge at two nonantipodal nearby induced structures and therefore invariant for that metric. This implication applies to the Chern classes of the tangent bundle, which come from the relative tangent bundle of every smooth deformation. For the Chern classes of an arbitrary hyperholomorphic bundle, the fixed-metric criterion alone makes no assertion that the bundle or its classes extend across all small IHS deformations.</p>
+  </section>
+  <section xml:id="hkg-hyperholomorphic-moduli">
+    <title>Deformations of bundles</title>
+    <p>Let <m>E</m> be a stable hyperholomorphic bundle on a compact hyperkähler manifold. The tangent space to its local moduli problem is <m>\operatorname{Ext}^1(E,E)=H^1(\operatorname{End}E)</m>. The primary obstruction is the Yoneda square <m>\xi\cup\xi\in\operatorname{Ext}^2(E,E)</m>. The general deformation-theoretic definitions and the K3 surface case belong to <xref ref="hkg-sheaf-moduli"/>; the additional hyperholomorphic statement is the following.</p>
+    <theorem xml:id="hkg-thm-hyperholomorphic-quadratic-germ">
+      <title>(Verbitsky)</title>
+      <statement><p>The reduced analytic germ of the local moduli space at a stable hyperholomorphic bundle <m>E</m> is isomorphic to the reduced germ at zero of
+        <md number="no">\{\xi\in\operatorname{Ext}^1(E,E):\xi\cup\xi=0\}.</md>
+        Its smooth locus carries the hyperkähler structure induced by the bundle's hyperholomorphic connection.</p></statement>
+    </theorem>
+    <p>The quadratic description is <xref ref="hkg-bib-verbitsky-hyperholomorphic" detail="Theorem 6.2"/>; the hyperkähler statement is its Theorem 6.3. These statements describe the reduced analytic germ, without determining the possible nonreduced structure.</p>
+    <p>A stable hyperholomorphic connection remains stable and hyperholomorphic on every induced fiber, so the induced complex structures on its local moduli space vary with those of the base. The moduli space need not be compact or IHS. A compactification can contain torsion-free sheaves that are not locally free; the corresponding curvature and twistor statements require the analytic extension theorems and singularity hypotheses in <xref ref="hkg-bib-verbitsky-generic-sheaves"/>.</p>
+  </section>
+</chapter>

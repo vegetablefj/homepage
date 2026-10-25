@@ -1,0 +1,139 @@
+<chapter xml:id="ha-c05">
+  <title>Resolutions and classical derived functors</title>
+  <introduction><p>A left exact functor need not preserve a cokernel. Its right derived functors record that failure in a natural long exact sequence. Resolutions first make this construction explicit; universality then identifies it independently of the chosen resolution. We work with abelian categories and state each supply of projective or injective objects as a hypothesis. Main sources are <xref ref="bib-ha-li2" detail="§§3.11–3.13"/> and <xref ref="bib-ha-weibel" detail="Chapter 2"/>.</p></introduction>
+  <section xml:id="ha-c05-resolutions">
+    <title>Resolutions and comparison</title>
+    <definition xml:id="ha-c05-projective-injective">
+      <title>Projective and injective objects</title><idx>Projective object</idx><idx>Injective object</idx><idx>Enough projectives</idx><idx>Enough injectives</idx>
+      <statement><p>Let <m>\mathcal A</m> be abelian.
+        <ol>
+          <li><p>An object <m>P</m> is <em>projective</em> if every map <m>P\to B</m> lifts along every epimorphism <m>A\to B</m>. Equivalently, the functor <m>\Hom_{\mathcal A}(P,-):\mathcal A\to\Ab</m> is exact.</p></li>
+          <li><p>An object <m>I</m> is <em>injective</em> if every map <m>A\to I</m> extends along every monomorphism <m>A\to B</m>. Equivalently, <m>\Hom_{\mathcal A}(-,I):\mathcal A^{\op}\to\Ab</m> is exact.</p></li>
+          <li><p>The category has <em>enough projectives</em> if every object is an epimorphic image of a projective object, and <em>enough injectives</em> if every object embeds in an injective object.</p></li>
+        </ol>
+        The equivalences follow because each Hom functor is already left exact in its covariant interpretation; lifting or extension supplies the remaining surjectivity.</p></statement>
+    </definition>
+    <definition xml:id="ha-c05-resolution-definition">
+      <title>Projective and injective resolutions</title><idx>Projective resolution</idx><idx>Injective resolution</idx>
+      <statement><p>Let <m>\mathcal A</m> be abelian and let <m>A\in\mathcal A</m>.
+        <ol>
+          <li><p>A projective resolution is a quasi-isomorphism <m>\epsilon:P\to A[0]</m>, where every <m>P^n</m> is projective and <m>P^n=0</m> for <m>n&gt;0</m>. Thus <m>\cdots\to P^{-1}\to P^0\to A\to0</m> is exact.</p></li>
+          <li><p>An injective resolution is a quasi-isomorphism <m>\eta:A[0]\to I</m>, where every <m>I^n</m> is injective and <m>I^n=0</m> for <m>n&lt;0</m>. Thus <m>0\to A\to I^0\to I^1\to\cdots</m> is exact.</p></li>
+        </ol>
+      </p></statement>
+    </definition>
+    <p>Enough projectives yields a projective resolution by successively choosing epimorphisms onto kernels. The dual construction gives injective resolutions. These arguments do not require functorial choices. Module categories have enough projectives and injectives; a general Grothendieck category has enough injectives, whereas enough projectives requires a separate argument.</p>
+    <proposition xml:id="ha-c05-projective-injective-closure">
+      <statement><p>Projective and injective objects are closed under retracts and finite direct sums. Any existing coproduct of projective objects is projective, and any existing product of injective objects is injective. A module is projective if and only if it is a direct summand of a free module.</p></statement>
+      <proof><p>A retract of an exact Hom functor is exact. Hom from a coproduct is the product of the individual Hom groups; Hom into a product has the analogous description. Products of surjections of abelian groups are surjective, so these descriptions give the asserted lifting properties. For the module assertion, free modules lift maps by lifting their basis elements. A surjection from a free module to a projective module splits, giving the converse.</p></proof>
+    </proposition>
+    <p>The product assertion for injectives uses the product in the ambient category. There is no corresponding general assertion that coproducts of injectives are injective.<fn>For module categories, closure of arbitrary coproducts of injectives is related to noetherian hypotheses. The existence of enough injectives requires no such closure condition.</fn> Nor is an infinite product of projectives covered by the proposition.</p>
+    <example xml:id="ha-c05-baer">
+      <p>For modules, projectives are summands of free modules, and injectivity can be tested on maps from left ideals of the ring: each such map must extend to the ring. This is Baer's criterion; see <url href="https://stacks.math.columbia.edu/tag/0AVF">Stacks, Tag 0AVF</url>. It gives divisible groups as the injectives in <m>\Ab</m>, since the ideals of <m>\Z</m> are the groups <m>n\Z</m>. We shall use <m>0\to\Z\to\Q\to\Q/\Z\to0</m> as a small explicit injective resolution. The general existence theorem for Grothendieck categories has its own treatment in <xref ref="ha-c02"/>.</p>
+    </example>
+    <proposition xml:id="ha-c05-comparison">
+      <statement><p>Let <m>P\to A[0]</m> and <m>Q\to B[0]</m> be projective resolutions. Every morphism <m>A\to B</m> lifts to a complex morphism <m>P\to Q</m>, unique up to homotopy. Consequently any two projective resolutions of <m>A</m> are homotopy equivalent compatibly with their augmentations. The dual assertions hold for injective resolutions.</p></statement>
+      <proof><p>Lift <m>P^0\to A\to B</m> through the epimorphism <m>Q^0\to B</m>. Suppose that the lift has been constructed in degrees above <m>n&lt;0</m>. The map <m>P^n\to Q^{n+1}</m> obtained using the already constructed component has image in the kernel of the next differential. Exactness of <m>Q</m> identifies that kernel with the image of <m>Q^n</m>; projectivity of <m>P^n</m> gives the required lift.</p>
+        <p>For uniqueness, subtract two lifts and write their difference as <m>u</m>. Since <m>\epsilon_Q u^0=0</m>, lift <m>u^0</m> to <m>h^0:P^0\to Q^{-1}</m>. Having constructed <m>h</m> in larger degrees, the map <m>u^n-h^{n+1}d_P^n</m> has image in <m>\ker d_Q^n</m>. Lift it to <m>h^n:P^n\to Q^{n-1}</m>. This gives <m>u=dh+hd</m>. Apply existence in both directions to two resolutions of the same object; uniqueness shows that their composites are homotopic to the identities.</p></proof>
+    </proposition>
+    <definition xml:id="ha-c05-syzygy-definition">
+      <title>Syzygies and cosyzygies</title><idx>Syzygy</idx><idx>Cosyzygy</idx>
+      <statement><p>For a projective resolution <m>P\to A</m>, set <m>\Omega^0A=A</m> and define <m>\Omega^{j+1}A</m> by the short exact sequences <m>0\to\Omega^{j+1}A\to P^{-j}\to\Omega^jA\to0</m>. For an injective resolution <m>A\to I</m>, set <m>K^0A=A</m> and use <m>0\to K^jA\to I^j\to K^{j+1}A\to0</m>. These objects depend on the resolution; we use <em>syzygy</em> and <em>cosyzygy</em> with that choice understood.</p></statement>
+    </definition>
+    <proposition xml:id="ha-c05-schanuel">
+      <statement><p>If <m>0\to K\to P\to A\to0</m> and <m>0\to L\to Q\to A\to0</m> are exact with <m>P,Q</m> projective, then <m>K\oplus Q\cong L\oplus P</m>.</p></statement>
+      <proof><p>Form <m>E=P\times_AQ</m>. Its projections give exact sequences <m>0\to K\to E\to Q\to0</m> and <m>0\to L\to E\to P\to0</m>. Both split by projectivity. Their two decompositions of <m>E</m> give the assertion.</p></proof>
+    </proposition>
+    <p>This is Schanuel's lemma. It compares first syzygies up to projective summands, rather than asserting that the syzygies themselves are canonically isomorphic. Iterating this argument explains why finite projective dimension can be detected on any projective resolution. The dual statement compares cosyzygies up to injective summands.</p>
+    <p>Only projectivity of the source and exactness of the augmented target enter the lifting argument. The corresponding uniqueness statement must still use those hypotheses.<fn>A resolution by flat modules computes Tor, but flatness alone does not provide this comparison argument. Flat and projective resolutions should not be interchanged in arbitrary Hom constructions.</fn></p>
+    <proposition xml:id="ha-c05-horseshoe">
+      <statement><p>Given a short exact sequence <m>0\to A'\to A\to A''\to0</m> and projective resolutions <m>P'\to A'</m>, <m>P''\to A''</m>, there is a projective resolution <m>P\to A</m> fitting into a degreewise split short exact sequence <m>0\to P'\to P\to P''\to0</m> compatible with the augmentations. One may take <m>P^n=P'^n\oplus P''^n</m>. The dual assertion holds for injective resolutions.</p></statement>
+      <proof><p>Lift <m>P''^0\to A''</m> to <m>A</m> and combine it with <m>P'^0\to A'\to A</m>. The resulting map <m>P'^0\oplus P''^0\to A</m> is an epimorphism. The snake lemma gives a short exact sequence of its kernel between the kernels of the two given augmentations. Repeat the same construction with these kernels, then continue in decreasing degrees. The resulting maps have square zero because each factors through the preceding kernel. The inclusions and projections give the asserted split sequence in each degree.</p></proof>
+    </proposition>
+  </section>
+  <section xml:id="ha-c05-classical">
+    <title>Classical derived functors</title>
+    <definition xml:id="ha-c05-derived-definition">
+      <title>Object-valued derived functors</title><idx>Classical derived functor</idx><idx>Right derived functor</idx><idx>Left derived functor</idx>
+      <statement><p>Let <m>F:\mathcal A\to\mathcal B</m> be additive, with <m>\mathcal A,\mathcal B</m> abelian.
+        <ol>
+          <li><p>If <m>\mathcal A</m> has enough injectives, choose an injective resolution <m>A\to I_A</m> and put <m>R^nF(A)=H^n(FI_A)</m> for <m>n\geq0</m>.</p></li>
+          <li><p>If <m>\mathcal A</m> has enough projectives, choose a projective resolution <m>P_A\to A</m> and put <m>L_nF(A)=H^{-n}(FP_A)</m> for <m>n\geq0</m>.</p></li>
+        </ol>
+        Morphisms are defined by lifting to resolutions and passing to cohomology.</p></statement>
+    </definition>
+    <p>Additivity ensures that <m>F</m> preserves homotopies. Thus comparison proves that these are well-defined functors up to their unique comparison isomorphisms. If <m>F</m> is left exact, then <m>R^0F\cong F</m>; if <m>F</m> is right exact, then <m>L_0F\cong F</m>. Without the corresponding exactness assumption the degree-zero identification need not hold.<fn>The symbols <m>R^nF</m> and <m>L_nF</m> here denote object-valued functors. The total derived functors <m>\mathbf RF</m> and <m>\mathbf LF</m> in <xref ref="ha-c11"/> take values in derived categories; these constructions are related by cohomology.</fn></p>
+    <proposition xml:id="ha-c05-derived-properties">
+      <statement><p>Suppose that <m>\mathcal A</m> has enough injectives and <m>F:\mathcal A\to\mathcal B</m> is left exact.
+        <ol>
+          <li><p>A short exact sequence <m>0\to A'\to A\to A''\to0</m> gives a natural long exact sequence starting with <m>0\to F(A')\to F(A)\to F(A'')\to R^1F(A')\to\cdots</m>.</p></li>
+          <li><p>For injective <m>I</m>, one has <m>R^nF(I)=0</m> for <m>n&gt;0</m>.</p></li>
+          <li><p>If <m>0\to A\to I\to C\to0</m> is exact with <m>I</m> injective, then <m>R^1F(A)\cong\coker(F(I)\to F(C))</m> and <m>R^{n+1}F(A)\cong R^nF(C)</m> for <m>n\geq1</m>.</p></li>
+        </ol>
+        There are dual statements for left derived functors of right exact functors.</p></statement>
+      <proof><p>Use the injective version of <xref ref="ha-c05-horseshoe"/>. Its sequence of resolutions is split in every degree, so applying the additive functor <m>F</m> preserves its exactness. The cohomology sequence gives the first assertion. The resolution consisting of <m>I</m> in degree zero proves the second; the first two assertions give the third.</p></proof>
+    </proposition>
+    <p>The last formulas are dimension shifting. For the cosyzygies just defined, their iteration gives
+      <md number="no"><mrow>R^{n+j}F(A)\cong R^nF(K^jA)\quad(n\geq1),</mrow><mrow>R^{j+1}F(A)\cong\coker\bigl(F(I^j)\to F(K^{j+1}A)\bigr).</mrow></md>
+      The first formula does not extend to <m>n=0</m>: degree zero is governed by the second formula and the beginning of the long exact sequence. Dually, for a right exact functor, <m>L_{n+j}F(A)\cong L_nF(\Omega^jA)</m> for <m>n\geq1</m>. These are connecting isomorphisms attached to the chosen resolution, not arbitrary identifications of groups.<fn>Sources using homological resolutions write <m>P_j</m> for our <m>P^{-j}</m>. “The <m>j</m>th syzygy” may also be indexed starting with the kernel of the augmentation rather than with <m>A</m>; our convention is fixed by <m>\Omega^0A=A</m>.</fn></p>
+    <p>A natural transformation <m>F\to G</m> between two left exact functors induces maps <m>R^nF\to R^nG</m> by evaluation on the same injective resolution. They commute with connecting morphisms because the latter come from maps of short exact sequences of resolution complexes. Their composites and identities agree with those of the original transformations. Thus the construction retains functoriality both in the input object and in the functor being derived.</p>
+    <proposition xml:id="ha-c05-vanishing-test">
+      <statement><p>Under the hypotheses for right derived functors, <m>F</m> is exact if and only if <m>R^1F=0</m>, equivalently if and only if all positive derived functors vanish. More generally, to prove <m>R^nF(A)=0</m> for all <m>n&gt;d</m>, it is enough to find an exact coresolution of <m>A</m> of length <m>d</m> by <m>F</m>-acyclic objects. There are dual assertions for left derived functors.</p></statement>
+      <proof><p>The long exact sequence shows that vanishing of <m>R^1F</m> makes <m>F</m> preserve epimorphisms, hence makes the left exact functor exact. An exact functor preserves the cohomology of a resolution and therefore has no higher derived values. The finite coresolution assertion follows from the acyclic-resolution result below.</p></proof>
+    </proposition>
+    <example xml:id="ha-c05-dual-functor-example"><p>The left exact functor <m>F=\Hom_\Z(\Z/2,-)</m> sends <m>0\to\Z\xrightarrow{2}\Z\to\Z/2\to0</m> to a sequence whose last map is <m>0\to\Z/2</m>. The missing cokernel map appears as the connecting isomorphism <m>\Hom_\Z(\Z/2,\Z/2)\to R^1F(\Z)</m>. One can compute this derived value using the injective resolution <m>0\to\Z\to\Q\to\Q/\Z\to0</m>: divisible abelian groups are injective, <m>F(\Q)=0</m>, and <m>F(\Q/\Z)\cong\Z/2</m>. Thus the derived term accounts exactly for the failure of surjectivity in the original sequence.</p></example>
+  </section>
+  <section xml:id="ha-c05-universality">
+    <title>Universality and effacement</title>
+    <definition xml:id="ha-c05-delta-definition">
+      <title>Cohomological delta-functors</title><idx>Delta-functor</idx><idx>Effaceable functor</idx><idx>Universal delta-functor</idx>
+      <statement><p>A cohomological <m>\delta</m>-functor <m>T</m> consists of additive functors <m>T^n:\mathcal A\to\mathcal B</m> for <m>n\geq0</m> and connecting maps <m>T^n(A'')\to T^{n+1}(A')</m> for short exact sequences, natural under morphisms of those sequences, giving long exact sequences beginning with <m>0\to T^0(A')\to T^0(A)\to T^0(A'')</m>. A morphism <m>T\to S</m> is a family of natural transformations <m>T^n\to S^n</m> commuting with all connecting maps. It is <em>universal</em> if every natural transformation <m>T^0\to S^0</m> extends uniquely to such a morphism. A functor <m>G:\mathcal A\to\mathcal B</m> is <em>effaceable</em> if, for every <m>A</m>, some monomorphism <m>A\to B</m> induces the zero map <m>G(A)\to G(B)</m>.</p></statement>
+    </definition>
+    <proposition xml:id="ha-c05-universal">
+      <statement><p>A cohomological <m>\delta</m>-functor whose positive-degree functors are effaceable is universal. In particular, the right derived functors of a left exact functor on an abelian category with enough injectives form a universal <m>\delta</m>-functor.</p></statement>
+      <proof><p>The general effacement criterion is proved in <url href="https://stacks.math.columbia.edu/tag/010P">Stacks, Tag 010P, Lemma 12.12.4</url>. Its mechanism is as follows. Choose <m>0\to A\to B\to C\to0</m> killing <m>T^{n+1}(A)\to T^{n+1}(B)</m>. Then <m>T^{n+1}(A)</m> is the cokernel of <m>T^n(B)\to T^n(C)</m>, so the transformation already constructed in degree <m>n</m>, followed by the connecting map for <m>S</m>, forces the next component. Comparing two choices in their pushout proves independence and naturality. For derived functors an embedding into an injective kills every positive degree, by <xref ref="ha-c05-derived-properties"/>.</p></proof>
+    </proposition>
+    <p>Thus two universal <m>\delta</m>-functors extending the same left exact functor are uniquely isomorphic compatibly with degree zero. Effaceability concerns the map induced by some embedding; it does not require the entire target value to vanish. Embedding into an injective is one sufficient way to achieve the stronger condition.</p>
+    <p>A <em>homological</em> <m>\delta</m>-functor has connecting maps lowering the index and long exact sequences ending in degree zero. For left derived functors the corresponding universality has the reversed direction: a transformation <m>S_0\to L_0F</m> extends uniquely to <m>S_\bullet\to L_\bullet F</m>. This direction follows by applying the preceding definition to the opposite target category.</p>
+    <p>A contravariant left exact functor is handled by the opposite source category. More explicitly, if <m>F:\mathcal A^{\op}\to\mathcal B</m> is left exact and <m>\mathcal A</m> has enough projectives, a projective resolution <m>P\to A</m> becomes an injective resolution in <m>\mathcal A^{\op}</m>. Applying <m>F</m> gives a complex in nonnegative degrees. The resulting right derived functors have connecting maps
+      <md number="no">R^nF(A')\longrightarrow R^{n+1}F(A'')</md>
+      for <m>0\to A'\to A\to A''\to0</m>. Both the order of the objects and the grading are reversed before the covariant construction is applied. This is the convention used for the first variable of Ext in <xref ref="ha-c06"/>.</p>
+    <proposition xml:id="ha-c05-exact-postcomposition">
+      <statement><p>Let <m>F:\mathcal A\to\mathcal B</m> be left exact with <m>\mathcal A</m> having enough injectives, and let <m>E:\mathcal B\to\mathcal C</m> be exact. There are natural isomorphisms <m>E(R^nF(A))\cong R^n(EF)(A)</m>, compatible with connecting maps. Dually an exact functor commutes with classical left derived functors.</p></statement>
+      <proof><p>Use the same resolution of <m>A</m> on both sides. Exactness of <m>E</m> makes it commute with the kernels, images, and quotients defining cohomology. It also commutes with the connecting maps of the resolution sequence, by naturality of the snake lemma.</p></proof>
+    </proposition>
+    <p>Exactness in this proposition is essential. Composing with a merely left exact functor introduces its own higher derived values. The resulting comparison is studied by the composite-functor spectral sequence in <xref ref="ha-c11"/>.</p>
+  </section>
+  <section xml:id="ha-c05-acyclic">
+    <title>Acyclic resolutions and inverse limits</title>
+    <proposition xml:id="ha-c05-acyclic-resolution">
+      <statement><p>Let <m>F:\mathcal A\to\mathcal B</m> be left exact, and suppose that <m>\mathcal A</m> has enough injectives. Call <m>J</m> <em><m>F</m>-acyclic</em> if <m>R^nF(J)=0</m> for every <m>n&gt;0</m>. If <m>0\to A\to J^0\to J^1\to\cdots</m> is exact and every <m>J^n</m> is <m>F</m>-acyclic, then there are natural comparison isomorphisms <m>H^n(FJ)\cong R^nF(A)</m>.</p></statement>
+      <proof><p>Put <m>K^0=A</m> and <m>K^{n+1}=\coker(K^n\to J^n)</m>. Left exactness identifies <m>\ker(FJ^n\to FJ^{n+1})</m> with <m>F(K^n)</m>. For <m>n&gt;0</m>, the short exact sequence <m>0\to K^{n-1}\to J^{n-1}\to K^n\to0</m> therefore gives
+        <md number="no">H^n(FJ)\cong\coker\bigl(FJ^{n-1}\to F(K^n)\bigr)\cong R^1F(K^{n-1}).</md>
+        Its higher-degree connecting isomorphisms identify this last object with <m>R^nF(A)</m>. In degree zero the same kernel computation gives <m>H^0(FJ)=F(A)</m>.</p>
+        <p>For the comparison, extend the augmentation successively to a map <m>J\to I_A</m>. Injectivity of each target term supplies the extensions; exactness of the augmented source makes the induction possible. The same argument shows uniqueness up to homotopy. Applying <m>F</m> and cohomology gives the above isomorphisms, independently of the map. For a map between two acyclic resolutions, comparison with injective resolutions proves naturality. See <xref ref="bib-ha-li2" detail="§3.12"/> or <xref ref="bib-ha-weibel" detail="§2.4"/>.</p></proof>
+    </proposition>
+    <p>Acyclicity is relative to the chosen functor. It is not the assertion that the object, placed in degree zero, is an acyclic complex. Nor does this bounded-below statement permit termwise acyclic objects in arbitrary unbounded resolutions; that question belongs to <xref ref="ha-c10"/>.</p>
+    <p>The acyclic-resolution criterion permits computation without replacing every term by an injective, but the comparison still takes place against the already constructed derived functor. To construct derived functors when the source lacks enough injectives, one must instead specify an adapted class with an existence and comparison theorem. A collection of objects on which one expects vanishing is not by itself such a construction.</p>
+    <proposition xml:id="ha-c05-acyclic-class">
+      <statement><p>The <m>F</m>-acyclic objects contain the injectives and are closed under finite direct sums, retracts, extensions, and cokernels of monomorphisms between <m>F</m>-acyclic objects. Applying <m>F</m> to a short exact sequence of <m>F</m>-acyclic objects gives a short exact sequence.</p></statement>
+      <proof><p>Additivity gives the sum and retract assertions. For <m>0\to A\to B\to C\to0</m>, the long exact sequence gives vanishing on <m>B</m> when it vanishes on <m>A,C</m>, and vanishing on <m>C</m> when it vanishes on <m>A,B</m>. In the latter case <m>R^1F(A)=0</m> also makes <m>F(B)\to F(C)</m> an epimorphism. These observations prove all assertions.</p></proof>
+    </proposition>
+    <p>The dual formulation uses a right exact functor and a resolution by objects with vanishing positive left derived values. It includes flat resolutions for tensor product. Even there, the reason a flat resolution computes the answer is acyclicity for that tensor functor, not the lifting property of a projective object.</p>
+    <example xml:id="ha-c05-lim-one">
+      <p>For a countable tower of abelian groups <m>A_0\leftarrow A_1\leftarrow\cdots</m>, with transition maps <m>u_n</m>, the inverse limit is left exact and its derived functors satisfy
+        <md number="no"><mrow>0\to\lim A_n\to\prod_{n\geq0}A_n\xrightarrow{\Delta}\prod_{n\geq0}A_n\to\lim{}^1 A_n\to0,</mrow><mrow>R^q\lim A_n=0\quad(q\geq2),</mrow></md>
+        where <m>\Delta(a)_n=a_n-u_n(a_{n+1})</m>. This computation is specific to countable towers of groups; arbitrary indexing categories have different higher-limit behavior. See <xref ref="bib-ha-li2" detail="§3.13"/> and <xref ref="bib-ha-weibel" detail="§3.5"/>.</p>
+      <p>If all transition maps are surjective, recursive lifting makes <m>\Delta</m> surjective, hence <m>\lim^1 A_n=0</m>. Failure of exactness occurs already for the termwise exact sequence of towers <m>0\to2^n\Z\to\Z\to\Z/2^n\Z\to0</m>, where the first transition maps are inclusions and the middle maps are identities. The map on limits is <m>\Z\to\Z_2</m> and is not surjective. Here <m>\Z_2=\lim_n\Z/2^n\Z</m> denotes the group of 2-adic integers.</p>
+      <p>The associated long exact sequence makes the obstruction explicit: <m>\lim^1_n2^n\Z\cong\Z_2/\Z</m>. Neither the exactness of products of groups nor exactness at each stage makes an inverse limit preserve this surjection. Products occur in the two-term formula, but inverse limit is its kernel, and that kernel construction is only left exact.</p>
+    </example>
+    <definition xml:id="ha-c05-mittag-leffler">
+      <title>The Mittag–Leffler condition</title><idx>Mittag–Leffler condition</idx>
+      <statement><p>A countable tower <m>(A_n)</m> is Mittag–Leffler if, for every <m>n</m>, the descending sequence of images <m>\im(A_m\to A_n)</m> becomes constant for sufficiently large <m>m\geq n</m>.</p></statement>
+    </definition>
+    <proposition xml:id="ha-c05-ml-vanishing">
+      <statement><p>A countable Mittag–Leffler tower of abelian groups has <m>\lim^1 A_n=0</m>. Consequently a short exact sequence of countable towers induces a surjection on inverse limits when its kernel tower is Mittag–Leffler.</p></statement>
+    </proposition>
+    <p>The proof replaces the tower by its stable images, whose transitions are surjective, and uses the two-term formula; the quotient tower has eventually zero transition into each fixed stage. See <xref ref="bib-ha-li2" detail="§3.13"/> or <xref ref="bib-ha-weibel" detail="§3.5"/> for the comparison. Surjective towers and towers of finite groups satisfy the condition. The tower <m>2^n\Z</m> with inclusion transitions does not. The implication stated here is sufficient; we make no converse assertion for arbitrary towers.<fn>Countability concerns the indexing of the tower. It is not a countability hypothesis on the groups. Derived inverse limits over other indexing categories need separate theorems.</fn></p>
+  </section>
+</chapter>

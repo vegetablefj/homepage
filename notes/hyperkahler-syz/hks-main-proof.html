@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-darkmode="disabled">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette: blue-red                     *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>From a special Lagrangian torus to semiampleness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<style>
+@counter-style ptx-marker-1 { system: extends lower-roman; prefix: '('; suffix: ') '; }
+</style>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Lagrangian fibrations and hyperkähler SYZ">
+<meta property="og:title" content="Lagrangian fibrations and hyperkähler SYZ">
+<meta property="book:title" content="Lagrangian fibrations and hyperkähler SYZ">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.53"></script><script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="../../vendor/lunr/lunr.min.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+<link rel="stylesheet" href="../../layout.css?v=fee08a8c1c">
+<script src="../../layout.js?v=e9391a21a7" defer></script><link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"C": "\\mathbb{C}", "Pone": "\\mathbb{P}^1_{\\mathbb{C}}", "cO": "\\mathcal{O}", "ord": "\\operatorname{ord}", "lt": "<", "gt": ">", "amp": "&", "R": "\\mathbb{R}", "Q": "\\mathbb{Q}", "Z": "\\mathbb{Z}", "N": "\\mathbb{N}", "PP": "\\mathbb{P}", "SH": "\\mathrm{SH}", "id": "\\mathrm{id}", "Sym": "\\operatorname{Sym}", "Hom": "\\operatorname{Hom}", "End": "\\operatorname{End}", "Ext": "\\operatorname{Ext}", "Pic": "\\operatorname{Pic}", "NS": "\\operatorname{NS}", "Def": "\\operatorname{Def}", "Mon": "\\operatorname{Mon}", "Per": "\\operatorname{Per}", "rk": "\\operatorname{rk}", "td": "\\operatorname{td}", "ch": "\\operatorname{ch}", "Tr": "\\operatorname{Tr}", "Gr": "\\operatorname{Gr}", "SU": "\\operatorname{SU}", "Sp": "\\operatorname{Sp}", "Hol": "\\operatorname{Hol}", "vol": "\\operatorname{vol}"}}, "options": {"ignoreHtmlClass": "ignore-math", "processHtmlClass": "process-math", "enableMenu": false}};</script><script src="../../vendor/mathjax/tex-chtml.js" defer></script>
+</head>
+<body class="pretext book ignore-math note-page" data-page-format="note">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner"><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="hyperkahler-syz-notes.html"><span class="title">Lagrangian fibrations and hyperkähler SYZ</span></a></div>
+<p class="byline"><a href="../../home.html">Jie Fu</a>'s <a href="../../notes.html">Notes</a></p>
+<p class="note-metadata"><span class="note-review-status">Under review and improvement</span> · <span class="note-last-updated">Last updated: <time datetime="2026-10-24">2026-10-24</time></span></p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Contents</span></button><a class="index-button button" href="hks-index.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Index</span></a><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true"></span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="treebuttons"><a class="previous-button button" href="hks-metric-syz.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="up-button button" href="hyperkahler-syz-notes.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Up</span></a><a class="next-button button" href="hks-bases.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a></span>
+</div></nav><div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth4 focused" data-preexpanded-levels="1" data-max-levels="4"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="hks-preface.html" class="internal"><span class="title">Preface and conventions</span></a></div></li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-fibrations.html" class="internal"><span class="codenumber">1</span> <span class="title">Isotropic line bundles and Lagrangian fibrations</span></a></div>
+<ul id="ptx-toc-group-hks-fibrations" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-fibrations.html#hks-nef-line-bundles" class="internal"><span class="codenumber">1.1</span> <span class="title">Nefness, sections, and numerical dimension</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-fibrations.html#hks-semiample-and-fibration" class="internal"><span class="codenumber">1.2</span> <span class="title">From semiampleness to a fibration</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-fibrations.html#hks-syz-statement" class="internal"><span class="codenumber">1.3</span> <span class="title">The semiampleness theorem and examples</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-rotation.html" class="internal"><span class="codenumber">2</span> <span class="title">Special Lagrangian tori and rotation</span></a></div>
+<ul id="ptx-toc-group-hks-rotation" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-rotation.html#hks-calibrations" class="internal"><span class="codenumber">2.1</span> <span class="title">Calibrations and the volume inequality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-rotation.html#hks-cohomological-rotation" class="internal"><span class="codenumber">2.2</span> <span class="title">A cohomological criterion for rotation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-rotation.html#hks-fujiki-rotation" class="internal"><span class="codenumber">2.3</span> <span class="title">The class of the torus and the isotropic ray</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-rotation.html#hks-monodromy-restriction" class="internal"><span class="codenumber">2.4</span> <span class="title">Restriction and monodromy</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-rotation.html#hks-slag-deformations" class="internal"><span class="codenumber">2.5</span> <span class="title">Deformations of a special Lagrangian torus</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-degenerations.html" class="internal"><span class="codenumber">3</span> <span class="title">Degenerations with a prescribed isotropic class</span></a></div>
+<ul id="ptx-toc-group-hks-degenerations" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-degenerations.html#hks-degeneration-monodromy" class="internal"><span class="codenumber">3.1</span> <span class="title">Monodromy and the lowest weight</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-degenerations.html#hks-prescribed-period" class="internal"><span class="codenumber">3.2</span> <span class="title">A period curve through the given rational boundary point</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-degenerations.html#hks-algebraic-realization" class="internal"><span class="codenumber">3.3</span> <span class="title">Realizing the period curve by an algebraic family</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-degenerations.html#hks-logarithmic-volume" class="internal"><span class="codenumber">3.4</span> <span class="title">The logarithmic volume form and a nonzero residue</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-metric-syz.html" class="internal"><span class="codenumber">4</span> <span class="title">Special Lagrangian tori near a degeneration</span></a></div>
+<ul id="ptx-toc-group-hks-metric-syz" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-metric-syz.html#hks-metric-degeneration" class="internal"><span class="codenumber">4.1</span> <span class="title">Polarized degenerations and angular tori</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-metric-syz.html#hks-valuative-independence" class="internal"><span class="codenumber">4.2</span> <span class="title">Valuative independence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-metric-syz.html#hks-weak-comparison" class="internal"><span class="codenumber">4.3</span> <span class="title">Comparison of Monge–Ampère equations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-metric-syz.html#hks-flat-cylinder" class="internal"><span class="codenumber">4.4</span> <span class="title">The torus in a crossing chart</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="hks-main-proof.html" class="internal"><span class="codenumber">5</span> <span class="title">From a special Lagrangian torus to semiampleness</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-hks-main-proof">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-main-proof.html#hks-rotation-of-profound-torus" class="internal"><span class="codenumber">5.1</span> <span class="title">The torus and its rotation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-main-proof.html#hks-identifying-fibration-class" class="internal"><span class="codenumber">5.2</span> <span class="title">Nonprojectivity and the class of the fibration</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-main-proof.html#hks-returning-to-nef-pair" class="internal"><span class="codenumber">5.3</span> <span class="title">Returning to the specified nef pair</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-main-proof.html#hks-two-geometric-proofs" class="internal"><span class="codenumber">5.4</span> <span class="title">The two cohomological arguments</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-bases.html" class="internal"><span class="codenumber">6</span> <span class="title">The base and multiple fibres</span></a></div>
+<ul id="ptx-toc-group-hks-bases" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-bases.html#hks-bases-classical" class="internal"><span class="codenumber">6.1</span> <span class="title">Smooth bases and isolated quotient singularities</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-bases.html#hks-bases-two-fibrations" class="internal"><span class="codenumber">6.2</span> <span class="title">Two fibrations and a finite cover by an abelian variety</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-bases.html#hks-bases-euler" class="internal"><span class="codenumber">6.3</span> <span class="title">Euler characteristics and singular strata</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-bases.html#hks-bases-smoothness" class="internal"><span class="codenumber">6.4</span> <span class="title">From quotient singularities to projective space</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-bases.html#hks-bases-multiple-fibres" class="internal"><span class="codenumber">6.5</span> <span class="title">Multiplicities and the primitive pullback class</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-other-methods.html" class="internal"><span class="codenumber">7</span> <span class="title">Effective divisors and finiteness of deformation types</span></a></div>
+<ul id="ptx-toc-group-hks-other-methods" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-other-methods.html#hks-effective-divisors" class="internal"><span class="codenumber">7.1</span> <span class="title">From an effective divisor to a Lagrangian subvariety</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-other-methods.html#hks-lagrangian-smoothing" class="internal"><span class="codenumber">7.2</span> <span class="title">Normal crossing Lagrangian subvarieties</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-other-methods.html#hks-positive-currents" class="internal"><span class="codenumber">7.3</span> <span class="title">Nonvanishing and positive currents</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-other-methods.html#hks-finiteness" class="internal"><span class="codenumber">7.4</span> <span class="title">Finitely many deformation types in a fixed dimension</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-special-kahler.html" class="internal"><span class="codenumber">8</span> <span class="title">Special Kähler geometry and semi-flat metrics</span></a></div>
+<ul id="ptx-toc-group-hks-special-kahler" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-special-kahler.html#hks-special-periods" class="internal"><span class="codenumber">8.1</span> <span class="title">The period lattice</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-special-kahler.html#hks-special-prepotential" class="internal"><span class="codenumber">8.2</span> <span class="title">Special coordinates and the prepotential</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-special-kahler.html#hks-special-affine" class="internal"><span class="codenumber">8.3</span> <span class="title">Two integral affine structures and a Hessian metric</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-special-kahler.html#hks-special-curvature" class="internal"><span class="codenumber">8.4</span> <span class="title">Variation and curvature</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-special-kahler.html#hks-special-semiflat" class="internal"><span class="codenumber">8.5</span> <span class="title">The semi-flat hyperkähler metric</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-special-kahler.html#hks-special-examples" class="internal"><span class="codenumber">8.6</span> <span class="title">Examples and collapse near the discriminant</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="hyperkahler-syz-notes-12.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul id="ptx-toc-group-hyperkahler-syz-notes-12" class="structural toc-item-list">
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="hks-notation.html" class="internal"><span class="codenumber">A.</span> <span class="title">Notation</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="hks-references.html" class="internal"><span class="title">References</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="hks-index.html" class="internal"><span class="title">Index</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="chapter" id="hks-main-proof">
+<h1 class="heading">
+<span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">From a special Lagrangian torus to semiampleness</span>
+</h1>
+<section class="introduction" id="hks-main-proof-2">
+<div class="para" id="hks-main-proof-2-1">The degeneration and the metric theorem produce a special Lagrangian torus on a deformation of the original manifold. We must prove that it becomes holomorphic after rotation, that the resulting fibration corresponds to the specified class <span class="process-math">\(e\text{,}\)</span> and that semiampleness returns to the original nef line bundle <span class="process-math">\(L\text{.}\)</span> Each assertion requires more than the existence of a torus.</div>
+<div class="para" id="hks-main-proof-2-2">We apply <a href="hks-degenerations.html#hks-thm-prescribed-degeneration" class="xref" data-knowl="./knowl/xref/hks-thm-prescribed-degeneration.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.7: (OpenAI)">Theorem 3.7</a> and <a href="hks-metric-syz.html#hks-thm-metric-torus" class="xref" data-knowl="./knowl/xref/hks-thm-metric-torus.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 4.8">Theorem 4.8</a>. The proof follows <a href="hks-references.html#OAI26a" class="xref" data-knowl="./knowl/xref/hks-bib-openai-syz.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry OAI26a">[OAI26a, Section 5]</a>. The final section compares it with <a href="hks-references.html#EM26" class="xref" data-knowl="./knowl/xref/hks-bib-engel-mauri.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry EM26">[EM26, Sections 2 and 4]</a>.</div></section>
+<section class="section" id="hks-rotation-of-profound-torus">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The torus and its rotation</span>
+</h2>
+<div class="para logical" id="hks-rotation-of-profound-torus-2">
+<div class="para">Let <span class="process-math">\(L\)</span> be a nontrivial nef line bundle on the IHS manifold <span class="process-math">\(X\)</span> of dimension <span class="process-math">\(2n\text{,}\)</span> with <span class="process-math">\(q_X(c_1(L))=0\text{.}\)</span> Write <span class="process-math">\(c_1(L)=\lambda=me\text{,}\)</span> where <span class="process-math">\(e\)</span> is primitive and <span class="process-math">\(m&gt;0\text{.}\)</span> Since <span class="process-math">\(H^1(X,\cO_X)=0\)</span> and <span class="process-math">\(H^2(X,\Z)\)</span> is torsion-free, the exponential sequence gives a unique line bundle <span class="process-math">\(E_X\)</span> with <span class="process-math">\(c_1(E_X)=e\)</span> and <span class="process-math">\(L\simeq E_X^{\otimes m}\text{.}\)</span> Its class is nef. The sign of <span class="process-math">\(e\)</span> is specified by</div>
+<div class="displaymath process-math" id="hks-rotation-of-profound-torus-2-14">
+\begin{equation*}
+q_X(e,\kappa_X)&gt;0
+\end{equation*}
+</div>
+<div class="para">for any Kähler class <span class="process-math">\(\kappa_X\text{.}\)</span>
+</div>
+</div>
+<div class="para logical" id="hks-rotation-of-profound-torus-3">
+<div class="para">Apply <a href="hks-degenerations.html#hks-thm-prescribed-degeneration" class="xref" data-knowl="./knowl/xref/hks-thm-prescribed-degeneration.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.7: (OpenAI)">Theorem 3.7</a> to this <span class="process-math">\(e\)</span> in the marked component containing <span class="process-math">\(X\text{.}\)</span> Fix an irrational real number <span class="process-math">\(\alpha\)</span> and choose the path <span class="process-math">\(\tau=\alpha+iy\text{.}\)</span> The degeneration has normalized period</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hks-thm-prescribed-degeneration.html" id="hks-rotation-of-profound-torus-3-6">
+\begin{equation*}
+p(\tau)=f+\tau v-\frac a2\tau^2e,\qquad
+q(e,f)=1,\quad q(v)=a&gt;0,\quad h\perp P=\langle e,f,v\rangle_\Q.
+\end{equation*}
+</div>
+<div class="para">Its actual monodromy <span class="process-math">\(T_2=U_w\)</span> satisfies</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hks-thm-prescribed-degeneration.html" id="hks-rotation-of-profound-torus-3-8">
+\begin{equation*}
+\operatorname{im}(T_2-\operatorname{id})=\langle e,v\rangle_\Q.
+\end{equation*}
+</div>
+</div>
+<div class="para" id="hks-rotation-of-profound-torus-4">All hypotheses of <a href="hks-metric-syz.html#hks-thm-metric-torus" class="xref" data-knowl="./knowl/xref/hks-thm-metric-torus.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 4.8">Theorem 4.8</a> have been proved: the family is algebraic over a curve and projective, its polarization extends, its semistable total space is smooth, and the logarithmic volume form has growth <span class="process-math">\(s^{2n}\)</span> and a nonzero residue at a maximal crossing in algebraic coordinates. For a sufficiently late point on the path, choose a smooth fiber <span class="process-math">\(Y=(M_t,J)\)</span> and a special Lagrangian real <span class="process-math">\(2n\)</span>-torus <span class="process-math">\(F\subset Y\)</span> isotopic to the coordinate torus at that crossing. The Ricci-flat metric <span class="process-math">\(g\)</span> has Kähler class a positive multiple of <span class="process-math">\(h\text{.}\)</span> A constant rescaling of the metric, with the parallel volume form renormalized, preserves these conditions on <span class="process-math">\(F\text{.}\)</span>
+</div>
+<div class="para logical" id="hks-rotation-of-profound-torus-5">
+<div class="para">Choose the hyperkähler triple so that</div>
+<div class="displaymath process-math" id="hks-eq-metric-triple-period">
+\begin{equation}
+[\omega_J]\in\R_{&gt;0}h,\qquad
+\sigma_J=\omega_K+i\omega_I=c\,\sigma_t,\qquad c&gt;0.\tag{5.1}
+\end{equation}
+</div>
+<div class="para">The positive scalar matches the norm of the holomorphic symplectic form to the metric; the phase of <span class="process-math">\(\sigma_t\)</span> fixes <span class="process-math">\(I\)</span> and <span class="process-math">\(K\text{.}\)</span> Taking imaginary parts gives</div>
+<div class="displaymath process-math" id="hks-eq-transverse-form">
+\begin{equation}
+[\omega_I]=cy(v-a\alpha e),\qquad
+q(e,[\omega_K])=c&gt;0.\tag{5.2}
+\end{equation}
+</div>
+</div>
+<article class="proposition theorem-like" id="hks-prop-rotated-torus"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.1</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="hks-prop-rotated-torus-1-1">The submanifold <span class="process-math">\(F\)</span> is a holomorphic Lagrangian complex torus in <span class="process-math">\(Z=(M_t,I')\text{,}\)</span> where <span class="process-math">\(I'=K\text{.}\)</span> On <span class="process-math">\(Z\text{,}\)</span> the class <span class="process-math">\(e\)</span> has type <span class="process-math">\((1,1)\)</span> and satisfies <span class="process-math">\(q(e,[\omega_{I'}])&gt;0\text{.}\)</span>
+</div>
+</article>
+<details id="hks-prop-rotated-torus-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="hks-prop-rotated-torus-2-1">
+<div class="para">Let <span class="process-math">\(i:F\hookrightarrow Y\)</span> be the inclusion. For the coordinate representative, keep the radii of <span class="process-math">\(z_1,\ldots,z_{2n}\)</span> fixed as <span class="process-math">\(t\)</span> travels around a circle, and determine <span class="process-math">\(z_0\)</span> from the product equation. At the end of the loop the parameterized embedding is the same. Its restriction map on cohomology therefore satisfies</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hks-lemma-monodromy-restriction.html ./knowl/xref/hks-eq-transverse-form.html" id="hks-prop-rotated-torus-2-1-5">
+\begin{equation*}
+i^*T_k=i^*:H^k(Y,\R)\longrightarrow H^k(F,\R).
+\end{equation*}
+</div>
+<div class="para">This is <a href="hks-rotation.html#hks-lemma-monodromy-restriction" class="xref" data-knowl="./knowl/xref/hks-lemma-monodromy-restriction.html" data-reveal-label="Reveal" data-close-label="Close" title="Lemma 2.8">Lemma 2.8</a>; isotopy transfers the identity to the special Lagrangian representative. In degree two it gives</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hks-lemma-monodromy-restriction.html ./knowl/xref/hks-eq-transverse-form.html" id="hks-prop-rotated-torus-2-1-7">
+\begin{equation*}
+i^*\langle e,v\rangle_\R=0.
+\end{equation*}
+</div>
+<div class="para">Equation <a href="hks-main-proof.html#hks-eq-transverse-form" class="xref" data-knowl="./knowl/xref/hks-eq-transverse-form.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 5.2">(5.2)</a> implies <span class="process-math">\(i^*[\omega_I]=0\text{.}\)</span>
+</div>
+</div>
+<div class="para logical" id="hks-prop-rotated-torus-2-2">
+<div class="para">Apply <a href="hks-rotation.html#hks-thm-cohomological-rotation" class="xref" data-knowl="./knowl/xref/hks-thm-cohomological-rotation.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.5">Theorem 2.5</a> to the triple <span class="process-math">\((I',J,K')=(K,J,-I)\text{.}\)</span> The form <span class="process-math">\(\omega_{K'}=-\omega_I\)</span> restricts to zero in cohomology, so the compact special Lagrangian <span class="process-math">\(F\)</span> is <span class="process-math">\(I'\)</span>-holomorphic Lagrangian. Explicitly, exactness on <span class="process-math">\(F\)</span> and Stokes’ theorem give</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hks-thm-cohomological-rotation.html" id="hks-prop-rotated-torus-2-2-7">
+\begin{equation*}
+\begin{aligned}
+\vol_g(F)&amp;=\left|\int_F\frac{(\omega_K+i\omega_I)^n}{n!}\right|
+=\left|\int_F\frac{\omega_K^n}{n!}\right|\\
+&amp;\leq\int_F\left|\frac{\omega_K^n}{n!}\right|
+\leq\vol_g(F).
+\end{aligned}
+\end{equation*}
+</div>
+<div class="para">Equality in the integrated Wirtinger inequality forces every tangent plane to be <span class="process-math">\(K\)</span>-complex. The quaternion identities and <span class="process-math">\(\omega_J|_F=0\)</span> then give <span class="process-math">\(\omega_I|_F=0\)</span> pointwise, proving the holomorphic Lagrangian assertion.</div>
+</div>
+<div class="para" id="hks-prop-rotated-torus-2-3">The period plane for <span class="process-math">\(Z\)</span> is spanned by <span class="process-math">\([\omega_I]\)</span> and <span class="process-math">\([\omega_J]\text{.}\)</span> Both are perpendicular to <span class="process-math">\(e\text{,}\)</span> so <span class="process-math">\(e\in H^{1,1}(Z)\text{.}\)</span> Its pairing with the Kähler class <span class="process-math">\([\omega_{I'}]=[\omega_K]\)</span> is positive by <a href="hks-main-proof.html#hks-eq-transverse-form" class="xref" data-knowl="./knowl/xref/hks-eq-transverse-form.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 5.2">(5.2)</a>.</div>
+<div class="para" id="hks-prop-rotated-torus-2-4">It remains to check that the complex manifold <span class="process-math">\(F\)</span> is a complex torus, rather than just diffeomorphic to one. The induced Kähler metric and <span class="process-math">\(b_1(F)=2n\)</span> give <span class="process-math">\(h^{1,0}(F)=n\text{.}\)</span> Its Albanese map <span class="process-math">\(u:F\to\operatorname{Alb}(F)\)</span> induces an isomorphism on integral first cohomology. Both cohomology rings are exterior algebras on <span class="process-math">\(H^1\text{,}\)</span> so <span class="process-math">\(u^*\)</span> is an isomorphism in every degree. In top degree this gives <span class="process-math">\(|\deg u|=1\text{;}\)</span> holomorphicity makes the degree positive and the map surjective.</div>
+<div class="para" id="hks-prop-rotated-torus-2-5">For a Kähler class <span class="process-math">\(\xi\)</span> on <span class="process-math">\(F\text{,}\)</span> write <span class="process-math">\(\xi=u^*\beta\)</span> using surjectivity on <span class="process-math">\(H^2(-,\R)\text{.}\)</span> A positive-dimensional fiber would contain a positive-dimensional compact analytic component <span class="process-math">\(V\text{.}\)</span> If <span class="process-math">\(\dim V=r\text{,}\)</span> then <span class="process-math">\(\int_V\xi^r=0\text{,}\)</span> contrary to Kähler positivity. Thus <span class="process-math">\(u\)</span> is finite. A finite degree-one map onto the normal complex torus <span class="process-math">\(\operatorname{Alb}(F)\)</span> is an isomorphism.</div>
+</article></details>
+<div class="para" id="hks-rotation-of-profound-torus-7">In this proof, the coordinate torus controls the restriction of every degree-two class in <span class="process-math">\(\operatorname{im}(T_2-\operatorname{id})\text{.}\)</span> Monodromy invariance of the top-dimensional homology class alone would give a weaker statement and would not imply the needed restriction identity.</div>
+</section>
+<section class="section" id="hks-identifying-fibration-class">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Nonprojectivity and the class of the fibration</span>
+</h2>
+<div class="para" id="hks-identifying-fibration-class-2">The irrational real part of <span class="process-math">\(\tau\)</span> ensures that the rotated manifold <span class="process-math">\(Z\)</span> is nonprojective. It also singles out <span class="process-math">\(\Q e\)</span> among its rational isotropic classes. Both properties are used to obtain a semiample bundle with the required first Chern class.</div>
+<article class="proposition theorem-like" id="hks-prop-rotated-picard"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="hks-prop-rotated-picard-1-1">
+<div class="para">Every <span class="process-math">\(x\in H^{1,1}(Z)\cap H^2(M_t,\Q)\)</span> satisfies</div>
+<div class="displaymath process-math" id="hks-prop-rotated-picard-1-1-2">
+\begin{equation*}
+q(x)\leq0,\qquad q(x)=0\ \Longrightarrow\ x\in\Q e.
+\end{equation*}
+</div>
+<div class="para">In particular, <span class="process-math">\(Z\)</span> is nonprojective.</div>
+</div>
+</article>
+<details id="hks-prop-rotated-picard-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="hks-prop-rotated-picard-2-1">
+<div class="para">The rotated period plane is</div>
+<div class="displaymath process-math" id="hks-prop-rotated-picard-2-1-1">
+\begin{equation*}
+\langle v-a\alpha e,h\rangle_\R.
+\end{equation*}
+</div>
+<div class="para">Orthogonality of a rational <span class="process-math">\((1,1)\)</span>-class gives <span class="process-math">\(q(x,h)=0\)</span> and <span class="process-math">\(q(x,v)=a\alpha q(x,e)\text{.}\)</span> The pairings <span class="process-math">\(q(x,v)\text{,}\)</span> <span class="process-math">\(q(x,e)\text{,}\)</span> and the nonzero number <span class="process-math">\(a\)</span> are rational, whereas <span class="process-math">\(\alpha\)</span> is irrational. Thus</div>
+<div class="displaymath process-math" id="hks-prop-rotated-picard-2-1-9">
+\begin{equation*}
+q(x,e)=q(x,v)=0.
+\end{equation*}
+</div>
+</div>
+<div class="para" id="hks-prop-rotated-picard-2-2">The BBF form on <span class="process-math">\(H^{1,1}(Z,\R)\)</span> has signature <span class="process-math">\((1,b_2-3)\text{.}\)</span> In a real space of signature <span class="process-math">\((1,r)\text{,}\)</span> the perpendicular of a nonzero null vector is negative semidefinite with radical that null line. For a proof, complete <span class="process-math">\(e\)</span> to a null pair <span class="process-math">\(e,f'\)</span> with <span class="process-math">\(q(e,f')=1\text{.}\)</span> Its orthogonal complement is negative definite. A vector perpendicular to <span class="process-math">\(e\)</span> has no <span class="process-math">\(f'\)</span>-component, so its square is the square of its negative-definite component. Equality forces it to lie on <span class="process-math">\(\R e\text{;}\)</span> rationality and the integral primitivity of <span class="process-math">\(e\)</span> give <span class="process-math">\(x\in\Q e\text{.}\)</span>
+</div>
+<div class="para" id="hks-prop-rotated-picard-2-3">A projective <span class="process-math">\(Z\)</span> would have an integral ample class of positive BBF square, contradicting the inequality. This direction of the hyperkähler projectivity criterion is included in <a class="external" href="/notes/hyperkahler/hkg-bbf.html" target="_blank">The BBF form in General HK</a>.</div>
+</article></details>
+<div class="para" id="hks-identifying-fibration-class-4">The irrational number separates rational coefficients in the equation <span class="process-math">\(q(x,v)=a\alpha q(x,e)\text{,}\)</span> giving a unique rational isotropic line.<a id="hks-identifying-fibration-class-4-2" href="#margin-hks-identifying-fibration-class-4-2" class="margin-note-marker" aria-label="Margin note 1">1</a>
+</div>
+<article class="theorem theorem-like" id="hks-thm-nonprojective-torus-fibration"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">(Greb–Lehn–Rollenske).</span>
+</h3>
+<div class="para" id="hks-thm-nonprojective-torus-fibration-2-1">Let <span class="process-math">\(Z\)</span> be a nonprojective compact IHS manifold of dimension <span class="process-math">\(2n\)</span> containing a holomorphic Lagrangian complex torus <span class="process-math">\(F\text{.}\)</span> There is a holomorphic algebraic reduction <span class="process-math">\(f:Z\to B\)</span> which is a Lagrangian fibration with <span class="process-math">\(F\)</span> as a fiber. The base can be chosen normal and projective, and has dimension <span class="process-math">\(n\text{.}\)</span>
+</div>
+</article>
+<div class="para" id="hks-identifying-fibration-class-6">We use <a href="hks-references.html#GLR13" class="xref" data-knowl="./knowl/xref/hks-bib-glr.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry GLR13">[GLR13, Theorem 4.1]</a> as an external theorem. The projective base is obtained by its algebraic-reduction construction in Section 4.2 and Stein factorization. It is the nonprojective case of that theorem which applies to <span class="process-math">\(Z\text{;}\)</span> no assertion about a projective manifold containing a torus is substituted for it.</div>
+<article class="proposition theorem-like" id="hks-prop-semiample-primitive-ray"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="hks-prop-semiample-primitive-ray-1-1">The line bundle <span class="process-math">\(E_Z\)</span> on <span class="process-math">\(Z\)</span> with <span class="process-math">\(c_1(E_Z)=e\)</span> is semiample.</div>
+</article>
+<details id="hks-prop-semiample-primitive-ray-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="hks-prop-semiample-primitive-ray-2-1">Existence of <span class="process-math">\(E_Z\)</span> follows because the integral class <span class="process-math">\(e\)</span> has type <span class="process-math">\((1,1)\text{;}\)</span> uniqueness follows from <span class="process-math">\(H^1(Z,\cO_Z)=0\text{.}\)</span> Apply <a href="hks-main-proof.html#hks-thm-nonprojective-torus-fibration" class="xref" data-knowl="./knowl/xref/hks-thm-nonprojective-torus-fibration.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.3: (Greb–Lehn–Rollenske)">Theorem 5.3</a>. Choose an ample bundle <span class="process-math">\(H\)</span> on <span class="process-math">\(B\)</span> and let <span class="process-math">\(A=f^*H\text{,}\)</span> with <span class="process-math">\(b=c_1(A)\text{.}\)</span> A positive power of <span class="process-math">\(A\)</span> is globally generated, so <span class="process-math">\(A\)</span> is semiample and nef.</div>
+<div class="para" id="hks-prop-semiample-primitive-ray-2-2">The class <span class="process-math">\(b\)</span> is nonzero. For example, the pullback of a Fubini–Study representative for a sufficiently high power of <span class="process-math">\(H\)</span> is semipositive and has positive trace on the open set where <span class="process-math">\(f\)</span> has positive rank. Its integral against a Kähler form to the power <span class="process-math">\(2n-1\)</span> is positive. Since <span class="process-math">\(\dim B=n\text{,}\)</span> we have <span class="process-math">\(b^{2n}=0\text{.}\)</span> Fujiki’s identity implies <span class="process-math">\(q(b)=0\text{.}\)</span> By <a href="hks-main-proof.html#hks-prop-rotated-picard" class="xref" data-knowl="./knowl/xref/hks-prop-rotated-picard.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 5.2">Proposition 5.2</a>, <span class="process-math">\(b=ke\)</span> for an integer <span class="process-math">\(k\ne0\text{.}\)</span>
+</div>
+<div class="para logical" id="hks-prop-semiample-primitive-ray-2-3">
+<div class="para">Both <span class="process-math">\(b\)</span> and <span class="process-math">\(e\)</span> pair positively with <span class="process-math">\([\omega_{I'}]\text{:}\)</span> for <span class="process-math">\(b\)</span> this is the positivity of a nonzero nef null vector, and for <span class="process-math">\(e\)</span> it is <a href="hks-main-proof.html#hks-prop-rotated-torus" class="xref" data-knowl="./knowl/xref/hks-prop-rotated-torus.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 5.1">Proposition 5.1</a>. Thus <span class="process-math">\(k&gt;0\text{.}\)</span> Injectivity of the first Chern class map gives</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hks-prop-rotated-torus.html" id="hks-prop-semiample-primitive-ray-2-3-8">
+\begin{equation*}
+A\simeq E_Z^{\otimes k}.
+\end{equation*}
+</div>
+<div class="para">A globally generated positive power of <span class="process-math">\(A\)</span> is a globally generated positive power of <span class="process-math">\(E_Z\text{.}\)</span>
+</div>
+</div>
+</article></details></section>
+<section class="section" id="hks-returning-to-nef-pair">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Returning to the specified nef pair</span>
+</h2>
+<div class="para" id="hks-returning-to-nef-pair-2">Semiampleness on one deformation does not automatically imply semiampleness on every deformation. We use the theorem of Soldatenkov–Verbitsky for a specified isotropic class. We state the version on Teichmüller space, so that the marking and the positive sign can be checked explicitly.</div>
+<div class="para logical" id="hks-returning-to-nef-pair-3">
+<div class="para">Fix a connected component <span class="process-math">\(\mathcal T^\circ(M)\)</span> of the Teichmüller space of complex structures of IHS type. For a complex structure <span class="process-math">\(A\text{,}\)</span> let <span class="process-math">\(\mathcal C_A\)</span> be the component of the positive cone containing its Kähler cone. Define</div>
+<div class="displaymath process-math" id="hks-returning-to-nef-pair-3-4">
+\begin{equation*}
+\mathcal T^\circ_e
+=\{[A]\in\mathcal T^\circ(M):
+e\in H^{1,1}(M,A),\ e\in\overline{\mathcal C_A}\}.
+\end{equation*}
+</div>
+<div class="para">Since <span class="process-math">\(e\ne0\)</span> is isotropic, the sign condition is equivalent to <span class="process-math">\(q(e,\kappa_A)&gt;0\)</span> for a Kähler class <span class="process-math">\(\kappa_A\text{.}\)</span> On each member there is a unique line bundle <span class="process-math">\(E_A\)</span> of class <span class="process-math">\(e\text{.}\)</span> Let <span class="process-math">\(\mathcal T^\circ_{e,\mathrm{nef}}\)</span> and <span class="process-math">\(\mathcal T^\circ_{e,\mathrm{sa}}\)</span> be the loci where <span class="process-math">\(E_A\)</span> is nef and semiample.</div>
+</div>
+<article class="theorem theorem-like" id="hks-thm-fixed-class-semiampleness"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">(Soldatenkov–Verbitsky).</span>
+</h3>
+<div class="para logical" id="hks-thm-fixed-class-semiampleness-3-1">
+<div class="para">The space <span class="process-math">\(\mathcal T^\circ_e\)</span> is connected. If <span class="process-math">\(\mathcal T^\circ_{e,\mathrm{sa}}\ne\varnothing\text{,}\)</span> then</div>
+<div class="displaymath process-math" id="hks-thm-fixed-class-semiampleness-3-1-3">
+\begin{equation*}
+\mathcal T^\circ_{e,\mathrm{nef}}=\mathcal T^\circ_{e,\mathrm{sa}}.
+\end{equation*}
+</div>
+<div class="para">In a smooth connected family of compact IHS manifolds carrying a line bundle, if one member is semiample and another member is nef and isotropic, the latter line bundle is semiample.</div>
+</div>
+</article>
+<div class="para" id="hks-returning-to-nef-pair-5">Connectedness is <a href="hks-references.html#SV25" class="xref" data-knowl="./knowl/xref/hks-bib-soldatenkov-verbitsky.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry SV25">[SV25, Proposition 2.7]</a>. The equality is Theorem 3.7(v), and the family formulation is Theorem 3.8 of the same paper. These are external theorems. Their proof uses the global Torelli theorem for the semiample locus and degenerate twistor deformations; it is not an application of semicontinuity of the dimension of a space of sections.<a id="hks-returning-to-nef-pair-5-2" href="#margin-hks-returning-to-nef-pair-5-2" class="margin-note-marker" aria-label="Margin note 2">2</a>
+</div>
+<article class="theorem theorem-like" id="hks-thm-syz-proof"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">(Engel–Mauri; OpenAI).</span>
+</h3>
+<div class="para" id="hks-thm-syz-proof-2-1">Let <span class="process-math">\(L\)</span> be a nontrivial nef line bundle on a compact IHS manifold <span class="process-math">\(X\text{,}\)</span> with <span class="process-math">\(q_X(c_1(L))=0\text{.}\)</span> Then <span class="process-math">\(L\)</span> is semiample. A globally generated positive power defines, after Stein factorization, a holomorphic Lagrangian fibration on <span class="process-math">\(X\text{.}\)</span>
+</div>
+</article>
+<details id="hks-thm-syz-proof-3" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="hks-thm-syz-proof-3-1">Write <span class="process-math">\(c_1(L)=me\)</span> as at the start of the chapter. The prescribed degeneration belongs to the marked component containing <span class="process-math">\(X\text{.}\)</span> Its smooth fiber <span class="process-math">\(Y=(M_t,J)\)</span> therefore represents a point in that same component. Hyperkähler rotation from <span class="process-math">\(J\)</span> to <span class="process-math">\(I'=K\)</span> is a path in its twistor sphere, so the rotated <span class="process-math">\(Z\)</span> remains in the component.</div>
+<div class="para" id="hks-thm-syz-proof-3-2">At the original point <span class="process-math">\(X\text{,}\)</span> the class <span class="process-math">\(e\)</span> is of type <span class="process-math">\((1,1)\text{,}\)</span> nef, and has positive pairing with the Kähler cone. At <span class="process-math">\(Z\text{,}\)</span> it is of type <span class="process-math">\((1,1)\)</span> and has the same positive sign by <a href="hks-main-proof.html#hks-prop-rotated-torus" class="xref" data-knowl="./knowl/xref/hks-prop-rotated-torus.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 5.1">Proposition 5.1</a>. Thus both endpoints lie in <span class="process-math">\(\mathcal T^\circ_e\text{.}\)</span> By <a href="hks-main-proof.html#hks-prop-semiample-primitive-ray" class="xref" data-knowl="./knowl/xref/hks-prop-semiample-primitive-ray.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 5.4">Proposition 5.4</a>, its semiample locus is nonempty. Applying <a href="hks-main-proof.html#hks-thm-fixed-class-semiampleness" class="xref" data-knowl="./knowl/xref/hks-thm-fixed-class-semiampleness.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.5: (Soldatenkov–Verbitsky)">Theorem 5.5</a> at the nef point <span class="process-math">\(X\)</span> shows that <span class="process-math">\(E_X\)</span> is semiample.</div>
+<div class="para logical" id="hks-thm-syz-proof-3-3">
+<div class="para">Choose <span class="process-math">\(r&gt;0\)</span> with <span class="process-math">\(E_X^{\otimes r}\)</span> globally generated. Then</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hks-prop-semiample-fibration.html" id="hks-thm-syz-proof-3-3-3">
+\begin{equation*}
+L^{\otimes r}\simeq(E_X^{\otimes r})^{\otimes m}
+\end{equation*}
+</div>
+<div class="para">is globally generated. The fibration assertion follows from <a href="hks-fibrations.html#hks-prop-semiample-fibration" class="xref" data-knowl="./knowl/xref/hks-prop-semiample-fibration.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 1.7">Proposition 1.7</a>: the numerical dimension of a nonzero nef isotropic class is <span class="process-math">\(n\text{,}\)</span> and the fibers of the resulting morphism are Lagrangian.</div>
+</div>
+</article></details>
+<div class="para" id="hks-returning-to-nef-pair-7">The construction is allowed to leave the divisor on which <span class="process-math">\(e\)</span> has type <span class="process-math">\((1,1)\)</span> while it produces the special Lagrangian torus. After rotation it returns to that divisor with the correct sign. Connectedness of the positive locus and the equality of its nef and semiample loci then apply to the two endpoints. Retaining the label <span class="process-math">\(e\)</span> in <a href="hks-degenerations.html#hks-thm-prescribed-degeneration" class="xref" data-knowl="./knowl/xref/hks-thm-prescribed-degeneration.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 3.7: (OpenAI)">Theorem 3.7</a> is what makes this argument a proof for the original bundle.</div>
+</section>
+<section class="section" id="hks-two-geometric-proofs">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">5.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The two cohomological arguments</span>
+</h2>
+<div class="para" id="hks-two-geometric-proofs-2">The proof above uses the restriction map in degree two. Engel–Mauri instead use the class of the torus in middle degree. The difference concerns which cohomological information is proved before applying the same calibration argument.</div>
+<div class="para logical" id="hks-two-geometric-proofs-3">
+<div class="para">For the degeneration constructed here, <a href="hks-degenerations.html#hks-profound-torus-class" class="xref" data-knowl="./knowl/xref/hks-profound-torus-class.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 3.4">Proposition 3.4</a> gives</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hks-profound-torus-class.html ./knowl/xref/hks-lemma-fujiki-on-torus.html ./knowl/xref/hks-prop-rotated-torus.html ./knowl/xref/hks-prop-isotropic-rotation.html" id="hks-two-geometric-proofs-3-2">
+\begin{equation*}
+\operatorname{PD}[F]=c_F e^n,\qquad c_F\in\Q\setminus\{0\}.
+\end{equation*}
+</div>
+<div class="para">Fujiki’s relation, polarized with the isotropic class <span class="process-math">\(e\text{,}\)</span> gives for every <span class="process-math">\(\beta\in H^2(M_t,\C)\)</span>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hks-profound-torus-class.html ./knowl/xref/hks-lemma-fujiki-on-torus.html ./knowl/xref/hks-prop-rotated-torus.html ./knowl/xref/hks-prop-isotropic-rotation.html" id="hks-two-geometric-proofs-3-5">
+\begin{equation*}
+\int_F\beta^n=
+\frac{c_Fc_X\,2^n}{\binom{2n}{n}}\,q(e,\beta)^n.
+\end{equation*}
+</div>
+<div class="para">This is <a href="hks-rotation.html#hks-lemma-fujiki-on-torus" class="xref" data-knowl="./knowl/xref/hks-lemma-fujiki-on-torus.html" data-reveal-label="Reveal" data-close-label="Close" title="Lemma 2.6">Lemma 2.6</a>. Since <span class="process-math">\(q(e,[\omega_I])=0\)</span> and <span class="process-math">\(q(e,\sigma_J)=c&gt;0\text{,}\)</span> it follows that</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hks-profound-torus-class.html ./knowl/xref/hks-lemma-fujiki-on-torus.html ./knowl/xref/hks-prop-rotated-torus.html ./knowl/xref/hks-prop-isotropic-rotation.html" id="hks-two-geometric-proofs-3-9">
+\begin{equation*}
+\int_F(\omega_K+i\omega_I)^n=\int_F\omega_K^n.
+\end{equation*}
+</div>
+<div class="para">The special Lagrangian calibration and the integrated Wirtinger inequality make <span class="process-math">\(F\)</span> holomorphic Lagrangian for <span class="process-math">\(K\text{,}\)</span> as in <a href="hks-main-proof.html#hks-prop-rotated-torus" class="xref" data-knowl="./knowl/xref/hks-prop-rotated-torus.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 5.1">Proposition 5.1</a>. For an unnormalized symplectic form, the angle is <span class="process-math">\(\arg q(e,\sigma_J)\text{,}\)</span> and <a href="hks-rotation.html#hks-prop-isotropic-rotation" class="xref" data-knowl="./knowl/xref/hks-prop-isotropic-rotation.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 2.7">Proposition 2.7</a> chooses the required rotation.</div>
+</div>
+<div class="para" id="hks-two-geometric-proofs-4">The numerical identity <span class="process-math">\(q(e,[\omega_I])=0\)</span> by itself does not assert that <span class="process-math">\([\omega_I]|_F=0\text{.}\)</span> In Engel–Mauri’s argument it gives an equality of top-degree integrals through the formula for <span class="process-math">\(\operatorname{PD}[F]\text{.}\)</span> Calibration then forces pointwise equality in Wirtinger’s inequality. In the proof using <span class="process-math">\(i^*(T_2-\operatorname{id})=0\text{,}\)</span> the restriction class vanishes before applying calibration. The two proofs reach the same holomorphic torus, but the statements about restriction and Poincaré duality should not be interchanged.</div>
+<div class="para" id="hks-two-geometric-proofs-5">Engel–Mauri obtain a nonprojective pair by deforming the holomorphic Lagrangian torus and the isotropic line together, and then apply Greb–Lehn–Rollenske and Soldatenkov–Verbitsky. The explicit irrational period used here proves nonprojectivity and uniqueness of the rational null line on the rotated member itself. It avoids an additional deformation of the torus. Both proofs rely on the analytic existence theorem for a special Lagrangian representative of the specified profound-torus class.</div>
+</section></section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="hks-metric-syz.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Top</span></a><a class="next-button button" href="hks-bases.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a>
+</div></main>
+<div class="margin-notes" role="complementary" aria-label="Margin notes">
+<aside id="margin-hks-identifying-fibration-class-4-2" class="aside aside-like margin-note" data-margin-anchor="hks-identifying-fibration-class-4" data-margin-label="1" data-margin-inline="true"><h4 class="heading"><a href="#hks-identifying-fibration-class-4" class="margin-note-label">1</a></h4>
+<div class="para">Negative-square rational classes can remain, so <span class="process-math">\(\NS(Z)_\Q\)</span> need not equal <span class="process-math">\(\Q e\text{.}\)</span> Only the uniqueness of the rational isotropic line is needed to identify the pullback of an ample class from the fibration base.
+</div></aside><aside id="margin-hks-returning-to-nef-pair-5-2" class="aside aside-like margin-note" data-margin-anchor="hks-returning-to-nef-pair-5" data-margin-label="2" data-margin-inline="true"><h4 class="heading"><a href="#hks-returning-to-nef-pair-5" class="margin-note-label">2</a></h4>
+<div class="para">The positive locus permits members on which <span class="process-math">\(e\)</span> is not nef. Nefness is required at the point to which the semiampleness conclusion is applied. One need not construct a path all of whose members carry a nef class.
+</div></aside>
+</div>
+</div>
+<footer id="site-copyright" class="site-copyright"><p>© 2026 Jie Fu. All rights reserved.</p></footer>
+</body>
+</html>

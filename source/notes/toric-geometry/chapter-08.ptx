@@ -1,0 +1,269 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="toric-interfaces">
+  <title>Selected interfaces with enumerative and mirror geometry</title>
+  <introduction>
+    <p>The preceding dictionary has three distinct roles in the applications selected here. A toric variety can itself be the target of a curve-counting problem. It can supply the ambient space for a hypersurface whose geometry is not toric. It can also provide local models and proved inputs for a degeneration argument about a more general target. Each route needs different hypotheses and a different final step.</p>
+    <p>We first prove the elementary toric constructions: reflexive polarity, the anticanonical correspondence, and explicit fans for two local threefolds. The enumerative statements then specify the external theory they use, their target class, and the equality or construction actually proved. Mirror symmetry and Gromov<ndash/>Witten theory have substantial foundations of their own; the interface here is supplied by precise theorems and worked toric data. Except for the elementary lattice and fan arguments, this chapter works over <m>\C</m>. A useful bridge reference is <xref ref="bib-toric-cox-katz"/>.</p>
+  </introduction>
+  <section xml:id="toric-interfaces-reflexive">
+    <title>Reflexive polytopes and Calabi<ndash/>Yau hypersurfaces</title>
+    <subsection xml:id="toric-interfaces-polarity">
+      <title>Polarity at lattice distance one</title>
+      <definition xml:id="toric-def-reflexive-polytope">
+        <title>Reflexive polytopes</title>
+        <statement>
+          <p>Let <m>P\subset M_{\R}</m> be a full-dimensional lattice polytope containing <m>0</m> in its interior. Its polar, with our inward-normal convention, is
+            <md number="no">P^\circ=\{v\in N_{\R}:\langle m,v\rangle\geq-1
+              \text{ for every }m\in P\}.</md>
+            The polytope <m>P</m> is reflexive if <m>P^\circ</m> is also a lattice polytope. Both lattices are part of this definition.</p>
+        </statement>
+      </definition>
+      <p>The constant <m>-1</m> is chosen to agree with anticanonical divisor inequalities. Some convex-geometric sources use the opposite polar with inequalities at most <m>1</m>; that convention introduces a sign when translating normal vectors.</p>
+      <proposition xml:id="toric-prop-reflexive-facets">
+        <title>Facets, duality, and the interior lattice point</title>
+        <statement>
+          <p>For positive rank, the polytope <m>P</m> is reflexive if and only if each facet has equation <m>\langle m,v_F\rangle=-1</m> with primitive <m>v_F\in N</m>, and <m>P</m> lies in the half-space <m>\langle m,v_F\rangle\geq-1</m>. In this case
+            <md number="no">P^\circ=\operatorname{conv}\{v_F:F\text{ a facet}\},
+              \qquad (P^\circ)^\circ=P,</md>
+            and <m>0</m> is the unique interior lattice point of each polytope. In rank zero, the reflexive pair is <m>P=P^\circ=\{0\}</m>, treated separately from the facet formula.</p>
+        </statement>
+        <proof>
+          <p>For a polytope with the origin in its interior, vertices of its polar correspond to supporting facets, after normalizing their equations to the constant <m>-1</m>. This follows by taking the intersection of its facet half-spaces and applying convex polarity. If such a normal vector is integral, it is primitive: otherwise its pairing with any lattice vertex on the facet would be a nontrivial integer multiple equal to <m>-1</m>. This proves the facet criterion. Convex bipolarity gives the double-polar identity.</p>
+          <p>If <m>m\in M</m> is interior to <m>P</m>, its pairing with each vertex of <m>P^\circ</m> is strictly greater than <m>-1</m>, hence is nonnegative. Therefore its pairing is nonnegative on all of <m>P^\circ</m>. As the latter contains the origin in its interior, a nonzero linear form cannot be nonnegative everywhere on it. Thus <m>m=0</m>. Interchange the dual lattices for the other assertion.</p>
+        </proof>
+      </proposition>
+      <p>The converse statement that a unique interior lattice point forces reflexivity is not part of this criterion. The facet distance, measured in the primitive lattice normal, is the additional condition being imposed.</p>
+
+      <theorem xml:id="toric-thm-reflexive-fano">
+        <title>Reflexive polytopes and Gorenstein toric Fano varieties</title>
+        <statement>
+          <p>Full-dimensional reflexive polytopes correspond to projective normal toric varieties for which <m>-K_X</m> is Cartier and ample, through
+            <md number="no">P=P_{-K_X},\qquad X=X_{\Sigma_P}.</md>
+            Equivalence of polytopes means lattice isomorphism preserving the origin. In positive rank,
+            <md number="no">P_{-K_X}=\{m:\langle m,u_\rho\rangle\geq-1\},\qquad
+              P_{-K_X}^{\circ}=\operatorname{conv}\{u_\rho\}.</md>
+            These varieties are Gorenstein Fano; smoothness is not required.</p>
+        </statement>
+        <proof>
+          <p>For such a toric variety, <m>-K_X=\sum_\rho D_\rho</m> by <xref ref="toric-thm-canonical-divisor"/>. Its ample Cartier polytope is a full-dimensional lattice polytope with normal fan <m>\Sigma</m>, by <xref ref="toric-thm-polytope-polarization"/>. The origin satisfies all its inequalities strictly. Its facets have primitive normal vectors <m>u_\rho</m> and constant <m>-1</m>, so it is reflexive.</p>
+          <p>Conversely, the normal fan of a reflexive polytope gives an ample Cartier divisor with these facet coefficients equal to one. This divisor is exactly <m>-K_X</m>. The Cartier canonical divisor and the toric Cohen<ndash/>Macaulay property give Gorenstein local rings, as explained in <xref ref="toric-divisors-canonical"/>. The two constructions are inverse because an ample polytope recovers its fan. The rank-zero case is the point with polytope <m>\{0\}</m>.</p>
+        </proof>
+      </theorem>
+      <p>See <xref ref="bib-toric-batyrev" detail="Theorems 4.1.6 and 4.1.9"/> for the reflexive framework. A toric <m>\Q</m>-Fano variety with non-Cartier canonical divisor has rational Cartier data instead; its anticanonical polytope need not be a lattice polytope and is not automatically reflexive.</p>
+      <example xml:id="toric-example-p2-reflexive">
+        <title>The anticanonical triangle of <m>\P^2</m></title>
+        <p>For rays <m>(1,0),(0,1),(-1,-1)</m>,
+          <md number="no">P_{-K}=\{(x,y):x\geq-1,\ y\geq-1,\ x+y\leq1\}
+            =\operatorname{conv}\{(-1,-1),(2,-1),(-1,2)\},</md>
+          while
+          <md number="no">P_{-K}^{\circ}
+            =\operatorname{conv}\{(1,0),(0,1),(-1,-1)\}.</md>
+          The first is a translate of the degree-three standard triangle, and its ten lattice points give cubic sections. Polarity exchanges it with a smaller lattice triangle, not with a translate of itself. The normal fan of the polar has cones whose primitive generators have determinant of absolute value three. Its toric surface is singular, illustrating why the dual ambient space is treated separately from a smooth hypersurface.</p>
+      </example>
+    </subsection>
+
+    <subsection xml:id="toric-interfaces-batyrev">
+      <title>Anticanonical hypersurfaces and the polar construction</title>
+      <p>Let <m>P</m> be reflexive. A Laurent polynomial
+        <md number="no">f=\sum_{m\in P\cap M}c_m\chi^m</md>
+        defines an anticanonical section on <m>X_{\Sigma_P}</m>. For a nonempty face <m>F</m>, let <m>f_F</m> be the sum of terms with exponents in <m>F</m>. Newton nondegeneracy requires that <m>f_F</m> and its logarithmic derivatives have no common zero in the torus for every nonempty face, including <m>P</m> itself. This condition is stronger than merely choosing a reduced equation and controls how the hypersurface meets the toric strata.</p>
+      <p>When the ambient variety and the hypersurface are smooth, adjunction gives
+        <md number="no">K_Y=(K_X+Y)|_Y\cong\mathcal O_Y.</md>
+        Singular ambient spaces require additional work. An MPCP modification is a maximal projective crepant partial desingularization. It uses a projective simplicial refinement obtained from boundary lattice points of the polar. New rays remain at canonical height one, so the modification is crepant. Such modifications exist, but their ambient varieties need not be smooth.</p>
+      <theorem xml:id="toric-thm-batyrev-interface">
+        <title>The Calabi<ndash/>Yau threefold case of the polar construction</title>
+        <statement>
+          <p>For a four-dimensional reflexive polytope, a Newton-nondegenerate anticanonical hypersurface has a smooth projective Calabi<ndash/>Yau threefold model after an MPCP modification of its toric ambient space. Applying the construction to the polar gives the dual family. The Hodge numbers of the two resulting families satisfy the mirror exchange <m>h^{1,1}\leftrightarrow h^{2,1}</m>.</p>
+        </statement>
+      </theorem>
+      <p>The hypersurface conclusion is <xref ref="bib-toric-batyrev" detail="Theorem 4.2.2 and Corollary 4.2.3"/>, with the Hodge comparison in Theorem 4.4.3; ambient MPCP existence is its Theorem 2.2.24. The dimension restriction matters. The refined ambient space can retain singular strata of codimension at least four. In ambient dimension four a nondegenerate proper transform avoids them; in higher dimension this argument no longer makes the hypersurface smooth. A crepant partial modification must not be replaced in a statement by an unrestricted smooth crepant resolution.</p>
+      <p>The polar construction and its Hodge-number identities are precise results. An equality of quantum theories, a homological mirror equivalence, or a general physical mirror duality requires additional theorems and definitions; none follows just from the existence of the polar pair.</p>
+      <example xml:id="toric-example-quintic-ambient">
+        <title>The quintic has a toric ambient space</title>
+        <p>The fan of <m>\P^4</m> has rays <m>e_1,\ldots,e_4,-e_1-\cdots-e_4</m>. Its anticanonical polytope is
+          <md number="no">\{m_i\geq-1,\ \sum_i m_i\leq1\},</md>
+          a translate of five times the standard four-simplex. Thus <m>-K_{\P^4}=5H</m>, and a smooth degree-five hypersurface is a Calabi<ndash/>Yau threefold.</p>
+        <p>The hypersurface itself is not a complete toric variety. Indeed a positive-dimensional complete toric variety has no nonzero canonical section: the inequalities for <m>K_X=-\sum D_\rho</m> would require a character pairing at least one with every ray, which is impossible on a complete fan. A smooth connected variety with trivial canonical bundle has a nonzero canonical section. The ambient toric structure and the Calabi<ndash/>Yau hypersurface therefore play different roles.</p>
+      </example>
+    </subsection>
+  </section>
+  <section xml:id="toric-interfaces-quantum">
+    <title>Fixed-point data and toric mirror theorems</title>
+    <subsection xml:id="toric-interfaces-fixed-points">
+      <title>The tangent representation comes from the affine chart</title>
+      <p>At the fixed point of a smooth maximal cone with lattice basis <m>v_1,\ldots,v_n</m>, the tangent characters are its dual basis. The Euler class is their product in equivariant cohomology. Thus the local lattice calculation already supplies the denominator of the ordinary fixed-point formula.</p>
+      <example xml:id="toric-example-p2-localization">
+        <title>A fixed-point integral on <m>\P^2</m></title>
+        <p>Let <m>\widetilde T=(\Gm)^3</m> act by <m>[x_0:x_1:x_2]\mapsto[t_0x_0:t_1x_1:t_2x_2]</m>. The diagonal acts trivially on the base. Write <m>\lambda_i</m> for the coordinate characters of this covering torus. At the coordinate point <m>p_i</m>, affine ratios <m>x_j/x_i</m> have weights <m>\lambda_j-\lambda_i</m>, so
+          <md number="no">e_{\widetilde T}(T_{p_i}\P^2)
+            =\prod_{j\ne i}(\lambda_j-\lambda_i).</md>
+          Give <m>\mathcal O(1)</m> its dual-tautological linearization, so its equivariant first Chern class restricts to <m>-\lambda_i</m>. Localization then gives
+          <md number="no">\int_{\P^2}H^2
+            =\sum_{i=0}^2\frac{\lambda_i^2}
+              {\prod_{j\ne i}(\lambda_j-\lambda_i)}=1.</md>
+          The last equality is the coefficient identity in degree-two Lagrange interpolation. It also follows by setting <m>\lambda_0=0</m> after writing the fractions: the remaining terms are <m>\lambda_1/(\lambda_1-\lambda_2)</m> and <m>\lambda_2/(\lambda_2-\lambda_1)</m>.</p>
+      </example>
+      <p>Now let <m>X</m> be a smooth projective target with a torus action. In Gromov<ndash/>Witten theory the space being integrated over is a moduli stack of stable maps, not the target itself. It can be singular and of the wrong dimension. Its obstruction theory supplies a virtual fundamental class. In this stable-map setting, the virtual localization theorem gives
+        <md number="no">[\overline{\mathcal M}_{g,r}(X,\beta)]^{\mathrm{vir}}
+          =\sum_F(i_F)_*
+            \frac{[F]^{\mathrm{vir}}}{e_T(N_F^{\mathrm{vir}})}</md>
+        in localized equivariant intersection theory. This is the theorem of <xref ref="bib-toric-graber-pandharipande" detail="Sections 3–4 and the Appendix"/>. The virtual normal bundle and fixed virtual class are additional constructions; replacing them by the tangent bundle of <m>X</m> would not give the theorem.</p>
+      <p>For toric targets, fixed maps are organized by graphs: vertices map to fixed points, and noncontracted edges cover invariant rational curves. The fan gives tangent weights and invariant curves, while graph vertices also retain moduli of stable pointed curves. This is why localization turns geometry into a finite combinatorial organization of integrals without eliminating the moduli theory.</p>
+    </subsection>
+
+    <subsection xml:id="toric-interfaces-p2-mirror">
+      <title>A normalized genus-zero mirror theorem for <m>\P^2</m></title>
+      <p>We give one complete formula with fixed conventions. Let <m>H=c_1(\mathcal O_{\P^2}(1))</m>, so classical cohomology is <m>\Q[H]/(H^3)</m>. Let <m>Q</m> be a formal Novikov variable recording curve degree, and let <m>z</m> be the formal descendant parameter, of cohomological degree two. If the grading is retained, assign <m>Q</m> degree six. It is independent of the equivariant weights above. We set the divisor insertion parameter to zero and normalize the leading term of the <m>J</m>-function to one.</p>
+      <definition xml:id="toric-def-p2-j">
+        <title>The normalized small <m>J</m>-function at zero insertion</title>
+        <statement>
+          <p>With <m>\psi_1</m> the cotangent-line class at the marked point and <m>\operatorname{ev}_1</m> its evaluation map, put
+            <md number="no">J_{\P^2}(Q,z)=1+\sum_{d\geq1}Q^d
+              (\operatorname{ev}_1)_*
+              \left(\frac{[\overline{\mathcal M}_{0,1}(\P^2,d)]^{\mathrm{vir}}}
+                {z(z-\psi_1)}\right).</md>
+            The denominator is expanded as a series in <m>z^{-1}</m>. The constant term one accounts for the unstable degree-zero term by this normalization.</p>
+        </statement>
+      </definition>
+      <p>The virtual class and pushforward are those of Gromov<ndash/>Witten theory, with their foundations taken from the cited sources. The chosen target is projective, so the stable-map stacks are proper. Some sources give the <m>J</m>-function leading term <m>z</m>, and some use <m>\hbar</m> for our <m>z</m>. Our formula divides that leading-<m>z</m> convention by <m>z</m>; the class <m>H</m> is always the hyperplane class.</p>
+      <theorem xml:id="toric-thm-p2-mirror">
+        <title>The hypergeometric formula</title>
+        <statement>
+          <p>For <m>\P^2</m>, with these conventions,
+            <md xml:id="toric-eq-p2-mirror" number="yes">J_{\P^2}(Q,z)
+              =I_{\P^2}(Q,z)
+              :=\sum_{d\geq0}\frac{Q^d}
+                {\prod_{k=1}^d(H+kz)^3}.</md>
+            The empty product is one. This is a genus-zero theorem for the smooth projective Fano target <m>\P^2</m>.</p>
+        </statement>
+      </theorem>
+      <p>This is the toric Fano case of <xref ref="bib-toric-givental" detail="Introduction, example (a), and Theorem 0.1"/>. In this Fano example and normalization, no mirror change of variables is needed. If a divisor parameter <m>tH</m> is reintroduced, the corresponding expression is <m>e^{tH/z}I_{\P^2}(Qe^t,z)</m>; it should not be confused with the zero-insertion formula above.</p>
+      <example xml:id="toric-example-p2-i-calculation">
+        <title>The first coefficient and the differential equation</title>
+        <p>The three invariant divisors all have class <m>H</m>, and a degree-<m>d</m> curve has intersection <m>d</m> with each. This gives the three identical denominator factors. Modulo <m>H^3</m>, the degree-one term is explicitly
+          <md number="no">I_{\P^2}(Q,z)
+            =1+\frac{Q}{z^3}\left(1-\frac{3H}{z}
+              +\frac{6H^2}{z^2}\right)+O(Q^2).</md>
+          No inverse of <m>H</m> is being used: each <m>H+kz</m> is inverted as a Laurent series in <m>z^{-1}</m>.</p>
+        <p>Let <m>\mathcal D=H+zQ\frac{\partial}{\partial Q}</m>. Multiplication of the degree-<m>d</m> coefficient by <m>(H+dz)^3</m> cancels its last denominator. Since <m>H^3=0</m>, one obtains
+          <md number="no">(\mathcal D^3-Q)I_{\P^2}=0.</md>
+          This calculation is a direct check on the hypergeometric series. The mirror theorem is the further assertion that this explicitly computed solution is the <m>J</m>-function defined by stable-map invariants.</p>
+      </example>
+      <p>The original toric complete-intersection theorem has nonnegativity hypotheses and, in its general form, a change of variables. Orbifold, noncompact, non-nef, higher-genus, and complete-intersection targets require their respective formulations. The displayed equality should be used with the target, genus, normalization, and parameter choice stated here, rather than read as an all-purpose identity for every toric object.</p>
+    </subsection>
+  </section>
+  <section xml:id="toric-interfaces-local-cy">
+    <title>Local Calabi<ndash/>Yau threefolds</title>
+    <subsection xml:id="toric-interfaces-height-one">
+      <title>A common height-one plane</title>
+      <proposition xml:id="toric-prop-global-height-one">
+        <title>A toric trivialization of the canonical bundle</title>
+        <statement>
+          <p>Let <m>X_\Sigma</m> be smooth. If there exists <m>\eta\in M</m> with
+            <md number="no">\langle\eta,u_\rho\rangle=1
+              \quad\text{for every ray},</md>
+            then <m>K_X</m> is principal and its canonical bundle is trivial. When <m>\dim X=3</m>, the ray generators lie in a lattice affine plane; their positions there, together with the fan triangulation, form its toric diagram.</p>
+        </statement>
+        <proof>
+          <p>The character-divisor formula gives <m>\divisor(\chi^\eta)=\sum_\rho D_\rho=-K_X</m>. Multiply the torus logarithmic top form by <m>\chi^\eta</m>. Its divisor becomes zero, so it extends to a nowhere vanishing top form on the smooth variety.</p>
+        </proof>
+      </proposition>
+      <p>These noncompact smooth varieties with trivial canonical bundle are called local toric Calabi<ndash/>Yau varieties here. No compactness or holonomy condition is included in that phrase. The common height functional is stronger than merely having separate Gorenstein height functions on each affine cone: the same <m>\eta</m> works on all rays.</p>
+    </subsection>
+
+    <subsection xml:id="toric-interfaces-local-p2">
+      <title>The total space of <m>K_{\P^2}</m></title>
+      <example xml:id="toric-example-local-p2">
+        <title>An interior point and three triangles</title>
+        <p>In <m>N=\Z^3</m>, take
+          <md number="no">v_0=(0,0,1),\quad v_1=(1,0,1),\quad
+            v_2=(0,1,1),\quad v_3=(-1,-1,1),</md>
+          and maximal cones <m>\Cone(v_0,v_1,v_2)</m>, <m>\Cone(v_0,v_2,v_3)</m>, <m>\Cone(v_0,v_3,v_1)</m>, together with their faces. Each determinant has absolute value one, so the three affine charts are smooth. Projection to the first two coordinates is the toric morphism to <m>\P^2</m>.</p>
+        <p>These are the total-space cones of the line bundle with invariant divisor <m>-\sum D_\rho=K_{\P^2}</m>. In general, for <m>D=\sum a_\rho D_\rho</m>, the total space of <m>\mathcal O(D)</m> is obtained by adjoining the fiber ray <m>(0,1)</m> and replacing base rays by <m>(u_\rho,-a_\rho)</m> on each chart. This follows by gluing the local fiber coordinates with the inverses of the Cartier-frame transition functions. Here all base coefficients are <m>-1</m>, giving exactly the lifted rays above. Thus the variety is <m>\operatorname{Tot}K_{\P^2}</m>, and its compact zero section is the divisor of <m>v_0</m>.</p>
+        <p>The functional <m>\eta=(0,0,1)</m> pairs to one with every ray. On the chart of <m>v_0,v_1,v_2</m>, the tangent coordinate characters are
+          <md number="no">(-1,-1,1),\quad(1,0,0),\quad(0,1,0).</md>
+          They sum to <m>\eta</m>. The toric diagram is the triangle with vertices <m>(1,0),(0,1),(-1,-1)</m> subdivided by its interior point <m>(0,0)</m>. There are three torus-fixed points, and the three edges from the interior point give the compact invariant lines in the zero section.</p>
+      </example>
+    </subsection>
+
+    <subsection xml:id="toric-interfaces-resolved-conifold">
+      <title>A triangulated square</title>
+      <example xml:id="toric-example-resolved-conifold">
+        <title>The total space of <m>\mathcal O_{\P^1}(-1)^{\oplus2}</m></title>
+        <p>Take height-one rays
+          <md number="no">v_1=(0,0,1),\quad v_2=(1,0,1),\quad
+            v_3=(1,1,1),\quad v_4=(0,1,1),</md>
+          and the two maximal cones <m>123</m> and <m>134</m>. They are unimodular. Their common two-dimensional cone is <m>\tau=\Cone(v_1,v_3)</m>. Its orbit closure is the compact curve joining the two fixed points.</p>
+        <p>Here is an explicit check of the vector bundle. On cone <m>123</m>, use coordinates <m>(y,t,z)</m> of characters
+          <md number="no">(-1,0,1),\quad(1,-1,0),\quad(0,1,0).</md>
+          On cone <m>134</m>, use <m>(w,x,t')</m> of characters
+          <md number="no">(0,-1,1),\quad(1,0,0),\quad(-1,1,0).</md>
+          Face localization gives the overlap formulas
+          <md number="no">t'=t^{-1},\qquad w=ty,\qquad x=tz.</md>
+          Thus <m>t,t'</m> are the coordinates on two charts of <m>\P^1</m>, and the two fiber coordinates transform by multiplication by <m>t</m>. These are precisely the fiber transitions of <m>\mathcal O(-1)\oplus\mathcal O(-1)</m>. The compact curve is its zero section.</p>
+        <p>The four characters of exponents <m>(1,0,0),(-1,0,1),(0,1,0),(0,-1,1)</m> are global functions <m>x,y,z,w</m>, with
+          <md number="no">xy=zw.</md>
+          They generate the dual semigroup of the unsplit cone <m>\Cone(v_1,v_2,v_3,v_4)</m>. Indeed its inequalities for <m>(a,b,c)</m> are equivalent to
+          <md number="no">c\geq\max(0,-a)+\max(0,-b).</md>
+          Use the first and second generator to account for the sign of <m>a</m>, and the third and fourth to account for that of <m>b</m>; remaining height is a multiple of <m>(0,0,1)</m>, the sum of either opposite pair. The kernel is exactly <m>(xy-zw)</m>: reduce monomials by <m>xy\mapsto zw</m>. Two distinct reduced monomials cannot have exponents differing by a multiple of the sole lattice relation, since a positive such multiple would force one of them to contain both <m>x</m> and <m>y</m>. Thus the images of reduced monomials are independent. This gives the affine conifold <m>xy-zw=0</m>. The subdivision contracts the zero section to its vertex. The other diagonal gives its alternative small toric resolution.</p>
+        <p>Again <m>\eta=(0,0,1)</m> gives a trivial canonical bundle. The diagram is a unit square with the diagonal from <m>(0,0)</m> to <m>(1,1)</m>; it has two triangles, hence two fixed points and one compact internal edge. This fan and the preceding triangle diagram describe different local Calabi<ndash/>Yau targets. The two diagonals, their GIT quotients, and the birational map between them are calculated in <xref ref="toric-birational-atiyah-flop"/>.</p>
+      </example>
+      <figure xml:id="toric-figure-local-cy-diagrams">
+        <caption>The fans intersected with their common height-one plane. The triangulated local <m>\P^2</m> diagram has three triangles, hence three fixed points, and three compact internal edges. The resolved-conifold square has two triangles, hence two fixed points, and one compact internal edge.</caption>
+        <image source="local-cy-diagrams.svg" width="100%"><description><p>A triangle subdivided by the interior lattice point (0,0) for the total space of K_P2, alongside a unit square divided by one diagonal for the resolved conifold. Triangles correspond to three-dimensional cones and fixed points; internal edges correspond to compact invariant curves.</p></description></image>
+      </figure>
+    </subsection>
+
+    <subsection xml:id="toric-interfaces-local-invariants">
+      <title>Equivariant invariants and the vertex</title>
+      <p>These targets are not proper. Their stable-map moduli spaces therefore need not support an ordinary pushforward to a point. The equivariant definition used in local toric theory instead assumes that the torus-fixed part of the moduli space is proper and applies virtual localization. Its values lie in the fraction field of the equivariant coefficient ring. For the two models above, fixed maps are described by the finite graph of fixed points and compact invariant curves, with proper moduli of contracted curve components.</p>
+      <p>There can also be proper nonzero-degree moduli in a local model, or a well-defined nonequivariant limit in a specified problem. These are additional properties to establish. They are not consequences of the adjective Calabi<ndash/>Yau. Likewise, replacing the full three-dimensional torus by the volume-preserving subtorus <m>\ker\chi^\eta</m> requires that the fixed-locus definition and its localization denominators remain valid.</p>
+      <p>The mathematical topological vertex packages local relative contributions near trivalent vertices, with partitions recording boundary multiplicities along edges. A gluing theorem assembles these relative invariants into the closed invariants of a smooth toric Calabi<ndash/>Yau threefold. In this statement the vertex is the formal relative invariant constructed in <xref ref="bib-toric-vertex" detail="Section 7, especially Theorem 7.5"/>. Its definition includes relative moduli, obstruction theory, framing conventions, and edge factors; a triangulated drawing alone does not define the invariant.</p>
+      <p>The toric input is now explicit: affine charts give tangent characters, internal edges give compact curve degrees, and the height-one relation controls the canonical form. The gluing and virtual theories supply the further assertions about curve counts. In particular, the all-genus scope of a vertex gluing theorem should be distinguished from the genus-zero mirror theorem of the preceding section.</p>
+    </subsection>
+  </section>
+  <section xml:id="toric-interfaces-degeneration">
+    <title>Toric degenerations and general targets</title>
+    <subsection xml:id="toric-interfaces-transfer">
+      <title>What is needed to leave the toric category</title>
+      <p>A flat degeneration to a toric variety can make a geometric problem more accessible, but a special-fiber calculation does not automatically determine the general fiber. One needs a theorem preserving or reconstructing the particular invariant in question. For curve counts this can involve relative theories, degeneration formulas, and gluing of virtual classes. For mirror constructions it can involve compatible local charts, scattering corrections, and an existence theorem for the glued family.</p>
+      <p>The finite-generation interface in <xref ref="toric-polytopes-valuations"/> constructs a flat family from a value semigroup. The two results below use additional structures to obtain conclusions about non-toric objects. Their toric inputs are actual parts of the proof, and their conclusions retain the stated target classes.</p>
+    </subsection>
+
+    <subsection xml:id="toric-interfaces-pp">
+      <title>A curve-counting correspondence for the quintic</title>
+      <p>Let <m>Y\subset\P^4</m> be a smooth quintic, and fix a nonzero effective curve class <m>\beta</m>. Gromov<ndash/>Witten theory counts stable maps. Stable-pairs theory instead uses pairs <m>\mathcal O_Y\to F</m>, where <m>F</m> is pure of dimension one, has curve class <m>\beta</m>, and the cokernel is zero-dimensional. The Euler characteristic <m>\chi(F)</m> supplies a second discrete index. Both theories require their own moduli spaces and virtual classes.</p>
+      <theorem xml:id="toric-thm-pp-quintic">
+        <title>The GW/stable-pairs correspondence in the compact Calabi<ndash/>Yau case</title>
+        <statement>
+          <p>For the smooth quintic threefold, the no-insertion stable-pairs series <m>Z_{P,\beta}(q)</m> is rational in <m>q</m>. Its Laurent expansion after
+            <md number="no">-q=e^{iu}</md>
+            equals the disconnected Gromov<ndash/>Witten series <m>Z'_{GW,\beta}(u)</m> in which every connected component has positive curve degree. The same no-insertion correspondence holds for smooth Calabi<ndash/>Yau complete-intersection threefolds in products of projective spaces.</p>
+        </statement>
+      </theorem>
+      <p>This is the Calabi<ndash/>Yau specialization of <xref ref="bib-toric-pp-quintic" detail="Theorem 1 and Corollary 2"/>. The prime indicates removal of degree-zero connected components on the map side. Here <m>q</m> records the Euler characteristic of a stable pair, while the curve class <m>\beta</m> is fixed; it is not the degree variable <m>Q</m> of the <m>\P^2</m> example. The substitution is made in the rational function and expanded near <m>u=0</m>, rather than substituted termwise into its power series at <m>q=0</m>.</p>
+      <p>The transfer begins with the equivariant descendent correspondence for toric threefolds. Relative correspondences and degeneration arguments then extend that input to the compact complete intersections. The proof also uses intermediate geometries involving ruled surfaces and <m>K3</m> surfaces, not just a decomposition into toric components; see the proof plan in <xref ref="bib-toric-pp-quintic" detail="Section 0.7"/>. Descendent insertions are important in the induction even though the displayed Calabi<ndash/>Yau conclusion has none.</p>
+      <p>The quintic is the non-toric target in this argument, not a toric variety being tested numerically. The outcome is a proved correspondence between two curve-counting theories in the stated class of targets. It is neither a reduction of all invariants of arbitrary Calabi<ndash/>Yau threefolds to this example nor an assertion that an arbitrary flat toric degeneration preserves those invariants.</p>
+    </subsection>
+
+    <subsection xml:id="toric-interfaces-cusp">
+      <title>Toric models and the smoothing of cusp singularities</title>
+      <definition xml:id="toric-def-looijenga-pair">
+        <title>Rational surfaces with an anticanonical cycle</title>
+        <statement>
+          <p>A Looijenga pair <m>(Y,D)</m> consists of a smooth projective rational surface and a reduced anticanonical cycle of rational curves. A nodal irreducible rational curve is allowed as a one-component cycle. A smooth complete toric surface with its full invariant boundary is a basic example.</p>
+        </statement>
+      </definition>
+      <p>These pairs need not be toric. After suitable blowups at boundary nodes, a pair admits a toric model: a birational morphism to a smooth toric surface that identifies its boundary with the toric boundary. This is <xref ref="bib-toric-ghk" detail="Proposition 1.3"/>. Node blowups in this sentence concern the boundary pair; a torus action on the original surface is not being assumed.</p>
+      <p>Gross<ndash/>Hacking<ndash/>Keel use these models together with counts of rational curves meeting the boundary to construct a canonical scattering diagram. Its consistency and theta functions give a mirror algebra and a smoothing construction. The curve-counting corrections are precisely what permits the local toric gluing pattern to extend to the non-toric pair; they are additional geometric data, not part of its fan alone.</p>
+      <theorem xml:id="toric-thm-cusp-interface">
+        <title>The smoothing consequence</title>
+        <statement>
+          <p>Suppose <m>(Y,D)</m> is a Looijenga pair over <m>\C</m> with negative-definite boundary intersection matrix. Contracting <m>D</m> gives a cusp surface singularity. Its dual cusp is smoothable.</p>
+        </statement>
+      </theorem>
+      <p>This is <xref ref="bib-toric-ghk" detail="Theorem 7.13"/>, the decisive direction of Looijenga's cusp conjecture. A cusp is a normal surface singularity whose minimal-resolution exceptional locus is a cycle of rational curves; the classical dual-cusp construction is specified in their Section 7.1. The conclusion concerns a complex surface singularity and an actual smoothing, not only a combinatorial deformation of a polygon.</p>
+      <p>The useful reading route from these notes is through toric surfaces, boundary divisors, birational modifications, and the anticanonical calculation. Relative curve counts, scattering consistency, and convergence of the smoothing construction remain the external steps. This example and the compact GW/pairs correspondence demonstrate how toric geometry can be a source of general theorems while the toric constructions themselves remain a coherent subject of study.</p>
+    </subsection>
+  </section>
+</chapter>

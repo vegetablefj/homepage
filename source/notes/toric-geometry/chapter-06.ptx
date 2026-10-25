@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="toric-cox-git">
+  <title>Cox coordinates and toric GIT</title>
+  <introduction>
+    <p>The fan construction builds a variety by gluing semigroup charts. Cox coordinates build the same variety by removing an explicitly specified coordinate locus from affine space and taking a quotient. The comparison is a calculation of invariant rings. Once that calculation is established, changing the grading character provides a concrete way to change the quotient and its birational model.</p>
+    <p>Throughout the main construction, <m>X=X_\Sigma</m> is a normal toric variety and the rays of <m>\Sigma</m> span <m>N_\R</m>. This excludes torus factors and makes the character-to-divisor map injective. It does not assume completeness, simpliciality, or smoothness. The final section restores torus factors. The field remains algebraically closed of arbitrary characteristic. We use diagonalizable group schemes, rather than replacing them by their groups of <m>k</m>-points. The general secondary-fan theorem is quoted in its classical complex setting; the explicit wall crossing is calculated directly over <m>k</m>.</p>
+    <p>The main references are <xref ref="bib-toric-cls" detail="Sections 5.1 and 5.3, and Chapters 14–15"/>. The affine quotient input for diagonalizable groups is distinguished below from the toric invariant-ring calculations proved here.</p>
+  </introduction>
+
+  <section xml:id="toric-cox-ring">
+    <title>The graded ring and irrelevant ideal</title>
+    <p>List the rays as <m>\rho_1,\ldots,\rho_r</m>, with primitive vectors <m>u_i</m> and invariant divisors <m>D_i</m>. Set <m>A=\Cl(X)</m>. The class-group sequence of <xref ref="toric-thm-class-group-sequence"/> becomes
+      <md number="no">0\longrightarrow M\xrightarrow{\delta}\Z^r\xrightarrow{\deg}A\longrightarrow0,\qquad\delta(m)=(\langle m,u_1\rangle,\ldots,\langle m,u_r\rangle).</md>
+      Here the <m>i</m>-th standard basis vector has image <m>[D_i]</m>. The group <m>A</m> may have torsion.</p>
+    <definition xml:id="toric-def-cox-ring">
+      <title>Cox ring and characteristic group</title>
+      <statement>
+        <p>The Cox ring in this toric presentation is
+          <md number="no">S=k[x_1,\ldots,x_r],\qquad\deg(x_i)=[D_i]\in A.</md>
+          Its component of degree <m>\alpha</m> is denoted by <m>S_\alpha</m>. The associated diagonalizable group scheme is
+          <md number="no">G=\operatorname{D}(A)=\Spec k[A].</md>
+          The grading defines its action on <m>\A^r</m> by the coaction <m>x_i\mapsto e^{[D_i]}\otimes x_i</m>, where <m>e^\alpha</m> is the basis character in the group algebra <m>k[A]</m>.</p>
+      </statement>
+    </definition>
+    <p>Equivalently, for a <m>k</m>-algebra <m>R</m>, an element of <m>G(R)</m> is a homomorphism <m>g:A\to R^*</m>, acting by <m>x_i\mapsto g([D_i])x_i</m> on coordinates. This describes an action on schemes, including nonreduced test algebras. If <m>A\cong\Z^s\oplus\bigoplus_j\Z/d_j\Z</m>, then
+      <md number="no">G\cong\Gm^s\times\prod_j\mu_{d_j}.</md>
+      This product decomposition depends on a decomposition of <m>A</m>. When the characteristic divides a torsion order, the corresponding group scheme need not be smooth.</p>
+    <p xml:id="toric-anchor-diagonalizable-invariants">A representation of <m>\operatorname{D}(A)</m> is an <m>A</m>-graded vector space. Its invariants are its degree-zero part, and taking degree zero is exact. Thus diagonalizable group schemes are linearly reductive in every characteristic. This assertion does not use averaging by a finite group order. For example, the scaling action of <m>\mu_p</m> on <m>\A^1</m> in characteristic <m>p</m> has invariant ring <m>k[x^p]</m>, although <m>\mu_p(k)=\{1\}</m>. Invariance under the group of points would give the wrong answer.</p>
+    <aside xml:id="margin-toric-cox-group-schemes"><p>The representation statement, including nonsmooth diagonalizable groups, is <xref ref="bib-toric-alper" detail="Example 12.4(2)"/>. Smoothness of the acting group, finite stabilizers, and freeness are three separate questions.</p></aside>
+    <proposition xml:id="toric-prop-cox-graded-sections">
+      <title>Sections are homogeneous polynomials</title>
+      <statement>
+        <p>For an invariant Weil divisor <m>D=\sum_i a_iD_i</m>, there is an isomorphism of vector spaces
+          <md number="no">\Gamma(X,\mathcal O_X(D))\longrightarrow S_{[D]},\qquad\chi^m\longmapsto\prod_{i=1}^r x_i^{a_i+\langle m,u_i\rangle}.</md>
+          The formula is applied to the character basis satisfying all the inequalities <m>a_i+\langle m,u_i\rangle\geq0</m>. These identifications respect multiplication when divisors are added.</p>
+      </statement>
+      <proof>
+        <p>Apply <xref ref="toric-eq-local-divisor-sections"/> on the affine cover. A global section is a Laurent polynomial whose monomials satisfy the inequalities for every ray. The proposed exponent vector is nonnegative, and its class is <m>[D]</m> because its difference from <m>(a_i)</m> is <m>\delta(m)</m>.</p>
+        <p>Conversely, a monomial <m>x^b</m> of degree <m>[D]</m> satisfies <m>b-a\in\ker(\deg)=\delta(M)</m>. There is a unique <m>m</m> with <m>b-a=\delta(m)</m>, since <m>\delta</m> is injective. This gives the inverse bijection of bases. Adding divisor coefficients and character exponents proves compatibility with multiplication.</p>
+      </proof>
+    </proposition>
+    <p>The identification depends on the representative <m>D</m>. Replacing it by <m>D+\divisor(\chi^q)</m> identifies sections by multiplication by <m>\chi^{-q}</m> and gives the same polynomial. Without such choices, writing a direct sum over divisor classes does not by itself define compatible multiplication. The polynomial ring with its specified grading avoids that ambiguity in the toric case. Also, <m>S_\alpha</m> need not be finite dimensional when <m>X</m> is noncomplete; degree-zero monomials can already give nonconstant regular functions.</p>
+    <p>A small example shows how the grading changes a section calculation. On <m>\mathbb F_a</m>, use the classes <m>F,S</m> and variable weights computed below. For a class <m>dF+eS</m> with <m>e\geq0</m>, let <m>j</m> be the exponent of <m>x_4</m>. The exponent of <m>x_2</m> is then <m>e-j</m>, while the sum of the exponents of <m>x_1,x_3</m> is <m>d-aj</m>. Hence
+      <md number="no">h^0(\mathbb F_a,\mathcal O(dF+eS))=\sum_{j=0}^e\max\{d-aj+1,0\}.</md>
+      If <m>e&lt;0</m>, there are no monomials and no sections. At <m>a=0</m>, this is the familiar bidegree count <m>(d+1)(e+1)</m> for <m>d,e\geq0</m> on <m>\P^1\times\P^1</m>. For <m>a&gt;0</m>, the class <m>S</m> has only its single boundary section. The formula counts the same data as the lattice polygon in the section dictionary, but uses homogeneous exponents instead of characters.</p>
+    <definition xml:id="toric-def-irrelevant-ideal">
+      <title>The irrelevant ideal</title>
+      <statement>
+        <p>For a cone <m>\sigma</m>, set
+          <md number="no">x^{\widehat\sigma}=\prod_{\rho_i\notin\sigma(1)}x_i.</md>
+          The irrelevant ideal and Cox open set are
+          <md number="no">B_\Sigma=(x^{\widehat\sigma}:\sigma\in\Sigma),\qquad\widehat X=\A^r\setminus V(B_\Sigma)=\bigcup_{\sigma\in\Sigma}D(x^{\widehat\sigma}).</md>
+          Maximal cones suffice as generators and as an open cover.</p>
+      </statement>
+    </definition>
+    <p>Indeed, if <m>\tau</m> is a face of <m>\sigma</m>, then <m>x^{\widehat\tau}</m> is divisible by <m>x^{\widehat\sigma}</m>. A point belongs to <m>\widehat X</m> precisely when its zero coordinates are indexed by a subset of the rays of some cone. Each chart is invariant because its defining monomial is homogeneous. The grading is determined by the rays and lattice; the irrelevant ideal also remembers which rays occur together in cones.</p>
+  </section>
+
+  <section xml:id="toric-cox-quotient">
+    <title>The quotient construction</title>
+    <p>Write <m>\widehat U_\sigma=D(x^{\widehat\sigma})</m>. Inverting the product makes every coordinate outside <m>\sigma(1)</m> invertible. The localization retains its <m>A</m>-grading.</p>
+    <theorem xml:id="toric-thm-cox-local-invariants">
+      <title>The invariant ring of a coordinate chart</title>
+      <statement>
+        <p>There is a canonical isomorphism
+          <md xml:id="toric-eq-cox-chart-invariants" number="yes">(S_{x^{\widehat\sigma}})^G=(S_{x^{\widehat\sigma}})_0\cong k[\sigma^\vee\cap M],</md>
+          given by <m>\chi^m\mapsto x^{\delta(m)}</m>. These maps glue to a surjective morphism <m>q:\widehat X\to X_\Sigma</m> with <m>q^{-1}(U_\sigma)=\widehat U_\sigma</m>.</p>
+      </statement>
+      <proof>
+        <p>A Laurent monomial in the localized ring has exponents <m>b_i\geq0</m> for rays in <m>\sigma</m>, while the other exponents can be arbitrary integers. It has degree zero exactly when <m>b=\delta(m)</m> for a unique <m>m\in M</m>. Nonnegativity on the first coordinates is precisely <m>m\in\sigma^\vee</m>. Monomial multiplication proves the ring isomorphism.</p>
+        <p>For two cones, let <m>\gamma=\sigma\cap\tau</m> and choose an integral functional exposing <m>\gamma</m> in <m>\sigma</m>. Its character pulls back to a monomial which is invertible exactly when the coordinates indexed by <m>\sigma(1)\setminus\gamma(1)</m> are nonzero; the coordinates outside <m>\sigma</m> are already invertible. Thus, within <m>\widehat U_\sigma</m>, its principal open is <m>\widehat U_\sigma\cap\widehat U_\tau</m>. Its degree-zero ring is the face localization <m>k[\gamma^\vee\cap M]</m>. The affine morphisms therefore agree on overlaps and have the stated inverse-image charts.</p>
+        <p>Surjectivity on each chart follows from the affine diagonalizable quotient theorem invoked below. It can also be checked algebraically: for a prime <m>\mathfrak p</m> of the degree-zero ring, <m>(\mathfrak p S_{x^{\widehat\sigma}})_0=\mathfrak p</m>. The extended ideal remains proper after localization at the complement of <m>\mathfrak p</m>, so a prime above it exists and contracts to <m>\mathfrak p</m>.</p>
+      </proof>
+    </theorem>
+    <p>Here is the general quotient input we use. For a finitely generated graded algebra <m>R</m> with diagonalizable group <m>G</m>, the invariant map <m>\Spec R\to\Spec R^G</m> is a scheme-theoretic good quotient: it is affine and surjective, the invariant structure sheaf is the structure sheaf of the target, invariant closed subsets have closed images, and disjoint invariant closed subsets have disjoint images. It is also categorical for invariant maps to algebraic spaces. This statement does not require <m>G</m> to be smooth.</p>
+    <p>The invariant-sheaf assertion is the degree-zero operation. The closed-image assertions follow by applying the exact invariants functor to homogeneous ideals and their quotients. The general categorical assertion is the external quotient theorem being used here. A precise source is <xref ref="bib-toric-alper" detail="Example 8.3 and Theorems 4.16 and 6.6"/>: its affine quotient-stack construction and universal property give these assertions in our Noetherian setting. Our use of scheme-theoretic good quotient includes nonsmooth diagonalizable groups; it is not a replacement of them by reduced groups.</p>
+    <corollary xml:id="toric-cor-cox-good-quotient">
+      <title>The Cox good quotient</title>
+      <statement><p>The morphism <m>q:\widehat X\to X_\Sigma</m> is a good quotient by <m>G=\operatorname{D}(\Cl(X))</m>, and is categorical for invariant morphisms to algebraic spaces.</p></statement>
+      <proof><p>The affine invariant quotients above agree on their saturated overlap opens. Their properties are local on the target and therefore glue. This proves the assertion. Over <m>\C</m>, the corresponding classical Cox quotient is <xref ref="bib-toric-cls" detail="Theorem 5.1.11"/>; the local calculation and the diagonalizable quotient input explain the arbitrary-characteristic form used here.</p></proof>
+    </corollary>
+    <proposition xml:id="toric-prop-cox-sheafification">
+      <title>From a degree shift to a divisorial sheaf</title>
+      <statement><p>For an <m>A</m>-graded <m>S</m>-module <m>E</m>, the modules <m>(E_{x^{\widehat\sigma}})_0</m> glue to a quasi-coherent sheaf on <m>X</m>. With the shift convention <m>S(\alpha)_\beta=S_{\alpha+\beta}</m>, a chosen invariant divisor <m>D</m> of class <m>\alpha</m> identifies
+        <md number="no">\widetilde{S(\alpha)}\cong\mathcal O_X(D).</md></p></statement>
+      <proof><p>The degree-zero rings on face overlaps are localizations by invariant characters, so the module localizations agree there as well. They therefore glue. To identify the shifted module, write <m>D=\sum_i a_iD_i</m>. A localized monomial of degree <m>\alpha</m> has exponent vector <m>b=a+\delta(m)</m> for a unique <m>m\in M</m>. On the chart, its nonnegative coordinates are precisely those indexed by <m>\sigma(1)</m>, giving <m>\langle m,u_i\rangle\geq-a_i</m> on those rays. Sending it to <m>\chi^m</m> is thus an isomorphism onto the local section module of <m>\mathcal O_X(D)</m>. The maps agree under face localization and glue.</p></proof>
+    </proposition>
+    <p>This construction is the local algebra underlying <xref ref="bib-toric-cls" detail="Proposition 5.3.7"/>. In particular, a degree shift need not give a line bundle: it gives a divisorial sheaf, and the Cartier criterion determines when it is invertible. The polynomial nature of the Cox ring does not turn all Weil classes on the quotient into Cartier classes.</p>
+    <proposition xml:id="toric-prop-cox-stabilizers">
+      <title>Stabilizers, geometric fibers, and smooth fans</title>
+      <statement>
+        <p>At a geometric point whose nonzero-coordinate set is <m>I</m>, the stabilizer group scheme is
+          <md number="no">\operatorname{D}\!\left(A/\langle[D_i]:i\in I\rangle\right).</md>
+          The quotient is geometric, in the sense that each geometric fiber has a single orbit on geometric points, exactly when <m>\Sigma</m> is simplicial. The action is scheme-theoretically free exactly when <m>\Sigma</m> is smooth.</p>
+      </statement>
+      <proof>
+        <p>A group element fixes the point exactly when its characters <m>[D_i]</m> are <m>1</m> for every nonzero coordinate. This proves the formula as a group scheme. At the point with zero coordinates precisely <m>\sigma(1)</m>, its character group is
+          <md number="no">A/\langle[D_i]:\rho_i\notin\sigma(1)\rangle\cong\operatorname{coker}\!\left(M\to\Z^{\sigma(1)}\right)=\Cl(U_\sigma).</md>
+          This is finite exactly when the cone is simplicial and zero exactly when its ray generators extend to a lattice basis, as in the divisor criteria. The character groups of stabilizers at other points of <m>\widehat U_\sigma</m> are quotients of this group. Thus all stabilizer group schemes are trivial exactly in the smooth case.</p>
+        <p>For the fiber statement, a coordinate-torus orbit with zero-coordinate set <m>J\subseteq\sigma(1)</m> maps to the orbit indexed by the smallest face of <m>\sigma</m> containing those rays. This follows by evaluating the invariant monomials. If <m>\sigma</m> is simplicial, its faces correspond to subsets of its rays, so each target orbit has only one such zero pattern. On that coordinate orbit, the exact sequence of character groups shows that the fibers are <m>G</m>-orbits.</p>
+        <p>If a cone is nonsimplicial, an interior vector can be written as a positive combination of at most <m>\dim\sigma</m> of its rays, by removing linear dependences from a positive expression. These form a proper subset of its rays, with smallest containing face equal to <m>\sigma</m>. This zero pattern and the full zero pattern consequently map to the same orbit <m>O(\sigma)</m>. Both occur above each point of that orbit, because the induced maps of tori are surjective over an algebraically closed field. A diagonal action cannot change which coordinates are zero, so a fiber has distinct orbits. The quotient is not geometric.</p>
+      </proof>
+    </proposition>
+    <p>For a simplicial fan the finite stabilizers may be nonreduced in positive characteristic. For a smooth fan, the quotient is a principal <m>G</m>-bundle in the fppf topology. One can see the torsor directly on a chart. The vanishing of <m>\Cl(U_\sigma)</m> says that the classes of the inverted coordinates generate <m>A</m>. Thus every degree occurs as the degree of a monomial unit in <m>R=S_{x^{\widehat\sigma}}</m>. Multiplication by that unit identifies its component with <m>R_0</m>; in particular, <m>R</m> is a faithfully flat <m>R_0</m>-module. The same units show that the coaction map
+      <md number="no">R\otimes_{R_0}R\longrightarrow R\otimes_k k[A]</md>
+      is an isomorphism: a unit of degree <m>\alpha</m> supplies the basis character <m>e^\alpha</m>. This is the affine torsor identity. The map is of finite presentation, so the faithfully flat cover is fppf. Compare the general free diagonalizable quotient theorem in <xref ref="bib-toric-sga3" detail="Exposé VIII, Section 5"/>.</p>
+    <p>Neither finite stabilizers nor the torsor assertion says that the map is étale, or even smooth when <m>G</m> is nonsmooth. In characteristic two, for instance, the smooth punctured quadric surface in <xref ref="toric-example-quadric-class-group"/> has Cox presentation <m>(\A^2\setminus\{0\})/\mu_2</m>, with scalar group-scheme action. Here both variables have the nonzero degree in <m>\Z/2\Z</m>, and the irrelevant ideal is <m>(x_1,x_2)</m>. The action is free as a group-scheme action and the quotient is an fppf <m>\mu_2</m>-torsor. Its acting group is not smooth, so this is not an étale finite-group quotient. The two-torsion is detected by the grading even though it is invisible in <m>\mu_2(k)</m>.</p>
+    <example xml:id="toric-example-cox-nonsimplicial">
+      <title>A good quotient whose fibers contain several orbits</title>
+      <p>In <m>N=\Z^3</m>, take the cone with rays <m>e_1,e_2,e_3,e_1+e_2-e_3</m>. All have height one for the functional <m>(1,1,1)</m>; their height-one slice is a quadrilateral. The cone is nonsimplicial, and its class group is <m>\Z</m>, with variable degrees <m>1,1,-1,-1</m>. Since the fan has one maximal cone containing every ray, <m>B_\Sigma=(1)</m> and the entire <m>\A^4</m> is the Cox open set.</p>
+      <p>The four invariant products are
+        <md number="no">a=x_1x_3,\quad b=x_1x_4,\quad c=x_2x_3,\quad d=x_2x_4.</md>
+        They generate the invariant ring: a balanced monomial can be paired into products of a positive-weight and a negative-weight variable. Their relation is <m>ad-bc=0</m>, and the invariant ring is <m>k[a,b,c,d]/(ad-bc)</m>. For completeness, its fraction field is generated by the three algebraically independent monomials <m>a,b,c</m>, with <m>d=bc/a</m>. The prime kernel therefore has height one; the irreducible determinant relation generates it.</p>
+      <p>Above the vertex <m>a=b=c=d=0</m>, the fiber has underlying set
+        <md number="no">V(x_1,x_2)\cup V(x_3,x_4).</md>
+        The origin is a fixed point, and there are also nonzero orbits in each plane whose closures contain it. The good quotient identifies all of them at the vertex. This is the concrete information lost if a categorical quotient is described merely as a set of orbits.</p>
+    </example>
+    <example xml:id="toric-example-cox-p2">
+      <title>Projective space</title>
+      <p>For <m>\P^2</m>, all three variables have degree <m>H</m>, so <m>G=\Gm</m> acts by scalar multiplication. The maximal cones omit one ray each:
+        <md number="no">B_\Sigma=(x_1,x_2,x_3),\qquad\widehat X=\A^3\setminus\{0\}.</md>
+        The quotient is <m>[x_1:x_2:x_3]</m>. On <m>D(x_3)</m>, the degree-zero ring is <m>k[x_1/x_3,x_2/x_3]</m>. The piece <m>S_{dH}</m> consists of ordinary homogeneous polynomials of degree <m>d</m>, recovering sections of <m>\mathcal O_{\P^2}(d)</m>.</p>
+    </example>
+    <example xml:id="toric-example-cox-hirzebruch">
+      <title>Products and Hirzebruch surfaces</title>
+      <p>Use the rays and divisor basis <m>F,S</m> of <xref ref="toric-example-hirzebruch-divisors"/>. The degree matrix, with columns indexed by the rays in their fixed order, is
+        <md number="no">Q=\begin{pmatrix}1&amp;0&amp;1&amp;a\\0&amp;1&amp;0&amp;1\end{pmatrix}.</md>
+        Thus <m>(s,t)\in\Gm^2</m> acts on the four coordinates as
+        <md number="no">(x_1,x_2,x_3,x_4)\longmapsto(sx_1,tx_2,sx_3,s^atx_4).</md>
+        The irrelevant ideal is
+        <md number="no">B_\Sigma=(x_3x_4,x_1x_4,x_1x_2,x_2x_3)=(x_1,x_3)(x_2,x_4).</md>
+        Hence each of the pairs <m>(x_1,x_3)</m> and <m>(x_2,x_4)</m> must be nonzero.</p>
+      <p>At <m>a=0</m> the two scalings are independent, and the quotient is <m>\P^1\times\P^1</m>. At general <m>a</m>, the same irrelevant ideal accompanies a different grading. For example, on the chart <m>D(x_3x_4)</m> the two degree-zero coordinates
+        <md number="no">x_1/x_3,\qquad x_2x_3^a/x_4</md>
+        freely generate its invariant ring, an affine plane. The factor <m>x_3^a</m> records the twisting that distinguishes the Hirzebruch surfaces.</p>
+    </example>
+  </section>
+
+  <section xml:id="toric-cox-secondary">
+    <title>Secondary fans and variation of GIT</title>
+    <p>The open set <m>\widehat X</m> came from a chosen fan. GIT starts instead with the graded affine space and a character <m>\theta\in A</m>. With our sign convention define
+      <md number="no">R_\theta=\bigoplus_{\ell\geq0}S_{\ell\theta},\qquad U_\theta=\bigcup_{\ell&gt;0,\ f\in S_{\ell\theta}}D(f),\qquad Y_\theta=\Proj R_\theta.</md>
+      The summand index <m>\ell</m> is the grading used for <m>\Proj</m>. Its degree-zero ring is <m>S_0</m>, so this is a quotient projective over <m>\Spec S_0</m>, rather than necessarily over <m>k</m>. Our choice of semistable sections fixes the character sign independently of conventions for twisting a trivial line bundle.</p>
+    <p>The ring <m>R_\theta</m> is finitely generated. Its monomial exponents are pairs <m>(b,\ell)</m> with <m>b\in\N^r</m>, <m>\ell\in\N</m>, and <m>\deg(b)=\ell\theta</m>. This is a rational polyhedral lattice-point semigroup, including the finite-index congruence conditions from torsion in <m>A</m>. Gordan's lemma applies. On a homogeneous principal open the quotient has invariant ring <m>(S_f)_0</m>, exactly as in the Cox charts; these charts give the good quotient <m>U_\theta\to Y_\theta</m>.</p>
+    <proposition xml:id="toric-prop-cox-orbit-cones">
+      <title>Semistability from the nonzero coordinates</title>
+      <statement>
+        <p>Let <m>w_i=[D_i]\otimes1\in A_\R</m>, and let a point have nonzero-coordinate set <m>I</m>. Then
+          <md number="no">x\in U_\theta\quad\Longleftrightarrow\quad\theta\otimes1\in\Cone(w_i:i\in I).</md>
+          There are consequently only finitely many semistable loci as the character varies. Characters having the same semistable locus are called GIT equivalent.</p>
+      </statement>
+      <proof><p>A homogeneous polynomial nonzero at the point has a monomial nonzero there. Its exponents are supported in <m>I</m> and its degree is a positive multiple of <m>\theta</m>, giving the cone condition. Conversely, a rational cone expression can be cleared of denominators to give an equality of degrees modulo torsion. Multiplying once more kills the remaining torsion in the finitely generated group <m>A</m>, producing the required monomial. Rational coefficients may be chosen because the weights and character are rational lattice data. Only finitely many subsets <m>I</m> occur.</p></proof>
+    </proposition>
+    <p>Thus chamber structure can be found from the finite list of orbit cones. One must still establish its fan structure and its relation with the quotient fans. In the classical complex toric GIT setting, this is the secondary-fan theorem: the GIT equivalence regions are relative interiors of rational polyhedral GKZ cones, these cones form a fan supported on the cone generated by the weights, and the quotient is constant on each relative interior. The quotient fans and any unused coordinate indices determine the individual GKZ cones. We invoke <xref ref="bib-toric-cls" detail="Theorem 14.4.7 and Propositions 14.4.9 and 14.4.14"/> for this global statement, including its treatment of boundary and degenerate cases. Proposition 14.4.14 identifies the semistable-locus ideals, not merely the abstract quotients. The elementary membership test above and the example below do not depend on characteristic.</p>
+    <example xml:id="toric-example-cox-f1-wall">
+      <title>Crossing a wall from the first Hirzebruch surface</title>
+      <p>Set <m>a=1</m> in the previous example. The four weights are
+        <md number="no">w_1=w_3=(1,0),\qquad w_2=(0,1),\qquad w_4=(1,1).</md>
+        The effective quadrant has two full-dimensional chambers separated by the diagonal ray. Choose characters
+        <md number="no">\theta_+=(2,1),\qquad\theta_0=(1,1),\qquad\theta_-=(1,2).</md>
+        The plus sign names the chamber of the Hirzebruch surface; it is not a convention about a positive or negative divisor.</p>
+      <p>The orbit-cone test gives
+        <md number="no">U_{\theta_+}=\{(x_1,x_3)\ne(0,0),\ (x_2,x_4)\ne(0,0)\}=\widehat{\mathbb F_1}.</md>
+        Hence <m>Y_{\theta_+}=\mathbb F_1</m>. On the other side it gives
+        <md number="no">U_{\theta_-}=\{x_2\ne0,\ (x_1,x_3,x_4)\ne(0,0,0)\}.</md>
+        Normalize <m>x_2=1</m> using the second scaling. The remaining scaling acts with weight one on <m>x_1,x_3,x_4/x_2</m>, so its quotient is <m>\P^2</m>. This normalization is an isomorphism of quotient constructions, not a division by a group order.</p>
+      <p>At the wall,
+        <md number="no">U_{\theta_0}=D(x_4)\cup D(x_1x_2)\cup D(x_3x_2).</md>
+        The entire section ring is
+        <md number="no">R_{\theta_0}=k[x_1x_2,x_3x_2,x_4],</md>
+        a polynomial ring with its three displayed generators in summand degree one. Indeed, a monomial of class <m>(\ell,\ell)</m> satisfies <m>b_1+b_3+b_4=\ell=b_2+b_4</m>, so <m>b_2=b_1+b_3</m>. It is uniquely a product of the three displayed monomials. Thus <m>Y_{\theta_0}=\P^2</m>.</p>
+      <p>The inclusions of the two chamber opens into the wall open induce
+        <md number="no">\mathbb F_1\longrightarrow\P^2\longleftarrow\P^2.</md>
+        On the first Cox open, the left map is
+        <md number="no">(x_1,x_2,x_3,x_4)\longmapsto[x_1x_2:x_3x_2:x_4].</md>
+        These three expressions have the same class <m>F+S</m>, and they never vanish simultaneously there. The divisor <m>D_2</m>, given by <m>x_2=0</m>, is contracted to <m>[0:0:1]</m>. Away from that divisor, <m>x_2</m> is invertible and the expression agrees with the quotient coordinates on the other chamber. The right-hand arrow is an isomorphism.</p>
+      <p>The fan confirms the modification. Removing the ray <m>u_2=(0,1)</m> leaves the fan of <m>\P^2</m>, and <m>u_2=u_1+u_3</m> subdivides its smooth cone <m>\Cone(u_1,u_3)</m>. By the affine blowup calculation in <xref ref="toric-example-blowup-affine-plane"/>, the left map is the blowup of that fixed point. This is a divisorial wall crossing, not a flip. The graded ring stayed fixed; the semistable set and quotient changed.</p>
+    </example>
+    <p>The example also separates a chamber decomposition from a list of pairwise nonisomorphic varieties: a wall quotient and a neighboring chamber quotient can be isomorphic while their semistable loci differ. One must retain the quotient morphisms and the classes producing them.</p>
+  </section>
+
+  <section xml:id="toric-cox-mori-dream">
+    <title>The interface with Mori dream spaces</title>
+    <p>The toric Cox ring is polynomial, but its quotient mechanism does not require polynomiality. Suppose a variety has a finitely generated multisection or Cox ring, with its divisor grading. Choosing homogeneous generators realizes its spectrum as an invariant closed subscheme of affine space. Character quotients can then organize its birational models. The equations of that invariant subscheme affect semistability and can combine chambers that were distinct in the ambient toric problem.</p>
+    <p>Here is a precise setting in which that mechanism is a theorem. Over <m>\C</m>, let <m>Z</m> be a normal projective <m>\Q</m>-factorial variety such that <m>\Pic(Z)_\Q\to N^1(Z)_\Q</m> is an isomorphism. Choose line bundles <m>L_1,\ldots,L_s</m> whose classes form a rational basis and form the full multisection ring
+      <md number="no">\bigoplus_{b\in\Z^s}H^0\!\left(Z,L_1^{b_1}\otimes\cdots\otimes L_s^{b_s}\right).</md>
+      This Cox ring for the chosen finite-index Picard lattice is finitely generated if and only if <m>Z</m> is a Mori dream space. Taking all integer degrees is essential here; an arbitrary basis followed by only nonnegative degrees need not record the effective classes. Hu<ndash/>Keel instead choose their basis so that its nonnegative cone contains the effective cone; for that choice, the full ring agrees with their nonnegative multisection ring. In the Mori dream setting, the nef cone is rational polyhedral and generated by semiample classes, finitely many small modifications cover the movable cone by their nef cones, and rational contractions arise from variation of GIT. The finite-generation characterization is <xref ref="bib-toric-hu-keel" detail="Definitions 2.5–2.6 and Proposition 2.9"/>, together with its Definition 1.10 and Proposition 1.11.</p>
+    <p>The ambient toric comparison is particularly concrete: <xref ref="bib-toric-hu-keel" detail="Proposition 2.11"/> constructs an embedding into a projective toric variety so that the rational divisor spaces agree, Mori chambers are unions of ambient toric chambers, and rational contractions are induced by toric rational contractions. This is a transfer theorem with projectivity, rational factoriality, and finite-generation hypotheses. It does not say that an arbitrary variety has a finitely generated Cox ring, or that a calculation in affine space settles its birational geometry without those hypotheses.</p>
+    <p>The toric case makes the input unusually explicit: there are no defining equations for <m>\Spec S=\A^r</m>, and the irrelevant ideal and weight matrix can be read from the fan. For a nontoric Mori dream space, the additional equations are essential data. The useful general lesson is the sequence of constructions<mdash/>graded sections, a characteristic action, semistable loci, and quotient models<mdash/>together with a theorem specifying when that sequence captures the intended geometry.</p>
+  </section>
+
+  <section xml:id="toric-cox-torus-factors">
+    <title>Restoring torus factors</title>
+    <p>If the rays do not span <m>N_\R</m>, set <m>N_0=N\cap\operatorname{span}_\R|\Sigma|</m>. This is a saturated sublattice, so choose a splitting <m>N=N_0\oplus N'</m>. The fan lies in <m>(N_0)_\R</m> and gives
+      <md number="no">X_\Sigma\cong X_{\Sigma,N_0}\times T_{N'}.</md>
+      The splitting is a choice; the original lattice and torus remain specified data.</p>
+    <p>The class group is computed by the same ray presentation, now using <m>N_0</m>, and the Cox construction applies to that factor. If <m>M'=\Hom(N',\Z)</m>, restore the full coordinate algebra and open set as
+      <md number="no">S'=S\otimes_k k[M'],\qquad\widehat X'=\widehat X_{\Sigma,N_0}\times T_{N'},</md>
+      with the Laurent factor in degree zero and the characteristic group acting trivially on it. Each invariant chart becomes <m>k[\sigma^\vee\cap M_0]\otimes k[M']</m>, so its quotient is precisely the original product chart. The section components likewise acquire the Laurent factor. A polynomial ring formed solely from the rays would omit these invertible coordinates and lose the torus factor.</p>
+    <p>Thus homogeneous coordinates provide the same local dictionary as fans, while preserving its integral and equivariant data. The quotient construction is usable because its invariant rings have been identified, and variation of the quotient is meaningful because its grading and semistable conditions have been specified.</p>
+  </section>
+</chapter>

@@ -1,0 +1,340 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="cat-monoidal">
+  <title>Monoidal categories and closed structures</title>
+  <introduction>
+    <p>A category may carry a multiplication which is unrelated to its categorical product. Monoidal structure specifies that multiplication, its unit, and the comparisons needed for repeated multiplication. This gives a common language for ordinary monoids, composition of endofunctors, and internal function objects. The direction of each comparison matters, especially when multiplication is not symmetric.</p>
+    <p>We use functors, natural transformations, adjunctions, and the cartesian closed examples developed earlier. Categories are set-encoded and locally <m>\U</m>-small unless a different size is stated. The principal references are <xref ref="bib-cat-li1" detail="Sections 3.1–3.3"/>, <xref ref="bib-cat-li2" detail="Section 7.1"/>, and <xref ref="bib-cat-ks" detail="Sections 4.2–4.3"/>. For closed structures, compare <xref ref="bib-cat-riehl" detail="Definition 4.4.7 and Section 4.4"/>. The structures here are ordinary categorical ones; no additive structure on Hom sets is assumed.</p>
+  </introduction>
+
+  <section xml:id="cat-c17-monoidal-data">
+    <title>Multiplication with specified constraints</title>
+    <p>For a bifunctor <m>\otimes:\mathcal C\times\mathcal C\to\mathcal C</m>, write its action on arrows as <m>f\otimes g</m>. Bifunctoriality already requires the interchange law
+      <md number="no">(f'\otimes g')(f\otimes g)=(f'f)\otimes(g'g)</md>
+      whenever the composites are defined. Associativity is different data: the objects <m>(X\otimes Y)\otimes Z</m> and <m>X\otimes(Y\otimes Z)</m> need not be equal.</p>
+    <definition xml:id="cat-c17-def-monoidal">
+      <title>Monoidal category</title>
+      <idx>Monoidal category</idx><idx>Tensor product</idx><idx>Associator</idx><idx>Unitor</idx><idx>Monoidal unit</idx>
+      <statement>
+        <p>A monoidal category consists of a category <m>\mathcal C</m>, a bifunctor <m>\otimes</m>, an object <m>I</m>, and natural isomorphisms
+          <md number="no">\alpha_{X,Y,Z}:(X\otimes Y)\otimes Z\longrightarrow X\otimes(Y\otimes Z),\qquad
+            \lambda_X:I\otimes X\longrightarrow X,\qquad
+            \rho_X:X\otimes I\longrightarrow X.</md>
+          They satisfy the pentagon equation
+          <md number="no">\begin{aligned}
+            \alpha_{W,X,Y\otimes Z}\,\alpha_{W\otimes X,Y,Z}
+            ={}&amp;(\id_W\otimes\alpha_{X,Y,Z})\,
+              \alpha_{W,X\otimes Y,Z}\,(\alpha_{W,X,Y}\otimes\id_Z)
+          \end{aligned}</md>
+          from <m>((W\otimes X)\otimes Y)\otimes Z</m> to <m>W\otimes(X\otimes(Y\otimes Z))</m>, and the triangle equation
+          <md number="no">(\id_X\otimes\lambda_Y)\,\alpha_{X,I,Y}
+            =\rho_X\otimes\id_Y:(X\otimes I)\otimes Y\longrightarrow X\otimes Y.</md>
+          We call <m>\alpha</m> the associator, <m>\lambda,\rho</m> the unitors, and <m>I</m> the monoidal unit.</p>
+      </statement>
+    </definition>
+    <p>Naturality is part of the definition, in addition to the two displayed equations. For example, <m>\lambda_Y(\id_I\otimes f)=f\lambda_X</m> for <m>f:X\to Y</m>. The pentagon compares the two basic routes between bracketings of four factors; the triangle compares removing a middle unit before or after reassociation. These equations relate the chosen comparisons, rather than asserting only that some isomorphisms between the objects exist.</p>
+    <p>The unit need not be terminal or initial. Likewise, the symbol <m>\otimes</m> does not assert a universal property of the tensor object. That property, if present, belongs to the particular example or to a further closed structure. This distinction prevents an arbitrary monoidal product from being treated as the product construction of <xref ref="cat-limits"/>.</p>
+    <p>A unit is unique with its compatible structure, rather than as an unmarked object. If <m>I</m> and <m>J</m> are two unit choices for a fixed tensor bifunctor and associator, the canonical comparison is the composite <m>I\cong I\otimes J\cong J</m>, using the right unitor for <m>J</m> and the left unitor for <m>I</m>. It is the unique unit-compatible isomorphism; see <xref ref="bib-cat-ks" detail="Remark 4.2.7"/>. An arbitrary isomorphism of the underlying objects is not automatically this comparison.</p>
+    <p>Our definition includes a unit from the beginning. <xref ref="bib-cat-ks" detail="Definition 4.2.1"/> calls the associator-and-pentagon data a tensor category and introduces a unit separately in Definition 4.2.5. There the functors <m>I\otimes-</m> and <m>-\otimes I</m> are required to be fully faithful, together with an isomorphism <m>I\otimes I\cong I</m>; Lemma 4.2.6 constructs unitors. Li requires those functors to be equivalences and derives unitors and the triangle in <xref ref="bib-cat-li1" detail="Definitions 3.1.1–3.1.2 and Lemma 3.1.5"/>. In either formulation the resulting unitors identify these functors with the identity, so the fully faithful version also gives equivalences. We use the equivalent unitor formulation so that all structure maps required below are visible.<fn>The phrase tensor category varies more widely. KS Remark 4.2.17 also records a convention imposing symmetry. In representation theory, <url href="https://math.mit.edu/~etingof/egnobookfinal.pdf">Etingof–Gelaki–Nikshych–Ostrik, Definition 4.1.1</url>, uses tensor category with additional linear, abelian, and rigidity hypotheses. None of these extra conditions follows from our monoidal definition.</fn></p>
+  </section>
+
+  <section xml:id="cat-c17-coherence">
+    <title>Coherence and strictness</title>
+    <p>Repeated reassociation rapidly produces many paths. A theorem is needed before their composites can be suppressed. Its precise scope concerns structural maps in formal tensor expressions; it does not turn all isomorphisms between the resulting objects into one map.</p>
+    <theorem xml:id="cat-c17-thm-coherence">
+      <title>Monoidal coherence and strictification</title>
+      <idx>Coherence theorem</idx><idx>Strict monoidal category</idx><idx>Strictification</idx>
+      <statement>
+        <p><ol>
+          <li><p>Fix formal variables in a specified order. Form parenthesized expressions using those variables, the unit symbol, and tensor products. Between two such expressions with the same ordered list of variables after unit symbols are removed, any two composites made from associators, unitors, their inverses, identities, and tensor products of these maps are equal after evaluation in a monoidal category.</p></li>
+          <li><p>Every monoidal category is equivalent, by a strong monoidal functor as defined in <xref ref="cat-c17-def-monoidal-functor"/>, to a strict monoidal category: one in which associativity and the unit laws hold as equalities of functors and the structural isomorphisms are identities. For set-encoded categories, the replacement can be set-encoded; local <m>\U</m>-smallness can be retained.</p></li>
+        </ol></p>
+      </statement>
+    </theorem>
+    <p>For a proof of monoidal coherence, see <xref ref="bib-cat-maclane" detail="Chapter VII, Section 2"/>. For strictification, see <xref ref="bib-cat-li1" detail="Theorem 3.2.2"/>. The size assertion can be read in the usual word construction: objects are finite words of objects of <m>\mathcal C</m>, and a Hom set is the old Hom set between chosen evaluations of the two words. Words form a set, and these local Hom labels retain the original universe bound. This observation is a size check, rather than a replacement for the coherence proof.</p>
+    <p>Accordingly, we may omit parentheses in a composite once its tensor factors and their order have been specified. If a structure map such as a multiplication or evaluation occurs, coherence controls only the reassociations around it. Any equation involving that extra map still requires its own axiom, naturality, or universal property.</p>
+    <p>Strictification changes the presentation. It does not say that the original associator is an identity, that its tensor objects are equal under different bracketings, or that a chosen functor may ignore its structural comparisons. For instance, the usual sets <m>(X\times Y)\times Z</m> and <m>X\times(Y\times Z)</m> use different nested ordered-pair encodings. Their canonical reassociation is what permits bracket-independent calculations.</p>
+    <p>The formal-expression qualification also matters when some variables are evaluated at equal objects. Further composites may then be defined that were not structural paths between the original expressions. In the symmetric situation, a permutation of two occurrences is additional data; the swap of <m>X\times X</m> is generally not its identity. We distinguish this from reassociation in the braiding section below.</p>
+  </section>
+
+  <section xml:id="cat-c17-elementary-models">
+    <title>Products, coproducts, and discrete monoids</title>
+    <p>The elementary models already show that one underlying category can support different monoidal structures. Their units and their interaction with colimits can be quite different.</p>
+    <example xml:id="cat-c17-example-products-coproducts">
+      <title>Cartesian and cocartesian structures</title>
+      <p>A category with chosen finite products is monoidal under <m>\times</m>, with unit a terminal object. The associator is the unique arrow preserving the three projections in their order, and the unitors are the product projections. They are invertible by the same universal properties. Every path around the pentagon has the same four projections, so the paths are equal. The triangle is checked using its two projections. This proves the coherence axioms directly for this model.</p>
+      <p>Dually, finite coproducts give a monoidal structure under <m>\amalg</m>, with unit an initial object. Reassociation and removal of units are characterized by their composites with the coproduct injections. In particular, <m>\Set_\U</m> has both structures, <m>(\Set_\U,\times,1)</m> and <m>(\Set_\U,\amalg,\varnothing)</m>. Choosing the tensor operation is part of specifying the monoidal category, even though the objects and arrows have not changed.</p>
+    </example>
+    <example xml:id="cat-c17-example-discrete-monoid">
+      <title>A monoid on the object set</title>
+      <p>A small ordinary monoid <m>M</m> gives a strict monoidal category whose objects are its elements and whose only arrows are identities. Define <m>x\otimes y=xy</m> and use the monoid identity as unit. Associativity is now literal, and a braiding could exist only if <m>xy=yx</m> for every pair: distinct objects have no arrows between them. Thus noncommutative monoids supply examples where exchanging tensor factors is impossible.</p>
+      <p>This is different from the one-object category of a monoid in <xref ref="cat-language"/>. There the monoid elements are arrows and multiplication is composition. Here they are objects and multiplication is tensor. The two uses of an ordinary monoid encode different categorical data.</p>
+    </example>
+    <p>These examples are among <xref ref="bib-cat-ks" detail="Examples 4.2.2"/> and <xref ref="bib-cat-li1" detail="Example 3.1.3"/>. Composition of endofunctors, treated below, has strict constraints but generally no symmetry. Strictness concerns parentheses and units; it does not concern interchange of factors.</p>
+  </section>
+
+  <section xml:id="cat-c17-monoidal-functors">
+    <title>Lax, strong, and oplax functors</title>
+    <p>Let <m>(\mathcal C,\otimes,I)</m> and <m>(\mathcal D,\boxtimes,J)</m> be monoidal. We distinguish comparison directions by displaying them. The adjective lax by itself has opposite conventions in parts of the literature.</p>
+    <definition xml:id="cat-c17-def-monoidal-functor">
+      <title>Comparison maps for a monoidal functor</title>
+      <idx>Lax monoidal functor</idx><idx>Strong monoidal functor</idx><idx>Strict monoidal functor</idx><idx>Oplax monoidal functor</idx>
+      <statement>
+        <p><ol>
+          <li><p>A lax monoidal functor consists of <m>F:\mathcal C\to\mathcal D</m>, a natural family <m>\phi_{X,Y}:FX\boxtimes FY\to F(X\otimes Y)</m>, and <m>\phi_0:J\to FI</m>. Its compatibility equations are
+            <md number="no">\begin{aligned}
+              F(\alpha^{\mathcal C}_{X,Y,Z})\,\phi_{X\otimes Y,Z}(\phi_{X,Y}\boxtimes\id)
+              &amp;=\phi_{X,Y\otimes Z}(\id\boxtimes\phi_{Y,Z})\,
+                \alpha^{\mathcal D}_{FX,FY,FZ},\\
+              F(\lambda^{\mathcal C}_X)\,\phi_{I,X}(\phi_0\boxtimes\id)
+              &amp;=\lambda^{\mathcal D}_{FX},\\
+              F(\rho^{\mathcal C}_X)\,\phi_{X,I}(\id\boxtimes\phi_0)
+              &amp;=\rho^{\mathcal D}_{FX}.
+            \end{aligned}</md></p></li>
+          <li><p>A strong monoidal functor is a lax monoidal functor for which all these comparison maps are isomorphisms. A strict monoidal functor has comparison maps which are identities, so in particular preserves the chosen tensor and unit as equalities.</p></li>
+          <li><p>An oplax monoidal functor instead has natural maps <m>\psi_{X,Y}:F(X\otimes Y)\to FX\boxtimes FY</m> and <m>\psi_0:FI\to J</m>, satisfying
+            <md number="no">\begin{aligned}
+              \alpha^{\mathcal D}_{FX,FY,FZ}(\psi_{X,Y}\boxtimes\id)\,\psi_{X\otimes Y,Z}
+                &amp;=(\id\boxtimes\psi_{Y,Z})\,\psi_{X,Y\otimes Z}F(\alpha^{\mathcal C}_{X,Y,Z}),\\
+              \lambda^{\mathcal D}_{FX}(\psi_0\boxtimes\id)\,\psi_{I,X}
+                &amp;=F(\lambda^{\mathcal C}_X),\\
+              \rho^{\mathcal D}_{FX}(\id\boxtimes\psi_0)\,\psi_{X,I}
+                &amp;=F(\rho^{\mathcal C}_X).
+            \end{aligned}</md></p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <p>Inverting the comparisons of a strong monoidal functor gives its oplax presentation. Without invertibility, the two directions express different structures. Li calls our lax and oplax directions right lax and left lax, respectively, in <xref ref="bib-cat-li1" detail="Remark 3.1.8"/>. His <xref ref="bib-cat-li2" detail="Definition 7.1.14"/> uses the lax direction displayed here. KS tensor functors use an invertible comparison in our oplax direction, with unitality separately specified in Definition 4.2.8.<fn>Compare <xref ref="bib-cat-ks" detail="Definitions 4.2.3 and 4.2.8"/>. Its direction can be reversed for strong functors. Reversing a noninvertible structural arrow is not a terminological translation: it would demand new data.</fn></p>
+    <definition xml:id="cat-c17-def-monoidal-transformation">
+      <title>Monoidal natural transformations</title>
+      <idx>Monoidal natural transformation</idx>
+      <statement>
+        <p>For lax monoidal <m>F,G</m>, a monoidal natural transformation <m>\theta:F\Rightarrow G</m> is a natural transformation satisfying
+          <md number="no">\theta_{X\otimes Y}\,\phi^F_{X,Y}
+              =\phi^G_{X,Y}(\theta_X\boxtimes\theta_Y),\qquad
+            \theta_I\phi^F_0=\phi^G_0.</md>
+          For oplax functors the equations are
+          <md number="no">(\theta_X\boxtimes\theta_Y)\,\psi^F_{X,Y}
+              =\psi^G_{X,Y}\theta_{X\otimes Y},\qquad
+            \psi^G_0\theta_I=\psi^F_0.</md>
+          No invertibility of <m>\theta</m> is required.</p>
+      </statement>
+    </definition>
+    <p>Identity transformations and composites satisfy these equations by substitution. Composite lax functors are lax: their binary comparison is <m>G(\phi^F_{X,Y})\phi^G_{FX,FY}</m> and their unit comparison is <m>G(\phi^F_0)\phi^G_0</m>. Naturality allows the inner comparison to pass the outer one, after which the two associativity equations and two unit equations prove the required compatibilities.</p>
+    <example xml:id="cat-c17-example-canonical-comparisons">
+      <title>Comparisons supplied by universal properties</title>
+      <p>Any functor between categories with finite products has canonical oplax comparisons
+        <md number="no">F(X\times Y)\longrightarrow FX\times FY,\qquad F1\longrightarrow1.</md>
+        The first has components <m>F</m> of the two projections. Naturality follows by comparing those components. The associativity equation follows by comparing the three projections, and the unit equations follow by the defining projections and the unique map to the terminal object. These comparisons are invertible exactly when the functor preserves finite products. No arbitrary choices of comparison maps are needed.</p>
+      <p>Dually, any functor between categories with finite coproducts has canonical lax comparisons <m>FX\amalg FY\to F(X\amalg Y)</m> and <m>0\to F0</m>; they are strong exactly when finite coproducts are preserved. Thus the existence of one comparison direction is often automatic even when preservation fails. A bare functor between arbitrary monoidal categories has no corresponding automatic structure.</p>
+    </example>
+  </section>
+
+  <section xml:id="cat-c17-braiding">
+    <title>Braiding and symmetry</title>
+    <p>A monoidal structure does not compare opposite orders of factors. Adding such a comparison requires its own naturality and compatibility equations. To specify them fully, we retain every associator in the following formulas.</p>
+    <definition xml:id="cat-c17-def-braiding">
+      <title>Braided and symmetric monoidal categories</title>
+      <idx>Braided monoidal category</idx><idx>Braiding</idx><idx>Symmetric monoidal category</idx>
+      <statement>
+        <p>A braiding is a natural isomorphism <m>\beta_{X,Y}:X\otimes Y\to Y\otimes X</m> satisfying the two hexagon equations
+          <md number="no">\begin{aligned}
+            \beta_{X,Y\otimes Z}
+              ={}&amp;\alpha_{Y,Z,X}^{-1}(\id_Y\otimes\beta_{X,Z})\,
+                \alpha_{Y,X,Z}(\beta_{X,Y}\otimes\id_Z)\,
+                \alpha_{X,Y,Z}^{-1},\\
+            \beta_{X\otimes Y,Z}
+              ={}&amp;\alpha_{Z,X,Y}(\beta_{X,Z}\otimes\id_Y)\,
+                \alpha_{X,Z,Y}^{-1}(\id_X\otimes\beta_{Y,Z})\,
+                \alpha_{X,Y,Z},
+          \end{aligned}</md>
+          and the unit compatibilities
+          <md number="no">\rho_X\beta_{I,X}=\lambda_X,\qquad
+            \lambda_X\beta_{X,I}=\rho_X.</md>
+          A symmetric monoidal category is a braided monoidal category satisfying
+          <md number="no">\beta_{Y,X}\beta_{X,Y}=\id_{X\otimes Y}</md>
+          for every pair. A lax monoidal functor between braided categories is braided if
+          <md number="no">F(\beta^{\mathcal C}_{X,Y})\phi_{X,Y}
+            =\phi_{Y,X}\beta^{\mathcal D}_{FX,FY}.</md></p>
+      </statement>
+    </definition>
+    <p>This is <xref ref="bib-cat-li1" detail="Definitions 3.3.1, 3.3.3, and 3.3.4"/> in our associator notation; compare <xref ref="bib-cat-ks" detail="Definitions 4.2.14 and 4.2.16"/>. In a strict category the hexagons say that exchanging one factor with a tensor of two factors equals exchanging it with the factors successively. The two formulas specify both possible sides of this rule. Symmetry imposes a further equation, so that exchanging a pair and then exchanging it back has no effect.</p>
+    <p>Cartesian and cocartesian monoidal structures are symmetric. Their swaps exchange the projections or injections, and their hexagons and unit equations follow by the same universal-property checks as their associators. Symmetry still does not imply <m>\beta_{X,X}=\id</m>: on a two-element set, swapping the coordinates of <m>X\times X</m> moves its off-diagonal pairs. Formal symmetric coherence compares maps with the same permutation of occurrences; see <xref ref="bib-cat-riehl" detail="Theorem E.2.2"/>.</p>
+    <example xml:id="cat-c17-example-nonsymmetric-braiding">
+      <title>The hexagons do not force symmetry</title>
+      <p>Take objects <m>\N</m>, no arrows between unequal objects, and endomorphism group <m>\Z</m> at each object, with composition given by addition and identity zero. Define tensor on objects by addition and on arrows by addition, with unit zero and strict constraints. The interchange law holds because integer addition is commutative. Set <m>\beta_{m,n}=mn\in\Z=\End(m+n)</m>. These arrows are invertible and natural. The two hexagons are the distributive equalities <m>m(n+p)=mn+mp</m> and <m>(m+n)p=mp+np</m>; the unit equations hold as well.</p>
+      <p>For <m>m=n=1</m>, the double exchange is the endomorphism <m>2</m>, not the identity endomorphism <m>0</m>. Thus this is braided but not symmetric. In particular, no assertion that every diagram involving a braiding commutes is being made. The monoidal coherence theorem only handles the structural maps listed in its statement.</p>
+    </example>
+  </section>
+
+  <section xml:id="cat-c17-monoid-objects">
+    <title>Monoid objects and their transport</title>
+    <p>The definition of an ordinary monoid can be written using products, a terminal object, and commuting diagrams. Replacing that particular monoidal structure by an arbitrary one gives the following definition.</p>
+    <definition xml:id="cat-c17-def-monoid-object">
+      <title>Monoids in a monoidal category</title>
+      <idx>Monoid object</idx><idx>Comonoid object</idx><idx>Commutative monoid object</idx>
+      <statement>
+        <p>A monoid object is an object <m>A</m>, a multiplication <m>m:A\otimes A\to A</m>, and a unit <m>e:I\to A</m>, satisfying
+          <md number="no">m(m\otimes\id_A)=m(\id_A\otimes m)\alpha_{A,A,A},\qquad
+            m(e\otimes\id_A)=\lambda_A,\qquad
+            m(\id_A\otimes e)=\rho_A.</md>
+          A morphism to <m>(A',m',e')</m> is <m>q:A\to A'</m> with <m>qm=m'(q\otimes q)</m> and <m>qe=e'</m>. These objects and arrows form <m>\Mon(\mathcal C)</m>. In a braided category, a monoid is commutative if <m>m\beta_{A,A}=m</m>.</p>
+        <p>A comonoid reverses these structure maps. It has <m>\Delta:A\to A\otimes A</m> and <m>\varepsilon:A\to I</m>, satisfying
+          <md number="no">\alpha_{A,A,A}(\Delta\otimes\id_A)\Delta=(\id_A\otimes\Delta)\Delta,\qquad
+            \lambda_A(\varepsilon\otimes\id_A)\Delta=\id_A=
+            \rho_A(\id_A\otimes\varepsilon)\Delta.</md>
+          A comonoid morphism commutes with <m>\Delta</m> and <m>\varepsilon</m>.</p>
+      </statement>
+    </definition>
+    <p>The morphism equations are stable under identities and composition. Local Hom sets are subsets of those in <m>\mathcal C</m>, so <m>\Mon(\mathcal C)</m> is locally <m>\U</m>-small and set-encoded. For a small <m>\mathcal C</m>, its complete encoding is small as well, since the object data are triples drawn from small sets.</p>
+    <p>In <m>(\Set,\times,1)</m>, this is precisely an ordinary unital monoid: the equations on three elements express associativity, and the two unit equations express the identity laws. In <m>(\Set,\amalg,\varnothing)</m>, every object has exactly one monoid structure. Indeed, the unit equations force both restrictions of <m>m:A\amalg A\to A</m> to be identities, so <m>m</m> is the fold map. That fold is associative, and every function preserves it. The chosen monoidal structure therefore changes the algebraic meaning of a monoid object.</p>
+    <p>Li calls these algebras in <xref ref="bib-cat-li2" detail="Definition 7.1.1"/>. KS calls them rings in <xref ref="bib-cat-ks" detail="Definition 4.3.1 and Remark 4.3.2"/>. These words do not supply addition in an arbitrary monoidal category. We use monoid object to make the assumed structure explicit.</p>
+    <proposition xml:id="cat-c17-prop-transport-monoids">
+      <statement>
+        <p>A lax monoidal functor <m>F</m> induces <m>\Mon(\mathcal C)\to\Mon(\mathcal D)</m> by
+          <md number="no">m_F=F(m)\phi_{A,A}:FA\boxtimes FA\to FA,\qquad
+            e_F=F(e)\phi_0:J\to FA.</md>
+          It acts on morphisms by <m>F</m>. Monoidal transformations induce transformations of these functors. A braided lax monoidal functor preserves commutative monoid objects.</p>
+      </statement>
+      <proof>
+        <p>Write <m>\alpha^{\mathcal C}</m> and <m>\alpha^{\mathcal D}</m> for the associators. Naturality of <m>\phi</m>, associativity of <m>m</m>, and lax associativity give, in order,
+          <md number="no">\begin{aligned}
+            m_F(m_F\boxtimes\id)
+            &amp;=F\bigl(m(m\otimes\id)\bigr)
+                \phi_{A\otimes A,A}(\phi_{A,A}\boxtimes\id)\\
+            &amp;=F\bigl(m(\id\otimes m)\bigr)F(\alpha^{\mathcal C}_{A,A,A})
+                \phi_{A\otimes A,A}(\phi_{A,A}\boxtimes\id)\\
+            &amp;=F\bigl(m(\id\otimes m)\bigr)
+                \phi_{A,A\otimes A}(\id\boxtimes\phi_{A,A})\alpha^{\mathcal D}_{FA,FA,FA}\\
+            &amp;=m_F(\id\boxtimes m_F)\alpha^{\mathcal D}_{FA,FA,FA}.
+          \end{aligned}</md>
+          For the left unit, naturality at <m>e:I\to A</m> reduces the composite to
+          <md number="no">m_F(e_F\boxtimes\id)
+            =F\bigl(m(e\otimes\id)\bigr)\phi_{I,A}(\phi_0\boxtimes\id)
+            =\lambda^{\mathcal D}_{FA}.</md>
+          The right unit follows by the right unit equation in exactly the same way.</p>
+        <p>For a monoid map <m>q</m>, naturality gives <m>F(q)m_F=m'_F(F(q)\boxtimes F(q))</m>, and the unit equation follows by applying <m>F</m> to <m>qe=e'</m>. The two equations for a monoidal transformation say precisely that its components preserve these transported multiplications and units. Finally, the braided-functor equation gives <m>m_F\beta^{\mathcal D}=F(m\beta^{\mathcal C})\phi=F(m)\phi</m> for a commutative monoid, proving the last assertion.</p>
+      </proof>
+    </proposition>
+    <p>This proves the ordinary transport assertion of <xref ref="bib-cat-li2" detail="Proposition 7.1.15"/> without additional assumptions. Its direction explains the lax comparison: one must first combine <m>FA</m> with itself, then apply <m>F</m> to the old multiplication. Oplax comparisons instead transport comonoid structures, obtained by reversing the multiplication and unit arrows. Strong comparisons permit both operations.</p>
+    <p>There is another useful description of the definition. A lax monoidal functor from the terminal strict monoidal category to <m>\mathcal C</m> selects one object <m>A</m>. Its binary comparison is a multiplication <m>A\otimes A\to A</m>, and its unit comparison is a map <m>I\to A</m>. The lax equations are exactly the monoid laws. Monoidal transformations are exactly monoid morphisms. Thus the extra data on such a functor, even with its underlying object fixed, can encode different multiplications.</p>
+  </section>
+
+  <section xml:id="cat-c17-endofunctors">
+    <title>Composition of endofunctors and monads</title>
+    <p>For a set-encoded category <m>\mathcal C</m>, let <m>\operatorname{End}(\mathcal C)=\Fun(\mathcal C,\mathcal C)</m> in this section. This is a category of endofunctors, whereas <m>\End_{\mathcal C}(X)</m> denotes the ordinary endomorphism set of an object. The argument of the notation distinguishes the two uses.</p>
+    <proposition xml:id="cat-c17-prop-endofunctors">
+      <statement>
+        <p>Composition gives a strict monoidal structure on <m>\operatorname{End}(\mathcal C)</m>, with <m>F\otimes G=FG</m> and unit <m>\id_{\mathcal C}</m>. A monoid object in this category is exactly a monad on <m>\mathcal C</m>.</p>
+      </statement>
+      <proof>
+        <p>The tensor of <m>\gamma:F\Rightarrow F'</m> and <m>\delta:G\Rightarrow G'</m> is horizontal composition:
+          <md number="no">\gamma\otimes\delta=(\gamma G')(F\delta)
+            =(F'\delta)(\gamma G):FG\Rightarrow F'G'.</md>
+          The equality is naturality of <m>\gamma</m> at the components of <m>\delta</m>. The interchange law and strict associativity follow from the horizontal and vertical composition laws in <xref ref="cat-language"/>. Composition with the identity functor is literal equality, so the unitors are identities.</p>
+        <p>A multiplication and unit are now natural transformations <m>\mu:T^2\Rightarrow T</m> and <m>\eta:\id\Rightarrow T</m>. The monoid equations become <m>\mu(\mu T)=\mu(T\mu)</m> and <m>\mu(\eta T)=\id_T=\mu(T\eta)</m>, exactly the monad laws of <xref ref="cat-c09-def-monad"/>.</p>
+      </proof>
+    </proposition>
+    <p>See also <xref ref="bib-cat-ks" detail="Example 4.2.2(iv) and Definition 4.3.5"/> and <xref ref="bib-cat-li2" detail="Definition 7.6.1"/>. This interpretation explains the form of the monad laws; their proofs and applications in the earlier chapter required no monoidal terminology.</p>
+    <p>No braiding is implied. For <m>\mathcal C=[1]</m>, the constant endofunctors at its two distinct objects compose in opposite orders to different constant functors. Those functors are not isomorphic, so there cannot be a braiding comparing every pair of endofunctors. Strict associativity is compatible with this failure of exchange.</p>
+    <p>The full endofunctor collection is set-encoded. It is locally <m>\U</m>-small when <m>\mathcal C</m> is <m>\U</m>-small, by <xref ref="cat-functor-size-bound"/>. For a source which is only locally small, its natural transformations remain ordinary sets but can exceed that universe. The monad interpretation still holds at that size; local smallness of the endofunctor category should not be inferred merely from that of <m>\mathcal C</m>.</p>
+  </section>
+
+  <section xml:id="cat-c17-closed">
+    <title>Right and left internal Hom objects</title>
+    <p>A closed structure adds an adjoint to tensoring with a fixed object. It is therefore a universal property, unlike the associator and unitors, which belong to the given multiplication data. In a nonsymmetric category, fixing the right factor and fixing the left factor are different operations.</p>
+    <definition xml:id="cat-c17-def-closed">
+      <title>Right closed, left closed, and biclosed</title>
+      <idx>Right closed monoidal category</idx><idx>Left closed monoidal category</idx><idx>Biclosed monoidal category</idx><idx>Internal Hom</idx>
+      <statement>
+        <p><ol>
+          <li><p>The category is right closed if, for every <m>A</m>, <m>-\otimes A</m> has a right adjoint <m>[A,-]_r</m>. Its defining natural bijection is
+            <md number="no">\Hom_{\mathcal C}(T\otimes A,B)
+              \cong\Hom_{\mathcal C}(T,[A,B]_r).</md>
+            Its counit is evaluation <m>\operatorname{ev}^r_{A,B}:[A,B]_r\otimes A\to B</m>.</p></li>
+          <li><p>It is left closed if <m>A\otimes-</m> has a right adjoint <m>[A,-]_l</m> for every <m>A</m>:
+            <md number="no">\Hom_{\mathcal C}(A\otimes T,B)
+              \cong\Hom_{\mathcal C}(T,[A,B]_l),</md>
+            with evaluation <m>\operatorname{ev}^l_{A,B}:A\otimes[A,B]_l\to B</m>.</p></li>
+          <li><p>It is biclosed if both conditions hold. In a braided category either condition implies the other, and the two internal Hom objects are canonically isomorphic using the chosen braiding. We then usually say closed and omit the side subscript when the evaluation convention is understood.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+    <p>These labels record the side of the fixed tensor factor. The displayed adjunctions, rather than an isolated left or right, fix our convention. They are the two closures of the tensor bifunctor in <xref ref="bib-cat-riehl" detail="Definition 4.4.7"/>. Naturality of the braiding identifies the two represented functors when a braiding is present, proving the assertion in the third part. No such identification is implicit in a general monoidal category.</p>
+    <proposition xml:id="cat-c17-prop-internal-hom">
+      <statement>
+        <p>Chosen right internal Hom objects assemble into a bifunctor <m>[-,-]_r:\mathcal C^\op\times\mathcal C\to\mathcal C</m>. For <m>a:A'\to A</m>, <m>b:B\to B'</m>, its arrow <m>[a,b]_r</m> is characterized by
+          <md number="no">\operatorname{ev}^r_{A',B'}([a,b]_r\otimes\id_{A'})
+            =b\,\operatorname{ev}^r_{A,B}(\id\otimes a).</md>
+          If <m>\Lambda_r(q)</m> denotes the transpose of <m>q:T\otimes A\to B</m>, then
+          <md number="no">\Lambda_r\bigl(bq(t\otimes a)\bigr)
+            =[a,b]_r\Lambda_r(q)t</md>
+          for <m>t:T'\to T</m>. The left version is analogous, with evaluation on the other side. There are canonical isomorphisms
+          <md number="no">[I,B]_r\cong B,\qquad
+            [A,[B,C]_r]_r\cong[A\otimes B,C]_r,</md>
+          and, in the left closed case,
+          <md number="no">[I,B]_l\cong B,\qquad
+            [B,[A,C]_l]_l\cong[A\otimes B,C]_l.</md></p>
+      </statement>
+      <proof>
+        <p>Transpose the right side of the evaluation equation to define <m>[a,b]_r</m>. Evaluating an identity or a composite gives the corresponding precomposition and postcomposition on tensor maps. Uniqueness of transposes therefore proves the functor laws. Evaluating <m>[a,b]_r\Lambda_r(q)t</m> gives <m>bq(t\otimes a)</m>, proving the claimed naturality. The same proof with the tensor factors reversed gives the left assertion.</p>
+        <p>For the right iterated-Hom isomorphism, maps from <m>T</m> to its left side correspond successively to maps <m>T\otimes A\to[B,C]_r</m> and <m>(T\otimes A)\otimes B\to C</m>. Reassociation gives maps <m>T\otimes(A\otimes B)\to C</m>, represented by the right side. Every step is natural in <m>T</m>, so Yoneda gives the compatible isomorphism. Removing a unit proves the first formula. The left formulas follow by the same argument, with the indicated reversal of the nested parameters.</p>
+      </proof>
+    </proposition>
+    <p>The internal Hom is an object of <m>\mathcal C</m>, not the ordinary morphism set. Taking <m>T=I</m> gives <m>\Hom(I,[A,B]_r)\cong\Hom(A,B)</m>, but this single test does not replace the universal property for all parameters <m>T</m>. An object can have too few maps from the unit for such maps to determine all its structure.<fn>The bifunctor <m>[A,B]_r</m> also follows from <xref ref="cat-c05-prop-parametrized-adjunction"/> applied to <m>F(A,T)=T\otimes A</m>. Left closedness uses <m>F(A,T)=A\otimes T</m>. These applications explain the opposite variance in <m>A</m>.</fn></p>
+    <proposition xml:id="cat-c17-prop-internal-composition">
+      <idx>Internal endomorphism monoid</idx>
+      <statement>
+        <p>In a right closed monoidal category, <m>H=[A,A]_r</m> is a monoid object. Its multiplication is the transpose of successive evaluation:
+          <md number="no">(H\otimes H)\otimes A
+            \xrightarrow{\alpha}H\otimes(H\otimes A)
+            \xrightarrow{\id\otimes\operatorname{ev}^r}H\otimes A
+            \xrightarrow{\operatorname{ev}^r}A.</md>
+          Its unit <m>I\to H</m> is the transpose of <m>\lambda_A:I\otimes A\to A</m>.</p>
+      </statement>
+      <proof>
+        <p>To compare two arrows from any object <m>T</m> into <m>H</m>, it suffices to tensor them with <m>A</m> and compose with evaluation: this is the injectivity of the defining transpose bijection. Under this test, the two sides of associativity of the proposed multiplication are the same three successive evaluations on <m>H\otimes H\otimes H\otimes A</m>. The definition of multiplication identifies each inner composite with two evaluations; naturality moves reassociations past evaluation, and coherence identifies the remaining structural maps. Hence associativity holds.</p>
+        <p>For either unit law, the same test replaces the proposed unit by its defining transpose, the unitor on <m>A</m>. Removing that unit leaves a single evaluation. Naturality of the unitors gives the evaluation of the corresponding unitor on <m>H</m>, proving the required equality. No elementwise interpretation of <m>H</m> is used in these checks.</p>
+      </proof>
+    </proposition>
+    <p>For fixed <m>A</m>, a right internal Hom functor preserves all existing limits, while <m>-\otimes A</m> preserves all existing colimits. Left closedness gives the corresponding assertions for <m>A\otimes-</m>. These are consequences of the adjunctions, not extra completeness or cocompleteness assumptions.</p>
+    <p>Cartesian closed categories are precisely the closed monoidal categories for their cartesian structure. The right internal Hom is <m>B^A</m>, and the evaluation and naturality formulas recover <xref ref="cat-cartesian-closure"/>. In contrast, <m>(\Set_\U,\amalg,\varnothing)</m> is not closed. For nonempty <m>A</m>, the functor <m>-\amalg A</m> takes the initial set to <m>A</m>, which is not initial. It therefore cannot have a right adjoint.</p>
+  </section>
+
+  <section xml:id="cat-c17-duality">
+    <title>Dual objects give particular internal Homs</title>
+    <p>Duality is a stronger way to obtain an adjoint to tensor. We record its ordinary form to distinguish it from closedness. No linear dual or additive structure is involved.</p>
+    <definition xml:id="cat-c17-def-dual-pair">
+      <title>Left and right duals</title>
+      <idx>Dual pair</idx><idx>Left dual</idx><idx>Right dual</idx><idx>Dualizable object</idx><idx>Left dualizable object</idx><idx>Right dualizable object</idx>
+      <statement>
+        <p>A dual pair consists of objects <m>L,R</m> and maps <m>\operatorname{ev}:L\otimes R\to I</m>, <m>\operatorname{coev}:I\to R\otimes L</m>, for which both composites
+          <md number="no">R\cong I\otimes R\longrightarrow(R\otimes L)\otimes R
+            \cong R\otimes(L\otimes R)\longrightarrow R\otimes I\cong R</md>
+          and
+          <md number="no">L\cong L\otimes I\longrightarrow L\otimes(R\otimes L)
+            \cong(L\otimes R)\otimes L\longrightarrow I\otimes L\cong L</md>
+          are identities. The nonstructural arrows are induced by coevaluation and evaluation in the displayed order. We call <m>L</m> a left dual of <m>R</m>, and <m>R</m> a right dual of <m>L</m>.</p>
+        <p>An object is left dualizable if it has a left dual, and right dualizable if it has a right dual. Unqualified dualizable here means that both exist. In a braided category either one implies the other, by transporting evaluation and coevaluation through the braiding.<fn>For a dual pair <m>(L,R)</m> with maps <m>\operatorname{ev},\operatorname{coev}</m>, the reversed pair uses <m>\operatorname{ev}'=\operatorname{ev}\,\beta_{R,L}</m> and <m>\operatorname{coev}'=\beta_{L,R}^{-1}\operatorname{coev}</m>. In the two new zigzags, expand the crossings with the hexagons, then use naturality with evaluation and coevaluation and the unit compatibilities. The crossings cancel, leaving the original zigzags. The indices and inverse on the second braiding matter without symmetry.</fn> Some sources use dualizable for one chosen side; outside the braided case, the displayed evaluation and coevaluation maps fix which assertion is meant.</p>
+      </statement>
+    </definition>
+    <proposition xml:id="cat-c17-prop-dual-adjoints">
+      <statement>
+        <p>For a dual pair <m>(L,R)</m>, there are adjunctions
+          <md number="no">-\otimes R\dashv-\otimes L,\qquad
+            L\otimes-\dashv R\otimes-.</md>
+          Thus a left dual <m>L</m> of <m>A</m> gives <m>[A,B]_r\cong B\otimes L</m>, while a right dual <m>R</m> of <m>A</m> gives <m>[A,B]_l\cong R\otimes B</m>.</p>
+      </statement>
+      <proof>
+        <p>Given <m>f:T\otimes R\to B</m>, insert coevaluation to form
+          <md number="no">T\cong T\otimes I\longrightarrow T\otimes(R\otimes L)
+            \cong(T\otimes R)\otimes L\xrightarrow{f\otimes\id_L}B\otimes L.</md>
+          Conversely, for <m>g:T\to B\otimes L</m>, tensor with <m>R</m> and evaluate:
+          <md number="no">T\otimes R\xrightarrow{g\otimes\id_R}(B\otimes L)\otimes R
+            \cong B\otimes(L\otimes R)\longrightarrow B\otimes I\cong B.</md>
+          In either composite of these operations, naturality moves <m>f</m> or <m>g</m> past the inserted structural maps, and one of the two dual-pair identities removes the remaining evaluation–coevaluation pair. The operations are therefore inverse. Their formulas are natural in <m>T,B</m>, proving the first adjunction. Inserting coevaluation on the left and evaluating there proves the second. The internal-Hom formulas are their defining representability statements.</p>
+      </proof>
+    </proposition>
+    <p>Compare <xref ref="bib-cat-ks" detail="Definition 4.2.11, Lemma 4.2.12, and Remark 4.2.13"/> and <xref ref="bib-cat-li2" detail="Definition 9.1.1"/>. The side of the evaluation map fixes the naming convention. A dual pair supplies adjunctions by tensoring with one fixed dual; a closed category only requires right adjoints to exist, without requiring them to have this particular form.</p>
+    <p>For example, sets under cartesian product are closed, but their only dualizable objects are singletons. If <m>(L,R)</m> is a dual pair of sets, coevaluation chooses a pair <m>(r_0,l_0)</m>. Since evaluation into a singleton is unique, the composite on <m>R</m> in the definition is the constant map at <m>r_0</m>; its being the identity forces <m>R</m> to be a singleton. The other composite forces the same for <m>L</m>. Singletons conversely form a dual pair. This separates closedness from dualizability using only sets.</p>
+  </section>
+</chapter>

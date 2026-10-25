@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-darkmode="disabled">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette: blue-red                     *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>The base and multiple fibres</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<style>
+@counter-style ptx-marker-1 { system: extends lower-roman; prefix: '('; suffix: ') '; }
+</style>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Lagrangian fibrations and hyperkähler SYZ">
+<meta property="og:title" content="Lagrangian fibrations and hyperkähler SYZ">
+<meta property="book:title" content="Lagrangian fibrations and hyperkähler SYZ">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.53"></script><script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="../../vendor/lunr/lunr.min.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+<link rel="stylesheet" href="../../layout.css?v=fee08a8c1c">
+<script src="../../layout.js?v=e9391a21a7" defer></script><link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"C": "\\mathbb{C}", "Pone": "\\mathbb{P}^1_{\\mathbb{C}}", "cO": "\\mathcal{O}", "ord": "\\operatorname{ord}", "lt": "<", "gt": ">", "amp": "&", "R": "\\mathbb{R}", "Q": "\\mathbb{Q}", "Z": "\\mathbb{Z}", "N": "\\mathbb{N}", "PP": "\\mathbb{P}", "SH": "\\mathrm{SH}", "id": "\\mathrm{id}", "Sym": "\\operatorname{Sym}", "Hom": "\\operatorname{Hom}", "End": "\\operatorname{End}", "Ext": "\\operatorname{Ext}", "Pic": "\\operatorname{Pic}", "NS": "\\operatorname{NS}", "Def": "\\operatorname{Def}", "Mon": "\\operatorname{Mon}", "Per": "\\operatorname{Per}", "rk": "\\operatorname{rk}", "td": "\\operatorname{td}", "ch": "\\operatorname{ch}", "Tr": "\\operatorname{Tr}", "Gr": "\\operatorname{Gr}", "SU": "\\operatorname{SU}", "Sp": "\\operatorname{Sp}", "Hol": "\\operatorname{Hol}", "vol": "\\operatorname{vol}"}}, "options": {"ignoreHtmlClass": "ignore-math", "processHtmlClass": "process-math", "enableMenu": false}};</script><script src="../../vendor/mathjax/tex-chtml.js" defer></script>
+</head>
+<body class="pretext book ignore-math note-page" data-page-format="note">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner"><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="hyperkahler-syz-notes.html"><span class="title">Lagrangian fibrations and hyperkähler SYZ</span></a></div>
+<p class="byline"><a href="../../home.html">Jie Fu</a>'s <a href="../../notes.html">Notes</a></p>
+<p class="note-metadata"><span class="note-review-status">Under review and improvement</span> · <span class="note-last-updated">Last updated: <time datetime="2026-10-24">2026-10-24</time></span></p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Contents</span></button><a class="index-button button" href="hks-index.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Index</span></a><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true"></span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="treebuttons"><a class="previous-button button" href="hks-main-proof.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="up-button button" href="hyperkahler-syz-notes.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Up</span></a><a class="next-button button" href="hks-other-methods.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a></span>
+</div></nav><div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth4 focused" data-preexpanded-levels="1" data-max-levels="4"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="hks-preface.html" class="internal"><span class="title">Preface and conventions</span></a></div></li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-fibrations.html" class="internal"><span class="codenumber">1</span> <span class="title">Isotropic line bundles and Lagrangian fibrations</span></a></div>
+<ul id="ptx-toc-group-hks-fibrations" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-fibrations.html#hks-nef-line-bundles" class="internal"><span class="codenumber">1.1</span> <span class="title">Nefness, sections, and numerical dimension</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-fibrations.html#hks-semiample-and-fibration" class="internal"><span class="codenumber">1.2</span> <span class="title">From semiampleness to a fibration</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-fibrations.html#hks-syz-statement" class="internal"><span class="codenumber">1.3</span> <span class="title">The semiampleness theorem and examples</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-rotation.html" class="internal"><span class="codenumber">2</span> <span class="title">Special Lagrangian tori and rotation</span></a></div>
+<ul id="ptx-toc-group-hks-rotation" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-rotation.html#hks-calibrations" class="internal"><span class="codenumber">2.1</span> <span class="title">Calibrations and the volume inequality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-rotation.html#hks-cohomological-rotation" class="internal"><span class="codenumber">2.2</span> <span class="title">A cohomological criterion for rotation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-rotation.html#hks-fujiki-rotation" class="internal"><span class="codenumber">2.3</span> <span class="title">The class of the torus and the isotropic ray</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-rotation.html#hks-monodromy-restriction" class="internal"><span class="codenumber">2.4</span> <span class="title">Restriction and monodromy</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-rotation.html#hks-slag-deformations" class="internal"><span class="codenumber">2.5</span> <span class="title">Deformations of a special Lagrangian torus</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-degenerations.html" class="internal"><span class="codenumber">3</span> <span class="title">Degenerations with a prescribed isotropic class</span></a></div>
+<ul id="ptx-toc-group-hks-degenerations" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-degenerations.html#hks-degeneration-monodromy" class="internal"><span class="codenumber">3.1</span> <span class="title">Monodromy and the lowest weight</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-degenerations.html#hks-prescribed-period" class="internal"><span class="codenumber">3.2</span> <span class="title">A period curve through the given rational boundary point</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-degenerations.html#hks-algebraic-realization" class="internal"><span class="codenumber">3.3</span> <span class="title">Realizing the period curve by an algebraic family</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-degenerations.html#hks-logarithmic-volume" class="internal"><span class="codenumber">3.4</span> <span class="title">The logarithmic volume form and a nonzero residue</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-metric-syz.html" class="internal"><span class="codenumber">4</span> <span class="title">Special Lagrangian tori near a degeneration</span></a></div>
+<ul id="ptx-toc-group-hks-metric-syz" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-metric-syz.html#hks-metric-degeneration" class="internal"><span class="codenumber">4.1</span> <span class="title">Polarized degenerations and angular tori</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-metric-syz.html#hks-valuative-independence" class="internal"><span class="codenumber">4.2</span> <span class="title">Valuative independence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-metric-syz.html#hks-weak-comparison" class="internal"><span class="codenumber">4.3</span> <span class="title">Comparison of Monge–Ampère equations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-metric-syz.html#hks-flat-cylinder" class="internal"><span class="codenumber">4.4</span> <span class="title">The torus in a crossing chart</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-main-proof.html" class="internal"><span class="codenumber">5</span> <span class="title">From a special Lagrangian torus to semiampleness</span></a></div>
+<ul id="ptx-toc-group-hks-main-proof" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-main-proof.html#hks-rotation-of-profound-torus" class="internal"><span class="codenumber">5.1</span> <span class="title">The torus and its rotation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-main-proof.html#hks-identifying-fibration-class" class="internal"><span class="codenumber">5.2</span> <span class="title">Nonprojectivity and the class of the fibration</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-main-proof.html#hks-returning-to-nef-pair" class="internal"><span class="codenumber">5.3</span> <span class="title">Returning to the specified nef pair</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-main-proof.html#hks-two-geometric-proofs" class="internal"><span class="codenumber">5.4</span> <span class="title">The two cohomological arguments</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="hks-bases.html" class="internal"><span class="codenumber">6</span> <span class="title">The base and multiple fibres</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-hks-bases">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-bases.html#hks-bases-classical" class="internal"><span class="codenumber">6.1</span> <span class="title">Smooth bases and isolated quotient singularities</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-bases.html#hks-bases-two-fibrations" class="internal"><span class="codenumber">6.2</span> <span class="title">Two fibrations and a finite cover by an abelian variety</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-bases.html#hks-bases-euler" class="internal"><span class="codenumber">6.3</span> <span class="title">Euler characteristics and singular strata</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-bases.html#hks-bases-smoothness" class="internal"><span class="codenumber">6.4</span> <span class="title">From quotient singularities to projective space</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-bases.html#hks-bases-multiple-fibres" class="internal"><span class="codenumber">6.5</span> <span class="title">Multiplicities and the primitive pullback class</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-other-methods.html" class="internal"><span class="codenumber">7</span> <span class="title">Effective divisors and finiteness of deformation types</span></a></div>
+<ul id="ptx-toc-group-hks-other-methods" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-other-methods.html#hks-effective-divisors" class="internal"><span class="codenumber">7.1</span> <span class="title">From an effective divisor to a Lagrangian subvariety</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-other-methods.html#hks-lagrangian-smoothing" class="internal"><span class="codenumber">7.2</span> <span class="title">Normal crossing Lagrangian subvarieties</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-other-methods.html#hks-positive-currents" class="internal"><span class="codenumber">7.3</span> <span class="title">Nonvanishing and positive currents</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-other-methods.html#hks-finiteness" class="internal"><span class="codenumber">7.4</span> <span class="title">Finitely many deformation types in a fixed dimension</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-special-kahler.html" class="internal"><span class="codenumber">8</span> <span class="title">Special Kähler geometry and semi-flat metrics</span></a></div>
+<ul id="ptx-toc-group-hks-special-kahler" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-special-kahler.html#hks-special-periods" class="internal"><span class="codenumber">8.1</span> <span class="title">The period lattice</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-special-kahler.html#hks-special-prepotential" class="internal"><span class="codenumber">8.2</span> <span class="title">Special coordinates and the prepotential</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-special-kahler.html#hks-special-affine" class="internal"><span class="codenumber">8.3</span> <span class="title">Two integral affine structures and a Hessian metric</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-special-kahler.html#hks-special-curvature" class="internal"><span class="codenumber">8.4</span> <span class="title">Variation and curvature</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-special-kahler.html#hks-special-semiflat" class="internal"><span class="codenumber">8.5</span> <span class="title">The semi-flat hyperkähler metric</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-special-kahler.html#hks-special-examples" class="internal"><span class="codenumber">8.6</span> <span class="title">Examples and collapse near the discriminant</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="hyperkahler-syz-notes-12.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul id="ptx-toc-group-hyperkahler-syz-notes-12" class="structural toc-item-list">
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="hks-notation.html" class="internal"><span class="codenumber">A.</span> <span class="title">Notation</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="hks-references.html" class="internal"><span class="title">References</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="hks-index.html" class="internal"><span class="title">Index</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="chapter" id="hks-bases">
+<h1 class="heading">
+<span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The base and multiple fibres</span>
+</h1>
+<section class="introduction" id="hks-bases-2">
+<div class="para" id="hks-bases-2-1">A Lagrangian fibration determines both an isotropic line bundle on its total space and a projective variety of half the dimension. Semiampleness constructs the morphism. Identifying its base requires further arguments about singularities. We explain those arguments separately, and then discuss the multiplicities of divisors pulled back from the base.</div></section>
+<section class="section" id="hks-bases-classical">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Smooth bases and isolated quotient singularities</span>
+</h2>
+<div class="para" id="hks-bases-classical-2">Let <span class="process-math">\(f:X\to B\)</span> be a holomorphic Lagrangian fibration from a compact IHS manifold of dimension <span class="process-math">\(2n\text{.}\)</span> Its base is normal and projective by <a href="hks-fibrations.html#hks-thm-matsushita" class="xref" data-knowl="./knowl/xref/hks-thm-matsushita.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 1.6: (Matsushita)">Theorem 1.6</a>. In the projective setting, we also use that <span class="process-math">\(B\)</span> is a <span class="process-math">\(\Q\)</span>-factorial klt Fano variety of Picard number one; these results and their original sources are collected in <a href="hks-references.html#OAI26b" class="xref" data-knowl="./knowl/xref/hks-bib-openai-bases.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry OAI26b">[OAI26b, Proposition 2.1]</a>. Smoothness has a much stronger consequence: <span class="process-math">\(B\simeq\PP^n\text{.}\)</span> Hwang proved this when <span class="process-math">\(X\)</span> is projective, and Greb–Lehn proved the compact Kähler version <a href="hks-references.html#Hwa08" class="xref" data-knowl="./knowl/xref/hks-bib-hwang.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Hwa08">[Hwa08, Theorem 1.2]</a>; <a href="hks-references.html#GL14" class="xref" data-knowl="./knowl/xref/hks-bib-greb-lehn.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry GL14">[GL14, Theorem 1.1]</a>. Li–Tosatti give a proof using the special Kähler metric and a connectedness theorem for families of minimal rational curves <a href="hks-references.html#LT24" class="xref" data-knowl="./knowl/xref/hks-bib-li-tosatti.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry LT24">[LT24, Theorem 1.3 and Section 7]</a>. We construct that metric in <a href="hks-special-kahler.html" class="internal" title="Chapter 8: Special Kähler geometry and semi-flat metrics">Chapter 8</a>.</div>
+<div class="para" id="hks-bases-classical-3">The difficulty is therefore to prove smoothness of <span class="process-math">\(B\text{.}\)</span> Equality of rational Betti numbers with those of <span class="process-math">\(\PP^n\)</span> does not imply this. The local quotient case already shows why the fibration itself matters.</div>
+<div class="para" id="hks-bases-classical-4">Müller–Xu prove the following local theorem <a href="hks-references.html#MX26" class="xref" data-knowl="./knowl/xref/hks-bib-muller-xu.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry MX26">[MX26, Theorem 1.3]</a>. A projective morphism here has a relatively ample line bundle; its total space need not be compact.</div>
+<article class="theorem theorem-like" id="hks-thm-isolated-quotient-base"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.1</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="hks-thm-isolated-quotient-base-1-1">Let <span class="process-math">\(f:Z\to U\)</span> be a germ of a projective Lagrangian fibration from a smooth holomorphic symplectic manifold to a normal analytic space. If <span class="process-math">\(U\)</span> has only isolated quotient singularities, then <span class="process-math">\(U\)</span> is smooth.</div>
+</article>
+<details id="hks-thm-isolated-quotient-base-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="hks-thm-isolated-quotient-base-2-1">
+<div class="para">We use two external results in the forms established in <a href="hks-references.html#MX26" class="xref" data-knowl="./knowl/xref/hks-bib-muller-xu.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry MX26">[MX26, Corollary 2.4 and Theorem 2.5]</a>. For a projective Lagrangian fibration over a smooth base, the isomorphisms <span class="process-math">\(R^i f_*\cO_Z\simeq\Omega_U^i\)</span> are equivariant under finite symplectic group actions on the fibration. For a finite-order automorphism <span class="process-math">\(g\)</span> of a projective scheme <span class="process-math">\(F\)</span> with no fixed point, the coherent Lefschetz number is zero:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hks-bib-muller-xu.html" id="hks-thm-isolated-quotient-base-2-1-5">
+\begin{equation*}
+\sum_i(-1)^i\Tr\bigl(g^*\mid H^i(F,\cO_F)\bigr)=0.
+\end{equation*}
+</div>
+<div class="para">This second result applies to a singular or nonreduced scheme-theoretic fibre.</div>
+</div>
+<div class="para" id="hks-thm-isolated-quotient-base-2-2">Write a singular base germ as <span class="process-math">\(U=V/G\text{,}\)</span> where <span class="process-math">\(V\)</span> is a small neighbourhood of the origin in <span class="process-math">\(\C^n\text{,}\)</span> and choose the quotient presentation without pseudoreflections. Since the singularity is isolated, every nonidentity element <span class="process-math">\(g\in G\)</span> has no nonzero fixed vector. Thus <span class="process-math">\(\det(1-g\mid T_0V)\ne0\text{.}\)</span>
+</div>
+<div class="para" id="hks-thm-isolated-quotient-base-2-3">Normalize <span class="process-math">\(Z\times_U V\text{,}\)</span> and denote the resulting map to <span class="process-math">\(V\)</span> by <span class="process-math">\(f':Z'\to V\text{.}\)</span> The finite map <span class="process-math">\(Z'\to Z\)</span> is étale in codimension one: the quotient map has this property, and equidimensionality prevents the inverse image of its branch locus from containing a divisor. Purity of the branch locus makes <span class="process-math">\(Z'\to Z\)</span> étale everywhere. In particular, <span class="process-math">\(Z'\)</span> is smooth and symplectic, and the deck group acts freely on it.</div>
+<div class="para logical" id="hks-thm-isolated-quotient-base-2-4">
+<div class="para">The map <span class="process-math">\(f'\)</span> is projective and equidimensional over the smooth space <span class="process-math">\(V\text{,}\)</span> hence flat. Tensoring the translates of a relatively ample bundle over <span class="process-math">\(G\)</span> gives an invariant relative polarization. Let <span class="process-math">\(F=(f')^{-1}(0)\)</span> with its scheme structure. Local freeness of the higher direct images and cohomology and base change give equivariant isomorphisms</div>
+<div class="displaymath process-math" id="hks-thm-isolated-quotient-base-2-4-5">
+\begin{equation*}
+H^i(F,\cO_F)\simeq\Omega_V^i|_0.
+\end{equation*}
+</div>
+<div class="para">For <span class="process-math">\(g\ne1\text{,}\)</span> freeness on <span class="process-math">\(Z'\)</span> implies freeness on <span class="process-math">\(F\text{.}\)</span> Apply coherent Lefschetz vanishing and the exterior-power trace identity to obtain</div>
+<div class="displaymath process-math" id="hks-thm-isolated-quotient-base-2-4-9">
+\begin{equation*}
+0=\sum_i(-1)^i\Tr\bigl(g^*\mid\Lambda^iT_0^*V\bigr)=\det(1-g^*\mid T_0^*V).
+\end{equation*}
+</div>
+<div class="para">This contradicts the absence of fixed vectors. The quotient group is trivial, so the base germ is smooth.</div>
+</div>
+</article></details>
+<div class="para" id="hks-bases-classical-6">The same paper proves that a projective Lagrangian fibration from a smooth symplectic fourfold has smooth surface base without a prior assumption on its singularities, and that a threefold base with terminal singularities is smooth <a href="hks-references.html#MX26" class="xref" data-knowl="./knowl/xref/hks-bib-muller-xu.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry MX26">[MX26, Corollary 1.4 and Theorem 1.5]</a>. In the compact projective fourfold case this recovers <span class="process-math">\(B\simeq\PP^2\text{,}\)</span> previously proved by Ou and Huybrechts–Xu.</div>
+<div class="para" id="hks-p-isolated-qualification">For a quotient singularity with a positive-dimensional fixed locus, the determinant in the proof can vanish without contradiction. Such quotient strata occur for noncompact symplectic total spaces <a href="hks-references.html#MX26" class="xref" data-knowl="./knowl/xref/hks-bib-muller-xu.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry MX26">[MX26, Example 4.1]</a>. Their exclusion for compact IHS fibrations uses global geometry.</div>
+</section>
+<section class="section" id="hks-bases-two-fibrations">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Two fibrations and a finite cover by an abelian variety</span>
+</h2>
+<div class="para" id="hks-bases-two-fibrations-2">Two distinct Lagrangian fibrations on one IHS manifold meet in finitely many points over general base points. Mixed intersection numbers make this assertion precise and produce a finite map from an abelian variety to either base.</div>
+<article class="proposition theorem-like" id="hks-prop-finite-abelian-cover"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="hks-prop-finite-abelian-cover-1-1">Let <span class="process-math">\(X\)</span> be projective IHS of dimension <span class="process-math">\(2n\text{,}\)</span> and let <span class="process-math">\(f:X\to B\)</span> and <span class="process-math">\(g:X\to C\)</span> be Lagrangian fibrations with normal projective bases. Choose ample line bundles <span class="process-math">\(H_B,H_C\text{,}\)</span> and set <span class="process-math">\(\lambda=c_1(f^*H_B)\)</span> and <span class="process-math">\(\mu=c_1(g^*H_C)\text{.}\)</span> If <span class="process-math">\(q_X(\lambda,\mu)&gt;0\text{,}\)</span> then for every smooth fibre <span class="process-math">\(A\)</span> of <span class="process-math">\(g\text{,}\)</span> the restriction <span class="process-math">\(f|_A:A\to B\)</span> is finite and surjective.</div>
+</article>
+<details id="hks-prop-finite-abelian-cover-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="hks-prop-finite-abelian-cover-2-1">
+<div class="para">Both classes are nef and isotropic. Compare the coefficient of <span class="process-math">\(t^n\)</span> in the Fujiki identity for <span class="process-math">\(\lambda+t\mu\text{:}\)</span>
+</div>
+<div class="displaymath process-math" id="hks-prop-finite-abelian-cover-2-1-3">
+\begin{equation*}
+\binom{2n}{n}\int_X\lambda^n\mu^n=c_X\,2^nq_X(\lambda,\mu)^n&gt;0.
+\end{equation*}
+</div>
+<div class="para">Intersecting <span class="process-math">\(n\)</span> general divisors in sufficiently high powers of <span class="process-math">\(H_C\)</span> shows that</div>
+<div class="displaymath process-math" id="hks-prop-finite-abelian-cover-2-1-6">
+\begin{equation*}
+\mu^n=\left(\int_Cc_1(H_C)^n\right)[A].
+\end{equation*}
+</div>
+<div class="para">Therefore <span class="process-math">\(\int_A(\lambda|_A)^n&gt;0\text{.}\)</span>
+</div>
+</div>
+<div class="para" id="hks-prop-finite-abelian-cover-2-2">A nef line bundle on an abelian variety with positive top self-intersection is ample. To see this, represent its real first Chern class by the unique translation-invariant real <span class="process-math">\((1,1)\)</span>-form. Approximation by ample classes makes its Hermitian matrix positive semidefinite. Positive top self-intersection makes the determinant positive, so every eigenvalue is positive. The line bundle has positive curvature and is ample.</div>
+<div class="para" id="hks-prop-finite-abelian-cover-2-3">Apply this to <span class="process-math">\(f^*H_B|_A\text{.}\)</span> A positive-dimensional fibre of <span class="process-math">\(f|_A\)</span> would contain a curve, whose degree against this ample bundle would be zero. Thus <span class="process-math">\(f|_A\)</span> is proper with finite fibres and is finite. Its image is closed of dimension <span class="process-math">\(n=\dim B\text{,}\)</span> so it equals <span class="process-math">\(B\text{.}\)</span>
+</div>
+</article></details>
+<div class="para" id="hks-bases-two-fibrations-4">For distinct nonzero isotropic rays in the closure of one positive cone, the BBF pairing is positive. This follows by writing the form in Lorentz coordinates: equality in the Cauchy–Schwarz inequality occurs only for proportional null vectors. The proposition applies, in particular, when the two nef classes have distinct rays.</div>
+<div class="para" id="hks-bases-two-fibrations-5">The existence of such a second fibration while keeping the <em class="emphasis">first base</em> fixed is a separate theorem. The projective-base manuscript proves it by deforming the original fibration <a href="hks-references.html#OAI26b" class="xref" data-knowl="./knowl/xref/hks-bib-openai-bases.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry OAI26b">[OAI26b, Propositions 7.2 and 9.1]</a>. Its precise conclusion needed here is the following.</div>
+<article class="theorem theorem-like" id="hks-thm-second-fibration"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="hks-thm-second-fibration-1-1">Let <span class="process-math">\(f_0:X_0\to B\)</span> be a projective Lagrangian fibration from a compact IHS manifold, with <span class="process-math">\(B\)</span> projective, and let <span class="process-math">\(\lambda=c_1(f_0^*H_B)\)</span> for an ample bundle <span class="process-math">\(H_B\text{.}\)</span> In every sufficiently small neighbourhood of <span class="process-math">\(X_0\)</span> in <span class="process-math">\(\Def(X_0,\lambda)\text{,}\)</span> there is a projective deformation <span class="process-math">\(X'\)</span> carrying Lagrangian fibrations <span class="process-math">\(f':X'\to B\)</span> and <span class="process-math">\(g:X'\to C\text{.}\)</span> Under the marking, <span class="process-math">\(c_1((f')^*H_B)=\lambda\text{.}\)</span> For an ample bundle <span class="process-math">\(H_C\)</span> on <span class="process-math">\(C\text{,}\)</span> the class <span class="process-math">\(\mu=c_1(g^*H_C)\)</span> satisfies <span class="process-math">\(q_{X'}(\lambda,\mu)&gt;0\text{.}\)</span>
+</div>
+</article>
+<div class="para" id="hks-bases-two-fibrations-7">The cited proof constructs two integral nef null classes with every positive linear combination Kähler. Strong SYZ then gives the second morphism on that very manifold. Its lattice argument uses parallel-transport operators and the Kähler form of Torelli, so that the two classes are nef on one model, rather than merely becoming nef on unrelated birational models. Applying <a href="hks-bases.html#hks-prop-finite-abelian-cover" class="xref" data-knowl="./knowl/xref/hks-prop-finite-abelian-cover.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 6.2">Proposition 6.2</a> gives a finite surjection <span class="process-math">\(A\to B\)</span> from an abelian variety.</div>
+<div class="para" id="hks-p-fixed-base-distinction">The fixed-base assertion is essential. Matsushita’s deformation theorem produces nearby Lagrangian morphisms along the locus where <span class="process-math">\(\lambda\)</span> is of type <span class="process-math">\((1,1)\text{,}\)</span> but their targets may initially vary. The manuscript proves that their normal Stein targets form the product with the original <span class="process-math">\(B\)</span> <a href="hks-references.html#OAI26b" class="xref" data-knowl="./knowl/xref/hks-bib-openai-bases.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry OAI26b">[OAI26b, Proposition 7.2]</a>. A fibration onto a different deformation of <span class="process-math">\(B\)</span> would not by itself produce the finite cover of the original base used below.</div>
+</section>
+<section class="section" id="hks-bases-euler">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Euler characteristics and singular strata</span>
+</h2>
+<div class="para" id="hks-bases-euler-2">The projective-base theorem in <a href="hks-references.html#OAI26b" class="xref" data-knowl="./knowl/xref/hks-bib-openai-bases.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry OAI26b">[OAI26b]</a> first proves that every base germ is a quotient of a smooth germ by a finite group. We describe the two numerical conclusions about a closed stratum that force this result. The construction of that stratum and the vanishing theorem are quoted here, including their use of tensor categories, Hodge modules and reduction to positive characteristic.</div>
+<div class="para" id="hks-bases-euler-3">A finite map is <dfn class="terminology">quasi-étale</dfn> if it is étale outside a subset of codimension at least two. On maximal finite local quasi-étale covers of base germs, the manuscript considers the dimension of the smooth factor in a local product decomposition. If some maximal chart is singular, the minimum of those dimensions is attained on a nonempty closed stratum. The exact conclusions of the construction and the Euler calculation are as follows <a href="hks-references.html#OAI26b" class="xref" data-knowl="./knowl/xref/hks-bib-openai-bases.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry OAI26b">[OAI26b, Propositions 4.3, 4.5 and 6.1]</a>.</div>
+<article class="theorem theorem-like" id="hks-thm-minimum-stratum"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="hks-thm-minimum-stratum-1-1">Let <span class="process-math">\(f:X\to B\)</span> be a projective Lagrangian fibration from a compact IHS manifold to a normal projective base of dimension <span class="process-math">\(n\text{.}\)</span> If <span class="process-math">\(B\)</span> has a germ which is not a quotient singularity, there exist an irreducible normal projective subvariety <span class="process-math">\(S_0\subset B\)</span> of dimension <span class="process-math">\(d&lt;n\)</span> and a smooth proper Deligne–Mumford stack <span class="process-math">\(\mathcal S\)</span> with coarse space <span class="process-math">\(S_0\text{.}\)</span> On each maximal local chart near this stratum, the pair has a product presentation <span class="process-math">\((\Delta^d\times T,\Delta^d\times\{t\})\text{.}\)</span> The ordinary topological Euler characteristic satisfies <span class="process-math">\(\chi_{\rm top}(S_0)=0\text{.}\)</span>
+</div>
+</article>
+<div class="para" id="hks-bases-euler-5">The stack retains the finite groups on the local charts, including elements that act trivially on the smooth factor. This distinction affects the vanishing argument. Integration on an orbifold normally weights a chart by the reciprocal of its stabilizer order. Such a weighted Euler number need not equal the ordinary Euler characteristic of the coarse space. For example, a point with stabilizer <span class="process-math">\(G\)</span> has ordinary Euler characteristic <span class="process-math">\(1\text{,}\)</span> whereas its Satake orbifold Euler number is <span class="process-math">\(1/|G|\text{.}\)</span><a id="hks-bases-euler-5-4" href="#margin-hks-bases-euler-5-4" class="margin-note-marker" aria-label="Margin note 1">1</a>
+</div>
+<div class="para" id="hks-bases-euler-6">The proof of the vanishing theorem has two substantial parts. Reflexive cotangent tensors on the finite charts determine a residual tensor category. Deligne’s criterion and a classification of the resulting representations control its exterior powers. After algebraization and good reduction, ordinary coherent base change, Frobenius pullbacks and Riemann–Roch force Euler vanishing for specified coefficient sheaves. The coefficient sheaves are then chosen to isolate the trivial representation of the full stabilizer. This last operation is what gives the ordinary number <span class="process-math">\(\chi_{\rm top}(S_0)\text{.}\)</span> The compatibility of direct images with these coefficient operations uses projective Hodge-module direct images <a href="hks-references.html#OAI26b" class="xref" data-knowl="./knowl/xref/hks-bib-openai-bases.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry OAI26b">[OAI26b, Sections 3–6]</a>.</div>
+<div class="para" id="hks-bases-euler-7">The opposite inequality comes from the symplectic form and deformation of the fibration. The elementary Hodge-theoretic implication can be separated from that deformation argument.</div>
+<article class="lemma theorem-like" id="hks-lemma-diagonal-euler"><h3 class="heading">
+<span class="type">Lemma</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="hks-lemma-diagonal-euler-1-1">
+<div class="para">Let <span class="process-math">\(\mathcal S\)</span> be a connected smooth proper complex Deligne–Mumford stack with projective coarse space <span class="process-math">\(S_0\text{.}\)</span> Suppose that <span class="process-math">\(\mathcal S\)</span> is Kähler and <span class="process-math">\(H^{p,q}(\mathcal S)=0\)</span> for <span class="process-math">\(p\ne q\text{.}\)</span> Then</div>
+<div class="displaymath process-math" id="hks-lemma-diagonal-euler-1-1-6">
+\begin{equation*}
+\chi_{\rm top}(S_0)=\sum_p h^{p,p}(\mathcal S)&gt;0.
+\end{equation*}
+</div>
+</div>
+</article>
+<details id="hks-lemma-diagonal-euler-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="hks-lemma-diagonal-euler-2-1">For the coarse map <span class="process-math">\(c:\mathcal S\to S_0\text{,}\)</span> finite stabilizers have no positive-degree rational cohomology. Locally, taking invariants is exact by averaging over the finite group. Consequently <span class="process-math">\(Rc_*\Q=\Q\)</span> and <span class="process-math">\(H^k(\mathcal S,\Q)\simeq H^k(S_0,\Q)\text{.}\)</span> This remains true when a stabilizer acts trivially on its chart.</div>
+<div class="para" id="hks-lemma-diagonal-euler-2-2">Orbifold Hodge decomposition expresses the Euler characteristic as <span class="process-math">\(\sum_{p,q}(-1)^{p+q}h^{p,q}(\mathcal S)\text{.}\)</span> The hypothesis leaves only <span class="process-math">\(p=q\text{,}\)</span> for which every sign is positive. Connectedness gives <span class="process-math">\(h^{0,0}=1\text{.}\)</span>
+</div>
+</article></details>
+<div class="para logical" id="hks-bases-euler-9">
+<div class="para">When <span class="process-math">\(b_2(X)\ge5\text{,}\)</span> the fixed-base family of <a href="hks-bases.html#hks-thm-second-fibration" class="xref" data-knowl="./knowl/xref/hks-thm-second-fibration.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 6.3">Theorem 6.3</a> permits the required period variation. The argument in <a href="hks-references.html#OAI26b" class="xref" data-knowl="./knowl/xref/hks-bib-openai-bases.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry OAI26b">[OAI26b, Proposition 7.6]</a> gives</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hks-thm-second-fibration.html ./knowl/xref/hks-bib-openai-bases.html" id="hks-bases-euler-9-4">
+\begin{equation*}
+H^{p,q}(\mathcal S)=0\qquad(p\ne q).
+\end{equation*}
+</div>
+<div class="para">Its geometric starting point is a resolution of the inverse image of <span class="process-math">\(S_0\text{.}\)</span> The pulled-back symplectic form vanishes on two vertical vectors. Wedging a pulled-back <span class="process-math">\(p\)</span>-form from a <span class="process-math">\(d\)</span>-dimensional base with more than <span class="process-math">\(d-p\)</span> copies of that symplectic form therefore gives zero. Varying the period extends this identity to the conjugate period, and Hamiltonian contraction gives the diagonal Hodge conclusion.</div>
+</div>
+<div class="para" id="hks-bases-euler-10">The rank condition has a precise role. The restriction of <span class="process-math">\(q_X\)</span> to <span class="process-math">\(\lambda^\perp_\C\)</span> has radical <span class="process-math">\(\C\lambda\)</span> and rank <span class="process-math">\(b_2(X)-2\text{.}\)</span> For <span class="process-math">\(b_2\ge5\text{,}\)</span> its null cone is irreducible. The local periods form an analytic open set in its projectivization, hence are Zariski dense there. The relevant polynomial identity then holds at the conjugate period. For <span class="process-math">\(b_2=4\text{,}\)</span> the cone is reducible, and this continuation alone does not prove the same conclusion.</div>
+<div class="para" id="hks-bases-euler-11">The original projective fibration has <span class="process-math">\(b_2(X)\ge4\text{:}\)</span> an ample class and <span class="process-math">\(\lambda\)</span> span a hyperbolic plane, while <span class="process-math">\(\Re\sigma,\Im\sigma\)</span> span an orthogonal positive plane. The remaining rank-four cases are proved separately in the manuscript. If the smooth fibres have constant polarized period map, ramification and reflection arguments reduce a possible minimum stratum to an elliptic curve. A holomorphic connection on a line bundle of negative degree gives a contradiction <a href="hks-references.html#OAI26b" class="xref" data-knowl="./knowl/xref/hks-bib-openai-bases.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry OAI26b">[OAI26b, Proposition 8.1]</a>. If that period map varies, the second fibration can be chosen with nonconstant period map. Its finite maps from smooth abelian fibres, the symmetry of the period cubic, and the fixed-part theorem give diagonal Hodge cohomology of <span class="process-math">\(\mathcal S\)</span> <a href="hks-references.html#OAI26b" class="xref" data-knowl="./knowl/xref/hks-bib-openai-bases.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry OAI26b">[OAI26b, Propositions 9.6 and 10.1]</a>. These are external results here. In every case, Euler positivity contradicts <a href="hks-bases.html#hks-thm-minimum-stratum" class="xref" data-knowl="./knowl/xref/hks-thm-minimum-stratum.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 6.4">Theorem 6.4</a>.</div>
+</section>
+<section class="section" id="hks-bases-smoothness">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">From quotient singularities to projective space</span>
+</h2>
+<div class="para" id="hks-bases-smoothness-2">After the preceding argument, all base germs are finite quotients of smooth germs. The finite abelian cover from <a href="hks-bases.html#hks-prop-finite-abelian-cover" class="xref" data-knowl="./knowl/xref/hks-prop-finite-abelian-cover.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 6.2">Proposition 6.2</a> supplies the additional global restriction. The precise result is <a href="hks-references.html#OAI26b" class="xref" data-knowl="./knowl/xref/hks-bib-openai-bases.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry OAI26b">[OAI26b, Proposition 11.1]</a>.</div>
+<article class="theorem theorem-like" id="hks-thm-quotient-base-smoothness"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.6</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="hks-thm-quotient-base-smoothness-1-1">Let <span class="process-math">\(f:X\to B\)</span> be a projective Lagrangian fibration from a compact IHS manifold to a normal projective base. Suppose that <span class="process-math">\(B\)</span> has quotient singularities and that there is a finite surjective morphism <span class="process-math">\(A\to B\)</span> from an abelian variety. Then <span class="process-math">\(B\)</span> is smooth.</div>
+</article>
+<div class="para" id="hks-bases-smoothness-4">Both maps enter the proof. The original fibration gives higher direct-image identities and the ampleness of <span class="process-math">\(-K_B\text{.}\)</span> The abelian variety gives translation-invariant vector fields. On the canonical smooth stack of the quotient variety, an equivariant identity for the higher direct images produces a translation field whose projection to each stabilizer’s fixed tangent directions has no zero on the corresponding fixed locus. The finite relation of <span class="process-math">\(A\to B\text{,}\)</span> its difference maps in the abelian group, and the ramification divisor then exclude nonidentity stabilizers. The map <span class="process-math">\(A\to B\)</span> is not assumed Galois. We quote this global argument rather than replacing it by the local isolated-singularity theorem.</div>
+<div class="para" id="hks-bases-smoothness-5">The projective-base conclusion now follows <a href="hks-references.html#OAI26b" class="xref" data-knowl="./knowl/xref/hks-bib-openai-bases.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry OAI26b">[OAI26b, Theorem 1.1]</a>.</div>
+<article class="theorem theorem-like" id="hks-thm-projective-base"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.7</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="hks-thm-projective-base-1-1">Let <span class="process-math">\(X\)</span> be a compact IHS Kähler manifold of dimension <span class="process-math">\(2n\text{,}\)</span> and let <span class="process-math">\(f:X\to B\)</span> be a projective surjective holomorphic morphism with connected fibres. Suppose that <span class="process-math">\(B\)</span> is normal and projective of dimension <span class="process-math">\(n\text{,}\)</span> and every irreducible component of every fibre is Lagrangian. Then <span class="process-math">\(B\simeq\PP^n\text{.}\)</span>
+</div>
+</article>
+<details id="hks-thm-projective-base-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="hks-thm-projective-base-2-1">For <span class="process-math">\(n=1\text{,}\)</span> the smooth-base theorem applies to the normal curve <span class="process-math">\(B\text{.}\)</span> For <span class="process-math">\(n&gt;1\text{,}\)</span> the Euler argument proves that <span class="process-math">\(B\)</span> has quotient singularities. The fixed-base deformation and the second fibration give a finite surjection from an abelian variety to <span class="process-math">\(B\text{.}\)</span> The preceding theorem makes <span class="process-math">\(B\)</span> smooth. Hwang’s theorem then gives <span class="process-math">\(B\simeq\PP^n\text{.}\)</span>
+</div>
+</article></details>
+<div class="para" id="hks-p-projectivity-of-morphism">Projectivity of <span class="process-math">\(f\)</span> means the existence of a relatively ample holomorphic line bundle. Together with projectivity of <span class="process-math">\(B\text{,}\)</span> it makes <span class="process-math">\(X\)</span> projective. The theorem permits nonprojective compact Kähler deformations inside its proof, but its statement assumes a projective morphism. Projectivity of the base alone does not supply that hypothesis.</div>
+<div class="para" id="hks-bases-smoothness-8">Strong SYZ is used in constructing the second fibration. The proof of strong SYZ in <a href="hks-main-proof.html" class="internal" title="Chapter 5: From a special Lagrangian torus to semiampleness">Chapter 5</a> constructs a Lagrangian morphism without first identifying its base with projective space. Thus the two principal conclusions have this order: semiampleness, construction of the second system, and identification of the projective base.</div>
+</section>
+<section class="section" id="hks-bases-multiple-fibres">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Multiplicities and the primitive pullback class</span>
+</h2>
+<div class="para logical" id="hks-bases-multiple-fibres-2">
+<div class="para">Let <span class="process-math">\(D\subset B\)</span> be a prime divisor. Over its general point write</div>
+<div class="displaymath process-math" id="hks-bases-multiple-fibres-2-2">
+\begin{equation*}
+f^*D=\sum_i a_iE_i,\qquad a_i\in\Z_{&gt;0}.
+\end{equation*}
+</div>
+<div class="para" id="hks-bases-multiple-fibres-2-9-anchor">The multiplicity along <span class="process-math">\(D\)</span> is <span class="process-math">\(\gcd_i a_i\text{.}\)</span> A codimension-one multiple fibre means that this gcd is greater than one, or equivalently that <span class="process-math">\(f^*D=mE\)</span> for an integral effective divisor <span class="process-math">\(E\)</span> and <span class="process-math">\(m&gt;1\text{.}\)</span> This differs from requiring each <span class="process-math">\(a_i=1\text{.}\)</span><a id="hks-bases-multiple-fibres-2-9" href="#margin-hks-bases-multiple-fibres-2-9" class="margin-note-marker" aria-label="Margin note 2">2</a>
+</div>
+</div>
+<div class="para" id="hks-bases-multiple-fibres-3">Kim–Oguiso–Shinder prove the next theorem <a href="hks-references.html#KOS26" class="xref" data-knowl="./knowl/xref/hks-bib-kim-oguiso-shinder.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry KOS26">[KOS26, Theorem 3.4]</a>. Kamenova–Verbitsky give a different proof and prove primitivity of the hyperplane pullback <a href="hks-references.html#KV26" class="xref" data-knowl="./knowl/xref/hks-bib-kamenova-verbitsky.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry KV26">[KV26, Theorems 1.5 and 1.6]</a>.</div>
+<article class="theorem theorem-like" id="hks-thm-no-multiple-divisor"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.8</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="hks-thm-no-multiple-divisor-3-1">Let <span class="process-math">\(f:X\to\PP^n\)</span> be a Lagrangian fibration from a compact IHS manifold. Then <span class="process-math">\(\gcd_i a_i=1\)</span> for every prime divisor <span class="process-math">\(D\subset\PP^n\text{.}\)</span> The class <span class="process-math">\(c_1(f^*\cO_{\PP^n}(1))\)</span> is primitive in <span class="process-math">\(H^2(X,\Z)\text{.}\)</span>
+</div>
+</article>
+<div class="para" id="hks-bases-multiple-fibres-5">The projective proof of the first assertion can be given with a single contradiction in <span class="process-math">\(K_0(\PP^n)\text{.}\)</span> Suppose that <span class="process-math">\(f^*D=mE\text{,}\)</span> where <span class="process-math">\(D\)</span> has degree <span class="process-math">\(d\)</span> and <span class="process-math">\(m&gt;1\text{.}\)</span> One has <span class="process-math">\(\gcd(d,m)=1\text{.}\)</span> Otherwise, for a prime <span class="process-math">\(p\)</span> dividing both integers, take the cyclic degree-<span class="process-math">\(p\)</span> cover of <span class="process-math">\(\PP^n\)</span> branched along <span class="process-math">\(D\text{.}\)</span> Its normalized pullback to <span class="process-math">\(X\)</span> is connected and étale in codimension one: locally the equation is <span class="process-math">\(t^p=u s^m\text{,}\)</span> with <span class="process-math">\(u\)</span> a unit. Normalization removes the divisorial branching because <span class="process-math">\(p\mid m\text{.}\)</span> Purity makes this a connected étale cover of degree <span class="process-math">\(p\)</span> of the simply connected manifold <span class="process-math">\(X\text{,}\)</span> a contradiction <a href="hks-references.html#KOS26" class="xref" data-knowl="./knowl/xref/hks-bib-kim-oguiso-shinder.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry KOS26">[KOS26, Proposition 2.1]</a>.</div>
+<div class="para logical" id="hks-bases-multiple-fibres-6">
+<div class="para">Choose integers <span class="process-math">\(a,b\)</span> with <span class="process-math">\(ad+bm=1\text{.}\)</span> The bundle <span class="process-math">\(P=\cO_X(aE)\otimes f^*\cO_{\PP^n}(b)\)</span> satisfies <span class="process-math">\(P^m\simeq f^*\cO_{\PP^n}(1)\)</span> and is trivial on a general fibre. A higher-direct-image theorem proved using Kollár vanishing and splitting gives</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hks-bib-kim-oguiso-shinder.html" id="hks-bases-multiple-fibres-6-5">
+\begin{equation*}
+R^if_*P\simeq\bigoplus_{j=0}^n\cO_{\PP^n}(-j)^{\oplus r_{ij}},\qquad \sum_jr_{ij}=\binom ni
+\end{equation*}
+</div>
+<div class="para">
+<a href="hks-references.html#KOS26" class="xref" data-knowl="./knowl/xref/hks-bib-kim-oguiso-shinder.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry KOS26">[KOS26, Theorem 2.5]</a>. We use this as an external theorem.</div>
+</div>
+<div class="para logical" id="hks-bases-multiple-fibres-7">
+<div class="para">Write <span class="process-math">\(\zeta=[\cO_{\PP^n}(-1)]\text{.}\)</span> The classes <span class="process-math">\(1,\zeta,\ldots,\zeta^n\)</span> form an integral basis of <span class="process-math">\(K_0(\PP^n)\text{.}\)</span> Give a class the sum of the absolute values of its coefficients in this basis, denoted <span class="process-math">\(\|\cdot\|\text{.}\)</span> For <span class="process-math">\(\alpha=\sum_i(-1)^i[R^if_*P]\text{,}\)</span> the splitting gives</div>
+<div class="displaymath process-math" id="hks-bases-multiple-fibres-7-6">
+\begin{equation*}
+\|\alpha\|\le\sum_i\binom ni=2^n.
+\end{equation*}
+</div>
+<div class="para">But <span class="process-math">\(q_X(c_1(P\otimes f^*\cO(k)))=0\)</span> for every integer <span class="process-math">\(k\text{.}\)</span> Riemann–Roch gives the constant Hilbert polynomial</div>
+<div class="displaymath process-math" id="hks-bases-multiple-fibres-7-9">
+\begin{equation*}
+\chi(\PP^n,\alpha(k))=\chi(X,P\otimes f^*\cO(k))=\chi(X,\cO_X)=n+1.
+\end{equation*}
+</div>
+<div class="para">A class of <span class="process-math">\(K_0(\PP^n)\)</span> is determined by its Hilbert polynomial, so <span class="process-math">\(\alpha=(n+1)[\cO_p]\)</span> for a point <span class="process-math">\(p\text{.}\)</span> The Koszul resolution gives <span class="process-math">\([\cO_p]=(1-\zeta)^n\text{,}\)</span> whence <span class="process-math">\(\|\alpha\|=(n+1)2^n\text{.}\)</span> This is the contradiction.</div>
+</div>
+<div class="para" id="hks-bases-multiple-fibres-8">The extension to compact Kähler <span class="process-math">\(X\)</span> uses a degenerate twistor deformation over the same <span class="process-math">\(\PP^n\)</span> to a projective total space, preserving the fibres and their multiplicities <a href="hks-references.html#KOS26" class="xref" data-knowl="./knowl/xref/hks-bib-kim-oguiso-shinder.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry KOS26">[KOS26, proof of Theorem 3.4]</a>. Primitivity is a separate assertion, proved in <a href="hks-references.html#KV26" class="xref" data-knowl="./knowl/xref/hks-bib-kamenova-verbitsky.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry KV26">[KV26, Section 4]</a>. In the global notation <span class="process-math">\(\lambda=m e\text{,}\)</span> it says that for the connected fibration itself and the hyperplane bundle on its base, <span class="process-math">\(m=1\text{.}\)</span> A prescribed isotropic bundle can still be a positive tensor power of that pullback.</div>
+</section></section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="hks-main-proof.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Top</span></a><a class="next-button button" href="hks-other-methods.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a>
+</div></main>
+<div class="margin-notes" role="complementary" aria-label="Margin notes">
+<aside id="margin-hks-bases-euler-5-4" class="aside aside-like margin-note" data-margin-anchor="hks-bases-euler-5" data-margin-label="1" data-margin-inline="true"><h4 class="heading"><a href="#hks-bases-euler-5" class="margin-note-label">1</a></h4>
+<div class="para">The phrase “orbifold Euler characteristic” has several conventions. The Euler characteristic of the inertia stack is another invariant. Here <span class="process-math">\(\chi_{\rm top}\)</span> always means the alternating sum of ordinary rational Betti numbers of the coarse space.
+</div></aside><aside id="margin-hks-bases-multiple-fibres-2-9" class="aside aside-like margin-note" data-margin-anchor="hks-bases-multiple-fibres-2-9-anchor" data-margin-label="2" data-margin-inline="true"><h4 class="heading"><a href="#hks-bases-multiple-fibres-2-9-anchor" class="margin-note-label">2</a></h4>
+<div class="para">For a Kodaira fibre of type <span class="process-math">\(I_0^*\text{,}\)</span> the central component has multiplicity two and the four outer components have multiplicity one. The gcd is one, although the fibre is not reduced.
+</div></aside>
+</div>
+</div>
+<footer id="site-copyright" class="site-copyright"><p>© 2026 Jie Fu. All rights reserved.</p></footer>
+</body>
+</html>

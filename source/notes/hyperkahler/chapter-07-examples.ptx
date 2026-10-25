@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="hkg-examples">
+  <title>K3 surfaces and higher-dimensional examples</title>
+  <introduction>
+    <p>Hilbert schemes of points on K3 surfaces and generalized Kummer varieties provide examples in every even dimension. O'Grady's constructions give two further deformation types, in dimensions six and ten. The Fano variety of lines on a cubic fourfold and the Debarre–Voisin construction describe polarized families within the Hilbert-square deformation type.</p>
+  </introduction>
+  <section xml:id="hkg-examples-k3">
+    <title>K3 surfaces</title>
+    <definition xml:id="hkg-def-k3">
+      <statement>
+        <p>A <em>K3 surface</em> is a simply connected compact Kähler surface <m>S</m> with trivial canonical bundle <m>K_S</m>.<fn>A common equivalent definition over <m>\C</m> requires a connected compact complex surface with <m>K_S\cong\mathcal O_S</m> and <m>H^1(S,\mathcal O_S)=0</m>. The equivalence, including the Kähler and simple-connectedness assertions, is a theorem about complex surfaces. Over a general field the algebraic definition uses a smooth proper geometrically connected surface, trivial canonical bundle, and vanishing <m>H^1(\mathcal O_S)</m>; it does not use the topological fundamental group. See <xref ref="hkg-bib-huybrechts-k3" detail="Chapter 1"/>.</fn></p>
+      </statement>
+    </definition>
+    <p>A nonzero section <m>\sigma_S</m> of <m>K_S</m> has no zeros and is a holomorphic symplectic form. Since <m>H^0(S,\mathcal O_S)=\C</m>, every holomorphic two-form is a scalar multiple of <m>\sigma_S</m>. Thus K3 surfaces are exactly the irreducible holomorphic symplectic manifolds of dimension two.</p>
+    <proposition xml:id="hkg-k3-invariants">
+      <statement>
+        <p>For a K3 surface <m>S</m>, one has
+          <md number="no">\begin{gathered}h^{1,0}(S)=0,\qquad h^{2,0}(S)=1,\qquad h^{1,1}(S)=20,\\
+          \int_S c_2(S)=24,\qquad b_2(S)=22.\end{gathered}</md>
+          The BBF form is the intersection form <m>q_S(\alpha)=\int_S\alpha^2</m>, and its Fujiki constant is <m>c_S=1</m>.</p>
+      </statement>
+      <proof>
+        <p>Simple connectedness implies <m>b_1(S)=0</m>; Hodge decomposition gives <m>h^{1,0}(S)=h^{0,1}(S)=0</m>. Triviality of <m>K_S</m> gives <m>h^{2,0}(S)=h^{0,2}(S)=1</m>, so <m>\chi(S,\mathcal O_S)=2</m>. The surface Riemann–Roch formula gives
+          <md number="no">2=\chi(S,\mathcal O_S)
+          =\frac{1}{12}\int_S\bigl(c_1(S)^2+c_2(S)\bigr)
+          =\frac{1}{12}\int_Sc_2(S).</md>
+          By the Chern–Gauss–Bonnet theorem, the last integral is the topological Euler characteristic. Poincaré duality gives <m>b_3(S)=b_1(S)=0</m>, hence <m>24=2+b_2(S)</m>. Removing <m>H^{2,0}(S)</m> and <m>H^{0,2}(S)</m> from <m>H^2(S,\C)</m> gives <m>h^{1,1}(S)=20</m>. In dimension two the defining Fujiki identity is the intersection pairing itself, with the integral normalization fixed by the K3 lattice below.</p>
+      </proof>
+    </proposition>
+    <p>The integral intersection lattice is
+      <md xml:id="hkg-eq-k3-lattice" number="yes">
+        H^2(S,\Z)\cong \Lambda_{\mathrm{K3}}
+        :=U^{\oplus3}\oplus E_8(-1)^{\oplus2}.
+      </md>
+      Here <m>U</m> is the lattice with Gram matrix <m>\left(\begin{smallmatrix}0&amp;1\\1&amp;0\end{smallmatrix}\right)</m>, and <m>E_8(-1)</m> is the negative definite even unimodular lattice of rank eight. The lattice is torsion-free and unimodular by simple connectedness and Poincaré duality, and even because <m>c_1(S)=0</m>. Its signature is <m>(3,19)</m>. The displayed identification then uses the classification of indefinite even unimodular lattices; see <xref ref="hkg-bib-huybrechts-k3" detail="Chapters 1 and 14"/>.</p>
+    <example xml:id="hkg-k3-quartic">
+      <p>Let <m>S\subset\mathbb P^3</m> be a smooth quartic. Adjunction gives
+        <m>K_S\cong\mathcal O_{\mathbb P^3}(-4+4)|_S\cong\mathcal O_S</m>, and the Lefschetz hyperplane theorem gives <m>\pi_1(S)=0</m>. Thus <m>S</m> is a projective K3 surface. The hyperplane class <m>h</m> has <m>q_S(h)=4</m>.</p>
+    </example>
+    <example xml:id="hkg-k3-double-plane">
+      <p>Let <m>B\subset\mathbb P^2</m> be a smooth sextic and let <m>\pi:S\to\mathbb P^2</m> be the double cover branched over <m>B</m>. The double-cover formula gives
+        <m>K_S\cong\pi^*(K_{\mathbb P^2}\otimes\mathcal O_{\mathbb P^2}(3))\cong\mathcal O_S</m>.
+        Moreover, <m>\pi_*\mathcal O_S\cong\mathcal O_{\mathbb P^2}\oplus\mathcal O_{\mathbb P^2}(-3)</m>, whose first cohomology vanishes. The equivalent surface-theoretic definition in <xref ref="hkg-def-k3"/> shows that <m>S</m> is a K3 surface. Its degree-two polarization is <m>\pi^*\mathcal O_{\mathbb P^2}(1)</m>.</p>
+    </example>
+    <p>There are also nonprojective K3 surfaces. Projectivity is an extra condition on the integral <m>(1,1)</m>-classes, not part of the analytic definition. The Hilbert and Kummer constructions below therefore have both analytic and projective versions.</p>
+  </section>
+  <section xml:id="hkg-examples-hilbert">
+    <title>Hilbert schemes of points</title>
+    <definition xml:id="hkg-def-hilbert-points">
+      <statement>
+        <p>For a smooth projective surface <m>S</m> and an integer <m>n\geq1</m>, let <m>S^{[n]}=\operatorname{Hilb}^n(S)</m> be the Hilbert scheme of zero-dimensional closed subschemes <m>Z\subset S</m> of length <m>n</m>. Length means <m>\dim_\C H^0(Z,\mathcal O_Z)</m>. The <em>Hilbert–Chow morphism</em> is
+          <md number="no">\rho:S^{[n]}\longrightarrow S^{(n)}:=S^n/\mathfrak S_n,
+          \qquad Z\longmapsto\sum_{p\in\operatorname{Supp}(Z)}
+          \operatorname{length}(\mathcal O_{Z,p})\,p.</md></p>
+      </statement>
+    </definition>
+    <p>Over the locus of cycles with distinct support, <m>\rho</m> is an isomorphism. The extra points of <m>S^{[n]}</m> record the infinitesimal structure of subschemes when points collide. For a compact complex surface one uses the analytic space of finite subspaces, usually called the Douady space; the notation <m>S^{[n]}</m> is retained.</p>
+    <theorem xml:id="hkg-hilbert-smooth">
+      <title>(Fogarty)</title>
+      <statement>
+        <p>Let <m>S</m> be a smooth connected projective surface over <m>\C</m>. Then <m>S^{[n]}</m> is a smooth connected projective variety of dimension <m>2n</m>, and <m>\rho:S^{[n]}\to S^{(n)}</m> is a resolution of singularities. See <xref ref="hkg-bib-fogarty"/>.</p>
+      </statement>
+    </theorem>
+    <p>For a connected compact Kähler surface, the analytic space <m>S^{[n]}</m> is likewise smooth, connected, compact, and Kähler, of dimension <m>2n</m>. Smoothness has the same local models as for length-<m>n</m> subspaces of <m>\C^2</m>. The Kähler assertion uses the Kähler structure on the symmetric product and the projectivity of the Hilbert–Chow morphism, together with Varouchas's theorem; see <xref ref="hkg-bib-beauville-kahler85" detail="§5, Theorem 3 and its proof"/>. If <m>S</m> has a holomorphic symplectic form, the sum of that form on the distinct-point locus extends nondegenerately to <m>S^{[n]}</m>; the local extension argument in <xref ref="hkg-bib-beauville" detail="§6"/> applies to tori as well as K3 surfaces.</p>
+    <theorem xml:id="hkg-hilbert-ihs">
+      <title>(Beauville)</title>
+      <statement>
+        <p>Let <m>S</m> be a K3 surface. For every <m>n\geq1</m>, the manifold <m>S^{[n]}</m> is irreducible holomorphic symplectic. On the open set of distinct points, its symplectic form is induced by
+          <md number="no">\sum_{i=1}^n\operatorname{pr}_i^*\sigma_S</md>
+          on <m>S^n</m>. This form extends across the exceptional locus to an everywhere nondegenerate holomorphic two-form. See <xref ref="hkg-bib-beauville" detail="§6"/>.</p>
+      </statement>
+    </theorem>
+    <example xml:id="hkg-hilbert-square-local">
+      <p>Choose local coordinates <m>(z,w)</m> on <m>S</m> with <m>\sigma_S=dz\wedge dw</m>. Near a pair of coincident points, write the two ordered points as
+        <m>(a+u,b+v)</m> and <m>(a-u,b-v)</m>. Exchanging them sends <m>(u,v)</m> to <m>(-u,-v)</m>, and
+        <md number="no">dz_1\wedge dw_1+dz_2\wedge dw_2
+        =2\,da\wedge db+2\,du\wedge dv.</md>
+        The quotient in the difference coordinates has invariants <m>x=u^2</m>, <m>y=v^2</m>, <m>z=uv</m> satisfying <m>xy=z^2</m>. It is the ordinary double point <m>\C^2/\{\pm1\}</m>.</p>
+      <p>In one chart of its minimal resolution, let <m>v=ut</m> and <m>r=u^2</m>. The quotient coordinates are <m>(r,t)</m>, and
+        <md number="no">2\,du\wedge dv
+        =2u\,du\wedge dt=dr\wedge dt.</md>
+        Thus the form becomes <m>2\,da\wedge db+dr\wedge dt</m>, which is regular and nondegenerate even along <m>r=0</m>. The second chart, obtained by exchanging <m>u</m> and <m>v</m>, gives the same form on the overlap because both are extensions of the form on the complement of the exceptional curve. Locally, the Hilbert–Chow resolution is this resolution times the centre coordinates <m>(a,b)</m>. The calculation explains the symplectic extension at a double collision; collisions of greater length require the general theorem.</p>
+    </example>
+    <p>For <m>n\geq2</m>, let <m>E</m> be the reduced exceptional divisor of <m>\rho</m>. There is an integral primitive class <m>\delta\in H^2(S^{[n]},\Z)</m> with <m>[E]=2\delta</m>. The second cohomology and its BBF form are
+      <md xml:id="hkg-eq-hilbert-lattice" number="yes">
+        H^2(S^{[n]},\Z)\cong H^2(S,\Z)\oplus\Z\delta,\qquad
+        q_{S^{[n]}}(\alpha+t\delta)=\int_S\alpha^2-2(n-1)t^2.
+      </md>
+      The first summand is induced by the correspondence of a point lying in a length-<m>n</m> subscheme. In particular,
+      <md number="no">H^2(S^{[n]},\Z)\cong
+      \Lambda_{\mathrm{K3}}\oplus\langle-2(n-1)\rangle,\qquad
+      b_2(S^{[n]})=23,\qquad
+      c_{S^{[n]}}=\frac{(2n)!}{2^n n!}.</md>
+      These are Beauville's computations in <xref ref="hkg-bib-beauville" detail="§8"/>. The restrictions <m>n\geq2</m> are essential: <m>S^{[1]}=S</m> has no exceptional divisor and has <m>b_2=22</m>.<fn>The notation <m>\delta</m> usually means half the exceptional divisor. Some sources instead use the full divisor <m>E</m>; then <m>q(E)=-8(n-1)</m>. A formula involving the exceptional class must be read with this factor of two in mind.</fn></p>
+    <p>If <m>L</m> is a line bundle on <m>S</m>, the line bundle <m>L^{\boxtimes n}</m> descends to <m>S^{(n)}</m>; its pullback to <m>S^{[n]}</m> has first Chern class in the <m>H^2(S,\Z)</m> summand and square <m>\int_Sc_1(L)^2</m>. If <m>L</m> is ample and <m>n\geq2</m>, this pullback is nef but not ample: it has degree zero on every curve contracted by <m>\rho</m>. Thus positive BBF square alone does not characterize the ample cone.</p>
+    <definition xml:id="hkg-def-k3n-type">
+      <statement>
+        <p>An irreducible holomorphic symplectic manifold is of <em><m>\mathrm{K3}^{[n]}</m> type</em> if it is deformation equivalent to <m>S^{[n]}</m> for a K3 surface <m>S</m>.</p>
+      </statement>
+    </definition>
+    <p>For <m>n\geq2</m>, the Hilbert scheme of a projective K3 surface has the independent divisor classes coming from an ample class and from <m>\delta</m>, while projective deformations with Picard rank one also occur. Thus a manifold of <m>\mathrm{K3}^{[n]}</m> type need not be isomorphic to a Hilbert scheme.</p>
+  </section>
+  <section xml:id="hkg-examples-kummer">
+    <title>Generalized Kummer varieties</title>
+    <p>Let <m>A</m> be a complex torus of dimension two, with origin <m>0</m> and a translation-invariant symplectic form <m>\sigma_A</m>. When projective, <m>A</m> is an abelian surface. Write <m>m=n+1</m>. Addition on <m>A</m> gives a map <m>A^{(m)}\to A</m>, and its composition with Hilbert–Chow is
+      <md number="no">s:A^{[m]}\longrightarrow A,\qquad
+      Z\longmapsto\sum_p\operatorname{length}(\mathcal O_{Z,p})\,p.</md></p>
+    <definition xml:id="hkg-def-generalized-kummer">
+      <statement>
+        <p>For <m>n\geq1</m>, the <em>generalized Kummer variety</em> is <m>K_n(A):=s^{-1}(0)\subset A^{[n+1]}</m>.<fn>Our index records half the dimension: <m>\dim K_n(A)=2n</m>. Some authors write <m>K_{n-1}(A)\subset A^{[n]}</m> or index by the number of points. Here <m>K_1(A)</m> is a K3 surface, whereas <m>K_2(A)</m> is a fourfold.</fn></p>
+      </statement>
+    </definition>
+    <proposition xml:id="hkg-kummer-smooth">
+      <statement>
+        <p>The map <m>s</m> is a surjective holomorphic submersion. The fibre <m>K_n(A)</m> is smooth of dimension <m>2n</m>, and the symplectic form on <m>A^{[n+1]}</m> restricts to a nondegenerate form on this fibre. If <m>A</m> is projective, the fibre is projective.</p>
+      </statement>
+      <proof>
+        <p>Translation by <m>a\in A</m> induces <m>\tau_a:A^{[m]}\to A^{[m]}</m> and satisfies
+          <m>s(\tau_a Z)=s(Z)+ma</m>. The differential along the translation orbit is therefore multiplication by <m>m</m> from <m>T_0A</m> to <m>T_{s(Z)}A</m>, hence is invertible. Thus <m>ds</m> is surjective everywhere. Surjectivity of <m>s</m> follows as well, since multiplication by <m>m</m> on <m>A</m> is surjective.</p>
+        <p>Let <m>\sigma^{[m]}</m> be the induced symplectic form on <m>A^{[m]}</m>; its extension is the surface version of the construction in <xref ref="hkg-hilbert-ihs"/>. For <m>v\in T_0A</m>, let <m>\widetilde v</m> be the vector field induced by translation. On the dense open set of distinct points,
+          <md number="no">\iota_{\widetilde v}\sigma^{[m]}=s^*(\iota_v\sigma_A),
+          \qquad
+          \sigma^{[m]}(\widetilde v,\widetilde w)=m\,\sigma_A(v,w).</md>
+          Both identities extend everywhere, since the forms and vector fields are holomorphic. The translation directions are therefore a nondegenerate two-dimensional subspace, orthogonal to <m>\ker ds</m>. Their intersection with <m>\ker ds</m> is zero because <m>ds(\widetilde v)=mv</m>. Since the ambient tangent space has dimension <m>2m</m>, it is the direct sum of these two subspaces. Nondegeneracy of the ambient form then implies nondegeneracy on <m>\ker ds</m>, the tangent space of each fibre. Projectivity follows because a closed fibre of a projective variety is projective.</p>
+      </proof>
+    </proposition>
+    <p>The argument also describes a finite étale cover. The fibre product of <m>s</m> with multiplication <m>[m]:A\to A</m> is isomorphic to <m>A\times K_n(A)</m>: the isomorphism sends <m>(a,Z)</m> to <m>(a,\tau_aZ)</m>. Consequently,
+      <md number="no">A\times K_n(A)\longrightarrow A^{[n+1]},\qquad
+      (a,Z)\longmapsto\tau_aZ</md>
+      is finite étale of degree <m>m^4</m>, the degree of <m>[m]</m> on a two-dimensional complex torus.</p>
+    <theorem xml:id="hkg-kummer-ihs">
+      <title>(Beauville)</title>
+      <statement>
+        <p>For <m>n\geq1</m>, the manifold <m>K_n(A)</m> is irreducible holomorphic symplectic. For <m>n\geq2</m>, its BBF lattice and Fujiki constant are
+          <md xml:id="hkg-eq-kummer-lattice" number="yes">
+            H^2(K_n(A),\Z)\cong U^{\oplus3}\oplus\langle-2(n+1)\rangle,\qquad
+            c_{K_n(A)}=(n+1)\frac{(2n)!}{2^n n!}.
+          </md>
+          In particular <m>b_2(K_n(A))=7</m> for <m>n\geq2</m>. See <xref ref="hkg-bib-beauville" detail="§§7–8"/>.</p>
+      </statement>
+    </theorem>
+    <p>For <m>n\geq2</m>, the <m>U^{\oplus3}</m> summand comes from <m>H^2(A,\Z)\cong\bigwedge^2 H^1(A,\Z)</m>, with its intersection form. The final generator is again half the restricted exceptional divisor. The same rank-seven formula is false for <m>n=1</m>. In that case the zero-sum cycle <m>a+(-a)</m> identifies the symmetric fibre with <m>A/\{\pm1\}</m>, and <m>K_1(A)</m> is its minimal resolution. Its sixteen exceptional curves resolve the images of the two-torsion points; the result is a K3 surface with second Betti number twenty-two.</p>
+    <p>An irreducible holomorphic symplectic manifold deformation equivalent to <m>K_n(A)</m>, for <m>n\geq2</m>, is said to be of <em>generalized Kummer type</em>. A very general deformation need not retain a presentation as the fibre of a summation map.</p>
+  </section>
+  <section xml:id="hkg-examples-ogrady">
+    <title>O'Grady's examples</title>
+    <p>Moduli spaces of stable sheaves on K3 surfaces give many manifolds of <m>\mathrm{K3}^{[n]}</m> type. O'Grady's examples arise from singular moduli spaces containing strictly semistable sheaves. Here semistability means Gieseker semistability for the indicated ample line bundle, as defined in <xref ref="hkg-def-gieseker"/>. The Mukai vector <m>(2,0,-2)</m> means rank two, <m>c_1=0</m>, and <m>c_2=4</m> on a K3 surface, or <m>c_2=2</m> on an abelian surface. The difference comes from the factor <m>\sqrt{\operatorname{td}(S)}</m> in the Mukai vector; see <xref ref="hkg-def-mukai"/> and <xref ref="hkg-abelian-moduli"/>.</p>
+    <p>A <em>symplectic resolution</em> is a proper birational morphism <m>f:Y\to Z</m> from a smooth variety to a normal variety, isomorphic over <m>Z_{\mathrm{reg}}</m>, such that the symplectic form on <m>Z_{\mathrm{reg}}</m> pulls back and extends to an everywhere nondegenerate closed two-form on <m>Y</m>. It is <em>projective</em> when the morphism <m>f</m> is projective. The extension condition and its relation to crepancy are studied in <xref ref="hkg-symplectic-crepant-resolutions"/>.</p>
+    <theorem xml:id="hkg-ogrady-existence">
+      <title>(O'Grady)</title>
+      <statement>
+        <p><ol>
+          <li><p>Let <m>S</m> be a projective K3 surface with <m>\operatorname{Pic}(S)=\Z H</m>, where <m>H</m> is ample and <m>H^2=2</m>. The moduli space of <m>H</m>-semistable torsion-free sheaves with Mukai vector <m>(2,0,-2)</m> admits a projective symplectic resolution that is an irreducible holomorphic symplectic manifold of dimension ten. Its deformation type is called <m>\mathrm{OG}_{10}</m>.</p></li>
+          <li><p>Let <m>A</m> be the Jacobian of a genus-two curve, with <m>\operatorname{NS}(A)=\Z H</m> for its principal polarization <m>H</m>. The zero fibre of the determinant-and-Albanese map on the moduli space of <m>H</m>-semistable torsion-free sheaves with Mukai vector <m>(2,0,-2)</m> admits a projective symplectic resolution that is an irreducible holomorphic symplectic manifold of dimension six. Its deformation type is called <m>\mathrm{OG}_6</m>.</p></li>
+        </ol></p>
+        <p>See <xref ref="hkg-bib-ogrady10"/> and <xref ref="hkg-bib-ogrady6"/>.</p>
+      </statement>
+    </theorem>
+    <p>On the abelian surface, let <m>\widehat A=\operatorname{Pic}^0(A)</m>. The map in the theorem is
+      <md number="no">[E]\longmapsto\bigl(\operatorname{alb}(c_2(E)-2[0]),\det E\bigr)\in A\times\widehat A.</md>
+      Here <m>c_2(E)</m> is its second Chern zero-cycle, and <m>\operatorname{alb}(\sum_jn_j[p_j])=\sum_jn_jp_j</m> for a degree-zero cycle. Its zero fibre imposes both zero sum and trivial determinant. O'Grady's resolution of the full ten-dimensional moduli space is compatible with this map; its fibre over <m>(0,\mathcal O_A)</m> is the sixfold in the theorem. This is the normalization used in <xref ref="hkg-bib-ogrady6" detail="§1, equations (1.1)–(1.4)"/>.</p>
+    <p>Rapagnetta computed the BBF lattices and Fujiki constants:
+      <md xml:id="hkg-eq-ogrady-lattices" number="yes">
+        \begin{aligned}
+        \mathrm{OG}_6:\quad
+        &amp;H^2(X,\Z)\cong U^{\oplus3}\oplus\langle-2\rangle^{\oplus2},
+        \quad b_2(X)=8,\quad c_X=60;\\
+        \mathrm{OG}_{10}:\quad
+        &amp;H^2(X,\Z)\cong\Lambda_{\mathrm{K3}}\oplus A_2(-1),
+        \quad b_2(X)=24,\quad c_X=945.
+        \end{aligned}
+      </md>
+      Here <m>A_2(-1)</m> has Gram matrix <m>\left(\begin{smallmatrix}-2&amp;1\\1&amp;-2\end{smallmatrix}\right)</m>. See <xref ref="hkg-bib-rapagnetta6" detail="Theorem 3.5.1"/> and <xref ref="hkg-bib-rapagnetta10" detail="Introduction and §3"/>.<fn>Rapagnetta also writes the final rank-two lattice with matrix <m>\left(\begin{smallmatrix}-6&amp;3\\3&amp;-2\end{smallmatrix}\right)</m>. If <m>e,f</m> is the displayed <m>A_2(-1)</m> basis, replacing it by <m>e-f,f</m> gives that matrix. The two formulas describe the same integral lattice.</fn></p>
+    <p>The second Betti numbers distinguish these examples from the Hilbert and generalized Kummer manifolds of the same dimensions. The Fujiki constant alone does not: <m>\mathrm{OG}_6</m> and <m>K_3(A)</m> both have constant sixty, while <m>\mathrm{OG}_{10}</m> and <m>S^{[5]}</m> both have constant 945.</p>
+  </section>
+  <section xml:id="hkg-examples-fourfolds">
+    <title>Projective fourfolds from Grassmannians</title>
+    <subsection xml:id="hkg-examples-cubic-lines">
+      <title>Lines on a cubic fourfold</title>
+      <p>Let <m>Y\subset\mathbb P^5</m> be a smooth cubic hypersurface. Its <em>Fano variety of lines</em> is
+        <md number="no">F(Y):=\{[\ell]\in\operatorname{Gr}(2,6):\mathbb P(\ell)\subset Y\}.</md>
+        If <m>\mathcal U</m> is the tautological rank-two bundle on <m>G=\operatorname{Gr}(2,6)</m>, the cubic equation defines a section of <m>\operatorname{Sym}^3\mathcal U^\vee</m>, and <m>F(Y)</m> is its zero locus. The Grassmannian has dimension eight and this bundle has rank four.</p>
+      <theorem xml:id="hkg-beauville-donagi">
+        <title>(Beauville–Donagi)</title>
+        <statement>
+          <p>For every smooth cubic fourfold <m>Y</m>, the variety <m>F(Y)</m> is a smooth projective irreducible holomorphic symplectic fourfold of <m>\mathrm{K3}^{[2]}</m> type. The incidence correspondence of a point on a line induces an isomorphism between the primitive rational Hodge structures <m>H^4(Y,\Q)(1)_{\mathrm{prim}}</m> and <m>H^2(F(Y),\Q)_{\mathrm{prim}}</m>. Primitivity on <m>Y</m> is with respect to the hyperplane class, and on <m>F(Y)</m> with respect to the Plücker class. See <xref ref="hkg-bib-beauville-donagi"/>.</p>
+        </statement>
+      </theorem>
+      <p>The shift <m>(1)</m> subtracts <m>(1,1)</m> from Hodge bidegrees, so <m>H^{3,1}(Y)</m> corresponds to <m>H^{2,0}(F(Y))</m>. Concretely, if <m>P\subset F(Y)\times Y</m> is the universal line with projections <m>p:P\to F(Y)</m> and <m>r:P\to Y</m>, the map is <m>p_*r^*</m>. Pullback preserves degree and integration along the one-dimensional fibres of <m>p</m> lowers cohomological degree by two. This accounts for both the degree and the Hodge shift.</p>
+      <p>Adjunction explains why the canonical bundle is trivial. Write <m>\mathcal O_G(1)=\det\mathcal U^\vee</m>. The canonical bundle of <m>G</m> is <m>\mathcal O_G(-6)</m>. If <m>a,b</m> are the Chern roots of <m>\mathcal U^\vee</m>, those of <m>\operatorname{Sym}^3\mathcal U^\vee</m> are <m>3a,2a+b,a+2b,3b</m>, whose sum is <m>6(a+b)</m>. Hence
+        <md number="no">\det(\operatorname{Sym}^3\mathcal U^\vee)\cong\mathcal O_G(6),
+        \qquad K_{F(Y)}\cong
+        \bigl(K_G\otimes\det(\operatorname{Sym}^3\mathcal U^\vee)\bigr)|_{F(Y)}
+        \cong\mathcal O_{F(Y)}.</md>
+        Smoothness and the codimension follow from <xref ref="hkg-beauville-donagi"/>.</p>
+      <p>Let <m>g=c_1(\mathcal O_G(1)|_{F(Y)})</m>. Its fourth self-intersection is computed on the Grassmannian:
+        <md number="no">\int_{F(Y)}g^4
+        =\int_G(a+b)^4\,9ab(2a+b)(a+2b)=108.</md>
+        The Grassmannian integration rule takes the coefficient of <m>a^5b^4</m> in <m>(a-b)f(a,b)</m> for a symmetric polynomial <m>f</m> of degree eight. The coefficients of <m>a^4b^4</m> and <m>a^5b^3</m> in the displayed integrand are 414 and 306, giving <m>414-306=108</m>. See <xref ref="hkg-bib-beauville-donagi"/>.</p>
+      <p>The Fujiki constant for <m>\mathrm{K3}^{[2]}</m> type is three. Since the Plücker class is ample, <m>q_{F(Y)}(g)&gt;0</m>, and the Fujiki identity gives <m>108=3q_{F(Y)}(g)^2</m>. Therefore <m>q_{F(Y)}(g)=6</m>. Its intersection degree and its BBF square are different invariants: here they are 108 and six.</p>
+    </subsection>
+    <subsection xml:id="hkg-examples-debarre-voisin">
+      <title>Debarre–Voisin fourfolds</title>
+      <p>Let <m>T</m> be a ten-dimensional vector space and <m>\eta\in\bigwedge^3T^\vee</m> an alternating three-form. On <m>G=\operatorname{Gr}(6,T)</m>, restriction of <m>\eta</m> gives a section of <m>\bigwedge^3\mathcal U^\vee</m>, where <m>\mathcal U</m> has rank six. Define
+        <md number="no">X_\eta:=\{U\in\operatorname{Gr}(6,T):\eta|_U=0\}.</md>
+        Since <m>\dim G=24</m> and <m>\operatorname{rk}(\bigwedge^3\mathcal U^\vee)=20</m>, its expected dimension is four.</p>
+      <theorem xml:id="hkg-debarre-voisin">
+        <title>(Debarre–Voisin)</title>
+        <statement>
+          <p>For <m>\eta</m> in a nonempty Zariski open subset of <m>\bigwedge^3T^\vee</m>, the zero locus <m>X_\eta</m> is a smooth projective irreducible holomorphic symplectic fourfold of <m>\mathrm{K3}^{[2]}</m> type. With its Plücker polarization, it is deformation equivalent to the Hilbert square of a degree-twenty-two K3 surface equipped with the polarization described in <xref ref="hkg-bib-debarre-voisin" detail="Theorem 1.2"/>.</p>
+        </statement>
+      </theorem>
+      <p>The determinant calculation is parallel to the cubic example. For a rank-<m>r</m> vector bundle <m>E</m>, every Chern root of <m>E</m> occurs in exactly <m>\binom{r-1}{k-1}</m> Chern roots of <m>\bigwedge^k E</m>. Thus
+        <m>\det(\bigwedge^kE)\cong(\det E)^{\binom{r-1}{k-1}}</m>. For <m>r=6</m> and <m>k=3</m>, the exponent is ten. Since <m>K_G\cong\mathcal O_G(-10)</m>, adjunction gives
+        <md number="no">K_{X_\eta}\cong
+        \bigl(\mathcal O_G(-10)\otimes\mathcal O_G(10)\bigr)|_{X_\eta}
+        \cong\mathcal O_{X_\eta}.</md></p>
+      <p>The polarized deformation in <xref ref="hkg-bib-debarre-voisin" detail="Theorem 1.2"/> also determines the BBF square of the Plücker class. Let <m>S</m> be the degree-twenty-two K3 surface there, let <m>h\in H^2(S^{[2]},\Z)</m> be the induced class from its polarization, and let <m>\delta</m> be half the Hilbert–Chow exceptional divisor. The corresponding polarization is <m>10h-33\delta</m>. Since <m>q(h)=22</m>, <m>q(\delta)=-2</m>, and <m>q(h,\delta)=0</m>, its square is
+        <md number="no">q(10h-33\delta)=100\cdot22-33^2\cdot2=22.</md>
+        Thus the Plücker class on <m>X_\eta</m> has BBF square twenty-two and fourth self-intersection <m>3\cdot22^2=1452</m>. It is primitive and has divisibility two, in the sense of <xref ref="hkg-polarization-topology-anchor"/>. Indeed, <m>h</m> is primitive in the unimodular K3 lattice, so <m>q(h,H^2(S,\Z))=\Z</m>; pairing <m>10h-33\delta</m> with the two orthogonal summands of <xref ref="hkg-eq-hilbert-lattice"/> gives the ideal generated by <m>10</m> and <m>66</m>. Its positive generator is two.</p>
+      <p>The Fano variety of lines and the Debarre–Voisin fourfold have the same deformation type, with Plücker classes of BBF squares six and twenty-two, respectively. Their constructions supply different families of polarized manifolds within that deformation type.</p>
+    </subsection>
+  </section>
+  <section xml:id="hkg-example-invariants">
+    <title>Deformation invariants</title>
+    <p>The preceding lattice and intersection computations give the following comparison. All Fujiki constants use the primitive integral bilinear form fixed in <xref ref="hkg-bbf"/>.</p>
+    <table xml:id="hkg-table-known-deformation-types">
+      <title>Numerical invariants of the classical deformation types.</title>
+      <tabular>
+        <row header="yes"><cell>Deformation type</cell><cell>Dimension</cell><cell><m>b_2</m></cell><cell><m>c_X</m></cell></row>
+        <row><cell>K3</cell><cell><m>2</m></cell><cell><m>22</m></cell><cell><m>1</m></cell></row>
+        <row><cell><m>\mathrm{K3}^{[n]}</m>, <m>n\geq2</m></cell><cell><m>2n</m></cell><cell><m>23</m></cell><cell><m>\dfrac{(2n)!}{2^n n!}</m></cell></row>
+        <row><cell>Generalized Kummer, <m>n\geq2</m></cell><cell><m>2n</m></cell><cell><m>7</m></cell><cell><m>\dfrac{(n+1)(2n)!}{2^n n!}</m></cell></row>
+        <row><cell><m>\mathrm{OG}_6</m></cell><cell><m>6</m></cell><cell><m>8</m></cell><cell><m>60</m></cell></row>
+        <row><cell><m>\mathrm{OG}_{10}</m></cell><cell><m>10</m></cell><cell><m>24</m></cell><cell><m>945</m></cell></row>
+      </tabular>
+    </table>
+    <p>Deformation equivalent manifolds have the same BBF lattice and Fujiki constant. The second Betti number therefore distinguishes the Hilbert, Kummer, and O'Grady types in equal dimensions. The Fano variety of lines and the Debarre–Voisin fourfold belong to the Hilbert-square row; their different Plücker degrees describe different polarizations within that type.</p>
+  </section>
+</chapter>
