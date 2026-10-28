@@ -1,0 +1,118 @@
+<chapter xml:id="st-c03">
+  <title>Grothendieck topoi and their presentations</title>
+  <introduction>
+    <p>The category of sheaves retains local objects and their gluing while allowing a change of test objects. Its limits, quotients, and generators can be constructed directly from presheaves. These constructions explain why epimorphisms have local lifts and why local descent can be expressed independently of a site presentation.</p>
+    <p>We first prove the properties used in later chapters. Cartesian closure and the subobject classifier give an additional interpretation of a topos as a category of variable sets. Giraud's theorem is then stated as an intrinsic recognition theorem; its longer converse proof is referred to the literature.</p>
+  </introduction>
+  <section xml:id="st-c03-presented">
+    <title>Topoi and generating sheaves</title>
+    <definition xml:id="st-c03-topos">
+      <idx><h>Grothendieck topos</h></idx>
+      <statement><p>A Grothendieck topos is a category equivalent to <m>\Sh(\mathcal C,J)</m> for a small site. A site presentation includes such an equivalence. A family <m>(G_i)_{i\in I}</m> generates a category if any two distinct parallel arrows are distinguished after precomposition by a map from some <m>G_i</m>.</p></statement>
+    </definition>
+    <p>A presentation is part of a description of a topos, not an invariant uniquely determined by it. Our notation <m>\mathcal E=\Sh(\mathcal C,J)</m> fixes a presentation for formulas with sections. Categorical statements are transported across equivalences. The same distinction appears in <url href="https://stacks.math.columbia.edu/tag/00X9">Stacks, §7.15</url>.</p>
+    <proposition xml:id="st-c03-limits">
+      <statement><p>A Grothendieck topos has all small limits and colimits. For a diagram <m>F_i</m> in a presented topos, limits are computed as presheaf limits, and
+        <md number="no">\colim_i^{\mathcal E}F_i\simeq a\bigl(\colim_i^{\PSh(\mathcal C)}F_i\bigr).</md>
+        In particular, the terminal sheaf has one section on every object. The initial sheaf is the sheafification of the empty presheaf.</p></statement>
+      <proof><p>The sheaf condition is preserved by limits, as proved in <xref ref="st-c02"/>. For colimits, maps from the displayed object to any sheaf are compatible maps from the <m>F_i</m>, by the sheafification adjunction followed by the presheaf-colimit property. These are exactly the required universal properties.</p></proof>
+    </proposition>
+    <p>The initial sheaf can have a section on an object covered by the empty sieve. For <m>\operatorname{Open}(X)</m>, its value on the empty open is a singleton and its value on a nonempty open is empty. Thus the initial sheaf must not be described as objectwise empty on every site.<fn>The empty topological space has a topos equivalent to the category with one object and one arrow. This degenerate topos has initial object equal to terminal object. The topos of a one-point space is <m>\Set</m>, which is different.</fn></p>
+    <proposition xml:id="st-c03-generators">
+      <statement><p>The sheaves <m>ah_U</m>, for <m>U\in\mathcal C</m>, form a small generating family. For every sheaf <m>F</m> there is a natural epimorphism
+        <md number="no">\coprod_{(U,s),\ s\in F(U)}ah_U\longrightarrow F,</md>
+        whose summand indexed by <m>s</m> is the map corresponding to <m>s</m> under <m>\Hom(ah_U,F)\simeq F(U)</m>.</p></statement>
+      <proof><p>Two different natural transformations differ at a section of some <m>F(U)</m>, which Yoneda detects by a map <m>ah_U\to F</m>. For the epimorphism, any two maps out of <m>F</m> agreeing on the displayed summands agree on every section and therefore are equal. Alternatively, the analogous presheaf coproduct is objectwise surjective, and sheafification preserves its coequalizer presentation.</p></proof>
+    </proposition>
+    <p>The indexing pairs form a set at the chosen scale. This generating family does not consist of projectives in general. Evaluation <m>F\mapsto F(U)</m> preserves limits, but an epimorphism can have no sectionwise lift on all of <m>U</m>. There is also no assertion that <m>ah_U</m> is a finitely presented object of <m>\mathcal E</m>.</p>
+  </section>
+  <section xml:id="st-c03-images">
+    <title>Images, epimorphisms, and exactness</title>
+    <proposition xml:id="st-c03-exactness">
+      <statement><p>For a morphism <m>u:F\to G</m> of sheaves of sets:
+        <ol><li><p>It is a monomorphism if and only if each <m>F(U)\to G(U)</m> is injective.</p></li>
+          <li><p>Its image is the subsheaf of sections of <m>G</m> that locally lie in the presheaf image of <m>u</m>. Equivalently, it is the sheafification of that presheaf image.</p></li>
+          <li><p>It is an epimorphism if and only if it is locally surjective in the sense of <xref ref="st-c02-local"/>.</p></li>
+          <li><p>A map that is both a monomorphism and an epimorphism is an isomorphism. Epimorphisms are preserved by pullback.</p></li></ol></p></statement>
+      <proof><p>The first assertion follows from <m>\Hom(ah_U,F)=F(U)</m>. For the second, let <m>I(U)=\im(F(U)\to G(U))</m>. Left exactness embeds <m>aI</m> into <m>G</m>. By the unit criterion its sections are precisely the locally liftable sections. Every factorization of <m>u</m> through a subsheaf contains these sections, so <m>aI</m> is the image.</p>
+        <p>Local surjectivity implies the epimorphism cancellation property: compare two morphisms on local lifts and then use separatedness. Conversely, factor an epimorphism through its image <m>A\subseteq G</m>. We show that a proper subsheaf inclusion cannot be an epimorphism. Form the presheaf pushout <m>P=G\amalg_A G</m> and then <m>aP</m>. The two maps <m>G\to aP</m> agree on <m>A</m>. Their values at <m>g\in G(U)</m> agree exactly when <m>g</m> locally belongs to <m>A</m>, since this is equality in a pushout of sets followed by the unit criterion. Local membership in a subsheaf implies membership: the unique local sections glue in <m>A</m>. Thus equality of the two maps would give <m>A=G</m>. This proves the third assertion.</p>
+        <p>With monicity, local preimages are unique and glue, proving the isomorphism assertion. For pullback stability, a section of the base change projects to a section of <m>G</m>; lift the latter locally to <m>F</m>, and pair the lift with the given section of the new base. This proves local surjectivity of the pullback.</p></proof>
+    </proposition>
+    <p>This proof does not use a conservative family of points. The local criterion is <url href="https://stacks.math.columbia.edu/tag/00WL">Stacks, §7.11</url> in covering-family notation. Some sources use surjective for a sheaf epimorphism. We use locally surjective when contrasting it with a surjection of section sets.<fn>Evaluation at <m>U</m> is a right adjoint represented by <m>ah_U</m>. Right adjoints preserve limits; they need not preserve epimorphisms. This is a categorical explanation for the difference between local and sectionwise surjectivity.</fn></p>
+    <proposition xml:id="st-c03-effective-epi">
+      <idx><h>effective epimorphism</h></idx>
+      <statement><p>Every epimorphism <m>p:F\to G</m> is the coequalizer of its kernel pair
+        <md number="no">F\times_G F\rightrightarrows F\xrightarrow{p}G.</md>
+        In particular, all epimorphisms in a Grothendieck topos are effective.</p></statement>
+      <proof><p>Suppose <m>v:F\to H</m> has equal composites with the kernel-pair projections. For <m>g\in G(U)</m>, choose local lifts to <m>F</m>. On a common test, two lifts have the same image in <m>G</m>, so their images under <m>v</m> agree. The images therefore glue uniquely to a section of <m>H(U)</m>. Refinement independence and restriction compatibility follow from the same uniqueness. This defines the unique map <m>G\to H</m> whose composite with <m>p</m> is <m>v</m>.</p></proof>
+    </proposition>
+    <p>For abelian sheaves, kernels are sectionwise kernels, cokernels are sheafified sectionwise cokernels, and exactness means that kernel sections are locally images. The category <m>\Ab(\mathcal E)</m> is abelian; the coimage-to-image map is an isomorphism by the local criterion. Module sheaves have the same mechanism, with the ring action retained. Their Grothendieck category properties are proved in <xref ref="st-c08"/>.</p>
+  </section>
+  <section xml:id="st-c03-quotients">
+    <title>Equivalence relations and universal colimits</title>
+    <definition xml:id="st-c03-relation">
+      <statement><p>An equivalence relation on <m>F</m> is a subobject <m>R\hookrightarrow F\times F</m> whose sectionwise relations are reflexive, symmetric, and transitive. It is effective if, for its quotient <m>q:F\to Q</m>, the canonical map <m>R\to F\times_Q F</m> is an isomorphism. A colimit is universal if its formation is preserved by every pullback in a slice category.</p></statement>
+    </definition>
+    <proposition xml:id="st-c03-effective-relation">
+      <statement><p>Every equivalence relation in a Grothendieck topos is effective. A quotient can be formed as
+        <md number="no">Q=a\bigl(U\longmapsto F(U)/R(U)\bigr).</md>
+        The quotient map is an epimorphism.</p></statement>
+      <proof><p>The presheaf quotient is the coequalizer of <m>R\rightrightarrows F</m>. Sheafification gives the quotient in sheaves and makes the quotient map locally surjective. Two sections <m>x,y\in F(U)</m> become equal in <m>Q(U)</m> if and only if they are locally related by <m>R</m>. Since <m>R</m> is a subsheaf of <m>F\times F</m>, local membership in <m>R</m> is membership in <m>R(U)</m>. Thus its sections are exactly the kernel pair, proving effectivity.</p></proof>
+    </proposition>
+    <proposition xml:id="st-c03-universal">
+      <statement><p>Small colimits in a Grothendieck topos are universal. Coproducts are disjoint: every coproduct injection is a monomorphism, and the pullback of two distinct injections is initial. For a filtered diagram <m>F_i</m> and a finite-limit diagram shape, filtered colimits commute with that finite limit in <m>\mathcal E</m>.</p></statement>
+      <proof><p>In presheaves, coproducts are disjoint and colimits are universal because they are so in sets. Sheafification preserves the initial object and finite limits. For a diagram over a sheaf <m>B</m>, and a sheaf map <m>A\to B</m>, its comparison after sheafification is therefore the presheaf identity expressing pullback of that colimit. This proves universality and disjointness. For the last assertion, calculate the finite limit of the sheafified presheaf colimits using left exactness, interchange filtered colimit and finite limit objectwise in sets, and apply the sheaf colimit formula.</p></proof>
+    </proposition>
+    <p>Universality is a statement about colimits in a slice and their pullbacks. It does not say that a right adjoint direct-image functor preserves arbitrary colimits. Nor does the last assertion say that filtered colimits of sheaves are always sectionwise: their sheafification can still change the presheaf colimit.</p>
+    <p>The initial object is strict: any map <m>A\to0</m> forces <m>A\simeq0</m>. Indeed, universality applied to the empty colimit over <m>0</m> says that its pullback is initial over <m>A</m>; that pullback is the identity of <m>A</m>. Strictness explains the zero intersections in the disjoint-coproduct assertion even when some site objects admit an empty cover.</p>
+  </section>
+  <section xml:id="st-c03-variable-sets">
+    <title>Exponentials and the subobject classifier</title>
+    <proposition xml:id="st-c03-exponential">
+      <idx><h>exponential object</h></idx>
+      <statement><p>For sheaves <m>F,G</m>, their exponential is the sheaf
+        <md number="no">(F^G)(U)=\Hom_{\mathcal E}(ah_U\times G,F).</md>
+        It represents the adjunction <m>\Hom(H,F^G)\simeq\Hom(H\times G,F)</m>. Every slice of a Grothendieck topos is also cartesian closed.</p></statement>
+      <proof><p>First form the presheaf exponential <m>E(U)=\Hom_{\PSh}(h_U\times G,F)</m>. If <m>R</m> covers <m>U</m>, the map <m>R\times G\to h_U\times G</m> becomes an isomorphism after sheafification, by <xref ref="st-c02-cover-sheafification"/> and left exactness. By the exponential adjunction in presheaves, restriction <m>E(U)\to\Hom(R,E)</m> is therefore a bijection. Thus <m>E</m> is a sheaf. Sheafification of <m>h_U\times G</m> is <m>ah_U\times G</m>, giving the displayed formula; the adjunction restricts from presheaves to sheaves. A slice has a site presentation as established in <xref ref="st-c05"/>, so the same argument applies to it.</p></proof>
+    </proposition>
+    <p>The formula is an internal Hom for sets, using cartesian product. It is not the module internal Hom of <xref ref="st-c09"/>, which represents linear maps and is paired with tensor product. Both notions use a change of base object to express a variable family of morphisms.</p>
+    <definition xml:id="st-c03-closed-sieve">
+      <statement><p>A sieve <m>R</m> on <m>U</m> is <m>J</m>-closed if <m>f^*R\in J(V)</m> implies <m>f\in R(V)</m>, for every <m>f:V\to U</m>. Its <m>J</m>-closure is
+        <md number="no">\overline R(V)=\{f:V\to U\mid f^*R\in J(V)\}.</md>
+        Thus closedness means <m>R=\overline R</m>, and records stability under local membership.</p></statement>
+    </definition>
+    <proposition xml:id="st-c03-classifier">
+      <idx><h>subobject classifier</h></idx>
+      <statement><p>Let <m>\Omega(U)</m> be the set of <m>J</m>-closed sieves on <m>U</m>, with restriction given by sieve pullback. It is a sheaf. With the map <m>\mathrm{true}:1\to\Omega</m> selecting the maximal sieve, it classifies subobjects:
+        <md number="no">\operatorname{Sub}_{\mathcal E}(F)\simeq\Hom_{\mathcal E}(F,\Omega).</md>
+        The characteristic map of <m>A\subseteq F</m> sends <m>s\in F(U)</m> to the sieve of arrows <m>f</m> for which <m>s|_f\in A</m>.</p></statement>
+      <proof><p>Sieve closure is idempotent by local character and commutes with pullback. A compatible family of closed sieves on a covering sieve determines one on <m>U</m> by taking the closure of their composite arrows. Pulling it back recovers each member: membership can be tested after the given cover, and each member is already closed. This proves sheafhood and uniqueness. Equivalently, the sheaf condition here says exactly that local subobjects of a represented test object glue.</p>
+        <p>For <m>A\subseteq F</m>, the proposed sieve is closed because local membership in a subsheaf is membership. Its pullback compatibility gives a morphism <m>F\to\Omega</m>. Its inverse image of <m>\mathrm{true}</m> consists exactly of sections belonging to <m>A</m>. Conversely, naturality of any <m>\chi:F\to\Omega</m> shows that <m>f\in\chi(s)</m> exactly when <m>\chi(s|_f)</m> is maximal. Thus <m>\chi</m> is recovered from that inverse-image subobject, proving the bijection.</p></proof>
+    </proposition>
+    <p>On a topological space, <m>\Omega(U)</m> is naturally the set of open subsets of <m>U</m>. A closed sieve is the collection of all opens contained in their union. Hence <m>\Omega</m> need not be a constant two-element sheaf: local truth can hold on a proper open part of a test object. This explains the classifier without requiring a development of internal logic.</p>
+    <p>An elementary topos is a category with finite limits, exponentials, and a subobject classifier. We have shown that every Grothendieck topos is elementary. The converse requires further size and colimit conditions. For example, finite sets form an elementary topos but do not have arbitrary small coproducts, so they are not a Grothendieck topos at the usual set scale. <xref ref="st-bib-mlm" detail="Chapters III–V"/> develops these constructions.</p>
+  </section>
+  <section xml:id="st-c03-intrinsic">
+    <title>Intrinsic recognition and changing presentations</title>
+    <theorem xml:id="st-c03-giraud">
+      <title>Giraud's theorem</title>
+      <statement><p>A locally small category <m>\mathcal E</m> is a Grothendieck topos if and only if it has finite limits and all small colimits, colimits are universal, coproducts are disjoint, every equivalence relation is effective, every epimorphism is the coequalizer of its kernel pair, and it has a small generating family. Equivalently, a Grothendieck topos is a left exact reflective full subcategory of a presheaf category on a small category.</p></statement>
+    </theorem>
+    <p>The properties of sheaf categories were proved above. The converse is <xref ref="st-bib-sga4-1" detail="Exposé IV, Theorem 1.2"/>; a modern proof with a finite-limit generating site is given in <url href="https://www.math.ias.edu/~lurie/278xnotes/Lecture10-Giraud.pdf">Lurie, Lecture 10, Theorems 3 and 6</url>. Some lists of axioms replace universality of all colimits by pullback stability of effective epimorphisms and universality of coproducts. The quotient and exactness axioms then supply the remaining colimits. We have stated a redundant form that records all the properties already used.</p>
+    <p>The presentation constructed in that proof is concrete. Start with a small full generating subcategory, enlarge it inside <m>\mathcal E</m> to contain chosen finite limits, and declare a family covering when its coproduct map is epimorphic in <m>\mathcal E</m>. Restricting <m>\Hom_{\mathcal E}(-,F)</m> to this subcategory recovers the topos. Effectivity gives descent, and generators ensure that all objects are recovered. Merely restricting an arbitrary topology from a non-generating subcategory would not have this conclusion.</p>
+    <p>This result permits a convenient site to be chosen for a particular proof. It does not make all site functors continuous, or make their Kan extensions left exact. Those are additional functorial conditions in <xref ref="st-c04"/>. A fixed topos can admit different geometric morphisms even when one presentation gives few evident morphisms of sites.</p>
+  </section>
+  <section xml:id="st-c03-examples">
+    <title>Examples beyond a space of opens</title>
+    <example xml:id="st-c03-gsets">
+      <statement><p>For a group <m>G</m>, regard <m>BG</m> as the category with one object and endomorphisms <m>G</m>. Its presheaves form the topos of right <m>G</m>-sets, using the trivial topology. Global sections are fixed elements, whereas forgetting the action gives the inverse image of a point.</p></statement>
+      <solution><p>If <m>F</m> is contravariant, define <m>x\cdot g=F(g)(x)</m>. With categorical composition corresponding to multiplication, contravariance gives the right-action identity. Maps are equivariant maps. A map from the terminal <m>G</m>-set chooses a fixed element, which proves the global-section assertion. The forgetful functor preserves finite limits and has a right adjoint given by coinduction, hence is the inverse image of a geometric morphism <m>\Set\to G\text{-}\Set</m>. A nontrivial free transitive <m>G</m>-set has no global section but is not initial.</p></solution>
+    </example>
+    <p>Some sources use left actions. Replacing <m>x\cdot g</m> by <m>g^{-1}x</m> converts the conventions; it does not change the topos up to equivalence. The site description by continuous actions of a topological group involves a different choice of topology and continuity conditions; no such topology on <m>G</m> is assumed here.</p>
+    <example xml:id="st-c03-arrow-topos">
+      <statement><p>Let <m>\mathcal C</m> have one nonidentity arrow <m>0\to1</m> and the trivial topology. A sheaf is a pair of sets with a map <m>F(1)\to F(0)</m>. A section at either test object alone does not determine the sheaf or its morphisms.</p></statement>
+      <solution><p>The assertion follows directly from contravariant functoriality. Limits and colimits are formed in both entries. Two objects can have identical pairs of underlying sets but different structure maps, showing why the compatibility between tests is part of the object. This is the categorical version of the generization-map example in the first note.</p></solution>
+    </example>
+    <p>For a space, different bases of opens present the same topos under the comparison hypotheses. For schemes, the Zariski and étale sites usually give different topoi; changing the topology is a substantive change of local tests. Both phenomena use sheaf categories, but only the first is merely a change of presentation. The localization and geometric examples below keep these two uses separate.</p>
+  </section>
+</chapter>

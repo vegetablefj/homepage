@@ -1,0 +1,273 @@
+<chapter xml:id="sh-c11">
+  <title>Singular cohomology and homotopy</title>
+  <introduction>
+    <p>Sheaf cohomology is defined for every topological space, but singular cohomology need not compute it. The comparison depends on local topology, and a particular proof can require additional covering properties. Homotopy invariance is a different question: cohomology of locally constant sheaves is homotopy invariant on arbitrary spaces, with the coefficient sheaf transported along the homotopy. Neither assertion extends to arbitrary coefficient sheaves in the same form.</p>
+    <p>We give a singular-cochain comparison with local coefficients, including a proof under hereditary paracompactness. We then separate that proof hypothesis from broader comparison theorems, and establish the homotopy statement through the projection with fiber <m>[0,1]</m>. No local compactness, support functor, or manifold structure is part of the argument.</p>
+  </introduction>
+
+  <section xml:id="sh-c11-singular-cochains">
+    <title>Singular cochains with local coefficients</title>
+    <p>Let <m>L</m> be a locally constant <m>\Lambda</m>-module sheaf on <m>X</m>. A path <m>\gamma:[0,1]\to X</m> gives parallel transport
+      <md number="no">T_\gamma:L_{\gamma(0)}\xrightarrow{\sim}L_{\gamma(1)}.</md>
+      It depends only on homotopy relative to the endpoints. These transports were constructed from the étalé space and local trivializations in <xref ref="sh-c05-transport"/>; a universal covering space is not required for this construction.</p>
+
+    <definition xml:id="sh-c11-cochain-definition">
+      <title>Singular cochains with local coefficients</title>
+      <idx>Singular cochain</idx><idx>Local coefficients</idx><idx>Singular cohomology</idx>
+      <statement>
+        <p>For <m>n\geq0</m>, let <m>S_n(X)</m> be the set of continuous maps <m>\sigma:\Delta^n\to X</m>, with ordered vertices <m>v_0,\ldots,v_n</m>. Define
+          <md number="no">C^n_{\mathrm{sing}}(X;L)=\prod_{\sigma\in S_n(X)}L_{\sigma(v_0)}.</md>
+          For a cochain <m>c</m> and an <m>(n+1)</m>-simplex <m>\sigma</m>, set
+          <md number="no">(dc)(\sigma)=T_{\sigma[01]}^{-1}c(\sigma\partial_0)+\sum_{i=1}^{n+1}(-1)^i c(\sigma\partial_i),</md>
+          where <m>\partial_i</m> omits the <m>i</m>th vertex and <m>\sigma[01]</m> is the edge from the first to the second vertex. The cohomology of this complex is denoted <m>H^n_{\mathrm{sing}}(X;L)</m>.</p>
+      </statement>
+    </definition>
+    <p>All terms in the formula belong to the stalk at <m>\sigma(v_0)</m>. Only the zeroth face changes the first vertex, which explains the inverse transport in that term. For a constant sheaf <m>M_X</m>, this is the ordinary singular cochain complex with coefficients in <m>M</m>.<fn>Choosing the last vertex instead gives another convention. The resulting complex is isomorphic after transporting values inside each simplex, but formulas involving monodromy can then contain inverse automorphisms. We use first-vertex values throughout this chapter.</fn></p>
+
+    <proposition xml:id="sh-c11-cochain-properties">
+      <statement>
+        <p>The displayed differential satisfies <m>d^2=0</m>. A continuous map <m>f:X\to Y</m> and a locally constant sheaf <m>L</m> on <m>Y</m> give a cochain map
+          <md number="no">f^\sharp:C^\bullet_{\mathrm{sing}}(Y;L)\longrightarrow C^\bullet_{\mathrm{sing}}(X;f^{-1}L),\qquad (f^\sharp c)(\sigma)=c(f\sigma).</md>
+          There is an augmentation of presheaf complexes on <m>X</m>
+          <md number="no">L\longrightarrow C^\bullet_{\mathrm{sing}}(-;L)</md>
+          sending a section to its values at points.</p>
+      </statement>
+      <proof>
+        <p>In <m>d^2c</m>, the two occurrences of each codimension-two face have opposite signs. Their coefficient identifications agree: on a triangular face the transport along the direct edge equals transport along the two successive edges, because the two paths are homotopic in that face. Every term therefore cancels with its partner. Pullback commutes with edge transports and faces, proving the cochain-map assertion. A section of <m>L</m> is preserved by transport along every path, so its degree-zero differential vanishes.</p>
+      </proof>
+    </proposition>
+
+    <p>A degree-zero cocycle is an assignment of a stalk element to every point which is preserved along every path. On a locally path-connected space, such assignments are exactly sections of <m>L</m>. On a general space, pathwise compatibility need not imply local compatibility; this distinction already allows the comparison with sheaf cohomology to fail in degree zero.</p>
+
+    <p>For the standard singular construction with local coefficients, see <xref ref="sh-bib-hatcher" detail="§3.H, especially pp. 333–334"/>. We use its cochain complex, not a reconstruction of singular homology or covering-space theory inside the sheaf note.</p>
+  </section>
+
+  <section xml:id="sh-c11-cochain-sheaves">
+    <title>The sheafified singular complex</title>
+    <definition xml:id="sh-c11-topology-definition">
+      <title>Local contractibility and covering assumptions</title>
+      <idx>Local contractibility</idx><idx>Paracompactness</idx><idx>Hereditary paracompactness</idx>
+      <statement>
+        <p>We say that <m>X</m> is <term>locally contractible</term> if every point has a basis of contractible open neighborhoods. In this chapter, a paracompact space is Hausdorff and every open covering has a locally finite open refinement. We say that <m>X</m> is <term>hereditarily paracompact Hausdorff</term> if every subspace is paracompact Hausdorff. For the proof below, it suffices that every open subspace is paracompact Hausdorff.</p>
+      </statement>
+    </definition>
+    <p>The stronger, basis formulation of local contractibility makes the local exactness argument immediate. Some books use the same name for the weaker requirement that every neighborhood contain a smaller neighborhood whose inclusion into it is null-homotopic. We discuss that version separately. Metrizable spaces are hereditarily paracompact Hausdorff; finite-dimensional second-countable Hausdorff manifolds and locally finite countable simplicial complexes therefore satisfy our covering assumptions.</p>
+
+    <p>Let <m>\mathcal S^n(L)</m> be the sheaf associated with the presheaf <m>U\mapsto C^n_{\mathrm{sing}}(U;L|_U)</m>. Restrictions discard the components indexed by simplices not lying in the smaller open set. They are surjective: extend a cochain by assigning zero to the remaining simplices. This observation alone does not prove that the associated sheaf is flabby. Sheafification of a presheaf with surjective restrictions need not have surjective restrictions.</p>
+
+    <lemma xml:id="sh-c11-local-resolution">
+      <statement>
+        <p>If <m>X</m> is locally contractible, the augmented sheaf complex
+          <md number="no">0\longrightarrow L\longrightarrow\mathcal S^0(L)\xrightarrow{d}\mathcal S^1(L)\xrightarrow{d}\cdots</md>
+          is exact.</p>
+      </statement>
+      <proof>
+        <p>Fix <m>x\in X</m> and trivialize <m>L</m> on a neighborhood of <m>x</m>, with value <m>M=L_x</m>. Restrict to a cofinal basis of contractible open neighborhoods inside it. On each such neighborhood the augmented singular cochain complex has cohomology <m>M</m> in degree zero and zero in positive degrees. This is the ordinary singular contraction argument, with the trivialized coefficients. Filtered colimits of modules are exact and commute with taking cohomology. Since sheafification preserves stalks, the same statement holds for the stalk of <m>\mathcal S^\bullet(L)</m> at <m>x</m>. The augmentation identifies the degree-zero stalk with <m>L_x</m>. Exactness on all stalks proves the claim.</p>
+      </proof>
+    </lemma>
+
+    <lemma xml:id="sh-c11-cochain-lifting">
+      <statement>
+        <p>Suppose that every open subspace of <m>X</m> is paracompact Hausdorff. Then for every open <m>U\subset X</m> and every <m>n\geq0</m>, the natural map
+          <md number="no">C^n_{\mathrm{sing}}(U;L|_U)\longrightarrow\Gamma(U,\mathcal S^n(L))</md>
+          is surjective. Each sheaf <m>\mathcal S^n(L)</m> is flabby.</p>
+      </statement>
+      <proof>
+        <p>Let <m>s\in\Gamma(U,\mathcal S^n(L))</m>. Choose open sets <m>U_i</m> covering <m>U</m> and cochains <m>c_i</m> on <m>U_i</m> representing <m>s</m>. The shrinking property of paracompact Hausdorff spaces gives a locally finite open refinement <m>(V_j)</m> and indices <m>i(j)</m> with <m>\overline{V_j}\subset U_{i(j)}</m>, where closure is taken in <m>U</m>. This is the point-set topology fact used in the argument.</p>
+        <p>Define a cochain <m>c</m> on <m>U</m> as follows. For a simplex whose image lies in some <m>V_j</m>, choose one such <m>j</m> and take its value from <m>c_{i(j)}</m>. For every other simplex take zero. We show that the germ of <m>c</m> represents <m>s</m> at every <m>x\in U</m>.</p>
+        <p>Choose a neighborhood of <m>x</m> meeting only finitely many <m>V_j</m>. After shrinking it, every remaining such <m>j</m> satisfies <m>x\in\overline{V_j}</m>: the other finitely many closures can be avoided. Hence all the remaining <m>U_{i(j)}</m> contain <m>x</m>. Choose one index <m>j_0</m> with <m>x\in V_{j_0}</m>. The cochains <m>c_{i(j)}</m> and <m>c_{i(j_0)}</m> have the same sheaf germ at <m>x</m>, so on a sufficiently small neighborhood they agree on all simplices. Only finitely many agreements are needed. Choose one neighborhood <m>W\subset V_{j_0}</m> on which all of them hold. Every simplex in <m>W</m> is eligible for at least one <m>V_j</m>, and whichever eligible index was chosen, its value equals the value from <m>c_{i(j_0)}</m>. Thus <m>c</m> has the required germ at <m>x</m>.</p>
+        <p>This proves surjectivity. A section of <m>\mathcal S^n(L)</m> on an open set can now be represented by one cochain there, and that cochain can be extended by zero to the ambient open set. Sheafifying gives an extension of the original section. Therefore <m>\mathcal S^n(L)</m> is flabby.</p>
+      </proof>
+    </lemma>
+
+    <p>The locally finite refinement is used to replace agreement of germs by finitely many simultaneous agreements near a point. Without a covering hypothesis this step is not available. The distinction between a flabby presheaf and a flabby sheaf is discussed in <xref ref="sh-bib-petersen" detail="§1.5"/>; see also <xref ref="sh-bib-bredon" detail="I, §6"/> for the section-lifting argument.</p>
+  </section>
+
+  <section xml:id="sh-c11-comparison">
+    <title>The comparison theorem</title>
+    <p>The previous lemmas give a flabby resolution, but one more step is necessary: global sections of a sheafified complex are not automatically the original cochains. This step uses small singular simplices.</p>
+
+    <definition xml:id="sh-c11-small-cochains">
+      <title>Small and locally zero cochains</title>
+      <idx>Small singular simplex</idx><idx>Locally zero cochain</idx>
+      <statement>
+        <p>For an open covering <m>\mathcal U</m> of <m>X</m>, a singular simplex is <term><m>\mathcal U</m>-small</term> if its image lies in one member of the covering. Let <m>C^\bullet_{\mathcal U}(X;L)</m> be the cochain complex assigning values only to these simplices, with the same differential. A cochain on <m>X</m> is <term>locally zero</term> if each point has an open neighborhood on all of whose simplices its values vanish.</p>
+      </statement>
+    </definition>
+
+    <lemma xml:id="sh-c11-small-simplex-lemma">
+      <statement>
+        <p>For every open covering <m>\mathcal U</m>, restriction is a quasi-isomorphism
+          <md number="no">C^\bullet_{\mathrm{sing}}(X;L)\longrightarrow C^\bullet_{\mathcal U}(X;L).</md>
+        </p>
+      </statement>
+      <proof>
+        <p>Barycentric subdivision makes a sufficiently fine subdivision of any one simplex small for the inverse-image covering of that simplex. The usual subdivision homotopy and the construction of a small-chain inverse give the small-simplex theorem; see <xref ref="sh-bib-hatcher" detail="Proposition 2.21"/>. For local coefficients, every subdivision and prism lies in the image of the original simplex. Pull back <m>L</m> to that simplex and transport all coefficient values from a chosen vertex. Since a simplex is contractible, the transports agree under the face and prism identifications. Thus the same subdivision and homotopy formulas hold with these coefficients, and give homotopy inverse cochain maps after restriction.</p>
+        <p>It is the chain homotopy construction that permits arbitrary coefficient modules: dualizing a quasi-isomorphism alone would not suffice. The local-coefficient form of subdivision and excision is also described in <xref ref="sh-bib-hatcher" detail="§3.H"/>.</p>
+      </proof>
+    </lemma>
+
+    <theorem xml:id="sh-c11-comparison-theorem">
+      <statement>
+        <p>Let <m>X</m> be locally contractible and suppose that every open subspace is paracompact Hausdorff. For every locally constant <m>\Lambda</m>-module sheaf <m>L</m>, there are natural isomorphisms
+          <md number="no">H^n_{\mathrm{sing}}(X;L)\xrightarrow{\sim}H^n(X,L)\qquad(n\geq0).</md>
+          They are natural in the coefficient sheaf and in continuous maps between spaces satisfying these hypotheses.</p>
+      </statement>
+      <proof>
+        <p>Let <m>N^n</m> be the module of locally zero <m>n</m>-cochains. It is the kernel of the map from cochains to sections of <m>\mathcal S^n(L)</m>. It is also the union, over open coverings, of the kernels of restriction to the small cochains for that covering. By <xref ref="sh-c11-cochain-lifting"/>, the natural map is onto, so
+          <md number="no">\Gamma(X,\mathcal S^\bullet(L))\simeq C^\bullet_{\mathrm{sing}}(X;L)/N^\bullet\simeq\colim_{\mathcal U}C^\bullet_{\mathcal U}(X;L),</md>
+          with the colimit taken toward finer coverings. Each restriction to small cochains is surjective degree by degree, since arbitrary values can be assigned to the omitted simplices. This explains the last quotient description.</p>
+        <p>By <xref ref="sh-c11-small-simplex-lemma"/>, the maps from the original singular complex into every small-cochain complex are quasi-isomorphisms. Exactness of filtered colimits shows that the map into their colimit is a quasi-isomorphism as well. Thus
+          <md number="no">C^\bullet_{\mathrm{sing}}(X;L)\longrightarrow\Gamma(X,\mathcal S^\bullet(L))</md>
+          is a quasi-isomorphism. By <xref ref="sh-c11-local-resolution"/> and <xref ref="sh-c11-cochain-lifting"/>, the augmented complex <m>\mathcal S^\bullet(L)</m> is a flabby resolution of <m>L</m>. Its global sections therefore compute <m>R\Gamma(X,L)</m>, proving the comparison.</p>
+        <p>The augmentation, passage to germs, and restriction of cochains are natural maps. Pullback by a continuous map sends a simplex to its composite and transports the coefficient stalk by the inverse-image identification. These maps commute with the augmentation and differential. The isomorphism on cohomology therefore respects pullback; choices of refinements in the proof do not become choices in the resulting comparison.</p>
+      </proof>
+    </theorem>
+
+    <p>The proof separates three different assertions: local contractibility makes the augmentation exact on stalks; the covering hypothesis makes its terms acyclic by the flabby argument; subdivision compares the global cochains with global sections. Confusing these assertions is a source of incorrect generalizations. Neither exactness on stalks nor flabbiness alone proves the comparison with the original singular complex.</p>
+
+    <corollary xml:id="sh-c11-interval">
+      <statement>
+        <p>For every interval <m>J\subset\R</m>, including half-open and closed intervals, and every constant coefficient module <m>M</m>, one has <m>H^q(J,M_J)=0</m> for <m>q&gt;0</m>. If <m>J</m> is nonempty, evaluation gives <m>H^0(J,M_J)=M</m>. Every locally constant sheaf on a nonempty interval is constant.</p>
+      </statement>
+      <proof>
+        <p>An interval is metrizable and has a basis of contractible neighborhoods. Singular contraction and <xref ref="sh-c11-comparison-theorem"/> give the cohomology assertion. Triviality of a local system follows from parallel transport on the interval: paths with fixed endpoints are homotopic, and transport from one base point gives local trivializations which agree. Equivalently, apply the monodromy description from <xref ref="sh-c05-monodromy"/>.</p>
+      </proof>
+    </corollary>
+  </section>
+
+  <section xml:id="sh-c11-broader-comparison">
+    <title>Broader local hypotheses</title>
+    <p>The covering condition in <xref ref="sh-c11-comparison-theorem"/> was chosen to make every term of one particular resolution flabby. It is not a necessary condition for the comparison. Even the classical paracompact Hausdorff argument can use acyclic singular-cochain sheaves without proving all of them flabby; see <xref ref="sh-bib-bredon" detail="III, §1"/> and the discussion in <xref ref="sh-bib-petersen" detail="§§1.4–1.5"/>. The distinction matters on paracompact spaces whose open subspaces need not all be paracompact.</p>
+
+    <definition xml:id="sh-c11-local-cohomological-connectivity">
+      <title>A local vanishing condition</title>
+      <idx>Cohomological local connectedness</idx><idx>Semilocal contractibility</idx>
+      <statement>
+        <p>For an Abelian group <m>M</m>, consider the condition
+          <md number="no">\colim_{U\ni x}H^q_{\mathrm{sing}}(U,\{x\};M)=0\qquad\text{for every }x\in X\text{ and }q\geq0.</md>
+          We call this <term>cohomological local connectedness with coefficients in <m>M</m></term>, in the colimit sense. We say that <m>X</m> is <term>semilocally contractible</term> if for every <m>x\in U</m>, with <m>U</m> open, there is an open <m>x\in V\subset U</m> such that the inclusion <m>V\to U</m> is null-homotopic.</p>
+      </statement>
+    </definition>
+    <p>A basis of contractible neighborhoods implies semilocal contractibility, and semilocal contractibility implies the displayed local vanishing for every coefficient group. The condition in degree zero is part of the definition: vanishing only in positive degrees does not control the discrepancy between locally constant functions and pathwise constant functions.<fn>A classical definition of cohomological local connectedness asks for a smaller neighborhood on which the entire restriction homomorphism is zero. The colimit condition asks that each individual class die after some restriction. The former implies the latter; we do not silently identify them. These two formulations are explicitly distinguished in <xref ref="sh-bib-petersen" detail="footnote 1"/>.</fn></p>
+
+    <theorem xml:id="sh-c11-general-constant-comparison">
+      <statement>
+        <p>Let <m>M</m> be an Abelian group and let <m>X</m> satisfy the colimit local-vanishing condition in <xref ref="sh-c11-local-cohomological-connectivity"/>. Then singular cohomology with coefficients in <m>M</m> and sheaf cohomology of <m>M_X</m> are naturally isomorphic in every degree. No Hausdorff or paracompactness assumption is required. In particular, this holds for every semilocally contractible space.</p>
+      </statement>
+      <proof>
+        <p>This is <xref ref="sh-bib-petersen" detail="Theorem 1.2"/>. The semilocally contractible version is proved by <xref ref="sh-bib-sella" detail="the theorem in the introduction"/> using a different flabby resolution. We use these broader results as external comparison theorems. Their proofs remove the covering assumptions by changing the method, rather than by assuming that ordinary sheafification preserves flabby presheaves.</p>
+      </proof>
+    </theorem>
+
+    <p>This statement is recorded for constant coefficients. Our explicit local-coefficient construction and proof remain available under <xref ref="sh-c11-comparison-theorem"/>. One should not expand the scope of a cited theorem by replacing constant coefficients with an arbitrary sheaf. For a particular space with local coefficients, the proof should either verify the singular resolution and its acyclicity, or invoke a comparison result that actually includes those coefficients.</p>
+
+    <p>A contractible open covering is another useful computational condition, not a consequence of every version of local contractibility. If a covering has contractible nonempty finite intersections, a local system is constant and acyclic on each such intersection. Its cohomology is therefore computed by the Čech complex of that covering. When the coefficients are globally constant, this becomes the usual cohomology of the nerve with those coefficients. For a nonconstant local system the restriction maps contain transport data; replacing them by identity maps generally gives the wrong complex.</p>
+  </section>
+
+  <section xml:id="sh-c11-homotopy">
+    <title>Homotopy invariance with transported coefficients</title>
+    <p>We now return to arbitrary spaces. The compact interval supplies a separate route to homotopy invariance, so this assertion does not need a comparison with singular cohomology on <m>X</m>. Write <m>I=[0,1]</m>, <m>p:X\times I\to X</m>, and <m>i_t(x)=(x,t)</m>.</p>
+
+    <lemma xml:id="sh-c11-cylinder">
+      <statement>
+        <p>For every topological space <m>X</m> and every <m>F\in\Sh(X;\Lambda)</m>, the adjunction unit is an isomorphism
+          <md number="no">F\xrightarrow{\sim}Rp_*p^{-1}F.</md>
+          Consequently pullback gives an isomorphism
+          <md number="no">R\Gamma(X,F)\xrightarrow{\sim}R\Gamma(X\times I,p^{-1}F).</md>
+          The maps back induced by <m>i_t</m> are all the inverse of this isomorphism.</p>
+      </statement>
+      <proof>
+        <p>We use the compact-fiber cohomology statement for this projection: for a bounded-below complex <m>E</m>,
+          <md number="no">(Rp_*E)_x\simeq R\Gamma(\{x\}\times I,E|_{\{x\}\times I}).</md>
+          A precise general form is <url href="https://stacks.math.columbia.edu/tag/09V4">Stacks, Lemma 20.18.1</url>. Its assumptions here are satisfied without conditions on <m>X</m>: projection along the compact space <m>I</m> is closed, its relative diagonal is closed because <m>I</m> is Hausdorff, and every fiber is compact. We only use this compact-projection case, not the general theory of support functors.</p>
+        <p>The restriction of <m>p^{-1}F</m> to the fiber is the constant sheaf with value <m>F_x</m>. By <xref ref="sh-c11-interval"/>, its cohomology is <m>F_x</m> in degree zero and zero otherwise. Under this identification the unit is the identity on <m>F_x</m>. It is therefore a quasi-isomorphism on every stalk. Derived composition gives the assertion for global sections. Since <m>p i_t=\id_X</m>, functoriality makes each map induced by <m>i_t</m> an inverse to the same isomorphism.</p>
+      </proof>
+    </lemma>
+
+    <lemma xml:id="sh-c11-cylinder-local-system">
+      <statement>
+        <p>If <m>H</m> is locally constant on <m>X\times I</m>, then <m>R^q p_*H=0</m> for <m>q&gt;0</m>, <m>p_*H</m> is locally constant, and the counit
+          <md number="no">p^{-1}p_*H\xrightarrow{\sim}H</md>
+          is an isomorphism. Restriction to either endpoint induces isomorphisms on derived global sections.</p>
+      </statement>
+      <proof>
+        <p>On each fiber, <m>H</m> is a locally constant sheaf on an interval, hence is constant and acyclic. The compact-projection formula used in <xref ref="sh-c11-cylinder"/> identifies <m>(p_*H)_x</m> with its sections on the fiber and kills all higher direct images. Evaluation of these sections at <m>(x,t)</m> is an isomorphism. These evaluations are the stalk maps of the counit, proving it is an isomorphism. Pulling back along <m>i_t</m> identifies <m>p_*H</m> with <m>i_t^{-1}H</m>, which is locally constant. Applying <xref ref="sh-c11-cylinder"/> to <m>p_*H</m> proves the final assertion.</p>
+      </proof>
+    </lemma>
+
+    <theorem xml:id="sh-c11-homotopy-theorem">
+      <statement>
+        <p>Let <m>h:X\times I\to Y</m> be a homotopy from <m>f_0</m> to <m>f_1</m>, and let <m>L</m> be a locally constant <m>\Lambda</m>-module sheaf on <m>Y</m>. Transport along this homotopy gives an isomorphism
+          <md number="no">\tau_h:f_0^{-1}L\xrightarrow{\sim}f_1^{-1}L</md>
+          such that the induced pullback maps satisfy
+          <md number="no">H^n(\tau_h)\circ f_0^\sharp=f_1^\sharp:\ H^n(Y,L)\longrightarrow H^n(X,f_1^{-1}L).</md>
+          If <m>L=M_Y</m> is constant, the standard coefficient identifications make <m>\tau_h</m> the identity, so the two pullback maps are equal.</p>
+      </statement>
+      <proof>
+        <p>Apply <xref ref="sh-c11-cylinder-local-system"/> to <m>H=h^{-1}L</m>. Evaluation at the two endpoints identifies <m>p_*H</m> with <m>f_0^{-1}L</m> and <m>f_1^{-1}L</m>; their composite is <m>\tau_h</m>. Equivalently, its stalk at <m>x</m> is parallel transport along <m>t\mapsto h(x,t)</m>.</p>
+        <p>The two maps <m>f_t^\sharp</m> factor as pullback by <m>h</m> followed by restriction to the endpoint. The endpoint restriction maps become equal after the displayed transport, since under the counit they are both the inverse of pullback along <m>p</m>. This proves the cohomology identity. For constant coefficients, the transported constant section has the same value at both endpoints, giving the last assertion.</p>
+      </proof>
+    </theorem>
+    <p>The coefficient isomorphism depends on the chosen homotopy. A loop of homotopies can produce monodromy. Thus one should not write equality of maps into <m>H^n(X,f_0^{-1}L)</m> and <m>H^n(X,f_1^{-1}L)</m> before specifying the coefficient identification. This distinction is absent for constant coefficients.</p>
+
+    <corollary xml:id="sh-c11-contractible">
+      <statement>
+        <p>A homotopy equivalence <m>f:X\to Y</m> induces isomorphisms
+          <md number="no">H^n(Y,L)\xrightarrow{\sim}H^n(X,f^{-1}L)</md>
+          for every locally constant sheaf <m>L</m>. If <m>X</m> is nonempty and contractible, every locally constant <m>\Lambda</m>-module sheaf on <m>X</m> is constant, and
+          <md number="no">H^0(X,M_X)\simeq M,\qquad H^q(X,M_X)=0\quad(q&gt;0).</md>
+          No separation or paracompactness assumption is needed.</p>
+      </statement>
+      <proof>
+        <p>Pullback of local systems along a homotopy equivalence is an equivalence, with inverse given by a homotopy inverse and the coefficient transports from the two homotopies. The functorial pullback maps on cohomology respect these transports by <xref ref="sh-c11-homotopy-theorem"/>; applying the theorem to the composites gives the stated isomorphisms. For a contraction, pullback from a point is therefore an equivalence of local-system categories and gives the cohomology formula, since sections on a point are an exact functor. The same statements are <xref ref="sh-bib-schapira" detail="Corollaries 3.6.6–3.6.7 and Proposition 3.6.8"/>.</p>
+      </proof>
+    </corollary>
+  </section>
+
+  <section xml:id="sh-c11-examples-and-boundaries">
+    <title>Computations and the limits of the comparison</title>
+    <example xml:id="sh-c11-sphere">
+      <statement>
+        <p>For <m>n\geq1</m> and any <m>\Lambda</m>-module <m>M</m>,
+          <md number="no">H^q(S^n,M_{S^n})\simeq\begin{cases}M,&amp;q=0,n,\\0,&amp;q\ne0,n.\end{cases}</md>
+          When <m>n=1</m>, the two occurrences mean one copy in degree zero and one in degree one. Every local system on <m>S^n</m> for <m>n\geq2</m> is constant.</p>
+      </statement>
+      <solution>
+        <p>Use two enlarged hemispheres <m>U,V</m>. They are contractible, and their intersection deformation retracts onto <m>S^{n-1}</m>. For <m>n=1</m>, the intersection has two contractible components, and the calculation is <xref ref="sh-c10-circle-formula"/> with identity monodromy. For <m>n\geq2</m>, the intersection is connected, so the degree-zero difference map <m>M\oplus M\to M</m> is onto and has diagonal kernel. Mayer–Vietoris gives the asserted degree zero, vanishing in degree one, and
+          <md number="no">H^q(S^n,M)\simeq H^{q-1}(S^{n-1},M)\qquad(q\geq2).</md>
+          Induction proves the formula. The cohomology on the contractible sets and the deformation retraction are justified by <xref ref="sh-c11-contractible"/>, not by an implicit assumption that every open set is acyclic. Triviality of the local systems follows from simple connectivity and the monodromy classification.</p>
+      </solution>
+    </example>
+
+    <p>Describing local systems by a fundamental group does not mean that all their sheaf cohomology is group cohomology. For a connected CW complex with contractible universal cover, the equivariant singular chains of the universal cover form a free resolution over the group ring. In that case the local-coefficient complex gives
+      <md number="no">H^n(X,L)\simeq H^n\bigl(\pi_1(X,x);L_x\bigr).</md>
+      Contractibility of the universal cover is a substantive additional condition. For <m>S^2</m>, the fundamental group is trivial but <m>H^2(S^2,\Lambda)=\Lambda</m>, whereas positive group cohomology of the trivial group vanishes. The equivalence describing local systems controls the coefficients; the topology of <m>X</m> still enters their cohomology.<fn>In the universal-cover formula one computes equivariant cochains before taking cohomology. Replacing the entire space by its fundamental group requires an acyclic resolution of the trivial module, which the universal-cover chains supply in the contractible-cover case. See <xref ref="sh-bib-hatcher" detail="§3.H"/>.</fn></p>
+
+    <example xml:id="sh-c11-sine-curve">
+      <statement>
+        <p>Let <m>X</m> be the closed topologist's sine curve
+          <md number="no">X=\{(x,\sin(1/x)):0&lt;x\leq1\}\ \cup\ \bigl(\{0\}\times[-1,1]\bigr)\subset\R^2.</md>
+          For a nonzero module <m>M</m>, the natural comparison from constant-sheaf sections to singular cohomology fails to be an isomorphism already in degree zero.</p>
+      </statement>
+      <solution>
+        <p>This space is connected and has two path components: the graph and the vertical segment. To see the first assertion, the graph is connected and its closure is all of <m>X</m>. For the second, a path leaving the vertical segment would have a continuous positive first coordinate approaching zero; the intermediate value property forces its second coordinate to take the values <m>1</m> and <m>-1</m> arbitrarily close to the departure time, contradicting continuity. Each of the two displayed pieces is itself path-connected.</p>
+        <p>A locally constant function from the connected space <m>X</m> to the discrete set <m>M</m> is constant, so <m>H^0(X,M_X)=M</m>. A singular degree-zero cocycle can independently choose a value on each path component, so <m>H^0_{\mathrm{sing}}(X;M)=M\times M</m>. Evaluation of a sheaf section as a degree-zero cochain sends <m>m</m> to <m>(m,m)</m>. It is not onto. The space is compact and metrizable; these properties do not replace the missing local condition.</p>
+      </solution>
+    </example>
+    <p>For an arbitrary space, sheaf degree zero consists of <em>locally constant functions</em>; arbitrary functions on connected components need not be locally constant because the components need not be open. Singular degree zero permits all assignments to path components. The displayed diagonal map does not identify these constructions, even for a module abstractly isomorphic to its own square.</p>
+
+    <example xml:id="sh-c11-nonlocal-coefficients">
+      <statement>
+        <p>Homotopy equivalence need not preserve cohomology with an arbitrary sheaf pulled back. Let <m>i:\{0\}\hookrightarrow\R</m>, let <m>j:\{1\}\hookrightarrow\R</m>, and let <m>F=j_*M</m> be the skyscraper sheaf at <m>1</m>, with <m>M\ne0</m>. Then <m>i</m> is a homotopy equivalence, but
+          <md number="no">H^0(\R,F)=M,\qquad H^0(\{0\},i^{-1}F)=0.</md>
+        </p>
+      </statement>
+      <solution>
+        <p>The first group is the global sections of the skyscraper, and the second is its stalk at <m>0</m>, which vanishes. The sheaf is not locally constant near <m>1</m>. Its restriction to a homotopy path therefore supplies no invertible coefficient transport. This is exactly the missing input in <xref ref="sh-c11-homotopy-theorem"/>.</p>
+      </solution>
+    </example>
+
+    <p>There are consequently separate tests for a proposed topological computation. To use a singular complex, verify a comparison theorem for the space and coefficients. To use homotopy invariance, verify local constancy and retain the pullback coefficient sheaf. To use a Čech complex, verify either the relevant low-degree comparison or acyclicity of the chosen intersections. None of these justifications can be replaced by the assertion that the space is familiar or finite-dimensional.</p>
+  </section>
+</chapter>

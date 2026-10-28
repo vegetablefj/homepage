@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-darkmode="disabled">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette: blue-red                     *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Cohomology, hypercohomology, and products</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Sheaves on topological spaces and cohomology">
+<meta property="og:title" content="Sheaves on topological spaces and cohomology">
+<meta property="book:title" content="Sheaves on topological spaces and cohomology">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.53"></script><script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="../../vendor/lunr/lunr.min.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+<link rel="stylesheet" href="../../layout.css?v=fee08a8c1c">
+<script src="../../layout.js?v=e9391a21a7" defer></script><link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"C": "\\mathbb C", "Pone": "\\mathbb{P}^1_{\\mathbb{C}}", "cO": "\\mathcal{O}", "ord": "\\operatorname{ord}", "lt": "<", "gt": ">", "amp": "&", "Hom": "\\operatorname{Hom}", "End": "\\operatorname{End}", "Ext": "\\operatorname{Ext}", "Tor": "\\operatorname{Tor}", "colim": "\\operatorname{colim}", "im": "\\operatorname{im}", "coker": "\\operatorname{coker}", "Cone": "\\operatorname{Cone}", "Tot": "\\operatorname{Tot}", "Loc": "\\operatorname{Loc}", "Sh": "\\mathsf{Sh}", "PSh": "\\mathsf{PSh}", "Set": "\\mathsf{Set}", "Ab": "\\mathsf{Ab}", "Mod": "\\mathsf{Mod}", "Ch": "\\mathsf{C}", "K": "\\mathsf{K}", "D": "\\mathsf{D}", "id": "\\mathrm{id}", "op": "\\mathrm{op}", "RHom": "\\mathbf R\\!\\operatorname{Hom}", "sheafHom": "\\mathcal{H}\\!om", "RsheafHom": "\\mathbf R\\mathcal{H}\\!om", "Ltensor": "\\mathbin{\\otimes^{\\mathbf L}}", "Z": "\\mathbb Z", "N": "\\mathbb N", "Q": "\\mathbb Q", "R": "\\mathbb R"}}, "options": {"ignoreHtmlClass": "ignore-math", "processHtmlClass": "process-math", "enableMenu": false}};</script><script src="../../vendor/mathjax/tex-chtml.js" defer></script>
+</head>
+<body class="pretext book ignore-math note-page" data-page-format="note">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner"><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="sheaves-topological-notes.html"><span class="title">Sheaves on topological spaces and cohomology</span></a></div>
+<p class="byline"><a href="../../home.html">Jie Fu</a>'s <a href="../../notes.html">Notes</a></p>
+<p class="note-metadata"><span class="note-review-status">Under review and improvement</span> · <span class="note-last-updated">Last updated: <time datetime="2026-10-26">2026-10-26</time></span></p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Contents</span></button><a class="index-button button" href="sh-index.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Index</span></a><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true"></span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="treebuttons"><a class="previous-button button" href="sh-c07.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="up-button button" href="sheaves-topological-notes.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Up</span></a><a class="next-button button" href="sh-c09.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a></span>
+</div></nav><div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth4 focused" data-preexpanded-levels="1" data-max-levels="4"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c00.html" class="internal"><span class="codenumber">0</span> <span class="title">Conventions and the local-to-global problem</span></a></div>
+<ul id="ptx-toc-group-sh-c00" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c00.html#sh-c00-objects" class="internal"><span class="codenumber">0.1</span> <span class="title">Spaces, coefficients, and size</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c00.html#sh-c00-functors" class="internal"><span class="codenumber">0.2</span> <span class="title">Inverse images and the two Hom constructions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c00.html#sh-c00-complexes" class="internal"><span class="codenumber">0.3</span> <span class="title">Complexes, degrees, and derived categories</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c00.html#sh-c00-reading" class="internal"><span class="codenumber">0.4</span> <span class="title">Dependencies and sources</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c01.html" class="internal"><span class="codenumber">1</span> <span class="title">Presheaves, sheaves, and local data</span></a></div>
+<ul id="ptx-toc-group-sh-c01" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-presheaves" class="internal"><span class="codenumber">1.1</span> <span class="title">Restrictions and morphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-locality" class="internal"><span class="codenumber">1.2</span> <span class="title">Locality and gluing</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-examples" class="internal"><span class="codenumber">1.3</span> <span class="title">Functions and sections of maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-failures" class="internal"><span class="codenumber">1.4</span> <span class="title">Conditions that do not glue</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-basis" class="internal"><span class="codenumber">1.5</span> <span class="title">Sheaves on a basis</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-localtesting" class="internal"><span class="codenumber">1.6</span> <span class="title">Testing the sheaf condition</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c02.html" class="internal"><span class="codenumber">2</span> <span class="title">Stalks, étalé spaces, and sheafification</span></a></div>
+<ul id="ptx-toc-group-sh-c02" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-germs" class="internal"><span class="codenumber">2.1</span> <span class="title">Germs and neighbourhood colimits</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-etalespace" class="internal"><span class="codenumber">2.2</span> <span class="title">The space of germs</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-sheafification" class="internal"><span class="codenumber">2.3</span> <span class="title">Associated sheaves</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-detection" class="internal"><span class="codenumber">2.4</span> <span class="title">Detecting sheaf morphisms at stalks</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-equivalence" class="internal"><span class="codenumber">2.5</span> <span class="title">Sheaves and local homeomorphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-specialization" class="internal"><span class="codenumber">2.6</span> <span class="title">Compatibility between different points</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c03.html" class="internal"><span class="codenumber">3</span> <span class="title">Categories of sheaves and exactness</span></a></div>
+<ul id="ptx-toc-group-sh-c03" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c03.html#sh-c03-limits" class="internal"><span class="codenumber">3.1</span> <span class="title">Limits and colimits</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c03.html#sh-c03-monoepi" class="internal"><span class="codenumber">3.2</span> <span class="title">Monomorphisms and local surjectivity</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c03.html#sh-c03-exactness" class="internal"><span class="codenumber">3.3</span> <span class="title">Kernels, images, and quotients</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c03.html#sh-c03-grothendieck" class="internal"><span class="codenumber">3.4</span> <span class="title">Generators and the Grothendieck property</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c03.html#sh-c03-filteredsections" class="internal"><span class="codenumber">3.5</span> <span class="title">Filtered colimits and section functors</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c04.html" class="internal"><span class="codenumber">4</span> <span class="title">Inverse images, direct images, and gluing</span></a></div>
+<ul id="ptx-toc-group-sh-c04" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-direct" class="internal"><span class="codenumber">4.1</span> <span class="title">Direct image and the inverse image presheaf</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-adjoint" class="internal"><span class="codenumber">4.2</span> <span class="title">The adjunction and stalks</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-points" class="internal"><span class="codenumber">4.3</span> <span class="title">Point maps and direct image germs</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-basechange" class="internal"><span class="codenumber">4.4</span> <span class="title">The base change comparison</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-restriction" class="internal"><span class="codenumber">4.5</span> <span class="title">Subspaces and open extension by zero</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-closed" class="internal"><span class="codenumber">4.6</span> <span class="title">Closed inclusions and an exact sequence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-descent" class="internal"><span class="codenumber">4.7</span> <span class="title">Gluing sheaves and morphisms</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c05.html" class="internal"><span class="codenumber">5</span> <span class="title">Constant sheaves and local systems</span></a></div>
+<ul id="ptx-toc-group-sh-c05" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c05.html#sh-c05-constant-section" class="internal"><span class="codenumber">5.1</span> <span class="title">Constant coefficients and locally constant functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c05.html#sh-c05-local-section" class="internal"><span class="codenumber">5.2</span> <span class="title">Locally constant sheaves and transition maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c05.html#sh-c05-coverings" class="internal"><span class="codenumber">5.3</span> <span class="title">Covering spaces and transport</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c05.html#sh-c05-monodromy-section" class="internal"><span class="codenumber">5.4</span> <span class="title">The monodromy classification</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c05.html#sh-c05-examples" class="internal"><span class="codenumber">5.5</span> <span class="title">The circle, finite coverings, and pullback</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c06.html" class="internal"><span class="codenumber">6</span> <span class="title">Tensor products and internal Hom</span></a></div>
+<ul id="ptx-toc-group-sh-c06" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-tensor-section" class="internal"><span class="codenumber">6.1</span> <span class="title">The tensor product sheaf</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-hom-section" class="internal"><span class="codenumber">6.2</span> <span class="title">Internal Hom and its adjunction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-finite" class="internal"><span class="codenumber">6.3</span> <span class="title">Stalks and finite presentation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-functorial" class="internal"><span class="codenumber">6.4</span> <span class="title">Inverse image and direct image comparisons</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-localsystems" class="internal"><span class="codenumber">6.5</span> <span class="title">Tensor and Hom of local systems</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-duals" class="internal"><span class="codenumber">6.6</span> <span class="title">Finite local models and duals</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-flat-section" class="internal"><span class="codenumber">6.7</span> <span class="title">Flatness and its stalk criterion</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-flat-resolutions" class="internal"><span class="codenumber">6.8</span> <span class="title">Enough flat sheaves</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c07.html" class="internal"><span class="codenumber">7</span> <span class="title">Resolutions and derived sheaf operations</span></a></div>
+<ul id="ptx-toc-group-sh-c07" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c07.html#sh-c07-injective-section" class="internal"><span class="codenumber">7.1</span> <span class="title">Injectives and extension of sections</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c07.html#sh-c07-godement-section" class="internal"><span class="codenumber">7.2</span> <span class="title">The Godement resolution</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c07.html#sh-c07-unbounded-section" class="internal"><span class="codenumber">7.3</span> <span class="title">K-injective resolutions and direct image</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c07.html#sh-c07-tensor-hom-section" class="internal"><span class="codenumber">7.4</span> <span class="title">Derived tensor and internal Hom</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="sh-c08.html" class="internal"><span class="codenumber">8</span> <span class="title">Cohomology, hypercohomology, and products</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-sh-c08">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-cohomology-section" class="internal"><span class="codenumber">8.1</span> <span class="title">Derived sections and connecting morphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-directimage-section" class="internal"><span class="codenumber">8.2</span> <span class="title">Higher direct images and locality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-hypercohomology-section" class="internal"><span class="codenumber">8.3</span> <span class="title">The two hypercohomology spectral sequences</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-leray-section" class="internal"><span class="codenumber">8.4</span> <span class="title">Composition and the Leray spectral sequence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-ext-section" class="internal"><span class="codenumber">8.5</span> <span class="title">Local and global Ext</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-cup-section" class="internal"><span class="codenumber">8.6</span> <span class="title">Cup products</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c09.html" class="internal"><span class="codenumber">9</span> <span class="title">Čech cohomology and descent on open covers</span></a></div>
+<ul id="ptx-toc-group-sh-c09" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-complex-section" class="internal"><span class="codenumber">9.1</span> <span class="title">The complex of a covering</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-refinement-section" class="internal"><span class="codenumber">9.2</span> <span class="title">Refinements and their choices</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-comparison-section" class="internal"><span class="codenumber">9.3</span> <span class="title">Comparison with derived cohomology</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-acyclic-section" class="internal"><span class="codenumber">9.4</span> <span class="title">Acyclic covers and computations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-mayer-section" class="internal"><span class="codenumber">9.5</span> <span class="title">Mayer–Vietoris without acyclic intersections</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-products-section" class="internal"><span class="codenumber">9.6</span> <span class="title">Products and the scope of the comparison</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c10.html" class="internal"><span class="codenumber">10</span> <span class="title">Low-degree classes and calculations</span></a></div>
+<ul id="ptx-toc-group-sh-c10" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-lifting" class="internal"><span class="codenumber">10.1</span> <span class="title">Sections and their lifting obstructions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-torsors" class="internal"><span class="codenumber">10.2</span> <span class="title">Torsors and degree-one cocycles</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-extensions" class="internal"><span class="codenumber">10.3</span> <span class="title">Extensions and the classification of torsors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-affine-monodromy" class="internal"><span class="codenumber">10.4</span> <span class="title">Affine monodromy in degree one</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-circle" class="internal"><span class="codenumber">10.5</span> <span class="title">A circle with local coefficients</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-finite-gluing" class="internal"><span class="codenumber">10.6</span> <span class="title">A finite gluing space</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c11.html" class="internal"><span class="codenumber">11</span> <span class="title">Singular cohomology and homotopy</span></a></div>
+<ul id="ptx-toc-group-sh-c11" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-singular-cochains" class="internal"><span class="codenumber">11.1</span> <span class="title">Singular cochains with local coefficients</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-cochain-sheaves" class="internal"><span class="codenumber">11.2</span> <span class="title">The sheafified singular complex</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-comparison" class="internal"><span class="codenumber">11.3</span> <span class="title">The comparison theorem</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-broader-comparison" class="internal"><span class="codenumber">11.4</span> <span class="title">Broader local hypotheses</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-homotopy" class="internal"><span class="codenumber">11.5</span> <span class="title">Homotopy invariance with transported coefficients</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-examples-and-boundaries" class="internal"><span class="codenumber">11.6</span> <span class="title">Computations and the limits of the comparison</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="sheaves-topological-notes-16.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul id="ptx-toc-group-sheaves-topological-notes-16" class="structural toc-item-list">
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="sh-concordance.html" class="internal"><span class="codenumber">A.</span> <span class="title">Terminology and hypotheses</span></a></div>
+<ul id="ptx-toc-group-sh-concordance" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-concordance.html#sh-concordance-objects" class="internal"><span class="codenumber">A.1</span> <span class="title">Objects and notation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-concordance.html#sh-concordance-operations" class="internal"><span class="codenumber">A.2</span> <span class="title">Operations and exactness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-concordance.html#sh-concordance-cohomology" class="internal"><span class="codenumber">A.3</span> <span class="title">Cohomology and covering choices</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-concordance.html#sh-concordance-topology" class="internal"><span class="codenumber">A.4</span> <span class="title">Which topology assumptions are being used?</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="sh-references.html" class="internal"><span class="title">References</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="sh-index.html" class="internal"><span class="title">Index</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="chapter" id="sh-c08">
+<h1 class="heading">
+<span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Cohomology, hypercohomology, and products</span>
+</h1>
+<section class="introduction" id="sh-c08-2">
+<div class="para" id="sh-c08-2-1">Derived sections and derived direct image retain the information lost when sections fail to lift globally. Their cohomology groups and sheaves can be computed by the resolutions of <a href="sh-c07.html" class="internal" title="Chapter 7: Resolutions and derived sheaf operations">Chapter 7</a>. This chapter relates the resulting constructions: cohomology on open sets, higher direct images, hypercohomology, Leray spectral sequences, local and global Ext, and cup products. The total derived functors exist without boundedness assumptions; the spectral sequences below are stated under bounded below hypotheses that ensure finite filtrations in each total degree.</div></section>
+<section class="section" id="sh-c08-cohomology-section">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Derived sections and connecting morphisms</span>
+</h2>
+<article class="definition definition-like" id="sh-c08-cohomology"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.1</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c08-cohomology-3-1">
+<div class="para">For <span class="process-math">\(K\in\D(X;\Lambda)\)</span> and an open set <span class="process-math">\(U\subseteq X\text{,}\)</span> define</div>
+<div class="displaymath process-math" id="sh-c08-cohomology-3-1-3">
+\begin{equation*}
+H^n(U,K)=H^n(R\Gamma(U,K)).
+\end{equation*}
+</div>
+<div class="para">For a sheaf <span class="process-math">\(F\)</span> placed in degree zero, these are its <dfn class="terminology">sheaf cohomology groups</dfn>. For a complex they are also called <dfn class="terminology">hypercohomology groups</dfn>. We use the same notation in both cases. If <span class="process-math">\(K\to I\)</span> is a K-injective resolution on <span class="process-math">\(X\text{,}\)</span> then</div>
+<div class="displaymath process-math" id="sh-c08-cohomology-3-1-9">
+\begin{equation*}
+H^n(U,K)=H^n(\Gamma(U,I)).
+\end{equation*}
+</div>
+</div>
+</article>
+<div class="para" id="sh-c08-cohomology-values">In particular, <span class="process-math">\(H^0(U,F)=F(U)\)</span> and <span class="process-math">\(H^n(U,F)=0\)</span> for <span class="process-math">\(n&lt;0\text{.}\)</span> The object <span class="process-math">\(R\Gamma(U,K)\)</span> is a complex of <span class="process-math">\(\Lambda\)</span>-modules up to quasi-isomorphism. Its cohomology is a family of modules. The cohomology sheaves <span class="process-math">\(\mathcal H^n(K)\)</span> are objects on <span class="process-math">\(X\text{;}\)</span> they are different from both of these constructions.<a id="sh-c08-hypercohomology-notation" href="#margin-sh-c08-hypercohomology-notation" class="margin-note-marker" aria-label="Margin note 1">1</a>
+</div>
+<article class="proposition theorem-like" id="sh-c08-longexact"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c08-longexact-1-1">
+<div class="para">A distinguished triangle <span class="process-math">\(K\to L\to M\to K[1]\)</span> gives a natural long exact sequence</div>
+<div class="displaymath process-math" id="sh-c08-longexact-1-1-2">
+\begin{equation*}
+\cdots\longrightarrow H^n(U,K)\longrightarrow H^n(U,L)\longrightarrow H^n(U,M)\longrightarrow H^{n+1}(U,K)\longrightarrow\cdots.
+\end{equation*}
+</div>
+<div class="para">For a short exact sequence <span class="process-math">\(0\to F\to G\to H\to0\text{,}\)</span> the sequence begins</div>
+<div class="displaymath process-math" id="sh-c08-longexact-1-1-4">
+\begin{equation*}
+0\longrightarrow F(U)\longrightarrow G(U)\longrightarrow H(U)\xrightarrow{\partial}H^1(U,F)\longrightarrow H^1(U,G)\longrightarrow\cdots.
+\end{equation*}
+</div>
+<div class="para">These sequences commute with restriction to a smaller open set.</div>
+</div>
+</article>
+<details id="sh-c08-longexact-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c08-longexact-2-1">The functor <span class="process-math">\(R\Gamma(U,-)\)</span> is exact as a functor of triangulated categories. Take cohomology of its image triangle. Restriction is induced by the maps of section complexes <span class="process-math">\(\Gamma(U,I)\to\Gamma(V,I)\text{,}\)</span> so it commutes with the connecting maps.</div>
+</article></details>
+<div class="para" id="sh-c08-cohomology-section-5">The equation <span class="process-math">\(\partial(h)=0\)</span> says exactly that <span class="process-math">\(h\in H(U)\)</span> lifts to <span class="process-math">\(G(U)\text{.}\)</span> A sheaf epimorphism ensures that <span class="process-math">\(h\)</span> has lifts on a covering, so its obstruction class restricts to zero on that covering. If <span class="process-math">\(g_i\)</span> are local lifts on <span class="process-math">\(U_i\text{,}\)</span> the differences <span class="process-math">\(g_j-g_i\)</span> on <span class="process-math">\(U_i\cap U_j\)</span> lie in <span class="process-math">\(F\)</span> and measure whether the lifts can be modified to glue. The sign in this description agrees with the Čech differential fixed in <a href="sh-c09.html#sh-c09-cech-definition" class="xref" data-knowl="./knowl/xref/sh-c09-cech-definition.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 9.1">Definition 9.1</a>.</div>
+<article class="proposition theorem-like" id="sh-c08-coefficients"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sh-c08-coefficients-1-1">For a sheaf of <span class="process-math">\(\Lambda\)</span>-modules <span class="process-math">\(F\text{,}\)</span> the groups <span class="process-math">\(H^n(U,F)\)</span> agree with those obtained by regarding <span class="process-math">\(F\)</span> as a sheaf of abelian groups. The same assertion holds for bounded below complexes, and for higher direct images of sheaves or bounded below complexes. The identifications commute with restriction and connecting morphisms.</div>
+</article>
+<details id="sh-c08-coefficients-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c08-coefficients-2-1">Choose an injective resolution in <span class="process-math">\(\Sh(X;\Lambda)\text{.}\)</span> Its terms are flabby, and remain flabby after forgetting the module structure. They are therefore acyclic for sections in the abelian-sheaf category as well. The same resolution computes both cohomologies. For a bounded below complex use a bounded below injective resolution and the acyclic resolution theorem. Taking sections on inverse images of open sets proves the assertion for higher direct images.</div>
+</article></details>
+<div class="para" id="sh-c08-cohomology-section-7">This comparison does not say that an injective sheaf of <span class="process-math">\(\Lambda\)</span>-modules is injective after forgetting coefficients. Flabbiness provides the needed acyclicity. See <a class="external" href="https://stacks.math.columbia.edu/tag/01EY" target="_blank">Stacks, Lemma 20.13.3</a>. We only use coefficient forgetting in the bounded below range just proved.</div>
+<article class="proposition theorem-like" id="sh-c08-pullback"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c08-pullback-1-1">
+<div class="para">For a continuous map <span class="process-math">\(f:X\to Y\)</span> and <span class="process-math">\(K\in\D(Y;\Lambda)\text{,}\)</span> the derived unit gives a natural morphism</div>
+<div class="displaymath process-math" id="sh-c08-pullback-1-1-3">
+\begin{equation*}
+R\Gamma(Y,K)\longrightarrow R\Gamma(X,f^{-1}K).
+\end{equation*}
+</div>
+<div class="para">These morphisms compose under composition of maps. A morphism <span class="process-math">\(f^{-1}K\to L\)</span> therefore induces maps <span class="process-math">\(H^n(Y,K)\to H^n(X,L)\text{.}\)</span>
+</div>
+</div>
+</article>
+<details id="sh-c08-pullback-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c08-pullback-2-1">Apply <span class="process-math">\(R\Gamma(Y,-)\)</span> to the unit <span class="process-math">\(K\to Rf_*f^{-1}K\text{,}\)</span> and use <span class="process-math">\(R\Gamma(Y,Rf_*(-))\simeq R\Gamma(X,-)\text{,}\)</span> proved below. Compatibility with composition is the compatibility of the units of the composed adjunctions.</div>
+</article></details>
+<div class="para" id="sh-c08-cohomology-section-9">For an inclusion of an open set this is ordinary restriction in cohomology. For constant coefficients it gives the usual contravariance of <span class="process-math">\(H^n(X,\Lambda_X)\)</span> in <span class="process-math">\(X\text{.}\)</span> For a general sheaf on <span class="process-math">\(X\text{,}\)</span> a map to <span class="process-math">\(Y\)</span> alone does not specify a sheaf on <span class="process-math">\(Y\)</span> from which to pull back; the coefficient morphism belongs to the data.</div>
+</section>
+<section class="section" id="sh-c08-directimage-section">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Higher direct images and locality</span>
+</h2>
+<article class="definition definition-like" id="sh-c08-higherdirectimage"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c08-higherdirectimage-2-1">
+<div class="para">For a sheaf <span class="process-math">\(F\)</span> on <span class="process-math">\(X\text{,}\)</span> its <dfn class="terminology">higher direct images</dfn> are</div>
+<div class="displaymath process-math" id="sh-c08-higherdirectimage-2-1-4">
+\begin{equation*}
+R^qf_*F=\mathcal H^q(Rf_*F),\qquad q\geq0.
+\end{equation*}
+</div>
+<div class="para">Thus <span class="process-math">\(R^0f_*F=f_*F\text{.}\)</span> For a complex <span class="process-math">\(K\text{,}\)</span> we write <span class="process-math">\(\mathcal H^q(Rf_*K)\)</span> when it is useful to distinguish cohomology of a total derived functor from its restriction to sheaves.</div>
+</div>
+</article>
+<article class="proposition theorem-like" id="sh-c08-directimage-local"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.6</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c08-directimage-local-1-1">
+<div class="para">For <span class="process-math">\(K\in\D(X;\Lambda)\text{,}\)</span> the sheaf <span class="process-math">\(\mathcal H^q(Rf_*K)\)</span> is the sheaf associated to the presheaf</div>
+<div class="displaymath process-math" id="sh-c08-directimage-local-1-1-3">
+\begin{equation*}
+V\longmapsto H^q(f^{-1}V,K),\qquad V\subseteq Y\text{ open}.
+\end{equation*}
+</div>
+<div class="para">Consequently, for <span class="process-math">\(y\in Y\text{,}\)</span>
+</div>
+<div class="displaymath process-math" id="sh-c08-directimage-local-1-1-5">
+\begin{equation*}
+\mathcal H^q(Rf_*K)_y=\colim_{V\ni y}H^q(f^{-1}V,K).
+\end{equation*}
+</div>
+<div class="para">In particular, for a sheaf <span class="process-math">\(F\)</span> and <span class="process-math">\(q&gt;0\text{,}\)</span> the presheaf <span class="process-math">\(U\mapsto H^q(U,F)\)</span> has zero associated sheaf.</div>
+</div>
+</article>
+<details id="sh-c08-directimage-local-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c08-directimage-local-2-1">Take a K-injective resolution <span class="process-math">\(K\to I\text{.}\)</span> The complex of sections of <span class="process-math">\(f_*I\)</span> on <span class="process-math">\(V\)</span> is <span class="process-math">\(\Gamma(f^{-1}V,I)\text{,}\)</span> which computes the stated hypercohomology because restriction preserves K-injectives. Cohomology of a complex of sheaves is the sheafification of its cohomology presheaf. Taking stalks gives the formula, since filtered colimits of modules are exact. For <span class="process-math">\(f=\id_X\)</span> and a sheaf <span class="process-math">\(F\text{,}\)</span> the positive cohomology sheaves are zero.</div>
+</article></details>
+<div class="para" id="sh-c08-directimage-section-4">Thus every positive-degree cohomology class becomes zero on some neighborhood of each point. This is a local assertion about a given class, rather than a claim that every sufficiently small open set has no positive cohomology. Different classes may require different neighborhoods. The stalk formula involves neighborhoods of the whole inverse image of <span class="process-math">\(y\text{.}\)</span> Replacing it by <span class="process-math">\(H^q(f^{-1}(y),F|_{f^{-1}(y)})\)</span> requires a base change theorem and is not valid for an arbitrary continuous map.</div>
+<article class="example example-like" id="sh-c08-open-directimage"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.7</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sh-c08-open-directimage-1-1">Let <span class="process-math">\(j:U\hookrightarrow X\)</span> be open. On <span class="process-math">\(U\text{,}\)</span> the positive sheaves <span class="process-math">\(R^qj_*F\)</span> vanish, but their stalks on the boundary can be nonzero.</div>
+<div class="solutions">
+<details id="sh-c08-open-directimage-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="sh-c08-open-directimage-2-1">
+<div class="para">For <span class="process-math">\(x\in U\text{,}\)</span> take neighborhoods contained in <span class="process-math">\(U\text{.}\)</span> The stalk formula is then the stalk at <span class="process-math">\(x\)</span> of the positive cohomology presheaf of <span class="process-math">\(F\text{,}\)</span> hence zero. At a boundary point, the formula is instead</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/sh-c11.html" id="sh-c08-open-directimage-2-1-5">
+\begin{equation*}
+(R^qj_*F)_x=\colim_{V\ni x}H^q(V\cap U,F).
+\end{equation*}
+</div>
+<div class="para">For instance, the topology of punctured neighborhoods can contribute to this colimit. This formula explains why <span class="process-math">\(j_*\text{,}\)</span> unlike <span class="process-math">\(j_!\text{,}\)</span> need not be exact. A computation of a particular punctured neighborhood requires the comparison results of <a href="sh-c11.html" class="internal" title="Chapter 11: Singular cohomology and homotopy">Chapter 11</a>.</div>
+</div>
+</div></details>
+</div>
+</article></section>
+<section class="section" id="sh-c08-hypercohomology-section">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The two hypercohomology spectral sequences</span>
+</h2>
+<div class="para" id="sh-c08-hypercohomology-section-2">For a bounded below complex, there are two natural ways to separate its differential from the operation of taking sections. One begins with its terms, and the other with its cohomology sheaves. We keep the different first pages visible.</div>
+<article class="theorem theorem-like" id="sh-c08-hypercohomology"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.8</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c08-hypercohomology-1-1">
+<div class="para">Let <span class="process-math">\(K^\bullet\)</span> be a complex with <span class="process-math">\(K^p=0\)</span> for <span class="process-math">\(p&lt;p_0\text{.}\)</span> There is a natural spectral sequence</div>
+<div class="displaymath process-math" id="sh-c08-hypercohomology-1-1-4">
+\begin{equation*}
+E_1^{p,q}=H^q(X,K^p)\ \Longrightarrow\ H^{p+q}(X,K),\qquad p\geq p_0,\ q\geq0.
+\end{equation*}
+</div>
+<div class="para">For <span class="process-math">\(K\in\D^+(X;\Lambda)\text{,}\)</span> there is also a natural spectral sequence</div>
+<div class="displaymath process-math" id="sh-c08-hypercohomology-1-1-6">
+\begin{equation*}
+E_2^{p,q}=H^p(X,\mathcal H^q(K))\ \Longrightarrow\ H^{p+q}(X,K),\qquad p\geq0.
+\end{equation*}
+</div>
+<div class="para">In each case <span class="process-math">\(d_r\)</span> has bidegree <span class="process-math">\((r,1-r)\text{,}\)</span> and the abutment in each degree has a finite filtration with successive quotients <span class="process-math">\(E_\infty^{p,n-p}\text{.}\)</span>
+</div>
+</div>
+</article>
+<details id="sh-c08-hypercohomology-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c08-hypercohomology-2-1">For the first sequence, use the Godement double complex <span class="process-math">\(\Gamma(X,G^q(K^p))\)</span> from <a href="sh-c07.html#sh-c07-godement-complex" class="xref" data-knowl="./knowl/xref/sh-c07-godement-complex.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 7.12">Proposition 7.12</a>. Taking cohomology in the resolution direction gives <span class="process-math">\(H^q(X,K^p)\text{.}\)</span> The induced first differential is the one induced by <span class="process-math">\(d_K\text{.}\)</span> The total complex computes <span class="process-math">\(R\Gamma(X,K)\text{.}\)</span> Each diagonal is finite, which proves the claimed convergence.</div>
+<div class="para logical" id="sh-c08-hypercohomology-2-2">
+<div class="para">For the second sequence, apply derived sections to the canonical truncation triangles</div>
+<div class="displaymath process-math" id="sh-c08-hypercohomology-2-2-1">
+\begin{equation*}
+\tau_{\leq q-1}K\longrightarrow\tau_{\leq q}K\longrightarrow \mathcal H^q(K)[-q]\longrightarrow(\tau_{\leq q-1}K)[1].
+\end{equation*}
+</div>
+<div class="para">The associated exact couple, with the usual reindexing, has the displayed <span class="process-math">\(E_2\)</span> page. Boundedness below and the absence of negative cohomology for sections of a sheaf leave only finitely many terms in each total degree. The exact-couple construction and finite-filtration convergence are the general results of the <a class="external" href="../homological-algebra/ha-c07.html" target="_blank">spectral sequence chapter</a>. A sheaf reference with these two filtrations is <a class="external" href="https://stacks.math.columbia.edu/tag/0FLJ" target="_blank">Stacks, Examples 20.29.3–20.29.4</a>.</div>
+</div>
+</article></details>
+<article class="corollary theorem-like" id="sh-c08-acyclic-complex"><h3 class="heading">
+<span class="type">Corollary</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.9</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c08-acyclic-complex-1-1">
+<div class="para">If <span class="process-math">\(K\)</span> is bounded below and each <span class="process-math">\(K^p\)</span> is acyclic for sections on <span class="process-math">\(X\text{,}\)</span> the natural map</div>
+<div class="displaymath process-math" id="sh-c08-acyclic-complex-1-1-4">
+\begin{equation*}
+\Gamma(X,K)\longrightarrow R\Gamma(X,K)
+\end{equation*}
+</div>
+<div class="para">is a quasi-isomorphism. The analogous assertion holds for <span class="process-math">\(f_*\)</span> and bounded below complexes of <span class="process-math">\(f_*\)</span>-acyclic sheaves.</div>
+</div>
+</article>
+<details id="sh-c08-acyclic-complex-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c08-acyclic-complex-2-1">The first spectral sequence is concentrated in the row <span class="process-math">\(q=0\text{.}\)</span> The comparison map induces the resulting isomorphisms on cohomology. The proof for direct image is the same acyclic resolution theorem.</div>
+</article></details>
+<div class="para logical" id="sh-c08-hypercohomology-section-5">
+<div class="para">For a two-term complex <span class="process-math">\(K=[F\xrightarrow{u}G]\)</span> in degrees zero and one, the term spectral sequence can be read as the exact sequence</div>
+<div class="displaymath process-math" id="sh-c08-hypercohomology-section-5-2">
+\begin{equation*}
+\cdots\longrightarrow H^{n-1}(X,G)\longrightarrow H^n(X,K)\longrightarrow H^n(X,F)\xrightarrow{H^n(u)}H^n(X,G)\longrightarrow\cdots.
+\end{equation*}
+</div>
+<div class="para">In particular there is a natural short exact sequence</div>
+<div class="displaymath process-math" id="sh-c08-hypercohomology-section-5-3">
+\begin{equation*}
+0\longrightarrow\coker H^{n-1}(u)\longrightarrow H^n(X,K)\longrightarrow\ker H^n(u)\longrightarrow0.
+\end{equation*}
+</div>
+<div class="para">This sequence need not split naturally. Knowing the two surviving associated graded modules is not the same as specifying the abutment with its extension data.</div>
+</div>
+<div class="para" id="sh-c08-hypercohomology-section-6">The cohomology-sheaf spectral sequence expresses a different issue. Even when <span class="process-math">\(\mathcal H^q(K)\)</span> is easy to describe, the differential and extension data of <span class="process-math">\(K\)</span> may produce nonzero higher differentials. Replacing <span class="process-math">\(K\)</span> by the direct sum of its shifted cohomology sheaves would discard this information. Neither spectral sequence is asserted to converge for every unbounded complex.<a id="sh-c08-hypercohomology-section-6-4" href="#margin-sh-c08-hypercohomology-section-6-4" class="margin-note-marker" aria-label="Margin note 2">2</a>
+</div>
+</section>
+<section class="section" id="sh-c08-leray-section">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Composition and the Leray spectral sequence</span>
+</h2>
+<article class="theorem theorem-like" id="sh-c08-leray"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.10</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Leray spectral sequence.</span>
+</h3>
+<div class="para logical" id="sh-c08-leray-2-1">
+<div class="para">For every continuous <span class="process-math">\(f:X\to Y\)</span> there is a natural isomorphism on unbounded derived categories</div>
+<div class="displaymath process-math" id="sh-c08-leray-2-1-2">
+\begin{equation*}
+R\Gamma(Y,Rf_*K)\simeq R\Gamma(X,K).
+\end{equation*}
+</div>
+<div class="para">If <span class="process-math">\(K\in\D^+(X;\Lambda)\text{,}\)</span> there is a convergent spectral sequence</div>
+<div class="displaymath process-math" id="sh-c08-leray-2-1-4">
+\begin{equation*}
+E_2^{p,q}=H^p(Y,\mathcal H^q(Rf_*K))\ \Longrightarrow\ H^{p+q}(X,K).
+\end{equation*}
+</div>
+<div class="para">For a sheaf <span class="process-math">\(F\text{,}\)</span> this is the first-quadrant sequence <span class="process-math">\(E_2^{p,q}=H^p(Y,R^qf_*F)\text{.}\)</span> For <span class="process-math">\(g:Y\to Z\text{,}\)</span> there is likewise a spectral sequence of sheaves</div>
+<div class="displaymath process-math" id="sh-c08-leray-2-1-8">
+\begin{equation*}
+E_2^{p,q}=R^pg_*(R^qf_*F)\ \Longrightarrow\ R^{p+q}(gf)_*F.
+\end{equation*}
+</div>
+</div>
+</article>
+<details id="sh-c08-leray-3" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c08-leray-3-1">Choose <span class="process-math">\(K\to I\)</span> K-injective. By <a href="sh-c07.html#sh-c07-derived-directimage" class="xref" data-knowl="./knowl/xref/sh-c07-derived-directimage.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 7.16">Proposition 7.16</a>, the complex <span class="process-math">\(f_*I\)</span> is K-injective, and <span class="process-math">\(\Gamma(Y,f_*I)=\Gamma(X,I)\text{.}\)</span> This proves the derived comparison without boundedness. In the bounded below case, apply the cohomology-sheaf spectral sequence to <span class="process-math">\(Rf_*K\text{.}\)</span> For the relative statement use the corresponding spectral sequence for <span class="process-math">\(Rg_*\)</span> and the comparison <span class="process-math">\(Rg_*Rf_*\simeq R(gf)_*\text{.}\)</span> See <a class="external" href="https://stacks.math.columbia.edu/tag/01EY" target="_blank">Stacks, §20.13</a>.</div>
+</article></details>
+<div class="para logical" id="sh-c08-leray-section-3">
+<div class="para">For a sheaf <span class="process-math">\(F\text{,}\)</span> the low-degree terms give</div>
+<div class="displaymath process-math" id="sh-c08-leray-section-3-2">
+\begin{equation*}
+0\longrightarrow H^1(Y,f_*F)\longrightarrow H^1(X,F)\longrightarrow H^0(Y,R^1f_*F)\longrightarrow H^2(Y,f_*F)\longrightarrow H^2(X,F).
+\end{equation*}
+</div>
+<div class="para">The middle arrow sends a class to its family of local images in the higher direct image. Thus a class coming from <span class="process-math">\(Y\)</span> restricts to zero in that family, while the next arrow measures the obstruction to lifting a family to a global class. No identification of higher direct image stalks with fiber cohomology is needed for this sequence.</div>
+</div>
+<article class="corollary theorem-like" id="sh-c08-leray-degeneration"><h3 class="heading">
+<span class="type">Corollary</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.11</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sh-c08-leray-degeneration-1-1">If <span class="process-math">\(R^qf_*F=0\)</span> for every <span class="process-math">\(q&gt;0\text{,}\)</span> then <span class="process-math">\(H^n(Y,f_*F)\simeq H^n(X,F)\text{.}\)</span> If <span class="process-math">\(H^p(Y,R^qf_*F)=0\)</span> for every <span class="process-math">\(p&gt;0\)</span> and <span class="process-math">\(q\geq0\text{,}\)</span> then <span class="process-math">\(H^q(X,F)\simeq\Gamma(Y,R^qf_*F)\text{.}\)</span> These are the corresponding edge isomorphisms.</div>
+</article>
+<details id="sh-c08-leray-degeneration-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c08-leray-degeneration-2-1">In the first case only the row <span class="process-math">\(q=0\)</span> survives; in the second only the column <span class="process-math">\(p=0\)</span> survives.</div>
+</article></details>
+<article class="example example-like" id="sh-c08-closedembedding"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.12</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sh-c08-closedembedding-1-1">If <span class="process-math">\(i:Z\hookrightarrow X\)</span> is a closed inclusion, then <span class="process-math">\(H^n(X,i_*F)\simeq H^n(Z,F)\)</span> for every sheaf <span class="process-math">\(F\)</span> on <span class="process-math">\(Z\text{.}\)</span>
+</div>
+<div class="solutions">
+<details id="sh-c08-closedembedding-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sh-c08-closedembedding-2-1">The functor <span class="process-math">\(i_*\)</span> is exact: its stalks are <span class="process-math">\(F_z\)</span> on <span class="process-math">\(Z\)</span> and zero off <span class="process-math">\(Z\text{.}\)</span> Hence its positive derived functors vanish, and the first edge isomorphism applies. The same conclusion for complexes follows directly from the derived composition formula.</div>
+</div></details>
+</div>
+</article></section>
+<section class="section" id="sh-c08-ext-section">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Local and global Ext</span>
+</h2>
+<article class="definition definition-like" id="sh-c08-ext"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.13</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c08-ext-3-1">
+<div class="para">For <span class="process-math">\(K,L\in\D(X;\Lambda)\text{,}\)</span> choose a K-injective resolution <span class="process-math">\(L\to I\)</span> and define</div>
+<div class="displaymath process-math" id="sh-c08-ext-3-1-3">
+\begin{equation*}
+\RHom_X(K,L)=\underline{\Hom}^{\bullet}_{\Sh(X;\Lambda)}(K,I)\in\D(\Lambda).
+\end{equation*}
+</div>
+<div class="para">Set <span class="process-math">\(\Ext^n_X(K,L)=H^n\RHom_X(K,L)=\Hom_{\D(X;\Lambda)}(K,L[n])\text{.}\)</span> For sheaves <span class="process-math">\(F,G\text{,}\)</span> their <dfn class="terminology">Ext sheaves</dfn> are</div>
+<div class="displaymath process-math" id="sh-c08-ext-3-1-7">
+\begin{equation*}
+\mathcal{E}xt^q_\Lambda(F,G)=\mathcal H^q(\RsheafHom_\Lambda(F,G)).
+\end{equation*}
+</div>
+<div class="para">Here <span class="process-math">\(\mathcal{E}xt^0_\Lambda(F,G)=\sheafHom_\Lambda(F,G)\text{,}\)</span> and the negative Ext sheaves vanish.</div>
+</div>
+</article>
+<article class="proposition theorem-like" id="sh-c08-ext-global"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.14</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c08-ext-global-1-1">
+<div class="para">For arbitrary <span class="process-math">\(K,L\in\D(X;\Lambda)\text{,}\)</span> there is a natural isomorphism</div>
+<div class="displaymath process-math" id="sh-c08-ext-global-1-1-2">
+\begin{equation*}
+R\Gamma(X,\RsheafHom_\Lambda(K,L))\simeq\RHom_X(K,L).
+\end{equation*}
+</div>
+<div class="para">In particular,</div>
+<div class="displaymath process-math" id="sh-c08-ext-global-1-1-3">
+\begin{equation*}
+\Ext^n_X(\Lambda_X,K)\simeq H^n(X,K).
+\end{equation*}
+</div>
+<div class="para">For sheaves <span class="process-math">\(F,G\text{,}\)</span> there is a first-quadrant spectral sequence</div>
+<div class="displaymath process-math" id="sh-c08-ext-global-1-1-5">
+\begin{equation*}
+E_2^{p,q}=H^p(X,\mathcal{E}xt^q_\Lambda(F,G))\ \Longrightarrow\ \Ext^{p+q}_X(F,G).
+\end{equation*}
+</div>
+</div>
+</article>
+<details id="sh-c08-ext-global-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c08-ext-global-2-1">Choose <span class="process-math">\(P\to K\)</span> K-flat and <span class="process-math">\(L\to I\)</span> K-injective. The complex <span class="process-math">\(\sheafHom^\bullet_\Lambda(P,I)\)</span> is K-injective by the tensor–Hom argument in <a href="sh-c07.html#sh-c07-derived-closed" class="xref" data-knowl="./knowl/xref/sh-c07-derived-closed.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 7.20">Proposition 7.20</a>. Its sections therefore compute the left side. They equal <span class="process-math">\(\underline{\Hom}^\bullet(P,I)\text{,}\)</span> which also computes the right side because <span class="process-math">\(I\)</span> is K-injective. For the second assertion, internal Hom from the unit <span class="process-math">\(\Lambda_X\)</span> is the identity, both ordinarily and derivatively. For sheaves <span class="process-math">\(F,G\text{,}\)</span> the internal derived Hom is bounded below: an ordinary injective resolution of <span class="process-math">\(G\)</span> represents it in nonnegative degrees. Apply <a href="sh-c08.html#sh-c08-hypercohomology" class="xref" data-knowl="./knowl/xref/sh-c08-hypercohomology.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 8.8">Theorem 8.8</a>.</div>
+</article></details>
+<div class="para" id="sh-c08-ext-section-4">The Ext sheaf is the sheafification of the presheaf <span class="process-math">\(U\mapsto\Ext^q_{\Sh(U;\Lambda)}(F|_U,G|_U)\text{.}\)</span> This follows by computing with an injective resolution whose restriction remains injective. Its stalk is a colimit of these extension groups over neighborhoods. It must not be replaced without hypotheses by <span class="process-math">\(\Ext^q_\Lambda(F_x,G_x)\text{.}\)</span><a id="sh-c08-ext-section-4-3" href="#margin-sh-c08-ext-section-4-3" class="margin-note-marker" aria-label="Margin note 3">3</a> See <a class="external" href="https://stacks.math.columbia.edu/tag/0BQP" target="_blank">Stacks, §20.43</a> and <a class="external" href="https://stacks.math.columbia.edu/tag/0B6A" target="_blank">§20.44</a>.</div>
+<div class="para logical" id="sh-c08-ext-section-5">
+<div class="para">The beginning of the local-to-global sequence is</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/sh-c10.html" id="sh-c08-ext-section-5-1">
+\begin{equation*}
+0\longrightarrow H^1(X,\sheafHom_\Lambda(F,G))\longrightarrow\Ext^1_X(F,G)\longrightarrow\Gamma(X,\mathcal{E}xt^1_\Lambda(F,G))\longrightarrow H^2(X,\sheafHom_\Lambda(F,G)).
+\end{equation*}
+</div>
+<div class="para">An extension class maps to its local extension classes. The kernel consists of extensions that split locally, with the differences between local splittings measured by the Hom sheaf. This will be used for torsors and extensions in <a href="sh-c10.html" class="internal" title="Chapter 10: Low-degree classes and calculations">Chapter 10</a>.</div>
+</div>
+<article class="example example-like" id="sh-c08-locallyfree-ext"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.15</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c08-locallyfree-ext-1-1">
+<div class="para">If <span class="process-math">\(F\)</span> is locally free of finite rank, then</div>
+<div class="displaymath process-math" id="sh-c08-locallyfree-ext-1-1-2">
+\begin{equation*}
+\Ext^n_X(F,G)\simeq H^n(X,\sheafHom_\Lambda(F,G)).
+\end{equation*}
+</div>
+</div>
+<div class="solutions">
+<details id="sh-c08-locallyfree-ext-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sh-c08-locallyfree-ext-2-1">Locally, <span class="process-math">\(\sheafHom_\Lambda(F,-)\)</span> is a finite power of the identity functor, hence exact. The positive Ext sheaves vanish, so the spectral sequence has only its bottom row. This does not make <span class="process-math">\(F\)</span> projective in <span class="process-math">\(\Sh(X;\Lambda)\text{:}\)</span> taking global sections of its Hom sheaf can still fail to be exact. In particular, the tensor unit <span class="process-math">\(\Lambda_X\)</span> is flat and locally free of rank one, but is projective only when <span class="process-math">\(\Gamma(X,-)\)</span> is exact.</div>
+</div></details>
+</div>
+</article></section>
+<section class="section" id="sh-c08-cup-section">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Cup products</span>
+</h2>
+<article class="proposition theorem-like" id="sh-c08-cup"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">8.16</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c08-cup-2-1">
+<div class="para">There is a natural morphism</div>
+<div class="displaymath process-math" id="sh-c08-cup-2-1-1">
+\begin{equation*}
+R\Gamma(X,K)\Ltensor_\Lambda R\Gamma(X,L)\longrightarrow R\Gamma(X,K\Ltensor_\Lambda L)
+\end{equation*}
+</div>
+<div class="para">for all <span class="process-math">\(K,L\in\D(X;\Lambda)\text{.}\)</span> It is associative, unital, and compatible with the symmetries of the derived tensor products. It defines products</div>
+<div class="displaymath process-math" id="sh-c08-cup-2-1-3">
+\begin{equation*}
+H^p(X,K)\otimes_\Lambda H^q(X,L)\longrightarrow H^{p+q}(X,K\Ltensor_\Lambda L).
+\end{equation*}
+</div>
+<div class="para">A morphism <span class="process-math">\(F\otimes_\Lambda G\to H\)</span> of sheaves gives, by composition, products <span class="process-math">\(H^p(X,F)\otimes_\Lambda H^q(X,G)\to H^{p+q}(X,H)\text{.}\)</span>
+</div>
+</div>
+</article>
+<details id="sh-c08-cup-3" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c08-cup-3-1">Let <span class="process-math">\(a:X\to\{*\}\text{.}\)</span> The inverse image <span class="process-math">\(a^{-1}:\D(\Lambda)\to\D(X;\Lambda)\)</span> is exact and symmetric monoidal. Tensor the counit morphisms <span class="process-math">\(a^{-1}R\Gamma(X,K)\to K\)</span> and <span class="process-math">\(a^{-1}R\Gamma(X,L)\to L\text{,}\)</span> and take their adjoint under <span class="process-math">\(a^{-1}\dashv R\Gamma(X,-)\text{.}\)</span> This gives the displayed map. Associativity, the unit, and symmetry follow from the corresponding identities for tensor and the counit. For a pairing of sheaves, use the natural augmentation <span class="process-math">\(F\Ltensor_\Lambda G\to F\otimes_\Lambda G\)</span> and then the given pairing. This requires no flatness assumption on <span class="process-math">\(F\)</span> or <span class="process-math">\(G\text{.}\)</span>
+</div>
+</article></details>
+<div class="para" id="sh-c08-cup-section-3">Equivalently, a class in <span class="process-math">\(H^p(X,K)\)</span> is a morphism <span class="process-math">\(\Lambda_X[-p]\to K\text{.}\)</span> Tensoring it with a morphism <span class="process-math">\(\Lambda_X[-q]\to L\)</span> gives a morphism <span class="process-math">\(\Lambda_X[-p-q]\to K\Ltensor_\Lambda L\text{,}\)</span> which is their cup product. This description also specifies products for negative degrees of complexes. It makes the sign under exchange of factors explicit: after the symmetry <span class="process-math">\(K\Ltensor L\simeq L\Ltensor K\text{,}\)</span> the product changes by <span class="process-math">\((-1)^{pq}\text{.}\)</span>
+</div>
+<div class="para" id="sh-c08-cup-section-4">For the multiplication of <span class="process-math">\(\Lambda_X\text{,}\)</span> the groups <span class="process-math">\(H^*(X,\Lambda_X)\)</span> form a unital graded-commutative <span class="process-math">\(\Lambda\)</span>-algebra. An odd-degree class satisfies <span class="process-math">\(2\alpha^2=0\text{;}\)</span> graded commutativity alone does not imply <span class="process-math">\(\alpha^2=0\)</span> over an arbitrary coefficient ring. The pullback maps of <a href="sh-c08.html#sh-c08-pullback" class="xref" data-knowl="./knowl/xref/sh-c08-pullback.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 8.4">Proposition 8.4</a> preserve these products. The Čech formula for them appears in <a href="sh-c09.html#sh-c09-products" class="xref" data-knowl="./knowl/xref/sh-c09-products.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 9.14">Proposition 9.14</a>. See <a class="external" href="https://stacks.math.columbia.edu/tag/0FKU" target="_blank">Stacks, §20.31</a>.</div>
+<div class="para" id="sh-c08-cup-section-5">The displayed map of derived sections is a product map, not a Künneth isomorphism. Its construction gives no claim that the cohomology of a tensor product is determined by ordinary tensor products of cohomology groups. Torsion and the geometry of the space can both affect that question.</div>
+</section></section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="sh-c07.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Top</span></a><a class="next-button button" href="sh-c09.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a>
+</div></main>
+<div class="margin-notes" role="complementary" aria-label="Margin notes">
+<aside id="margin-sh-c08-hypercohomology-notation" class="aside aside-like margin-note" data-margin-anchor="sh-c08-cohomology-values" data-margin-label="1" data-margin-inline="true"><h4 class="heading"><a href="#sh-c08-cohomology-values" class="margin-note-label">1</a></h4>
+<div class="para">Some references reserve <span class="process-math">\(\mathbb H^n\)</span> for hypercohomology and write <span class="process-math">\(R^n\Gamma\)</span> only on sheaves. Our notation <span class="process-math">\(H^n(U,K)\)</span> includes both and makes <span class="process-math">\(K\)</span> explicit.
+</div></aside><aside id="margin-sh-c08-hypercohomology-section-6-4" class="aside aside-like margin-note" data-margin-anchor="sh-c08-hypercohomology-section-6" data-margin-label="2" data-margin-inline="true"><h4 class="heading"><a href="#sh-c08-hypercohomology-section-6" class="margin-note-label">2</a></h4>
+<div class="para">Finite cohomological dimension or additional completeness and convergence conditions can extend the range. The unbounded existence of <span class="process-math">\(R\Gamma\)</span> itself does not supply those conditions.
+</div></aside><aside id="margin-sh-c08-ext-section-4-3" class="aside aside-like margin-note" data-margin-anchor="sh-c08-ext-section-4" data-margin-label="3" data-margin-inline="true"><h4 class="heading"><a href="#sh-c08-ext-section-4" class="margin-note-label">3</a></h4>
+<div class="para">Even for ordinary internal Hom, a morphism between stalks need not extend to a morphism on one neighborhood. Finite local presentations or finite locally free resolutions provide familiar sufficient conditions for some stalk comparisons; unrestricted sheaves do not have those finiteness properties.
+</div></aside>
+</div>
+</div>
+<footer id="site-copyright" class="site-copyright"><p>© 2026 Jie Fu. All rights reserved.</p></footer>
+</body>
+</html>

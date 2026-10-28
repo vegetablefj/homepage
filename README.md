@@ -1,14 +1,18 @@
 # Jie Fu’s homepage
 
-[中文说明](README_cn.md) · [Notes guide](NOTES.md)
+[Notes guide](NOTES.md) · [Writing prompts](prompts/README.md)
 
 This repository contains the PreTeXt sources and the generated static website. The working repository is `D:\homepage`, which is also the GitHub Pages publishing root. Published page content and navigation are in English.
 
 Website construction was assisted by a large language model.
 
+## Writing guides
+
+The [writing collection](prompts/README.md) contains three English guides: paper writing and revision, study notes, and language and word preferences. Their published Markdown files are the normal online reference. Edit `prompts/*.md`; the build copies these sources to `downloads/prompts/*.md`, and the Resources page links directly to the three guides. Do not edit generated copies. The short `AGENTS.md` routes repository agents to the relevant guide. Site operation stays in this README; PreTeXt implementation stays in `NOTES.md`.
+
 ## Note visibility
 
-The Notes page retains four existing entries. Five additional notes are built and uploaded but temporarily unlisted. The Home selection remains empty. Unlisted files are public and can be reached by direct links; omission from a list is not access control.
+The Notes page lists four selected notes. Other active note targets may be uploaded without being listed. Home's Selected Notes selection remains empty. Files published in this repository are public even when no listing links to them.
 
 ## Edit the homepage
 
@@ -27,7 +31,7 @@ Edit the sources, then rebuild. The HTML, styles, and reading pages in the publi
 | `xsl/` | Project extensions to the PreTeXt presentation |
 | `project.ptx`, `build.py`, `tools/` | Build targets, validation, and synchronization |
 
-For mathematical note sources, references, and reading features, use [NOTES.md](NOTES.md). The nine active notes cover Fujita freeness, Nagata and Seshadri constants, cubic fourfold rationality, 1-category theory, toric geometry, hyperkähler geometry, cubic fourfolds and K3 structures, homological algebra, and hyperkähler SYZ. They use the current shared note template and navigation. Adding a build target does not require adding a visible Notes entry. Example note sources remain available for reference; they are excluded from production builds and site listings.
+For mathematical note sources, references, and reading features, use [NOTES.md](NOTES.md). The active notes cover Fujita freeness, Nagata and Seshadri constants, cubic fourfold rationality, 1-category theory, toric geometry, hyperkähler geometry, cubic fourfolds and K3 structures, homological algebra, and hyperkähler SYZ. They use the current shared note template and navigation. Adding a build target does not require adding a visible Notes entry. Example note sources remain available for reference; they are excluded from production builds and site listings.
 
 ## Edit notes in VS Code
 

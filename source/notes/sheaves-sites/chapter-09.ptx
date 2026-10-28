@@ -1,0 +1,209 @@
+<chapter xml:id="st-c09">
+  <title>Tensor, internal Hom, and flatness</title>
+  <introduction>
+    <p>The module category of a ringed topos is a closed symmetric monoidal category. Tensor products are sheafified algebraic tensor products; internal Hom records morphisms after every localization. These two constructions interact differently with exactness. Tensor is right exact and becomes exact for flat factors. Internal Hom is left exact, and additional finiteness is needed for its compatibility with pullback.</p>
+    <p>All arguments use local sections and epimorphic coverings. Points are used only in the explicitly conditional stalk criterion. The tensor unit is the structure sheaf <m>\mathcal O</m>, and every tensor or Hom in this chapter is over the indicated structure ring.</p>
+  </introduction>
+
+  <section xml:id="st-c09-tensor-section">
+    <title>Tensor products from local bilinear maps</title>
+    <definition xml:id="st-c09-tensor">
+      <title>Tensor product</title>
+      <idx>Tensor product!module sheaves</idx><idx>Balanced morphism</idx>
+      <statement>
+        <p>For <m>M,N\in\Mod(\mathcal O)</m>, their tensor product is the sheafification of
+          <md number="no">U\longmapsto M(U)\otimes_{\mathcal O(U)}N(U).</md>
+          It is denoted <m>M\otimes_{\mathcal O}N</m>. Equivalently, it represents <m>\mathcal O</m>-balanced biadditive morphisms from <m>M\times N</m> into an <m>\mathcal O</m>-module.</p>
+      </statement>
+    </definition>
+    <proposition xml:id="st-c09-tensor-universal">
+      <statement>
+        <p>The tensor product is intrinsic to the ringed topos, associative, symmetric, and unital with unit <m>\mathcal O</m>. Each of its sections is locally a finite sum of elementary tensors. Equality of two local tensor representatives can be checked after a further covering. Tensor products commute with restriction to slice topoi.</p>
+      </statement>
+      <proof>
+        <p>A balanced morphism determines, over each site object, a map from the ordinary tensor product of section modules. These maps commute with restrictions and factor uniquely through sheafification. Conversely, evaluation on elementary tensors recovers a balanced morphism. This proves the universal property. It expresses the tensor product using morphisms and finite-diagram identities in <m>\mathcal E</m>, so an equivalence of ringed topoi preserves it.</p>
+        <p>Associativity, symmetry, and the unit isomorphisms are induced by their algebraic formulas on local representatives. Their coherence can be checked on elementary tensors after a covering, where it is the usual algebraic identity. Local representation and local equality follow from sheafification. Restriction to <m>\mathcal C/U</m> uses the same tensor presheaf and sheafification there, proving the localization assertion. See <url href="https://stacks.math.columbia.edu/tag/03EK">Stacks, §18.26</url>.</p>
+      </proof>
+    </proposition>
+    <p>The canonical map
+      <md number="no">M(U)\otimes_{\mathcal O(U)}N(U)\longrightarrow(M\otimes_{\mathcal O}N)(U)</md>
+      need not be an isomorphism. A section of the sheaf tensor product may require local tensor representatives that do not come from one global tensor. Moreover, equality after sheafification can impose local identifications absent in the presheaf.<fn>All scalars in this formula are <m>\mathcal O(U)</m>. When <m>\mathcal O=\Lambda_X</m>, tensoring section modules over <m>\Lambda</m> gives another presheaf with the same associated sheaf, but it need not be the same presheaf on disconnected opens. The two constructions were distinguished in <url href="../sheaves-topological/sh-c06.html">Note I, Chapter 6</url>.</fn></p>
+
+    <example xml:id="st-c09-tensor-sections-failure">
+      <statement>
+        <p>Let <m>k</m> be a field of characteristic different from two, and let <m>L</m> on <m>S^1</m> have rank one with monodromy <m>-1</m>. For <m>\mathcal O=k_{S^1}</m>, one has
+          <md number="no">\Gamma(S^1,L)=0,\qquad L\otimes_{\mathcal O}L\simeq k_{S^1}.</md>
+          Thus tensoring global sections does not give the global sections of the tensor product.</p>
+      </statement>
+      <solution><p>A global section is an invariant vector, hence satisfies <m>v=-v</m> and vanishes. The tensor product has monodromy <m>(-1)(-1)=1</m>. The resulting section map has zero source and target <m>k</m>. Both statements follow from the local-system constructions and circle calculation in <url href="../sheaves-topological/sh-c10.html">Note I, Chapter 10</url>.</p></solution>
+    </example>
+  </section>
+
+  <section xml:id="st-c09-hom-section">
+    <title>Internal Hom and the closed adjunction</title>
+    <definition xml:id="st-c09-internalhom">
+      <title>Internal Hom</title>
+      <idx>Internal Hom!ringed topos</idx><idx>Sheaf Hom</idx><idx>Global Hom</idx>
+      <statement>
+        <p>For <m>M,N\in\Mod(\mathcal O)</m>, define
+          <md number="no">\sheafHom_{\mathcal O}(M,N)(U)=\Hom_{\mathcal O_U}(M|_U,N|_U).</md>
+          Restrictions are localization of morphisms. This is the <term>internal Hom</term>, a sheaf of <m>\mathcal O</m>-modules. The module of global morphisms is written <m>\Hom_{\mathcal O}(M,N)</m>, without a sheaf symbol.</p>
+      </statement>
+    </definition>
+    <p>The right side concerns morphisms on the entire slice, not merely maps of the two modules <m>M(U)</m> and <m>N(U)</m>. A module sheaf contains restriction information, and a morphism must preserve it on all objects over <m>U</m>. Its action on the section module over one object need not determine it.</p>
+
+    <proposition xml:id="st-c09-closed">
+      <statement>
+        <p>The internal Hom is a sheaf, with no further sheafification required, and there are natural isomorphisms
+          <md number="no">\Hom_{\mathcal O}(A\otimes_{\mathcal O}M,N)\simeq\Hom_{\mathcal O}(A,\sheafHom_{\mathcal O}(M,N)),</md>
+          <md number="no">\sheafHom_{\mathcal O}(A\otimes_{\mathcal O}M,N)\simeq\sheafHom_{\mathcal O}(A,\sheafHom_{\mathcal O}(M,N)).</md>
+          Its global sections are <m>\Hom_{\mathcal O}(M,N)</m>. Tensor preserves colimits in each variable and is right exact. Internal Hom preserves limits in its second variable, converts colimits in its first variable into limits, and is left exact in both variables, contravariantly in the first.</p>
+      </statement>
+      <proof>
+        <p>Compatible morphisms on a covering glue as morphisms of underlying sheaves. Their linearity is a local equality, so the glued morphism is linear. This proves the sheaf property. A bilinear map <m>A\times M\to N</m> sends a local section of <m>A</m> to the morphism obtained by evaluating in that section. Conversely, such a morphism into the internal Hom evaluates to a bilinear map. The two operations are inverse. The same construction after restriction proves the internal adjunction.</p>
+        <p>A left adjoint preserves colimits, and a right adjoint preserves limits. Applying the adjunction also gives the limit formula in the first Hom variable. Kernels and cokernels in the Abelian category then give the stated exactness properties. These constructions are <url href="https://stacks.math.columbia.edu/tag/04TT">Stacks, Lemmas 18.27.1–18.27.7</url>.</p>
+      </proof>
+    </proposition>
+    <p>For instance, an exact presentation <m>\mathcal O^{(I)}\to\mathcal O^{(J)}\to M\to0</m> gives
+      <md number="no">0\longrightarrow\sheafHom_{\mathcal O}(M,N)\longrightarrow\prod_JN\longrightarrow\prod_IN.</md>
+      When <m>I,J</m> are finite, these are finite powers. An arbitrary module does not necessarily have such a presentation on the whole topos. Later arguments using it first assume a local finite presentation and then work in the corresponding slice.</p>
+    <p>For localization, one also has
+      <md number="no">(j_{U!}A)\otimes_{\mathcal O}M\simeq j_{U!}(A\otimes_{\mathcal O_U}M|_U).</md>
+      To prove this formula, apply Hom into a test module, use the two adjunctions, and use that internal Hom commutes with restriction. Yoneda gives the isomorphism. This localization formula, rather than a general proper-support projection formula, is the one used to test flatness locally.</p>
+  </section>
+
+  <section xml:id="st-c09-scalar-change">
+    <title>Scalar change and pullback comparisons</title>
+    <proposition xml:id="st-c09-basechange">
+      <statement>
+        <p>For a ringed geometric morphism <m>f:(\mathcal E,\mathcal O_{\mathcal E})\to(\mathcal F,\mathcal O_{\mathcal F})</m>, pullback is strong symmetric monoidal:
+          <md number="no">f^*(M\otimes_{\mathcal O_{\mathcal F}}N)\simeq f^*M\otimes_{\mathcal O_{\mathcal E}}f^*N,\qquad f^*\mathcal O_{\mathcal F}\simeq\mathcal O_{\mathcal E}.</md>
+          There is a natural comparison morphism
+          <md number="no">f^*\sheafHom_{\mathcal O_{\mathcal F}}(M,N)\longrightarrow\sheafHom_{\mathcal O_{\mathcal E}}(f^*M,f^*N).</md>
+          It is not asserted to be an isomorphism for arbitrary modules.</p>
+      </statement>
+      <proof>
+        <p>Underlying inverse image preserves finite products and all colimits. It therefore preserves the free constructions and coequalizer relations defining tensor products over the pulled-back ring. The associativity of extension of scalars then gives the first isomorphism. The unit formula is immediate from scalar extension. Apply <m>f^*</m> to evaluation and use this tensor isomorphism. Its adjoint under the closed structure is the internal-Hom comparison. The construction proves naturality. See <url href="https://stacks.math.columbia.edu/tag/03EK">Stacks, Lemma 18.26.2</url> and <url href="https://stacks.math.columbia.edu/tag/04TT">Remark 18.27.3</url>.</p>
+      </proof>
+    </proposition>
+    <p>Strong monoidality does not imply exactness: extension of scalars between rings already gives a strong monoidal right-exact functor. Conditions making the Hom comparison invertible are proved in <xref ref="st-c10-hom-comparisons"/>. They include finite locally projective source modules, and locally finitely presented source modules when the ringed morphism is flat.</p>
+
+    <proposition xml:id="st-c09-three-scalar-functors">
+      <statement>
+        <p>For a ring morphism <m>\mathcal O\to\mathcal B</m> on one topos, restriction of scalars has both adjoints:
+          <md number="no">\mathcal B\otimes_{\mathcal O}(-)\ \dashv\ \operatorname{Res}_{\mathcal O}^{\mathcal B}\ \dashv\ \sheafHom_{\mathcal O}(\mathcal B,-).</md>
+          The action on the right adjoint is <m>(b\varphi)(b')=\varphi(bb')</m>. Restriction of scalars is exact; the left adjoint is right exact and the right adjoint is left exact.</p>
+      </statement>
+      <proof>
+        <p>The left adjunction is the balanced-map description of tensor. An <m>\mathcal O</m>-linear map from a <m>\mathcal B</m>-module <m>N</m> to <m>M</m> sends <m>n</m> to the map <m>b\mapsto\varphi(bn)</m>. This gives a <m>\mathcal B</m>-linear map into <m>\sheafHom_{\mathcal O}(\mathcal B,M)</m>. Evaluation at <m>1</m> is its inverse. These formulas on local sections commute with restriction. Exactness follows from the underlying Abelian sheaves and the adjunctions. The right adjunction is also <url href="https://stacks.math.columbia.edu/tag/04TT">Stacks, Lemma 18.27.8</url>.</p>
+      </proof>
+    </proposition>
+  </section>
+
+  <section xml:id="st-c09-flat-section">
+    <title>Flatness and local relations</title>
+    <definition xml:id="st-c09-flat">
+      <title>Flat modules</title>
+      <idx>Flat module!ringed topos</idx><idx>Flat ring morphism</idx>
+      <statement>
+        <p>An <m>\mathcal O</m>-module <m>M</m> is <term>flat</term> if <m>(-)\otimes_{\mathcal O}M</m> is exact. Since tensor is right exact, it suffices to require preservation of monomorphisms. A ring morphism <m>\mathcal O\to\mathcal B</m> is flat if <m>\mathcal B</m> is flat as an <m>\mathcal O</m>-module.</p>
+      </statement>
+    </definition>
+    <proposition xml:id="st-c09-flat-locality">
+      <statement>
+        <p>Flatness is local for epimorphic families. Free modules, and more generally the modules <m>P_U</m> of <xref ref="st-c08-free-on-object"/>, are flat. Direct summands, direct sums, and filtered colimits of flat modules are flat, as are tensor products of flat modules.</p>
+      </statement>
+      <proof>
+        <p>For restriction of a flat module, use the exact functor <m>j_{U!}</m> and the localization tensor formula. This left adjoint reflects exactness. Indeed, its unit <m>N\to j_U^{-1}j_{U!}N</m> is a monomorphism, obtained from the inclusion indexed by the structure map on every slice object before sheafification. Thus <m>j_{U!}N=0</m> implies <m>N=0</m>; exactness of <m>j_{U!}</m> then implies that it reflects exactness. Conversely, after restricting a tensor of a monomorphism, flatness on each member makes it a monomorphism. The family of restrictions is conservative, so the original map is a monomorphism. The reflection statement is <url href="https://stacks.math.columbia.edu/tag/03DH">Stacks, Lemma 18.19.4</url>.</p>
+        <p>The presheaf representing <m>P_U</m> is free over <m>\mathcal O(V)</m> on each object <m>V</m>. Tensoring a sectionwise injection with that presheaf is injective; exact sheafification then proves the required injection for the sheaf tensor product. Direct sums and filtered colimits preserve flatness because they are exact and commute with tensor. A summand of an exact tensor functor preserves monomorphisms. Associativity proves flatness of the tensor product by composing the two exact functors. See <url href="https://stacks.math.columbia.edu/tag/03EQ">Stacks, Lemmas 18.28.3–18.28.7 and 18.28.12</url>.</p>
+      </proof>
+    </proposition>
+
+    <proposition xml:id="st-c09-equational-flatness">
+      <statement>
+        <p>An <m>\mathcal O</m>-module <m>M</m> is flat if and only if the following condition holds in every slice. Given a complex
+          <md number="no">\mathcal O_U^r\xrightarrow{A}\mathcal O_U^n\xrightarrow{m}M|_U,\qquad mA=0,</md>
+          there is a covering of <m>U</m> on whose members <m>m</m> factors as
+          <md number="no">\mathcal O^n\xrightarrow{B}\mathcal O^l\xrightarrow{t}M,\qquad BA=0,</md>
+          for finite integers <m>l</m> that may vary between members. It is enough to test <m>r=1</m>.</p>
+      </statement>
+      <proof>
+        <p>For one relation, write its coefficients as <m>a_1,\ldots,a_n</m> and its section values as <m>m_1,\ldots,m_n</m>. If <m>M</m> is flat, let <m>I\subset\mathcal O_U</m> be the image ideal generated by the <m>a_i</m>. The relation says that <m>\sum_i a_i\otimes m_i</m> maps to zero under <m>I\otimes M\to M</m>, which is injective. After a covering, its vanishing is an actual relation in the tensor of section modules. The algebraic tensor relations express it using finitely many <m>t_j</m> and coefficients <m>b_{ji}</m> with
+          <md number="no">m_i=\sum_j b_{ji}t_j,\qquad \sum_i b_{ji}a_i=0.</md>
+          These are the required matrices. To handle finitely many columns of <m>A</m>, apply the one-column assertion and then apply it to the remaining columns after this factorization. A finite iteration and composition of coverings give <m>BA=0</m> for all columns.</p>
+        <p>Conversely, test a monomorphism <m>N\hookrightarrow N'</m>. A section in the kernel after tensoring is locally represented by a finite tensor sum and a finite algebraic relation witnessing its vanishing in the larger tensor product. Equivalently, it is represented using a finitely presented module of section values mapping to <m>M(U)</m>. Apply the matrix condition to that finite presentation: after a covering, this map factors through a finite free module. Tensoring <m>N(U)\hookrightarrow N'(U)</m> with that free module is injective. The represented section is therefore locally zero, hence zero. This proves preservation of monomorphisms. The finite algebra step and this site formulation are detailed in <url href="https://stacks.math.columbia.edu/tag/03EQ">Stacks, Lemma 18.28.14</url>.</p>
+      </proof>
+    </proposition>
+    <p>The witnesses <m>B,t</m> are only required after a covering. Requiring the section module <m>M(U)</m> to be flat over every <m>\mathcal O(U)</m> is a stronger kind of test and is not the definition. The local criterion is particularly useful because its finite equations and local witnesses can be transported without invoking points.<fn>The integer <m>l</m> need not be bounded over the whole topos. Local existence of a finite factorization and existence of a globally bounded finite factorization are different claims.</fn></p>
+
+    <example xml:id="st-c09-flat-sections-failure">
+      <statement><p>A finite locally free sheaf can have a nonflat module of global sections over the ring of global scalars.</p></statement>
+      <solution>
+        <p>Let <m>R=k[\epsilon]/(\epsilon^2)</m>, let <m>\mathcal O=R_{S^1}</m>, and let <m>L</m> be the rank-one local system with monodromy multiplication by <m>1+\epsilon</m>. This is invertible, with inverse <m>1-\epsilon</m>. The sheaf <m>L</m> is finite locally free and hence flat. Its invariant sections are
+          <md number="no">\Gamma(S^1,L)=\ker(\epsilon:R\to R)=\epsilon R.</md>
+          The global scalar ring is <m>R</m>. The module <m>\epsilon R</m> is not flat: tensoring the injection <m>\epsilon R\hookrightarrow R</m> with <m>\epsilon R</m> gives a zero map with nonzero source <m>\epsilon R\otimes_R\epsilon R\simeq k</m>. Flatness of the sheaf is therefore not a claim of sectionwise flatness.</p>
+      </solution>
+    </example>
+
+    <theorem xml:id="st-c09-enoughflat">
+      <statement>
+        <p>Every module is a quotient of a flat module. More precisely, the epimorphism constructed in <xref ref="st-c08-grothendieck"/> has flat source.</p>
+      </statement>
+      <proof><p>Each summand <m>P_U</m> is flat and their direct sum is flat. This gives enough flat modules without requiring projective objects or enough points. It is also <url href="https://stacks.math.columbia.edu/tag/03EQ">Stacks, Lemma 18.28.8</url>.</p></proof>
+    </theorem>
+    <p>Iterating such epimorphisms supplies flat resolutions of individual modules. The unbounded K-flat replacement theorem in <xref ref="st-c11-resolutions"/> is stronger: it controls a whole complex and its differential, rather than independently resolving its terms.</p>
+
+    <proposition xml:id="st-c09-flat-quotient">
+      <statement>
+        <p>If <m>0\to A\to B\to C\to0</m> is exact with <m>C</m> flat, tensoring with any module preserves this exact sequence. If <m>A,C</m> are flat then <m>B</m> is flat; if <m>B,C</m> are flat then <m>A</m> is flat.</p>
+      </statement>
+      <proof>
+        <p>For a test module <m>N</m>, choose a flat epimorphism <m>Q\to N</m> and write <m>P</m> for its kernel. Suppose that a section of <m>A\otimes N</m> maps to zero in <m>B\otimes N</m>. After a covering lift it to <m>A\otimes Q</m>. Its image in <m>B\otimes Q</m> comes locally from <m>B\otimes P</m>. The latter element maps to zero in <m>C\otimes Q</m>. Since <m>C</m> is flat, <m>C\otimes P\to C\otimes Q</m> is injective. Right exactness then lifts the element in <m>B\otimes P</m> locally from <m>A\otimes P</m>. Subtract this lift in <m>A\otimes Q</m>; the remaining element maps to zero in <m>B\otimes Q</m>, and hence is zero because <m>Q</m> is flat. The original section in <m>A\otimes N</m> is zero. This proves injectivity; right exactness gives the rest.</p>
+        <p>Apply the resulting short exact sequence of tensor functors to a monomorphism of test modules. The kernel diagram proves the two closure assertions: if the outer tensor functors preserve injections, the middle one does; if the middle and quotient do, the subfunctor does. This is the tensor diagram argument in <url href="https://stacks.math.columbia.edu/tag/03EQ">Stacks, Lemmas 18.28.9–18.28.10</url>.</p>
+      </proof>
+    </proposition>
+  </section>
+
+  <section xml:id="st-c09-flat-functoriality">
+    <title>Flat pullback and relative flatness</title>
+    <theorem xml:id="st-c09-flat-pullback">
+      <statement>
+        <p>Pullback of a flat module along any ringed geometric morphism is flat. If <m>(p_i)</m> is a conservative family of points of <m>\mathcal E</m>, an <m>\mathcal O</m>-module <m>M</m> is flat if and only if every <m>M_{p_i}</m> is flat over <m>\mathcal O_{p_i}</m>.</p>
+      </statement>
+      <proof>
+        <p>The first assertion is the point-independent theorem <url href="https://stacks.math.columbia.edu/tag/05VA">Stacks, Lemma 18.39.1</url>. Its proof transports finite relations and local factorizations from <xref ref="st-c09-equational-flatness"/> through a presentation of the geometric morphism, then extends scalars. This is not a formal consequence of right exactness or monoidality alone.</p>
+        <p>Apply that assertion to a point with its stalk ring to obtain necessity in the second assertion. For sufficiency, take a monomorphism and tensor with <m>M</m>. Its inverse image at <m>p_i</m> is the tensor of the corresponding module injection with <m>M_{p_i}</m>, hence is injective. Conservative points detect that the kernel sheaf is zero. This is Lemma 18.39.3 of the same section. Without such a conservative family, flatness remains the exact-functor condition, not an unqualified stalk test.</p>
+      </proof>
+    </theorem>
+
+    <definition xml:id="st-c09-flat-morphism">
+      <title>Flat ringed morphisms and relative flatness</title>
+      <idx>Flat morphism!ringed topoi</idx><idx>Relative flatness</idx>
+      <statement>
+        <p>A ringed morphism <m>f:(\mathcal E,\mathcal O_{\mathcal E})\to(\mathcal F,\mathcal O_{\mathcal F})</m> is <term>flat</term> if its scalar map <m>f^{-1}\mathcal O_{\mathcal F}\to\mathcal O_{\mathcal E}</m> is flat. An <m>\mathcal O_{\mathcal E}</m>-module <m>N</m> is <term>flat over <m>(\mathcal F,\mathcal O_{\mathcal F})</m></term> if it is flat as an <m>f^{-1}\mathcal O_{\mathcal F}</m>-module.</p>
+      </statement>
+    </definition>
+    <proposition xml:id="st-c09-flat-exactness">
+      <statement>
+        <p>A flat ringed morphism has exact module pullback. More generally, if <m>N</m> is flat over its target, the functor
+          <md number="no">M\longmapsto f^*M\otimes_{\mathcal O_{\mathcal E}}N</md>
+          is exact. If <m>0\to M'\to M\to M''\to0</m> is exact and <m>M''</m> is flat, its pullback is exact for any ringed morphism <m>f</m>.</p>
+      </statement>
+      <proof>
+        <p>The first two functors are the exact underlying inverse image followed by tensor over <m>f^{-1}\mathcal O_{\mathcal F}</m> with the flat module <m>\mathcal O_{\mathcal E}</m> or <m>N</m>. For the last assertion, inverse image gives an exact sequence whose quotient is flat over the pulled-back ring, by <xref ref="st-c09-flat-pullback"/> applied before scalar extension. A sequence with flat quotient remains exact after tensoring with any module; apply this to <m>\mathcal O_{\mathcal E}</m>. The flat-quotient statement follows from enough flats and the usual tensor diagram argument. References are <url href="https://stacks.math.columbia.edu/tag/04JA">Stacks, §18.31</url> and <url href="https://stacks.math.columbia.edu/tag/05VA">Lemma 18.39.4</url>.</p>
+      </proof>
+    </proposition>
+    <p>Preservation of flat <em>objects</em> holds for every <m>f</m>. Exactness on <em>all sequences</em> is the conclusion obtained from flatness of the scalar map. These are different assertions. For ringed spaces the pointwise scalar condition is <m>\mathcal O_{X,x}</m> flat over <m>\mathcal O_{Y,f(x)}</m>; the corresponding stalk formulas follow from the ordinary inverse-image and tensor stalk formulas.</p>
+
+    <example xml:id="st-c09-hom-pullback-failure">
+      <statement><p>A finitely presented source does not by itself make internal Hom commute with nonflat pullback.</p></statement>
+      <solution><p>For the ringed point morphism <m>\Z\to S=\Z/2\Z</m>, take <m>M=\Z/2\Z</m> and <m>N=\Z</m>. Then <m>\Hom_\Z(M,N)=0</m>, but after scalar extension <m>\Hom_S(S,S)=S</m>. Thus the comparison of <xref ref="st-c09-basechange"/> is <m>0\to S</m>. The finite-presentation result in <xref ref="st-c10-hom-comparisons"/> needs exactness of pullback, whereas the finite-dual result there does not.</p></solution>
+    </example>
+
+    <proposition xml:id="st-c09-injective-directimage">
+      <statement><p>If a ringed morphism is flat, direct image preserves injective modules. Without flatness this preservation is not automatic, even on a one-point topos.</p></statement>
+      <proof><p>For flat <m>f</m>, the functor <m>f^*</m> is exact, and its right adjoint <m>f_*</m> therefore sends injectives to injectives. For the point morphism <m>\Z\to\Z/2\Z</m>, the module <m>\Z/2\Z</m> is injective over the field <m>\Z/2\Z</m> but not over <m>\Z</m>: the map <m>2\Z\to\Z/2\Z</m> taking <m>2</m> to <m>1</m> cannot extend to <m>\Z</m>. The direct image here is restriction of scalars, giving the counterexample.</p></proof>
+    </proposition>
+    <p>The fixed-coefficient assertion from Note I uses the exact left adjoint <m>f^{-1}</m>. In ringed module categories the left adjoint is <m>f^*</m>, so that argument must be checked again. This is why derived direct image and composition in <xref ref="st-c11"/> use the general ringed-topos construction, rather than silently transfer the fixed-coefficient injective argument.<fn>Enough injectives in both categories does not say that a particular functor preserves injectives. The exactness of its left adjoint is the condition used in this proof.</fn></p>
+  </section>
+</chapter>

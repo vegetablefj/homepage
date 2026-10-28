@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="st-c07">
+  <title>Gluing, torsors, and descent</title>
+  <introduction>
+    <p>The sheaf condition glues compatible sections. Descent asks for the corresponding statement about objects: a sheaf, group object, or other structure is given over a cover, with identifications over its overlaps. The identifications must themselves agree on triple overlaps. In a topos, every epimorphism is an effective cover for this purpose.</p>
+    <p>Working inside the topos has a practical advantage. All the required overlaps exist there, even when the original site has no fiber products. The same construction handles ordinary open covers and covers with nontrivial self-overlaps. Torsors provide a first application: their transition functions describe locally chosen origins, and in the Abelian case their isomorphism classes recover first cohomology.</p>
+  </introduction>
+
+  <section xml:id="st-c07-effective-section">
+    <title>Descent along an epimorphism</title>
+    <p>Fix a Grothendieck topos <m>\mathcal E</m> and an epimorphism <m>q:U\to S</m>. Write <m>U^{[n]}=U\times_S\cdots\times_SU</m>, with <m>n+1</m> factors. For an object <m>X\to U</m>, its two pullbacks to <m>U^{[1]}</m> need not be equal, but an object pulled back from <m>S</m> has a canonical identification between them.</p>
+    <definition xml:id="st-c07-descent-data">
+      <title>Descent datum</title><idx>Descent datum</idx><idx>Effective descent</idx>
+      <statement><p>A <em>descent datum</em> relative to <m>q</m> consists of an object <m>X\to U</m> and an isomorphism
+        <md number="no">\theta:p_2^*X\xrightarrow{\sim}p_1^*X
+          \quad\text{in }\mathcal E/U^{[1]}</md>
+        such that its pullbacks to <m>U^{[2]}</m> satisfy
+        <md number="no">\theta_{12}\theta_{23}=\theta_{13}.</md>
+        We also require the pullback of <m>\theta</m> along the diagonal <m>U\to U^{[1]}</m> to be the identity; this follows already from the displayed relation because <m>\theta</m> is invertible. A morphism of descent data is a map over <m>U</m> commuting with these identifications. Denote the resulting category by <m>\operatorname{Desc}(q)</m>. A datum is <em>effective</em> if it is isomorphic to the datum obtained from some <m>Y\to S</m> by pullback.</p></statement>
+    </definition>
+    <p>For generalized elements, <m>\theta_{12}</m> transports an element over <m>u_2</m> to one over <m>u_1</m>, whenever <m>q(u_1)=q(u_2)</m>. The cocycle relation says that transport through <m>u_2</m> agrees with direct transport. Such descriptions are identities after arbitrary changes of test object; they do not assert that global elements detect maps.<fn>The indices on <m>\theta</m> record its direction. Some references use maps from the first local object to the second, and write the cocycle in the reverse order. Fixing the source and target prevents this harmless convention from becoming a sign or composition error later.</fn></p>
+
+    <theorem xml:id="st-c07-descent">
+      <statement><p>For every epimorphism <m>q:U\to S</m> in <m>\mathcal E</m>, pullback induces an equivalence
+        <md number="no">\mathcal E/S\xrightarrow{\sim}\operatorname{Desc}(q).</md>
+        In particular, objects and their morphisms descend effectively along epimorphisms.</p></statement>
+      <proof>
+        <p>Given <m>(X,\theta)</m>, define a subobject <m>R\hookrightarrow X\times X</m> by declaring <m>(x_1,x_2)</m> to belong to <m>R</m> exactly when their images <m>u_1,u_2</m> have the same image in <m>S</m> and <m>x_1=\theta_{12}(x_2)</m>. This is a finite-limit construction. The diagonal identity, inverse transport, and cocycle identity make <m>R</m> an equivalence relation. By <xref ref="st-c03-effective-relation"/>, its quotient <m>r:X\to Y</m> is effective: <m>R\simeq X\times_YX</m>. The map <m>X\to S</m> is constant on <m>R</m>, so it factors uniquely through <m>Y\to S</m>.</p>
+        <p>The comparison
+          <md number="no">\beta:X\longrightarrow Y\times_SU,\qquad
+            x\longmapsto(r(x),u(x))</md>
+          is a monomorphism. Indeed, if two elements have the same image in <m>Y</m>, effectiveness makes them related by <m>R</m>; if their images in <m>U</m> also agree, the diagonal identity for <m>\theta</m> makes them equal. This argument is valid over every test object.</p>
+        <p>It is also an epimorphism. A local element <m>(y,u)</m> of its target locally lifts along the epimorphism <m>X\to Y</m> to an element <m>x'</m> over some <m>u'</m>. The equality <m>q(u')=q(u)</m> permits transport of <m>x'</m> to an element <m>x</m> over <m>u</m>. Related elements have the same image in <m>Y</m>, so <m>\beta(x)=(y,u)</m>. The local epimorphism criterion, rather than a test on global elements, proves the assertion. A map that is both monic and epic in a topos is an isomorphism. Under <m>\beta</m>, the original transport is precisely the canonical descent identification on the pullback of <m>Y</m>.</p>
+        <p>A morphism between descent data respects their equivalence relations and therefore descends to a unique map between the quotients. Conversely, the pullback of a map over <m>S</m> commutes with transport. Finally, beginning with <m>Y\to S</m>, the projection <m>Y\times_SU\to Y</m> is an epimorphism by stability under pullback, and its kernel pair is exactly the relation just constructed. Its quotient is <m>Y</m>. These constructions are inverse equivalences.</p>
+      </proof>
+    </theorem>
+    <p>The covering hypothesis is necessary. In <m>\Set</m>, restriction from <m>S=\{0,1\}</m> to <m>U=\{0\}</m> forgets the whole fiber over <m>1</m>. No overlap condition on <m>U</m> can recover it. In the proof above, the hypothesis that <m>q</m> is epic is used to recover a starting object from its pullback.</p>
+  </section>
+
+  <section xml:id="st-c07-covers-section">
+    <title>Families, overlaps, and site presentations</title>
+    <p>A jointly epimorphic family <m>(A_i\to S)_{i\in I}</m> is equivalent to the single epimorphism <m>\coprod_iA_i\to S</m>. Since coproducts in a topos are disjoint and universal, descent data can be written as objects <m>X_i\to A_i</m> and identifications
+      <md number="no">\theta_{ij}:X_j|_{A_i\times_SA_j}\xrightarrow{\sim}
+        X_i|_{A_i\times_SA_j},\qquad
+        \theta_{ij}\theta_{jk}=\theta_{ik}.</md>
+      The vertical bars here mean pullback to a slice topos, not restriction to an assumed open subset.</p>
+    <p>For a site cover <m>(U_i\to U)</m>, the corresponding family
+      <md number="no">a h_{U_i}\longrightarrow a h_U</md>
+      is jointly epic by the local criterion of <xref ref="st-c02-local-criterion"/>. Apply the theorem in <m>\mathcal E/a h_U\simeq\Sh(\mathcal C/U)</m>, using <xref ref="st-c05-slice-topos"/>. If <m>U_i\times_UU_j</m> exists in <m>\mathcal C</m>, left exactness of sheafification identifies its sheafified representable with <m>a h_{U_i}\times_{a h_U}a h_{U_j}</m>. Otherwise, the latter object still exists in <m>\mathcal E</m>; its slice is presented by the category of local sections from <xref ref="st-c05-objectsite"/>. Thus no fiber product is being added to the hypotheses on the original site.</p>
+    <p>One must retain the overlaps with <m>i=j</m>. For an open inclusion, <m>A_i\times_SA_i\simeq A_i</m>, and the corresponding datum reduces to the identity. For a general cover, the two projections of this self-overlap can differ.<fn>A single surjective map can carry substantial gluing information. Thinking only of inclusions of open subsets can obscure exactly the information that descent is intended to retain.</fn> For example, let <m>S=1</m> in <m>\Set</m> and let <m>U=\{0,1\}\to1</m>. An object over <m>U</m> is a pair of sets <m>X_0,X_1</m>. Its descent datum includes bijections between these two fibers, compatible with inverse and identity maps. The quotient is one set, together with the prescribed identifications of both fibers with it. The self-overlap <m>U\times U</m> has four elements, even though the cover has just one member.</p>
+    <p>The usual site formulation is <url href="https://stacks.math.columbia.edu/tag/04TP">Stacks, Section 7.26</url>. Its presentation uses representable fiber products. The quotient proof above isolates the topos statement, so it applies to sieve-defined sites without those representability assumptions.</p>
+  </section>
+
+  <section xml:id="st-c07-structures-section">
+    <title>Descending algebraic structures</title>
+    <p>The same theorem descends an algebraic structure given by finitely many inputs at a time: group objects, Abelian group objects, rings, and modules over a descended ring. The reason is the compatibility of descent with finite products, not a separate gluing theorem for each operation.</p>
+    <proposition xml:id="st-c07-algebraic-descent">
+      <statement><p>Let <m>q:U\to S</m> be epic. An object over <m>U</m> with a finitary algebraic structure and a descent datum preserving that structure descends to an object over <m>S</m> with the same structure. Structure-preserving maps descend as well. In particular, pullback gives effective descent for Abelian group objects. A sequence of Abelian group objects over <m>S</m> is exact if and only if its pullback to <m>U</m> is exact.</p></statement>
+      <proof>
+        <p>Descend the underlying object to <m>Y\to S</m>. A multiplication on its pullback is a morphism <m>q^*Y\times_Uq^*Y\to q^*Y</m> compatible with the descent datum. Since pullback preserves finite products, full faithfulness in <xref ref="st-c07-descent"/> descends it uniquely to <m>Y\times_SY\to Y</m>. Units and other finite-arity operations descend in the same way. Equations between operations descend because equality of maps can be tested after the epimorphic pullback. This proves all algebraic identities at once.</p>
+        <p>The inverse image <m>\mathcal E/S\to\mathcal E/U</m> is exact on Abelian objects by <xref ref="st-c04-exactness"/>. It is conservative: a map whose pullback is an isomorphism has the inverse descent map, by full faithfulness. Applied to the cohomology object of a three-term complex, these two properties show that it also reflects exactness.</p>
+      </proof>
+    </proposition>
+    <p>A descended object is unique together with its specified local identifications, up to a unique compatible isomorphism. This does not mean that its underlying object has no automorphisms. Forgetting the identifications changes the uniqueness assertion.<fn>The phrase “unique up to unique isomorphism” always includes the data that the isomorphism must preserve. For a torsor below, forgetting a chosen origin usually leaves many automorphisms.</fn></p>
+    <p>For modules, the coefficient ring must be tracked as part of the datum. The assertion concerns modules over the ring descended from the local rings. It does not identify descent for an arbitrary ring homomorphism with descent along an epimorphism of underlying topoi. Ringed inverse images and their exactness conditions are introduced in <xref ref="st-c08"/>.</p>
+  </section>
+
+  <section xml:id="st-c07-torsor-section">
+    <title>Torsors and changes of origin</title>
+    <definition xml:id="st-c07-torsor">
+      <title>Torsor</title><idx>Torsor</idx><idx>Principal homogeneous object</idx>
+      <statement><p>Let <m>G</m> be a group object of <m>\mathcal E</m>. A <em>right <m>G</m>-torsor</em> is an object <m>P</m> with a right <m>G</m>-action such that <m>P\to1</m> is epic and
+        <md number="no">P\times G\longrightarrow P\times P,\qquad
+          (p,g)\longmapsto(p,pg)</md>
+        is an isomorphism. Its morphisms are <m>G</m>-equivariant maps. The trivial torsor is <m>G</m> with its right translation action.</p></statement>
+    </definition>
+    <p>The isomorphism says that two local elements of <m>P</m> differ by one uniquely determined group element. The epimorphism says that local elements exist after a cover. Neither condition supplies a global element. Without the epimorphism condition one obtains what some references call a <em>pseudo-torsor</em>.<fn><url href="https://stacks.math.columbia.edu/tag/03AG">Stacks, Section 21.4</url> uses left actions. A right action becomes a left action by <m>g\cdot p=pg^{-1}</m>. The two conventions agree on the objects classified, while changing the order of transition-function formulas.</fn></p>
+    <proposition xml:id="st-c07-torsor-triviality">
+      <statement><p>A <m>G</m>-torsor is trivial if and only if it has a global section. Every morphism of <m>G</m>-torsors is an isomorphism. Every torsor becomes trivial after an epimorphic cover.</p></statement>
+      <proof>
+        <p>A section <m>p:1\to P</m> gives the equivariant isomorphism <m>G\to P</m>, <m>g\mapsto pg</m>, by pulling back the defining isomorphism along <m>p</m> in its first factor. A trivial torsor has the identity section. Pulling back to <m>P\to1</m> supplies a tautological section, so every torsor is locally trivial. A map of torsors, after a common epimorphic cover trivializing both source and target, is an equivariant map <m>G\to G</m>. Such a map is left multiplication by its value at the identity, and is invertible. Conservativity of epimorphic pullback descends its inverse.</p>
+      </proof>
+    </proposition>
+    <p>Choose a jointly epimorphic family <m>A_i\to1</m> and sections <m>p_i\in P(A_i)</m>. On overlaps there are unique elements <m>g_{ij}\in G(A_i\times A_j)</m> such that
+      <md number="no">p_j=p_i g_{ij}.</md>
+      On triple overlaps they satisfy <m>g_{ij}g_{jk}=g_{ik}</m>. Replacing <m>p_i</m> by <m>p_i b_i</m> replaces them by
+      <md number="no">g'_{ij}=b_i^{-1}g_{ij}b_j.</md>
+      Conversely, such transition functions glue the trivial right torsors on the <m>A_i</m>: the identification from the <m>j</m>-coordinate to the <m>i</m>-coordinate is left multiplication by <m>g_{ij}</m>. It is equivariant for the right action. Effective descent constructs <m>P</m>, and its defining properties can be tested after the cover.</p>
+    <p>Write <m>H^1(\mathcal E,G)</m> for the pointed set of isomorphism classes of <m>G</m>-torsors, with the trivial torsor as distinguished point. For non-Abelian <m>G</m>, this notation does not mean a right derived functor and does not in general carry a group law. Transition functions on one fixed cover classify only the torsors trivialized by that cover; allowing refinement removes that restriction.</p>
+  </section>
+
+  <section xml:id="st-c07-first-section">
+    <title>The Abelian first-cohomology class</title>
+    <p>Let <m>F\in\Ab(\mathcal E)</m>. We use additive notation for its torsors. Let <m>\Z_{\mathcal E}</m> be the free Abelian object on the terminal object, equivalently the constant integer object. Its universal property gives
+      <md number="no">\Hom_{\Ab(\mathcal E)}(\Z_{\mathcal E},F)
+        =\Hom_{\mathcal E}(1,F)=\Gamma(\mathcal E,F).</md>
+      The category <m>\Ab(\mathcal E)</m> is Grothendieck, so injective resolutions and derived global sections exist. We therefore have
+      <md number="no">R^1\Gamma(\mathcal E,F)
+        \simeq\Ext^1_{\Ab(\mathcal E)}(\Z_{\mathcal E},F).</md>
+      Here only degree one is needed; the derived construction is developed in <xref ref="st-c11"/>.</p>
+    <theorem xml:id="st-c07-h1">
+      <statement><p>There is a natural bijection between the isomorphism classes of <m>F</m>-torsors and
+        <md number="no">H^1(\mathcal E,F)
+          :=R^1\Gamma(\mathcal E,F)
+          \simeq\Ext^1_{\Ab(\mathcal E)}(\Z_{\mathcal E},F).</md>
+        The trivial torsor corresponds to zero. Under this bijection the group law is the contracted sum of torsors.</p></statement>
+      <proof>
+        <p>An extension
+          <md number="no">0\longrightarrow F\longrightarrow B
+            \xrightarrow{\rho}\Z_{\mathcal E}\longrightarrow0</md>
+          determines the fiber <m>P=\rho^{-1}(1)</m>. The map <m>P\to1</m> is epic as a pullback of <m>\rho</m>. Subtraction of two local lifts of <m>1</m> identifies their difference uniquely with an element of <m>F</m>; hence <m>P</m> is an <m>F</m>-torsor.</p>
+        <p>Conversely, choose local origins <m>p_i</m> for an <m>F</m>-torsor and write <m>p_j=p_i+c_{ij}</m>. Glue the Abelian objects <m>F|_{A_i}\oplus\Z_{A_i}</m> by
+          <md number="no">(a,n)_j\longmapsto(a+n c_{ij},n)_i.</md>
+          The relation <m>c_{ij}+c_{jk}=c_{ik}</m> is exactly the descent relation. Algebraic descent gives an Abelian object <m>B</m>, and the inclusion of <m>F</m> and projection to <m>\Z_{\mathcal E}</m> descend to the required exact extension. Its fiber over <m>1</m> is the original torsor. A change of origins gives compatible isomorphisms of the local extensions, so the extension class is independent of that choice.</p>
+        <p>Starting from an extension, local lifts of <m>1</m> split it locally by <m>(a,n)\mapsto a+n p_i</m>. Their changes of splitting are the displayed transition maps. Thus the two constructions are inverse, including their isomorphisms.</p>
+        <p>The contracted sum of torsors <m>P,Q</m> is the sheaf quotient of <m>P\times Q</m> by the relation
+          <md number="no">(p+a,q)\sim(p,q+a).</md>
+          Equivalently, take the quotient for the action <m>(p,q)\cdot a=(p+a,q-a)</m>. In local coordinates its transition functions are <m>c_{ij}+d_{ij}</m>. The Baer sum of the corresponding extensions has the same transition formula, which proves compatibility with addition.</p>
+      </proof>
+    </theorem>
+    <p>The quotient in this proof is a quotient in the topos. Taking orbits separately on each object of the site can fail the sheaf condition; sheafification supplies the needed locally glued orbit sections. The identity between torsors and extensions is proved for sites in <url href="https://stacks.math.columbia.edu/tag/03AG">Stacks, Section 21.4</url> and <url href="https://stacks.math.columbia.edu/tag/03F0">Section 21.5</url>. The coordinate construction above is the same one used over spaces in <url href="../sheaves-topological/sh-c10.html">Note I, Chapter 10</url>; the argument here uses effective descent over arbitrary epimorphic covers.</p>
+    <p>For an exact sequence <m>0\to F\to B\to C\to0</m> and <m>c\in\Gamma(\mathcal E,C)</m>, the fiber of <m>B\to C</m> over <m>c</m> is the torsor representing <m>\partial c\in H^1(\mathcal E,F)</m>. Local lifts <m>b_i</m> give the transition functions <m>b_j-b_i</m>. Thus the boundary measures whether existing local lifts admit compatible origins; its vanishing is equivalent to the existence of a global lift.</p>
+  </section>
+
+  <section xml:id="st-c07-functorial-section">
+    <title>Functoriality and a nonspatial example</title>
+    <p>A geometric inverse image preserves products, epimorphisms, and quotients of equivalence relations. It therefore pulls a <m>G</m>-torsor back to an <m>f^{-1}G</m>-torsor, and induces
+      <md number="no">H^1(\mathcal E,G)\longrightarrow
+        H^1(\mathcal F,f^{-1}G)
+        \quad\text{for }f:\mathcal F\to\mathcal E.</md>
+      For Abelian coefficients this is the usual degree-one pullback. A homomorphism <m>\alpha:G\to H</m> also changes the group of a torsor: form
+      <md number="no">P\times^G H=(P\times H)/G,\qquad
+        (p,h)\cdot g=(pg,\alpha(g)^{-1}h).</md>
+      The remaining right <m>H</m>-action makes this an <m>H</m>-torsor. This can be checked after trivializing <m>P</m>, when the quotient is <m>H</m>. These constructions commute with pullback.</p>
+    <example xml:id="st-c07-group-example">
+      <statement><p>Let <m>\mathcal E</m> be the topos of <em>left</em> <m>K</m>-sets for a discrete group <m>K</m>, and let <m>A</m> be a group with trivial <m>K</m>-action.<fn>This presentation is equivalent to the right-action presentation used earlier: from a right action form the left action <m>k\cdot x=x\cdot k^{-1}</m>. The separate torsor action of <m>A</m> remains a right action throughout.</fn> Then
+        <md number="no">H^1(\mathcal E,A)\simeq\Hom_{\mathrm{Grp}}(K,A)/A,</md>
+        where <m>A</m> acts by conjugation.</p></statement>
+      <solution>
+        <p>An <m>A</m>-torsor is a nonempty ordinary right <m>A</m>-torsor with a commuting left <m>K</m>-action. Choose an ordinary element <m>p</m>. Unique elements <m>c(k)\in A</m> satisfy <m>kp=p\,c(k)</m>. Commutation of the two actions gives <m>c(kl)=c(k)c(l)</m>. Replacing <m>p</m> by <m>pa</m> replaces <m>c(k)</m> by <m>a^{-1}c(k)a</m>. Conversely, a homomorphism <m>c</m> gives the right torsor <m>A</m> with left action <m>k\cdot a=c(k)a</m>. These constructions classify equivariant torsor isomorphisms exactly by conjugation.</p>
+        <p>For <m>K=A=\Z/2\Z</m>, the identity homomorphism gives a nontrivial torsor: its underlying two-element torsor has no <m>K</m>-fixed element, hence no global section in <m>\mathcal E</m>. The forgetful functor to sets is a conservative point of this topos. Thus enough points do not imply that every torsor is trivial.<fn>A point trivializes a torsor after applying its inverse image, because a nonempty set has an element. A family of points can detect whether a given map is an isomorphism, but cannot assemble unrelated choices of origins into a global section.</fn></p>
+      </solution>
+    </example>
+    <p>The descent theorem concerns objects and their actual isomorphisms in slice topoi. It does not assert that ordinary triangulated derived categories, with only morphisms in the derived category as gluing data, satisfy the same statement. Cohomological descent in <xref ref="st-c12"/> makes a different, explicitly bounded-below assertion about resolutions and hypercovers.</p>
+  </section>
+</chapter>

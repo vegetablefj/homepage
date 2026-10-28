@@ -1,0 +1,89 @@
+<chapter xml:id="st-c02">
+  <title>Sheafification without points</title>
+  <introduction>
+    <p>The étalé-space construction of a sheaf uses germs at points. A site may have no such description. Its replacement is to identify matching families after refinement. One application separates locally equal sections; a second supplies all compatible local amalgamations. The proof also gives local criteria for morphisms and exactness.</p>
+    <p>Throughout this chapter, <m>(\mathcal C,J)</m> is a small site in the sieve convention. No fiber products or points are assumed. The source convention is compared with <url href="https://stacks.math.columbia.edu/tag/00ZG">Stacks, §7.49</url>; we write a plus sign where that section uses <m>L</m>.</p>
+  </introduction>
+  <section xml:id="st-c02-construction">
+    <title>The plus construction</title>
+    <definition xml:id="st-c02-plus">
+      <idx><h>plus construction</h></idx>
+      <statement><p>Give <m>J(U)</m> the inclusion order. Its opposite has an arrow <m>R\to S</m> if <m>S\subseteq R</m>. Define
+        <md number="no">F^+(U)=\colim_{R\in J(U)^{\op}}\Hom_{\PSh(\mathcal C)}(R,F).</md>
+        A class is represented by a matching family <m>\phi:R\to F</m>. Two representatives are equal when their restrictions agree on a covering sieve contained in both domains. The map <m>\eta_F:F\to F^+</m> uses the maximal sieve and Yoneda.</p></statement>
+    </definition>
+    <p>The index category is filtered: it is nonempty and finite intersections supply a common later object. Thus the explicit equality criterion follows from the usual description of a filtered colimit of sets. The reversal of inclusion matters. Restricting a matching family to a smaller sieve moves forward in this system.<fn>A smaller covering sieve is a refinement of the available local tests, not a smaller target object. This is why a directed colimit appears even though the notation is built from inclusions of sieves.</fn></p>
+    <p>For <m>f:V\to U</m>, pull the domain <m>R</m> back to <m>f^*R</m> and assign to <m>g:W\to V</m> the section <m>\phi(fg)</m>. This defines restriction <m>F^+(U)\to F^+(V)</m>. Pullback preserves common refinements, so the operation is independent of the representative. Composition of arrows gives composition of restrictions. Postcomposition of matching families makes <m>F\mapsto F^+</m> a functor and <m>\eta</m> a natural transformation.</p>
+    <proposition xml:id="st-c02-plus-local">
+      <statement><p>The plus construction has the following local description.
+        <ol><li><p>For <m>s,t\in F(U)</m>, their images in <m>F^+(U)</m> agree exactly when <m>s|_f=t|_f</m> on a covering sieve of arrows <m>f</m> to <m>U</m>.</p></li>
+          <li><p>Every <m>\xi\in F^+(U)</m> is locally in the image of <m>F</m>: there is a covering sieve <m>R</m> such that, for <m>f:V\to U</m> in <m>R</m>, its restriction is <m>\eta_F(\phi(f))</m> for a section <m>\phi(f)\in F(V)</m>.</p></li>
+          <li><p>The map <m>F\to F^+</m> is objectwise injective if and only if <m>F</m> is separated.</p></li></ol></p></statement>
+      <proof><p>The first assertion is equality in the filtered colimit. To prove the second, choose a representative <m>\phi:R\to F</m>. For <m>f\in R(V)</m>, the sieve <m>f^*R</m> is maximal. Its matching family is exactly the section <m>\phi(f)</m> under Yoneda. The final assertion is the definition of separatedness applied to the first assertion.</p></proof>
+    </proposition>
+    <p>The formula does not make sections equal merely because they have some common restriction. The common restriction must be along a covering sieve. An arbitrary arrow of a site need not provide enough local information for that purpose.</p>
+  </section>
+  <section xml:id="st-c02-two-steps">
+    <title>Separation and amalgamation</title>
+    <theorem xml:id="st-c02-plus-theorem">
+      <statement><p>For every presheaf <m>F</m>, the presheaf <m>F^+</m> is separated. If <m>F</m> is separated, <m>F^+</m> is a sheaf. If <m>F</m> is a sheaf, <m>\eta_F:F\to F^+</m> is an isomorphism. Consequently <m>F^{++}</m> is always a sheaf.</p></statement>
+      <proof><p>Suppose <m>\xi,\zeta\in F^+(U)</m> have equal restrictions on a covering sieve <m>S</m>. Choose representatives on covering sieves <m>R_1,R_2</m>, and restrict both to <m>R=R_1\cap R_2\cap S</m>. For <m>f:V\to U</m> in <m>R</m>, their restrictions are represented by sections of <m>F(V)</m>. Equality in <m>F^+(V)</m> means that these sections agree on a covering sieve <m>S_f</m>. The composites of <m>R</m> with these <m>S_f</m> generate a covering sieve on <m>U</m>. Both representatives agree there, so <m>\xi=\zeta</m>. This proves separatedness.</p>
+        <p>Now assume <m>F</m> separated, and let <m>t:R\to F^+</m> be matching data on a covering sieve. For every <m>f:V\to U</m> in <m>R</m>, choose a representative <m>\phi_f:S_f\to F</m> for <m>t(f)</m>. The composites <m>fg</m>, for <m>g\in S_f</m>, generate a covering sieve <m>S</m>. Define a family on it by
+          <md number="no">\theta(fg)=\phi_f(g).</md>
+          If an arrow has two such factorizations, the two proposed sections have equal images in <m>F^+</m>, because both images equal the corresponding restriction of <m>t</m>. The injection <m>F\to F^+</m> from separatedness makes the sections themselves equal. Thus <m>\theta</m> is well-defined and natural.</p>
+        <p>The class <m>[\theta]\in F^+(U)</m> restricts to <m>t(f)</m> after <m>S_f</m>. These restrictions agree on all of <m>V</m> because <m>F^+</m> is separated. Hence this class amalgamates <m>t</m>, uniquely by the first part. If <m>F</m> is already a sheaf, every matching-family representative has a unique amalgamation in <m>F(U)</m>, proving that <m>\eta_F</m> is an isomorphism. Apply the first two parts successively for the final assertion.</p></proof>
+    </theorem>
+    <p>The two steps have distinct roles. A matching family in a nonseparated presheaf may have several descriptions of the same local datum. The first plus identifies those descriptions. Once that identification is available, local representatives can be assembled without a choice ambiguity, as the middle paragraph of the proof shows. For a separated presheaf only the assembly step remains.</p>
+    <definition xml:id="st-c02-sheafification">
+      <idx><h>sheafification</h></idx>
+      <statement><p>The associated sheaf is <m>aF=F^{++}</m>, with unit the composite <m>F\to F^+\to F^{++}</m>. We also denote this composite by <m>\eta_F</m>.</p></statement>
+    </definition>
+    <proposition xml:id="st-c02-adjunction">
+      <statement><p>The associated sheaf is characterized by the natural bijection
+        <md number="no">\Hom_{\Sh(\mathcal C,J)}(aF,G)\simeq\Hom_{\PSh(\mathcal C)}(F,G)</md>
+        for every sheaf <m>G</m>.</p></statement>
+      <proof><p>Given <m>u:F\to G</m>, send a class <m>[\phi:R\to F]</m> to the unique amalgamation of <m>u\phi</m> in <m>G</m>. Common refinement and separatedness of <m>G</m> make this independent of the representative. It is compatible with restrictions and extends <m>u</m>. Repeat for the second plus. Uniqueness follows because every plus section is locally represented by a section from the previous stage, and morphisms to a separated presheaf are determined locally. The resulting correspondence is natural in both variables.</p></proof>
+    </proposition>
+    <p>Thus <m>a</m> is left adjoint to the full inclusion of sheaves into presheaves. Any other construction with this unit and universal property is uniquely isomorphic to it compatibly with the unit. In the topological case it agrees with the germ construction from the first note.<fn>The notations <m>F^\#</m>, <m>\widetilde F</m>, and <m>aF</m> can all mean associated sheaf. The same tilde can also denote the quasi-coherent sheaf associated to a module on an affine scheme, a different construction with a different input. We use <m>aF</m> here.</fn></p>
+  </section>
+  <section xml:id="st-c02-local-tests">
+    <title>Local equality and lifting</title>
+    <proposition xml:id="st-c02-unit-local">
+      <statement><p>For <m>s,t\in F(U)</m>, their images in <m>aF(U)</m> agree if and only if they agree after a covering sieve. Every section of <m>aF</m> is locally the image of sections of <m>F</m>. These sections need only agree locally on overlaps before sheafification.</p></statement>
+      <proof><p>The presheaf <m>F^+</m> is separated, so its map to <m>F^{++}</m> is injective. Equality of two sections from <m>F</m> in <m>aF</m> is therefore already equality in <m>F^+</m>, which has the stated criterion. For local representability, represent a section first by matching <m>F^+</m>-data, then represent those data locally in <m>F</m>. Local character composes the two covering sieves. Equality of their images on overlaps gives local equality in <m>F</m> by the first assertion.</p></proof>
+    </proposition>
+    <definition xml:id="st-c02-local">
+      <statement><p>A morphism <m>u:P\to Q</m> of presheaves is locally injective if <m>u(s)=u(t)</m> implies that <m>s</m> and <m>t</m> agree on a covering sieve, for all sections on every object. It is locally surjective if, for every <m>q\in Q(U)</m>, the sieve
+        <md number="no">\{f:V\to U\mid q|_f\in\im(P(V)\to Q(V))\}</md>
+        covers. A local isomorphism of presheaves means a map having both properties.</p></statement>
+    </definition>
+    <p>Local surjectivity specifies a preimage separately on each local test. It requires no compatible choice of those preimages. Compatibility is a consequence when uniqueness is also available. The definition of local injectivity can equivalently allow <m>u(s)</m> and <m>u(t)</m> to be merely locally equal: refine to equality first and use local character.</p>
+    <proposition xml:id="st-c02-local-criterion">
+      <statement><p>A presheaf map <m>u:P\to Q</m> becomes a monomorphism after sheafification if and only if it is locally injective. It becomes an isomorphism after sheafification if and only if it is a local isomorphism. For a map between sheaves, local injectivity is objectwise injectivity; local injectivity and local surjectivity together imply an isomorphism.</p></statement>
+      <proof><p>If <m>a(u)</m> is monic and <m>u(s)=u(t)</m>, the sections <m>s,t</m> have equal images in <m>aP</m>, hence are locally equal. Conversely, sections of <m>aP</m> are locally represented in <m>P</m>. Equality of their images in <m>aQ</m> can be refined to equality in <m>Q</m>; local injectivity then refines it to equality in <m>P</m>. Separatedness of <m>aP</m> gives equality globally. A sheaf map is monic exactly when its section maps are injective, by testing with <m>ah_U</m> and Yoneda.</p>
+        <p>If <m>u</m> is also locally surjective, every section of <m>aQ</m> has local preimages in <m>aP</m>. Monicity makes those preimages agree on all common tests, so they glue. This proves that <m>a(u)</m> is an isomorphism. Conversely, if <m>a(u)</m> is an isomorphism, apply its inverse to the image of <m>q\in Q(U)</m>. Represent the inverse locally in <m>P</m>; its image is locally equal to <m>q</m> in <m>Q</m> by the unit criterion. A further refinement gives actual local preimages of <m>q</m>. For sheaves, separatedness turns local equality into equality, giving the last assertions.</p></proof>
+    </proposition>
+    <p>The word local isomorphism here describes a presheaf map inverted by sheafification. It is not the local homeomorphism of topological spaces used in the first note. The target categories and definitions differ.<fn>Similarly, a local isomorphism of schemes or ringed spaces is a geometric condition on maps. The present usage is often called a local equivalence of presheaves of sets. We always specify the presheaf context.</fn></p>
+    <p>For a pretopology, the unit criterion can be expressed using a cover and further covers of its pairwise intersections. This is the two-stage description in <url href="https://stacks.math.columbia.edu/tag/00WK">Stacks, Lemma 7.10.16</url>. A single family of representatives need not agree on the original intersections before those further refinements.</p>
+  </section>
+  <section xml:id="st-c02-exactness">
+    <title>Finite limits and algebraic structures</title>
+    <proposition xml:id="st-c02-left-exact">
+      <statement><p>The functors <m>F\mapsto F^+</m> and <m>a</m> preserve finite limits. Sheafification of abelian-group, ring, and module presheaves is obtained by sheafifying the underlying sets and their operations. For abelian presheaves, sheafification is an exact functor to abelian sheaves.</p></statement>
+      <proof><p>For a covering sieve <m>R</m>, the functor <m>\Hom(R,-)</m> preserves all limits. Filtered colimits of sets commute with finite limits. Use these facts with the same filtered index <m>J(U)^{\op}</m> for every presheaf in a finite diagram. This proves the plus assertion objectwise; composing it proves the assertion for <m>a</m>.</p>
+        <p>Algebraic operations of finite arity extend using the finite-product comparisons, and the equations between them extend by naturality. For a presheaf of modules over a ring presheaf <m>A</m>, the result is a module over <m>aA</m>. Their universal properties are inherited from the underlying-set adjunction. In abelian groups, preservation of finite limits gives kernels; the left-adjoint property gives cokernels in abelian sheaves. Thus sheafification is exact.</p></proof>
+    </proposition>
+    <p>This argument identifies the source of left exactness: filtered refinement and finite limits of sets. It does not deduce it from the existence of a left adjoint. A general left adjoint need not preserve a kernel or a pullback. Infinite products also lie outside this argument; infinitely many local representatives need not share one covering sieve.</p>
+    <p>One can define an abelian sheaf either as a sheaf of abelian groups on the site or as an abelian-group object in its category of set sheaves. Products and equalities of sheaves are tested objectwise, so the two definitions agree. The same statement holds for rings and modules over a fixed ring sheaf. The ringed formulation is developed in <xref ref="st-c08"/>.</p>
+    <p>Limits of sheaves are limits of presheaves: for every sieve <m>R</m>, the functors <m>\Hom(h_U,-)</m> and <m>\Hom(R,-)</m> preserve limits, and the sheaf-condition bijections remain bijections after taking a limit. A colimit of sheaves is instead the sheafification of its presheaf colimit. These facts will give the categorical structure in <xref ref="st-c03"/>.</p>
+  </section>
+  <section xml:id="st-c02-recovering-topology">
+    <title>Recovering the topology from its sheaves</title>
+    <proposition xml:id="st-c02-cover-sheafification">
+      <statement><p>A sieve <m>R\subseteq h_U</m> covers <m>U</m> if and only if <m>aR\to ah_U</m> is an isomorphism. Consequently the full subcategory <m>\Sh(\mathcal C,J)\subseteq\PSh(\mathcal C)</m> determines <m>J</m>.</p></statement>
+      <proof><p>The inclusion is already locally injective. If <m>R</m> covers and <m>f\in h_U(V)</m>, then <m>f^*R</m> covers <m>V</m> and makes <m>f</m> locally an arrow in <m>R</m>. Hence the inclusion is locally surjective and its sheafification is an isomorphism. Conversely, if that sheafification is an isomorphism, the local-surjectivity criterion applied to <m>\id_U\in h_U(U)</m> says exactly that <m>R</m> covers. The full reflective subcategory determines its reflector up to the unique unit-compatible isomorphism, and this criterion then determines the covering sieves.</p></proof>
+    </proposition>
+    <p>The precise statement is <url href="https://stacks.math.columbia.edu/tag/00ZN">Stacks, §7.50</url>. On a fixed category, <m>J\subseteq J'</m> if and only if every <m>J'</m>-sheaf is a <m>J</m>-sheaf. One implication restricts the list of sheaf conditions. For the converse, the reflector to the smaller full subcategory factors through the first reflector; apply the sieve criterion to <m>R\to h_U</m>. The induced factorization of reflectors explains why sheafifying again for a finer topology adds local identifications.</p>
+    <p>This does not identify sites from an abstract equivalence of their topoi. The category of all opens of a space and an appropriate basis can give equivalent sheaf categories with different underlying test categories. The comparison chapter establishes when this change of presentation is valid. What is recovered here includes the original embedding among presheaves, which an abstract equivalence does not remember.</p>
+  </section>
+</chapter>

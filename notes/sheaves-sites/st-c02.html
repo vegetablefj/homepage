@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-darkmode="disabled">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette: blue-red                     *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Sheafification without points</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Sites, topoi, and ringed structures">
+<meta property="og:title" content="Sites, topoi, and ringed structures">
+<meta property="book:title" content="Sites, topoi, and ringed structures">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.53"></script><script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="../../vendor/lunr/lunr.min.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+<link rel="stylesheet" href="../../layout.css?v=fee08a8c1c">
+<script src="../../layout.js?v=e9391a21a7" defer></script><link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"C": "\\mathbb C", "Pone": "\\mathbb{P}^1_{\\mathbb{C}}", "cO": "\\mathcal{O}", "ord": "\\operatorname{ord}", "lt": "<", "gt": ">", "amp": "&", "Hom": "\\operatorname{Hom}", "End": "\\operatorname{End}", "Ext": "\\operatorname{Ext}", "Tor": "\\operatorname{Tor}", "colim": "\\operatorname{colim}", "im": "\\operatorname{im}", "coker": "\\operatorname{coker}", "Cone": "\\operatorname{Cone}", "Tot": "\\operatorname{Tot}", "Loc": "\\operatorname{Loc}", "Spec": "\\operatorname{Spec}", "cosk": "\\operatorname{cosk}", "sk": "\\operatorname{sk}", "Lan": "\\operatorname{Lan}", "Ran": "\\operatorname{Ran}", "Nat": "\\operatorname{Nat}", "Coh": "\\mathsf{Coh}", "QCoh": "\\mathsf{QCoh}", "Perf": "\\mathsf{Perf}", "Sh": "\\mathsf{Sh}", "PSh": "\\mathsf{PSh}", "Set": "\\mathsf{Set}", "Ab": "\\mathsf{Ab}", "Mod": "\\mathsf{Mod}", "Ch": "\\mathsf{C}", "K": "\\mathsf{K}", "D": "\\mathsf{D}", "id": "\\mathrm{id}", "op": "\\mathrm{op}", "RHom": "\\mathbf R\\!\\operatorname{Hom}", "sheafHom": "\\mathcal{H}\\!om", "RsheafHom": "\\mathbf R\\mathcal{H}\\!om", "Ltensor": "\\mathbin{\\otimes^{\\mathbf L}}", "Z": "\\mathbb Z", "N": "\\mathbb N", "Q": "\\mathbb Q", "R": "\\mathbb R"}}, "options": {"ignoreHtmlClass": "ignore-math", "processHtmlClass": "process-math", "enableMenu": false}};</script><script src="../../vendor/mathjax/tex-chtml.js" defer></script>
+</head>
+<body class="pretext book ignore-math note-page" data-page-format="note">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner"><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="sheaves-sites-notes.html"><span class="title">Sites, topoi, and ringed structures</span></a></div>
+<p class="byline"><a href="../../home.html">Jie Fu</a>'s <a href="../../notes.html">Notes</a></p>
+<p class="note-metadata"><span class="note-review-status">Under review and improvement</span> · <span class="note-last-updated">Last updated: <time datetime="2026-10-26">2026-10-26</time></span></p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Contents</span></button><a class="index-button button" href="st-index.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Index</span></a><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true"></span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="treebuttons"><a class="previous-button button" href="st-c01.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="up-button button" href="sheaves-sites-notes.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Up</span></a><a class="next-button button" href="st-c03.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a></span>
+</div></nav><div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth4 focused" data-preexpanded-levels="1" data-max-levels="4"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c00.html" class="internal"><span class="codenumber">0</span> <span class="title">From open covers to sites</span></a></div>
+<ul id="ptx-toc-group-st-c00" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c00.html#st-c00-background" class="internal"><span class="codenumber">0.1</span> <span class="title">What changes from topological sheaves</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c00.html#st-c00-size" class="internal"><span class="codenumber">0.2</span> <span class="title">Size and categorical conventions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c00.html#st-c00-ringed" class="internal"><span class="codenumber">0.3</span> <span class="title">Ringed structures and directions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c00.html#st-c00-sources" class="internal"><span class="codenumber">0.4</span> <span class="title">Sources and dependencies</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c01.html" class="internal"><span class="codenumber">1</span> <span class="title">Grothendieck topologies and sheaves</span></a></div>
+<ul id="ptx-toc-group-st-c01" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c01.html#st-c01-presheaves" class="internal"><span class="codenumber">1.1</span> <span class="title">Test objects and restrictions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c01.html#st-c01-topologies" class="internal"><span class="codenumber">1.2</span> <span class="title">Covering sieves and local consequences</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c01.html#st-c01-families" class="internal"><span class="codenumber">1.3</span> <span class="title">Covering families and pretopologies</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c01.html#st-c01-sheaves" class="internal"><span class="codenumber">1.4</span> <span class="title">Matching families and the sheaf condition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c01.html#st-c01-representability" class="internal"><span class="codenumber">1.5</span> <span class="title">Subcanonical and canonical topologies</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="st-c02.html" class="internal"><span class="codenumber">2</span> <span class="title">Sheafification without points</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-st-c02">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c02.html#st-c02-construction" class="internal"><span class="codenumber">2.1</span> <span class="title">The plus construction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c02.html#st-c02-two-steps" class="internal"><span class="codenumber">2.2</span> <span class="title">Separation and amalgamation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c02.html#st-c02-local-tests" class="internal"><span class="codenumber">2.3</span> <span class="title">Local equality and lifting</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c02.html#st-c02-exactness" class="internal"><span class="codenumber">2.4</span> <span class="title">Finite limits and algebraic structures</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c02.html#st-c02-recovering-topology" class="internal"><span class="codenumber">2.5</span> <span class="title">Recovering the topology from its sheaves</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c03.html" class="internal"><span class="codenumber">3</span> <span class="title">Grothendieck topoi and their presentations</span></a></div>
+<ul id="ptx-toc-group-st-c03" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c03.html#st-c03-presented" class="internal"><span class="codenumber">3.1</span> <span class="title">Topoi and generating sheaves</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c03.html#st-c03-images" class="internal"><span class="codenumber">3.2</span> <span class="title">Images, epimorphisms, and exactness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c03.html#st-c03-quotients" class="internal"><span class="codenumber">3.3</span> <span class="title">Equivalence relations and universal colimits</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c03.html#st-c03-variable-sets" class="internal"><span class="codenumber">3.4</span> <span class="title">Exponentials and the subobject classifier</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c03.html#st-c03-intrinsic" class="internal"><span class="codenumber">3.5</span> <span class="title">Intrinsic recognition and changing presentations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c03.html#st-c03-examples" class="internal"><span class="codenumber">3.6</span> <span class="title">Examples beyond a space of opens</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c04.html" class="internal"><span class="codenumber">4</span> <span class="title">Morphisms of sites and topoi</span></a></div>
+<ul id="ptx-toc-group-st-c04" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c04.html#st-c04-kan" class="internal"><span class="codenumber">4.1</span> <span class="title">Restriction and sheafified Kan extension</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c04.html#st-c04-geometric-section" class="internal"><span class="codenumber">4.2</span> <span class="title">Geometric morphisms and exactness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c04.html#st-c04-left-exact" class="internal"><span class="codenumber">4.3</span> <span class="title">Useful sufficient conditions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c04.html#st-c04-cocont-section" class="internal"><span class="codenumber">4.4</span> <span class="title">Cocontinuous functors and the other direction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c04.html#st-c04-compatibility" class="internal"><span class="codenumber">4.5</span> <span class="title">Composition and the information retained</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c05.html" class="internal"><span class="codenumber">5</span> <span class="title">Localization, bases, and comparison</span></a></div>
+<ul id="ptx-toc-group-st-c05" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c05.html#st-c05-slice-section" class="internal"><span class="codenumber">5.1</span> <span class="title">The site over an object</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c05.html#st-c05-sums-products" class="internal"><span class="codenumber">5.2</span> <span class="title">Dependent sum, restriction, and dependent product</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c05.html#st-c05-general-object" class="internal"><span class="codenumber">5.3</span> <span class="title">Localizing at an arbitrary sheaf</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c05.html#st-c05-comparison-section" class="internal"><span class="codenumber">5.4</span> <span class="title">The comparison lemma for a dense full subcategory</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c05.html#st-c05-local-comparison" class="internal"><span class="codenumber">5.5</span> <span class="title">Comparison without literal full faithfulness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c05.html#st-c05-presentations" class="internal"><span class="codenumber">5.6</span> <span class="title">Changing a presentation rather than an assumption</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c06.html" class="internal"><span class="codenumber">6</span> <span class="title">Points and local detection</span></a></div>
+<ul id="ptx-toc-group-st-c06" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c06.html#st-c06-point-section" class="internal"><span class="codenumber">6.1</span> <span class="title">A point as a geometric morphism</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c06.html#st-c06-flat-section" class="internal"><span class="codenumber">6.2</span> <span class="title">Flat functors and systems of neighborhoods</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c06.html#st-c06-continuity" class="internal"><span class="codenumber">6.3</span> <span class="title">Covering compatibility and the point theorem</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c06.html#st-c06-examples" class="internal"><span class="codenumber">6.4</span> <span class="title">Spatial and nonspatial examples</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c06.html#st-c06-detection" class="internal"><span class="codenumber">6.5</span> <span class="title">Enough points and exactness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c06.html#st-c06-existence" class="internal"><span class="codenumber">6.6</span> <span class="title">Existence theorems and a topos without points</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c07.html" class="internal"><span class="codenumber">7</span> <span class="title">Gluing, torsors, and descent</span></a></div>
+<ul id="ptx-toc-group-st-c07" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c07.html#st-c07-effective-section" class="internal"><span class="codenumber">7.1</span> <span class="title">Descent along an epimorphism</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c07.html#st-c07-covers-section" class="internal"><span class="codenumber">7.2</span> <span class="title">Families, overlaps, and site presentations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c07.html#st-c07-structures-section" class="internal"><span class="codenumber">7.3</span> <span class="title">Descending algebraic structures</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c07.html#st-c07-torsor-section" class="internal"><span class="codenumber">7.4</span> <span class="title">Torsors and changes of origin</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c07.html#st-c07-first-section" class="internal"><span class="codenumber">7.5</span> <span class="title">The Abelian first-cohomology class</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c07.html#st-c07-functorial-section" class="internal"><span class="codenumber">7.6</span> <span class="title">Functoriality and a nonspatial example</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c08.html" class="internal"><span class="codenumber">8</span> <span class="title">Ringed sites, ringed topoi, and modules</span></a></div>
+<ul id="ptx-toc-group-st-c08" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c08.html#st-c08-ring-objects" class="internal"><span class="codenumber">8.1</span> <span class="title">Rings and modules in a topos</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c08.html#st-c08-exact-category" class="internal"><span class="codenumber">8.2</span> <span class="title">Exactness and generators</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c08.html#st-c08-localization-section" class="internal"><span class="codenumber">8.3</span> <span class="title">Localization and descent of modules</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c08.html#st-c08-morphisms" class="internal"><span class="codenumber">8.4</span> <span class="title">Ringed morphisms and extension of scalars</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c08.html#st-c08-local-rings" class="internal"><span class="codenumber">8.5</span> <span class="title">The additional local-ring condition</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c09.html" class="internal"><span class="codenumber">9</span> <span class="title">Tensor, internal Hom, and flatness</span></a></div>
+<ul id="ptx-toc-group-st-c09" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c09.html#st-c09-tensor-section" class="internal"><span class="codenumber">9.1</span> <span class="title">Tensor products from local bilinear maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c09.html#st-c09-hom-section" class="internal"><span class="codenumber">9.2</span> <span class="title">Internal Hom and the closed adjunction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c09.html#st-c09-scalar-change" class="internal"><span class="codenumber">9.3</span> <span class="title">Scalar change and pullback comparisons</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c09.html#st-c09-flat-section" class="internal"><span class="codenumber">9.4</span> <span class="title">Flatness and local relations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c09.html#st-c09-flat-functoriality" class="internal"><span class="codenumber">9.5</span> <span class="title">Flat pullback and relative flatness</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c10.html" class="internal"><span class="codenumber">10</span> <span class="title">Finite presentation and coherent modules</span></a></div>
+<ul id="ptx-toc-group-st-c10" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c10.html#st-c10-presentations" class="internal"><span class="codenumber">10.1</span> <span class="title">Generators, presentations, and their local meaning</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c10.html#st-c10-coherence" class="internal"><span class="codenumber">10.2</span> <span class="title">Coherent modules and their Abelian category</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c10.html#st-c10-functorial-finiteness" class="internal"><span class="codenumber">10.3</span> <span class="title">Tensor, Hom, pullback, and finite presentation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c10.html#st-c10-duals-section" class="internal"><span class="codenumber">10.4</span> <span class="title">Finite projectivity and duality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c10.html#st-c10-geometric-contexts" class="internal"><span class="codenumber">10.5</span> <span class="title">Geometric interpretations and site choices</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c11.html" class="internal"><span class="codenumber">11</span> <span class="title">Derived operations on ringed topoi</span></a></div>
+<ul id="ptx-toc-group-st-c11" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c11.html#st-c11-resolution-section" class="internal"><span class="codenumber">11.1</span> <span class="title">Resolutions and the closed tensor structure</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c11.html#st-c11-morphism-section" class="internal"><span class="codenumber">11.2</span> <span class="title">Derived pullback, adjunction, and composition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c11.html#st-c11-cohomology-section" class="internal"><span class="codenumber">11.3</span> <span class="title">Cohomology without stalks</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c11.html#st-c11-finiteness-section" class="internal"><span class="codenumber">11.4</span> <span class="title">Finite complexes, pseudo-coherence, and Tor amplitude</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c11.html#st-c11-comparison-section" class="internal"><span class="codenumber">11.5</span> <span class="title">Comparison maps and sufficient conditions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c12.html" class="internal"><span class="codenumber">12</span> <span class="title">Hypercovers and cohomological descent</span></a></div>
+<ul id="ptx-toc-group-st-c12" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c12.html#st-c12-simplicial-section" class="internal"><span class="codenumber">12.1</span> <span class="title">Faces, degeneracies, and matching objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c12.html#st-c12-cover-section" class="internal"><span class="codenumber">12.2</span> <span class="title">Čech nerves and representable models</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c12.html#st-c12-resolution-section" class="internal"><span class="codenumber">12.3</span> <span class="title">The augmented free resolution</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c12.html#st-c12-descent-section" class="internal"><span class="codenumber">12.4</span> <span class="title">A bounded below total-complex theorem</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c12.html#st-c12-refinement-section" class="internal"><span class="codenumber">12.5</span> <span class="title">Refinement, local classes, and the classical theorem</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c13.html" class="internal"><span class="codenumber">13</span> <span class="title">Geometric sites and the étale topology</span></a></div>
+<ul id="ptx-toc-group-st-c13" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c13.html#st-c13-etale-section" class="internal"><span class="codenumber">13.1</span> <span class="title">Étale morphisms as generalized neighborhoods</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c13.html#st-c13-small-section" class="internal"><span class="codenumber">13.2</span> <span class="title">The small site and its sheaves</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c13.html#st-c13-big-section" class="internal"><span class="codenumber">13.3</span> <span class="title">Big sites and the direction of restriction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c13.html#st-c13-points-section" class="internal"><span class="codenumber">13.4</span> <span class="title">Geometric points and étale stalks</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c13.html#st-c13-structure-section" class="internal"><span class="codenumber">13.5</span> <span class="title">Structure sheaves and changes of base</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c13.html#st-c13-comparison-topologies" class="internal"><span class="codenumber">13.6</span> <span class="title">Related covering notions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="sheaves-sites-notes-18.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul id="ptx-toc-group-sheaves-sites-notes-18" class="structural toc-item-list">
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="st-concordance.html" class="internal"><span class="codenumber">A.</span> <span class="title">Terminology, hypotheses, and source conventions</span></a></div>
+<ul id="ptx-toc-group-st-concordance" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-concordance.html#st-concordance-sites" class="internal"><span class="codenumber">A.1</span> <span class="title">Sites, presentations, and local tests</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-concordance.html#st-concordance-morphisms" class="internal"><span class="codenumber">A.2</span> <span class="title">Morphisms, points, and descent</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-concordance.html#st-concordance-modules" class="internal"><span class="codenumber">A.3</span> <span class="title">Ringed objects and finiteness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-concordance.html#st-concordance-derived" class="internal"><span class="codenumber">A.4</span> <span class="title">Derived operations and covering complexes</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="st-references.html" class="internal"><span class="title">References</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="st-index.html" class="internal"><span class="title">Index</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="chapter" id="st-c02">
+<h1 class="heading">
+<span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Sheafification without points</span>
+</h1>
+<section class="introduction" id="st-c02-2">
+<div class="para" id="st-c02-2-1">The étalé-space construction of a sheaf uses germs at points. A site may have no such description. Its replacement is to identify matching families after refinement. One application separates locally equal sections; a second supplies all compatible local amalgamations. The proof also gives local criteria for morphisms and exactness.</div>
+<div class="para" id="st-c02-2-2">Throughout this chapter, <span class="process-math">\((\mathcal C,J)\)</span> is a small site in the sieve convention. No fiber products or points are assumed. The source convention is compared with <a class="external" href="https://stacks.math.columbia.edu/tag/00ZG" target="_blank">Stacks, §7.49</a>; we write a plus sign where that section uses <span class="process-math">\(L\text{.}\)</span>
+</div></section>
+<section class="section" id="st-c02-construction">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The plus construction</span>
+</h2>
+<article class="definition definition-like" id="st-c02-plus"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.1</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="st-c02-plus-2-1">
+<div class="para">Give <span class="process-math">\(J(U)\)</span> the inclusion order. Its opposite has an arrow <span class="process-math">\(R\to S\)</span> if <span class="process-math">\(S\subseteq R\text{.}\)</span> Define</div>
+<div class="displaymath process-math" id="st-c02-plus-2-1-4">
+\begin{equation*}
+F^+(U)=\colim_{R\in J(U)^{\op}}\Hom_{\PSh(\mathcal C)}(R,F).
+\end{equation*}
+</div>
+<div class="para">A class is represented by a matching family <span class="process-math">\(\phi:R\to F\text{.}\)</span> Two representatives are equal when their restrictions agree on a covering sieve contained in both domains. The map <span class="process-math">\(\eta_F:F\to F^+\)</span> uses the maximal sieve and Yoneda.</div>
+</div>
+</article>
+<div class="para" id="st-c02-construction-3">The index category is filtered: it is nonempty and finite intersections supply a common later object. Thus the explicit equality criterion follows from the usual description of a filtered colimit of sets. The reversal of inclusion matters. Restricting a matching family to a smaller sieve moves forward in this system.<a id="st-c02-construction-3-1" href="#margin-st-c02-construction-3-1" class="margin-note-marker" aria-label="Margin note 1">1</a>
+</div>
+<div class="para" id="st-c02-construction-4">For <span class="process-math">\(f:V\to U\text{,}\)</span> pull the domain <span class="process-math">\(R\)</span> back to <span class="process-math">\(f^*R\)</span> and assign to <span class="process-math">\(g:W\to V\)</span> the section <span class="process-math">\(\phi(fg)\text{.}\)</span> This defines restriction <span class="process-math">\(F^+(U)\to F^+(V)\text{.}\)</span> Pullback preserves common refinements, so the operation is independent of the representative. Composition of arrows gives composition of restrictions. Postcomposition of matching families makes <span class="process-math">\(F\mapsto F^+\)</span> a functor and <span class="process-math">\(\eta\)</span> a natural transformation.</div>
+<article class="proposition theorem-like" id="st-c02-plus-local"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="st-c02-plus-local-1-1">
+<div class="para">The plus construction has the following local description.</div>
+<ol class="decimal" id="st-c02-plus-local-1-1-1">
+<li id="st-c02-plus-local-1-1-1-1">
+<div class="para" id="st-c02-plus-local-1-1-1-1-1">For <span class="process-math">\(s,t\in F(U)\text{,}\)</span> their images in <span class="process-math">\(F^+(U)\)</span> agree exactly when <span class="process-math">\(s|_f=t|_f\)</span> on a covering sieve of arrows <span class="process-math">\(f\)</span> to <span class="process-math">\(U\text{.}\)</span>
+</div>
+</li>
+<li id="st-c02-plus-local-1-1-1-2">
+<div class="para" id="st-c02-plus-local-1-1-1-2-1">Every <span class="process-math">\(\xi\in F^+(U)\)</span> is locally in the image of <span class="process-math">\(F\text{:}\)</span> there is a covering sieve <span class="process-math">\(R\)</span> such that, for <span class="process-math">\(f:V\to U\)</span> in <span class="process-math">\(R\text{,}\)</span> its restriction is <span class="process-math">\(\eta_F(\phi(f))\)</span> for a section <span class="process-math">\(\phi(f)\in F(V)\text{.}\)</span>
+</div>
+</li>
+<li id="st-c02-plus-local-1-1-1-3">
+<div class="para" id="st-c02-plus-local-1-1-1-3-1">The map <span class="process-math">\(F\to F^+\)</span> is objectwise injective if and only if <span class="process-math">\(F\)</span> is separated.</div>
+</li>
+</ol>
+</div>
+</article>
+<details id="st-c02-plus-local-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c02-plus-local-2-1">The first assertion is equality in the filtered colimit. To prove the second, choose a representative <span class="process-math">\(\phi:R\to F\text{.}\)</span> For <span class="process-math">\(f\in R(V)\text{,}\)</span> the sieve <span class="process-math">\(f^*R\)</span> is maximal. Its matching family is exactly the section <span class="process-math">\(\phi(f)\)</span> under Yoneda. The final assertion is the definition of separatedness applied to the first assertion.</div>
+</article></details>
+<div class="para" id="st-c02-construction-6">The formula does not make sections equal merely because they have some common restriction. The common restriction must be along a covering sieve. An arbitrary arrow of a site need not provide enough local information for that purpose.</div>
+</section>
+<section class="section" id="st-c02-two-steps">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Separation and amalgamation</span>
+</h2>
+<article class="theorem theorem-like" id="st-c02-plus-theorem"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c02-plus-theorem-1-1">For every presheaf <span class="process-math">\(F\text{,}\)</span> the presheaf <span class="process-math">\(F^+\)</span> is separated. If <span class="process-math">\(F\)</span> is separated, <span class="process-math">\(F^+\)</span> is a sheaf. If <span class="process-math">\(F\)</span> is a sheaf, <span class="process-math">\(\eta_F:F\to F^+\)</span> is an isomorphism. Consequently <span class="process-math">\(F^{++}\)</span> is always a sheaf.</div>
+</article>
+<details id="st-c02-plus-theorem-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c02-plus-theorem-2-1">Suppose <span class="process-math">\(\xi,\zeta\in F^+(U)\)</span> have equal restrictions on a covering sieve <span class="process-math">\(S\text{.}\)</span> Choose representatives on covering sieves <span class="process-math">\(R_1,R_2\text{,}\)</span> and restrict both to <span class="process-math">\(R=R_1\cap R_2\cap S\text{.}\)</span> For <span class="process-math">\(f:V\to U\)</span> in <span class="process-math">\(R\text{,}\)</span> their restrictions are represented by sections of <span class="process-math">\(F(V)\text{.}\)</span> Equality in <span class="process-math">\(F^+(V)\)</span> means that these sections agree on a covering sieve <span class="process-math">\(S_f\text{.}\)</span> The composites of <span class="process-math">\(R\)</span> with these <span class="process-math">\(S_f\)</span> generate a covering sieve on <span class="process-math">\(U\text{.}\)</span> Both representatives agree there, so <span class="process-math">\(\xi=\zeta\text{.}\)</span> This proves separatedness.</div>
+<div class="para logical" id="st-c02-plus-theorem-2-2">
+<div class="para">Now assume <span class="process-math">\(F\)</span> separated, and let <span class="process-math">\(t:R\to F^+\)</span> be matching data on a covering sieve. For every <span class="process-math">\(f:V\to U\)</span> in <span class="process-math">\(R\text{,}\)</span> choose a representative <span class="process-math">\(\phi_f:S_f\to F\)</span> for <span class="process-math">\(t(f)\text{.}\)</span> The composites <span class="process-math">\(fg\text{,}\)</span> for <span class="process-math">\(g\in S_f\text{,}\)</span> generate a covering sieve <span class="process-math">\(S\text{.}\)</span> Define a family on it by</div>
+<div class="displaymath process-math" id="st-c02-plus-theorem-2-2-10">
+\begin{equation*}
+\theta(fg)=\phi_f(g).
+\end{equation*}
+</div>
+<div class="para">If an arrow has two such factorizations, the two proposed sections have equal images in <span class="process-math">\(F^+\text{,}\)</span> because both images equal the corresponding restriction of <span class="process-math">\(t\text{.}\)</span> The injection <span class="process-math">\(F\to F^+\)</span> from separatedness makes the sections themselves equal. Thus <span class="process-math">\(\theta\)</span> is well-defined and natural.</div>
+</div>
+<div class="para" id="st-c02-plus-theorem-2-3">The class <span class="process-math">\([\theta]\in F^+(U)\)</span> restricts to <span class="process-math">\(t(f)\)</span> after <span class="process-math">\(S_f\text{.}\)</span> These restrictions agree on all of <span class="process-math">\(V\)</span> because <span class="process-math">\(F^+\)</span> is separated. Hence this class amalgamates <span class="process-math">\(t\text{,}\)</span> uniquely by the first part. If <span class="process-math">\(F\)</span> is already a sheaf, every matching-family representative has a unique amalgamation in <span class="process-math">\(F(U)\text{,}\)</span> proving that <span class="process-math">\(\eta_F\)</span> is an isomorphism. Apply the first two parts successively for the final assertion.</div>
+</article></details>
+<div class="para" id="st-c02-two-steps-3">The two steps have distinct roles. A matching family in a nonseparated presheaf may have several descriptions of the same local datum. The first plus identifies those descriptions. Once that identification is available, local representatives can be assembled without a choice ambiguity, as the middle paragraph of the proof shows. For a separated presheaf only the assembly step remains.</div>
+<article class="definition definition-like" id="st-c02-sheafification"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c02-sheafification-2-1">The associated sheaf is <span class="process-math">\(aF=F^{++}\text{,}\)</span> with unit the composite <span class="process-math">\(F\to F^+\to F^{++}\text{.}\)</span> We also denote this composite by <span class="process-math">\(\eta_F\text{.}\)</span>
+</div>
+</article>
+<article class="proposition theorem-like" id="st-c02-adjunction"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="st-c02-adjunction-1-1">
+<div class="para">The associated sheaf is characterized by the natural bijection</div>
+<div class="displaymath process-math" id="st-c02-adjunction-1-1-1">
+\begin{equation*}
+\Hom_{\Sh(\mathcal C,J)}(aF,G)\simeq\Hom_{\PSh(\mathcal C)}(F,G)
+\end{equation*}
+</div>
+<div class="para">for every sheaf <span class="process-math">\(G\text{.}\)</span>
+</div>
+</div>
+</article>
+<details id="st-c02-adjunction-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c02-adjunction-2-1">Given <span class="process-math">\(u:F\to G\text{,}\)</span> send a class <span class="process-math">\([\phi:R\to F]\)</span> to the unique amalgamation of <span class="process-math">\(u\phi\)</span> in <span class="process-math">\(G\text{.}\)</span> Common refinement and separatedness of <span class="process-math">\(G\)</span> make this independent of the representative. It is compatible with restrictions and extends <span class="process-math">\(u\text{.}\)</span> Repeat for the second plus. Uniqueness follows because every plus section is locally represented by a section from the previous stage, and morphisms to a separated presheaf are determined locally. The resulting correspondence is natural in both variables.</div>
+</article></details>
+<div class="para" id="st-c02-two-steps-6">Thus <span class="process-math">\(a\)</span> is left adjoint to the full inclusion of sheaves into presheaves. Any other construction with this unit and universal property is uniquely isomorphic to it compatibly with the unit. In the topological case it agrees with the germ construction from the first note.<a id="st-c02-two-steps-6-2" href="#margin-st-c02-two-steps-6-2" class="margin-note-marker" aria-label="Margin note 2">2</a>
+</div>
+</section>
+<section class="section" id="st-c02-local-tests">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Local equality and lifting</span>
+</h2>
+<article class="proposition theorem-like" id="st-c02-unit-local"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.6</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c02-unit-local-1-1">For <span class="process-math">\(s,t\in F(U)\text{,}\)</span> their images in <span class="process-math">\(aF(U)\)</span> agree if and only if they agree after a covering sieve. Every section of <span class="process-math">\(aF\)</span> is locally the image of sections of <span class="process-math">\(F\text{.}\)</span> These sections need only agree locally on overlaps before sheafification.</div>
+</article>
+<details id="st-c02-unit-local-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c02-unit-local-2-1">The presheaf <span class="process-math">\(F^+\)</span> is separated, so its map to <span class="process-math">\(F^{++}\)</span> is injective. Equality of two sections from <span class="process-math">\(F\)</span> in <span class="process-math">\(aF\)</span> is therefore already equality in <span class="process-math">\(F^+\text{,}\)</span> which has the stated criterion. For local representability, represent a section first by matching <span class="process-math">\(F^+\)</span>-data, then represent those data locally in <span class="process-math">\(F\text{.}\)</span> Local character composes the two covering sieves. Equality of their images on overlaps gives local equality in <span class="process-math">\(F\)</span> by the first assertion.</div>
+</article></details>
+<article class="definition definition-like" id="st-c02-local"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.7</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="st-c02-local-1-1">
+<div class="para">A morphism <span class="process-math">\(u:P\to Q\)</span> of presheaves is locally injective if <span class="process-math">\(u(s)=u(t)\)</span> implies that <span class="process-math">\(s\)</span> and <span class="process-math">\(t\)</span> agree on a covering sieve, for all sections on every object. It is locally surjective if, for every <span class="process-math">\(q\in Q(U)\text{,}\)</span> the sieve</div>
+<div class="displaymath process-math" id="st-c02-local-1-1-6">
+\begin{equation*}
+\{f:V\to U\mid q|_f\in\im(P(V)\to Q(V))\}
+\end{equation*}
+</div>
+<div class="para">covers. A local isomorphism of presheaves means a map having both properties.</div>
+</div>
+</article>
+<div class="para" id="st-c02-local-tests-4">Local surjectivity specifies a preimage separately on each local test. It requires no compatible choice of those preimages. Compatibility is a consequence when uniqueness is also available. The definition of local injectivity can equivalently allow <span class="process-math">\(u(s)\)</span> and <span class="process-math">\(u(t)\)</span> to be merely locally equal: refine to equality first and use local character.</div>
+<article class="proposition theorem-like" id="st-c02-local-criterion"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.8</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c02-local-criterion-1-1">A presheaf map <span class="process-math">\(u:P\to Q\)</span> becomes a monomorphism after sheafification if and only if it is locally injective. It becomes an isomorphism after sheafification if and only if it is a local isomorphism. For a map between sheaves, local injectivity is objectwise injectivity; local injectivity and local surjectivity together imply an isomorphism.</div>
+</article>
+<details id="st-c02-local-criterion-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c02-local-criterion-2-1">If <span class="process-math">\(a(u)\)</span> is monic and <span class="process-math">\(u(s)=u(t)\text{,}\)</span> the sections <span class="process-math">\(s,t\)</span> have equal images in <span class="process-math">\(aP\text{,}\)</span> hence are locally equal. Conversely, sections of <span class="process-math">\(aP\)</span> are locally represented in <span class="process-math">\(P\text{.}\)</span> Equality of their images in <span class="process-math">\(aQ\)</span> can be refined to equality in <span class="process-math">\(Q\text{;}\)</span> local injectivity then refines it to equality in <span class="process-math">\(P\text{.}\)</span> Separatedness of <span class="process-math">\(aP\)</span> gives equality globally. A sheaf map is monic exactly when its section maps are injective, by testing with <span class="process-math">\(ah_U\)</span> and Yoneda.</div>
+<div class="para" id="st-c02-local-criterion-2-2">If <span class="process-math">\(u\)</span> is also locally surjective, every section of <span class="process-math">\(aQ\)</span> has local preimages in <span class="process-math">\(aP\text{.}\)</span> Monicity makes those preimages agree on all common tests, so they glue. This proves that <span class="process-math">\(a(u)\)</span> is an isomorphism. Conversely, if <span class="process-math">\(a(u)\)</span> is an isomorphism, apply its inverse to the image of <span class="process-math">\(q\in Q(U)\text{.}\)</span> Represent the inverse locally in <span class="process-math">\(P\text{;}\)</span> its image is locally equal to <span class="process-math">\(q\)</span> in <span class="process-math">\(Q\)</span> by the unit criterion. A further refinement gives actual local preimages of <span class="process-math">\(q\text{.}\)</span> For sheaves, separatedness turns local equality into equality, giving the last assertions.</div>
+</article></details>
+<div class="para" id="st-c02-local-tests-6">The word local isomorphism here describes a presheaf map inverted by sheafification. It is not the local homeomorphism of topological spaces used in the first note. The target categories and definitions differ.<a id="st-c02-local-tests-6-1" href="#margin-st-c02-local-tests-6-1" class="margin-note-marker" aria-label="Margin note 3">3</a>
+</div>
+<div class="para" id="st-c02-local-tests-7">For a pretopology, the unit criterion can be expressed using a cover and further covers of its pairwise intersections. This is the two-stage description in <a class="external" href="https://stacks.math.columbia.edu/tag/00WK" target="_blank">Stacks, Lemma 7.10.16</a>. A single family of representatives need not agree on the original intersections before those further refinements.</div>
+</section>
+<section class="section" id="st-c02-exactness">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Finite limits and algebraic structures</span>
+</h2>
+<article class="proposition theorem-like" id="st-c02-left-exact"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.9</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c02-left-exact-1-1">The functors <span class="process-math">\(F\mapsto F^+\)</span> and <span class="process-math">\(a\)</span> preserve finite limits. Sheafification of abelian-group, ring, and module presheaves is obtained by sheafifying the underlying sets and their operations. For abelian presheaves, sheafification is an exact functor to abelian sheaves.</div>
+</article>
+<details id="st-c02-left-exact-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c02-left-exact-2-1">For a covering sieve <span class="process-math">\(R\text{,}\)</span> the functor <span class="process-math">\(\Hom(R,-)\)</span> preserves all limits. Filtered colimits of sets commute with finite limits. Use these facts with the same filtered index <span class="process-math">\(J(U)^{\op}\)</span> for every presheaf in a finite diagram. This proves the plus assertion objectwise; composing it proves the assertion for <span class="process-math">\(a\text{.}\)</span>
+</div>
+<div class="para" id="st-c02-left-exact-2-2">Algebraic operations of finite arity extend using the finite-product comparisons, and the equations between them extend by naturality. For a presheaf of modules over a ring presheaf <span class="process-math">\(A\text{,}\)</span> the result is a module over <span class="process-math">\(aA\text{.}\)</span> Their universal properties are inherited from the underlying-set adjunction. In abelian groups, preservation of finite limits gives kernels; the left-adjoint property gives cokernels in abelian sheaves. Thus sheafification is exact.</div>
+</article></details>
+<div class="para" id="st-c02-exactness-3">This argument identifies the source of left exactness: filtered refinement and finite limits of sets. It does not deduce it from the existence of a left adjoint. A general left adjoint need not preserve a kernel or a pullback. Infinite products also lie outside this argument; infinitely many local representatives need not share one covering sieve.</div>
+<div class="para" id="st-c02-exactness-4">One can define an abelian sheaf either as a sheaf of abelian groups on the site or as an abelian-group object in its category of set sheaves. Products and equalities of sheaves are tested objectwise, so the two definitions agree. The same statement holds for rings and modules over a fixed ring sheaf. The ringed formulation is developed in <a href="st-c08.html" class="internal" title="Chapter 8: Ringed sites, ringed topoi, and modules">Chapter 8</a>.</div>
+<div class="para" id="st-c02-exactness-5">Limits of sheaves are limits of presheaves: for every sieve <span class="process-math">\(R\text{,}\)</span> the functors <span class="process-math">\(\Hom(h_U,-)\)</span> and <span class="process-math">\(\Hom(R,-)\)</span> preserve limits, and the sheaf-condition bijections remain bijections after taking a limit. A colimit of sheaves is instead the sheafification of its presheaf colimit. These facts will give the categorical structure in <a href="st-c03.html" class="internal" title="Chapter 3: Grothendieck topoi and their presentations">Chapter 3</a>.</div>
+</section>
+<section class="section" id="st-c02-recovering-topology">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Recovering the topology from its sheaves</span>
+</h2>
+<article class="proposition theorem-like" id="st-c02-cover-sheafification"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">2.10</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c02-cover-sheafification-1-1">A sieve <span class="process-math">\(R\subseteq h_U\)</span> covers <span class="process-math">\(U\)</span> if and only if <span class="process-math">\(aR\to ah_U\)</span> is an isomorphism. Consequently the full subcategory <span class="process-math">\(\Sh(\mathcal C,J)\subseteq\PSh(\mathcal C)\)</span> determines <span class="process-math">\(J\text{.}\)</span>
+</div>
+</article>
+<details id="st-c02-cover-sheafification-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c02-cover-sheafification-2-1">The inclusion is already locally injective. If <span class="process-math">\(R\)</span> covers and <span class="process-math">\(f\in h_U(V)\text{,}\)</span> then <span class="process-math">\(f^*R\)</span> covers <span class="process-math">\(V\)</span> and makes <span class="process-math">\(f\)</span> locally an arrow in <span class="process-math">\(R\text{.}\)</span> Hence the inclusion is locally surjective and its sheafification is an isomorphism. Conversely, if that sheafification is an isomorphism, the local-surjectivity criterion applied to <span class="process-math">\(\id_U\in h_U(U)\)</span> says exactly that <span class="process-math">\(R\)</span> covers. The full reflective subcategory determines its reflector up to the unique unit-compatible isomorphism, and this criterion then determines the covering sieves.</div>
+</article></details>
+<div class="para" id="st-c02-recovering-topology-3">The precise statement is <a class="external" href="https://stacks.math.columbia.edu/tag/00ZN" target="_blank">Stacks, §7.50</a>. On a fixed category, <span class="process-math">\(J\subseteq J'\)</span> if and only if every <span class="process-math">\(J'\)</span>-sheaf is a <span class="process-math">\(J\)</span>-sheaf. One implication restricts the list of sheaf conditions. For the converse, the reflector to the smaller full subcategory factors through the first reflector; apply the sieve criterion to <span class="process-math">\(R\to h_U\text{.}\)</span> The induced factorization of reflectors explains why sheafifying again for a finer topology adds local identifications.</div>
+<div class="para" id="st-c02-recovering-topology-4">This does not identify sites from an abstract equivalence of their topoi. The category of all opens of a space and an appropriate basis can give equivalent sheaf categories with different underlying test categories. The comparison chapter establishes when this change of presentation is valid. What is recovered here includes the original embedding among presheaves, which an abstract equivalence does not remember.</div>
+</section></section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="st-c01.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Top</span></a><a class="next-button button" href="st-c03.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a>
+</div></main>
+<div class="margin-notes" role="complementary" aria-label="Margin notes">
+<aside id="margin-st-c02-construction-3-1" class="aside aside-like margin-note" data-margin-anchor="st-c02-construction-3" data-margin-label="1" data-margin-inline="true"><h4 class="heading"><a href="#st-c02-construction-3" class="margin-note-label">1</a></h4>
+<div class="para">A smaller covering sieve is a refinement of the available local tests, not a smaller target object. This is why a directed colimit appears even though the notation is built from inclusions of sieves.
+</div></aside><aside id="margin-st-c02-two-steps-6-2" class="aside aside-like margin-note" data-margin-anchor="st-c02-two-steps-6" data-margin-label="2" data-margin-inline="true"><h4 class="heading"><a href="#st-c02-two-steps-6" class="margin-note-label">2</a></h4>
+<div class="para">The notations <span class="process-math">\(F^\#\text{,}\)</span> <span class="process-math">\(\widetilde F\text{,}\)</span> and <span class="process-math">\(aF\)</span> can all mean associated sheaf. The same tilde can also denote the quasi-coherent sheaf associated to a module on an affine scheme, a different construction with a different input. We use <span class="process-math">\(aF\)</span> here.
+</div></aside><aside id="margin-st-c02-local-tests-6-1" class="aside aside-like margin-note" data-margin-anchor="st-c02-local-tests-6" data-margin-label="3" data-margin-inline="true"><h4 class="heading"><a href="#st-c02-local-tests-6" class="margin-note-label">3</a></h4>
+<div class="para">Similarly, a local isomorphism of schemes or ringed spaces is a geometric condition on maps. The present usage is often called a local equivalence of presheaves of sets. We always specify the presheaf context.
+</div></aside>
+</div>
+</div>
+<footer id="site-copyright" class="site-copyright"><p>© 2026 Jie Fu. All rights reserved.</p></footer>
+</body>
+</html>

@@ -5,16 +5,16 @@
   <xsl:template match="*" mode="primary-navigation-other-controls"/>
   <xsl:template name="readability-options"/>
   <xsl:template name="runestone-header"/>
-  <!-- Home has real sections, but remains a single page. -->
-  <xsl:template match="chapter[@xml:id='home']" mode="is-chunk">true</xsl:template>
-  <xsl:template match="*[ancestor::chapter[@xml:id='home']]" mode="is-chunk">false</xsl:template>
-  <xsl:template match="chapter[@xml:id='home'] | *[ancestor::chapter[@xml:id='home']]" mode="is-intermediate">false</xsl:template>
+  <!-- These chapters keep their sections together on one page. -->
+  <xsl:template match="chapter[@xml:id='home' or @xml:id='ai4math']" mode="is-chunk">true</xsl:template>
+  <xsl:template match="*[ancestor::chapter[@xml:id='home' or @xml:id='ai4math']]" mode="is-chunk">false</xsl:template>
+  <xsl:template match="chapter[@xml:id='home' or @xml:id='ai4math'] | *[ancestor::chapter[@xml:id='home' or @xml:id='ai4math']]" mode="is-intermediate">false</xsl:template>
   <xsl:template match="aside[@xml:id='home-profile']" mode="is-hidden">false</xsl:template>
   <!-- Home and Notes are single entries in the shared site directory. -->
   <xsl:template match="chapter[@xml:id='home' or @xml:id='notes']" mode="toc-item">
     <li><xsl:apply-templates select="." mode="toc-item-properties"/></li>
   </xsl:template>
-  <!-- Preserve the old URL without adding it to the menu. -->
-  <xsl:template match="chapter[@xml:id='miscellaneous']" mode="toc-item"/>
-  <xsl:template match="chapter[@xml:id='miscellaneous']" mode="summary-nav"/>
+  <!-- These pages are reached through resource links rather than menu entries. -->
+  <xsl:template match="chapter[@xml:id='miscellaneous' or @xml:id='ai4math']" mode="toc-item"/>
+  <xsl:template match="chapter[@xml:id='miscellaneous' or @xml:id='ai4math']" mode="summary-nav"/>
 </xsl:stylesheet>

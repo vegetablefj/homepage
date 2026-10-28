@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-darkmode="disabled">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette: blue-red                     *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Low-degree classes and calculations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Sheaves on topological spaces and cohomology">
+<meta property="og:title" content="Sheaves on topological spaces and cohomology">
+<meta property="book:title" content="Sheaves on topological spaces and cohomology">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.53"></script><script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="../../vendor/lunr/lunr.min.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+<link rel="stylesheet" href="../../layout.css?v=fee08a8c1c">
+<script src="../../layout.js?v=e9391a21a7" defer></script><link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"C": "\\mathbb C", "Pone": "\\mathbb{P}^1_{\\mathbb{C}}", "cO": "\\mathcal{O}", "ord": "\\operatorname{ord}", "lt": "<", "gt": ">", "amp": "&", "Hom": "\\operatorname{Hom}", "End": "\\operatorname{End}", "Ext": "\\operatorname{Ext}", "Tor": "\\operatorname{Tor}", "colim": "\\operatorname{colim}", "im": "\\operatorname{im}", "coker": "\\operatorname{coker}", "Cone": "\\operatorname{Cone}", "Tot": "\\operatorname{Tot}", "Loc": "\\operatorname{Loc}", "Sh": "\\mathsf{Sh}", "PSh": "\\mathsf{PSh}", "Set": "\\mathsf{Set}", "Ab": "\\mathsf{Ab}", "Mod": "\\mathsf{Mod}", "Ch": "\\mathsf{C}", "K": "\\mathsf{K}", "D": "\\mathsf{D}", "id": "\\mathrm{id}", "op": "\\mathrm{op}", "RHom": "\\mathbf R\\!\\operatorname{Hom}", "sheafHom": "\\mathcal{H}\\!om", "RsheafHom": "\\mathbf R\\mathcal{H}\\!om", "Ltensor": "\\mathbin{\\otimes^{\\mathbf L}}", "Z": "\\mathbb Z", "N": "\\mathbb N", "Q": "\\mathbb Q", "R": "\\mathbb R"}}, "options": {"ignoreHtmlClass": "ignore-math", "processHtmlClass": "process-math", "enableMenu": false}};</script><script src="../../vendor/mathjax/tex-chtml.js" defer></script>
+</head>
+<body class="pretext book ignore-math note-page" data-page-format="note">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner"><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="sheaves-topological-notes.html"><span class="title">Sheaves on topological spaces and cohomology</span></a></div>
+<p class="byline"><a href="../../home.html">Jie Fu</a>'s <a href="../../notes.html">Notes</a></p>
+<p class="note-metadata"><span class="note-review-status">Under review and improvement</span> · <span class="note-last-updated">Last updated: <time datetime="2026-10-26">2026-10-26</time></span></p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Contents</span></button><a class="index-button button" href="sh-index.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Index</span></a><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true"></span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="treebuttons"><a class="previous-button button" href="sh-c09.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="up-button button" href="sheaves-topological-notes.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Up</span></a><a class="next-button button" href="sh-c11.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a></span>
+</div></nav><div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth4 focused" data-preexpanded-levels="1" data-max-levels="4"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c00.html" class="internal"><span class="codenumber">0</span> <span class="title">Conventions and the local-to-global problem</span></a></div>
+<ul id="ptx-toc-group-sh-c00" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c00.html#sh-c00-objects" class="internal"><span class="codenumber">0.1</span> <span class="title">Spaces, coefficients, and size</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c00.html#sh-c00-functors" class="internal"><span class="codenumber">0.2</span> <span class="title">Inverse images and the two Hom constructions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c00.html#sh-c00-complexes" class="internal"><span class="codenumber">0.3</span> <span class="title">Complexes, degrees, and derived categories</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c00.html#sh-c00-reading" class="internal"><span class="codenumber">0.4</span> <span class="title">Dependencies and sources</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c01.html" class="internal"><span class="codenumber">1</span> <span class="title">Presheaves, sheaves, and local data</span></a></div>
+<ul id="ptx-toc-group-sh-c01" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-presheaves" class="internal"><span class="codenumber">1.1</span> <span class="title">Restrictions and morphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-locality" class="internal"><span class="codenumber">1.2</span> <span class="title">Locality and gluing</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-examples" class="internal"><span class="codenumber">1.3</span> <span class="title">Functions and sections of maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-failures" class="internal"><span class="codenumber">1.4</span> <span class="title">Conditions that do not glue</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-basis" class="internal"><span class="codenumber">1.5</span> <span class="title">Sheaves on a basis</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-localtesting" class="internal"><span class="codenumber">1.6</span> <span class="title">Testing the sheaf condition</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c02.html" class="internal"><span class="codenumber">2</span> <span class="title">Stalks, étalé spaces, and sheafification</span></a></div>
+<ul id="ptx-toc-group-sh-c02" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-germs" class="internal"><span class="codenumber">2.1</span> <span class="title">Germs and neighbourhood colimits</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-etalespace" class="internal"><span class="codenumber">2.2</span> <span class="title">The space of germs</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-sheafification" class="internal"><span class="codenumber">2.3</span> <span class="title">Associated sheaves</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-detection" class="internal"><span class="codenumber">2.4</span> <span class="title">Detecting sheaf morphisms at stalks</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-equivalence" class="internal"><span class="codenumber">2.5</span> <span class="title">Sheaves and local homeomorphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-specialization" class="internal"><span class="codenumber">2.6</span> <span class="title">Compatibility between different points</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c03.html" class="internal"><span class="codenumber">3</span> <span class="title">Categories of sheaves and exactness</span></a></div>
+<ul id="ptx-toc-group-sh-c03" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c03.html#sh-c03-limits" class="internal"><span class="codenumber">3.1</span> <span class="title">Limits and colimits</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c03.html#sh-c03-monoepi" class="internal"><span class="codenumber">3.2</span> <span class="title">Monomorphisms and local surjectivity</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c03.html#sh-c03-exactness" class="internal"><span class="codenumber">3.3</span> <span class="title">Kernels, images, and quotients</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c03.html#sh-c03-grothendieck" class="internal"><span class="codenumber">3.4</span> <span class="title">Generators and the Grothendieck property</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c03.html#sh-c03-filteredsections" class="internal"><span class="codenumber">3.5</span> <span class="title">Filtered colimits and section functors</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c04.html" class="internal"><span class="codenumber">4</span> <span class="title">Inverse images, direct images, and gluing</span></a></div>
+<ul id="ptx-toc-group-sh-c04" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-direct" class="internal"><span class="codenumber">4.1</span> <span class="title">Direct image and the inverse image presheaf</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-adjoint" class="internal"><span class="codenumber">4.2</span> <span class="title">The adjunction and stalks</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-points" class="internal"><span class="codenumber">4.3</span> <span class="title">Point maps and direct image germs</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-basechange" class="internal"><span class="codenumber">4.4</span> <span class="title">The base change comparison</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-restriction" class="internal"><span class="codenumber">4.5</span> <span class="title">Subspaces and open extension by zero</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-closed" class="internal"><span class="codenumber">4.6</span> <span class="title">Closed inclusions and an exact sequence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-descent" class="internal"><span class="codenumber">4.7</span> <span class="title">Gluing sheaves and morphisms</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c05.html" class="internal"><span class="codenumber">5</span> <span class="title">Constant sheaves and local systems</span></a></div>
+<ul id="ptx-toc-group-sh-c05" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c05.html#sh-c05-constant-section" class="internal"><span class="codenumber">5.1</span> <span class="title">Constant coefficients and locally constant functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c05.html#sh-c05-local-section" class="internal"><span class="codenumber">5.2</span> <span class="title">Locally constant sheaves and transition maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c05.html#sh-c05-coverings" class="internal"><span class="codenumber">5.3</span> <span class="title">Covering spaces and transport</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c05.html#sh-c05-monodromy-section" class="internal"><span class="codenumber">5.4</span> <span class="title">The monodromy classification</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c05.html#sh-c05-examples" class="internal"><span class="codenumber">5.5</span> <span class="title">The circle, finite coverings, and pullback</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c06.html" class="internal"><span class="codenumber">6</span> <span class="title">Tensor products and internal Hom</span></a></div>
+<ul id="ptx-toc-group-sh-c06" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-tensor-section" class="internal"><span class="codenumber">6.1</span> <span class="title">The tensor product sheaf</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-hom-section" class="internal"><span class="codenumber">6.2</span> <span class="title">Internal Hom and its adjunction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-finite" class="internal"><span class="codenumber">6.3</span> <span class="title">Stalks and finite presentation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-functorial" class="internal"><span class="codenumber">6.4</span> <span class="title">Inverse image and direct image comparisons</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-localsystems" class="internal"><span class="codenumber">6.5</span> <span class="title">Tensor and Hom of local systems</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-duals" class="internal"><span class="codenumber">6.6</span> <span class="title">Finite local models and duals</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-flat-section" class="internal"><span class="codenumber">6.7</span> <span class="title">Flatness and its stalk criterion</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-flat-resolutions" class="internal"><span class="codenumber">6.8</span> <span class="title">Enough flat sheaves</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c07.html" class="internal"><span class="codenumber">7</span> <span class="title">Resolutions and derived sheaf operations</span></a></div>
+<ul id="ptx-toc-group-sh-c07" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c07.html#sh-c07-injective-section" class="internal"><span class="codenumber">7.1</span> <span class="title">Injectives and extension of sections</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c07.html#sh-c07-godement-section" class="internal"><span class="codenumber">7.2</span> <span class="title">The Godement resolution</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c07.html#sh-c07-unbounded-section" class="internal"><span class="codenumber">7.3</span> <span class="title">K-injective resolutions and direct image</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c07.html#sh-c07-tensor-hom-section" class="internal"><span class="codenumber">7.4</span> <span class="title">Derived tensor and internal Hom</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c08.html" class="internal"><span class="codenumber">8</span> <span class="title">Cohomology, hypercohomology, and products</span></a></div>
+<ul id="ptx-toc-group-sh-c08" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-cohomology-section" class="internal"><span class="codenumber">8.1</span> <span class="title">Derived sections and connecting morphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-directimage-section" class="internal"><span class="codenumber">8.2</span> <span class="title">Higher direct images and locality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-hypercohomology-section" class="internal"><span class="codenumber">8.3</span> <span class="title">The two hypercohomology spectral sequences</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-leray-section" class="internal"><span class="codenumber">8.4</span> <span class="title">Composition and the Leray spectral sequence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-ext-section" class="internal"><span class="codenumber">8.5</span> <span class="title">Local and global Ext</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-cup-section" class="internal"><span class="codenumber">8.6</span> <span class="title">Cup products</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c09.html" class="internal"><span class="codenumber">9</span> <span class="title">Čech cohomology and descent on open covers</span></a></div>
+<ul id="ptx-toc-group-sh-c09" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-complex-section" class="internal"><span class="codenumber">9.1</span> <span class="title">The complex of a covering</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-refinement-section" class="internal"><span class="codenumber">9.2</span> <span class="title">Refinements and their choices</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-comparison-section" class="internal"><span class="codenumber">9.3</span> <span class="title">Comparison with derived cohomology</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-acyclic-section" class="internal"><span class="codenumber">9.4</span> <span class="title">Acyclic covers and computations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-mayer-section" class="internal"><span class="codenumber">9.5</span> <span class="title">Mayer–Vietoris without acyclic intersections</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-products-section" class="internal"><span class="codenumber">9.6</span> <span class="title">Products and the scope of the comparison</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="sh-c10.html" class="internal"><span class="codenumber">10</span> <span class="title">Low-degree classes and calculations</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-sh-c10">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-lifting" class="internal"><span class="codenumber">10.1</span> <span class="title">Sections and their lifting obstructions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-torsors" class="internal"><span class="codenumber">10.2</span> <span class="title">Torsors and degree-one cocycles</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-extensions" class="internal"><span class="codenumber">10.3</span> <span class="title">Extensions and the classification of torsors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-affine-monodromy" class="internal"><span class="codenumber">10.4</span> <span class="title">Affine monodromy in degree one</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-circle" class="internal"><span class="codenumber">10.5</span> <span class="title">A circle with local coefficients</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-finite-gluing" class="internal"><span class="codenumber">10.6</span> <span class="title">A finite gluing space</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c11.html" class="internal"><span class="codenumber">11</span> <span class="title">Singular cohomology and homotopy</span></a></div>
+<ul id="ptx-toc-group-sh-c11" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-singular-cochains" class="internal"><span class="codenumber">11.1</span> <span class="title">Singular cochains with local coefficients</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-cochain-sheaves" class="internal"><span class="codenumber">11.2</span> <span class="title">The sheafified singular complex</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-comparison" class="internal"><span class="codenumber">11.3</span> <span class="title">The comparison theorem</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-broader-comparison" class="internal"><span class="codenumber">11.4</span> <span class="title">Broader local hypotheses</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-homotopy" class="internal"><span class="codenumber">11.5</span> <span class="title">Homotopy invariance with transported coefficients</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-examples-and-boundaries" class="internal"><span class="codenumber">11.6</span> <span class="title">Computations and the limits of the comparison</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="sheaves-topological-notes-16.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul id="ptx-toc-group-sheaves-topological-notes-16" class="structural toc-item-list">
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="sh-concordance.html" class="internal"><span class="codenumber">A.</span> <span class="title">Terminology and hypotheses</span></a></div>
+<ul id="ptx-toc-group-sh-concordance" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-concordance.html#sh-concordance-objects" class="internal"><span class="codenumber">A.1</span> <span class="title">Objects and notation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-concordance.html#sh-concordance-operations" class="internal"><span class="codenumber">A.2</span> <span class="title">Operations and exactness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-concordance.html#sh-concordance-cohomology" class="internal"><span class="codenumber">A.3</span> <span class="title">Cohomology and covering choices</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-concordance.html#sh-concordance-topology" class="internal"><span class="codenumber">A.4</span> <span class="title">Which topology assumptions are being used?</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="sh-references.html" class="internal"><span class="title">References</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="sh-index.html" class="internal"><span class="title">Index</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="chapter" id="sh-c10">
+<h1 class="heading">
+<span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Low-degree classes and calculations</span>
+</h1>
+<section class="introduction" id="sh-c10-2">
+<div class="para" id="sh-c10-2-1">A degree-zero class is a section. A degree-one class records a failure of local choices to agree, and can be represented by a torsor or by an extension. These interpretations do not require separation, local compactness, or a finiteness condition on the coefficients. They explain why an epimorphism of sheaves need not be surjective on global sections, and they give concrete ways to calculate the connecting homomorphism.</div>
+<div class="para" id="sh-c10-2-2">We first use sheaves of Abelian groups. The corresponding statements for <span class="process-math">\(\Lambda\)</span>-module sheaves use the coefficient comparison in <a href="sh-c08.html#sh-c08-coefficients" class="xref" data-knowl="./knowl/xref/sh-c08-coefficients.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 8.3">Proposition 8.3</a>. The last two sections calculate cohomology on a circle and on a finite non-Hausdorff space. The calculations use the Čech and Mayer–Vietoris results of <a href="sh-c09.html" class="internal" title="Chapter 9: Čech cohomology and descent on open covers">Chapter 9</a>; the acyclicity of locally constant sheaves on intervals is proved in <a href="sh-c11.html" class="internal" title="Chapter 11: Singular cohomology and homotopy">Chapter 11</a>.</div></section>
+<section class="section" id="sh-c10-lifting">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Sections and their lifting obstructions</span>
+</h2>
+<div class="para logical" id="sh-c10-lifting-2">
+<div class="para">Let</div>
+<div class="displaymath process-math" id="sh-c10-lifting-2-1">
+\begin{equation*}
+0\longrightarrow F\xrightarrow{\iota}G\xrightarrow{q}H\longrightarrow0
+\end{equation*}
+</div>
+<div class="para">be an exact sequence of Abelian sheaves on <span class="process-math">\(X\text{.}\)</span> An element <span class="process-math">\(h\in H(X)\)</span> has local lifts in <span class="process-math">\(G\text{,}\)</span> since <span class="process-math">\(q\)</span> is an epimorphism of sheaves. It need not have a global lift. The beginning of the cohomology sequence is</div>
+<div class="displaymath process-math" id="sh-c10-lifting-2-6">
+\begin{equation*}
+0\longrightarrow F(X)\longrightarrow G(X)\longrightarrow H(X)\xrightarrow{\partial}H^1(X,F)\longrightarrow H^1(X,G).
+\end{equation*}
+</div>
+<div class="para">Thus <span class="process-math">\(\partial h\)</span> is the obstruction to a global lift. This is an obstruction to making already existing local lifts compatible; it is not an obstruction to their local existence.</div>
+</div>
+<article class="proposition theorem-like" id="sh-c10-boundary-cocycle"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.1</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c10-boundary-cocycle-1-1">
+<div class="para">Choose an open covering <span class="process-math">\(\mathcal U=(U_i)\)</span> and lifts <span class="process-math">\(g_i\in G(U_i)\)</span> of <span class="process-math">\(h|_{U_i}\text{.}\)</span> Define <span class="process-math">\(c_{ij}\in F(U_i\cap U_j)\)</span> by</div>
+<div class="displaymath process-math" id="sh-c10-boundary-cocycle-1-1-5">
+\begin{equation*}
+\iota(c_{ij})=g_j-g_i.
+\end{equation*}
+</div>
+<div class="para">Then <span class="process-math">\(c_{ij}+c_{jk}=c_{ik}\)</span> on triple intersections. Its image under the Čech-to-derived comparison is <span class="process-math">\(\partial h\text{.}\)</span> Replacing <span class="process-math">\(g_i\)</span> by <span class="process-math">\(g_i+\iota(b_i)\)</span> replaces <span class="process-math">\(c_{ij}\)</span> by <span class="process-math">\(c_{ij}+b_j-b_i\text{.}\)</span>
+</div>
+</div>
+</article>
+<details id="sh-c10-boundary-cocycle-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="sh-c10-boundary-cocycle-2-1">
+<div class="para">The difference <span class="process-math">\(g_j-g_i\)</span> belongs to the kernel of <span class="process-math">\(q\text{,}\)</span> so exactness determines <span class="process-math">\(c_{ij}\text{.}\)</span> The identity</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/sh-c09.html" id="sh-c10-boundary-cocycle-2-1-4">
+\begin{equation*}
+(g_j-g_i)+(g_k-g_j)=g_k-g_i
+\end{equation*}
+</div>
+<div class="para" id="sh-c10-boundary-cocycle-2-1-6-anchor">gives the cocycle relation. A connecting class is obtained by lifting a cocycle and applying the differential. Applying this construction in the Čech resolution and an injective resolution gives the displayed representative of <span class="process-math">\(\partial h\text{;}\)</span> the comparison of the two constructions is the naturality of the connecting homomorphism.<a id="sh-c10-boundary-cocycle-2-1-6" href="#margin-sh-c10-boundary-cocycle-2-1-6" class="margin-note-marker" aria-label="Margin note 1">1</a> The formula for a change of lifts follows by subtraction.</div>
+</div>
+</article></details>
+<div class="para" id="sh-c10-lifting-4">If the local lifts can be adjusted to agree, the adjusted sections glue to a global lift. One must allow refinements when using arbitrary Čech classes: a fixed covering need not represent every class of <span class="process-math">\(H^1(X,F)\text{.}\)</span> The direct limit over all open coverings does represent every degree-one class, as explained in <a href="sh-c09.html#sh-c09-comparison" class="xref" data-knowl="./knowl/xref/sh-c09-comparison.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 9.7">Theorem 9.7</a>.<a id="sh-c10-lifting-4-3" href="#margin-sh-c10-lifting-4-3" class="margin-note-marker" aria-label="Margin note 2">2</a>
+</div>
+<article class="example example-like" id="sh-c10-angle"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c10-angle-1-1">
+<div class="para">Let <span class="process-math">\(\mathcal C_{\mathbf R}\)</span> be the sheaf of continuous real-valued functions and <span class="process-math">\(\mathcal C_{S^1}\)</span> the sheaf of continuous circle-valued functions, the latter regarded as an Abelian group under multiplication. There is an exact sequence of Abelian sheaves</div>
+<div class="displaymath process-math" id="sh-c10-angle-1-1-3">
+\begin{equation*}
+0\longrightarrow\Z_X\longrightarrow\mathcal C_{\mathbf R}\xrightarrow{\ e\ }\mathcal C_{S^1}\longrightarrow1,\qquad e(u)=\exp(2\pi\mathrm i u).
+\end{equation*}
+</div>
+<div class="para">For a continuous map <span class="process-math">\(h:X\to S^1\text{,}\)</span> the class <span class="process-math">\(\partial h\in H^1(X,\Z_X)\)</span> vanishes exactly when <span class="process-math">\(h\)</span> has a continuous real-valued logarithm with this normalization.</div>
+</div>
+<div class="solutions">
+<details id="sh-c10-angle-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sh-c10-angle-2-1">Every point of the circle has an open arc on which a continuous argument exists. Pulling back such arcs proves local surjectivity of <span class="process-math">\(e\)</span> for any <span class="process-math">\(X\text{.}\)</span> Its kernel consists of continuous integer-valued functions, which are locally constant. If <span class="process-math">\(u_i\)</span> are local arguments for <span class="process-math">\(h\text{,}\)</span> their differences <span class="process-math">\(u_j-u_i\)</span> are integer-valued and represent the boundary class. The lifting criterion follows from the long exact sequence. For <span class="process-math">\(X=S^1\)</span> and <span class="process-math">\(h\)</span> the identity, this class is nonzero: a continuous lift around a full turn would have to return both to its initial value and to that value plus <span class="process-math">\(1\text{.}\)</span> Choosing the positive orientation gives the usual generator of <span class="process-math">\(H^1(S^1,\Z)\text{.}\)</span>
+</div>
+</div></details>
+</div>
+</article>
+<div class="para" id="sh-c10-lifting-6">This example uses only exactness and local arguments. No assertion about higher cohomology of <span class="process-math">\(\mathcal C_{\mathbf R}\)</span> is needed. Acyclicity statements derived from partitions of unity have additional space hypotheses and belong to the treatment of fine and soft sheaves.</div>
+</section>
+<section class="section" id="sh-c10-torsors">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Torsors and degree-one cocycles</span>
+</h2>
+<article class="definition definition-like" id="sh-c10-torsor-definition"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Torsors.</span>
+</h3>
+<div class="para logical" id="sh-c10-torsor-definition-5-1">
+<div class="para">Let <span class="process-math">\(G\)</span> be a sheaf of groups on <span class="process-math">\(X\text{.}\)</span> A <dfn class="terminology">right <span class="process-math">\(G\)</span>-torsor</dfn> is a sheaf of sets <span class="process-math">\(P\)</span> with a right <span class="process-math">\(G\)</span>-action such that every point has a neighborhood on which <span class="process-math">\(P\)</span> has a section, and the morphism</div>
+<div class="displaymath process-math" id="sh-c10-torsor-definition-5-1-7">
+\begin{equation*}
+P\times G\longrightarrow P\times P,\qquad (p,g)\longmapsto(p,p\cdot g)
+\end{equation*}
+</div>
+<div class="para">is an isomorphism. A morphism of torsors is a <span class="process-math">\(G\)</span>-equivariant morphism of sheaves. The trivial torsor is <span class="process-math">\(G\)</span> with right multiplication. The set of isomorphism classes, pointed by this trivial torsor, is denoted <span class="process-math">\(H^1(X,G)\)</span> when <span class="process-math">\(G\)</span> is not assumed Abelian.</div>
+</div> 
+<div class="para" id="sh-c10-torsor-definition-5-2">For an Abelian sheaf <span class="process-math">\(F\text{,}\)</span> we write the action additively. The torsor is a sheaf of sets acted on by <span class="process-math">\(F\text{;}\)</span> it does not come with a chosen zero section or an Abelian group structure.</div>
+</article>
+<div class="para" id="sh-c10-torsors-3">The isomorphism in the definition says that two sections on the same open set differ by a unique group section whenever those sections exist. The local-existence condition is equivalent to the nonemptiness of all stalks of <span class="process-math">\(P\text{.}\)</span> It does not require <span class="process-math">\(P(U)\)</span> to be nonempty for every open <span class="process-math">\(U\text{.}\)</span><a id="sh-c10-torsors-3-4" href="#margin-sh-c10-torsors-3-4" class="margin-note-marker" aria-label="Margin note 3">3</a>
+</div>
+<article class="proposition theorem-like" id="sh-c10-torsor-basics"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c10-torsor-basics-1-1">
+<div class="para">Every morphism of <span class="process-math">\(G\)</span>-torsors is an isomorphism. A <span class="process-math">\(G\)</span>-torsor is trivial if and only if it has a global section. If <span class="process-math">\(F\)</span> is Abelian and <span class="process-math">\(P\)</span> is an <span class="process-math">\(F\)</span>-torsor, translation gives an isomorphism</div>
+<div class="displaymath process-math" id="sh-c10-torsor-basics-1-1-6">
+\begin{equation*}
+F(X)\xrightarrow{\sim}\operatorname{Aut}_F(P).
+\end{equation*}
+</div>
+</div>
+</article>
+<details id="sh-c10-torsor-basics-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c10-torsor-basics-2-1">Choose a local section <span class="process-math">\(p\)</span> of the source torsor. The map <span class="process-math">\(g\mapsto p\cdot g\)</span> identifies that torsor locally with <span class="process-math">\(G\text{,}\)</span> and the image of <span class="process-math">\(p\)</span> gives the same identification for the target. An equivariant morphism becomes the identity in these coordinates. It is therefore an isomorphism on an open covering. A global section makes the same construction on all of <span class="process-math">\(X\text{,}\)</span> proving the criterion for triviality. In the Abelian case an equivariant automorphism is locally translation by a unique element of <span class="process-math">\(F\text{;}\)</span> these translations agree on overlaps and glue to an element of <span class="process-math">\(F(X)\text{.}\)</span>
+</div>
+</article></details>
+<div class="para logical" id="sh-c10-torsors-5">
+<div class="para">Choose local sections <span class="process-math">\(p_i\in P(U_i)\text{.}\)</span> Write</div>
+<div class="displaymath process-math" id="sh-c10-torsors-5-2">
+\begin{equation*}
+p_j=p_i\cdot g_{ij}.
+\end{equation*}
+</div>
+<div class="para">Associativity and uniqueness give <span class="process-math">\(g_{ij}g_{jk}=g_{ik}\text{.}\)</span> If <span class="process-math">\(p'_i=p_i\cdot b_i\text{,}\)</span> then</div>
+<div class="displaymath process-math" id="sh-c10-torsors-5-5">
+\begin{equation*}
+g'_{ij}=b_i^{-1}g_{ij}b_j.
+\end{equation*}
+</div>
+<div class="para">Conversely, such transition sections glue copies of <span class="process-math">\(G|_{U_i}\)</span> to a torsor. For an Abelian sheaf, these are exactly the additive cocycle and coboundary formulas</div>
+<div class="displaymath process-math" id="sh-c10-torsors-5-7">
+\begin{equation*}
+c_{ij}+c_{jk}=c_{ik},\qquad c'_{ij}=c_{ij}+b_j-b_i.
+\end{equation*}
+</div>
+<div class="para">The change-of-trivialization formula explains why isomorphism classes are the objects to classify.</div>
+</div>
+<div class="para" id="sh-c10-torsors-6">For non-Abelian <span class="process-math">\(G\text{,}\)</span> the notation <span class="process-math">\(H^1(X,G)\)</span> denotes a pointed set here. It is not the first right derived functor of global sections in an Abelian category, and there is no addition of its classes supplied by the definition. We will not introduce higher non-Abelian cohomology. For Abelian <span class="process-math">\(F\text{,}\)</span> the torsor classification agrees with the cohomology group already defined; this agreement is proved below.</div>
+<article class="example example-like" id="sh-c10-lift-torsor"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c10-lift-torsor-1-1">
+<div class="para">In the exact sequence of <a href="sh-c10.html#sh-c10-lifting" class="internal" title="Section 10.1: Sections and their lifting obstructions">Section 10.1</a>, let <span class="process-math">\(h\in H(X)\text{.}\)</span> The rule</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/sh-c10-lifting.html" id="sh-c10-lift-torsor-1-1-3">
+\begin{equation*}
+P_h(U)=\{g\in G(U):q(g)=h|_U\}
+\end{equation*}
+</div>
+<div class="para">defines an <span class="process-math">\(F\)</span>-torsor, acted on by addition. Its class is <span class="process-math">\(\partial h\text{.}\)</span>
+</div>
+</div>
+<div class="solutions">
+<details id="sh-c10-lift-torsor-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sh-c10-lift-torsor-2-1">The equation defining <span class="process-math">\(P_h\)</span> is local, so this rule is a sheaf. Epimorphy of <span class="process-math">\(q\)</span> gives local sections, and exactness identifies differences of lifts with unique sections of <span class="process-math">\(F\text{.}\)</span> Local trivializations are the chosen lifts <span class="process-math">\(g_i\text{;}\)</span> their transition cocycle is <span class="process-math">\(g_j-g_i\text{.}\)</span> Thus the torsor and the connecting class record the same failure to lift globally.</div>
+</div></details>
+</div>
+</article></section>
+<section class="section" id="sh-c10-extensions">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Extensions and the classification of torsors</span>
+</h2>
+<div class="para logical" id="sh-c10-extensions-2">
+<div class="para">For Abelian sheaves, the identification</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/sh-c08-ext-global.html" id="sh-c10-extensions-2-1">
+\begin{equation*}
+\Hom_{\Sh(X;\Z)}(\Z_X,F)=\Gamma(X,F)
+\end{equation*}
+</div>
+<div class="para">identifies their right derived functors. Hence <span class="process-math">\(H^1(X,F)\)</span> classifies extensions</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/sh-c08-ext-global.html" id="sh-c10-extensions-2-3">
+\begin{equation*}
+0\longrightarrow F\longrightarrow E\xrightarrow{q}\Z_X\longrightarrow0,
+\end{equation*}
+</div>
+<div class="para">with the end terms fixed. The module version is <a href="sh-c08.html#sh-c08-ext-global" class="xref" data-knowl="./knowl/xref/sh-c08-ext-global.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 8.14">Proposition 8.14</a>. We use the Yoneda interpretation of <span class="process-math">\(\Ext^1\)</span> from the <a class="external" href="../homological-algebra/ha-c06.html" target="_blank">homological algebra note</a>, rather than prove the general theory of extensions again.</div>
+</div>
+<article class="theorem theorem-like" id="sh-c10-torsor-classification"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.6</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c10-torsor-classification-1-1">
+<div class="para">For any Abelian sheaf <span class="process-math">\(F\)</span> on any topological space <span class="process-math">\(X\text{,}\)</span> there is a natural bijection</div>
+<div class="displaymath process-math" id="sh-c10-torsor-classification-1-1-3">
+\begin{equation*}
+\{\text{isomorphism classes of }F\text{-torsors}\}\xrightarrow{\sim}H^1(X,F).
+\end{equation*}
+</div>
+<div class="para">The trivial torsor corresponds to zero. If an extension of <span class="process-math">\(\Z_X\)</span> by <span class="process-math">\(F\)</span> represents a class <span class="process-math">\(\xi\text{,}\)</span> its fiber over the global section <span class="process-math">\(1\in\Z_X(X)\)</span> is a torsor representing <span class="process-math">\(\xi\text{.}\)</span>
+</div>
+</div>
+</article>
+<details id="sh-c10-torsor-classification-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c10-torsor-classification-2-1">For an extension <span class="process-math">\(E\text{,}\)</span> let <span class="process-math">\(P=q^{-1}(1)\text{,}\)</span> taking the fiber in sheaves of sets. Since <span class="process-math">\(q\)</span> is an epimorphism, <span class="process-math">\(1\)</span> has local lifts. Their differences are unique sections of <span class="process-math">\(F\text{,}\)</span> so <span class="process-math">\(P\)</span> is a torsor. This construction respects equivalences of extensions.</div>
+<div class="para logical" id="sh-c10-torsor-classification-2-2">
+<div class="para">Conversely, choose local sections <span class="process-math">\(p_i\)</span> of a torsor <span class="process-math">\(P\)</span> and write <span class="process-math">\(p_j=p_i+c_{ij}\text{.}\)</span> On <span class="process-math">\(U_i\text{,}\)</span> take <span class="process-math">\(E_i=F|_{U_i}\oplus\Z_{U_i}\text{.}\)</span> Glue the copy on <span class="process-math">\(U_j\)</span> to the copy on <span class="process-math">\(U_i\)</span> by</div>
+<div class="displaymath process-math" id="sh-c10-torsor-classification-2-2-8">
+\begin{equation*}
+(a,n)\longmapsto(a+n c_{ij},n).
+\end{equation*}
+</div>
+<div class="para">The cocycle relation is exactly the compatibility required for these isomorphisms on triple intersections. Their first component fixes <span class="process-math">\(F\text{,}\)</span> and their second component fixes <span class="process-math">\(\Z\text{.}\)</span> They therefore glue to an extension of <span class="process-math">\(\Z_X\)</span> by <span class="process-math">\(F\text{.}\)</span> Its fiber over <span class="process-math">\(1\)</span> has the same transitions as <span class="process-math">\(P\text{,}\)</span> and is isomorphic to <span class="process-math">\(P\text{.}\)</span>
+</div>
+</div>
+<div class="para" id="sh-c10-torsor-classification-2-3">Changing the sections to <span class="process-math">\(p_i+b_i\)</span> gives an equivalent extension, using the local coordinate change <span class="process-math">\((a,n)\mapsto(a+n b_i,n)\)</span> in the old coordinates. Any two trivializing coverings have a common refinement, so the extension class is independent of the covering. Starting instead with an extension, choose lifts <span class="process-math">\(e_i\)</span> of <span class="process-math">\(1\text{.}\)</span> The maps <span class="process-math">\((a,n)\mapsto a+n e_i\)</span> identify it with the extension just constructed from its fiber torsor. Thus the two constructions are inverse on isomorphism classes.</div>
+<div class="para" id="sh-c10-torsor-classification-2-4">The connecting homomorphism for an extension sends <span class="process-math">\(1\)</span> to its Yoneda class. Its local lifts are the sections of the fiber torsor, whose differences are <span class="process-math">\(c_{ij}\text{.}\)</span> The bijection therefore agrees with the Čech-to-derived comparison and with <a href="sh-c10.html#sh-c10-boundary-cocycle" class="xref" data-knowl="./knowl/xref/sh-c10-boundary-cocycle.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 10.1">Proposition 10.1</a>. Pullback and morphisms of Abelian coefficient sheaves preserve these descriptions, proving naturality.</div>
+</article></details>
+<div class="para" id="sh-c10-extensions-4">For the general result and a construction without choosing local coordinates, see <a class="external" href="https://stacks.math.columbia.edu/tag/02FN" target="_blank">Stacks, §20.4</a>. The proof above keeps the transition maps visible, so it also fixes our sign convention.</div>
+<div class="para" id="sh-c10-extensions-5">If <span class="process-math">\(F\)</span> is a <span class="process-math">\(\Lambda\)</span>-module sheaf, replace <span class="process-math">\(\Z\)</span> by <span class="process-math">\(\Lambda\)</span> in the gluing construction and use <span class="process-math">\((a,\lambda)\mapsto(a+\lambda c_{ij},\lambda)\text{.}\)</span> This realizes the same additive torsor as a <span class="process-math">\(\Lambda\)</span>-linear extension of <span class="process-math">\(\Lambda_X\text{.}\)</span> Thus the Abelian torsor interpretation agrees with the module-valued cohomology and with <span class="process-math">\(\Ext^1_{\Sh(X;\Lambda)}(\Lambda_X,F)\text{;}\)</span> it does not require <span class="process-math">\(F\)</span> to be free or flat. The automorphisms of such an extension that induce the identity on both end terms are also <span class="process-math">\(F(X)\text{,}\)</span> acting by <span class="process-math">\(e\mapsto e+q(e)b\text{.}\)</span> The cohomology group classifies isomorphism classes, and does not assert that objects in one class have no automorphisms.</div>
+<div class="para logical" id="sh-c10-extensions-6">
+<div class="para">The group operation has a torsor interpretation. For two <span class="process-math">\(F\)</span>-torsors <span class="process-math">\(P,Q\text{,}\)</span> form the sheaf quotient of <span class="process-math">\(P\times Q\)</span> by the action</div>
+<div class="displaymath process-math" id="sh-c10-extensions-6-4">
+\begin{equation*}
+a:(p,q)\longmapsto(p+a,q-a).
+\end{equation*}
+</div>
+<div class="para" id="sh-c10-extensions-6-9-anchor">The result, usually written <span class="process-math">\(P+_F Q\text{,}\)</span> is an <span class="process-math">\(F\)</span>-torsor. Local sections <span class="process-math">\(p_i,q_i\)</span> give transitions <span class="process-math">\(c_{ij}+d_{ij}\text{,}\)</span> so its class is the sum of the two classes. Negating the action gives the inverse torsor. This construction agrees with Baer sum of the corresponding extensions.<a id="sh-c10-extensions-6-9" href="#margin-sh-c10-extensions-6-9" class="margin-note-marker" aria-label="Margin note 4">4</a>
+</div>
+</div>
+<article class="proposition theorem-like" id="sh-c10-splitting-torsor"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.7</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c10-splitting-torsor-1-1">
+<div class="para">Let <span class="process-math">\(P\)</span> be a finite locally free <span class="process-math">\(\Lambda_X\)</span>-module sheaf and let <span class="process-math">\(F\)</span> be any <span class="process-math">\(\Lambda\)</span>-module sheaf. Equivalence classes of extensions</div>
+<div class="displaymath process-math" id="sh-c10-splitting-torsor-1-1-5">
+\begin{equation*}
+0\longrightarrow F\longrightarrow E\longrightarrow P\longrightarrow0
+\end{equation*}
+</div>
+<div class="para">are naturally classified by</div>
+<div class="displaymath process-math" id="sh-c10-splitting-torsor-1-1-6">
+\begin{equation*}
+H^1\bigl(X,\sheafHom_\Lambda(P,F)\bigr).
+\end{equation*}
+</div>
+<div class="para">The torsor associated with an extension is its sheaf of local <span class="process-math">\(\Lambda\)</span>-linear splittings.</div>
+</div>
+</article>
+<details id="sh-c10-splitting-torsor-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c10-splitting-torsor-2-1">Where <span class="process-math">\(P\)</span> is free of finite rank, lift its finitely many basis sections through <span class="process-math">\(E\to P\)</span> after shrinking the neighborhood. This gives a local splitting. Two splittings differ by a unique section of <span class="process-math">\(\sheafHom_\Lambda(P,F)\text{.}\)</span> They therefore form a torsor under this Abelian sheaf. Conversely, glue the locally split extensions <span class="process-math">\(F\oplus P\)</span> using the additive cocycle of a torsor, by the maps <span class="process-math">\((a,p)\mapsto(a+c_{ij}(p),p)\text{.}\)</span> These constructions are inverse, by the same coordinate changes as in <a href="sh-c10.html#sh-c10-torsor-classification" class="xref" data-knowl="./knowl/xref/sh-c10-torsor-classification.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 10.6">Theorem 10.6</a>.</div>
+</article></details>
+<div class="para" id="sh-c10-extensions-8">Local freeness and finite rank have been used to obtain local splittings by lifting finitely many generators simultaneously. A locally free sheaf need not be a projective object of the global sheaf category. Even <span class="process-math">\(\Lambda_X\)</span> can have nonzero global <span class="process-math">\(\Ext^1\text{.}\)</span> The obstruction is precisely the failure of the local splittings to glue. For a general quotient sheaf <span class="process-math">\(P\text{,}\)</span> an extension need not be locally split, and a torsor of splittings need not exist; one then needs more than this <span class="process-math">\(H^1\)</span> description.</div>
+</section>
+<section class="section" id="sh-c10-affine-monodromy">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Affine monodromy in degree one</span>
+</h2>
+<div class="para" id="sh-c10-affine-monodromy-2">For locally constant coefficients, the torsor description expresses degree one directly in terms of monodromy. Assume in this section that <span class="process-math">\(X\)</span> is connected, locally path-connected, and semilocally simply connected. These are sufficient hypotheses for the monodromy classification in <a href="sh-c05.html#sh-c05-monodromy" class="xref" data-knowl="./knowl/xref/sh-c05-monodromy.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.12">Theorem 5.12</a>. Let <span class="process-math">\(L\)</span> have stalk <span class="process-math">\(M\)</span> at <span class="process-math">\(x\text{,}\)</span> and write <span class="process-math">\(\rho:\pi_1(X,x)\to\operatorname{Aut}_\Lambda(M)\)</span> for its monodromy. We choose the multiplication convention in which <span class="process-math">\(\rho(gh)=\rho(g)\rho(h)\text{.}\)</span>
+</div>
+<article class="definition definition-like" id="sh-c10-crossed-homomorphism"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.8</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Crossed homomorphisms.</span>
+</h3>
+<div class="para logical" id="sh-c10-crossed-homomorphism-5-1">
+<div class="para">A <dfn class="terminology">crossed homomorphism</dfn> for <span class="process-math">\(\rho\)</span> is a map <span class="process-math">\(c:\pi_1(X,x)\to M\)</span> satisfying</div>
+<div class="displaymath process-math" id="sh-c10-crossed-homomorphism-5-1-4">
+\begin{equation*}
+c(gh)=c(g)+\rho(g)c(h).
+\end{equation*}
+</div>
+<div class="para">Two such maps are equivalent if, for one <span class="process-math">\(b\in M\text{,}\)</span>
+</div>
+<div class="displaymath process-math" id="sh-c10-crossed-homomorphism-5-1-6">
+\begin{equation*}
+c'(g)=c(g)+\rho(g)b-b\qquad\text{for all }g.
+\end{equation*}
+</div>
+<div class="para">Their quotient group, under addition, is the degree-one group cohomology <span class="process-math">\(H^1(\pi_1(X,x),M)\)</span> for this action.</div>
+</div>
+</article>
+<article class="proposition theorem-like" id="sh-c10-affine-classification"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.9</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c10-affine-classification-1-1">
+<div class="para">Under the stated hypotheses there is an isomorphism</div>
+<div class="displaymath process-math" id="sh-c10-affine-classification-1-1-1">
+\begin{equation*}
+H^1(X,L)\simeq H^1(\pi_1(X,x),M).
+\end{equation*}
+</div>
+<div class="para">No asphericity hypothesis on <span class="process-math">\(X\)</span> is needed in degree one.</div>
+</div>
+</article>
+<details id="sh-c10-affine-classification-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="sh-c10-affine-classification-2-1">
+<div class="para">An <span class="process-math">\(L\)</span>-torsor is locally isomorphic to <span class="process-math">\(L\)</span> as a sheaf of sets. It is therefore locally constant. Choose an element <span class="process-math">\(p\in P_x\text{;}\)</span> its additive torsor action identifies <span class="process-math">\(P_x\)</span> with <span class="process-math">\(M\)</span> by <span class="process-math">\(v\mapsto p+v\text{.}\)</span> Compatibility of monodromy with the <span class="process-math">\(L\)</span>-action forces the action of <span class="process-math">\(g\)</span> to have the affine form</div>
+<div class="displaymath process-math" id="sh-c10-affine-classification-2-1-9">
+\begin{equation*}
+v\longmapsto\rho(g)v+c(g).
+\end{equation*}
+</div>
+<div class="para">Composition of these affine maps is an action exactly when <span class="process-math">\(c\)</span> satisfies the crossed-homomorphism identity. Changing the chosen origin to <span class="process-math">\(p+b\)</span> changes <span class="process-math">\(c\)</span> by the displayed equivalence relation.</div>
+</div>
+<div class="para" id="sh-c10-affine-classification-2-2">Conversely, a crossed homomorphism defines an affine action on the set <span class="process-math">\(M\text{,}\)</span> whose translations are compatible with the given linear action <span class="process-math">\(\rho\text{.}\)</span> The monodromy equivalence constructs a locally constant sheaf of sets with this action and a locally simply transitive <span class="process-math">\(L\)</span>-action; it is an <span class="process-math">\(L\)</span>-torsor. An equivariant map respecting translations is a translation by one <span class="process-math">\(b\text{,}\)</span> and gives exactly the stated change of crossed homomorphism. The torsor classification proves the bijection. Addition of torsors adds the translation parts, so the bijection is a group isomorphism.</div>
+</article></details>
+<div class="para" id="sh-c10-affine-monodromy-5">When the action is trivial, a crossed homomorphism is an ordinary homomorphism into the additive group <span class="process-math">\(M\text{,}\)</span> and the equivalence relation does not change it. Thus <span class="process-math">\(H^1(X,M_X)\simeq\Hom(\pi_1(X,x),M)\)</span> under these hypotheses. For nontrivial monodromy, replacing crossed homomorphisms by ordinary homomorphisms discards the coefficient action.<a id="sh-c10-affine-monodromy-5-3" href="#margin-sh-c10-affine-monodromy-5-3" class="margin-note-marker" aria-label="Margin note 5">5</a>
+</div>
+</section>
+<section class="section" id="sh-c10-circle">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">A circle with local coefficients</span>
+</h2>
+<div class="para" id="sh-c10-circle-2">Let <span class="process-math">\(L\)</span> be a locally constant <span class="process-math">\(\Lambda\)</span>-module sheaf on <span class="process-math">\(S^1\text{.}\)</span> Choose a base point, an orientation, and an identification of its stalk with a module <span class="process-math">\(M\text{.}\)</span> Positive monodromy is an automorphism <span class="process-math">\(T:M\to M\text{;}\)</span> compare <a href="sh-c05.html#sh-c05-monodromy" class="xref" data-knowl="./knowl/xref/sh-c05-monodromy.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 5.12">Theorem 5.12</a>. No finite-generation or projectivity assumption on <span class="process-math">\(M\)</span> is imposed.</div>
+<article class="proposition theorem-like" id="sh-c10-circle-formula"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.10</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c10-circle-formula-1-1">
+<div class="para">With these choices, the cohomology of <span class="process-math">\(L\)</span> is computed by the two-term complex</div>
+<div class="displaymath process-math" id="sh-c10-circle-formula-1-1-2">
+\begin{equation*}
+M\xrightarrow{\ T-1\ }M
+\end{equation*}
+</div>
+<div class="para">in degrees <span class="process-math">\(0,1\text{.}\)</span> Thus</div>
+<div class="displaymath process-math" id="sh-c10-circle-formula-1-1-4">
+\begin{equation*}
+H^0(S^1,L)\simeq\ker(T-1),\qquad H^1(S^1,L)\simeq\coker(T-1),\qquad H^q(S^1,L)=0\quad(q\geq2).
+\end{equation*}
+</div>
+<div class="para">The first isomorphism is evaluation at the chosen base point. The second uses the orientation and the corresponding trivializations.</div>
+</div>
+</article>
+<details id="sh-c10-circle-formula-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="sh-c10-circle-formula-2-1">
+<div class="para">Cover the circle by two open arcs <span class="process-math">\(U,V\)</span> whose intersection is a disjoint union of two open arcs <span class="process-math">\(A,B\text{.}\)</span> Locally constant sheaves on each of these intervals are constant and have no positive cohomology, by <a href="sh-c11.html#sh-c11-contractible" class="xref" data-knowl="./knowl/xref/sh-c11-contractible.html" data-reveal-label="Reveal" data-close-label="Close" title="Corollary 11.15">Corollary 11.15</a>. Consequently the Mayer–Vietoris sequence is represented by</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/sh-c11-contractible.html ./knowl/xref/sh-c09-mayer-vietoris.html" id="sh-c10-circle-formula-2-1-4">
+\begin{equation*}
+M\oplus M\xrightarrow{\ d\ }M\oplus M,\qquad d(u,v)=(v-u,Tv-u),
+\end{equation*}
+</div>
+<div class="para">after choosing the trivializations to agree on <span class="process-math">\(A\text{.}\)</span> We choose the orientation so that their transition on <span class="process-math">\(B\)</span> is <span class="process-math">\(T\text{.}\)</span> This is the difference-of-restrictions convention of <a href="sh-c09.html#sh-c09-mayer-vietoris" class="xref" data-knowl="./knowl/xref/sh-c09-mayer-vietoris.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 9.13: Mayer–Vietoris">Theorem 9.13</a>.</div>
+</div>
+<div class="para logical" id="sh-c10-circle-formula-2-2">
+<div class="para">The kernel consists of pairs <span class="process-math">\((u,v)\)</span> with <span class="process-math">\(u=v\)</span> and <span class="process-math">\((T-1)v=0\text{.}\)</span> For the cokernel, use coordinates <span class="process-math">\((r,s)\mapsto(r,s-r)\)</span> in the target and <span class="process-math">\((u,v)\mapsto(v-u,v)\)</span> in the source. The differential becomes</div>
+<div class="displaymath process-math" id="sh-c10-circle-formula-2-2-6">
+\begin{equation*}
+(a,v)\longmapsto\bigl(a,(T-1)v\bigr).
+\end{equation*}
+</div>
+<div class="para">Its first summand is an isomorphism and can be removed. The second summand is the stated two-term complex. The higher groups vanish because the cover and all its nonempty intersections are acyclic and its normalized Čech complex has length one.</div>
+</div>
+</article></details>
+<div class="para logical" id="sh-c10-circle-4">
+<div class="para">The kernel consists of invariant elements, while the cokernel consists of coinvariants. These are different operations. For example, an automorphism can have no fixed vectors and still have nonzero coinvariants over a general ring. Reversing the circle replaces <span class="process-math">\(T\)</span> by <span class="process-math">\(T^{-1}\text{.}\)</span> The identity</div>
+<div class="displaymath process-math" id="sh-c10-circle-4-3">
+\begin{equation*}
+T^{-1}-1=-T^{-1}(T-1)
+\end{equation*}
+</div>
+<div class="para" id="sh-c10-circle-4-4-anchor">identifies the resulting kernels and cokernels, but the coordinate expression for the degree-one class depends on this change.<a id="sh-c10-circle-4-4" href="#margin-sh-c10-circle-4-4" class="margin-note-marker" aria-label="Margin note 6">6</a>
+</div>
+</div>
+<article class="example example-like" id="sh-c10-circle-examples"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.11</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sh-c10-circle-examples-1-1">The formula gives the following cases.</div> 
+<div class="para logical" id="sh-c10-circle-examples-1-2">
+<ol class="decimal" id="sh-c10-circle-examples-1-2-1">
+<li id="sh-c10-circle-examples-1-2-1-1">
+<div class="para" id="sh-c10-circle-examples-1-2-1-1-1">If <span class="process-math">\(T=1\text{,}\)</span> then <span class="process-math">\(H^0(S^1,M_{S^1})=M\)</span> and <span class="process-math">\(H^1(S^1,M_{S^1})=M\text{.}\)</span>
+</div>
+</li>
+<li id="sh-c10-circle-examples-1-2-1-2">
+<div class="para" id="sh-c10-circle-examples-1-2-1-2-1">For <span class="process-math">\(M=\Z\)</span> and <span class="process-math">\(T=-1\text{,}\)</span> the invariants are zero and the coinvariants are <span class="process-math">\(\Z/2\Z\text{.}\)</span> The torsion in degree one comes from an integral local system even though its stalk is torsion-free.</div>
+</li>
+<li id="sh-c10-circle-examples-1-2-1-3">
+<div class="para" id="sh-c10-circle-examples-1-2-1-3-1">For a rank-one local system over a field with monodromy <span class="process-math">\(t\ne1\text{,}\)</span> both groups vanish. Over <span class="process-math">\(\Z\text{,}\)</span> the same argument only works when <span class="process-math">\(t-1\)</span> is a unit.</div>
+</li>
+</ol>
+</div>
+</article>
+<article class="example example-like" id="sh-c10-unipotent-extension"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.12</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c10-unipotent-extension-1-1">
+<div class="para">For <span class="process-math">\(a\in\Lambda\text{,}\)</span> let <span class="process-math">\(E_a\)</span> be the local system with stalk <span class="process-math">\(\Lambda^2\)</span> and monodromy</div>
+<div class="displaymath process-math" id="sh-c10-unipotent-extension-1-1-4">
+\begin{equation*}
+T_a=\begin{pmatrix}1&amp;a\\0&amp;1\end{pmatrix}.
+\end{equation*}
+</div>
+<div class="para">The first coordinate and the second-coordinate quotient give an extension</div>
+<div class="displaymath process-math" id="sh-c10-unipotent-extension-1-1-5">
+\begin{equation*}
+0\longrightarrow\Lambda_{S^1}\longrightarrow E_a\longrightarrow\Lambda_{S^1}\longrightarrow0.
+\end{equation*}
+</div>
+<div class="para">Under the identification <span class="process-math">\(H^1(S^1,\Lambda)\simeq\Lambda\text{,}\)</span> with the corresponding transition convention, its class is <span class="process-math">\(a\text{.}\)</span>
+</div>
+</div>
+<div class="solutions">
+<details id="sh-c10-unipotent-extension-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sh-c10-unipotent-extension-2-1">The quotient section <span class="process-math">\(1\)</span> has local lifts given by the second basis vector. After one positive turn this vector differs from itself by <span class="process-math">\(a\)</span> times the first basis vector. The torsor of lifts therefore has transition <span class="process-math">\(a\text{,}\)</span> representing the stated class. A global splitting would be a monodromy-invariant vector of the form <span class="process-math">\((b,1)\text{.}\)</span> Its image under <span class="process-math">\(T_a\)</span> is <span class="process-math">\((b+a,1)\text{,}\)</span> so such a splitting exists exactly when <span class="process-math">\(a=0\text{.}\)</span> Local splitting does not imply global splitting, even when both end terms are constant free rank-one sheaves.</div>
+</div></details>
+</div>
+</article></section>
+<section class="section" id="sh-c10-finite-gluing">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">A finite gluing space</span>
+</h2>
+<div class="para logical" id="sh-c10-finite-gluing-2">
+<div class="para">A finite example separates the calculation from manifold intuition. Let <span class="process-math">\(X=\{a,b,c,d\}\text{,}\)</span> with open sets the upper sets for the order</div>
+<div class="displaymath process-math" id="sh-c10-finite-gluing-2-2">
+\begin{equation*}
+a&lt;c,\quad a&lt;d,\quad b&lt;c,\quad b&lt;d,
+\end{equation*}
+</div>
+<div class="para">and no further strict comparisons. This is a finite <span class="process-math">\(T_0\)</span> space. It is not Hausdorff. The minimal open neighborhoods of <span class="process-math">\(a,b\)</span> are</div>
+<div class="displaymath process-math" id="sh-c10-finite-gluing-2-5">
+\begin{equation*}
+U=\{a,c,d\},\qquad V=\{b,c,d\},
+\end{equation*}
+</div>
+<div class="para">and <span class="process-math">\(U\cap V=\{c,d\}\)</span> is discrete.</div>
+</div>
+<article class="proposition theorem-like" id="sh-c10-fourpoint-computation"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.13</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c10-fourpoint-computation-1-1">
+<div class="para">For every <span class="process-math">\(F\in\Sh(X;\Lambda)\text{,}\)</span> its cohomology is computed by</div>
+<div class="displaymath process-math" id="sh-c10-fourpoint-computation-1-1-2">
+\begin{equation*}
+F_a\oplus F_b\longrightarrow F_c\oplus F_d,\qquad (u,v)\longmapsto\bigl(r_{bc}v-r_{ac}u,\ r_{bd}v-r_{ad}u\bigr),
+\end{equation*}
+</div>
+<div class="para">in degrees <span class="process-math">\(0,1\text{,}\)</span> where the maps <span class="process-math">\(r\)</span> are induced by restriction from minimal neighborhoods. In particular, for the constant sheaf,</div>
+<div class="displaymath process-math" id="sh-c10-fourpoint-computation-1-1-5">
+\begin{equation*}
+H^0(X,\Lambda_X)\simeq\Lambda,\qquad H^1(X,\Lambda_X)\simeq\Lambda,\qquad H^q(X,\Lambda_X)=0\quad(q\geq2).
+\end{equation*}
+</div>
+</div>
+</article>
+<details id="sh-c10-fourpoint-computation-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c10-fourpoint-computation-2-1">On a finite space, the stalk at a point is the sections over its minimal open neighborhood. Thus <span class="process-math">\(\Gamma(U,F)=F_a\)</span> and <span class="process-math">\(\Gamma(V,F)=F_b\text{.}\)</span> These functors are exact, because stalks are exact. On the discrete two-point space, sections are the finite product <span class="process-math">\(F_c\times F_d\text{,}\)</span> which is exact as well. The covering <span class="process-math">\((U,V)\)</span> and its intersection are therefore acyclic for every <span class="process-math">\(F\text{.}\)</span> The Čech calculation in <a href="sh-c09.html#sh-c09-acyclic-cover" class="xref" data-knowl="./knowl/xref/sh-c09-acyclic-cover.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 9.10">Theorem 9.10</a> gives precisely the displayed complex.</div>
+<div class="para" id="sh-c10-fourpoint-computation-2-2">For <span class="process-math">\(F=\Lambda_X\text{,}\)</span> every restriction in that complex is the identity. The differential is <span class="process-math">\((u,v)\mapsto(v-u,v-u)\text{.}\)</span> Its kernel is the diagonal copy of <span class="process-math">\(\Lambda\text{;}\)</span> its cokernel is <span class="process-math">\((\Lambda\oplus\Lambda)/\Delta\Lambda\simeq\Lambda\text{,}\)</span> using the difference of the two coordinates. The complex has no higher terms.</div>
+</article></details>
+<div class="para" id="sh-c10-finite-gluing-4">The space is connected: each of <span class="process-math">\(U,V\)</span> is connected and their intersection is nonempty. Its nonzero degree-one class comes from the two components of the overlap. This is the same gluing calculation as for the two-arc cover of a circle, although the spaces are very different as topological spaces. Equality of these cohomology groups alone asserts neither a homeomorphism nor a homotopy equivalence.</div>
+<article class="example example-like" id="sh-c10-fourpoint-torsor"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.14</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sh-c10-fourpoint-torsor-1-1">An <span class="process-math">\(\Lambda_X\)</span>-torsor trivialized over <span class="process-math">\(U\)</span> and <span class="process-math">\(V\)</span> is specified by a pair <span class="process-math">\((s,t)\in\Lambda\oplus\Lambda\)</span> of translations on the two overlap points. Its class is <span class="process-math">\(t-s\in\Lambda\text{.}\)</span>
+</div>
+<div class="solutions">
+<details id="sh-c10-fourpoint-torsor-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sh-c10-fourpoint-torsor-2-1">A change of trivializations by <span class="process-math">\(u\in\Lambda\)</span> on <span class="process-math">\(U\)</span> and <span class="process-math">\(v\in\Lambda\)</span> on <span class="process-math">\(V\)</span> adds <span class="process-math">\((v-u,v-u)\)</span> to <span class="process-math">\((s,t)\text{.}\)</span> The difference <span class="process-math">\(t-s\)</span> is invariant, and every pair is equivalent to <span class="process-math">\((0,t-s)\text{.}\)</span> Such a torsor is trivial exactly when the two overlap translations agree. This realizes every element of the calculated <span class="process-math">\(H^1\)</span> as an actual gluing obstruction.</div>
+</div></details>
+</div>
+</article>
+<div class="para" id="sh-c10-finite-gluing-6">These examples suggest a practical order for a low-degree calculation: identify which local choices are being made; determine the sheaf acting on those choices; compute their differences on overlaps; then justify the comparison with derived cohomology. The justification may use the general degree-one classification, or an acyclic covering when all degrees are wanted. Knowing the overlap equations without that justification is a Čech calculation, not yet a general computation of sheaf cohomology.</div>
+</section></section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="sh-c09.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Top</span></a><a class="next-button button" href="sh-c11.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a>
+</div></main>
+<div class="margin-notes" role="complementary" aria-label="Margin notes">
+<aside id="margin-sh-c10-boundary-cocycle-2-1-6" class="aside aside-like margin-note" data-margin-anchor="sh-c10-boundary-cocycle-2-1-6-anchor" data-margin-label="1" data-margin-inline="true"><h4 class="heading"><a href="#sh-c10-boundary-cocycle-2-1-6-anchor" class="margin-note-label">1</a></h4>
+<div class="para">With the total differential used in <a href="sh-c09.html" class="internal" title="Chapter 9: Čech cohomology and descent on open covers">Chapter 9</a>, resolution preimages <span class="process-math">\(u_i\)</span> satisfying <span class="process-math">\(d u_i=b\)</span> represent <span class="process-math">\([b]\)</span> by <span class="process-math">\(u_i-u_j\text{.}\)</span> There is no sign conflict here: if <span class="process-math">\(\widetilde h\)</span> is a global resolution lift of <span class="process-math">\(h\text{,}\)</span> then <span class="process-math">\(u_i=\widetilde h-g_i\text{,}\)</span> so <span class="process-math">\(g_j-g_i=u_i-u_j\text{.}\)</span> Genuine local lifts in <span class="process-math">\(G\)</span> and local preimages in a resolution of <span class="process-math">\(F\)</span> are different choices.
+</div></aside><aside id="margin-sh-c10-lifting-4-3" class="aside aside-like margin-note" data-margin-anchor="sh-c10-lifting-4" data-margin-label="2" data-margin-inline="true"><h4 class="heading"><a href="#sh-c10-lifting-4" class="margin-note-label">2</a></h4>
+<div class="para">When a class is given by local lifts on a particular covering, its fixed-cover Čech representative is already available. This does not imply surjectivity of the fixed-cover comparison for other classes.
+</div></aside><aside id="margin-sh-c10-torsors-3-4" class="aside aside-like margin-note" data-margin-anchor="sh-c10-torsors-3" data-margin-label="3" data-margin-inline="true"><h4 class="heading"><a href="#sh-c10-torsors-3" class="margin-note-label">3</a></h4>
+<div class="para">A torsor is also called a principal homogeneous sheaf. A principal bundle for a topological group includes continuity and local-triviality data of a different kind. For a constant discrete group the étalé space of a torsor is a covering space; this does not identify torsors under an arbitrary sheaf of groups with bundles for one fixed topological group.
+</div></aside><aside id="margin-sh-c10-extensions-6-9" class="aside aside-like margin-note" data-margin-anchor="sh-c10-extensions-6-9-anchor" data-margin-label="4" data-margin-inline="true"><h4 class="heading"><a href="#sh-c10-extensions-6-9-anchor" class="margin-note-label">4</a></h4>
+<div class="para">The quotient is sheafified. Taking orbit sets on each open set need not itself give a sheaf. This is the same reason that cokernels of Abelian sheaves are obtained by sheafifying presheaf cokernels.
+</div></aside><aside id="margin-sh-c10-affine-monodromy-5-3" class="aside aside-like margin-note" data-margin-anchor="sh-c10-affine-monodromy-5" data-margin-label="5" data-margin-inline="true"><h4 class="heading"><a href="#sh-c10-affine-monodromy-5" class="margin-note-label">5</a></h4>
+<div class="para">The group-cohomology description in degree one follows because a torsor has no topology beyond its locally constant gluing and its affine monodromy. In higher degrees the cohomology of the universal cover can contribute. The example of <span class="process-math">\(S^2\)</span> in <a href="sh-c11.html" class="internal" title="Chapter 11: Singular cohomology and homotopy">Chapter 11</a> shows why this argument must not be promoted to an all-degree formula without further assumptions.
+</div></aside><aside id="margin-sh-c10-circle-4-4" class="aside aside-like margin-note" data-margin-anchor="sh-c10-circle-4-4-anchor" data-margin-label="6" data-margin-inline="true"><h4 class="heading"><a href="#sh-c10-circle-4-4-anchor" class="margin-note-label">6</a></h4>
+<div class="para">Some accounts obtain <span class="process-math">\(1-T\)</span> or <span class="process-math">\(T^{-1}-1\)</span> instead of <span class="process-math">\(T-1\text{,}\)</span> depending on the chosen loop and on whether cochain values are transported to the first or last vertex. The induced complexes are isomorphic; the sign and transport convention should still be fixed before calculating a specific connecting class.
+</div></aside>
+</div>
+</div>
+<footer id="site-copyright" class="site-copyright"><p>© 2026 Jie Fu. All rights reserved.</p></footer>
+</body>
+</html>

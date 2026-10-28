@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-darkmode="disabled">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette: blue-red                     *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Singular fibres and monodromy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<style>
+@counter-style ptx-marker-1 { system: extends upper-alpha; prefix: '('; suffix: ') '; }
+@counter-style ptx-marker-2 { system: extends lower-roman; prefix: '('; suffix: ') '; }
+</style>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Lagrangian fibrations and hyperkähler SYZ">
+<meta property="og:title" content="Lagrangian fibrations and hyperkähler SYZ">
+<meta property="book:title" content="Lagrangian fibrations and hyperkähler SYZ">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.53"></script><script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="../../vendor/lunr/lunr.min.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+<link rel="stylesheet" href="../../layout.css?v=fee08a8c1c">
+<script src="../../layout.js?v=e9391a21a7" defer></script><link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"C": "\\mathbb{C}", "Pone": "\\mathbb{P}^1_{\\mathbb{C}}", "cO": "\\mathcal{O}", "ord": "\\operatorname{ord}", "lt": "<", "gt": ">", "amp": "&", "R": "\\mathbb{R}", "Q": "\\mathbb{Q}", "Z": "\\mathbb{Z}", "N": "\\mathbb{N}", "PP": "\\mathbb{P}", "SH": "\\mathrm{SH}", "id": "\\mathrm{id}", "Sym": "\\operatorname{Sym}", "Hom": "\\operatorname{Hom}", "End": "\\operatorname{End}", "Ext": "\\operatorname{Ext}", "Pic": "\\operatorname{Pic}", "NS": "\\operatorname{NS}", "Def": "\\operatorname{Def}", "Mon": "\\operatorname{Mon}", "Per": "\\operatorname{Per}", "rk": "\\operatorname{rk}", "td": "\\operatorname{td}", "ch": "\\operatorname{ch}", "Tr": "\\operatorname{Tr}", "Gr": "\\operatorname{Gr}", "SU": "\\operatorname{SU}", "Sp": "\\operatorname{Sp}", "Hol": "\\operatorname{Hol}", "vol": "\\operatorname{vol}"}}, "options": {"ignoreHtmlClass": "ignore-math", "processHtmlClass": "process-math", "enableMenu": false}};</script><script src="../../vendor/mathjax/tex-chtml.js" defer></script>
+</head>
+<body class="pretext book ignore-math note-page" data-page-format="note">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner"><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="hyperkahler-syz-notes.html"><span class="title">Lagrangian fibrations and hyperkähler SYZ</span></a></div>
+<p class="byline"><a href="../../home.html">Jie Fu</a>'s <a href="../../notes.html">Notes</a></p>
+<p class="note-metadata"><span class="note-review-status">Under review and improvement</span> · <span class="note-last-updated">Last updated: <time datetime="2026-10-26">2026-10-26</time></span></p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Contents</span></button><a class="index-button button" href="hks-index.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Index</span></a><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true"></span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="treebuttons"><a class="previous-button button" href="hks-special-kahler.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="up-button button" href="hks-part-fibrations.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Up</span></a><a class="next-button button" href="hks-torsors-duality.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a></span>
+</div></nav><div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth5 parts focused" data-preexpanded-levels="2" data-max-levels="5"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="hks-preface.html" class="internal"><span class="title">Preface and conventions</span></a></div></li>
+<li class="toc-item toc-part contains-active">
+<div class="toc-title-box"><a href="hks-part-fibrations.html" class="internal"><span class="codenumber">I</span> <span class="title">Geometry of Lagrangian fibrations</span></a></div>
+<ul class="structural toc-item-list contains-active" id="ptx-toc-group-hks-part-fibrations">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-fibrations.html" class="internal"><span class="codenumber">1</span> <span class="title">Isotropic line bundles and Lagrangian fibrations</span></a></div>
+<ul id="ptx-toc-group-hks-fibrations" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-fibrations.html#hks-nef-line-bundles" class="internal"><span class="codenumber">1.1</span> <span class="title">Nefness, sections, and numerical dimension</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-fibrations.html#hks-semiample-and-fibration" class="internal"><span class="codenumber">1.2</span> <span class="title">From semiampleness to a fibration</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-fibrations.html#hks-syz-statement" class="internal"><span class="codenumber">1.3</span> <span class="title">The semiampleness theorem and examples</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-polarizations.html" class="internal"><span class="codenumber">2</span> <span class="title">Polarizations and variation of the fibres</span></a></div>
+<ul id="ptx-toc-group-hks-polarizations" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-polarizations.html#hks-polarizations-abelian" class="internal"><span class="codenumber">2.1</span> <span class="title">Polarizations on an abelian variety</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-polarizations.html#hks-polarizations-restriction" class="internal"><span class="codenumber">2.2</span> <span class="title">The primitive polarization of a fibre</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-polarizations.html#hks-polarizations-known-types" class="internal"><span class="codenumber">2.3</span> <span class="title">Known types and the integral restriction map</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-polarizations.html#hks-polarizations-period-map" class="internal"><span class="codenumber">2.4</span> <span class="title">The period map and Matsushita’s alternative</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-polarizations.html#hks-polarizations-isotrivial" class="internal"><span class="codenumber">2.5</span> <span class="title">The structure of isotrivial fibrations</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-special-kahler.html" class="internal"><span class="codenumber">3</span> <span class="title">Special Kähler geometry and semi-flat metrics</span></a></div>
+<ul id="ptx-toc-group-hks-special-kahler" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-special-kahler.html#hks-special-periods" class="internal"><span class="codenumber">3.1</span> <span class="title">The period lattice</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-special-kahler.html#hks-special-prepotential" class="internal"><span class="codenumber">3.2</span> <span class="title">Special coordinates and the prepotential</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-special-kahler.html#hks-special-affine" class="internal"><span class="codenumber">3.3</span> <span class="title">Two integral affine structures and a Hessian metric</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-special-kahler.html#hks-special-curvature" class="internal"><span class="codenumber">3.4</span> <span class="title">Variation and curvature</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-special-kahler.html#hks-special-semiflat" class="internal"><span class="codenumber">3.5</span> <span class="title">The semi-flat hyperkähler metric</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-special-kahler.html#hks-special-examples" class="internal"><span class="codenumber">3.6</span> <span class="title">Examples and collapse near the discriminant</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="hks-singular-fibres.html" class="internal"><span class="codenumber">4</span> <span class="title">Singular fibres and monodromy</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-hks-singular-fibres">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-singular-fibres.html#hks-discriminant-and-slices" class="internal"><span class="codenumber">4.1</span> <span class="title">The discriminant and a transverse disk</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-singular-fibres.html#hks-elliptic-degeneration" class="internal"><span class="codenumber">4.2</span> <span class="title">An elliptic K3 surface and its vanishing cycle</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-singular-fibres.html#hks-characteristic-and-semiabelian" class="internal"><span class="codenumber">4.3</span> <span class="title">Characteristic curves and rank-one degenerations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-singular-fibres.html#hks-translation-across-discriminant" class="internal"><span class="codenumber">4.4</span> <span class="title">Néron models and the smooth locus</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-singular-fibres.html#hks-singular-cohomology-and-supports" class="internal"><span class="codenumber">4.5</span> <span class="title">Cohomology of the singular fibre</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-torsors-duality.html" class="internal"><span class="codenumber">5</span> <span class="title">Torsors, sections, and dual fibrations</span></a></div>
+<ul id="ptx-toc-group-hks-torsors-duality" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-torsors-duality.html#hks-torsors-and-gluing" class="internal"><span class="codenumber">5.1</span> <span class="title">Torsors and Čech cocycles</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-torsors-duality.html#hks-albanese-and-picard" class="internal"><span class="codenumber">5.2</span> <span class="title">The relative Albanese and Picard families</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-torsors-duality.html#hks-shafarevich-tate-deformations" class="internal"><span class="codenumber">5.3</span> <span class="title">Twists and degenerate twistor deformations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-torsors-duality.html#hks-sections-and-topology" class="internal"><span class="codenumber">5.4</span> <span class="title">Sections and the topology of twists</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-torsors-duality.html#hks-picard-and-intermediate-jacobians" class="internal"><span class="codenumber">5.5</span> <span class="title">Picard torsors and intermediate Jacobians</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-torsors-duality.html#hks-compact-duality" class="internal"><span class="codenumber">5.6</span> <span class="title">Compact dual fibrations</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-bases.html" class="internal"><span class="codenumber">6</span> <span class="title">The base and multiple fibres</span></a></div>
+<ul id="ptx-toc-group-hks-bases" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-bases.html#hks-bases-classical" class="internal"><span class="codenumber">6.1</span> <span class="title">Smooth bases and isolated quotient singularities</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-bases.html#hks-bases-two-fibrations" class="internal"><span class="codenumber">6.2</span> <span class="title">Two fibrations and a finite cover by an abelian variety</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-bases.html#hks-bases-euler" class="internal"><span class="codenumber">6.3</span> <span class="title">Euler characteristics and singular strata</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-bases.html#hks-bases-smoothness" class="internal"><span class="codenumber">6.4</span> <span class="title">From quotient singularities to projective space</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-bases.html#hks-bases-multiple-fibres" class="internal"><span class="codenumber">6.5</span> <span class="title">Multiplicities and the primitive pullback class</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-part">
+<div class="toc-title-box"><a href="hks-part-syz.html" class="internal"><span class="codenumber">II</span> <span class="title">The hyperkähler SYZ theorem</span></a></div>
+<ul id="ptx-toc-group-hks-part-syz" class="structural toc-item-list">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-rotation.html" class="internal"><span class="codenumber">7</span> <span class="title">Special Lagrangian tori and rotation</span></a></div>
+<ul id="ptx-toc-group-hks-rotation" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-rotation.html#hks-calibrations" class="internal"><span class="codenumber">7.1</span> <span class="title">Calibrations and the volume inequality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-rotation.html#hks-cohomological-rotation" class="internal"><span class="codenumber">7.2</span> <span class="title">A cohomological criterion for rotation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-rotation.html#hks-fujiki-rotation" class="internal"><span class="codenumber">7.3</span> <span class="title">The class of the torus and the isotropic ray</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-rotation.html#hks-monodromy-restriction" class="internal"><span class="codenumber">7.4</span> <span class="title">Restriction and monodromy</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-rotation.html#hks-slag-deformations" class="internal"><span class="codenumber">7.5</span> <span class="title">Deformations of a special Lagrangian torus</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-degenerations.html" class="internal"><span class="codenumber">8</span> <span class="title">Degenerations with a prescribed isotropic class</span></a></div>
+<ul id="ptx-toc-group-hks-degenerations" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-degenerations.html#hks-degeneration-monodromy" class="internal"><span class="codenumber">8.1</span> <span class="title">Monodromy and the lowest weight</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-degenerations.html#hks-prescribed-period" class="internal"><span class="codenumber">8.2</span> <span class="title">A period curve through the given rational boundary point</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-degenerations.html#hks-algebraic-realization" class="internal"><span class="codenumber">8.3</span> <span class="title">Realizing the period curve by an algebraic family</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-degenerations.html#hks-logarithmic-volume" class="internal"><span class="codenumber">8.4</span> <span class="title">The logarithmic volume form and a nonzero residue</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-metric-syz.html" class="internal"><span class="codenumber">9</span> <span class="title">Special Lagrangian tori near a degeneration</span></a></div>
+<ul id="ptx-toc-group-hks-metric-syz" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-metric-syz.html#hks-metric-degeneration" class="internal"><span class="codenumber">9.1</span> <span class="title">Polarized degenerations and angular tori</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-metric-syz.html#hks-valuative-independence" class="internal"><span class="codenumber">9.2</span> <span class="title">Valuative independence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-metric-syz.html#hks-weak-comparison" class="internal"><span class="codenumber">9.3</span> <span class="title">Comparison of Monge–Ampère equations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-metric-syz.html#hks-flat-cylinder" class="internal"><span class="codenumber">9.4</span> <span class="title">The torus in a crossing chart</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-main-proof.html" class="internal"><span class="codenumber">10</span> <span class="title">From a special Lagrangian torus to semiampleness</span></a></div>
+<ul id="ptx-toc-group-hks-main-proof" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-main-proof.html#hks-rotation-of-profound-torus" class="internal"><span class="codenumber">10.1</span> <span class="title">The torus and its rotation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-main-proof.html#hks-identifying-fibration-class" class="internal"><span class="codenumber">10.2</span> <span class="title">Nonprojectivity and the class of the fibration</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-main-proof.html#hks-returning-to-nef-pair" class="internal"><span class="codenumber">10.3</span> <span class="title">Returning to the specified nef pair</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-main-proof.html#hks-two-geometric-proofs" class="internal"><span class="codenumber">10.4</span> <span class="title">The two cohomological arguments</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="hks-other-methods.html" class="internal"><span class="codenumber">11</span> <span class="title">Effective divisors and finiteness of deformation types</span></a></div>
+<ul id="ptx-toc-group-hks-other-methods" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-other-methods.html#hks-effective-divisors" class="internal"><span class="codenumber">11.1</span> <span class="title">From an effective divisor to a Lagrangian subvariety</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-other-methods.html#hks-lagrangian-smoothing" class="internal"><span class="codenumber">11.2</span> <span class="title">Normal crossing Lagrangian subvarieties</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-other-methods.html#hks-positive-currents" class="internal"><span class="codenumber">11.3</span> <span class="title">Nonvanishing and positive currents</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="hks-other-methods.html#hks-finiteness" class="internal"><span class="codenumber">11.4</span> <span class="title">Finitely many deformation types in a fixed dimension</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="hyperkahler-syz-notes-6.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul id="ptx-toc-group-hyperkahler-syz-notes-6" class="structural toc-item-list">
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="hks-notation.html" class="internal"><span class="codenumber">A.</span> <span class="title">Notation</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="hks-references.html" class="internal"><span class="title">References</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="hks-index.html" class="internal"><span class="title">Index</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="chapter" id="hks-singular-fibres">
+<h1 class="heading">
+<span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Singular fibres and monodromy</span>
+</h1>
+<section class="introduction" id="hks-singular-fibres-2">
+<div class="para" id="hks-singular-fibres-2-1">The smooth fibres of a Lagrangian fibration are abelian varieties, but their singular limits carry additional information: components, multiplicities, vanishing cycles, and extension data for the translation group. A local period matrix describes the approaching abelian varieties. It does not by itself specify their compactification. We begin with an elliptic surface, where these distinctions can be computed, and then explain which parts persist in higher dimension.</div>
+<div class="para" id="hks-singular-fibres-2-2">Let <span class="process-math">\(f:X\to B\)</span> be a Lagrangian fibration of a compact IHS manifold. We restrict to the smooth locus of <span class="process-math">\(B\)</span> for local arguments. Statements applying to a more general symplectic total space give their assumptions explicitly. Algebraic statements about minimal models and Néron models assume that <span class="process-math">\(f\)</span> is projective. The principal references are Hwang–Oguiso’s characteristic cycles, Kim’s classification and Néron models, and de Cataldo–Kim–Schnell’s support theorem.</div></section>
+<section class="section" id="hks-discriminant-and-slices">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The discriminant and a transverse disk</span>
+</h2>
+<article class="definition definition-like" id="hks-discriminant-definition"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.1</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="hks-discriminant-definition-3-1">
+<div class="para">Let <span class="process-math">\(f:X\to B\)</span> be a proper holomorphic Lagrangian fibration with <span class="process-math">\(X\)</span> smooth symplectic of dimension <span class="process-math">\(2n\)</span> and <span class="process-math">\(B\)</span> smooth of dimension <span class="process-math">\(n\text{.}\)</span> Its <em class="emphasis">critical locus</em> is</div>
+<div class="displaymath process-math" id="hks-discriminant-definition-3-1-7">
+\begin{equation*}
+\operatorname{Crit}(f)=\{x\in X:\rk(df_x)&lt;n\}.
+\end{equation*}
+</div>
+<div class="para">Its <em class="emphasis">discriminant</em> is the reduced analytic subset <span class="process-math">\(D=f(\operatorname{Crit}(f))\subset B\text{.}\)</span> Write <span class="process-math">\(U=B\setminus D\)</span> and <span class="process-math">\(X_U=f^{-1}(U)\text{.}\)</span>
+</div>
+</div>
+</article>
+<div class="para" id="hks-discriminant-and-slices-3">Properness makes <span class="process-math">\(D\)</span> analytic. If the fibres are of Fujiki class <span class="process-math">\(\mathcal C\text{,}\)</span> then <span class="process-math">\(D\)</span> is either empty or a hypersurface <a href="hks-references.html#HO09" class="xref" data-knowl="./knowl/xref/hks-bib-hwang-oguiso-characteristic.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry HO09">[HO09, Proposition 3.1]</a>. The class <span class="process-math">\(\mathcal C\)</span> assumption holds for fibres in a compact Kähler manifold. A point of a singular fibre need not be critical: away from its nodes, a nodal elliptic fibre is a submersion locus of the total map.</div>
+<div class="para" id="hks-discriminant-and-slices-4">Let <span class="process-math">\(D_0\)</span> be an irreducible component of <span class="process-math">\(D\text{.}\)</span> Choose a general point <span class="process-math">\(b\in D_0\text{,}\)</span> avoiding the other components and the proper exceptional subsets in the results being applied. A transverse disk <span class="process-math">\(\Delta\to B\text{,}\)</span> meeting <span class="process-math">\(D_0\)</span> only at its origin, gives a one-parameter family over <span class="process-math">\(\Delta^*\text{.}\)</span> A small positively oriented loop in this disk acts on the homology and cohomology of a smooth fibre. This is the local monodromy about <span class="process-math">\(D_0\text{.}\)</span> It is distinct from the monodromy of a degeneration of the whole IHS manifold in <a href="hks-degenerations.html" class="internal" title="Chapter 8: Degenerations with a prescribed isotropic class">Chapter 8</a>.</div>
+<div class="para logical" id="hks-discriminant-and-slices-5">
+<div class="para">Scheme multiplicities are defined on the one-parameter restriction, or equivalently over the discrete valuation ring at the generic point of <span class="process-math">\(D_0\text{.}\)</span> Write its central divisor as</div>
+<div class="displaymath process-math" id="hks-discriminant-and-slices-5-2">
+\begin{equation*}
+F_0=\sum_{j=1}^r a_jE_j,\qquad a_j\in\Z_{&gt;0}.
+\end{equation*}
+</div>
+<div class="para">Its multiplicity is <span class="process-math">\(\gcd(a_1,\ldots,a_r)\text{.}\)</span> A <em class="emphasis">multiple fibre</em> has multiplicity greater than one. This does not mean merely that some <span class="process-math">\(a_j&gt;1\text{.}\)</span> For example, a Kodaira <span class="process-math">\(\mathrm I_0^*\)</span> fibre has one component of weight two and four components of weight one. It is nonreduced, but is not a multiple fibre.</div>
+</div>
+<div class="para" id="hks-discriminant-and-slices-6">The reduced set <span class="process-math">\(D\text{,}\)</span> a discriminant divisor defined by a Weierstrass equation, and the multiplicity of a fibre have different meanings. At a fibre of type <span class="process-math">\(\mathrm I_r\text{,}\)</span> the Weierstrass discriminant has order <span class="process-math">\(r\text{,}\)</span> all component weights are one, and the reduced discriminant still contains only one point on the transverse disk. The no-multiple-divisor statement in <a href="hks-bases.html#hks-thm-no-multiple-divisor" class="xref" data-knowl="./knowl/xref/hks-thm-no-multiple-divisor.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 6.8">Theorem 6.8</a> concerns the common divisor of the component weights.</div>
+<div class="para logical" id="hks-discriminant-and-slices-7">
+<div class="para">Over <span class="process-math">\(U\text{,}\)</span> the smooth proper map is a differentiable fibre bundle. Its first homology groups form an integral local system of rank <span class="process-math">\(2n\text{,}\)</span> carrying the alternating form of the primitive fibre polarization from <a href="hks-polarizations.html#hks-def-fibration-polarization" class="xref" data-knowl="./knowl/xref/hks-def-fibration-polarization.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.4">Definition 2.4</a>. The local system on cohomology is its dual. If <span class="process-math">\(T^{\mathrm{hom}}\)</span> is the homological monodromy in chosen bases, the cohomological monodromy in the dual bases is</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hks-def-fibration-polarization.html" id="hks-discriminant-and-slices-7-5">
+\begin{equation*}
+T=\bigl((T^{\mathrm{hom}})^{-1}\bigr)^t.
+\end{equation*}
+</div>
+<div class="para">We keep this convention in the elliptic calculation.</div>
+</div>
+</section>
+<section class="section" id="hks-elliptic-degeneration">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">An elliptic K3 surface and its vanishing cycle</span>
+</h2>
+<article class="definition definition-like" id="hks-kodaira-Im"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="hks-kodaira-Im-2-1">A reduced genus-one curve of Kodaira type <span class="process-math">\(\mathrm I_r\)</span> is an irreducible nodal rational curve when <span class="process-math">\(r=1\text{,}\)</span> and a cycle of <span class="process-math">\(r\)</span> smooth rational curves when <span class="process-math">\(r\geq2\text{.}\)</span> For <span class="process-math">\(r=2\text{,}\)</span> the two components meet at two distinct transverse points. For <span class="process-math">\(r\geq3\text{,}\)</span> successive components meet transversely, including the last and the first, and there are no other intersections.</div>
+</article>
+<div class="para logical" id="hks-elliptic-degeneration-3">
+<div class="para">In a relatively minimal elliptic surface with smooth total space, a type <span class="process-math">\(\mathrm I_r\)</span> fibre is semistable. Near each of its nodes the family has analytic coordinates</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hks-bib-miranda.html" id="hks-elliptic-degeneration-3-2">
+\begin{equation*}
+xy=t.
+\end{equation*}
+</div>
+<div class="para">A higher-order equation <span class="process-math">\(xy=t^r\)</span> instead describes a singular total space before resolution; it should not be used as the local equation at each node of the regular model. The construction and classification of these models are part of the classical theory of elliptic surfaces <a href="hks-references.html#Mir89" class="xref" data-knowl="./knowl/xref/hks-bib-miranda.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Mir89">[Mir89]</a>.</div>
+</div>
+<article class="example example-like" id="hks-elliptic-k3-explicit"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="hks-elliptic-k3-explicit-1-1">
+<div class="para">The Weierstrass equation over the affine coordinate <span class="process-math">\(t\)</span> of <span class="process-math">\(\PP^1\)</span>
+</div>
+<div class="displaymath process-math" id="hks-elliptic-k3-explicit-1-1-3">
+\begin{equation*}
+y^2=x^3-3x+2+t^2+t^{12}
+\end{equation*}
+</div>
+<div class="para">has a minimal resolution which is an elliptic K3 surface. It has one fibre of type <span class="process-math">\(\mathrm I_2\text{,}\)</span> at <span class="process-math">\(t=0\text{,}\)</span> and twenty-two fibres of type <span class="process-math">\(\mathrm I_1\text{.}\)</span>
+</div>
+</div>
+<div class="solutions">
+<details id="hks-elliptic-k3-explicit-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="hks-elliptic-k3-explicit-2-1">The coefficients are sections of <span class="process-math">\(\cO_{\PP^1}(8)\)</span> and <span class="process-math">\(\cO_{\PP^1}(12)\text{.}\)</span> The standard Weierstrass construction with fundamental line bundle <span class="process-math">\(\cO_{\PP^1}(2)\)</span> gives an elliptic K3 surface after resolving the rational double points. We use this construction and the canonical bundle formula from <a href="hks-references.html#Mir89" class="xref" data-knowl="./knowl/xref/hks-bib-miranda.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Mir89">[Mir89]</a>. Here all singularities and fibres can be checked from the equation.</div>
+<div class="para logical" id="hks-elliptic-k3-explicit-2-2">
+<div class="para">The Weierstrass discriminant is</div>
+<div class="displaymath process-math" id="hks-elliptic-k3-explicit-2-2-1">
+\begin{equation*}
+\Delta_W(t)=-432t^2(1+t^{10})(4+t^2+t^{12}).
+\end{equation*}
+</div>
+<div class="para">The ten roots of <span class="process-math">\(1+t^{10}\)</span> are simple and nonzero. They are not roots of the last factor. A repeated root <span class="process-math">\(t\)</span> of that last factor would satisfy <span class="process-math">\(t^{10}=-1/6\)</span> and <span class="process-math">\(t^2=-24/5\text{;}\)</span> raising the latter equality to the fifth power contradicts the former. Thus its twelve roots are also simple and nonzero. At these twenty-two points, the coefficient <span class="process-math">\(-3\)</span> is a unit and the discriminant has a simple zero, giving a nodal cubic with smooth total space.</div>
+</div>
+<div class="para logical" id="hks-elliptic-k3-explicit-2-3">
+<div class="para">At zero, the cubic is <span class="process-math">\(y^2=(x-1)^2(x+2)\text{.}\)</span> With <span class="process-math">\(x=1+u\text{,}\)</span> the equation becomes</div>
+<div class="displaymath process-math" id="hks-elliptic-k3-explicit-2-3-3">
+\begin{equation*}
+y^2=3u^2+u^3+t^2+t^{12}.
+\end{equation*}
+</div>
+<div class="para">Its quadratic part is nondegenerate in <span class="process-math">\((y,u,t)\text{,}\)</span> so the total space has an ordinary double point. Its minimal resolution inserts a rational curve meeting the strict transform of the nodal cubic at two points. The resulting fibre is <span class="process-math">\(\mathrm I_2\text{.}\)</span>
+</div>
+</div>
+<div class="para logical" id="hks-elliptic-k3-explicit-2-4">
+<div class="para">At infinity set <span class="process-math">\(s=1/t\text{,}\)</span> <span class="process-math">\(x'=s^4x\text{,}\)</span> and <span class="process-math">\(y'=s^6y\text{.}\)</span> The equation is</div>
+<div class="displaymath process-math" id="hks-elliptic-k3-explicit-2-4-4">
+\begin{equation*}
+y'^2=x'^3-3s^8x'+2s^{12}+s^{10}+1.
+\end{equation*}
+</div>
+<div class="para">At <span class="process-math">\(s=0\)</span> it is the smooth cubic <span class="process-math">\(y'^2=x'^3+1\text{.}\)</span> No further singular fibre occurs. The fibre Euler characteristics add to <span class="process-math">\(2+22=24\text{,}\)</span> as required for a K3 surface.</div>
+</div>
+</div></details>
+</div>
+</article>
+<div class="para" id="hks-elliptic-degeneration-5">We compute the local monodromy for a type <span class="process-math">\(\mathrm I_r\)</span> fibre. Choose oriented cycles <span class="process-math">\(a,b\)</span> on a nearby elliptic curve with <span class="process-math">\(a\cdot b=1\text{,}\)</span> where <span class="process-math">\(a\)</span> is the vanishing cycle. The model <span class="process-math">\(xy=t\)</span> is an annulus near the node. Increasing <span class="process-math">\(\arg t\)</span> by <span class="process-math">\(2\pi\)</span> twists one boundary circle once relative to the other. Its monodromy is a positive Dehn twist. With the indicated choice of <span class="process-math">\(b\text{,}\)</span> it fixes <span class="process-math">\(a\)</span> and sends <span class="process-math">\(b\)</span> to <span class="process-math">\(b+a\text{.}\)</span>
+</div>
+<div class="para logical" id="hks-elliptic-degeneration-6">
+<div class="para">The <span class="process-math">\(r\)</span> nodes of the regular <span class="process-math">\(\mathrm I_r\)</span> model have disjoint plumbing annuli. Their vanishing cycles are parallel copies of <span class="process-math">\(a\)</span> on the nearby genus-one curve. The twists commute, and their product is</div>
+<div class="displaymath process-math" id="hks-eq-Im-monodromy">
+\begin{equation}
+T^{\mathrm{hom}}a=a,\qquad
+T^{\mathrm{hom}}b=b+ra,\qquad
+[T^{\mathrm{hom}}]_{a,b}=\begin{pmatrix}1&amp;r\\0&amp;1\end{pmatrix}.\tag{4.1}
+\end{equation}
+</div>
+<div class="para">In the dual cohomology basis <span class="process-math">\(a^\vee,b^\vee\text{,}\)</span> this becomes</div>
+<div class="displaymath process-math" id="hks-elliptic-degeneration-6-6">
+\begin{equation*}
+Ta^\vee=a^\vee-rb^\vee,\qquad Tb^\vee=b^\vee.
+\end{equation*}
+</div>
+<div class="para">Thus <span class="process-math">\(N=\log T=T-\id\)</span> has square zero and</div>
+<div class="displaymath process-math" id="hks-elliptic-degeneration-6-8">
+\begin{equation*}
+\operatorname{im}N=\ker N=\Q b^\vee\subset H^1(F_t).
+\end{equation*}
+</div>
+<div class="para">The nonzero integer <span class="process-math">\(r\)</span> remains visible integrally even though all these operators have the same rank over <span class="process-math">\(\Q\text{.}\)</span>
+</div>
+</div>
+<div class="para logical" id="hks-elliptic-degeneration-7">
+<div class="para">An analytic model of the approaching elliptic curves is</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hks-example-log-periods.html" id="hks-elliptic-degeneration-7-1">
+\begin{equation*}
+F_t=\C/(\Z+\tau(t)\Z),\qquad
+\tau(t)=\frac{r}{2\pi i}\log t,\qquad 0&lt;|t|&lt;1.
+\end{equation*}
+</div>
+<div class="para">Its imaginary part is positive, and continuation sends <span class="process-math">\(\tau\)</span> to <span class="process-math">\(\tau+r\text{.}\)</span> Equivalently, exponentiation gives <span class="process-math">\(F_t=\C^\times/t^{r\Z}\text{.}\)</span> This is the multiplicative uniformization of the smooth family. Its regular compactification has type <span class="process-math">\(\mathrm I_r\text{.}\)</span> The logarithmic period in <a href="hks-special-kahler.html#hks-example-log-periods" class="xref" data-knowl="./knowl/xref/hks-example-log-periods.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 3.7">Example 3.7</a> is the case <span class="process-math">\(r=1\text{;}\)</span> the extension across the puncture adds the geometry which that period expression omits.</div>
+</div>
+<article class="proposition theorem-like" id="hks-Im-ramified-base-change"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="hks-Im-ramified-base-change-1-1">After the ramified base change <span class="process-math">\(t=s^b\text{,}\)</span> with <span class="process-math">\(b\geq1\text{,}\)</span> the minimal regular model of a type <span class="process-math">\(\mathrm I_r\)</span> degeneration has central fibre of type <span class="process-math">\(\mathrm I_{br}\text{.}\)</span> Its monodromy is <span class="process-math">\(T^b\text{,}\)</span> and its logarithm is <span class="process-math">\(bN\text{.}\)</span>
+</div>
+</article>
+<details id="hks-Im-ramified-base-change-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="hks-Im-ramified-base-change-2-1">
+<div class="para">For <span class="process-math">\(b&gt;1\text{,}\)</span> each of the <span class="process-math">\(r\)</span> nodes acquires local equation <span class="process-math">\(xy=s^b\text{,}\)</span> an <span class="process-math">\(A_{b-1}\)</span> surface singularity. Its minimal resolution inserts a chain of <span class="process-math">\(b-1\)</span> rational curves between the two branches. The resolution has charts with coordinates <span class="process-math">\((u,v)\text{,}\)</span> indexed by <span class="process-math">\(0\leq j\leq b-1\text{,}\)</span> in which</div>
+<div class="displaymath process-math" id="hks-Im-ramified-base-change-2-1-8">
+\begin{equation*}
+x=u^{j+1}v^j,\qquad y=u^{b-j-1}v^{b-j},\qquad s=uv.
+\end{equation*}
+</div>
+<div class="para">In particular, all components have multiplicity one in the divisor of <span class="process-math">\(s\text{.}\)</span> Each edge of the original cycle is subdivided into <span class="process-math">\(b\)</span> edges. The resulting cycle has <span class="process-math">\(r+r(b-1)=br\)</span> components. A loop around <span class="process-math">\(s=0\)</span> maps to a loop going <span class="process-math">\(b\)</span> times around <span class="process-math">\(t=0\text{,}\)</span> proving the monodromy assertion. Since <span class="process-math">\(N^2=0\text{,}\)</span> <span class="process-math">\(\log(T^b)=bN\text{.}\)</span>
+</div>
+</div>
+</article></details>
+<div class="para" id="hks-elliptic-degeneration-9">The rational invariant subspace is unaffected by this base change, while the integral monodromy coefficient and the number of components are multiplied by <span class="process-math">\(b\text{.}\)</span> Semistable reduction therefore preserves some rational cohomological information while changing the singular fibre itself.</div>
+<div class="para logical" id="hks-elliptic-degeneration-10">
+<div class="para">For <span class="process-math">\(r\geq2\text{,}\)</span> write the central fibre as <span class="process-math">\(C_1+\cdots+C_r\text{.}\)</span> Adjunction on a K3 surface gives <span class="process-math">\(C_j^2=-2\text{.}\)</span> The intersection matrix has radical generated by the fibre class and is negative definite after quotienting by that line. Indeed, on coefficients <span class="process-math">\((u_j)\)</span> its quadratic form is</div>
+<div class="displaymath process-math" id="hks-elliptic-degeneration-10-5">
+\begin{equation*}
+-\sum_{j=1}^r(u_j-u_{j+1})^2,\qquad u_{r+1}=u_1.
+\end{equation*}
+</div>
+<div class="para">For <span class="process-math">\(r=2\text{,}\)</span> this counts the two edges between the components and gives their intersection number two. Removing the component met by the section leaves the negative root lattice <span class="process-math">\(A_{r-1}\text{.}\)</span>
+</div>
+</div>
+<div class="para logical" id="hks-elliptic-degeneration-11">
+<div class="para">The cohomology of the central fibre is</div>
+<div class="displaymath process-math" id="hks-eq-Im-cohomology">
+\begin{equation}
+H^0(F_0)=\Q,\qquad H^1(F_0)=\Q,\qquad
+H^2(F_0)=\Q^r.\tag{4.2}
+\end{equation}
+</div>
+<div class="para">To compute it, normalize the curve to the disjoint union of <span class="process-math">\(r\)</span> copies of <span class="process-math">\(\PP^1\text{.}\)</span> The normalization sequence for constant sheaves has cokernel one copy of <span class="process-math">\(\Q\)</span> at each node. The map from component constants to node values is the incidence map of a cycle graph. Its kernel and cokernel both have dimension one. This gives <span class="process-math">\(H^0\)</span> and <span class="process-math">\(H^1\text{,}\)</span> while the fundamental classes of the components give <span class="process-math">\(H_2(F_0)=\Q^r\)</span> and hence the stated <span class="process-math">\(H^2\text{.}\)</span> The same calculation with the two branches of one node applies when <span class="process-math">\(r=1\text{.}\)</span> In particular, <span class="process-math">\(e(F_0)=r\text{.}\)</span>
+</div>
+</div>
+<div class="para logical" id="hks-elliptic-degeneration-12">
+<div class="para">A topological contraction from <span class="process-math">\(F_t\)</span> to <span class="process-math">\(F_0\)</span> collapses the vanishing cycle and sends <span class="process-math">\(b\)</span> to the loop of the dual graph. Its pullback identifies <span class="process-math">\(H^1(F_0)\)</span> with <span class="process-math">\(\ker N\text{.}\)</span> In degree two, identify a class on <span class="process-math">\(F_0\)</span> with its degrees <span class="process-math">\((d_1,\ldots,d_r)\)</span> on the components. Since the nearby fundamental class specializes to <span class="process-math">\([C_1]+\cdots+[C_r]\text{,}\)</span> the pullback is</div>
+<div class="displaymath process-math" id="hks-elliptic-degeneration-12-9">
+\begin{equation*}
+H^2(F_0)\longrightarrow H^2(F_t),\qquad
+(d_1,\ldots,d_r)\longmapsto d_1+\cdots+d_r.
+\end{equation*}
+</div>
+<div class="para">It is surjective and has a kernel of dimension <span class="process-math">\(r-1\text{.}\)</span> Those extra classes record the reducible fibre; monodromy on the smooth fibre does not retain them as separate classes.</div>
+</div>
+</section>
+<section class="section" id="hks-characteristic-and-semiabelian">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Characteristic curves and rank-one degenerations</span>
+</h2>
+<div class="para" id="hks-characteristic-and-semiabelian-2">Let <span class="process-math">\(E\)</span> be a reduced hypersurface in a symplectic manifold <span class="process-math">\((X,\sigma)\text{.}\)</span> The restriction of <span class="process-math">\(\sigma\)</span> to <span class="process-math">\(T E_{\mathrm{reg}}\)</span> has a one-dimensional kernel. If <span class="process-math">\(h=0\)</span> defines <span class="process-math">\(E\)</span> locally and <span class="process-math">\(\iota_{v_h}\sigma=dh\text{,}\)</span> then <span class="process-math">\(dh(v_h)=0\text{,}\)</span> and <span class="process-math">\(\sigma(v_h,w)=0\)</span> for every tangent vector <span class="process-math">\(w\)</span> to <span class="process-math">\(E\text{.}\)</span> Thus <span class="process-math">\(v_h\)</span> spans this kernel. Replacing <span class="process-math">\(h\)</span> by <span class="process-math">\(uh\text{,}\)</span> with <span class="process-math">\(u\)</span> a unit, multiplies the vector field on <span class="process-math">\(E\)</span> by <span class="process-math">\(u\text{.}\)</span> The resulting <em class="emphasis">characteristic foliation</em> is well defined.</div>
+<div class="para logical" id="hks-characteristic-and-semiabelian-3">
+<div class="para">For a component of <span class="process-math">\(f^{-1}(D_0)_{\mathrm{red}}\text{,}\)</span> this line field is tangent to the fibres. To check this even in the presence of multiplicity, write <span class="process-math">\(f^*t=uh^k\text{.}\)</span> Its Hamiltonian vector field satisfies</div>
+<div class="displaymath process-math" id="hks-characteristic-and-semiabelian-3-3">
+\begin{equation*}
+v_{f^*t}=h^{k-1}(kuv_h+hv_u).
+\end{equation*}
+</div>
+<div class="para">Hamiltonian fields of functions pulled back from the base are vertical: their Poisson brackets vanish on the smooth Lagrangian fibres and hence on the whole total space. Dividing by <span class="process-math">\(h^{k-1}\)</span> and restricting to <span class="process-math">\(E\)</span> shows that <span class="process-math">\(kuv_h\)</span> is vertical as well.</div>
+</div>
+<div class="para" id="hks-characteristic-and-semiabelian-4">At a general point of <span class="process-math">\(D_0\text{,}\)</span> Hwang–Oguiso prove that the normalization of each irreducible fibre component is smooth and its Albanese map is a bundle with one-dimensional fibre. The fibre is <span class="process-math">\(\PP^1\)</span> when the reduced fibre is singular; an elliptic bundle can occur when the reduced fibre is smooth but the scheme fibre is multiple <a href="hks-references.html#HO09" class="xref" data-knowl="./knowl/xref/hks-bib-hwang-oguiso-characteristic.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry HO09">[HO09, Theorem 1.3]</a>. The images of the Albanese fibres are the characteristic curves.</div>
+<article class="definition definition-like" id="hks-def-characteristic-cycle"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="hks-def-characteristic-cycle-3-1">For a general fibre over <span class="process-math">\(D_0\text{,}\)</span> join characteristic curves whenever they meet, and take an equivalence class under finite chains of such intersections. Weight each curve by the multiplicity of the component of <span class="process-math">\(f^{-1}(D_0)\)</span> containing it. The resulting weighted connected configuration is a <em class="emphasis">characteristic cycle</em>. Dividing its weights by their greatest common divisor gives its normalized characteristic cycle.</div>
+</article>
+<div class="para" id="hks-characteristic-and-semiabelian-6">All characteristic cycles of the same general fibre are isomorphic. Their normalized configurations are Kodaira curves or an infinite chain of rational curves of type <span class="process-math">\(A_\infty\)</span> <a href="hks-references.html#HO09" class="xref" data-knowl="./knowl/xref/hks-bib-hwang-oguiso-characteristic.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry HO09">[HO09, Theorem 1.4]</a>, <a href="hks-references.html#HO11" class="xref" data-knowl="./knowl/xref/hks-bib-hwang-oguiso-multiple.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry HO11">[HO11, Theorem 2.4]</a>.<a id="hks-characteristic-and-semiabelian-6-4" href="#margin-hks-characteristic-and-semiabelian-6-4" class="margin-note-marker" aria-label="Margin note 1">1</a> The statement classifies one-dimensional configurations inside the fibre, rather than identifying the whole fibre with a Kodaira curve times an abelian variety.</div>
+<div class="para logical" id="hks-characteristic-and-semiabelian-7">
+<div class="para">The semistable case explains this distinction. Let <span class="process-math">\(A\)</span> be an abelian variety of dimension <span class="process-math">\(n-1\text{,}\)</span> and consider a semiabelian extension</div>
+<div class="displaymath process-math" id="hks-characteristic-and-semiabelian-7-3">
+\begin{equation*}
+1\longrightarrow\C^\times\longrightarrow G\longrightarrow A\longrightarrow0.
+\end{equation*}
+</div>
+<div class="para">Its underlying multiplicative torsor is the complement of the zero section in a degree-zero line bundle on <span class="process-math">\(A\text{.}\)</span> Compactifying the multiplicative fibres gives a <span class="process-math">\(\PP^1\)</span>-bundle with two distinguished sections. A rank-one compactification can be formed from <span class="process-math">\(r\)</span> such bundles by successively gluing their infinity and zero sections. After choosing the intermediate identifications, the last gluing differs by a translation <span class="process-math">\(x\mapsto x+a\)</span> on <span class="process-math">\(A\text{.}\)</span>
+</div>
+</div>
+<article class="proposition theorem-like" id="hks-shear-and-characteristic-length"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.6</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="hks-shear-and-characteristic-length-1-1">For this cyclic gluing, suppose the characteristic curves are the images of the <span class="process-math">\(\PP^1\)</span>-fibres. If the final translation <span class="process-math">\(a\)</span> has finite order <span class="process-math">\(s\text{,}\)</span> the characteristic cycles have type <span class="process-math">\(\mathrm I_{rs}\text{.}\)</span> If <span class="process-math">\(a\)</span> is not torsion, they have type <span class="process-math">\(A_\infty\text{.}\)</span>
+</div>
+</article>
+<details id="hks-shear-and-characteristic-length-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="hks-shear-and-characteristic-length-2-1">Start with a rational fibre over <span class="process-math">\(x\in A\)</span> in the first bundle. Following its endpoints through the <span class="process-math">\(r\)</span> components reaches the rational fibre over <span class="process-math">\(x+a\)</span> in the first bundle. After <span class="process-math">\(j\)</span> circuits the base point is <span class="process-math">\(x+ja\text{.}\)</span> The chain closes precisely when <span class="process-math">\(ja=0\text{.}\)</span> If <span class="process-math">\(a\)</span> has order <span class="process-math">\(s\text{,}\)</span> there are <span class="process-math">\(rs\)</span> curves before the first return. If it has infinite order, no curve is repeated, and following endpoints in both directions gives the bi-infinite chain.</div>
+</article></details>
+<div class="para" id="hks-characteristic-and-semiabelian-9">The number <span class="process-math">\(r\)</span> of irreducible components of the fibre and the length <span class="process-math">\(rs\)</span> of a characteristic cycle can therefore differ. A polarization imposes compatibility between the semiabelian extension and the gluing translation. These are two pieces of geometric data, not two freely interchangeable descriptions of a single integer.</div>
+<div class="para logical" id="hks-characteristic-and-semiabelian-10">
+<div class="para">Kim’s classification makes the scope of this model precise. Over a discrete valuation ring of characteristic zero with algebraically closed residue field, call a projective flat abelian fibration <em class="emphasis">minimal</em> if the total space has terminal singularities and its canonical class is numerically trivial over the base. The generic fibre is allowed to be a torsor under an abelian variety. This definition does not require <span class="process-math">\(\Q\)</span>-factoriality <a href="hks-references.html#Kim26K" class="xref" data-knowl="./knowl/xref/hks-bib-kim-kodaira.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Kim26K">[Kim26K, Definition 2.1.1]</a>. Its Néron translation group has a central identity component fitting into the Chevalley sequence</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hks-bib-kim-kodaira.html" id="hks-characteristic-and-semiabelian-10-4">
+\begin{equation*}
+1\longrightarrow G_{\mathrm{aff}}\longrightarrow P_0^\circ
+\longrightarrow A\longrightarrow0.
+\end{equation*}
+</div>
+<div class="para">In this one-parameter setting, <em class="emphasis"><span class="process-math">\(\delta\)</span>-regularity</em> means <span class="process-math">\(\dim G_{\mathrm{aff}}\leq1\text{.}\)</span> The nonzero linear part is either multiplicative or additive.</div>
+</div>
+<article class="theorem theorem-like" id="hks-kim-codimension-one"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.7</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">(Kim).</span>
+</h3>
+<div class="para logical" id="hks-kim-codimension-one-2-1">
+<div class="para">Let <span class="process-math">\(\mathcal X\to S\)</span> be a minimal <span class="process-math">\(\delta\)</span>-regular abelian fibration of relative dimension <span class="process-math">\(n\geq2\)</span> over a discrete valuation ring as above. Suppose the central fibre has multiplicity one.</div>
+<ol class="lower-roman" style="list-style: ptx-marker-2;" id="hks-kim-codimension-one-2-1-4">
+<li id="hks-kim-codimension-one-2-1-4-1">
+<div class="para" id="hks-kim-codimension-one-2-1-4-1-1">If the central identity component of its translation group is semiabelian, the fibre is an abelian torsor or a cyclic gluing of <span class="process-math">\(\PP^1\)</span>-bundles over an abelian torsor of dimension <span class="process-math">\(n-1\text{,}\)</span> with a final translation as described above.</div>
+</li>
+<li id="hks-kim-codimension-one-2-1-4-2">
+<div class="para" id="hks-kim-codimension-one-2-1-4-2-1">If its linear part is additive, the fibre has the form <span class="process-math">\((C\times A)/H\text{,}\)</span> where <span class="process-math">\(A\)</span> is an abelian variety of dimension <span class="process-math">\(n-1\text{,}\)</span> <span class="process-math">\(C\)</span> is an unstable Kodaira fibre, and <span class="process-math">\(H\)</span> is a finite abelian group acting diagonally and acting freely by translations on <span class="process-math">\(A\text{.}\)</span>
+</div>
+</li>
+</ol>
+</div>
+</article>
+<div class="para" id="hks-characteristic-and-semiabelian-12">We quote <a href="hks-references.html#Kim26K" class="xref" data-knowl="./knowl/xref/hks-bib-kim-kodaira.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Kim26K">[Kim26K, Theorems 5.1.1 and 5.2.1]</a>. The allowed groups and actions in (ii), and the additional possibilities for multiple fibres, are specified in that paper’s tables and Section 7. The hypothesis concerns an abelian part of dimension at least <span class="process-math">\(n-1\text{.}\)</span> It is not a classification of arbitrary fibres over higher-codimension strata. The semistable case is reduced, but the additive case can have nonreduced components.</div>
+<div class="para logical" id="hks-characteristic-and-semiabelian-13">
+<div class="para">The first-cohomology variation gives another description of a rank-one limit. An explicit principally polarized period model is</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hks-bib-schmid.html" id="hks-characteristic-and-semiabelian-13-1">
+\begin{equation*}
+\tau(t)=\frac{\ell}{2\pi i}\log t
+\begin{pmatrix}1&amp;0\\0&amp;0\end{pmatrix}+\tau_0(t),\qquad \ell\in\Z_{&gt;0},
+\end{equation*}
+</div>
+<div class="para">where the displayed block has size <span class="process-math">\(1+(n-1)\text{,}\)</span> <span class="process-math">\(\tau_0\)</span> is holomorphic, and <span class="process-math">\(\Im\tau(t)&gt;0\)</span> on the punctured disk. In the lattice <span class="process-math">\(\Z^n+\tau(t)\Z^n\text{,}\)</span> only the first <span class="process-math">\(b\)</span>-cycle changes, by <span class="process-math">\(b_1\mapsto b_1+\ell a_1\text{.}\)</span> Thus <span class="process-math">\(N^2=0\)</span> and <span class="process-math">\(\rk N=1\)</span> on <span class="process-math">\(H^1\text{.}\)</span> The monodromy weight filtration, centred at weight one, is</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hks-bib-schmid.html" id="hks-characteristic-and-semiabelian-13-11">
+\begin{equation*}
+0=W_{-1}\subset W_0=\operatorname{im}N
+\subset W_1=\ker N\subset W_2=H^1_{\lim}.
+\end{equation*}
+</div>
+<div class="para">Consequently,</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hks-bib-schmid.html" id="hks-characteristic-and-semiabelian-13-12">
+\begin{equation*}
+\dim\Gr_0^W H^1_{\lim}=1,\qquad
+\dim\Gr_1^W H^1_{\lim}=2n-2,\qquad
+\dim\Gr_2^W H^1_{\lim}=1.
+\end{equation*}
+</div>
+<div class="para">These dimensions follow directly from the rank of <span class="process-math">\(N\text{.}\)</span> The existence of the limit mixed Hodge structure is the external theorem of Schmid <a href="hks-references.html#Sch73" class="xref" data-knowl="./knowl/xref/hks-bib-schmid.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Sch73">[Sch73]</a>. If the lower-right block of <span class="process-math">\(\tau_0(0)\)</span> has positive-definite imaginary part, it is the period matrix of the abelian part <span class="process-math">\(A\text{;}\)</span> its <span class="process-math">\(2n-2\)</span> cycle directions account for <span class="process-math">\(\Gr_1^W\text{.}\)</span> For another polarization type, integral normal forms also involve its elementary divisors. The coefficient in this principal model should not be identified with every component or characteristic-cycle count in a nonprincipal model.</div>
+</div>
+<div class="para logical" id="hks-characteristic-and-semiabelian-14">
+<div class="para">If <span class="process-math">\(n&gt;1\text{,}\)</span> a semistable rank-one fibre of the cyclic form has Euler characteristic zero. Its normalization consists of <span class="process-math">\(r\)</span> <span class="process-math">\(\PP^1\)</span>-bundles over <span class="process-math">\(A\text{;}\)</span> gluing the sections gives</div>
+<div class="displaymath process-math" id="hks-characteristic-and-semiabelian-14-5">
+\begin{equation*}
+e(F_0)=r\bigl(2e(A)-e(A)\bigr)=r e(A)=0.
+\end{equation*}
+</div>
+<div class="para">This contrasts with <span class="process-math">\(e(\mathrm I_r)=r\)</span> for an elliptic surface. Euler characteristic alone cannot detect these general divisorial degenerations in higher dimension.</div>
+</div>
+</section>
+<section class="section" id="hks-translation-across-discriminant">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Néron models and the smooth locus</span>
+</h2>
+<div class="para" id="hks-translation-across-discriminant-2">Over <span class="process-math">\(U\text{,}\)</span> the family <span class="process-math">\(X_U\)</span> is a torsor under its relative translation group <span class="process-math">\(P_U\text{;}\)</span> a section identifies the torsor with the group, but is not part of the initial data. Extending this group across <span class="process-math">\(D\)</span> is different from compactifying the fibres of <span class="process-math">\(X_U\text{.}\)</span> Néron models impose an extension property for maps from smooth families.</div>
+<article class="definition definition-like" id="hks-def-neron-model"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.8</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="hks-def-neron-model-2-1">
+<div class="para">Let <span class="process-math">\(U\subset B\)</span> be dense and let <span class="process-math">\(Y_U\to U\)</span> be smooth. A <em class="emphasis">Néron model</em> in the sense used here is a smooth algebraic space <span class="process-math">\(\mathcal N\to B\)</span> extending <span class="process-math">\(Y_U\)</span> such that, for every smooth algebraic space <span class="process-math">\(Z\to B\text{,}\)</span> restriction is a bijection</div>
+<div class="displaymath process-math" id="hks-def-neron-model-2-1-7">
+\begin{equation*}
+\Hom_B(Z,\mathcal N)\xrightarrow{\sim}\Hom_U(Z_U,Y_U).
+\end{equation*}
+</div>
+</div>
+</article>
+<div class="para" id="hks-translation-across-discriminant-4">Over a higher-dimensional base we use Kim’s definition, which does not impose separatedness or finite type <a href="hks-references.html#Kim25N" class="xref" data-knowl="./knowl/xref/hks-bib-kim-neron.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Kim25N">[Kim25N, Definition 1.1]</a>. Classical Néron models of abelian varieties over a discrete valuation ring are separated smooth group schemes of finite type <a href="hks-references.html#BLR90" class="xref" data-knowl="./knowl/xref/hks-bib-blr.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry BLR90">[BLR90, Chapters 1 and 7]</a>.</div>
+<div class="para" id="hks-translation-across-discriminant-5">The extension property proves uniqueness. If <span class="process-math">\(\mathcal N_1\)</span> and <span class="process-math">\(\mathcal N_2\)</span> extend the same <span class="process-math">\(Y_U\text{,}\)</span> apply it with <span class="process-math">\(Z=\mathcal N_1\)</span> to extend the identity over <span class="process-math">\(U\)</span> to a map <span class="process-math">\(\mathcal N_1\to\mathcal N_2\text{.}\)</span> Construct the reverse map in the same way. Their composites are identities by uniqueness. If <span class="process-math">\(Y_U=P_U\)</span> is a group, the multiplication, inverse, and identity extend by the same property. The group axioms hold because the two maps in each axiom agree over <span class="process-math">\(U\)</span> and their smooth test spaces satisfy uniqueness.</div>
+<article class="theorem theorem-like" id="hks-neron-model"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.9</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">(Kim).</span>
+</h3>
+<div class="para" id="hks-neron-model-2-1">Let <span class="process-math">\(f:X\to B\)</span> be a projective Lagrangian fibration from a smooth symplectic variety to a smooth variety over <span class="process-math">\(\C\text{.}\)</span> Let <span class="process-math">\(X'=X\setminus\operatorname{Crit}(f)\text{,}\)</span> and suppose <span class="process-math">\(X'\to B\)</span> is surjective. Then <span class="process-math">\(X_U\to U\)</span> and its translation abelian scheme <span class="process-math">\(P_U\to U\)</span> admit Néron models <span class="process-math">\(\mathcal N\to B\)</span> and <span class="process-math">\(P\to B\text{,}\)</span> and <span class="process-math">\(\mathcal N\)</span> is a <span class="process-math">\(P\)</span>-torsor. There is an open immersion <span class="process-math">\(X'\hookrightarrow\mathcal N\text{.}\)</span>
+</div>
+</article>
+<div class="para" id="hks-translation-across-discriminant-7">This is <a href="hks-references.html#Kim25N" class="xref" data-knowl="./knowl/xref/hks-bib-kim-neron.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Kim25N">[Kim25N, Theorems 1.2 and 1.6]</a>. Its hypothesis requires a smooth point in every fibre. It must be checked over the whole base; a statement excluding multiple fibres at general points of divisors does not establish it over higher-codimension subsets.</div>
+<div class="para logical" id="hks-translation-across-discriminant-8">
+<div class="para">The group <span class="process-math">\(P\)</span> has a maximal open subgroup <span class="process-math">\(P^a\)</span> acting regularly on the chosen compactification <span class="process-math">\(X\text{.}\)</span> The remaining translations may act only birationally. Define</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hks-bib-kim-neron.html" id="hks-translation-across-discriminant-8-4">
+\begin{equation*}
+\delta(b)=\dim(P_b^\circ)_{\mathrm{aff}},\qquad
+B_1=\{b:\delta(b)\leq1\}.
+\end{equation*}
+</div>
+<div class="para">Kim proves <span class="process-math">\(\operatorname{codim}\{\delta\geq k\}\geq k\text{,}\)</span> and over <span class="process-math">\(B_1\)</span> one has <span class="process-math">\(P^a=P\)</span> and <span class="process-math">\(X'=\mathcal N\)</span> <a href="hks-references.html#Kim25N" class="xref" data-knowl="./knowl/xref/hks-bib-kim-neron.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Kim25N">[Kim25N, Theorems 1.3 and 1.6]</a>. Thus the familiar relation between a minimal elliptic surface and its Néron model persists away from a subset of codimension at least two. In higher codimension, smooth loci of different birational models can contribute different open subsets of <span class="process-math">\(\mathcal N\text{;}\)</span> flops explain why the Néron model can be larger and nonseparated.</div>
+</div>
+<div class="para" id="hks-translation-across-discriminant-9">For a type <span class="process-math">\(\mathrm I_r\)</span> elliptic fibre with a section, the smooth locus of the minimal regular model is the classical Néron model. Its central fibre has <span class="process-math">\(r\)</span> components isomorphic to <span class="process-math">\(\C^\times\text{,}\)</span> with component group <span class="process-math">\(\Z/r\Z\text{.}\)</span> The identity component is multiplicative, not an elliptic curve. This gives three different objects even in dimension one: the compact curve <span class="process-math">\(F_0\text{,}\)</span> its smooth group locus, and the abelian variety over the punctured disk. The torsor interpretation and the distinction from the dual group <span class="process-math">\(P_U^\vee\)</span> continue in <a href="hks-torsors-duality.html" class="internal" title="Chapter 5: Torsors, sections, and dual fibrations">Chapter 5</a>.</div>
+</section>
+<section class="section" id="hks-singular-cohomology-and-supports">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Cohomology of the singular fibre</span>
+</h2>
+<div class="para" id="hks-singular-cohomology-and-supports-2">The elliptic calculation illustrates the local invariant cycle theorem. It concerns classes which extend to the central fibre; the theorem does not assert that specialization is injective, or that a singular fibre has the cohomology of a smooth one.</div>
+<article class="theorem theorem-like" id="hks-local-invariant-cycles"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.10</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">(Local invariant cycle theorem).</span>
+</h3>
+<div class="para logical" id="hks-local-invariant-cycles-3-1">
+<div class="para">Let <span class="process-math">\(g:\mathcal X\to\Delta\)</span> be a projective one-parameter family with smooth total space, smooth over <span class="process-math">\(\Delta^*\text{.}\)</span> For a nearby smooth fibre <span class="process-math">\(F_t\text{,}\)</span> specialization has image</div>
+<div class="displaymath process-math" id="hks-local-invariant-cycles-3-1-4">
+\begin{equation*}
+\operatorname{im}\bigl(H^k(F_0,\Q)\to H^k(F_t,\Q)\bigr)
+=H^k(F_t,\Q)^T.
+\end{equation*}
+</div>
+</div>
+</article>
+<div class="para" id="hks-singular-cohomology-and-supports-4">We quote the theorem, including its higher-dimensional-base formulation, from <a href="hks-references.html#dCM09" class="xref" data-knowl="./knowl/xref/hks-bib-decataldo-migliorini.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry dCM09">[dCM09, Theorem 1.7.1]</a>. The identification of the central fibre cohomology with the cohomology of a small total neighborhood is part of the local statement. In the type <span class="process-math">\(\mathrm I_r\)</span> example, the invariant line in <span class="process-math">\(H^1(F_t)\)</span> comes from the graph of the central fibre, and the map from <span class="process-math">\(H^2(F_0)=\Q^r\)</span> has a kernel of dimension <span class="process-math">\(r-1\text{.}\)</span> Integral surjectivity is a different assertion; the theorem here uses rational coefficients.</div>
+<div class="para" id="hks-singular-cohomology-and-supports-5">Over a general base, the complex <span class="process-math">\(Rf_*\Q_X[2n]\)</span> records both the local systems of smooth-fibre cohomology and the contributions of singular strata. For a projective algebraic fibration, the decomposition theorem expresses it as a direct sum of shifted semisimple perverse sheaves. Each simple summand is an intersection complex of a local system on a smooth dense open subset of an irreducible subvariety <span class="process-math">\(Z\subset B\text{.}\)</span> That subvariety is its <em class="emphasis">support</em>. For proper Kähler maps there is also a decomposition by shifts of perverse sheaves and by strict supports. We quote these structural theorems and use their supports without developing the construction of perverse sheaves.</div>
+<div class="para" id="hks-singular-cohomology-and-supports-6">For an elliptic surface, a reducible <span class="process-math">\(\mathrm I_r\)</span> fibre contributes <span class="process-math">\(r-1\)</span> point-supported classes in the middle perverse direct image. One can see why they cannot be supplied by the smooth local system: the invariant part in degree two has dimension one, whereas the central fibre has <span class="process-math">\(r\)</span> component classes. The nondegenerate intersection form on the quotient by the total fibre gives precisely the additional summand. This is the simplest example in which smaller supports are necessary.</div>
+<article class="theorem theorem-like" id="hks-support-theorem"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">4.11</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">(de Cataldo–Kim–Schnell).</span>
+</h3>
+<div class="para logical" id="hks-support-theorem-3-1">
+<div class="para">Let <span class="process-math">\(f:X\to B\)</span> be a proper surjective holomorphic Lagrangian fibration with connected fibres, with <span class="process-math">\(X\)</span> smooth Kähler of dimension <span class="process-math">\(2n\)</span> and <span class="process-math">\(B\)</span> smooth of dimension <span class="process-math">\(n\text{.}\)</span> There is a smooth family of commutative complex Lie groups <span class="process-math">\(G\to B\text{,}\)</span> carrying the structure of a family of meromorphic groups in Fujiki’s sense, and acting faithfully and meromorphically on <span class="process-math">\(X\)</span> over <span class="process-math">\(B\text{.}\)</span> Let <span class="process-math">\(T_b\)</span> be the maximal compact complex torus quotient of <span class="process-math">\(G_b^\circ\text{.}\)</span> If <span class="process-math">\(Z\)</span> is a support in the decomposition theorem for <span class="process-math">\(Rf_*\Q_X[2n]\text{,}\)</span> then</div>
+<div class="displaymath process-math" id="hks-support-theorem-3-1-13">
+\begin{equation*}
+\dim Z=\dim T_b\qquad\text{for a general }b\in Z.
+\end{equation*}
+</div>
+</div>
+</article>
+<div class="para" id="hks-singular-cohomology-and-supports-8">We quote the smooth-total-space case of <a href="hks-references.html#CKS26" class="xref" data-knowl="./knowl/xref/hks-bib-decataldo-kim-schnell.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry CKS26">[CKS26, Theorems A and C; Theorem 98]</a>. The paper also treats singular symplectic total spaces, with the intersection complex replacing the shifted constant sheaf. A step in its proof is a freeness theorem: <span class="process-math">\(H^*(F_b,\R)\)</span> is free over <span class="process-math">\(H^*(T_b,\R)\)</span> for the module structure arising from the group action. The real module structure is compatible with mixed Hodge theory; the corresponding rational module structure is not canonical. The support conclusion holds over <span class="process-math">\(\Q\text{.}\)</span> Theorem 66 further describes the summands on each support using the cohomology of the torus quotients and a local system with finite monodromy.</div>
+<div class="para" id="hks-singular-cohomology-and-supports-9">The dimension equality gives a geometric restriction on where a perverse summand can occur. In the rank-one situation, the abelian part has dimension <span class="process-math">\(n-1\text{,}\)</span> so divisorial supports are possible. For an elliptic <span class="process-math">\(\mathrm I_r\)</span> fibre this compact quotient has dimension zero, allowing the point-supported contribution just computed. The theorem does not say that all summands have support equal to <span class="process-math">\(B\text{.}\)</span> Determining which allowed supports actually occur still requires information about the fibres.</div>
+<div class="para logical" id="hks-singular-cohomology-and-supports-10">
+<div class="para">The perverse filtration on <span class="process-math">\(H^*(X)\)</span> is obtained by taking cohomology after perverse truncation of <span class="process-math">\(Rf_*\Q_X[2n]\text{.}\)</span> Its definition, the Shen–Yin equality</div>
+<div class="displaymath process-math" id="hks-singular-cohomology-and-supports-10-3">
+\begin{equation*}
+\dim\Gr_i^P H^{i+j}(X)=h^{i,j}(X),
+\end{equation*}
+</div>
+<div class="para">and its comparison with the weight filtration of an auxiliary type III degeneration are developed in <a class="external" href="/notes/hyperkahler/hkg-degenerations.html#hkg-compact-perverse-weight" target="_blank">General HK, Lagrangian fibrations and compact <span class="process-math">\(P=W\)</span></a>. These statements concern a compact projective IHS total space. Compact <span class="process-math">\(P=W\)</span> is a comparison with that degeneration’s limiting mixed Hodge structure, not with the pure weight filtration on the smooth compact <span class="process-math">\(X\text{,}\)</span> and not with a character variety.</div>
+</div>
+<div class="para" id="hks-p-perverse-hodge-status">A proposed refinement compares complexes of coherent sheaves obtained from the Hodge modules in the decomposition theorem, rather than just the dimensions of their cohomology <a href="hks-references.html#SY23" class="xref" data-knowl="./knowl/xref/hks-bib-shen-yin-complexes.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry SY23">[SY23]</a>.<a href="#margin-hks-perverse-hodge-status" class="margin-note-marker" aria-label="Margin note 2">2</a>
+</div>
+</section></section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="hks-special-kahler.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Top</span></a><a class="next-button button" href="hks-torsors-duality.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a>
+</div></main>
+<div class="margin-notes" role="complementary" aria-label="Margin notes">
+<aside id="margin-hks-characteristic-and-semiabelian-6-4" class="aside aside-like margin-note" data-margin-anchor="hks-characteristic-and-semiabelian-6" data-margin-label="1" data-margin-inline="true"><h4 class="heading"><a href="#hks-characteristic-and-semiabelian-6" class="margin-note-label">1</a></h4>
+<div class="para">The earlier list included a possible <span class="process-math">\(D_\infty\)</span> configuration; Hwang–Oguiso’s second paper excludes it. An infinite characteristic cycle is a countable configuration inside a compact fibre, and need not be closed. It is not a finite algebraic cycle to which one assigns a Chow class.
+</div></aside><aside class="aside aside-like margin-note" id="margin-hks-perverse-hodge-status" data-margin-anchor="hks-p-perverse-hodge-status"><h3 class="heading"><a href="#hks-p-perverse-hodge-status" class="margin-note-label">2</a></h3>
+<div class="para" id="margin-hks-perverse-hodge-status-1">The arXiv comments for Schnell’s <a href="hks-references.html#Sch26PH" class="xref" data-knowl="./knowl/xref/hks-bib-schnell-lagrangian.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Sch26PH">[Sch26PH]</a> state that the proof in Section 8 is incomplete: the required isomorphism has not been proved in the derived category of graded <span class="process-math">\(\Omega_B\)</span>-modules, so the BGG correspondence cannot yet be applied as claimed. The announced alternative proof is not supplied there. The numerical Shen–Yin theorem and Matsushita’s higher direct images have independent proofs.</div>
+</aside>
+</div>
+</div>
+<footer id="site-copyright" class="site-copyright"><p>© 2026 Jie Fu. All rights reserved.</p></footer>
+</body>
+</html>

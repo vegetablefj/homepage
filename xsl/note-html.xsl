@@ -66,6 +66,38 @@
   <xsl:template match="backmatter[references and not(appendix or solutions or glossary or index or colophon)]/references" mode="up-url">
     <xsl:apply-templates select="../.." mode="url"/>
   </xsl:template>
+
+  <!-- Keep this note's native backmatter container out of the display hierarchy. -->
+  <xsl:template match="book[@xml:id='cubic-k3-notes']/backmatter" mode="chunking">
+    <xsl:apply-templates select="appendix | references | index" mode="chunking"/>
+  </xsl:template>
+  <xsl:template match="book[@xml:id='cubic-k3-notes']/backmatter" mode="summary-nav">
+    <xsl:apply-templates select="appendix | references | index" mode="summary-nav"/>
+  </xsl:template>
+  <xsl:template match="book[@xml:id='cubic-k3-notes']/backmatter" mode="toc-item">
+    <xsl:apply-templates select="appendix | references | index" mode="toc-item"/>
+  </xsl:template>
+  <xsl:template match="book[@xml:id='cubic-k3-notes']/backmatter" mode="toc-item-list">
+    <xsl:apply-templates select="appendix | references | index" mode="toc-item-list"/>
+  </xsl:template>
+  <xsl:template match="book[@xml:id='cubic-k3-notes']/backmatter" mode="search-page-docs">
+    <xsl:apply-templates select="appendix | references | index" mode="search-page-docs"/>
+  </xsl:template>
+  <xsl:template match="book[@xml:id='cubic-k3-notes']/backmatter" mode="url">
+    <xsl:apply-templates select="(appendix | references | index)[1]" mode="url"/>
+  </xsl:template>
+  <xsl:template match="book[@xml:id='cubic-k3-notes']/backmatter/*[self::appendix or self::references or self::index][not(preceding-sibling::*[self::appendix or self::references or self::index])]" mode="previous-linear-url">
+    <xsl:apply-templates select=".." mode="previous-linear-url"/>
+  </xsl:template>
+  <xsl:template match="book[@xml:id='cubic-k3-notes']/backmatter/*[self::appendix or self::references or self::index]" mode="up-url">
+    <xsl:apply-templates select="../.." mode="url"/>
+  </xsl:template>
+  <!-- Inline this chapter map so its SVG links remain directly usable. -->
+  <xsl:template match="image[@xml:id='ck3-structure-map'][@source]" mode="image-inclusion">
+    <div id="ck3-structure-map" style="width:100%;max-width:420px;margin:0 auto;">
+      <xsl:copy-of select="document(concat($external-directory-source, @source), $original)/*[local-name()='svg']"/>
+    </div>
+  </xsl:template>
   <xsl:template match="aside[starts-with(@xml:id, 'margin-')]" mode="is-hidden">false</xsl:template>
   <xsl:template match="biblio[@label]" mode="serial-number">
     <xsl:value-of select="@label"/>

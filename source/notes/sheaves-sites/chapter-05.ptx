@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="st-c05">
+  <title>Localization, bases, and comparison</title>
+  <introduction>
+    <p>A site is a presentation of a sheaf category. Passing to a basis can simplify that presentation, while localizing at an object changes the sheaf category in a controlled way. These operations should be distinguished from imposing a finer topology, which adds genuine sheaf conditions.</p>
+    <p>We first identify sheaves over a slice site with objects over a sheafified representable. We then prove a comparison lemma for a dense full subcategory. Neither construction requires fiber products in the original category. All fiber products appearing inside a topos are taken in that topos and do exist.</p>
+  </introduction>
+
+  <section xml:id="st-c05-slice-section">
+    <title>The site over an object</title>
+    <definition xml:id="st-c05-slice">
+      <title>Localization of a site</title><idx>Localization of a site</idx><idx>Slice site</idx><idx>Restriction to a slice site</idx>
+      <statement><p>For <m>U\in\mathcal C</m>, let <m>\mathcal C/U</m> be the category of arrows <m>V\to U</m>, with triangles over <m>U</m> as morphisms. A sieve on <m>(V\to U)</m> is covering if its underlying sieve on <m>V</m> is <m>J</m>-covering. This topology is denoted <m>J/U</m>, and <m>(\mathcal C/U,J/U)</m> is the <em>localization</em> of the site at <m>U</m>.</p></statement>
+    </definition>
+    <p>Every arrow to <m>V</m> has a unique compatible composite to <m>U</m>. Thus sieves on <m>V</m> and sieves on <m>(V\to U)</m> are the same partially ordered set; pullback and transitivity of covering sieves are inherited directly. The slice has a terminal object <m>(U\xrightarrow{\id}U)</m> even if <m>\mathcal C</m> has none.</p>
+    <p>The forgetful functor <m>v_U:\mathcal C/U\to\mathcal C</m> is cocontinuous, since a covering sieve on its image is already the same covering sieve in the slice. It is also continuous: if <m>F</m> is a sheaf, its restriction is
+      <md number="no">F|_U(V\xrightarrow{\alpha}U)=F(V),</md>
+      and the sheaf condition is the original one. By <xref ref="st-c04-cocont-morphism"/>, this gives a geometric morphism
+      <md number="no">\pi_U:\Sh(\mathcal C/U,J/U)\longrightarrow\mathcal E.</md>
+      Its inverse image is precisely restriction. The continuous-functor construction supplies a further left adjoint, which we describe as a dependent sum below.</p>
+    <theorem xml:id="st-c05-slice-topos">
+      <statement><p>With <m>A_U=a_{\mathcal C}h_U</m>, there is a canonical equivalence
+        <md number="no">\Sh(\mathcal C/U,J/U)\simeq\mathcal E/A_U.</md>
+        Under this equivalence, restriction of <m>F\in\mathcal E</m> corresponds to <m>F\times A_U\to A_U</m>.</p></statement>
+      <proof><p>For an object <m>p:F\to A_U</m>, define a sheaf on the slice by
+        <md number="no">\Phi(F,p)(V,\alpha)=
+          \{s\in F(V):p(s)=\eta(\alpha)\},</md>
+        where <m>\eta:h_U\to a_{\mathcal C}h_U</m> is the sheafification map. The defining equality is local, and the sheaf axioms for <m>F,A_U</m> give the sheaf axiom for this fiber.</p>
+        <p>Conversely, for a sheaf <m>G</m> on the slice, form the presheaf
+          <md number="no">Q_G(V)=\coprod_{\alpha:V\to U}G(V,\alpha).</md>
+          Its projection to <m>h_U</m> gives, after sheafification, an object <m>a_{\mathcal C}Q_G\to A_U</m>. A section of this object is locally represented by a pair <m>(\alpha,t)</m>. If its base section equals <m>\eta(\beta)</m>, then locally <m>\alpha=\beta</m>: equality in a sheafification is equality after a covering refinement. Therefore the fiber over <m>\eta(\beta)</m> is the original sheaf <m>G(-,\beta)</m>. This proves <m>\Phi(aQ_G)\simeq G</m>.</p>
+        <p>For an object <m>(F,p)</m>, the map <m>Q_{\Phi(F,p)}\to F</m> forgets <m>\alpha</m>. It is locally surjective because the section <m>p(s)\in A_U(V)</m> is locally represented by arrows to <m>U</m>. Two representatives of the same <m>s</m> become equal after a covering refinement because their arrows have the same image in <m>A_U</m>. The map therefore becomes an isomorphism after sheafification, by <xref ref="st-c02-local-criterion"/>. These maps respect morphisms and prove the equivalence.</p>
+        <p>Finally, the fiber of <m>F\times A_U\to A_U</m> over <m>\eta(\alpha)</m> is <m>F(V)</m>, which is the restriction formula.</p></proof>
+    </theorem>
+    <p>The sheafified representable is essential here.<fn>If <m>J</m> is not subcanonical, <m>h_U</m> is not an object of <m>\mathcal E</m>. Replacing <m>A_U</m> by <m>h_U</m> in the target slice would not even define the stated category. The proof deliberately allows distinct arrows to become equal locally.</fn> The corresponding result is <url href="https://stacks.math.columbia.edu/tag/00XZ">Stacks, Lemma 7.25.4</url>.</p>
+  </section>
+
+  <section xml:id="st-c05-sums-products">
+    <title>Dependent sum, restriction, and dependent product</title>
+    <p>For any object <m>A\in\mathcal E</m>, write <m>\pi_A:\mathcal E/A\to\mathcal E</m> for the localization geometric morphism. Its inverse image is
+      <md number="no">\pi_A^{-1}(F)=(F\times A\to A).</md>
+      It has a left adjoint <m>\Sigma_A</m>, which forgets the map to <m>A</m>. It also has a right adjoint <m>\Pi_A</m>, the dependent product. Thus
+      <md number="no">\Sigma_A\dashv\pi_A^{-1}\dashv\Pi_A.</md></p>
+    <proposition xml:id="st-c05-dependent-adjoints">
+      <statement><p>For <m>p:B\to A</m>, dependent product is the object of sections of <m>p</m>:
+        <md number="no">\Pi_A(B)=B^A\times_{A^A}1,</md>
+        where <m>1\to A^A</m> is the identity of <m>A</m> and <m>B^A\to A^A</m> is induced by <m>p</m>. The localization morphism is a geometric embedding exactly when <m>A</m> is subterminal.</p></statement>
+      <proof><p>A morphism from <m>F</m> to the displayed fiber product is a morphism <m>F\times A\to B</m> whose composite with <m>p</m> is the projection to <m>A</m>. This is precisely a morphism in <m>\mathcal E/A</m> from <m>\pi_A^{-1}F</m> to <m>B</m>. The left adjunction follows directly by forgetting the map to <m>A</m>.</p>
+        <p>If <m>A</m> is subterminal, a section <m>a:T\to A</m> makes <m>T\times A\to T</m> an isomorphism. Thus a section of <m>B</m> over <m>a</m> is exactly a section of <m>B\to A</m> in this context. This gives an inverse to the evaluation counit <m>\pi_A^{-1}\Pi_A(B)\to B</m>, proving full faithfulness of <m>\Pi_A</m>.</p>
+        <p>Conversely, suppose this counit is always an isomorphism, and apply it to <m>B=A\times\Omega\to A</m>, where <m>\Omega</m> is the subobject classifier. The counit becomes
+          <m>A\times\Omega^A\to A\times\Omega</m>, given by evaluation. Take two sections <m>a,b:T\to A</m>. Over <m>T\times A</m>, the predicate that its second coordinate equals <m>a</m> is a map to <m>\Omega</m>, and so is the constant true predicate. Their evaluations at <m>a</m> agree. Injectivity of the displayed evaluation map forces the two predicates to agree everywhere. Evaluating at <m>b</m> shows <m>a=b</m>. Since this holds over every test object <m>T</m>, <m>A\to1</m> is monic.</p></proof>
+    </proposition>
+    <p>The subterminal condition is equivalently that <m>A\to A\times A</m> is an isomorphism: there is at most one section of <m>A</m> over any test object. For a subterminal <m>A</m>, this localization is called an <em>open subtopos</em>.<idx>Open subtopos</idx></p>
+    <p>Dependent sum is not generally left exact: it sends the terminal object <m>(A\xrightarrow{\id}A)</m> of the slice to <m>A</m>, not to <m>1</m>. It is also not generally fully faithful as a functor to <m>\mathcal E</m>, because a map of underlying objects need not commute with their maps to <m>A</m>.<fn>For an open subset of a topological space, dependent sum is extension by the empty set for set sheaves. The term “sum” here is a left adjoint attached to a slice, not a direct image with proper support. There is no exceptional six-functor construction in this statement.</fn></p>
+    <example xml:id="st-c05-group-slice">
+      <statement><p>Let <m>\mathcal E</m> be right <m>G</m>-sets, and let <m>A=G</m> with its regular right action. An equivariant map <m>B\to G</m> is determined by its fiber over the identity: its other fibers are obtained by the action. Thus <m>\mathcal E/G\simeq\Set</m>. Under this equivalence, <m>\pi_G^{-1}</m> forgets the <m>G</m>-action, <m>\Sigma_G</m> forms a free right <m>G</m>-set, and <m>\Pi_G</m> forms a cofree right <m>G</m>-set. For a nontrivial <m>G</m>, this localization is not an open embedding.</p></statement>
+    </example>
+    <p>In a site presentation by the one-object group category, there is only one object to localize at, but its sheafified representable is the regular <m>G</m>-set rather than the terminal object. “Localizing at the only object” therefore need not mean doing nothing. By contrast, for <m>\operatorname{Open}(X)</m> and an open <m>U</m>, <m>h_U</m> is subterminal, and the slice equivalence recovers <m>\Sh(U)\simeq\Sh(X)/h_U</m>.</p>
+  </section>
+
+  <section xml:id="st-c05-general-object">
+    <title>Localizing at an arbitrary sheaf</title>
+    <definition xml:id="st-c05-objectsite">
+      <title>Site over a sheaf</title><idx>Site over a sheaf</idx><idx>Category of elements of a sheaf</idx>
+      <statement><p>For <m>A\in\mathcal E</m>, let <m>\mathcal C_A</m> have objects <m>(U,s)</m> with <m>s\in A(U)</m>. A morphism <m>(V,t)\to(U,s)</m> is an arrow <m>v:V\to U</m> satisfying <m>A(v)(s)=t</m>. Give this category the topology in which a sieve is covering precisely when its underlying sieve on <m>U</m> is covering.</p></statement>
+    </definition>
+    <proposition xml:id="st-c05-object-equivalence">
+      <statement><p>The category <m>\mathcal C_A</m> is small and its sheaf topos is canonically equivalent to <m>\mathcal E/A</m>. A morphism <m>B\to A</m> induces inverse image <m>\mathcal E/A\to\mathcal E/B</m> by fiber product.</p></statement>
+      <proof><p>Smallness follows because <m>\mathcal C</m> has a set of objects and each <m>A(U)</m> is a set. The fiber of an object <m>F\to A</m> over <m>s\in A(U)</m> defines a sheaf on <m>\mathcal C_A</m>. Conversely, take the disjoint union of the local fibers over all <m>s\in A(U)</m>, and sheafify over <m>\mathcal C</m>. The local lifting and local equality argument of <xref ref="st-c05-slice-topos"/> gives inverse equivalences. A fiber over a section of <m>B</m> is obtained by first taking its image in <m>A</m>; this is the claimed fiber-product inverse image.</p></proof>
+    </proposition>
+    <p>If an arrow <m>V\to U</m> is given in the original site, the resulting pullback functor between localized topoi exists even if the original category has no fiber products. An expression such as <m>W\times_UV</m> can always be formed as a sheaf object <m>A_W\times_{A_U}A_V</m>. It need not be represented by an object of <m>\mathcal C</m>.<fn>This is the distinction between a fiber product in a presentation and a fiber product in the presented topos. Replacing the former by the latter is legitimate, but it changes which objects need local representatives.</fn></p>
+    <p>These slice categories are the local categories used for ring objects, modules, and descent. General assertions can be formulated over <m>A</m> and then tested over an epimorphic family of sheafified representables. A terminal object in the original site is not needed to express the word “locally.”</p>
+  </section>
+
+  <section xml:id="st-c05-comparison-section">
+    <title>The comparison lemma for a dense full subcategory</title>
+    <definition xml:id="st-c05-dense">
+      <title>Dense full subsite</title><idx>Dense subsite</idx><idx>Induced topology</idx>
+      <statement><p>A full subcategory <m>\mathcal B\subset\mathcal C</m> is <em><m>J</m>-dense</em> if, for every <m>U\in\mathcal C</m>, the sieve generated by all arrows <m>V\to U</m> with <m>V\in\mathcal B</m> is covering. For dense <m>\mathcal B</m>, give it the induced topology: a sieve <m>S</m> on <m>V\in\mathcal B</m> covers if its generated sieve in <m>\mathcal C</m> is <m>J</m>-covering.</p></statement>
+    </definition>
+    <p>Density allows any local calculation to be refined to objects in <m>\mathcal B</m>. For example, pull back a covering sieve of <m>\mathcal C</m> along an arrow from <m>V\in\mathcal B</m>, then cover the domains of its arrows by objects of <m>\mathcal B</m>. The resulting arrows in <m>\mathcal B</m> form an induced covering sieve. This proves stability and transitivity for the induced topology using the sieve axioms of <m>J</m>.</p>
+    <theorem xml:id="st-c05-comparison">
+      <title>Comparison lemma</title>
+      <statement><p>For a <m>J</m>-dense full subcategory with the induced topology, restriction is an equivalence
+        <md number="no">\Sh(\mathcal C,J)\xrightarrow{\sim}\Sh(\mathcal B,J|_{\mathcal B}).</md>
+        A quasi-inverse sends a sheaf <m>G</m> on <m>\mathcal B</m> to the presheaf
+        <md number="no">\widetilde G(U)=
+          \Nat(h_U|_{\mathcal B},G),</md>
+        which is already a sheaf on <m>\mathcal C</m>.</p></statement>
+      <proof><p>A section of <m>\widetilde G(U)</m> is a compatible family <m>g_\alpha\in G(V)</m> for all arrows <m>\alpha:V\to U</m> with <m>V\in\mathcal B</m>. If <m>U\in\mathcal B</m>, full faithfulness of the inclusion and Yoneda identify this family with <m>G(U)</m> by evaluation at the identity.</p>
+        <p>To prove the sheaf property, take a covering sieve <m>R</m> on <m>U</m> and matching sections in <m>\widetilde G</m> over its arrows. For <m>\alpha:V\to U</m> with <m>V\in\mathcal B</m>, the arrows <m>\beta:W\to V</m> in <m>\mathcal B</m> such that <m>\alpha\beta\in R</m> form an induced covering sieve, by density. The given section at <m>\alpha\beta</m>, evaluated at <m>\id_W</m>, gives an element of <m>G(W)</m>. Matching of the original sections gives compatibility of these elements. They glue uniquely to <m>g_\alpha\in G(V)</m>. Uniqueness makes the resulting <m>g_\alpha</m> compatible as <m>\alpha</m> varies. This constructs the required section on <m>U</m>, and also proves its uniqueness.</p>
+        <p>For any sheaf <m>F</m> on <m>\mathcal C</m>, a section on <m>U</m> is determined by its restrictions along the dense covering arrows from <m>\mathcal B</m>. A compatible family on those arrows is a matching family: agreement on an arbitrary overlapping test object can be checked after covering that test object by members of <m>\mathcal B</m>. Thus it glues, and
+          <md number="no">F(U)\simeq\Nat(h_U|_{\mathcal B},F|_{\mathcal B}).</md>
+          This proves the other composition is the identity and proves full faithfulness on morphisms as well.</p></proof>
+    </theorem>
+    <p>This is the dense-full-subcategory form of <xref ref="st-bib-sga4-1" detail="Exposé III, Theorem 4.1"/>. Its main content is covering density together with the induced topology, rather than ordinary cofinality of a functor between indexing categories.<fn>Ordinary cofinality concerns a colimit. Here sections must satisfy local relations over every test object. A subcategory containing a terminal object can be cofinal for some purposes while retaining far too few local tests to determine a sheaf.</fn></p>
+    <example xml:id="st-c05-rational-basis">
+      <statement><p>Let <m>\mathcal C=\operatorname{Open}(\R)</m> and let <m>\mathcal B</m> consist of nonempty open intervals with rational endpoints. It is a dense full subcategory. It has no terminal object, and the fiber product of two disjoint intervals does not exist within <m>\mathcal B</m>. Its sieve topology presents exactly <m>\Sh(\R)</m>. The comparison proof uses smaller test intervals on overlaps, not an undeclared empty-interval object.</p></statement>
+    </example>
+    <p>The same result permits local coordinate domains or small affine opens to replace a larger site when their covering density and induced topology have been verified. The geometric verification of those hypotheses belongs to the relevant example; equivalence is not automatic from the word “basis.”</p>
+  </section>
+
+  <section xml:id="st-c05-local-comparison">
+    <title>Comparison without literal full faithfulness</title>
+    <p>Sheafification can identify arrows locally and can create arrows that were only locally represented in the original category. A comparison functor therefore need not be literally fully faithful. The useful replacement is local full faithfulness.</p>
+    <proposition xml:id="st-c05-local-equivalence">
+      <statement><p>Let <m>u:(\mathcal B,L)\to(\mathcal C,J)</m> be continuous and cocontinuous. Assume the following conditions.
+        <ol>
+          <li><p>If <m>a,b:V\to U</m> have <m>u(a)=u(b)</m>, they become equal after restriction along an <m>L</m>-covering sieve on <m>V</m>.</p></li>
+          <li><p>Every arrow <m>u(V)\to u(U)</m> is locally of the form <m>u(c)</m>: after an <m>L</m>-cover of <m>V</m>, its composites lift to arrows to <m>U</m> in <m>\mathcal B</m>.</p></li>
+          <li><p>Every object of <m>\mathcal C</m> has a <m>J</m>-covering sieve generated by arrows from objects <m>u(U)</m>.</p></li>
+        </ol>
+        Then the cocontinuous geometric morphism <m>\Sh(\mathcal B,L)\to\Sh(\mathcal C,J)</m> is an equivalence. Its inverse image is ordinary restriction.</p></statement>
+      <proof><p>Since <m>u</m> is continuous, cocontinuous inverse image is already restriction. Its right adjoint has value
+        <m>\Nat(u^{\mathrm{pre}}h_V,F)</m> at <m>V\in\mathcal C</m>. At <m>V=u(U)</m>, evaluation at <m>\id_{u(U)}</m> gives a map to <m>F(U)</m>. Local lifting of arrows determines any other component from this one. If two choices of a lift occur, local faithfulness makes them equal after a further cover; separatedness of <m>F</m> then gives equality. The locally prescribed components therefore glue and give an inverse to evaluation.</p>
+        <p>This proves the counit is an isomorphism. The unit is consequently an isomorphism when tested at the objects <m>u(U)</m>. Those objects cover every target object by the third condition, so the sheaf axiom makes the unit an isomorphism everywhere. Both adjunction maps are isomorphisms, proving the claim.</p></proof>
+    </proposition>
+    <p>With covering-family presentations, this is <url href="https://stacks.math.columbia.edu/tag/039Z">Stacks, Lemma 7.29.1</url>. Stating all its local lifting, local equality, and covering hypotheses avoids replacing them by an unsupported claim that the sites “have the same local objects.”</p>
+    <p>The dense full subcategory case is easier because local fullness and local faithfulness are automatic. Its induced topology supplies the compatibility between source and target covers. For a nonfull functor, the topology and the two local arrow conditions must all be checked.</p>
+  </section>
+
+  <section xml:id="st-c05-presentations">
+    <title>Changing a presentation rather than an assumption</title>
+    <p>A small full subcategory of <m>\mathcal E</m> containing the generators <m>a h_U</m> can be enlarged inside <m>\mathcal E</m> to include a terminal object and finite limits. Repeatedly adding those limits still gives a set of objects. Give the enlarged category the topology generated by jointly epimorphic families in <m>\mathcal E</m>. This topology is subcanonical, because representable morphisms into an object satisfy effective epimorphic descent.</p>
+    <proposition xml:id="st-c05-good-presentation">
+      <statement><p>Every topos presented by a small site has a small subcanonical presentation whose underlying category has finite limits. One may require a prescribed set of sheaves to be represented in this presentation. In it, the covering families can be taken to be precisely the jointly epimorphic families of the chosen sheaf objects.</p></statement>
+      <proof><p>Start with the sheafified representables, the prescribed objects, and a terminal object, and close under finite limits inside <m>\mathcal E</m>. The restricted Yoneda functor sends <m>F\in\mathcal E</m> to <m>A\mapsto\Hom_{\mathcal E}(A,F)</m>. It is a sheaf because epimorphisms are effective and universal. The chosen representables generate <m>\mathcal E</m>, so every object and every equality can be tested locally on them. These local tests give full faithfulness and reconstruct a sheaf from its values on the chosen category, by the same local lifting and equality argument as <xref ref="st-c05-local-equivalence"/>. Precise versions, including the smallness construction, are <url href="https://stacks.math.columbia.edu/tag/039Z">Stacks, Lemmas 7.29.4–7.29.5</url>.</p></proof>
+    </proposition>
+    <p>The original functor <m>U\mapsto a h_U</m> need not be fully faithful. A section of <m>a h_U</m> is only locally represented by an arrow to <m>U</m>, and equality of two such arrows can be local. These are exactly the local fullness and local faithfulness conditions used above.<fn>The statement is an existence theorem for a new presentation. It does not retroactively supply fiber products in the original category, or assert that its original representables were sheaves.</fn></p>
+    <p>Thus one may choose a finitely complete presentation when a later theorem benefits from it, while retaining the broader sieve definitions in the foundational statements. One must transport the objects, morphisms, and coefficients through the equivalence as well. For ringed topoi, the structure ring becomes the corresponding ring object in the new presentation; equality of the underlying topoi alone does not specify that coefficient identification.</p>
+  </section>
+</chapter>

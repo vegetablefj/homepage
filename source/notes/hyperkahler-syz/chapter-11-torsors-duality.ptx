@@ -1,0 +1,215 @@
+<chapter xml:id="hks-torsors-duality">
+  <title>Torsors, sections, and dual fibrations</title>
+  <introduction>
+    <p>A smooth fibre of a Lagrangian fibration is a complex torus, but it has no specified origin. The group acting by translations and the family on which it acts are different objects. A section identifies them. Without a section, their difference is measured by a torsor class. This distinction remains relevant when all fibres have principal polarizations.</p>
+    <p>We explain the local gluing and the obstruction to a section before considering twists over the whole base. The same gluing gives examples from relative Picard varieties, a deformation of the holomorphic symplectic structure, and a definition of a dual fibration which retains the torsor. Kählerness, projectivity, and the topology of a twist depend on its class.</p>
+  </introduction>
+
+  <section xml:id="hks-torsors-and-gluing">
+    <title>Torsors and Čech cocycles</title>
+    <p>Let <m>U</m> be a complex manifold and let <m>P\to U</m> be a holomorphic family of complex Lie groups with commutative fibres. Its sheaf of holomorphic sections is written <m>\mathcal P</m>. We use the analytic topology throughout this chapter, unless another topology is specified.</p>
+    <definition xml:id="hks-def-torsor">
+      <idx>Torsor</idx>
+      <statement><p>A <em><m>P</m>-torsor</em> is a complex space <m>Z\to U</m> with a holomorphic action of <m>P</m> over <m>U</m> which is locally isomorphic, equivariantly over <m>U</m>, to the translation action of <m>P</m> on itself.</p></statement>
+    </definition>
+    <p>On each fibre the action is free and transitive. Given two points <m>z,z'</m> of that fibre, there is a unique <m>p</m> such that <m>z'=z+p</m>. The difference <m>z'-z</m> is defined without choosing an origin, whereas a sum of two points of <m>Z</m> is not. The local condition in the definition supplies holomorphic sections and compatible local identifications, not merely pointwise transitive actions.</p>
+    <proposition xml:id="hks-torsor-cocycle">
+      <statement><p>Isomorphism classes of <m>P</m>-torsors are classified by <m>H^1(U,\mathcal P)</m>. A torsor has a global holomorphic section if and only if its class is zero. Once a section is chosen, translation from that section identifies the torsor with <m>P</m>.</p></statement>
+      <proof>
+        <p>Choose local sections <m>s_i:U_i\to Z</m>. On an overlap define <m>a_{ij}\in\mathcal P(U_i\cap U_j)</m> by <m>s_j=s_i+a_{ij}</m>. On triple overlaps,
+          <md number="no">a_{ij}+a_{jk}=a_{ik}.</md>
+          A point written as <m>s_j+p_j</m> in one chart is <m>s_i+p_i</m> in the other exactly when <m>p_i=p_j+a_{ij}</m>. Thus the cocycle specifies the transition maps between copies of <m>P|_{U_i}</m>.</p>
+        <p>If <m>s_i</m> is replaced by <m>s_i+b_i</m>, the cocycle becomes <m>a_{ij}+b_j-b_i</m>. An equivariant isomorphism between two torsors is locally a translation, so the same calculation shows that its cocycles differ by such a coboundary. Conversely, glue the copies of <m>P|_{U_i}</m> by <m>p_i=p_j+a_{ij}</m>. The cocycle condition makes the identifications consistent. They give a complex space over <m>U</m>, locally a copy of <m>P</m>, with its translation action. Refining the covering does not change its isomorphism class. This is the degree-one Čech description of sheaf cohomology.</p>
+        <p>If <m>a_{ij}=b_i-b_j</m>, the local points <m>s_i+b_i</m> agree and give a global section. A global section gives a covering with every <m>a_{ij}=0</m>. For a chosen section <m>s</m>, the map <m>p\mapsto s+p</m> is the required equivariant isomorphism.</p>
+      </proof>
+    </proposition>
+    <p>The zero element refers to the group space <m>P</m> with its zero section. On a nontrivial torsor the set of global sections is empty. If it is nonempty, it is itself a torsor under <m>H^0(U,\mathcal P)</m>, since the difference of any two sections is a global section of <m>P</m>.</p>
+    <p>For example, a family of line bundles of a fixed degree on curves is acted on by the relative degree-zero Picard group. Its points are isomorphism classes of line bundles, and the difference of two points is their tensor quotient. A holomorphically varying choice of such a class on every curve is a section of the torsor.<fn>A section of a relative Picard space specifies isomorphism classes locally represented by line bundles. A single line bundle on the entire curve family can have a further Brauer obstruction to descent.</fn> The existence of line bundles of that degree on each individual curve does not supply a section.</p>
+    <p xml:id="hks-torsor-symplectic-gluing">The symplectic condition imposes a further restriction on transition maps. In the cotangent convention of <xref ref="hks-prop-action-angle"/>, <m>\sigma_{\rm can}=-d\vartheta</m>. Translation by a local one-form <m>\alpha</m> satisfies
+      <md number="no">t_\alpha^*\vartheta=\vartheta+\pi^*\alpha,\qquad
+        t_\alpha^*\sigma_{\rm can}=\sigma_{\rm can}-\pi^*d\alpha.</md>
+      This follows by evaluating the tautological form on a tangent vector before and after translation. The translation preserves the symplectic form exactly when <m>d\alpha=0</m>. A holomorphic translation need not be symplectic.</p>
+    <aside xml:id="margin-hks-torsor-symplectic-gluing">
+      <p>The period lattice consists of closed one-forms, so the condition <m>d\alpha=0</m> is independent of a lift of a translation from <m>P=T^*U/\Lambda</m> to <m>T^*U</m>. This is the additional structure retained by local Lagrangian sections in the action-angle description.</p>
+    </aside>
+  </section>
+
+  <section xml:id="hks-albanese-and-picard">
+    <title>The relative Albanese and Picard families</title>
+    <p>Let <m>f:X\to B</m> be a Lagrangian fibration with smooth base, and let <m>U\subset B</m> be its smooth locus. Write <m>X_U=f^{-1}(U)</m>. The translations of its fibres form a family <m>P\to U</m>. The relation between this group and the relative Picard family is given by <xref ref="hks-bib-kim-dual" detail="Theorem 3.1 and Examples 3.10–3.13"/>.</p>
+    <theorem xml:id="hks-relative-albanese">
+      <idx>Relative Albanese</idx><idx>Relative Picard family</idx>
+      <statement><p>There is a unique projective abelian scheme <m>P\to U</m> for which <m>X_U</m> is an analytic <m>P</m>-torsor. Its dual is
+        <md number="no">P^\vee\simeq\operatorname{Pic}^0(X_U/U).</md>
+        The family <m>P</m> has a distinguished primitive polarization. On a sufficiently small open subset of <m>U</m>, the action-angle description identifies it with <m>T^*U/\Lambda</m>.</p></statement>
+    </theorem>
+    <p>The existence of an integral polarization makes this group family projective over <m>U</m>, even when <m>X</m> is nonprojective. Here the word <q>abelian</q> concerns the group family <m>P</m>, which has a zero section. The original family <m>X_U</m> remains a torsor. If <m>X</m> is projective, it is also a torsor in the étale topology; see <xref ref="hks-bib-kim-dual" detail="Remark 3.8(iii)"/>.</p>
+    <p>The relative Picard family is independent of origins for an elementary reason. A translation of an abelian variety induces the identity on its degree-zero Picard variety. Changing a local identification <m>X_U\simeq P</m> by a translation therefore does not change the identification of their degree-zero Picard varieties. These local identifications glue to the displayed isomorphism. The Poincaré line bundle normalized along zero sections is a more restrictive object, whose descent will be discussed below.</p>
+    <p>A section identifies <m>X_U</m> with <m>P</m>. A polarization identifies <m>P</m> with <m>P^\vee</m> only when it is principal. These are separate conditions. In particular, a principal polarization of every fibre does not give a zero section of <m>X_U</m>.</p>
+    <p>Let <m>\theta</m> be the primitive fibre polarization of <xref ref="hks-def-polarization-type"/>, and let
+      <md number="no">\varphi_\theta:P\longrightarrow P^\vee,\qquad
+        \mathcal K=\ker\varphi_\theta.</md>
+      The kernel is a finite étale group scheme over <m>U</m>. The quotient of the torsor by this group is a <m>P^\vee</m>-torsor.</p>
+    <proposition xml:id="hks-dual-torsor-class">
+      <statement><p>If <m>X_U</m> has class <m>\xi\in H^1(U,\mathcal P)</m>, then <m>X_U/\mathcal K</m> has class <m>(\varphi_\theta)_*\xi\in H^1(U,\mathcal P^\vee)</m>. If the polarization is principal, this quotient is <m>X_U</m> itself. If <m>X_U</m> has a section, its quotient is isomorphic to <m>P^\vee</m>.</p></statement>
+      <proof><p>Use local sections and transition translations <m>a_{ij}</m> as in <xref ref="hks-torsor-cocycle"/>. In the quotient, the local group is <m>P/\mathcal K\simeq P^\vee</m>, and the transition translations are <m>\varphi_\theta(a_{ij})</m>. This represents the image of <m>\xi</m>. A principal polarization has zero kernel. A section gives <m>\xi=0</m>, whose image is zero as well.</p></proof>
+    </proposition>
+    <p>This construction retains information which would be lost by replacing every fibre family by its relative Picard group. The neutral family <m>P^\vee</m> always has a section. The quotient <m>X_U/\mathcal K</m> need not have one. Kim uses the latter as the dual torus fibration.</p>
+    <p>The extension of <m>P</m> across <m>B\setminus U</m> is a separate problem. Singular fibres need not be group varieties, and their smooth parts can have several components. The Néron model in <xref ref="hks-neron-model"/> describes extensions with specified mapping properties. In the definition of twists over the whole base, we instead use automorphisms of the given compactification.</p>
+  </section>
+
+  <section xml:id="hks-shafarevich-tate-deformations">
+    <title>Twists and degenerate twistor deformations</title>
+    <p>For this section let <m>B=\PP^n</m>. Let <m>\mathcal A_f</m> be the sheaf of vertical holomorphic automorphisms of <m>X</m> which, locally on the base, are time-one flows of vertical holomorphic vector fields. On <m>U</m>, these are precisely the fibrewise translations, so <m>\mathcal A_f|_U=\mathcal P</m>. They commute on <m>X_U</m>, hence on <m>X</m> by density. Thus <m>\mathcal A_f</m> is a sheaf of commutative groups.</p>
+    <definition xml:id="hks-def-shafarevich-tate">
+      <idx>Shafarevich–Tate group</idx><idx>Tate–Shafarevich twist</idx>
+      <statement><p>The <em>Shafarevich–Tate group</em> of <m>f</m> is
+        <md number="no">\operatorname{Sha}(f)=H^1(B,\mathcal A_f).</md>
+        For <m>\phi\in\operatorname{Sha}(f)</m>, the <em>twist</em> <m>f^\phi:X^\phi\to B</m> is obtained by gluing the restrictions <m>X|_{B_i}</m> by a cocycle representing <m>\phi</m>.</p></statement>
+    </definition>
+    <p>This definition uses the entire fibration, including singular fibres, and the analytic topology.<fn>In arithmetic and algebraic geometry, a Tate–Shafarevich group often parametrizes algebraic torsors satisfying local triviality conditions. The analytic group defined here can contain nontorsion classes and non-Kähler twists.</fn> Its restriction to <m>U</m> changes the torsor class from <m>\xi</m> to <m>\xi+\phi|_U</m>. The zero element of <m>\operatorname{Sha}(f)</m> gives the original <m>X</m>, which may itself have no section. Vanishing of a twisting class and vanishing of the absolute torsor class on <m>U</m> are different assertions.</p>
+    <p>The cocycle construction gives a smooth complex manifold and a proper map to <m>B</m>, locally isomorphic to the original map. Fibres over the same base point are isomorphic, including their scheme structure. Local properness and compactness of the base imply compactness of <m>X^\phi</m>. They do not imply that it is Kähler.</p>
+    <p>The forms also descend after correcting the local gluing. The argument is <xref ref="hks-bib-abasheva-rogov" detail="§3.3"/>; the cohomological vanishing on projective space makes the correction explicit.</p>
+    <proposition xml:id="hks-twists-holomorphic-symplectic">
+      <statement><p>Every twist <m>X^\phi</m> has a holomorphic symplectic form for which <m>f^\phi</m> is Lagrangian.</p></statement>
+      <proof>
+        <p>Write the transition map from the <m>j</m>th chart to the <m>i</m>th chart as <m>g_{ij}</m>. A local vertical vector field <m>v</m> satisfies <m>\iota_v\sigma=f^*\gamma</m> for a base one-form <m>\gamma</m>. Cartan's formula and the fact that its flow preserves the base give
+          <md number="no">(\exp v)^*\sigma-\sigma=f^*d\gamma.</md>
+          The identification of vertical fields with base one-forms extends over the singular fibres; it is <xref ref="hks-bib-abasheva-rogov" detail="Lemma 2.3"/>. Thus <m>g_{ij}^*\sigma-\sigma=f^*\beta_{ij}</m> for closed holomorphic two-forms <m>\beta_{ij}</m>.</p>
+        <p>Since the transition maps act identically on base forms, the cocycle identity makes <m>(\beta_{ij})</m> a Čech cocycle with values in <m>\Omega_B^2</m>. The vanishing <m>H^1(\PP^n,\Omega_{\PP^n}^2)=0</m> gives forms <m>\zeta_i</m> with <m>\beta_{ij}=\zeta_j-\zeta_i</m>, after refinement. Their derivatives agree on overlaps, defining a global holomorphic three-form on <m>\PP^n</m>. Such a form is zero. Therefore every <m>\zeta_i</m> is closed.</p>
+        <p>The forms <m>\sigma+f^*\zeta_i</m> now agree under the transition maps. They are closed. On a regular fibre chart, adding a base two-form to <m>\sigma_{\rm can}</m> preserves nondegeneracy and its top exterior power: in action-angle coordinates, any term containing a base two-form has too many base factors. The identity
+          <md number="no">(\sigma+f^*\zeta_i)^n=\sigma^n</md>
+          extends from that dense open subset to the full chart. The glued form is consequently nondegenerate everywhere. Its restriction to every smooth fibre is zero.</p>
+      </proof>
+    </proposition>
+    <p>The exponential map of sheaves has an exact sequence
+      <md number="no">0\longrightarrow\Gamma\longrightarrow f_*T_{X/B}
+        \longrightarrow\mathcal A_f\longrightarrow0.</md>
+      The symplectic form identifies <m>f_*T_{X/B}</m> with <m>\Omega_B^1</m>. Hence <m>H^1(B,f_*T_{X/B})\simeq\C</m> and <m>H^2(B,f_*T_{X/B})=0</m>. Define <m>\operatorname{Sha}^0(f)</m> to be the image of this copy of <m>\C</m>. The long exact sequence gives
+      <md number="no">\begin{aligned}
+        \operatorname{Sha}^0(f)&amp;\simeq
+        \C/\operatorname{im}\bigl(H^1(B,\Gamma)\to\C\bigr),\\
+        \operatorname{Sha}(f)/\operatorname{Sha}^0(f)&amp;\simeq H^2(B,\Gamma).
+      \end{aligned}</md>
+      The image in <m>\C</m> is finitely generated as an abelian group, but need not be discrete. The topology on <m>\operatorname{Sha}</m> makes this image quotient its connected component of zero and the last group discrete; see <xref ref="hks-bib-abasheva-rogov" detail="§3.1"/>.</p>
+    <p xml:id="hks-sha-nonhausdorff">Thus <m>\operatorname{Sha}^0</m> need not be a complex torus in the usual sense. Its quotient topology may be non-Hausdorff. Over the smooth locus, <m>\Gamma</m> is the period lattice in <m>T^*U</m>, of rank <m>2n</m>. Across the discriminant it is a sheaf of periods of extendible vector fields, not a locally constant lattice on all of <m>B</m>.</p>
+    <aside xml:id="margin-hks-sha-nonhausdorff">
+      <p>A finitely generated subgroup of <m>\C</m> can be dense. For instance, <m>\Z+i\Z+\Z\alpha+\Z i\beta</m> is dense when <m>\alpha,\beta</m> are irrational real numbers. Finite generation as an abelian group is therefore insufficient for discreteness.</p>
+    </aside>
+    <p>There is a differential-form description of the connected family. Let <m>\beta</m> be a closed real <m>(1,1)</m>-form on <m>\PP^n</m> representing its hyperplane class. The construction and comparison theorem below are quoted from <xref ref="hks-bib-abasheva-rogov" detail="Theorems 2.11 and 3.8"/>.</p>
+    <theorem xml:id="hks-degenerate-twistor">
+      <idx>Degenerate twistor deformation</idx>
+      <statement><p>The closed complex two-forms
+        <md number="no">\sigma_t=\sigma+t f^*\beta,\qquad t\in\C,</md>
+        define integrable complex structures <m>I_t</m> on the underlying smooth manifold of <m>X</m>, with <m>\sigma_t</m> holomorphic symplectic. The map <m>f:(X,I_t)\to\PP^n</m> is holomorphic Lagrangian and has fibres isomorphic to those of <m>f</m>. This family is isomorphic over <m>\PP^n</m> to the family of twists obtained from <m>H^1(B,f_*T_{X/B})\simeq\C</m>.</p></statement>
+    </theorem>
+    <p>The form <m>f^*\beta</m> is of type <m>(1,1)</m> for the original complex structure. For <m>t\ne0</m>, <m>\sigma_t</m> is not generally holomorphic in that original structure: changing the complex structure is part of the theorem. It is called a <em>degenerate twistor deformation</em>.</p>
+    <p>Let <m>\eta=f^*c_1(\cO_{\PP^n}(1))</m>. In the fixed cohomology of the underlying manifold the period is <m>[\sigma]+t\eta</m>. Since <m>q_X(\eta)=q_X(\eta,[\sigma])=0</m>,
+      <md number="no">q_X([\sigma]+t\eta)=0,\qquad
+        q_X([\sigma]+t\eta,[\bar\sigma]+\bar t\eta)=q_X([\sigma],[\bar\sigma])&gt;0.</md>
+      The periods lie on a projective line contained in the BBF quadric. These equalities explain the period line; Kählerness of its members requires the next theorem.</p>
+    <p>Let <m>\operatorname{Sha}'(f)</m> consist of classes whose image in <m>\operatorname{Sha}(f)/\operatorname{Sha}^0(f)</m> is torsion. We use the revised proof in <xref ref="hks-bib-abasheva-twists" detail="Theorem A"/>.</p>
+    <theorem xml:id="hks-kahler-projective-twists">
+      <statement><p>For <m>\phi\in\operatorname{Sha}'(f)</m>, the twist <m>X^\phi</m> is Kähler. If <m>X</m> is projective, then <m>X^\phi</m> is projective if and only if <m>\phi</m> is torsion.</p></statement>
+    </theorem>
+    <p>In particular all members of the degenerate twistor family are Kähler. If <m>\Lambda_0\subset\C</m> is the kernel of <m>\C\to\operatorname{Sha}^0</m> and the starting space is projective, the projective parameters are exactly
+      <md number="no">\bigcup_{r\ge1}\frac1r\Lambda_0.</md>
+      Indeed, the class of <m>t</m> is torsion precisely when <m>rt\in\Lambda_0</m> for some positive integer <m>r</m>. This countable set is determined by the period subgroup, not by a choice of a section of the fibration.</p>
+  </section>
+
+  <section xml:id="hks-sections-and-topology">
+    <title>Sections and the topology of twists</title>
+    <p>A holomorphic section of a fibration over <m>\PP^n</m> is automatically Lagrangian: the pullback of <m>\sigma</m> is a holomorphic two-form on <m>\PP^n</m>, hence zero. A meromorphic section only gives this subvariety over the open set where it is defined. A <m>C^\infty</m> section need not be holomorphic, but its existence already imposes integral topological conditions.</p>
+    <proposition xml:id="hks-smooth-section-primitive">
+      <statement><p>Let <m>f:X\to B</m> be a Lagrangian fibration with smooth compact base and a global <m>C^\infty</m> section. The integral homology class of a smooth fibre is primitive, and every fibre contains a point where <m>df</m> is surjective.</p></statement>
+      <proof><p>Let <m>s</m> be the section. At each <m>b</m>, <m>df_{s(b)}\circ ds_b=\id</m>, proving surjectivity. Its image meets the fibre over a regular value transversely in one point, with intersection number one after orienting the section by <m>B</m>. If the fibre class were <m>r\gamma</m> with an integer <m>r&gt;1</m>, its intersection with the integral cycle <m>s(B)</m> would be divisible by <m>r</m>. This contradicts that intersection number.</p></proof>
+    </proposition>
+    <p>The primitivity here is in <m>H_{2n}(X,\Z)</m>. It is not the primitivity of <m>\eta\in H^2(X,\Z)</m>, its BBF divisibility, or the primitivity of a polarization on the fibre. These are different integral conditions.</p>
+    <p>A smooth section can become holomorphic after changing the complex structure. Its pullback <m>s^*\sigma</m> is a closed form with no <m>(0,2)</m>-part. To check the type, take <m>\bar v,\bar w\in T^{0,1}_bB</m>. The <m>(1,0)</m>-parts of <m>ds(\bar v)</m> and <m>ds(\bar w)</m> are vertical, because <m>f</m> is holomorphic and <m>df\circ ds=\id</m>. The form <m>\sigma</m> vanishes on two vertical vectors. Thus <m>(s^*\sigma)(\bar v,\bar w)=0</m>.</p>
+    <p>The construction with
+      <md number="no">\sigma-f^*(s^*\sigma)</md>
+      makes <m>s</m> a holomorphic Lagrangian section for the induced complex structure; this is <xref ref="hks-bib-bkv-sections" detail="Theorem 1.3"/>, citing the corresponding result of Bogomolov–Déev–Verbitsky. It starts with a section already defined on the entire base.</p>
+    <p>A different existence theorem is <xref ref="hks-bib-bkv-sections" detail="Theorem 1.1"/>.</p>
+    <theorem xml:id="hks-meromorphic-section-deformation">
+      <statement><p>Let <m>f:X\to\PP^n</m> be a Lagrangian fibration. Suppose the integral homology class of a smooth fibre is primitive and the fibres are reduced outside a subset of the base of codimension at least two. Some member of the degenerate twistor family of <m>f</m> admits a meromorphic section.</p></statement>
+    </theorem>
+    <p>The construction uses a smooth section over a line and an extension argument for meromorphic maps. Its conclusion concerns a meromorphic section after deformation. It does not assert a global smooth section on the original fibration.</p>
+    <p>The topology of projective twists can be compared even in the absence of sections. We use <xref ref="hks-bib-bai-twists" detail="Theorems 0.1 and 0.3, Corollary 0.5, and Theorem 0.6"/>.</p>
+    <theorem xml:id="hks-topology-projective-twists">
+      <statement><p>Let <m>f:X\to B</m> be a projective Lagrangian fibration, with <m>B</m> normal and projective.
+        <ol marker="(i)">
+          <li><p>If <m>X^\phi</m> is projective, then <m>H^k(X,\Q)\simeq H^k(X^\phi,\Q)</m> as rational Hodge structures for every <m>k</m>.</p></li>
+          <li><p>If <m>\phi</m> is torsion, these isomorphisms can preserve the Hodge–Riemann bilinear forms for suitable ample classes. There is a Hodge similitude between the rational BBF spaces in degree two.</p></li>
+          <li><p>If <m>\phi</m> is torsion, <m>B</m> is smooth, and both <m>f</m> and <m>f^\phi</m> admit global <m>C^\infty</m> sections, then <m>X</m> and <m>X^\phi</m> are deformation equivalent.</p></li>
+        </ol></p></statement>
+    </theorem>
+    <p>The last assertion follows by making the sections holomorphic on suitable degenerate twistor deformations, comparing the resulting fibrations over a dense open subset, and using deformation equivalence of birational hyperkähler manifolds. The first assertion does not require that the twisting class be torsion; projectivity of both spaces is the hypothesis there.</p>
+    <p xml:id="hks-section-scope">The section hypothesis in the last assertion cannot be dropped using <xref ref="hks-meromorphic-section-deformation"/>. It asks for smooth sections on both compact fibrations. Bai explicitly records the problem with an earlier argument claiming that reduced fibres in codimension one and a primitive fibre class suffice for such sections <xref ref="hks-bib-bai-twists" detail="Remark 0.7"/>. The theorem quoted from the later version of Bogomolov–Kamenova–Verbitsky has the meromorphic conclusion stated above.</p>
+    <aside xml:id="margin-hks-section-scope">
+      <p>A rational Hodge isomorphism of graded vector spaces is not a ring isomorphism. A similitude of BBF forms preserves the form up to a nonzero scalar; it is weaker than an isometry of integral lattices. None of these assertions alone proves deformation equivalence. The section theorem supplies additional geometric information.</p>
+    </aside>
+  </section>
+
+  <section xml:id="hks-picard-and-intermediate-jacobians">
+    <title>Picard torsors and intermediate Jacobians</title>
+    <p>Let <m>S</m> be a projective K3 surface with <m>\Pic(S)=\Z h</m>, where <m>h</m> is ample and <m>h^2=2g-2&gt;0</m>. The primitive linear system <m>B=|h|\simeq\PP^g</m> is base point free. Every curve in it is integral, since a decomposition or a nontrivial multiplicity would decompose the primitive class into positive integral multiples of <m>h</m>. Let <m>\mathcal C_U\to U</m> be the family of smooth curves.</p>
+    <p>The group <m>P=\operatorname{Pic}^0(\mathcal C_U/U)</m> acts on
+      <md number="no">Z_d=\operatorname{Pic}^d(\mathcal C_U/U)</md>
+      by tensor product. The latter is a torsor, since line bundles of degree <m>d</m> exist locally in the family. We compute its class before compactifying.</p>
+    <proposition xml:id="hks-degree-picard-torsors">
+      <statement><p>Let <m>\xi_d\in H^1(U,\mathcal P)</m> be the class of <m>Z_d</m>. Then <m>\xi_d=d\xi_1</m> and <m>(2g-2)\xi_1=0</m>. If <m>N\in\Pic(S)</m>, tensor product by <m>N|_{\mathcal C_U}</m> identifies <m>Z_d</m> with <m>Z_{d+N\cdot h}</m>.</p></statement>
+      <proof>
+        <p>Choose local sections <m>x_i</m> of the smooth family of curves. The line bundles <m>\cO(x_i)</m> are local sections of <m>Z_1</m>, and their differences <m>\cO(x_j-x_i)</m> give its cocycle. For <m>Z_d</m>, use <m>\cO(d x_i)</m>. Their differences are the <m>d</m>th tensor powers of the first cocycle, including negative <m>d</m> by dualization. Thus <m>\xi_d=d\xi_1</m>.</p>
+        <p>The relative canonical bundle has degree <m>2g-2</m> on every fibre and defines a global section of <m>Z_{2g-2}</m>. The torsor classification gives <m>(2g-2)\xi_1=0</m>. Finally, restriction of the fixed bundle <m>N</m> gives an invertible operation of the stated degree, with inverse restriction of <m>N^{-1}</m>.</p>
+      </proof>
+    </proposition>
+    <p>The relation bounds the order of <m>\xi_1</m> by a divisor of <m>2g-2</m>. The zero-degree family has its zero section, and the degree-<m>2g-2</m> family has its canonical section. A section of <m>Z_1</m> would specify degree-one line bundle classes; it need not be a family of effective divisors of degree one.</p>
+    <p>The moduli space of stable sheaves with Mukai vector <m>(0,h,d+1-g)</m> compactifies <m>Z_d</m>. Under these hypotheses it is a smooth projective IHS manifold of dimension <m>2g</m>, and the support map to <m>|h|</m> is a Lagrangian fibration, called a <em>Beauville–Mukai system</em>. We use the moduli theorem reviewed in <url href="/notes/hyperkahler/hkg-sheaf-moduli.html">the note on moduli of sheaves in General HK</url>. The dimension is also visible from the vector: its square is <m>h^2=2g-2</m>, so the moduli dimension is <m>h^2+2=2g</m>.</p>
+    <p>More general twists of these relative Picard varieties are moduli spaces of twisted sheaves. Huybrechts–Mattei use a special Brauer group which refines the ordinary Brauer group and retains degree information <xref ref="hks-bib-huybrechts-mattei" detail="§§2–4"/>. One concrete consequence is that every projective Lagrangian fibration of <m>\mathrm{K3}^{[n]}</m>-type and Picard rank two is birational over its base to a twisted relative Picard variety of a linear system on a K3 surface <xref ref="hks-bib-huybrechts-mattei" detail="Theorem 1.2"/>.</p>
+    <p xml:id="hks-poincare-obstruction">A distinct obstruction appears when one tries to choose a universal line bundle on <m>X_U\times_U P^\vee</m>. Local universal bundles can differ on overlaps by line bundles from the parameter space <m>P^\vee</m>. Their descent obstruction is a gerbe class in <m>H^2(P^\vee,\cO_{P^\vee}^{\times})</m>. When it is torsion, it belongs to the cohomological analytic Brauer group. A twisted universal sheaf records this obstruction. The torsor class in <m>H^1(U,\mathcal P)</m> and the Brauer class on <m>P^\vee</m> live on different spaces and in different cohomological degrees.</p>
+    <aside xml:id="margin-hks-poincare-obstruction">
+      <p>For Picard-rank-one K3 surfaces, relative Fourier–Mukai equivalences extend over the integral singular curves using compactified Jacobians. Addington–Donovan–Meachan give derived-equivalent compact hyperkähler manifolds <m>\overline{\operatorname{Pic}}^0</m> and <m>\overline{\operatorname{Pic}}^{g-1}</m> whose integral second cohomologies are not Hodge-isometric <xref ref="hks-bib-addington-donovan-meachan" detail="Theorem B"/>. In particular these two torsors are not birational. We quote the existence of the derived equivalence without developing its construction.</p>
+    </aside>
+    <p>There is a related example with a different source of abelian varieties. Let <m>V\subset\PP^5</m> be a smooth cubic fourfold and let <m>U\subset(\PP^5)^\vee</m> parametrize its smooth hyperplane sections. Their intermediate Jacobians form a principally polarized abelian scheme of relative dimension five. Let <m>f:X\to(\PP^5)^\vee</m> be an associated OG10 hyperkähler compactification. We use the comparison and cohomology theorems of <xref ref="hks-bib-dutta-mattei-shinder" detail="Theorems B–D"/>.</p>
+    <p>Assume for the following formulas that <m>V</m> is <em>defect general</em>, meaning that every hyperplane section is <m>\Q</m>-factorial. Equivalently, <m>V</m> contains neither a plane nor a cubic scroll. Write <m>h</m> for its hyperplane class and <m>H^4(V,\Z)_{\rm pr}=(h^2)^\perp</m>. The analytic groups appearing in the computation are
+      <md number="no">\begin{aligned}
+        \operatorname{Br}_{\rm an}^{4}(V)
+        &amp;=\operatorname{coker}\bigl(H^4(V,\Z)\to H^{1,3}(V)\bigr),\\
+        \operatorname{Br}_{{\rm an},{\rm pr}}^{4}(V)
+        &amp;=\operatorname{coker}\bigl(H^4(V,\Z)_{\rm pr}\to H^{1,3}(V)\bigr).
+      \end{aligned}</md>
+      These are analytic Brauer groups of weight-four Hodge structures, rather than the ordinary Brauer group of the variety <m>V</m>.</p>
+    <p>The translation sheaf of the compactification agrees with the extended intermediate Jacobian sheaf, and its cohomology gives
+      <md number="no">\operatorname{Sha}(f)\simeq
+        \operatorname{Br}_{{\rm an},{\rm pr}}^{4}(V),</md>
+      <md number="no">
+        0\longrightarrow\Z/d\Z\longrightarrow\operatorname{Sha}(f)
+        \longrightarrow\operatorname{Br}_{\rm an}^{4}(V)\longrightarrow0,</md>
+      where <m>d</m> is the positive generator of
+      <m>\{a\cdot h^2:a\in H^{2,2}(V,\Z)\}\subset\Z</m>; see <xref ref="hks-bib-dutta-mattei-shinder" detail="Theorem C and Corollary 6.10"/>. Since <m>h^2\cdot h^2=3</m>, one has <m>d=1</m> or <m>3</m>. For a very general cubic the integral Hodge lattice is generated by <m>h^2</m>, and <m>d=3</m>.</p>
+    <p>The finite subgroup describes degree twists. The family of intermediate Jacobian torsors associated to degree-one cycles on the cubic threefolds has a compactification birational to such a twist <xref ref="hks-bib-dutta-mattei-shinder" detail="Theorem 6.12"/>. For a very general cubic, its degree class has order three. This is analogous to changing the degree of a relative Picard variety, with the lattice of algebraic codimension-two classes replacing the degree lattice of line bundles on a K3 surface.</p>
+    <p>There is also an integral comparison of periods, without the defect-general assumption. Let <m>\theta\in H^2(X,\Z)</m> be a divisor class whose restriction to a smooth fibre gives its principal polarization, and let <m>\eta=f^*c_1(\cO(1))</m>. Then
+      <md number="no">H^4(V,\Z)_{\rm pr}(1)\simeq
+        \langle\theta,\eta\rangle^\perp\subset H^2(X,\Z),</md>
+      as integral Hodge structures <xref ref="hks-bib-dutta-mattei-shinder" detail="Theorem D"/>. Thus the cubic geometry controls the part of the period orthogonal to the polarization and fibration classes. The statement about arbitrary cubics uses this lattice comparison, not the simpler formula for their entire Shafarevich–Tate group.</p>
+  </section>
+
+  <section xml:id="hks-compact-duality">
+    <title>Compact dual fibrations</title>
+    <p>The finite group scheme <m>\mathcal K=\ker\varphi_\theta</m> over <m>U</m> may have monodromy. It need not arise from a constant group of automorphisms of the compact total space. Its extension is the global assertion of <xref ref="hks-bib-kim-dual" detail="Theorem 1.1"/>.</p>
+    <theorem xml:id="hks-dual-fibration">
+      <idx>Dual Lagrangian fibration</idx>
+      <statement><p>Let <m>f:X\to B</m> be a Lagrangian fibration with smooth base. Suppose <m>X</m> is of <m>\mathrm{K3}^{[n]}</m>-, generalized Kummer, OG6, or OG10 type. The group scheme <m>\mathcal K\to U</m> extends to a constant finite group scheme acting on <m>X</m>. Its group <m>G</m> preserves <m>f</m> and acts trivially on <m>H^2(X,\Z)</m>. The quotient
+        <md number="no">\check f:\check X=X/G\longrightarrow B</md>
+        is a compact hyperkähler orbifold with a Lagrangian fibration. Over <m>U</m> it is the quotient <m>X_U/\mathcal K</m>.</p></statement>
+    </theorem>
+    <p>The group <m>G</m> fixes <m>\sigma</m>, since its action on <m>H^2(X,\Z)</m> is trivial. The symplectic form descends to the regular locus of the quotient. The orbifold structure here is the one given by local quotients by finite stabilizer groups; it does not assert that <m>\check X</m> is smooth.</p>
+    <p>For <m>\mathrm{K3}^{[n]}</m> and OG10 type, the primitive fibre polarization is principal by <xref ref="hks-thm-polarization-types"/>. Then <m>G</m> is trivial and this definition makes the fibration self-dual, even when its torsor is nontrivial. It does not identify a nontrivial torsor with its neutral relative Picard family.</p>
+    <p>For generalized Kummer type in dimension at least four, and for OG6 type, the primitive polarization is not principal. The quotient changes the smooth fibre by the finite kernel of its polarization, and singularities can appear in the total space. The singular quotient in the theorem is the asserted compactification. A smooth compactification, or a symplectic resolution of this one, is not part of its conclusion.</p>
+    <p>These examples relate fibrations to lower-dimensional geometry in several ways. Beauville–Mukai systems come from curves on a K3 surface. Abelian-surface moduli constructions of Kummer type use the support morphism together with the Albanese condition; their fibres are not in general the full Jacobians of the support curves. OG10 intermediate Jacobian systems use cubic fourfolds. Each construction retains different integral data, including its fibre polarization and its torsor class.</p>
+    <p xml:id="hks-og6-conjectural-model">For OG6, Déev proposes a relation with cubic surfaces carrying a marking by six disjoint lines. A K3 surface associated to that marked cubic is intended to describe the Hodge structure <m>e^\perp/\Z e</m>, where <m>e</m> is the primitive isotropic generator. The proposed dominant map of moduli spaces is <xref ref="hks-bib-deev-og6" detail="Conjecture 4.8"/>. The proposed symplectic compactification of the associated relative Prym construction is <xref ref="hks-bib-deev-og6" detail="Conjecture 5.5"/>. These are conjectures about a more geometric description of OG6 fibrations, alongside the established constructions by moduli of sheaves and their symplectic resolutions.</p>
+    <aside xml:id="margin-hks-og6-conjectural-model">
+      <p>Here <m>e^\perp/\Z e</m> is formed with a primitive integral vector. Replacing <m>e</m> by a nonprimitive multiple can introduce torsion in the integral quotient. The rational isotropic line alone does not specify that integral Hodge structure.</p>
+    </aside>
+  </section>
+</chapter>

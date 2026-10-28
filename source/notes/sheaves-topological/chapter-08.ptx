@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="sh-c08">
+  <title>Cohomology, hypercohomology, and products</title>
+  <introduction>
+    <p>Derived sections and derived direct image retain the information lost when sections fail to lift globally. Their cohomology groups and sheaves can be computed by the resolutions of <xref ref="sh-c07"/>. This chapter relates the resulting constructions: cohomology on open sets, higher direct images, hypercohomology, Leray spectral sequences, local and global Ext, and cup products. The total derived functors exist without boundedness assumptions; the spectral sequences below are stated under bounded below hypotheses that ensure finite filtrations in each total degree.</p>
+  </introduction>
+
+  <section xml:id="sh-c08-cohomology-section">
+    <title>Derived sections and connecting morphisms</title>
+    <definition xml:id="sh-c08-cohomology">
+      <idx><h>sheaf cohomology</h></idx>
+        <idx><h>hypercohomology</h></idx>
+        <statement>
+        <p>For <m>K\in\D(X;\Lambda)</m> and an open set <m>U\subseteq X</m>, define
+          <md number="no">H^n(U,K)=H^n(R\Gamma(U,K)).</md>
+          For a sheaf <m>F</m> placed in degree zero, these are its <term>sheaf cohomology groups</term>. For a complex they are also called <term>hypercohomology groups</term>. We use the same notation in both cases. If <m>K\to I</m> is a K-injective resolution on <m>X</m>, then
+          <md number="no">H^n(U,K)=H^n(\Gamma(U,I)).</md>
+        </p>
+      </statement>
+    </definition>
+    <p xml:id="sh-c08-cohomology-values">In particular, <m>H^0(U,F)=F(U)</m> and <m>H^n(U,F)=0</m> for <m>n&lt;0</m>. The object <m>R\Gamma(U,K)</m> is a complex of <m>\Lambda</m>-modules up to quasi-isomorphism. Its cohomology is a family of modules. The cohomology sheaves <m>\mathcal H^n(K)</m> are objects on <m>X</m>; they are different from both of these constructions.<fn xml:id="sh-c08-hypercohomology-notation">Some references reserve <m>\mathbb H^n</m> for hypercohomology and write <m>R^n\Gamma</m> only on sheaves. Our notation <m>H^n(U,K)</m> includes both and makes <m>K</m> explicit.</fn></p>
+    
+    <proposition xml:id="sh-c08-longexact">
+      <statement>
+        <p>A distinguished triangle <m>K\to L\to M\to K[1]</m> gives a natural long exact sequence
+          <md number="no">\cdots\longrightarrow H^n(U,K)\longrightarrow H^n(U,L)\longrightarrow H^n(U,M)\longrightarrow H^{n+1}(U,K)\longrightarrow\cdots.</md>
+          For a short exact sequence <m>0\to F\to G\to H\to0</m>, the sequence begins
+          <md number="no">0\longrightarrow F(U)\longrightarrow G(U)\longrightarrow H(U)\xrightarrow{\partial}H^1(U,F)\longrightarrow H^1(U,G)\longrightarrow\cdots.</md>
+          These sequences commute with restriction to a smaller open set.</p>
+      </statement>
+      <proof>
+        <p>The functor <m>R\Gamma(U,-)</m> is exact as a functor of triangulated categories. Take cohomology of its image triangle. Restriction is induced by the maps of section complexes <m>\Gamma(U,I)\to\Gamma(V,I)</m>, so it commutes with the connecting maps.</p>
+      </proof>
+    </proposition>
+    <p>The equation <m>\partial(h)=0</m> says exactly that <m>h\in H(U)</m> lifts to <m>G(U)</m>. A sheaf epimorphism ensures that <m>h</m> has lifts on a covering, so its obstruction class restricts to zero on that covering. If <m>g_i</m> are local lifts on <m>U_i</m>, the differences <m>g_j-g_i</m> on <m>U_i\cap U_j</m> lie in <m>F</m> and measure whether the lifts can be modified to glue. The sign in this description agrees with the Čech differential fixed in <xref ref="sh-c09-cech-definition"/>.</p>
+    <proposition xml:id="sh-c08-coefficients">
+      <statement>
+        <p>For a sheaf of <m>\Lambda</m>-modules <m>F</m>, the groups <m>H^n(U,F)</m> agree with those obtained by regarding <m>F</m> as a sheaf of abelian groups. The same assertion holds for bounded below complexes, and for higher direct images of sheaves or bounded below complexes. The identifications commute with restriction and connecting morphisms.</p>
+      </statement>
+      <proof>
+        <p>Choose an injective resolution in <m>\Sh(X;\Lambda)</m>. Its terms are flabby, and remain flabby after forgetting the module structure. They are therefore acyclic for sections in the abelian-sheaf category as well. The same resolution computes both cohomologies. For a bounded below complex use a bounded below injective resolution and the acyclic resolution theorem. Taking sections on inverse images of open sets proves the assertion for higher direct images.</p>
+      </proof>
+    </proposition>
+    <p>This comparison does not say that an injective sheaf of <m>\Lambda</m>-modules is injective after forgetting coefficients. Flabbiness provides the needed acyclicity. See <url href="https://stacks.math.columbia.edu/tag/01EY">Stacks, Lemma 20.13.3</url>. We only use coefficient forgetting in the bounded below range just proved.</p>
+    <proposition xml:id="sh-c08-pullback">
+      <statement>
+        <p>For a continuous map <m>f:X\to Y</m> and <m>K\in\D(Y;\Lambda)</m>, the derived unit gives a natural morphism
+          <md number="no">R\Gamma(Y,K)\longrightarrow R\Gamma(X,f^{-1}K).</md>
+          These morphisms compose under composition of maps. A morphism <m>f^{-1}K\to L</m> therefore induces maps <m>H^n(Y,K)\to H^n(X,L)</m>.</p>
+      </statement>
+      <proof>
+        <p>Apply <m>R\Gamma(Y,-)</m> to the unit <m>K\to Rf_*f^{-1}K</m>, and use <m>R\Gamma(Y,Rf_*(-))\simeq R\Gamma(X,-)</m>, proved below. Compatibility with composition is the compatibility of the units of the composed adjunctions.</p>
+      </proof>
+    </proposition>
+    <p>For an inclusion of an open set this is ordinary restriction in cohomology. For constant coefficients it gives the usual contravariance of <m>H^n(X,\Lambda_X)</m> in <m>X</m>. For a general sheaf on <m>X</m>, a map to <m>Y</m> alone does not specify a sheaf on <m>Y</m> from which to pull back; the coefficient morphism belongs to the data.</p>
+  </section>
+
+  <section xml:id="sh-c08-directimage-section">
+    <title>Higher direct images and locality</title>
+    <definition xml:id="sh-c08-higherdirectimage">
+      <idx><h>higher direct image</h></idx>
+        <statement>
+        <p>For a sheaf <m>F</m> on <m>X</m>, its <term>higher direct images</term> are
+          <md number="no">R^qf_*F=\mathcal H^q(Rf_*F),\qquad q\geq0.</md>
+          Thus <m>R^0f_*F=f_*F</m>. For a complex <m>K</m>, we write <m>\mathcal H^q(Rf_*K)</m> when it is useful to distinguish cohomology of a total derived functor from its restriction to sheaves.</p>
+      </statement>
+    </definition>
+    <proposition xml:id="sh-c08-directimage-local">
+      <statement>
+        <p>For <m>K\in\D(X;\Lambda)</m>, the sheaf <m>\mathcal H^q(Rf_*K)</m> is the sheaf associated to the presheaf
+          <md number="no">V\longmapsto H^q(f^{-1}V,K),\qquad V\subseteq Y\text{ open}.</md>
+          Consequently, for <m>y\in Y</m>,
+          <md number="no">\mathcal H^q(Rf_*K)_y=\colim_{V\ni y}H^q(f^{-1}V,K).</md>
+          In particular, for a sheaf <m>F</m> and <m>q&gt;0</m>, the presheaf <m>U\mapsto H^q(U,F)</m> has zero associated sheaf.</p>
+      </statement>
+      <proof>
+        <p>Take a K-injective resolution <m>K\to I</m>. The complex of sections of <m>f_*I</m> on <m>V</m> is <m>\Gamma(f^{-1}V,I)</m>, which computes the stated hypercohomology because restriction preserves K-injectives. Cohomology of a complex of sheaves is the sheafification of its cohomology presheaf. Taking stalks gives the formula, since filtered colimits of modules are exact. For <m>f=\id_X</m> and a sheaf <m>F</m>, the positive cohomology sheaves are zero.</p>
+      </proof>
+    </proposition>
+    <p>Thus every positive-degree cohomology class becomes zero on some neighborhood of each point. This is a local assertion about a given class, rather than a claim that every sufficiently small open set has no positive cohomology. Different classes may require different neighborhoods. The stalk formula involves neighborhoods of the whole inverse image of <m>y</m>. Replacing it by <m>H^q(f^{-1}(y),F|_{f^{-1}(y)})</m> requires a base change theorem and is not valid for an arbitrary continuous map.</p>
+    <example xml:id="sh-c08-open-directimage">
+      <statement>
+        <p>Let <m>j:U\hookrightarrow X</m> be open. On <m>U</m>, the positive sheaves <m>R^qj_*F</m> vanish, but their stalks on the boundary can be nonzero.</p>
+      </statement>
+      <solution>
+        <p>For <m>x\in U</m>, take neighborhoods contained in <m>U</m>. The stalk formula is then the stalk at <m>x</m> of the positive cohomology presheaf of <m>F</m>, hence zero. At a boundary point, the formula is instead
+          <md number="no">(R^qj_*F)_x=\colim_{V\ni x}H^q(V\cap U,F).</md>
+          For instance, the topology of punctured neighborhoods can contribute to this colimit. This formula explains why <m>j_*</m>, unlike <m>j_!</m>, need not be exact. A computation of a particular punctured neighborhood requires the comparison results of <xref ref="sh-c11"/>.</p>
+      </solution>
+    </example>
+  </section>
+
+  <section xml:id="sh-c08-hypercohomology-section">
+    <title>The two hypercohomology spectral sequences</title>
+    <p>For a bounded below complex, there are two natural ways to separate its differential from the operation of taking sections. One begins with its terms, and the other with its cohomology sheaves. We keep the different first pages visible.</p>
+    <theorem xml:id="sh-c08-hypercohomology">
+      <statement>
+        <p>Let <m>K^\bullet</m> be a complex with <m>K^p=0</m> for <m>p&lt;p_0</m>. There is a natural spectral sequence
+          <md number="no">E_1^{p,q}=H^q(X,K^p)\ \Longrightarrow\ H^{p+q}(X,K),\qquad p\geq p_0,\ q\geq0.</md>
+          For <m>K\in\D^+(X;\Lambda)</m>, there is also a natural spectral sequence
+          <md number="no">E_2^{p,q}=H^p(X,\mathcal H^q(K))\ \Longrightarrow\ H^{p+q}(X,K),\qquad p\geq0.</md>
+          In each case <m>d_r</m> has bidegree <m>(r,1-r)</m>, and the abutment in each degree has a finite filtration with successive quotients <m>E_\infty^{p,n-p}</m>.</p>
+      </statement>
+      <proof>
+        <p>For the first sequence, use the Godement double complex <m>\Gamma(X,G^q(K^p))</m> from <xref ref="sh-c07-godement-complex"/>. Taking cohomology in the resolution direction gives <m>H^q(X,K^p)</m>. The induced first differential is the one induced by <m>d_K</m>. The total complex computes <m>R\Gamma(X,K)</m>. Each diagonal is finite, which proves the claimed convergence.</p>
+        <p>For the second sequence, apply derived sections to the canonical truncation triangles
+          <md number="no">\tau_{\leq q-1}K\longrightarrow\tau_{\leq q}K\longrightarrow \mathcal H^q(K)[-q]\longrightarrow(\tau_{\leq q-1}K)[1].</md>
+          The associated exact couple, with the usual reindexing, has the displayed <m>E_2</m> page. Boundedness below and the absence of negative cohomology for sections of a sheaf leave only finitely many terms in each total degree. The exact-couple construction and finite-filtration convergence are the general results of the <url href="../homological-algebra/ha-c07.html">spectral sequence chapter</url>. A sheaf reference with these two filtrations is <url href="https://stacks.math.columbia.edu/tag/0FLJ">Stacks, Examples 20.29.3–20.29.4</url>.</p>
+      </proof>
+    </theorem>
+    <corollary xml:id="sh-c08-acyclic-complex">
+      <statement>
+        <p>If <m>K</m> is bounded below and each <m>K^p</m> is acyclic for sections on <m>X</m>, the natural map
+          <md number="no">\Gamma(X,K)\longrightarrow R\Gamma(X,K)</md>
+          is a quasi-isomorphism. The analogous assertion holds for <m>f_*</m> and bounded below complexes of <m>f_*</m>-acyclic sheaves.</p>
+      </statement>
+      <proof>
+        <p>The first spectral sequence is concentrated in the row <m>q=0</m>. The comparison map induces the resulting isomorphisms on cohomology. The proof for direct image is the same acyclic resolution theorem.</p>
+      </proof>
+    </corollary>
+    <p>For a two-term complex <m>K=[F\xrightarrow{u}G]</m> in degrees zero and one, the term spectral sequence can be read as the exact sequence
+      <md number="no">\cdots\longrightarrow H^{n-1}(X,G)\longrightarrow H^n(X,K)\longrightarrow H^n(X,F)\xrightarrow{H^n(u)}H^n(X,G)\longrightarrow\cdots.</md>
+      In particular there is a natural short exact sequence
+      <md number="no">0\longrightarrow\coker H^{n-1}(u)\longrightarrow H^n(X,K)\longrightarrow\ker H^n(u)\longrightarrow0.</md>
+      This sequence need not split naturally. Knowing the two surviving associated graded modules is not the same as specifying the abutment with its extension data.</p>
+    <p>The cohomology-sheaf spectral sequence expresses a different issue. Even when <m>\mathcal H^q(K)</m> is easy to describe, the differential and extension data of <m>K</m> may produce nonzero higher differentials. Replacing <m>K</m> by the direct sum of its shifted cohomology sheaves would discard this information. Neither spectral sequence is asserted to converge for every unbounded complex.<fn>Finite cohomological dimension or additional completeness and convergence conditions can extend the range. The unbounded existence of <m>R\Gamma</m> itself does not supply those conditions.</fn></p>
+  </section>
+
+  <section xml:id="sh-c08-leray-section">
+    <title>Composition and the Leray spectral sequence</title>
+    <theorem xml:id="sh-c08-leray">
+      <title>Leray spectral sequence</title>
+      <statement>
+        <p>For every continuous <m>f:X\to Y</m> there is a natural isomorphism on unbounded derived categories
+          <md number="no">R\Gamma(Y,Rf_*K)\simeq R\Gamma(X,K).</md>
+          If <m>K\in\D^+(X;\Lambda)</m>, there is a convergent spectral sequence
+          <md number="no">E_2^{p,q}=H^p(Y,\mathcal H^q(Rf_*K))\ \Longrightarrow\ H^{p+q}(X,K).</md>
+          For a sheaf <m>F</m>, this is the first-quadrant sequence <m>E_2^{p,q}=H^p(Y,R^qf_*F)</m>. For <m>g:Y\to Z</m>, there is likewise a spectral sequence of sheaves
+          <md number="no">E_2^{p,q}=R^pg_*(R^qf_*F)\ \Longrightarrow\ R^{p+q}(gf)_*F.</md>
+        </p>
+      </statement>
+      <proof>
+        <p>Choose <m>K\to I</m> K-injective. By <xref ref="sh-c07-derived-directimage"/>, the complex <m>f_*I</m> is K-injective, and
+          <m>\Gamma(Y,f_*I)=\Gamma(X,I)</m>. This proves the derived comparison without boundedness. In the bounded below case, apply the cohomology-sheaf spectral sequence to <m>Rf_*K</m>. For the relative statement use the corresponding spectral sequence for <m>Rg_*</m> and the comparison <m>Rg_*Rf_*\simeq R(gf)_*</m>. See <url href="https://stacks.math.columbia.edu/tag/01EY">Stacks, §20.13</url>.</p>
+      </proof>
+    </theorem>
+    <p>For a sheaf <m>F</m>, the low-degree terms give
+      <md number="no">0\longrightarrow H^1(Y,f_*F)\longrightarrow H^1(X,F)\longrightarrow H^0(Y,R^1f_*F)\longrightarrow H^2(Y,f_*F)\longrightarrow H^2(X,F).</md>
+      The middle arrow sends a class to its family of local images in the higher direct image. Thus a class coming from <m>Y</m> restricts to zero in that family, while the next arrow measures the obstruction to lifting a family to a global class. No identification of higher direct image stalks with fiber cohomology is needed for this sequence.</p>
+    <corollary xml:id="sh-c08-leray-degeneration">
+      <statement>
+        <p>If <m>R^qf_*F=0</m> for every <m>q&gt;0</m>, then <m>H^n(Y,f_*F)\simeq H^n(X,F)</m>. If <m>H^p(Y,R^qf_*F)=0</m> for every <m>p&gt;0</m> and <m>q\geq0</m>, then <m>H^q(X,F)\simeq\Gamma(Y,R^qf_*F)</m>. These are the corresponding edge isomorphisms.</p>
+      </statement>
+      <proof><p>In the first case only the row <m>q=0</m> survives; in the second only the column <m>p=0</m> survives.</p></proof>
+    </corollary>
+    <example xml:id="sh-c08-closedembedding">
+      <statement><p>If <m>i:Z\hookrightarrow X</m> is a closed inclusion, then <m>H^n(X,i_*F)\simeq H^n(Z,F)</m> for every sheaf <m>F</m> on <m>Z</m>.</p></statement>
+      <solution><p>The functor <m>i_*</m> is exact: its stalks are <m>F_z</m> on <m>Z</m> and zero off <m>Z</m>. Hence its positive derived functors vanish, and the first edge isomorphism applies. The same conclusion for complexes follows directly from the derived composition formula.</p></solution>
+    </example>
+  </section>
+
+  <section xml:id="sh-c08-ext-section">
+    <title>Local and global Ext</title>
+    <definition xml:id="sh-c08-ext">
+      <idx><h>global derived Hom</h></idx>
+        <idx><h>Ext sheaf</h></idx>
+        <statement>
+        <p>For <m>K,L\in\D(X;\Lambda)</m>, choose a K-injective resolution <m>L\to I</m> and define
+          <md number="no">\RHom_X(K,L)=\underline{\Hom}^{\bullet}_{\Sh(X;\Lambda)}(K,I)\in\D(\Lambda).</md>
+          Set <m>\Ext^n_X(K,L)=H^n\RHom_X(K,L)=\Hom_{\D(X;\Lambda)}(K,L[n])</m>. For sheaves <m>F,G</m>, their <term>Ext sheaves</term> are
+          <md number="no">\mathcal{E}xt^q_\Lambda(F,G)=\mathcal H^q(\RsheafHom_\Lambda(F,G)).</md>
+          Here <m>\mathcal{E}xt^0_\Lambda(F,G)=\sheafHom_\Lambda(F,G)</m>, and the negative Ext sheaves vanish.</p>
+      </statement>
+    </definition>
+    <proposition xml:id="sh-c08-ext-global">
+      <statement>
+        <p>For arbitrary <m>K,L\in\D(X;\Lambda)</m>, there is a natural isomorphism
+          <md number="no">R\Gamma(X,\RsheafHom_\Lambda(K,L))\simeq\RHom_X(K,L).</md>
+          In particular,
+          <md number="no">\Ext^n_X(\Lambda_X,K)\simeq H^n(X,K).</md>
+          For sheaves <m>F,G</m>, there is a first-quadrant spectral sequence
+          <md number="no">E_2^{p,q}=H^p(X,\mathcal{E}xt^q_\Lambda(F,G))\ \Longrightarrow\ \Ext^{p+q}_X(F,G).</md>
+        </p>
+      </statement>
+      <proof>
+        <p>Choose <m>P\to K</m> K-flat and <m>L\to I</m> K-injective. The complex <m>\sheafHom^\bullet_\Lambda(P,I)</m> is K-injective by the tensor–Hom argument in <xref ref="sh-c07-derived-closed"/>. Its sections therefore compute the left side. They equal <m>\underline{\Hom}^\bullet(P,I)</m>, which also computes the right side because <m>I</m> is K-injective. For the second assertion, internal Hom from the unit <m>\Lambda_X</m> is the identity, both ordinarily and derivatively. For sheaves <m>F,G</m>, the internal derived Hom is bounded below: an ordinary injective resolution of <m>G</m> represents it in nonnegative degrees. Apply <xref ref="sh-c08-hypercohomology"/>.</p>
+      </proof>
+    </proposition>
+    <p>The Ext sheaf is the sheafification of the presheaf
+      <m>U\mapsto\Ext^q_{\Sh(U;\Lambda)}(F|_U,G|_U)</m>. This follows by computing with an injective resolution whose restriction remains injective. Its stalk is a colimit of these extension groups over neighborhoods. It must not be replaced without hypotheses by <m>\Ext^q_\Lambda(F_x,G_x)</m>.<fn>Even for ordinary internal Hom, a morphism between stalks need not extend to a morphism on one neighborhood. Finite local presentations or finite locally free resolutions provide familiar sufficient conditions for some stalk comparisons; unrestricted sheaves do not have those finiteness properties.</fn> See <url href="https://stacks.math.columbia.edu/tag/0BQP">Stacks, §20.43</url> and <url href="https://stacks.math.columbia.edu/tag/0B6A">§20.44</url>.</p>
+    <p>The beginning of the local-to-global sequence is
+      <md number="no">0\longrightarrow H^1(X,\sheafHom_\Lambda(F,G))\longrightarrow\Ext^1_X(F,G)\longrightarrow\Gamma(X,\mathcal{E}xt^1_\Lambda(F,G))\longrightarrow H^2(X,\sheafHom_\Lambda(F,G)).</md>
+      An extension class maps to its local extension classes. The kernel consists of extensions that split locally, with the differences between local splittings measured by the Hom sheaf. This will be used for torsors and extensions in <xref ref="sh-c10"/>.</p>
+    <example xml:id="sh-c08-locallyfree-ext">
+      <statement><p>If <m>F</m> is locally free of finite rank, then
+        <md number="no">\Ext^n_X(F,G)\simeq H^n(X,\sheafHom_\Lambda(F,G)).</md>
+      </p></statement>
+      <solution>
+        <p>Locally, <m>\sheafHom_\Lambda(F,-)</m> is a finite power of the identity functor, hence exact. The positive Ext sheaves vanish, so the spectral sequence has only its bottom row. This does not make <m>F</m> projective in <m>\Sh(X;\Lambda)</m>: taking global sections of its Hom sheaf can still fail to be exact. In particular, the tensor unit <m>\Lambda_X</m> is flat and locally free of rank one, but is projective only when <m>\Gamma(X,-)</m> is exact.</p>
+      </solution>
+    </example>
+  </section>
+
+  <section xml:id="sh-c08-cup-section">
+    <title>Cup products</title>
+    <proposition xml:id="sh-c08-cup">
+      <idx><h>cup product</h></idx>
+        <statement>
+        <p>There is a natural morphism
+          <md number="no">R\Gamma(X,K)\Ltensor_\Lambda R\Gamma(X,L)\longrightarrow R\Gamma(X,K\Ltensor_\Lambda L)</md>
+          for all <m>K,L\in\D(X;\Lambda)</m>. It is associative, unital, and compatible with the symmetries of the derived tensor products. It defines products
+          <md number="no">H^p(X,K)\otimes_\Lambda H^q(X,L)\longrightarrow H^{p+q}(X,K\Ltensor_\Lambda L).</md>
+          A morphism <m>F\otimes_\Lambda G\to H</m> of sheaves gives, by composition, products <m>H^p(X,F)\otimes_\Lambda H^q(X,G)\to H^{p+q}(X,H)</m>.</p>
+      </statement>
+      <proof>
+        <p>Let <m>a:X\to\{*\}</m>. The inverse image <m>a^{-1}:\D(\Lambda)\to\D(X;\Lambda)</m> is exact and symmetric monoidal. Tensor the counit morphisms <m>a^{-1}R\Gamma(X,K)\to K</m> and <m>a^{-1}R\Gamma(X,L)\to L</m>, and take their adjoint under <m>a^{-1}\dashv R\Gamma(X,-)</m>. This gives the displayed map. Associativity, the unit, and symmetry follow from the corresponding identities for tensor and the counit. For a pairing of sheaves, use the natural augmentation <m>F\Ltensor_\Lambda G\to F\otimes_\Lambda G</m> and then the given pairing. This requires no flatness assumption on <m>F</m> or <m>G</m>.</p>
+      </proof>
+    </proposition>
+    <p>Equivalently, a class in <m>H^p(X,K)</m> is a morphism <m>\Lambda_X[-p]\to K</m>. Tensoring it with a morphism <m>\Lambda_X[-q]\to L</m> gives a morphism <m>\Lambda_X[-p-q]\to K\Ltensor_\Lambda L</m>, which is their cup product. This description also specifies products for negative degrees of complexes. It makes the sign under exchange of factors explicit: after the symmetry <m>K\Ltensor L\simeq L\Ltensor K</m>, the product changes by <m>(-1)^{pq}</m>.</p>
+    <p>For the multiplication of <m>\Lambda_X</m>, the groups <m>H^*(X,\Lambda_X)</m> form a unital graded-commutative <m>\Lambda</m>-algebra. An odd-degree class satisfies <m>2\alpha^2=0</m>; graded commutativity alone does not imply <m>\alpha^2=0</m> over an arbitrary coefficient ring. The pullback maps of <xref ref="sh-c08-pullback"/> preserve these products. The Čech formula for them appears in <xref ref="sh-c09-products"/>. See <url href="https://stacks.math.columbia.edu/tag/0FKU">Stacks, §20.31</url>.</p>
+    <p>The displayed map of derived sections is a product map, not a Künneth isomorphism. Its construction gives no claim that the cohomology of a tensor product is determined by ordinary tensor products of cohomology groups. Torsion and the geometry of the space can both affect that question.</p>
+  </section>
+</chapter>

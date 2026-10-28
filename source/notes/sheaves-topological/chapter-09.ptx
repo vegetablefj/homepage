@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="sh-c09">
+  <title>Čech cohomology and descent on open covers</title>
+  <introduction>
+    <p>A covering turns the sheaf axiom into an augmented complex. Its degree-zero exactness expresses gluing, and its higher cohomology records obstructions to gluing chosen local data. This complex depends on the covering. We construct its comparison with derived cohomology, prove the acyclic-cover criterion, and distinguish a fixed covering from the limit over refinements. The two-open case gives Mayer–Vietoris without any acyclicity assumption on the open sets.</p>
+    <p>All covers in this chapter are open covers. We use ordered tuples with repetitions in Čech cochains. This choice makes refinement maps explicit and avoids choosing an order on the index set. The alternating complex used in many textbooks is discussed separately below.</p>
+  </introduction>
+
+  <section xml:id="sh-c09-complex-section">
+    <title>The complex of a covering</title>
+    <definition xml:id="sh-c09-cech-definition">
+      <idx><h>Čech complex</h></idx>
+        <idx><h>Čech cohomology</h></idx>
+        <statement>
+        <p>Let <m>\mathcal U=(U_i)_{i\in I}</m> cover <m>X</m>, and write <m>U_{i_0\ldots i_p}=U_{i_0}\cap\cdots\cap U_{i_p}</m>. For an abelian or module presheaf <m>F</m>, its <term>Čech complex</term> is
+          <md number="no">\check C^p(\mathcal U,F)=\prod_{(i_0,\ldots,i_p)\in I^{p+1}}F(U_{i_0\ldots i_p}),\qquad p\geq0,</md>
+          with differential
+          <md number="no">(\delta c)_{i_0\ldots i_{p+1}}=\sum_{a=0}^{p+1}(-1)^a c_{i_0\ldots\widehat{i_a}\ldots i_{p+1}}|_{U_{i_0\ldots i_{p+1}}}.</md>
+          Its cohomology is denoted <m>\check H^p(\mathcal U,F)</m>. A cochain in the kernel of <m>\delta</m> is a <term>Čech cocycle</term>; one in the image is a <term>Čech coboundary</term>. The augmentation <m>F(X)\to\check C^0(\mathcal U,F)</m> sends a section to its restrictions.</p>
+      </statement>
+    </definition>
+    <p>The terms indexed by empty intersections are zero for a sheaf of modules. The use of a product allows arbitrary families of local sections. Replacing the product by a direct sum would impose a finite-support condition unrelated to the sheaf axiom, even if the cover were locally finite. In degree zero and one the formulas are
+      <md number="no">(\delta s)_{ij}=s_j|_{U_{ij}}-s_i|_{U_{ij}},\qquad(\delta c)_{ijk}=c_{jk}-c_{ik}+c_{ij}.</md>
+      The restrictions in the second formula are understood. Each term in <m>\delta^2</m> occurs twice with opposite signs, so <m>\delta^2=0</m>.</p>
+    <proposition xml:id="sh-c09-degreezero">
+      <statement>
+        <p>For a sheaf <m>F</m>, the augmentation gives an isomorphism <m>F(X)\simeq\check H^0(\mathcal U,F)</m>. Conversely, a presheaf is a sheaf if and only if this assertion holds for every covering of every open subset.</p>
+      </statement>
+      <proof><p>A degree-zero cocycle is precisely a family <m>(s_i)</m> whose restrictions agree on pairwise intersections. The assertion is the existence and uniqueness of their gluing.</p></proof>
+    </proposition>
+    <p xml:id="sh-c09-repeated-indices">With our convention a one-cocycle automatically satisfies <m>c_{ii}=0</m> and <m>c_{ji}=-c_{ij}</m>, by evaluating its cocycle equation on repeated indices. No such conditions are imposed on arbitrary cochains.<fn xml:id="sh-c09-alternating">If the index set is ordered, one may instead use products over <m>i_0&lt;\cdots&lt;i_p</m> and extend by alternation, setting repeated-index components to zero. This alternating complex has the same cohomology, by an integral normalization argument without division by factorials. We use it for small calculations. See <url href="https://stacks.math.columbia.edu/tag/01FG">Stacks, §20.23</url>.</fn></p>
+    
+    <example xml:id="sh-c09-trivial-cover">
+      <statement>
+        <p>If one member of <m>\mathcal U</m> equals <m>X</m>, the augmented Čech complex is contractible, for every presheaf <m>F</m>.</p>
+      </statement>
+      <solution>
+        <p>Choose <m>i\in I</m> with <m>U_i=X</m> and define <m>(hc)_{i_0\ldots i_{p-1}}=c_{i i_0\ldots i_{p-1}}</m>, including projection onto the <m>i</m> component in degree zero. All required restriction maps are identities on the corresponding intersections. Expansion of <m>\delta h+h\delta</m> cancels the terms containing the inserted index and leaves <m>c</m>. Thus <m>\check H^p(\mathcal U,F)=0</m> for <m>p&gt;0</m>.</p>
+      </solution>
+    </example>
+    <p>In particular the one-member cover <m>(X)</m> has no positive Čech cohomology. It follows already that an arbitrary fixed cover cannot compute every sheaf cohomology group.</p>
+  </section>
+
+  <section xml:id="sh-c09-refinement-section">
+    <title>Refinements and their choices</title>
+    <definition xml:id="sh-c09-refinement">
+      <idx><h>refinement of an open cover</h></idx>
+        <statement>
+        <p>A cover <m>\mathcal V=(V_j)_{j\in J}</m> <term>refines</term> <m>\mathcal U</m> if each <m>V_j</m> is contained in some <m>U_i</m>. A choice of indices <m>r:J\to I</m> with <m>V_j\subseteq U_{r(j)}</m> induces a cochain map
+          <md number="no">r^*:\check C^\bullet(\mathcal U,F)\longrightarrow\check C^\bullet(\mathcal V,F),\qquad(r^*c)_{j_0\ldots j_p}=c_{r(j_0)\ldots r(j_p)}|_{V_{j_0\ldots j_p}}.</md>
+          The <term>Čech cohomology of the space</term> is
+          <md number="no">\check H^p(X,F)=\colim_{\mathcal U}\check H^p(\mathcal U,F),</md>
+          with transition maps given by refinements.</p>
+      </statement>
+    </definition>
+    <proposition xml:id="sh-c09-refinement-homotopy">
+      <statement>
+        <p>The maps on Čech cohomology induced by a refinement are independent of the index choice. They compose under successive refinements, so the colimit in <xref ref="sh-c09-refinement"/> is defined over the preorder of covers.</p>
+      </statement>
+      <proof>
+        <p>Let <m>r,s:J\to I</m> be two choices. For <m>c\in\check C^p(\mathcal U,F)</m>, <m>p\geq1</m>, set
+          <md number="no">(hc)_{j_0\ldots j_{p-1}}=\sum_{a=0}^{p-1}(-1)^a c_{r(j_0)\ldots r(j_a)s(j_a)\ldots s(j_{p-1})}|_{V_{j_0\ldots j_{p-1}}}.</md>
+          The repeated position <m>j_a</m> contributes both <m>r(j_a)</m> and <m>s(j_a)</m>. Every <m>V_{j_b}</m> lies in both corresponding members, so all restrictions make sense. Expanding the two alternating sums gives
+          <md number="no">\delta h+h\delta=s^*-r^*.</md>
+          The interior terms cancel in pairs; the two end terms are the displayed difference. In degree zero the identity reads <m>(h\delta c)_j=c_{s(j)}-c_{r(j)}</m>, which fixes the sign. Thus the maps are homotopic. Composition is equality on cochains when the composite choice is used, and hence is independent of choices on cohomology.</p>
+      </proof>
+    </proposition>
+    <p>Any two covers have a common refinement by their pairwise intersections. One may restrict to covers that are subsets of the topology of <m>X</m>; these form a set, and are cofinal up to refinement among indexed covers. Thus the displayed colimit is an ordinary filtered colimit of modules. A Čech class in this colimit is zero precisely when its representative becomes a coboundary on some refinement. See <url href="https://stacks.math.columbia.edu/tag/09UY">Stacks, §20.15</url>.</p>
+    <p>The distinction between an index choice and the underlying refinement matters on cochains. The two cochain maps are generally different; it is their homotopy classes and their induced cohomology maps that agree. Likewise a class may survive on a chosen cover and disappear after refinement.</p>
+  </section>
+
+  <section xml:id="sh-c09-comparison-section">
+    <title>Comparison with derived cohomology</title>
+    <lemma xml:id="sh-c09-injective-cech">
+      <statement>
+        <p>For an injective sheaf <m>I</m>, the augmented complex
+          <md number="no">0\longrightarrow I(X)\longrightarrow\check C^0(\mathcal U,I)\longrightarrow\check C^1(\mathcal U,I)\longrightarrow\cdots</md>
+          is exact for every open cover.</p>
+      </statement>
+      <proof>
+        <p>For an open set <m>W</m>, write <m>\Lambda_{W!}=j_{W!}\Lambda_W</m>. Form the augmented chain complex of sheaves
+          <md number="no">\cdots\longrightarrow P_1\longrightarrow P_0\longrightarrow\Lambda_X\longrightarrow0,\qquad P_p=\bigoplus_{i_0,\ldots,i_p}\Lambda_{U_{i_0\ldots i_p}!},</md>
+          with boundary the alternating sum of the maps that delete one index. This complex is exact. Indeed, its stalk at <m>x</m> is the augmented chain complex on all tuples of indices whose open sets contain <m>x</m>; choose one such index and insert it at the start to contract that complex. Stalks commute with the direct sums used here.</p>
+        <p>Apply the exact contravariant functor <m>\Hom(-,I)</m>. Since <m>\Hom(\Lambda_{W!},I)=I(W)</m>, the resulting augmented cochain complex is the one in the statement. Injectivity is used for exactness of Hom, rather than for any projectivity assertion about the sheaves <m>\Lambda_{W!}</m>.</p>
+      </proof>
+    </lemma>
+    <theorem xml:id="sh-c09-comparison">
+      <statement>
+        <p>For every sheaf <m>F</m>, there are natural comparison maps
+          <md number="no">\check C^\bullet(\mathcal U,F)\longrightarrow R\Gamma(X,F),\qquad\check H^n(\mathcal U,F)\longrightarrow H^n(X,F).</md>
+          The first is a morphism in <m>\D^+(\Lambda)</m>. There is a first-quadrant spectral sequence
+          <md number="no">E_1^{p,q}=\prod_{i_0,\ldots,i_p}H^q(U_{i_0\ldots i_p},F),\qquad E_2^{p,q}=\check H^p(\mathcal U,\underline H^q_F)\ \Longrightarrow\ H^{p+q}(X,F),</md>
+          where <m>\underline H^q_F</m> is the presheaf <m>W\mapsto H^q(W,F)</m>. Its differential has bidegree <m>(r,1-r)</m>. The comparison is compatible with morphisms of sheaves, refinements, and pullback together with a coefficient morphism.</p>
+      </statement>
+      <proof>
+        <p>Choose an injective resolution <m>F\to I^\bullet</m> and use the double complex
+          <md number="no">B^{p,q}=\check C^p(\mathcal U,I^q),\qquad d=\delta+(-1)^p d_I.</md>
+          By <xref ref="sh-c09-injective-cech"/>, every augmented horizontal row is exact. Hence the augmentation
+          <m>\Gamma(X,I^\bullet)\to\Tot B</m> is a quasi-isomorphism. There is also a map <m>\check C^\bullet(\mathcal U,F)\to\Tot B</m>. Composing it in the derived category with the inverse of the augmentation gives the comparison.</p>
+        <p xml:id="sh-c09-comparison-page">Restriction of an injective sheaf to an open set is injective. Taking vertical cohomology in <m>B</m> therefore gives the displayed <m>E_1</m> page. Products of modules are exact, so vertical cohomology commutes with the products. The next differential is the Čech differential of the cohomology presheaf. Every total degree has finitely many possible <m>(p,q)</m>, which gives convergence with a finite filtration. Comparison of injective resolutions proves independence of the choice. Refinement maps commute with the augmentations, and the same construction with a map of resolutions proves the functoriality assertions. See <url href="https://stacks.math.columbia.edu/tag/01EO">Stacks, Lemmas 20.11.2 and 20.11.5</url> and <url href="https://stacks.math.columbia.edu/tag/09UY">Lemma 20.15.1</url>.<fn xml:id="sh-c09-cohomology-presheaf">The underline marks a presheaf. For <m>q&gt;0</m>, <m>\underline H^q_F</m> has zero associated sheaf by <xref ref="sh-c08-directimage-local"/>, but its values on intersections can be nonzero. Sheafifying it on the <m>E_2</m> page would incorrectly force degeneration for every cover.</fn></p>
+        
+      </proof>
+    </theorem>
+    <corollary xml:id="sh-c09-lowdegree">
+      <statement>
+        <p>For every fixed cover there is an exact sequence
+          <md number="no">0\longrightarrow\check H^1(\mathcal U,F)\longrightarrow H^1(X,F)\longrightarrow\check H^0(\mathcal U,\underline H^1_F)\longrightarrow\check H^2(\mathcal U,F)\longrightarrow H^2(X,F).</md>
+          In particular the degree-one fixed-cover comparison is injective. Passing to all refinements gives isomorphisms <m>\check H^n(X,F)\simeq H^n(X,F)</m> for <m>n=0,1</m>, and an injection for <m>n=2</m>.</p>
+      </statement>
+      <proof>
+        <p>The five-term sequence is the low-degree sequence of <xref ref="sh-c09-comparison"/>. To pass to refinements, note that an element of <m>\check H^0(\mathcal U,\underline H^1_F)</m> is a family of local degree-one classes. Each class vanishes on a cover of its open set, because the associated sheaf of <m>\underline H^1_F</m> is zero. Refining by all those smaller sets kills the family. Its colimit is therefore zero. Filtered colimits of modules are exact, which proves the last assertions. The degree-zero assertion is already the sheaf axiom.</p>
+      </proof>
+    </corollary>
+    <p>One can also see surjectivity in degree one directly. Represent a derived class by a closed section <m>b\in I^1(X)</m>. Locally, <m>b=da_i</m> with <m>a_i\in I^0(U_i)</m>. Then <m>c_{ij}=a_i-a_j</m> belongs to <m>F(U_{ij})</m> and is a Čech one-cocycle. In the total complex, <m>c=b-d_{\Tot}(a)</m>, so its comparison class is <m>[b]</m>.<fn>The sign here concerns the realization of a Čech class in this particular total complex. The opposite differences <m>a_j-a_i</m> map to <m>-[b]</m>. In describing a connecting morphism by local lifts, one must also fix the convention for the extension class and the comparison. The formula <m>(\delta s)_{ij}=s_j-s_i</m> itself remains fixed.</fn> This is the local lifting construction behind the torsor classification in <xref ref="sh-c10"/>.</p>
+  </section>
+
+  <section xml:id="sh-c09-acyclic-section">
+    <title>Acyclic covers and computations</title>
+    <definition xml:id="sh-c09-acyclic-cover-definition">
+      <idx><h>acyclic cover</h></idx>
+        <statement>
+        <p>A cover <m>\mathcal U</m> is <term>acyclic for <m>F</m></term> if
+          <md number="no">H^q(U_{i_0\ldots i_p},F)=0</md>
+          for every <m>q&gt;0</m> and every nonempty finite intersection of members of the cover. This condition depends on both the cover and the sheaf.</p>
+      </statement>
+    </definition>
+    <theorem xml:id="sh-c09-acyclic-cover">
+      <statement>
+        <p>If <m>\mathcal U</m> is acyclic for <m>F</m>, the comparison maps
+          <md number="no">\check H^n(\mathcal U,F)\xrightarrow{\sim}H^n(X,F)</md>
+          are isomorphisms for all <m>n</m>. More generally, if <m>K</m> is bounded below and every term <m>K^a</m> is acyclic for sections on every finite intersection, then
+          <md number="no">\Tot\check C^\bullet(\mathcal U,K^\bullet)\longrightarrow R\Gamma(X,K)</md>
+          is a quasi-isomorphism.</p>
+      </statement>
+      <proof>
+        <p>For a sheaf, the positive rows of the <m>E_1</m> page in <xref ref="sh-c09-comparison"/> vanish. The remaining row is <m>\check C^\bullet(\mathcal U,F)</m>, which proves the assertion. For a complex, apply a functorial Godement resolution termwise. Compare the total complex of the resulting Čech double complexes with the Čech complex of <m>K</m>. On each intersection, the acyclic resolution theorem identifies the section complex of <m>K</m> with its derived sections. Taking the Čech products preserves quasi-isomorphisms of these module complexes. The remaining totalizations converge because the Čech and resolution degrees are nonnegative and <m>K</m> is bounded below. This proves the comparison. The sheaf version is also <url href="https://stacks.math.columbia.edu/tag/01EO">Stacks, Lemma 20.11.6</url>.</p>
+      </proof>
+    </theorem>
+    <p>No separation or local finiteness assumption on <m>X</m> or the cover occurs in this theorem. The hypothesis is cohomological. A geometrically described good cover becomes useful only after one proves that its intersections are acyclic for the chosen coefficients. Contractibility alone is not a general criterion for arbitrary sheaves. The comparison with locally constant and singular coefficients is established in <xref ref="sh-c11"/>.</p>
+    <proposition xml:id="sh-c09-partial-acyclicity">
+      <statement>
+        <p>Fix <m>N\geq1</m>. It is enough to assume
+          <md number="no">H^q(U_{i_0\ldots i_p},F)=0\qquad(q&gt;0,\ p+q\leq N)</md>
+          to obtain comparison isomorphisms in degrees <m>n\leq N</m>. If the vanishing is known only for <m>p+q&lt;N</m>, the comparison is an isomorphism for <m>n&lt;N</m> and injective for <m>n=N</m>.</p>
+      </statement>
+      <proof>
+        <p>In the spectral sequence, all positive-row terms below the stated diagonal are zero already on <m>E_1</m>. An incoming differential to <m>E_r^{n,0}</m> has source <m>E_r^{n-r,r-1}</m>, of total degree <m>n-1</m>. Those sources vanish in the asserted range, and no differential leaves the bottom row for <m>r\geq2</m>. Thus the bottom-row edge map is injective through degree <m>N</m>. To make it surjective, the other associated graded pieces of the abutment in that degree must also vanish. They do vanish under the hypothesis including the diagonal. Below degree <m>N</m> they vanish under either hypothesis.</p>
+      </proof>
+    </proposition>
+    <p>This finite-degree form can reduce the work in a low-degree calculation. To compute <m>H^1</m>, for example, vanishing of <m>H^1(U_i,F)</m> is sufficient; one need not establish all higher cohomology groups on every intersection. To compute <m>H^2</m> by the same criterion, one checks <m>H^1</m> on pairwise intersections and <m>H^1,H^2</m> on the individual members. The full acyclic-cover condition is convenient when one wants all degrees or a comparison of complexes.</p>
+    <example xml:id="sh-c09-twoopen-computation">
+      <statement>
+        <p>Suppose <m>X=U\cup V</m>, and <m>F</m> is acyclic on <m>U</m>, <m>V</m>, and <m>U\cap V</m>. Then
+          <md number="no">H^0(X,F)=\ker\bigl(F(U)\oplus F(V)\longrightarrow F(U\cap V)\bigr),</md>
+          <md number="no">H^1(X,F)=\coker\bigl(F(U)\oplus F(V)\longrightarrow F(U\cap V)\bigr),</md>
+          and <m>H^n(X,F)=0</m> for <m>n\geq2</m>. The map is <m>(s,t)\mapsto t|-s|</m>.</p>
+      </statement>
+      <solution>
+        <p>Use the alternating complex for the two-member cover. It has only degrees zero and one. The acyclic-cover theorem identifies its cohomology with derived cohomology.</p>
+      </solution>
+    </example>
+    <p>For a circle covered by two arcs whose intersection has two components, the constant sheaf has section modules <m>\Lambda</m>, <m>\Lambda</m>, and <m>\Lambda^2</m>. The map is <m>(a,b)\mapsto(b-a,b-a)</m>, with cokernel <m>\Lambda</m>. The acyclicity needed for this computation is supplied in <xref ref="sh-c11"/>, and the resulting class is discussed in <xref ref="sh-c10"/>. Using the constant presheaf, which assigns only one copy of <m>\Lambda</m> to the disconnected intersection, would give the wrong complex.</p>
+    <p>The same example, for <m>\Lambda\ne0</m>, shows that the cover <m>(X)</m> has <m>\check H^1((X),\Lambda_X)=0</m> while <m>H^1(X,\Lambda_X)\ne0</m>. A sufficiently fine acyclic cover detects the class. A single cover and the colimit over covers must therefore be distinguished even in degree one.</p>
+    <p>There are useful topological hypotheses under which all-cover Čech cohomology agrees with derived cohomology in every degree. For example, this holds for every abelian sheaf on a compact Hausdorff space; see <url href="https://stacks.math.columbia.edu/tag/09V0">Stacks, Lemma 20.16.2</url>. The refinement argument for that theorem uses the stated topological hypotheses. For the arbitrary spaces of this note, our general comparison is the spectral sequence and the low-degree result above. For an actual computation in higher degree we will verify an acyclic cover or apply an appropriate comparison theorem.</p>
+  </section>
+
+  <section xml:id="sh-c09-mayer-section">
+    <title>Mayer–Vietoris without acyclic intersections</title>
+    <theorem xml:id="sh-c09-mayer-vietoris">
+      <title>Mayer–Vietoris</title>
+      <statement>
+        <p>Let <m>X=U\cup V</m> be a union of two open sets. For every <m>K\in\D(X;\Lambda)</m> there is a natural distinguished triangle
+          <md number="no">R\Gamma(X,K)\longrightarrow R\Gamma(U,K)\oplus R\Gamma(V,K)\longrightarrow R\Gamma(U\cap V,K)\longrightarrow R\Gamma(X,K)[1],</md>
+          where the second map is restriction from <m>V</m> minus restriction from <m>U</m>. Its long exact sequence includes
+          <md number="no">\cdots\longrightarrow H^n(X,K)\longrightarrow H^n(U,K)\oplus H^n(V,K)\longrightarrow H^n(U\cap V,K)\xrightarrow{\partial}H^{n+1}(X,K)\longrightarrow\cdots.</md>
+        </p>
+      </statement>
+      <proof>
+        <p>Choose a K-injective resolution <m>K\to I</m> with injective terms. In each degree, the sheaf axiom gives exactness at the first two positions of
+          <md number="no">0\longrightarrow\Gamma(X,I)\longrightarrow\Gamma(U,I)\oplus\Gamma(V,I)\longrightarrow\Gamma(U\cap V,I)\longrightarrow0.</md>
+          The last map is surjective because every term of <m>I</m> is flabby: a section on the intersection extends to <m>V</m>. This is a short exact sequence of complexes, even when <m>I</m> is unbounded. Restriction preserves K-injectives, so its three complexes represent the derived sections stated in the theorem. The triangle and long exact sequence follow.</p>
+      </proof>
+    </theorem>
+    <p>The theorem uses the cohomology of the open sets and the intersection in every degree. In contrast, the elementary two-term Čech complex uses only their ordinary sections. Its replacement of derived sections by ordinary sections is justified by the acyclic-cover hypothesis, not by the Mayer–Vietoris theorem itself. This distinction explains the additional rows of the Čech comparison spectral sequence.</p>
+    <p>The boundary can be calculated from the proof. Represent a class on <m>U\cap V</m> by a cocycle <m>c\in\Gamma(U\cap V,I^n)</m>. Choose a pair <m>(a,b)</m> of degree-<m>n</m> sections with <m>b|-a|=c</m>. Their differential restricts to zero under the difference map, so it is the image of a unique global section <m>e\in\Gamma(X,I^{n+1})</m>. This section is closed and represents <m>\partial[c]</m>. Changing the lift or the cocycle changes <m>e</m> by a coboundary. This is the connecting-map construction for a short exact sequence of complexes with our difference convention.</p>
+    <p>The argument also works after taking sections on inverse images of opens of a target space, giving the relative Mayer–Vietoris sequence for higher direct images. A reference for the classical sheaf statement and its relative form is <url href="https://stacks.math.columbia.edu/tag/01E9">Stacks, §20.8</url>.</p>
+  </section>
+
+  <section xml:id="sh-c09-products-section">
+    <title>Products and the scope of the comparison</title>
+    <proposition xml:id="sh-c09-products">
+      <statement>
+        <p>A pairing <m>F\otimes_\Lambda G\to H</m> gives a product on Čech cochains by
+          <md number="no">(c\smile d)_{i_0\ldots i_{p+q}}=c_{i_0\ldots i_p}|_{U_{i_0\ldots i_{p+q}}}\,\cdot\,d_{i_p\ldots i_{p+q}}|_{U_{i_0\ldots i_{p+q}}}.</md>
+          It satisfies <m>\delta(c\smile d)=\delta c\smile d+(-1)^p c\smile\delta d</m> and induces
+          <md number="no">\check H^p(\mathcal U,F)\otimes_\Lambda\check H^q(\mathcal U,G)\longrightarrow\check H^{p+q}(\mathcal U,H).</md>
+          Under the comparison maps to derived cohomology this is the cup product of <xref ref="sh-c08-cup"/>. Refinement maps preserve the products.</p>
+      </statement>
+      <proof>
+        <p>Expand the alternating sum on the union of the front and back tuples. The terms deleting an index before the shared vertex give <m>\delta c\smile d</m>; those after it give <m>(-1)^p c\smile\delta d</m>. The two terms at the shared vertex cancel. This proves the differential identity. Restriction of tuples commutes with the formula, proving compatibility with refinement. Comparison with the derived product follows by applying the same front-and-back diagonal to the augmented Čech resolution and passing to resolutions of the coefficients; it is the Alexander–Whitney comparison. A detailed comparison with the derived cup product is <url href="https://stacks.math.columbia.edu/tag/0FKU">Stacks, Lemma 20.31.4</url>.</p>
+      </proof>
+    </proposition>
+    <p>For a sheaf of commutative algebras this product is associative on cochains. It is generally not graded commutative on cochains; graded commutativity is a cohomology assertion with a homotopy behind it. When an acyclic cover computes derived cohomology, its Čech classes therefore compute the cohomology algebra as well as the individual groups.</p>
+    <p>For a bounded below complex, the total Čech degree is the sum of the covering degree and the complex degree, and the differential is <m>\delta+(-1)^p d_K</m> on covering degree <m>p</m>. For a genuinely unbounded complex, each diagonal can be infinite. The bounded below comparison proof does not authorize changing the totalization to a product, or treating an unbounded complex of acyclic terms as a resolution. Unbounded Čech constructions require additional convergence arguments; K-injective derived sections remain the definition in that range.</p>
+  </section>
+</chapter>

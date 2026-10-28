@@ -1,0 +1,232 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="sh-c07">
+  <title>Resolutions and derived sheaf operations</title>
+  <introduction>
+    <p>A sheaf epimorphism admits local lifts, whereas cohomology measures the obstruction to choosing compatible lifts. Injective and flabby resolutions replace this local lifting problem by complexes on which sections can be taken directly. We construct the Godement resolution explicitly, then explain the replacements needed for unbounded complexes. Throughout, the space is arbitrary and the coefficient ring is the fixed commutative ring <m>\Lambda</m>.</p>
+    <p>We use the homotopy and derived categories of cochain complexes, denoted <m>\K(X;\Lambda)</m> and <m>\D(X;\Lambda)</m>. General comparison theorems for resolutions, cones, and total derived functors are used in the form developed in the <url href="../homological-algebra/homological-algebra-notes.html">homological algebra note</url>. The arguments retained here explain the additional facts about sheaves that make those theorems apply.</p>
+  </introduction>
+
+  <section xml:id="sh-c07-injective-section">
+    <title>Injectives and extension of sections</title>
+    <definition xml:id="sh-c07-injective">
+      <idx><h>injective sheaf</h></idx>
+        <idx><h>injective resolution</h></idx>
+        <statement>
+        <p>A sheaf <m>I</m> is <term>injective</term> if every morphism <m>A\to I</m> extends across every monomorphism <m>A\hookrightarrow B</m>. Equivalently, the contravariant functor <m>\Hom_{\Sh(X;\Lambda)}(-,I)</m> is exact. An <term>injective resolution</term> of <m>F</m> is an exact sequence
+          <md number="no">0\longrightarrow F\longrightarrow I^0\longrightarrow I^1\longrightarrow\cdots</md>
+          with injective terms. The category <m>\Sh(X;\Lambda)</m> has enough injectives by <xref ref="sh-c03-grothendieck"/>.</p>
+      </statement>
+    </definition>
+    <proposition xml:id="sh-c07-injective-functors">
+      <statement>
+        <p>For an open inclusion <m>j:U\hookrightarrow X</m>, restriction sends injective sheaves to injective sheaves. For a continuous map <m>f:X\to Y</m>, direct image sends injective sheaves of <m>\Lambda</m>-modules to injective sheaves of <m>\Lambda</m>-modules.</p>
+      </statement>
+      <proof>
+        <p>The left adjoints of these two functors are <m>j_!</m> and <m>f^{-1}</m>. Both are exact by <xref ref="sh-c04-openextension"/> and <xref ref="sh-c04-exactness"/>. If <m>L</m> is an exact left adjoint of <m>R</m>, then
+          <m>\Hom(-,RI)=\Hom(L(-),I)</m> is exact whenever <m>I</m> is injective.</p>
+      </proof>
+    </proposition>
+    <proposition xml:id="sh-c07-injective-supply">
+      <statement>
+        <p>For every <m>F</m>, choose module embeddings <m>F_x\hookrightarrow J_x</m> with <m>J_x</m> injective over <m>\Lambda</m>. Then there is a natural monomorphism for these choices
+          <md number="no">F\longrightarrow\prod_{x\in X}i_{x*}J_x,</md>
+          and the target is an injective sheaf. Every injective sheaf is a direct summand of a product of this form.</p>
+      </statement>
+      <proof>
+        <p>The stalk functor <m>i_x^{-1}</m> is exact and left adjoint to <m>i_{x*}</m>, so <m>i_{x*}J_x</m> is injective. A product of injectives is injective: Hom into the product is the product of the exact Hom functors, and products of modules are exact. The embeddings of stalks give maps <m>F\to i_{x*}J_x</m> by adjunction. The product map is a monomorphism. To check this at <m>x</m>, its composite with the projection onto <m>i_{x*}J_x</m> has stalk the chosen injection <m>F_x\hookrightarrow J_x</m>. If <m>F</m> is injective, its monomorphism into this product splits.</p>
+      </proof>
+    </proposition>
+    <p>This also proves enough injectives directly, using enough injectives in the module category. The Godement sheaf below uses the same point direct images with <m>J_x</m> replaced by <m>F_x</m>. Those modules need not be injective, which is one reason that the Godement resolution is a flabby resolution rather than an injective resolution.</p>
+    <p>Here fixed coefficients matter: <m>f^{-1}</m> is the actual left adjoint in the module categories under consideration. The analogous statement for direct image between arbitrary ringed spaces requires attention to the exactness of the corresponding left adjoint.<fn>The inverse image of an injective sheaf need not be injective. Nor does the stalk of an injective sheaf have to be an injective module. The adjunctions used in this proposition have the opposite direction from either of those assertions.</fn></p>
+    <definition xml:id="sh-c07-flabby">
+      <idx><h>flabby sheaf</h></idx>
+        <idx><h>flasque sheaf</h></idx>
+        <idx><h>acyclic sheaf</h></idx>
+        <statement>
+        <p>A sheaf <m>F</m> is <term>flabby</term>, or <term>flasque</term>, if every restriction <m>F(U)\to F(V)</m> for open sets <m>V\subseteq U</m> is surjective. It is equivalent to require surjectivity of <m>F(X)\to F(V)</m> for every open <m>V</m>. A sheaf is <term>acyclic for sections on <m>U</m></term> if its positive right derived functors for <m>\Gamma(U,-)</m> vanish.</p>
+      </statement>
+    </definition>
+    <proposition xml:id="sh-c07-injective-flabby">
+      <statement>
+        <p>Every injective sheaf is flabby. Restrictions and direct images of flabby sheaves are flabby. Products of flabby sheaves are flabby.</p>
+      </statement>
+      <proof>
+        <p>Write <m>\Lambda_{U!}=j_{U!}\Lambda_U</m> for the open extension by zero of the constant sheaf on <m>U</m>. A section of <m>I</m> on <m>U</m> is a morphism <m>\Lambda_{U!}\to I</m>. For <m>V\subseteq U</m>, the natural map <m>\Lambda_{V!}\to\Lambda_{U!}</m> is a monomorphism, as one sees on stalks. Injectivity of <m>I</m> therefore makes <m>I(U)\to I(V)</m> surjective. The other assertions follow from the formulas for restriction, direct image, and products of sheaves.</p>
+      </proof>
+    </proposition>
+    <lemma xml:id="sh-c07-flabby-lifting">
+      <statement>
+        <p>If <m>0\to F\to G\to H\to0</m> is exact and <m>F</m> is flabby, then <m>G(U)\to H(U)</m> is surjective for every open <m>U</m>. If <m>G</m> is also flabby, then <m>H</m> is flabby.</p>
+      </statement>
+      <proof>
+        <p>Fix <m>h\in H(U)</m>. Order the pairs <m>(V,g)</m>, where <m>V\subseteq U</m> is open and <m>g\in G(V)</m> lifts <m>h|_V</m>, by extension of sections. A chain has an upper bound by the sheaf axiom. Choose a maximal pair. If <m>x\in U\setminus V</m>, the epimorphism <m>G\to H</m> provides a lift <m>g_W</m> on an open neighborhood <m>W\subseteq U</m> of <m>x</m>. On <m>V\cap W</m>, the difference <m>g|_{V\cap W}-g_W|_{V\cap W}</m> comes from a section of <m>F</m>. Extend that section to <m>W</m> by flabbiness and add its image to <m>g_W</m>. The two lifts now agree on the intersection, so they glue on <m>V\cup W</m>, contradicting maximality. Thus <m>V=U</m>.</p>
+        <p>If <m>G</m> is flabby, lift a section of <m>H(V)</m> to <m>G(V)</m>, extend it to <m>G(U)</m>, and take its image in <m>H(U)</m>.</p>
+      </proof>
+    </lemma>
+    <proposition xml:id="sh-c07-flabby-acyclic">
+      <statement>
+        <p>A flabby sheaf is acyclic for <m>\Gamma(U,-)</m> on every open <m>U</m>, and for <m>f_*</m> under every continuous map <m>f</m>. Consequently, a bounded below resolution by flabby sheaves computes these right derived functors.</p>
+      </statement>
+      <proof>
+        <p>Embed a flabby sheaf <m>F</m> into an injective <m>I</m>. Its cokernel is flabby by <xref ref="sh-c07-flabby-lifting"/>, and taking sections on any open preserves the resulting short exact sequence. Repeating gives an injective resolution whose successive kernels are flabby. Its section complex is exact in positive degrees. The same argument applies to <m>f_*</m>, since its sections on <m>V\subseteq Y</m> are sections on <m>f^{-1}V</m>. The assertion about resolutions is the acyclic resolution theorem.</p>
+      </proof>
+    </proposition>
+    <p>The definition of flabbiness concerns extension of individual sections. Acyclicity concerns the exactness of a resolution after applying a functor. The implication between them uses the lifting lemma; they are different conditions. See also <url href="https://stacks.math.columbia.edu/tag/09SV">Stacks, §20.12</url>.</p>
+    <proposition xml:id="sh-c07-hom-injective">
+      <statement>
+        <p>For every sheaf <m>F</m> and injective sheaf <m>I</m>, the sheaf <m>\sheafHom_\Lambda(F,I)</m> is flabby. If <m>F</m> is flat, it is injective.</p>
+      </statement>
+      <proof>
+        <p>For <m>V\subseteq U</m>, use the monomorphism
+          <md number="no">j_{V!}(F|_V)\longrightarrow j_{U!}(F|_U).</md>
+          It is a monomorphism on stalks, with the identity on <m>V</m> and zero source outside <m>V</m>. Applying Hom into <m>I</m> extends every morphism <m>F|_V\to I|_V</m> to <m>U</m>. These Hom modules are the section modules of the internal Hom sheaf. If <m>F</m> is flat, the tensor–Hom adjunction gives
+          <md number="no">\Hom(A,\sheafHom_\Lambda(F,I))\simeq\Hom(A\otimes_\Lambda F,I).</md>
+          Both tensoring with <m>F</m> and Hom into <m>I</m> are exact, so the internal Hom is injective.</p>
+      </proof>
+    </proposition>
+    <p>For example, applying internal Hom from an arbitrary sheaf to an injective resolution yields a bounded below complex of flabby sheaves. Its ordinary global sections already compute its derived global sections. This is the bounded below explanation of the local-to-global Ext comparison in <xref ref="sh-c08-ext-global"/>; flatness is only needed for the stronger injectivity assertion.</p>
+    <example xml:id="sh-c07-flabby-examples">
+      <statement>
+        <p>For the inclusion <m>i_x:\{x\}\to X</m> and a module <m>M</m>, the sheaf <m>i_{x*}M</m> is flabby. If <m>\Lambda\ne0</m>, the constant sheaf <m>\Lambda_{\R}</m> on the real line is not flabby.</p>
+      </statement>
+      <solution>
+        <p>The sections of <m>i_{x*}M</m> on an open <m>U</m> are <m>M</m> when <m>x\in U</m> and zero otherwise, so all restriction maps are surjective. No closedness assumption on <m>x</m> is needed. On the real line, a global locally constant function is constant. On the union of two disjoint nonempty intervals there is a locally constant function taking the values zero and one. It does not extend globally.<fn>Flabbiness is stronger than being acyclic on the whole space. For example, the constant sheaf on the real line is acyclic; that uses the comparison theorem of <xref ref="sh-c11"/>, not the preceding elementary argument.</fn></p>
+      </solution>
+    </example>
+  </section>
+
+  <section xml:id="sh-c07-godement-section">
+    <title>The Godement resolution</title>
+    <p>A resolution by injectives is appropriate for existence and comparison arguments. A resolution whose first term has an explicit description is often more useful for understanding how local data enter cohomology.</p>
+    <definition xml:id="sh-c07-godement">
+      <idx><h>Godement resolution</h></idx>
+        <statement>
+        <p>For a sheaf <m>F</m>, define
+          <md number="no">T(F)(U)=\prod_{x\in U}F_x.</md>
+          Restrictions discard the components outside the smaller open set. The map <m>\eta_F:F\to T(F)</m> sends a section to its family of germs. Set <m>Q(F)=\coker(\eta_F)</m>, <m>Q^0(F)=F</m>, and
+          <md number="no">G^n(F)=T(Q^n(F)),\qquad n\geq0.</md>
+          The differential <m>G^n(F)\to G^{n+1}(F)</m> is the quotient onto <m>Q^{n+1}(F)</m> followed by its germ embedding. The augmented complex <m>F\to G^\bullet(F)</m> is the <term>Godement resolution</term> used here.</p>
+      </statement>
+    </definition>
+    <proposition xml:id="sh-c07-godement-properties">
+      <statement>
+        <p>The functors <m>T</m>, <m>Q</m>, and <m>G^n</m> are exact. The map <m>\eta_F</m> is a monomorphism, each <m>G^n(F)</m> is flabby, and
+          <md number="no">0\longrightarrow F\longrightarrow G^0(F)\longrightarrow G^1(F)\longrightarrow\cdots</md>
+          is a functorial resolution.</p>
+      </statement>
+      <proof>
+        <p>The rule defining <m>T(F)</m> is a sheaf: compatible families of assignments of germs glue component by component. It is flabby because an assignment on a smaller open set extends by assigning zero at the remaining points. A section with all germs zero is zero, so <m>\eta_F</m> is injective. Stalks are exact functors, and products of modules are exact. It follows that <m>T</m> takes a short exact sequence to a sequence exact on sections on every open, hence to a short exact sequence of sheaves. The snake lemma applied to the natural monomorphisms <m>\eta</m> proves exactness of <m>Q</m>. Iteration proves exactness of <m>G^n</m>. Finally the short exact sequences
+          <md number="no">0\longrightarrow Q^n(F)\longrightarrow G^n(F)\longrightarrow Q^{n+1}(F)\longrightarrow0</md>
+          show directly that the augmented complex is exact.</p>
+      </proof>
+    </proposition>
+    <p xml:id="sh-c07-godement-description">Thus <m>T(F)</m> allows arbitrary assignments of germs, with no continuity or local representability requirement. The quotient <m>Q(F)</m> is the sheaf cokernel of the locally representable assignments. Taking its quotient sheaf is essential: the presheaf quotient need not be a sheaf. One can also write <m>T(F)=\prod_{x\in X}i_{x*}F_x</m>. This equality describes the functor, rather than asserting a formula for its stalks as a product of stalks.<fn>Infinite products of sheaves are computed on sections, but taking a stalk need not commute with an infinite product. The stalk of <m>T(F)</m> at <m>x</m> contains information from arbitrarily small neighborhoods of <m>x</m>, and is usually much larger than <m>F_x</m>.</fn><fn xml:id="sh-c07-godement-models">The name Godement resolution also refers to the cosimplicial resolution from the adjunction between <m>X</m> and its discrete underlying space. Its terms involve iterates of <m>T</m>. Our successive-cokernel model computes the same derived functors; its terms and extra multiplicative structures are different. See <xref ref="sh-bib-godement"/> and <url href="https://stacks.math.columbia.edu/tag/0FKR">Stacks, §20.30</url>.</fn></p>
+    
+    <proposition xml:id="sh-c07-godement-complex">
+      <statement>
+        <p>Let <m>K^\bullet</m> be a bounded below complex of sheaves. Apply <m>G^q</m> to each term and use the double complex <m>G^q(K^p)</m>, with total differential <m>d_K+(-1)^p d_G</m>. Its total complex is bounded below and flabby in every degree, and the augmentation
+          <md number="no">K^\bullet\longrightarrow\Tot G^\bullet(K^\bullet)</md>
+          is a quasi-isomorphism. Applying <m>\Gamma(U,-)</m> or <m>f_*</m> to this total complex computes the corresponding derived functor of <m>K^\bullet</m>.</p>
+      </statement>
+      <proof>
+        <p>If <m>K^p=0</m> for <m>p&lt;p_0</m>, only finitely many pairs <m>(p,q)</m> with <m>q\geq0</m> contribute to any fixed total degree. Thus every term of the total complex is a finite direct sum of flabby sheaves. Filtering the augmented double complex in the resolution direction and using exactness of each Godement resolution proves that its augmentation is a quasi-isomorphism. The acyclic resolution theorem and <xref ref="sh-c07-flabby-acyclic"/> then apply.</p>
+      </proof>
+    </proposition>
+    <p>Boundedness enters both the finite sums and the convergence of this double-complex argument. For an unbounded <m>K</m>, one cannot justify either a sum totalization or a product totalization merely by saying that the columns are resolutions. We use K-injective resolutions for that case.</p>
+  </section>
+
+  <section xml:id="sh-c07-unbounded-section">
+    <title>K-injective resolutions and direct image</title>
+    <definition xml:id="sh-c07-kinjective">
+      <idx><h>K-injective complex</h></idx>
+        <statement>
+        <p>A complex <m>I</m> is <term>K-injective</term> if
+          <md number="no">\Hom_{\K(X;\Lambda)}(A,I)=0</md>
+          for every acyclic complex <m>A</m>. Equivalently, the complex of module homomorphisms <m>\underline{\Hom}^{\bullet}(A,I)</m> is acyclic for every such <m>A</m>. The equivalence uses all shifts of <m>A</m>. A <term>K-injective resolution</term> is a quasi-isomorphism <m>K\to I</m> with <m>I</m> K-injective.</p>
+      </statement>
+    </definition>
+    <p>The K-injective condition is a property of the whole complex. Every bounded below complex of injectives is K-injective. For an arbitrary unbounded complex, injectivity of the individual terms does not suffice. The general statements and their proofs are recorded in the <url href="../homological-algebra/ha-c10.html">chapter on unbounded resolutions</url>.</p>
+    <theorem xml:id="sh-c07-kinjective-existence">
+      <statement>
+        <p>Every complex in <m>\Sh(X;\Lambda)</m> admits a K-injective resolution whose terms are injective sheaves. The resolution may be chosen functorially in complexes.</p>
+      </statement>
+      <proof>
+        <p>The category <m>\Sh(X;\Lambda)</m> is Grothendieck by <xref ref="sh-c03-grothendieck"/>. Apply the existence theorem for K-injective resolutions in a Grothendieck abelian category. A precise sheaf formulation is <url href="https://stacks.math.columbia.edu/tag/079V">Stacks, §20.28</url>; see also <xref ref="sh-bib-spaltenstein"/> for the unbounded resolution methods. This existence theorem is the general homological algebra used here.</p>
+      </proof>
+    </theorem>
+    <example xml:id="sh-c07-unbounded-warning">
+      <statement>
+        <p>An unbounded acyclic complex can have every term injective and flat, while failing to be K-injective and K-flat. This happens already when <m>X</m> is a point.</p>
+      </statement>
+      <solution>
+        <p>Take a field <m>k</m> and <m>\Lambda=k[\epsilon]/(\epsilon^2)</m>. The pairing taking <m>(a,b)</m> to the coefficient of <m>\epsilon</m> in <m>ab</m> identifies <m>\Lambda</m> with <m>\Hom_k(\Lambda,k)</m> as a module over itself. The latter is injective, since Hom into it is naturally <m>\Hom_k(-,k)</m>, an exact functor. Consider the complex <m>P</m> with a copy of <m>\Lambda</m> in every degree and every differential multiplication by <m>\epsilon</m>. It is acyclic because both the kernel and image are <m>\epsilon\Lambda</m>.</p>
+        <p>If <m>P</m> were K-injective, its identity would be null-homotopic. Every component of <m>dh+hd</m> is multiplication by an element in <m>\epsilon\Lambda</m>, so it cannot equal the identity. It is also not K-flat. Indeed, an acyclic K-flat complex has acyclic tensor product with every module: resolve the module by a bounded above flat complex and compare the two tensor products using K-flatness in each variable. But <m>P\otimes_\Lambda k</m> has a copy of <m>k</m> in every degree and zero differential.</p>
+      </solution>
+    </example>
+    <proposition xml:id="sh-c07-derived-directimage">
+      <idx><h>derived direct image</h></idx>
+        <statement>
+        <p>For every continuous <m>f:X\to Y</m>, direct image preserves K-injective complexes. Restriction to an open set also preserves K-injective complexes. The prescriptions
+          <md number="no">Rf_*K=f_*I,\qquad R\Gamma(X,K)=\Gamma(X,I),\qquad K\longrightarrow I</md>
+          define exact functors on unbounded derived categories
+          <md number="no">Rf_*:\D(X;\Lambda)\longrightarrow\D(Y;\Lambda),\qquad R\Gamma(X,-):\D(X;\Lambda)\longrightarrow\D(\Lambda).</md>
+          They extend the usual bounded below right derived functors. Moreover <m>f^{-1}\dashv Rf_*</m>, and for <m>g:Y\to Z</m> there is a natural isomorphism
+          <md number="no">Rg_*Rf_*\simeq R(gf)_*.</md>
+        </p>
+      </statement>
+      <proof>
+        <p>If <m>A</m> is acyclic on <m>Y</m>, exactness of inverse image and the adjunction on homotopy categories give
+          <md number="no">\Hom_{\K(Y;\Lambda)}(A,f_*I)=\Hom_{\K(X;\Lambda)}(f^{-1}A,I)=0.</md>
+          For restriction, use its exact left adjoint <m>j_!</m> in the same argument. Maps into a K-injective complex in the derived category are already computed in the homotopy category. This proves independence of the resolution, as well as the derived adjunction. Finally, <m>f_*I</m> is K-injective, so both sides of the composition formula are represented by the same complex <m>g_*f_*I</m>. Applying this to the map to a point gives the assertion about derived sections.</p>
+      </proof>
+    </proposition>
+    <p>For example, if <m>j:U\hookrightarrow X</m>, then <m>R\Gamma(U,K)</m> can be computed as <m>\Gamma(U,I)</m> using a K-injective resolution on <m>X</m>; no second resolution on <m>U</m> is necessary. Flabby resolutions remain useful for sheaves and bounded below complexes, but an unbounded complex of flabby sheaves is not certified to compute <m>Rf_*</m> by termwise acyclicity alone.<fn>This is a distinction between a valid class of resolutions of individual objects and a class of complexes on which an unbounded total derived functor can be evaluated. Unbounded totalizations require control of all degrees at once.</fn></p>
+  </section>
+
+  <section xml:id="sh-c07-tensor-hom-section">
+    <title>Derived tensor and internal Hom</title>
+    <definition xml:id="sh-c07-kflat">
+      <idx><h>K-flat complex</h></idx>
+        <statement>
+        <p>A complex <m>P</m> is <term>K-flat</term> if <m>\Tot(A\otimes_\Lambda P)</m> is acyclic for every acyclic complex <m>A</m> of sheaves. Tensor totalization always uses direct sums:
+          <md number="no">(K\otimes_\Lambda L)^n=\bigoplus_{p+q=n}K^p\otimes_\Lambda L^q,\qquad d(k\otimes l)=dk\otimes l+(-1)^p k\otimes dl.</md>
+          Here <m>k</m> has degree <m>p</m>. A <term>K-flat resolution</term> is a quasi-isomorphism <m>P\to K</m> with <m>P</m> K-flat.</p>
+      </statement>
+    </definition>
+    <proposition xml:id="sh-c07-kflat-properties">
+      <statement>
+        <p>A complex <m>P</m> is K-flat if and only if every stalk complex <m>P_x</m> is K-flat over <m>\Lambda</m>. Every bounded above complex of flat sheaves is K-flat. Every complex admits a K-flat resolution with flat terms. Inverse image preserves K-flat complexes.</p>
+      </statement>
+      <proof>
+        <p>If the stalk complexes are K-flat, take stalks of <m>A\otimes_\Lambda P</m>. Stalks commute with tensor products and direct sums and detect acyclicity. Conversely, for an acyclic complex <m>M</m> of modules, <m>i_{x*}M</m> is an acyclic complex of sheaves and its stalk at <m>x</m> is <m>M</m>. Testing K-flatness against <m>i_{x*}M</m> proves that <m>P_x</m> is K-flat. The bounded above assertion follows from the corresponding module theorem and the stalk criterion for flat sheaves in <xref ref="sh-c06-flat"/>. Existence is the unbounded flat resolution theorem, in the form <url href="https://stacks.math.columbia.edu/tag/06YF">Stacks, Lemma 20.26.12</url>. Its construction uses the flat generators <m>j_{U!}\Lambda_U</m> of <xref ref="sh-c06-enoughflat"/>. Finally, <m>(f^{-1}P)_x=P_{f(x)}</m>, so inverse image preserves K-flatness.</p>
+      </proof>
+    </proposition>
+    <p>The construction of an unbounded flat resolution is stronger than repeatedly resolving the separate terms by flat sheaves. It arranges compatibility with the differential and with unbounded totalization. We use that existence theorem as a whole, as in the homological algebra note.</p>
+    <definition xml:id="sh-c07-derived-tensor-hom">
+      <idx><h>derived tensor product</h></idx>
+        <idx><h>derived internal Hom</h></idx>
+        <statement>
+        <p>For <m>K,L\in\D(X;\Lambda)</m>, define the <term>derived tensor product</term> by
+          <md number="no">K\Ltensor_\Lambda L=P\otimes_\Lambda L</md>
+          using a K-flat resolution <m>P\to K</m>. Define the <term>derived internal Hom</term> by
+          <md number="no">\RsheafHom_\Lambda(K,L)=\sheafHom_\Lambda^\bullet(K,I)</md>
+          using a K-injective resolution <m>L\to I</m>. The Hom complex has terms and differential
+          <md number="no">\sheafHom_\Lambda^n(K,I)=\prod_p\sheafHom_\Lambda(K^p,I^{p+n}),\qquad d(a)=d_Ia-(-1)^n a d_K.</md>
+          The product is a product of sheaves. These constructions give bifunctors on the unbounded derived categories, covariant in both tensor factors and contravariant in the first Hom variable.</p>
+      </statement>
+    </definition>
+    <proposition xml:id="sh-c07-derived-closed">
+      <statement>
+        <p>The derived tensor product is associative and symmetric, with unit <m>\Lambda_X</m> and symmetry sign <m>(-1)^{pq}</m> on degrees <m>p,q</m>. There is a natural adjunction
+          <md number="no">\Hom_{\D(X;\Lambda)}(A\Ltensor_\Lambda K,L)\simeq\Hom_{\D(X;\Lambda)}(A,\RsheafHom_\Lambda(K,L)).</md>
+          Restriction to an open set commutes with both bifunctors. Inverse image commutes with derived tensor products.</p>
+      </statement>
+      <proof>
+        <p>K-flatness makes tensoring preserve quasi-isomorphisms, by applying tensor to their acyclic cones. For internal Hom, restriction of a K-injective complex is K-injective. Thus, if <m>K'\to K</m> is a quasi-isomorphism, the complex
+          <m>\Gamma(U,\sheafHom^\bullet_\Lambda(\Cone(K'\to K),I))</m> is acyclic for every open <m>U</m>. It follows that internal Hom takes the quasi-isomorphism to a quasi-isomorphism. A quasi-isomorphism between K-injective targets is a homotopy equivalence, which proves independence in the second variable.</p>
+        <p>Choose <m>P\to K</m> K-flat and <m>L\to I</m> K-injective. The complex <m>\sheafHom^\bullet_\Lambda(P,I)</m> is K-injective: a map into it from an acyclic <m>B</m> corresponds, by the tensor–Hom adjunction on complexes, to a map <m>B\otimes_\Lambda P\to I</m>, which is null-homotopic. Consequently the same adjunction on complexes computes both sides of the derived adjunction. Associativity and symmetry follow by choosing K-flat resolutions of the factors; tensor products of K-flat complexes are K-flat. Restriction preserves the chosen types of resolutions, and inverse image preserves K-flat complexes and ordinary tensor products.</p>
+      </proof>
+    </proposition>
+    <p>Internal derived Hom is an object on <m>X</m>. The global derived Hom <m>\RHom_X(K,L)</m> will be a complex of <m>\Lambda</m>-modules, obtained by derived sections; see <xref ref="sh-c08-ext-global"/>. Keeping these target categories visible prevents a common ambiguity in the notation <m>R\Hom</m>. Sources for the unbounded internal construction are <url href="https://stacks.math.columbia.edu/tag/0A8K">Stacks, §20.41</url> and <url href="https://stacks.math.columbia.edu/tag/08DH">§20.42</url>. The bounded constructions can also be compared with <xref ref="sh-bib-schapira" detail="§§2.3–2.4"/>.<fn>Schapira's coefficient convention assumes finite global dimension throughout that text. The definitions of K-injective and K-flat resolutions, and the existence results cited here, allow an arbitrary commutative coefficient ring. We have not transferred a finite resolution-length argument from that convention.</fn></p>
+  </section>
+</chapter>

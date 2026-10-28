@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="hks-singular-fibres">
+  <title>Singular fibres and monodromy</title>
+  <introduction>
+    <p>The smooth fibres of a Lagrangian fibration are abelian varieties, but their singular limits carry additional information: components, multiplicities, vanishing cycles, and extension data for the translation group. A local period matrix describes the approaching abelian varieties. It does not by itself specify their compactification. We begin with an elliptic surface, where these distinctions can be computed, and then explain which parts persist in higher dimension.</p>
+    <p>Let <m>f:X\to B</m> be a Lagrangian fibration of a compact IHS manifold. We restrict to the smooth locus of <m>B</m> for local arguments. Statements applying to a more general symplectic total space give their assumptions explicitly. Algebraic statements about minimal models and Néron models assume that <m>f</m> is projective. The principal references are Hwang–Oguiso's characteristic cycles, Kim's classification and Néron models, and de Cataldo–Kim–Schnell's support theorem.</p>
+  </introduction>
+
+  <section xml:id="hks-discriminant-and-slices">
+    <title>The discriminant and a transverse disk</title>
+    <definition xml:id="hks-discriminant-definition">
+      <idx>Discriminant</idx><idx>Critical locus</idx>
+      <statement><p>Let <m>f:X\to B</m> be a proper holomorphic Lagrangian fibration with <m>X</m> smooth symplectic of dimension <m>2n</m> and <m>B</m> smooth of dimension <m>n</m>. Its <em>critical locus</em> is
+        <md number="no">\operatorname{Crit}(f)=\{x\in X:\rk(df_x)&lt;n\}.</md>
+        Its <em>discriminant</em> is the reduced analytic subset <m>D=f(\operatorname{Crit}(f))\subset B</m>. Write <m>U=B\setminus D</m> and <m>X_U=f^{-1}(U)</m>.</p></statement>
+    </definition>
+    <p>Properness makes <m>D</m> analytic. If the fibres are of Fujiki class <m>\mathcal C</m>, then <m>D</m> is either empty or a hypersurface <xref ref="hks-bib-hwang-oguiso-characteristic" detail="Proposition 3.1"/>. The class <m>\mathcal C</m> assumption holds for fibres in a compact Kähler manifold. A point of a singular fibre need not be critical: away from its nodes, a nodal elliptic fibre is a submersion locus of the total map.</p>
+    <p>Let <m>D_0</m> be an irreducible component of <m>D</m>. Choose a general point <m>b\in D_0</m>, avoiding the other components and the proper exceptional subsets in the results being applied. A transverse disk <m>\Delta\to B</m>, meeting <m>D_0</m> only at its origin, gives a one-parameter family over <m>\Delta^*</m>. A small positively oriented loop in this disk acts on the homology and cohomology of a smooth fibre. This is the local monodromy about <m>D_0</m>. It is distinct from the monodromy of a degeneration of the whole IHS manifold in <xref ref="hks-degenerations"/>.</p>
+    <p>Scheme multiplicities are defined on the one-parameter restriction, or equivalently over the discrete valuation ring at the generic point of <m>D_0</m>. Write its central divisor as
+      <md number="no">F_0=\sum_{j=1}^r a_jE_j,\qquad a_j\in\Z_{&gt;0}.</md>
+      Its multiplicity is <m>\gcd(a_1,\ldots,a_r)</m>. A <em>multiple fibre</em> has multiplicity greater than one. This does not mean merely that some <m>a_j&gt;1</m>. For example, a Kodaira <m>\mathrm I_0^*</m> fibre has one component of weight two and four components of weight one. It is nonreduced, but is not a multiple fibre.</p>
+    <p>The reduced set <m>D</m>, a discriminant divisor defined by a Weierstrass equation, and the multiplicity of a fibre have different meanings. At a fibre of type <m>\mathrm I_r</m>, the Weierstrass discriminant has order <m>r</m>, all component weights are one, and the reduced discriminant still contains only one point on the transverse disk. The no-multiple-divisor statement in <xref ref="hks-thm-no-multiple-divisor"/> concerns the common divisor of the component weights.</p>
+    <p>Over <m>U</m>, the smooth proper map is a differentiable fibre bundle. Its first homology groups form an integral local system of rank <m>2n</m>, carrying the alternating form of the primitive fibre polarization from <xref ref="hks-def-fibration-polarization"/>. The local system on cohomology is its dual. If <m>T^{\mathrm{hom}}</m> is the homological monodromy in chosen bases, the cohomological monodromy in the dual bases is
+      <md number="no">T=\bigl((T^{\mathrm{hom}})^{-1}\bigr)^t.</md>
+      We keep this convention in the elliptic calculation.</p>
+  </section>
+
+  <section xml:id="hks-elliptic-degeneration">
+    <title>An elliptic K3 surface and its vanishing cycle</title>
+    <definition xml:id="hks-kodaira-Im">
+      <idx>Kodaira type <m>\mathrm I_r</m></idx>
+      <statement><p>A reduced genus-one curve of Kodaira type <m>\mathrm I_r</m> is an irreducible nodal rational curve when <m>r=1</m>, and a cycle of <m>r</m> smooth rational curves when <m>r\geq2</m>. For <m>r=2</m>, the two components meet at two distinct transverse points. For <m>r\geq3</m>, successive components meet transversely, including the last and the first, and there are no other intersections.</p></statement>
+    </definition>
+    <p>In a relatively minimal elliptic surface with smooth total space, a type <m>\mathrm I_r</m> fibre is semistable. Near each of its nodes the family has analytic coordinates
+      <md number="no">xy=t.</md>
+      A higher-order equation <m>xy=t^r</m> instead describes a singular total space before resolution; it should not be used as the local equation at each node of the regular model. The construction and classification of these models are part of the classical theory of elliptic surfaces <xref ref="hks-bib-miranda"/>.</p>
+    <example xml:id="hks-elliptic-k3-explicit">
+      <statement><p>The Weierstrass equation over the affine coordinate <m>t</m> of <m>\PP^1</m>
+        <md number="no">y^2=x^3-3x+2+t^2+t^{12}</md>
+        has a minimal resolution which is an elliptic K3 surface. It has one fibre of type <m>\mathrm I_2</m>, at <m>t=0</m>, and twenty-two fibres of type <m>\mathrm I_1</m>.</p></statement>
+      <solution>
+        <p>The coefficients are sections of <m>\cO_{\PP^1}(8)</m> and <m>\cO_{\PP^1}(12)</m>. The standard Weierstrass construction with fundamental line bundle <m>\cO_{\PP^1}(2)</m> gives an elliptic K3 surface after resolving the rational double points. We use this construction and the canonical bundle formula from <xref ref="hks-bib-miranda"/>. Here all singularities and fibres can be checked from the equation.</p>
+        <p>The Weierstrass discriminant is
+          <md number="no">\Delta_W(t)=-432t^2(1+t^{10})(4+t^2+t^{12}).</md>
+          The ten roots of <m>1+t^{10}</m> are simple and nonzero. They are not roots of the last factor. A repeated root <m>t</m> of that last factor would satisfy <m>t^{10}=-1/6</m> and <m>t^2=-24/5</m>; raising the latter equality to the fifth power contradicts the former. Thus its twelve roots are also simple and nonzero. At these twenty-two points, the coefficient <m>-3</m> is a unit and the discriminant has a simple zero, giving a nodal cubic with smooth total space.</p>
+        <p>At zero, the cubic is <m>y^2=(x-1)^2(x+2)</m>. With <m>x=1+u</m>, the equation becomes
+          <md number="no">y^2=3u^2+u^3+t^2+t^{12}.</md>
+          Its quadratic part is nondegenerate in <m>(y,u,t)</m>, so the total space has an ordinary double point. Its minimal resolution inserts a rational curve meeting the strict transform of the nodal cubic at two points. The resulting fibre is <m>\mathrm I_2</m>.</p>
+        <p>At infinity set <m>s=1/t</m>, <m>x'=s^4x</m>, and <m>y'=s^6y</m>. The equation is
+          <md number="no">y'^2=x'^3-3s^8x'+2s^{12}+s^{10}+1.</md>
+          At <m>s=0</m> it is the smooth cubic <m>y'^2=x'^3+1</m>. No further singular fibre occurs. The fibre Euler characteristics add to <m>2+22=24</m>, as required for a K3 surface.</p>
+      </solution>
+    </example>
+    <p>We compute the local monodromy for a type <m>\mathrm I_r</m> fibre. Choose oriented cycles <m>a,b</m> on a nearby elliptic curve with <m>a\cdot b=1</m>, where <m>a</m> is the vanishing cycle. The model <m>xy=t</m> is an annulus near the node. Increasing <m>\arg t</m> by <m>2\pi</m> twists one boundary circle once relative to the other. Its monodromy is a positive Dehn twist. With the indicated choice of <m>b</m>, it fixes <m>a</m> and sends <m>b</m> to <m>b+a</m>.</p>
+    <p>The <m>r</m> nodes of the regular <m>\mathrm I_r</m> model have disjoint plumbing annuli. Their vanishing cycles are parallel copies of <m>a</m> on the nearby genus-one curve. The twists commute, and their product is
+      <md xml:id="hks-eq-Im-monodromy" number="yes">T^{\mathrm{hom}}a=a,\qquad
+        T^{\mathrm{hom}}b=b+ra,\qquad
+        [T^{\mathrm{hom}}]_{a,b}=\begin{pmatrix}1&amp;r\\0&amp;1\end{pmatrix}.</md>
+      In the dual cohomology basis <m>a^\vee,b^\vee</m>, this becomes
+      <md number="no">Ta^\vee=a^\vee-rb^\vee,\qquad Tb^\vee=b^\vee.</md>
+      Thus <m>N=\log T=T-\id</m> has square zero and
+      <md number="no">\operatorname{im}N=\ker N=\Q b^\vee\subset H^1(F_t).</md>
+      The nonzero integer <m>r</m> remains visible integrally even though all these operators have the same rank over <m>\Q</m>.</p>
+    <p>An analytic model of the approaching elliptic curves is
+      <md number="no">F_t=\C/(\Z+\tau(t)\Z),\qquad
+        \tau(t)=\frac{r}{2\pi i}\log t,\qquad 0&lt;|t|&lt;1.</md>
+      Its imaginary part is positive, and continuation sends <m>\tau</m> to <m>\tau+r</m>. Equivalently, exponentiation gives <m>F_t=\C^\times/t^{r\Z}</m>. This is the multiplicative uniformization of the smooth family. Its regular compactification has type <m>\mathrm I_r</m>. The logarithmic period in <xref ref="hks-example-log-periods"/> is the case <m>r=1</m>; the extension across the puncture adds the geometry which that period expression omits.</p>
+    <proposition xml:id="hks-Im-ramified-base-change">
+      <statement><p>After the ramified base change <m>t=s^b</m>, with <m>b\geq1</m>, the minimal regular model of a type <m>\mathrm I_r</m> degeneration has central fibre of type <m>\mathrm I_{br}</m>. Its monodromy is <m>T^b</m>, and its logarithm is <m>bN</m>.</p></statement>
+      <proof><p>For <m>b&gt;1</m>, each of the <m>r</m> nodes acquires local equation <m>xy=s^b</m>, an <m>A_{b-1}</m> surface singularity. Its minimal resolution inserts a chain of <m>b-1</m> rational curves between the two branches. The resolution has charts with coordinates <m>(u,v)</m>, indexed by <m>0\leq j\leq b-1</m>, in which
+        <md number="no">x=u^{j+1}v^j,\qquad y=u^{b-j-1}v^{b-j},\qquad s=uv.</md>
+        In particular, all components have multiplicity one in the divisor of <m>s</m>. Each edge of the original cycle is subdivided into <m>b</m> edges. The resulting cycle has <m>r+r(b-1)=br</m> components. A loop around <m>s=0</m> maps to a loop going <m>b</m> times around <m>t=0</m>, proving the monodromy assertion. Since <m>N^2=0</m>, <m>\log(T^b)=bN</m>.</p></proof>
+    </proposition>
+    <p>The rational invariant subspace is unaffected by this base change, while the integral monodromy coefficient and the number of components are multiplied by <m>b</m>. Semistable reduction therefore preserves some rational cohomological information while changing the singular fibre itself.</p>
+    <p>For <m>r\geq2</m>, write the central fibre as <m>C_1+\cdots+C_r</m>. Adjunction on a K3 surface gives <m>C_j^2=-2</m>. The intersection matrix has radical generated by the fibre class and is negative definite after quotienting by that line. Indeed, on coefficients <m>(u_j)</m> its quadratic form is
+      <md number="no">-\sum_{j=1}^r(u_j-u_{j+1})^2,\qquad u_{r+1}=u_1.</md>
+      For <m>r=2</m>, this counts the two edges between the components and gives their intersection number two. Removing the component met by the section leaves the negative root lattice <m>A_{r-1}</m>.</p>
+    <p>The cohomology of the central fibre is
+      <md xml:id="hks-eq-Im-cohomology" number="yes">H^0(F_0)=\Q,\qquad H^1(F_0)=\Q,\qquad
+        H^2(F_0)=\Q^r.</md>
+      To compute it, normalize the curve to the disjoint union of <m>r</m> copies of <m>\PP^1</m>. The normalization sequence for constant sheaves has cokernel one copy of <m>\Q</m> at each node. The map from component constants to node values is the incidence map of a cycle graph. Its kernel and cokernel both have dimension one. This gives <m>H^0</m> and <m>H^1</m>, while the fundamental classes of the components give <m>H_2(F_0)=\Q^r</m> and hence the stated <m>H^2</m>. The same calculation with the two branches of one node applies when <m>r=1</m>. In particular, <m>e(F_0)=r</m>.</p>
+    <p>A topological contraction from <m>F_t</m> to <m>F_0</m> collapses the vanishing cycle and sends <m>b</m> to the loop of the dual graph. Its pullback identifies <m>H^1(F_0)</m> with <m>\ker N</m>. In degree two, identify a class on <m>F_0</m> with its degrees <m>(d_1,\ldots,d_r)</m> on the components. Since the nearby fundamental class specializes to <m>[C_1]+\cdots+[C_r]</m>, the pullback is
+      <md number="no">H^2(F_0)\longrightarrow H^2(F_t),\qquad
+        (d_1,\ldots,d_r)\longmapsto d_1+\cdots+d_r.</md>
+      It is surjective and has a kernel of dimension <m>r-1</m>. Those extra classes record the reducible fibre; monodromy on the smooth fibre does not retain them as separate classes.</p>
+  </section>
+
+  <section xml:id="hks-characteristic-and-semiabelian">
+    <title>Characteristic curves and rank-one degenerations</title>
+    <p>Let <m>E</m> be a reduced hypersurface in a symplectic manifold <m>(X,\sigma)</m>. The restriction of <m>\sigma</m> to <m>T E_{\mathrm{reg}}</m> has a one-dimensional kernel. If <m>h=0</m> defines <m>E</m> locally and <m>\iota_{v_h}\sigma=dh</m>, then <m>dh(v_h)=0</m>, and <m>\sigma(v_h,w)=0</m> for every tangent vector <m>w</m> to <m>E</m>. Thus <m>v_h</m> spans this kernel. Replacing <m>h</m> by <m>uh</m>, with <m>u</m> a unit, multiplies the vector field on <m>E</m> by <m>u</m>. The resulting <em>characteristic foliation</em> is well defined.</p>
+    <p>For a component of <m>f^{-1}(D_0)_{\mathrm{red}}</m>, this line field is tangent to the fibres. To check this even in the presence of multiplicity, write <m>f^*t=uh^k</m>. Its Hamiltonian vector field satisfies
+      <md number="no">v_{f^*t}=h^{k-1}(kuv_h+hv_u).</md>
+      Hamiltonian fields of functions pulled back from the base are vertical: their Poisson brackets vanish on the smooth Lagrangian fibres and hence on the whole total space. Dividing by <m>h^{k-1}</m> and restricting to <m>E</m> shows that <m>kuv_h</m> is vertical as well.</p>
+    <p>At a general point of <m>D_0</m>, Hwang–Oguiso prove that the normalization of each irreducible fibre component is smooth and its Albanese map is a bundle with one-dimensional fibre. The fibre is <m>\PP^1</m> when the reduced fibre is singular; an elliptic bundle can occur when the reduced fibre is smooth but the scheme fibre is multiple <xref ref="hks-bib-hwang-oguiso-characteristic" detail="Theorem 1.3"/>. The images of the Albanese fibres are the characteristic curves.</p>
+    <definition xml:id="hks-def-characteristic-cycle">
+      <idx>Characteristic cycle</idx><idx>Characteristic foliation</idx>
+      <statement><p>For a general fibre over <m>D_0</m>, join characteristic curves whenever they meet, and take an equivalence class under finite chains of such intersections. Weight each curve by the multiplicity of the component of <m>f^{-1}(D_0)</m> containing it. The resulting weighted connected configuration is a <em>characteristic cycle</em>. Dividing its weights by their greatest common divisor gives its normalized characteristic cycle.</p></statement>
+    </definition>
+    <p>All characteristic cycles of the same general fibre are isomorphic. Their normalized configurations are Kodaira curves or an infinite chain of rational curves of type <m>A_\infty</m> <xref ref="hks-bib-hwang-oguiso-characteristic" detail="Theorem 1.4"/>, <xref ref="hks-bib-hwang-oguiso-multiple" detail="Theorem 2.4"/>.<fn>The earlier list included a possible <m>D_\infty</m> configuration; Hwang–Oguiso's second paper excludes it. An infinite characteristic cycle is a countable configuration inside a compact fibre, and need not be closed. It is not a finite algebraic cycle to which one assigns a Chow class.</fn> The statement classifies one-dimensional configurations inside the fibre, rather than identifying the whole fibre with a Kodaira curve times an abelian variety.</p>
+    <p>The semistable case explains this distinction. Let <m>A</m> be an abelian variety of dimension <m>n-1</m>, and consider a semiabelian extension
+      <md number="no">1\longrightarrow\C^\times\longrightarrow G\longrightarrow A\longrightarrow0.</md>
+      Its underlying multiplicative torsor is the complement of the zero section in a degree-zero line bundle on <m>A</m>. Compactifying the multiplicative fibres gives a <m>\PP^1</m>-bundle with two distinguished sections. A rank-one compactification can be formed from <m>r</m> such bundles by successively gluing their infinity and zero sections. After choosing the intermediate identifications, the last gluing differs by a translation <m>x\mapsto x+a</m> on <m>A</m>.</p>
+    <proposition xml:id="hks-shear-and-characteristic-length">
+      <statement><p>For this cyclic gluing, suppose the characteristic curves are the images of the <m>\PP^1</m>-fibres. If the final translation <m>a</m> has finite order <m>s</m>, the characteristic cycles have type <m>\mathrm I_{rs}</m>. If <m>a</m> is not torsion, they have type <m>A_\infty</m>.</p></statement>
+      <proof><p>Start with a rational fibre over <m>x\in A</m> in the first bundle. Following its endpoints through the <m>r</m> components reaches the rational fibre over <m>x+a</m> in the first bundle. After <m>j</m> circuits the base point is <m>x+ja</m>. The chain closes precisely when <m>ja=0</m>. If <m>a</m> has order <m>s</m>, there are <m>rs</m> curves before the first return. If it has infinite order, no curve is repeated, and following endpoints in both directions gives the bi-infinite chain.</p></proof>
+    </proposition>
+    <p>The number <m>r</m> of irreducible components of the fibre and the length <m>rs</m> of a characteristic cycle can therefore differ. A polarization imposes compatibility between the semiabelian extension and the gluing translation. These are two pieces of geometric data, not two freely interchangeable descriptions of a single integer.</p>
+    <p>Kim's classification makes the scope of this model precise. Over a discrete valuation ring of characteristic zero with algebraically closed residue field, call a projective flat abelian fibration <em>minimal</em> if the total space has terminal singularities and its canonical class is numerically trivial over the base. The generic fibre is allowed to be a torsor under an abelian variety. This definition does not require <m>\Q</m>-factoriality <xref ref="hks-bib-kim-kodaira" detail="Definition 2.1.1"/>. Its Néron translation group has a central identity component fitting into the Chevalley sequence
+      <md number="no">1\longrightarrow G_{\mathrm{aff}}\longrightarrow P_0^\circ
+        \longrightarrow A\longrightarrow0.</md>
+      In this one-parameter setting, <em><m>\delta</m>-regularity</em> means <m>\dim G_{\mathrm{aff}}\leq1</m>. The nonzero linear part is either multiplicative or additive.</p>
+    <theorem xml:id="hks-kim-codimension-one">
+      <title>(Kim)</title>
+      <statement><p>Let <m>\mathcal X\to S</m> be a minimal <m>\delta</m>-regular abelian fibration of relative dimension <m>n\geq2</m> over a discrete valuation ring as above. Suppose the central fibre has multiplicity one.
+        <ol marker="(i)">
+          <li><p>If the central identity component of its translation group is semiabelian, the fibre is an abelian torsor or a cyclic gluing of <m>\PP^1</m>-bundles over an abelian torsor of dimension <m>n-1</m>, with a final translation as described above.</p></li>
+          <li><p>If its linear part is additive, the fibre has the form <m>(C\times A)/H</m>, where <m>A</m> is an abelian variety of dimension <m>n-1</m>, <m>C</m> is an unstable Kodaira fibre, and <m>H</m> is a finite abelian group acting diagonally and acting freely by translations on <m>A</m>.</p></li>
+        </ol></p></statement>
+    </theorem>
+    <p>We quote <xref ref="hks-bib-kim-kodaira" detail="Theorems 5.1.1 and 5.2.1"/>. The allowed groups and actions in (ii), and the additional possibilities for multiple fibres, are specified in that paper's tables and Section 7. The hypothesis concerns an abelian part of dimension at least <m>n-1</m>. It is not a classification of arbitrary fibres over higher-codimension strata. The semistable case is reduced, but the additive case can have nonreduced components.</p>
+    <p>The first-cohomology variation gives another description of a rank-one limit. An explicit principally polarized period model is
+      <md number="no">\tau(t)=\frac{\ell}{2\pi i}\log t
+          \begin{pmatrix}1&amp;0\\0&amp;0\end{pmatrix}+\tau_0(t),\qquad \ell\in\Z_{&gt;0},</md>
+      where the displayed block has size <m>1+(n-1)</m>, <m>\tau_0</m> is holomorphic, and <m>\Im\tau(t)&gt;0</m> on the punctured disk. In the lattice <m>\Z^n+\tau(t)\Z^n</m>, only the first <m>b</m>-cycle changes, by <m>b_1\mapsto b_1+\ell a_1</m>. Thus <m>N^2=0</m> and <m>\rk N=1</m> on <m>H^1</m>. The monodromy weight filtration, centred at weight one, is
+      <md number="no">0=W_{-1}\subset W_0=\operatorname{im}N
+        \subset W_1=\ker N\subset W_2=H^1_{\lim}.</md>
+      Consequently,
+      <md number="no">\dim\Gr_0^W H^1_{\lim}=1,\qquad
+        \dim\Gr_1^W H^1_{\lim}=2n-2,\qquad
+        \dim\Gr_2^W H^1_{\lim}=1.</md>
+      These dimensions follow directly from the rank of <m>N</m>. The existence of the limit mixed Hodge structure is the external theorem of Schmid <xref ref="hks-bib-schmid"/>. If the lower-right block of <m>\tau_0(0)</m> has positive-definite imaginary part, it is the period matrix of the abelian part <m>A</m>; its <m>2n-2</m> cycle directions account for <m>\Gr_1^W</m>. For another polarization type, integral normal forms also involve its elementary divisors. The coefficient in this principal model should not be identified with every component or characteristic-cycle count in a nonprincipal model.</p>
+    <p>If <m>n&gt;1</m>, a semistable rank-one fibre of the cyclic form has Euler characteristic zero. Its normalization consists of <m>r</m> <m>\PP^1</m>-bundles over <m>A</m>; gluing the sections gives
+      <md number="no">e(F_0)=r\bigl(2e(A)-e(A)\bigr)=r e(A)=0.</md>
+      This contrasts with <m>e(\mathrm I_r)=r</m> for an elliptic surface. Euler characteristic alone cannot detect these general divisorial degenerations in higher dimension.</p>
+  </section>
+
+  <section xml:id="hks-translation-across-discriminant">
+    <title>Néron models and the smooth locus</title>
+    <p>Over <m>U</m>, the family <m>X_U</m> is a torsor under its relative translation group <m>P_U</m>; a section identifies the torsor with the group, but is not part of the initial data. Extending this group across <m>D</m> is different from compactifying the fibres of <m>X_U</m>. Néron models impose an extension property for maps from smooth families.</p>
+    <definition xml:id="hks-def-neron-model">
+      <idx>Néron model</idx>
+      <statement><p>Let <m>U\subset B</m> be dense and let <m>Y_U\to U</m> be smooth. A <em>Néron model</em> in the sense used here is a smooth algebraic space <m>\mathcal N\to B</m> extending <m>Y_U</m> such that, for every smooth algebraic space <m>Z\to B</m>, restriction is a bijection
+        <md number="no">\Hom_B(Z,\mathcal N)\xrightarrow{\sim}\Hom_U(Z_U,Y_U).</md></p></statement>
+    </definition>
+    <p>Over a higher-dimensional base we use Kim's definition, which does not impose separatedness or finite type <xref ref="hks-bib-kim-neron" detail="Definition 1.1"/>. Classical Néron models of abelian varieties over a discrete valuation ring are separated smooth group schemes of finite type <xref ref="hks-bib-blr" detail="Chapters 1 and 7"/>.</p>
+    <p>The extension property proves uniqueness. If <m>\mathcal N_1</m> and <m>\mathcal N_2</m> extend the same <m>Y_U</m>, apply it with <m>Z=\mathcal N_1</m> to extend the identity over <m>U</m> to a map <m>\mathcal N_1\to\mathcal N_2</m>. Construct the reverse map in the same way. Their composites are identities by uniqueness. If <m>Y_U=P_U</m> is a group, the multiplication, inverse, and identity extend by the same property. The group axioms hold because the two maps in each axiom agree over <m>U</m> and their smooth test spaces satisfy uniqueness.</p>
+    <theorem xml:id="hks-neron-model">
+      <title>(Kim)</title>
+      <statement><p>Let <m>f:X\to B</m> be a projective Lagrangian fibration from a smooth symplectic variety to a smooth variety over <m>\C</m>. Let <m>X'=X\setminus\operatorname{Crit}(f)</m>, and suppose <m>X'\to B</m> is surjective. Then <m>X_U\to U</m> and its translation abelian scheme <m>P_U\to U</m> admit Néron models <m>\mathcal N\to B</m> and <m>P\to B</m>, and <m>\mathcal N</m> is a <m>P</m>-torsor. There is an open immersion <m>X'\hookrightarrow\mathcal N</m>.</p></statement>
+    </theorem>
+    <p>This is <xref ref="hks-bib-kim-neron" detail="Theorems 1.2 and 1.6"/>. Its hypothesis requires a smooth point in every fibre. It must be checked over the whole base; a statement excluding multiple fibres at general points of divisors does not establish it over higher-codimension subsets.</p>
+    <p>The group <m>P</m> has a maximal open subgroup <m>P^a</m> acting regularly on the chosen compactification <m>X</m>. The remaining translations may act only birationally. Define
+      <md number="no">\delta(b)=\dim(P_b^\circ)_{\mathrm{aff}},\qquad
+        B_1=\{b:\delta(b)\leq1\}.</md>
+      Kim proves <m>\operatorname{codim}\{\delta\geq k\}\geq k</m>, and over <m>B_1</m> one has <m>P^a=P</m> and <m>X'=\mathcal N</m> <xref ref="hks-bib-kim-neron" detail="Theorems 1.3 and 1.6"/>. Thus the familiar relation between a minimal elliptic surface and its Néron model persists away from a subset of codimension at least two. In higher codimension, smooth loci of different birational models can contribute different open subsets of <m>\mathcal N</m>; flops explain why the Néron model can be larger and nonseparated.</p>
+    <p>For a type <m>\mathrm I_r</m> elliptic fibre with a section, the smooth locus of the minimal regular model is the classical Néron model. Its central fibre has <m>r</m> components isomorphic to <m>\C^\times</m>, with component group <m>\Z/r\Z</m>. The identity component is multiplicative, not an elliptic curve. This gives three different objects even in dimension one: the compact curve <m>F_0</m>, its smooth group locus, and the abelian variety over the punctured disk. The torsor interpretation and the distinction from the dual group <m>P_U^\vee</m> continue in <xref ref="hks-torsors-duality"/>.</p>
+  </section>
+
+  <section xml:id="hks-singular-cohomology-and-supports">
+    <title>Cohomology of the singular fibre</title>
+    <p>The elliptic calculation illustrates the local invariant cycle theorem. It concerns classes which extend to the central fibre; the theorem does not assert that specialization is injective, or that a singular fibre has the cohomology of a smooth one.</p>
+    <theorem xml:id="hks-local-invariant-cycles">
+      <title>(Local invariant cycle theorem)</title>
+      <idx>Local invariant cycle theorem</idx>
+      <statement><p>Let <m>g:\mathcal X\to\Delta</m> be a projective one-parameter family with smooth total space, smooth over <m>\Delta^*</m>. For a nearby smooth fibre <m>F_t</m>, specialization has image
+        <md number="no">\operatorname{im}\bigl(H^k(F_0,\Q)\to H^k(F_t,\Q)\bigr)
+          =H^k(F_t,\Q)^T.</md></p></statement>
+    </theorem>
+    <p>We quote the theorem, including its higher-dimensional-base formulation, from <xref ref="hks-bib-decataldo-migliorini" detail="Theorem 1.7.1"/>. The identification of the central fibre cohomology with the cohomology of a small total neighborhood is part of the local statement. In the type <m>\mathrm I_r</m> example, the invariant line in <m>H^1(F_t)</m> comes from the graph of the central fibre, and the map from <m>H^2(F_0)=\Q^r</m> has a kernel of dimension <m>r-1</m>. Integral surjectivity is a different assertion; the theorem here uses rational coefficients.</p>
+    <p>Over a general base, the complex <m>Rf_*\Q_X[2n]</m> records both the local systems of smooth-fibre cohomology and the contributions of singular strata. For a projective algebraic fibration, the decomposition theorem expresses it as a direct sum of shifted semisimple perverse sheaves. Each simple summand is an intersection complex of a local system on a smooth dense open subset of an irreducible subvariety <m>Z\subset B</m>. That subvariety is its <em>support</em>. For proper Kähler maps there is also a decomposition by shifts of perverse sheaves and by strict supports. We quote these structural theorems and use their supports without developing the construction of perverse sheaves.</p>
+    <p>For an elliptic surface, a reducible <m>\mathrm I_r</m> fibre contributes <m>r-1</m> point-supported classes in the middle perverse direct image. One can see why they cannot be supplied by the smooth local system: the invariant part in degree two has dimension one, whereas the central fibre has <m>r</m> component classes. The nondegenerate intersection form on the quotient by the total fibre gives precisely the additional summand. This is the simplest example in which smaller supports are necessary.</p>
+    <theorem xml:id="hks-support-theorem">
+      <title>(de Cataldo–Kim–Schnell)</title>
+      <idx>Support theorem</idx>
+      <statement><p>Let <m>f:X\to B</m> be a proper surjective holomorphic Lagrangian fibration with connected fibres, with <m>X</m> smooth Kähler of dimension <m>2n</m> and <m>B</m> smooth of dimension <m>n</m>. There is a smooth family of commutative complex Lie groups <m>G\to B</m>, carrying the structure of a family of meromorphic groups in Fujiki's sense, and acting faithfully and meromorphically on <m>X</m> over <m>B</m>. Let <m>T_b</m> be the maximal compact complex torus quotient of <m>G_b^\circ</m>. If <m>Z</m> is a support in the decomposition theorem for <m>Rf_*\Q_X[2n]</m>, then
+        <md number="no">\dim Z=\dim T_b\qquad\text{for a general }b\in Z.</md></p></statement>
+    </theorem>
+    <p>We quote the smooth-total-space case of <xref ref="hks-bib-decataldo-kim-schnell" detail="Theorems A and C; Theorem 98"/>. The paper also treats singular symplectic total spaces, with the intersection complex replacing the shifted constant sheaf. A step in its proof is a freeness theorem: <m>H^*(F_b,\R)</m> is free over <m>H^*(T_b,\R)</m> for the module structure arising from the group action. The real module structure is compatible with mixed Hodge theory; the corresponding rational module structure is not canonical. The support conclusion holds over <m>\Q</m>. Theorem 66 further describes the summands on each support using the cohomology of the torus quotients and a local system with finite monodromy.</p>
+    <p>The dimension equality gives a geometric restriction on where a perverse summand can occur. In the rank-one situation, the abelian part has dimension <m>n-1</m>, so divisorial supports are possible. For an elliptic <m>\mathrm I_r</m> fibre this compact quotient has dimension zero, allowing the point-supported contribution just computed. The theorem does not say that all summands have support equal to <m>B</m>. Determining which allowed supports actually occur still requires information about the fibres.</p>
+    <p>The perverse filtration on <m>H^*(X)</m> is obtained by taking cohomology after perverse truncation of <m>Rf_*\Q_X[2n]</m>. Its definition, the Shen–Yin equality
+      <md number="no">\dim\Gr_i^P H^{i+j}(X)=h^{i,j}(X),</md>
+      and its comparison with the weight filtration of an auxiliary type III degeneration are developed in <url href="/notes/hyperkahler/hkg-degenerations.html#hkg-compact-perverse-weight">General HK, Lagrangian fibrations and compact <m>P=W</m></url>. These statements concern a compact projective IHS total space. Compact <m>P=W</m> is a comparison with that degeneration's limiting mixed Hodge structure, not with the pure weight filtration on the smooth compact <m>X</m>, and not with a character variety.</p>
+    <p xml:id="hks-p-perverse-hodge-status">A proposed refinement compares complexes of coherent sheaves obtained from the Hodge modules in the decomposition theorem, rather than just the dimensions of their cohomology <xref ref="hks-bib-shen-yin-complexes"/>.</p>
+    <aside xml:id="margin-hks-perverse-hodge-status">
+      <p>The arXiv comments for Schnell's <xref ref="hks-bib-schnell-lagrangian"/> state that the proof in Section 8 is incomplete: the required isomorphism has not been proved in the derived category of graded <m>\Omega_B</m>-modules, so the BGG correspondence cannot yet be applied as claimed. The announced alternative proof is not supplied there. The numerical Shen–Yin theorem and Matsushita's higher direct images have independent proofs.</p>
+    </aside>
+  </section>
+</chapter>

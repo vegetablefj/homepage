@@ -1,0 +1,219 @@
+<chapter xml:id="st-c10">
+  <title>Finite presentation and coherent modules</title>
+  <introduction>
+    <p>Finite presentation controls a finite list of generators and relations. Coherence additionally controls the relations among every finite list of sections. Over a coherent structure sheaf these conditions agree; over an arbitrary structure sheaf even a free rank-one module can fail to be coherent. Coherent modules always form an Abelian subcategory.</p>
+    <p>We develop these statements locally in a ringed topos, then distinguish finite locally projective modules from finite locally free modules. Affine schemes and complex analysis enter only through precise external comparison results. A final caution explains why geometric coherence on a stack cannot be read off by applying one intrinsic definition on every possible large site.</p>
+  </introduction>
+
+  <section xml:id="st-c10-presentations">
+    <title>Generators, presentations, and their local meaning</title>
+    <definition xml:id="st-c10-finite">
+      <title>Finite type and local presentations</title>
+      <idx>Finite type!module</idx><idx>Finite presentation!local</idx><idx>Quasi-coherent module</idx><idx>Finite locally free module</idx>
+      <statement>
+        <p>For a ringed topos <m>(\mathcal E,\mathcal O)</m>, the following conditions on a module <m>M</m> are interpreted after localization on an epimorphic family of objects.</p>
+        <p><ol>
+          <li><p><m>M</m> is <term>of finite type</term> if locally there is an epimorphism <m>\mathcal O^n\to M</m> with <m>n</m> finite.</p></li>
+          <li><p><m>M</m> is <term>locally finitely presented</term>, or <term>of finite presentation</term>, if locally there is an exact sequence <m>\mathcal O^r\to\mathcal O^n\to M\to0</m> with <m>r,n</m> finite.</p></li>
+          <li><p><m>M</m> is <term>quasi-coherent</term> in the ringed-topos sense if locally there is such a presentation with arbitrary set-indexed free modules <m>\mathcal O^{(I)}\to\mathcal O^{(J)}\to M\to0</m>.</p></li>
+          <li><p><m>M</m> is <term>finite locally free</term> if locally it is isomorphic to <m>\mathcal O^n</m> for a finite <m>n</m>.</p></li>
+        </ol></p>
+        <p>In a site presentation, each condition means that every object <m>U</m> has a covering on whose members the corresponding statement holds in the slice. Neither the number of generators nor the rank is required to have one finite bound over the whole topos.</p>
+      </statement>
+    </definition>
+    <p>A global finite presentation is stronger than a local one. It is also different from a finite presentation of the section module <m>M(U)</m> over <m>\mathcal O(U)</m>, since sections of a sheaf epimorphism need only lift locally. Our terminology follows <url href="https://stacks.math.columbia.edu/tag/03DK">Stacks, Definition 18.23.1</url>. The adjective <em>local</em> refers to the chosen topos, rather than to a topology imposed later on a ring spectrum.<fn>The expression “of finite presentation” for a module sheaf conventionally includes localization. For the finite global condition we retain the word “global”. Categorical finite presentation in <m>\Mod(\mathcal O)</m> is distinguished below.</fn></p>
+
+    <p>The general definition of quasi-coherent is included to specify the range of the word. It is not an assertion that every module is locally presented by free copies of <m>\mathcal O</m>. The always available generators <m>\mathcal O[a h_U]</m> of <xref ref="st-c08-grothendieck"/> are different from free copies of the tensor unit. On schemes this local-presentation definition becomes the usual quasi-coherence; on other ringed topoi it can describe a different geometric class.</p>
+
+    <proposition xml:id="st-c10-presentation-kernel">
+      <statement>
+        <p>For a local epimorphism <m>q:\mathcal O^n\to M</m> with <m>n</m> finite, <m>M</m> is locally finitely presented if and only if <m>\ker q</m> is of finite type. In particular this kernel condition holds for every finite free epimorphism onto a locally finitely presented module, not just for one chosen presentation.</p>
+      </statement>
+      <proof>
+        <p>A finite-type kernel gives a finite presentation by choosing finitely many local generators of that kernel. Conversely, choose a finite presentation <m>\mathcal O^r\xrightarrow{A}\mathcal O^s\xrightarrow{p}M\to0</m>. After a covering, lift the finitely many generators of each free module through the other epimorphism. This gives maps <m>u:\mathcal O^s\to\mathcal O^n</m> and <m>v:\mathcal O^n\to\mathcal O^s</m> with <m>qu=p</m> and <m>pv=q</m>.</p>
+        <p>The images of <m>uA</m> and <m>1-uv</m> lie in <m>\ker q</m>. They generate it locally: for a local section <m>x</m> of the kernel, <m>vx</m> lies in <m>\ker p=\im A</m>, so after a covering it is <m>Ay</m>. Then
+          <md number="no">x=(1-uv)x+uAy.</md>
+          There are only finitely many columns in these two matrices. Their images therefore generate the kernel as a sheaf. This proof only uses finitely many local lifts; it does not require free sheaves to be projective globally. See <url href="https://stacks.math.columbia.edu/tag/082S">Stacks, Lemma 18.24.2</url>.</p>
+      </proof>
+    </proposition>
+    <p>Finite-type quotients and images of finite-type modules are of finite type. Extensions of finite-type modules are of finite type: locally lift a finite set of generators of the quotient and add generators of the submodule. A quotient of a locally finitely presented module by a finite-type submodule is locally finitely presented, by adding finitely many lifts of the latter generators to a finite list of relations. Extensions of locally finitely presented modules are likewise locally finitely presented; the same finite lifting argument combines presentations of the two end terms. Arbitrary kernels need not be locally finitely presented. Coherence is the condition that supplies a stable kernel theory.</p>
+
+    <example xml:id="st-c10-constant-quasicoherence">
+      <statement>
+        <p>On a locally connected topological space with constant field sheaf <m>k_X</m>, the ringed-space quasi-coherent modules are exactly locally constant sheaves of vector spaces.</p>
+      </statement>
+      <solution>
+        <p>Refine a local free presentation to connected open sets. A free <m>k_X</m>-module there is the constant sheaf of a free vector space. A morphism between constant sheaves on a connected open is one linear map, even for infinite-dimensional spaces, by the constant-sheaf adjunction. Its cokernel is therefore constant. Conversely, a vector space has a basis, so a locally constant vector-space sheaf is locally free and has a local presentation. The skyscraper sheaf at a point of <m>\R</m> is consequently not quasi-coherent for <m>k_{\R}</m>. This example gives the word a precise meaning outside algebraic geometry, without identifying all module sheaves with quasi-coherent ones.</p>
+      </solution>
+    </example>
+  </section>
+
+  <section xml:id="st-c10-coherence">
+    <title>Coherent modules and their Abelian category</title>
+    <definition xml:id="st-c10-coherent">
+      <title>Coherent modules</title>
+      <idx>Coherent module</idx><idx>Relation sheaf</idx>
+      <statement>
+        <p>An <m>\mathcal O</m>-module <m>M</m> is <term>coherent</term> if it is of finite type and, in every slice, the kernel of every morphism <m>\mathcal O^n\to M</m> with <m>n</m> finite is of finite type. The full subcategory is denoted <m>\Coh(\mathcal O)</m>.</p>
+        <p>Equivalently, on a site every finite list of sections <m>m_1,\ldots,m_n\in M(U)</m> has a finite-type sheaf of relations: the kernel of <m>\mathcal O_U^n\to M|_U</m>, <m>e_i\mapsto m_i</m>. This condition concerns all finite lists, including lists which do not generate <m>M|_U</m>.</p>
+      </statement>
+    </definition>
+    <p>Every coherent module is locally finitely presented: choose a local finite generating list and then finite generators for its relation sheaf. The converse requires a condition on <m>\mathcal O</m>. A local presentation controls the relations for a generating list; coherence controls the kernels for arbitrary lists, including finite lists in a submodule. The definition is local and invariant under equivalence of ringed topoi; see <url href="https://stacks.math.columbia.edu/tag/03DK">Stacks, §18.23</url>.<fn>For ringed spaces this is the definition in <xref ref="st-bib-serre" detail="Chapter I, §2, no. 12, Definition 2"/>. Its kernel and extension theorems occur in no. 13, before coherence of the ring sheaf is imposed in no. 15. Thus the classical definition already distinguishes coherence of a module from coherence of its coefficient ring. The local arguments here also apply without points.</fn></p>
+
+    <theorem xml:id="st-c10-coherent-closure">
+      <statement>
+        <p>For any commutative structure sheaf <m>\mathcal O</m> the following assertions hold.</p>
+        <p><ol>
+          <li><p>A finite-type submodule of a coherent module is coherent.</p></li>
+          <li><p>The kernel of a morphism from a finite-type module to a coherent module is of finite type.</p></li>
+          <li><p>Kernels, images, and cokernels of morphisms between coherent modules are coherent.</p></li>
+          <li><p>In a short exact sequence, coherence of any two terms implies coherence of the third.</p></li>
+        </ol></p>
+        <p>Consequently <m>\Coh(\mathcal O)</m> is Abelian and its inclusion into <m>\Mod(\mathcal O)</m> is exact. No coherence assumption on <m>\mathcal O</m> is required.</p>
+      </statement>
+      <proof>
+        <p>For a submodule <m>N\subset M</m>, a map <m>\mathcal O^n\to N</m> has the same kernel after composition with <m>N\hookrightarrow M</m>. Thus the relation condition descends to every submodule, and the finite-type condition gives the first assertion.</p>
+        <p>For <m>u:N\to M</m> as in the second assertion, choose a local epimorphism <m>\mathcal O^n\to N</m>. The kernel of its composite with <m>u</m> is of finite type by coherence of <m>M</m>. Its image in <m>N</m> is <m>\ker u</m>, proving that this kernel is of finite type. For a morphism of coherent modules, its kernel is therefore a finite-type submodule of the source, and its image a finite-type submodule of the target. Both are coherent.</p>
+        <p>It remains to check a quotient <m>Q=M/I</m>, where <m>M</m> is coherent and <m>I</m> is a finite-type submodule. It is finite type. Given <m>t:\mathcal O^n\to Q</m>, locally lift the finitely many images of its basis to a map <m>\widetilde t:\mathcal O^n\to M</m>, and choose a finite generating map <m>v:\mathcal O^r\to I</m>. The kernel of
+          <md number="no">(\widetilde t,-v):\mathcal O^{n+r}\longrightarrow M</md>
+          is of finite type. Its image under projection to <m>\mathcal O^n</m> is <m>\ker t</m>, as is checked by lifting a section of <m>I</m> locally through <m>v</m>. This proves coherence of <m>Q</m>, and hence the cokernel assertion.</p>
+        <p>For an extension <m>0\to A\to B\to C\to0</m> with <m>A,C</m> coherent, finite generators of <m>A</m> and local lifts of generators of <m>C</m> generate <m>B</m>. For any <m>\mathcal O^n\to B</m>, let <m>K</m> be the kernel of its composite to <m>C</m>. It is finite type. Choose locally <m>\mathcal O^r\to K</m> onto. The induced map <m>\mathcal O^r\to A</m> has finite-type kernel. Its image in <m>\mathcal O^n</m> is the kernel of the original map to <m>B</m>, so that kernel is finite type. This proves coherence of <m>B</m>. The other two cases follow from the kernel and cokernel assertions. The proof is entirely local and applies to sites; compare the ringed-space formulation in <url href="https://stacks.math.columbia.edu/tag/01BU">Stacks, Lemma 17.12.4</url>.</p>
+      </proof>
+    </theorem>
+    <p>This is a weak Serre property, not closure under all subobjects and quotients. A submodule of a coherent module can have infinitely many generators. The theorem ensures coherence of a finite-type submodule and of kernels of maps between coherent modules; it does not remove the finite-type requirement from arbitrary submodules.<fn>A Serre subcategory is closed under all subobjects, quotients, and extensions in the ambient Abelian category. The exact Abelian subcategory established here need not have that stronger property. Its kernels are the ambient kernels for morphisms between its own objects.</fn></p>
+
+    <definition xml:id="st-c10-coherent-ring">
+      <title>Coherent structure sheaves</title>
+      <idx>Coherent ring object</idx><idx>Coherent structure sheaf</idx>
+      <statement><p>The structure sheaf <m>\mathcal O</m> is <term>coherent</term> if it is coherent as a module over itself. On a one-point topos this is the usual notion of a coherent commutative ring.</p></statement>
+    </definition>
+    <proposition xml:id="st-c10-coherent-finite-presentation">
+      <statement>
+        <p>If <m>\mathcal O</m> is coherent, an <m>\mathcal O</m>-module is coherent if and only if it is locally finitely presented. Finite locally free modules and their local finite direct summands are then coherent.</p>
+      </statement>
+      <proof><p>Finite powers of <m>\mathcal O</m> are coherent by the extension assertion of <xref ref="st-c10-coherent-closure"/>. A local finite presentation expresses its module as the cokernel of a morphism between such powers, hence gives coherence. The reverse implication was proved from the definition. A finite summand is the image of an idempotent on a finite power, so is coherent as well.</p></proof>
+    </proposition>
+
+    <example xml:id="st-c10-noncoherent-ring">
+      <statement>
+        <p>Let <m>V</m> be an infinite-dimensional vector space over a field <m>k</m>, and let <m>R=k\oplus V</m> with <m>V^2=0</m>. On the one-point ringed topos with ring <m>R</m>, the module <m>R</m> is finite free and finitely presented, but not coherent.</p>
+      </statement>
+      <solution><p>For a nonzero <m>v\in V</m>, multiplication <m>R\xrightarrow{v}R</m> has kernel <m>V</m>. The <m>R</m>-action on this kernel factors through <m>k</m>, so finite generation would make <m>V</m> finite-dimensional. This contradicts its construction. Thus coherence fails for one finite list in <m>R</m>, although the identity presentation of <m>R</m> has no relations.</p></solution>
+    </example>
+    <example xml:id="st-c10-coherent-not-noetherian">
+      <statement><p>The ring <m>R=k[x_1,x_2,\ldots]</m> is coherent but not Noetherian. Its ideal <m>I=(x_1,x_2,\ldots)</m> is not coherent, and neither is <m>R/I</m>.</p></statement>
+      <solution>
+        <p>The entries of a finite matrix lie in some Noetherian polynomial subring <m>R_n=k[x_1,\ldots,x_n]</m>. The extension <m>R_n\to R</m> is free, hence flat. Its kernel module is therefore obtained by extending the finitely generated matrix kernel over <m>R_n</m>; it is finitely generated over <m>R</m>. This gives the relation criterion for coherence of <m>R</m>. The ideal <m>I</m> is not finitely generated, since finitely many polynomials involve only finitely many variables and cannot generate the remaining variables. Finally, if <m>R/I</m> were finitely presented, the kernel criterion for <m>R\to R/I</m> would make <m>I</m> finitely generated. Thus it is not coherent either. The same coherent non-Noetherian ring is recorded in <url href="https://stacks.math.columbia.edu/tag/01BU">Stacks, Example 17.12.3</url>.</p>
+      </solution>
+    </example>
+  </section>
+
+  <section xml:id="st-c10-functorial-finiteness">
+    <title>Tensor, Hom, pullback, and finite presentation</title>
+    <proposition xml:id="st-c10-tensor-hom-coherence">
+      <statement>
+        <p>Let <m>M</m> be locally finitely presented and <m>N</m> coherent. Then both <m>M\otimes_{\mathcal O}N</m> and <m>\sheafHom_{\mathcal O}(M,N)</m> are coherent. Consequently tensor and internal Hom of two coherent modules are coherent. These assertions do not require <m>\mathcal O</m> coherent.</p>
+      </statement>
+      <proof><p>Locally choose a finite presentation <m>\mathcal O^r\to\mathcal O^n\to M\to0</m>. Tensor gives a cokernel <m>N^r\to N^n\to M\otimes N\to0</m>. Internal Hom gives a kernel <m>0\to\sheafHom(M,N)\to N^n\to N^r</m>. Apply the kernel and cokernel assertions for coherent modules. For two coherent modules use that the first is locally finitely presented. See <url href="https://stacks.math.columbia.edu/tag/03L6">Stacks, Lemma 18.26.3</url> and the analogous Hom argument.</p></proof>
+    </proposition>
+
+    <proposition xml:id="st-c10-pullback">
+      <statement>
+        <p>Every ringed pullback preserves finite type, local finite presentation, quasi-coherence in the local-presentation sense, and finite local freeness. It preserves coherence if the target of the pullback has coherent structure sheaf. Without that hypothesis coherence need not be preserved, even by a flat ringed morphism.</p>
+      </statement>
+      <proof>
+        <p>Pull back a local presentation. Underlying inverse image preserves the epimorphic covering, and <m>f^*</m> preserves free modules, coproducts, and cokernels. This gives the first four assertions. A coherent source module is locally finitely presented, so if the new structure sheaf is coherent its pullback is coherent by <xref ref="st-c10-coherent-finite-presentation"/>. For the failure, take the ringed point morphism associated with <m>k\to k\oplus V</m> from <xref ref="st-c10-noncoherent-ring"/>. This is flat over the field, but pulls the coherent module <m>k</m> back to the noncoherent module <m>k\oplus V</m>. See also <url href="https://stacks.math.columbia.edu/tag/03DK">Stacks, Lemma 18.23.4</url>, which does not include coherence among the unconditional assertions.</p>
+      </proof>
+    </proposition>
+    <p>Here “target of the pullback” means the ringed topos <m>(\mathcal E,\mathcal O_{\mathcal E})</m> receiving modules under <m>f^*:\Mod(\mathcal O_{\mathcal F})\to\Mod(\mathcal O_{\mathcal E})</m>. The base geometric arrow goes in the opposite direction. Keeping the two directions visible avoids an ambiguous coherence condition.</p>
+
+    <proposition xml:id="st-c10-hom-colimits">
+      <statement>
+        <p>If <m>M</m> is locally finitely presented, internal Hom from <m>M</m> commutes with filtered colimits:
+          <md number="no">\colim_i\sheafHom_{\mathcal O}(M,N_i)\xrightarrow{\sim}\sheafHom_{\mathcal O}(M,\colim_iN_i).</md>
+          This does not assert that global <m>\Hom_{\mathcal O}(M,-)</m> commutes with filtered colimits.</p>
+      </statement>
+      <proof><p>For a local finite presentation, internal Hom is the kernel of <m>N^n\to N^r</m>. Filtered colimits are exact and commute with these finite powers. Thus the comparison is an isomorphism locally and therefore globally. This is <url href="https://stacks.math.columbia.edu/tag/04TT">Stacks, Lemma 18.27.11</url>. Global sections are an additional functor and need not preserve this colimit.</p></proof>
+    </proposition>
+    <example xml:id="st-c10-categorical-presentation">
+      <statement>
+        <p>Let <m>X=\N</m> be discrete and let <m>\mathcal O=k_X</m>. The module <m>\mathcal O</m> is finite locally free and coherent, but not a finitely presented object of the Grothendieck category <m>\Mod(\mathcal O)</m>, where categorical finite presentation means preservation of filtered colimits by global Hom.</p>
+      </statement>
+      <solution><p>Let <m>N_n</m> equal <m>k</m> on the first <m>n</m> points and zero elsewhere, with the natural inclusions. Their colimit as sheaves is <m>\mathcal O</m>. However,
+        <md number="no">\colim_n\Hom_{\mathcal O}(\mathcal O,N_n)=\bigoplus_{i\in\N}k,\qquad\Hom_{\mathcal O}(\mathcal O,\colim_nN_n)=\prod_{i\in\N}k.</md>
+        The map is not surjective for a nonzero field. Local finite presentation and categorical finite presentation therefore cannot be exchanged without additional conditions on the topos.</p></solution>
+    </example>
+    <p>A coherent topos is a finiteness notion for the underlying topos. A coherent ring object is the module-theoretic condition above. A locally coherent Grothendieck category is a locally finitely presented Grothendieck category whose categorically finitely presented objects form an Abelian subcategory. These names refer to different objects and conditions; none is used as a synonym for another in this note.</p>
+  </section>
+
+  <section xml:id="st-c10-duals-section">
+    <title>Finite projectivity and duality</title>
+    <definition xml:id="st-c10-local-projectivity">
+      <title>Finite locally projective and dualizable modules</title>
+      <idx>Finite locally projective module</idx><idx>Dualizable module</idx><idx>Dual module</idx>
+      <statement>
+        <p>We call <m>P</m> <term>finite locally projective</term> if locally it is a direct summand of a finite free module. It is <term>dualizable</term> if it has a dual in the symmetric monoidal category <m>(\Mod(\mathcal O),\otimes_{\mathcal O},\mathcal O)</m>. Set <m>P^\vee=\sheafHom_{\mathcal O}(P,\mathcal O)</m>.</p>
+      </statement>
+    </definition>
+    <p>Local projectivity in this definition is a local finite-retract condition. It does not assert that <m>P</m> is projective in the global module category. For example, a finite locally free sheaf can have nonzero global Ext because its local splittings fail to glue, as in <url href="../sheaves-topological/sh-c10.html">Note I, Chapter 10</url>.<fn>“Projective” without a local qualifier usually refers to lifting morphisms across all global epimorphisms in the Abelian category. Our definition is instead a condition after localization. The tensor-duality characterization specifies it without relying on the adjective alone.</fn></p>
+
+    <theorem xml:id="st-c10-dualizable">
+      <statement>
+        <p>For an <m>\mathcal O</m>-module <m>P</m> on an arbitrary ringed topos, the following are equivalent: <m>P</m> is dualizable; <m>P</m> is finite locally projective; <m>P</m> is flat and locally finitely presented. Its dual is then <m>P^\vee</m>, the bidual map is an isomorphism, and for every <m>N</m> the evaluation map gives
+          <md number="no">P^\vee\otimes_{\mathcal O}N\xrightarrow{\sim}\sheafHom_{\mathcal O}(P,N).</md>
+        </p>
+      </statement>
+      <proof>
+        <p>If <m>P</m> is a finite free module, the formula for internal Hom is the finite-basis formula, and its duality maps are the usual evaluation and coevaluation. The same formula restricts to every direct summand: an idempotent on the finite free module induces the corresponding idempotent on its dual, and the tensor and Hom maps respect these idempotents. Thus the displayed map is an isomorphism locally for finite locally projective <m>P</m>, hence globally. The section corresponding to <m>\id_P</m> under <m>P\otimes P^\vee\simeq\sheafHom(P,P)</m> supplies coevaluation. Evaluation and this coevaluation satisfy the two triangle identities locally on finite summands, hence globally. The same finite-summand calculation proves biduality.</p>
+        <p>Conversely, let <m>Q</m> be a dual, with coevaluation <m>\eta:\mathcal O\to P\otimes Q</m>. Locally write <m>\eta(1)=\sum_{i=1}^n p_i\otimes q_i</m>. This local finite expression is supplied by the sheaf tensor construction. Define
+          <md number="no">u:\mathcal O^n\longrightarrow P,\quad e_i\longmapsto p_i,\qquad v:P\longrightarrow\mathcal O^n,\quad p\longmapsto(\operatorname{ev}(q_i,p))_i.</md>
+          The triangle identity says <m>uv=\id_P</m>. Hence <m>P</m> is locally a finite free summand. Evaluation identifies <m>Q</m> with <m>P^\vee</m> by uniqueness of the dual.</p>
+        <p>A finite free summand is flat. If <m>e</m> is its projector on <m>\mathcal O^n</m>, it also has the finite presentation <m>\mathcal O^n\xrightarrow{1-e}\mathcal O^n\to P\to0</m>. Finally suppose that <m>P</m> is flat and locally finitely presented. Choose locally a finite presentation <m>\mathcal O^r\xrightarrow{A}\mathcal O^n\xrightarrow{q}P\to0</m>. By <xref ref="st-c09-equational-flatness"/>, after a covering <m>q</m> factors as <m>tB</m> through a finite free module with <m>BA=0</m>. Thus <m>B</m> descends to <m>s:P\to\mathcal O^l</m>. Since <m>tsq=tB=q</m> and <m>q</m> is an epimorphism, <m>ts=\id_P</m>. This is the desired finite retract. The general site statement is <url href="https://stacks.math.columbia.edu/tag/0FNX">Stacks, §18.29</url>.</p>
+      </proof>
+    </theorem>
+    <p>No coherence of <m>\mathcal O</m> occurs in the theorem. Over a coherent structure sheaf one can replace local finite presentation by coherence, but this uses <xref ref="st-c10-coherent-finite-presentation"/>. Coherence alone does not imply dualizability: <m>\Z/n\Z</m> for <m>n&gt;1</m> is coherent over <m>\Z</m> and is not flat. Conversely, the unit over the noncoherent ring of <xref ref="st-c10-noncoherent-ring"/> is dualizable and is not coherent.</p>
+
+    <proposition xml:id="st-c10-locally-ringed-free">
+      <statement><p>On a locally ringed topos, every finite locally projective module is finite locally free. Without the local-ring condition this conclusion need not hold.</p></statement>
+      <proof>
+        <p>Locally the module is the image of an idempotent matrix over <m>A=\mathcal O(U)</m>. Its image as an ordinary <m>A</m>-module is finite projective. The finite-projective theorem for rings gives elements <m>f_1,\ldots,f_t</m> generating the unit ideal such that this module becomes finite free over each <m>A_{f_i}</m>; see <url href="https://stacks.math.columbia.edu/tag/00NV">Stacks, Lemma 10.78.2</url>. The local-ring condition implies that <m>U</m> has a covering on whose members one of these <m>f_i</m> is invertible. The corresponding basis matrices over <m>A_{f_i}</m> then define a finite free model on that member. This is a point-independent argument, as in <url href="https://stacks.math.columbia.edu/tag/04ER">Stacks, the proof of Lemma 18.40.7</url>.</p>
+      </proof>
+    </proposition>
+    <example xml:id="st-c10-retract-not-free">
+      <statement><p>On a one-point ringed topos let <m>R=k\times k</m>, and let <m>P=(k,0)</m>. Then <m>P</m> is dualizable and finitely presented flat, but not locally free on that topos.</p></statement>
+      <solution><p>It is the image of the idempotent <m>(1,0)</m> on <m>R</m>, hence a finite free summand. A free <m>R</m>-module of finite rank has equal dimensions on the two factors, whereas <m>P</m> has dimensions <m>1,0</m>. No covering of the one-point topos makes it free. On the different ringed space <m>\Spec(R)</m>, the two idempotent components are separate open sets and the associated module is locally free. The local meaning of “free” depends on the topos being used.</p></solution>
+    </example>
+
+    <proposition xml:id="st-c10-hom-comparisons">
+      <statement>
+        <p>The pullback comparison for internal Hom is an isomorphism if its first argument is finite locally projective. It is also an isomorphism for a locally finitely presented first argument when the ringed morphism is flat. Pullback along every ringed morphism preserves dualizable modules and their duals.</p>
+      </statement>
+      <proof>
+        <p>For a finite locally projective <m>P</m>, use <m>\sheafHom(P,N)=P^\vee\otimes N</m>. Strong monoidality of <m>f^*</m> preserves the duality diagrams, and uniqueness of a dual identifies <m>f^*P^\vee</m> with <m>(f^*P)^\vee</m>. This gives the first and third assertions. For a locally finitely presented module, use a finite presentation and express internal Hom as the kernel of <m>N^n\to N^r</m>. Flat pullback is exact and preserves finite sums, so it preserves this kernel presentation and gives the second assertion.</p>
+      </proof>
+    </proposition>
+    <p>Neither existence of a comparison morphism nor preservation of tensor products makes arbitrary internal Hom commute with pullback. The proof states exactly which extra feature supplies the missing compatibility: a finite dual, or a finite presentation together with exact pullback.</p>
+  </section>
+
+  <section xml:id="st-c10-geometric-contexts">
+    <title>Geometric interpretations and site choices</title>
+    <proposition xml:id="st-c10-geometric-comparison">
+      <statement>
+        <p>For a locally Noetherian scheme <m>X</m> with its Zariski structure sheaf, the following conditions on <m>M</m> agree: coherence in the ringed-space sense; quasi-coherence and finite type; local finite presentation. On <m>\Spec(R)</m> with <m>R</m> Noetherian, these are the sheaves <m>\widetilde N</m> for finite <m>R</m>-modules <m>N</m>.</p>
+      </statement>
+      <proof>
+        <p>The external scheme inputs are the equivalence <m>\Mod(R)\simeq\QCoh(\Spec R)</m>, the localization description of its sections, and the finite-generation and finite-presentation tests under that equivalence. They are established in <url href="https://stacks.math.columbia.edu/tag/01I6">Stacks, §26.7</url>. Noetherianity makes the kernels of finite matrices finite, so the structure sheaf is coherent and finite quasi-coherent modules have finite presentations. Applying the general results above locally gives the equivalence. The precise geometric statement, including its locally Noetherian hypothesis, is <url href="https://stacks.math.columbia.edu/tag/01XY">Stacks, Lemma 30.9.1</url>.</p>
+      </proof>
+    </proposition>
+    <p>Noetherianity is a convenient sufficient condition, not the definition of coherence. For a coherent ring <m>R</m>, the same finite-matrix and localization argument shows that the Zariski structure sheaf on <m>\Spec R</m> is coherent; its coherent modules correspond to finitely presented <m>R</m>-modules. Over an arbitrary ring, finite type and finite presentation cannot be substituted for one another. The ring examples above already show the distinction before any scheme geometry is used.</p>
+
+    <p>For a complex manifold, the structure sheaf of holomorphic functions is coherent by the Oka coherence theorem, taken here as an external analytic theorem. Thus its coherent modules are exactly its locally finitely presented modules, and kernels of finite holomorphic matrices are locally finitely generated. A classical primary reference is <url href="https://www.numdam.org/article/AIF_1956__6__1_0.pdf">Serre, Géométrie algébrique et géométrie analytique, §1, no. 3, Proposition 1</url>, which states the corresponding result for the analytic spaces treated there and identifies the Oka–Cartan input. We do not replace this analytic theorem by the statement that individual holomorphic local rings are Noetherian: local finite generation on one neighborhood is part of what coherence supplies.<fn>The classical reduced analytic-space convention in that reference and modern conventions allowing nonreduced spaces require a translation in an analytic-geometry treatment. The manifold case used here needs no such translation. GAGA comparison, proper direct-image coherence, and analytic cohomology vanishing are further theorems with their own hypotheses; none follows merely from coherence of the structure sheaf.</fn></p>
+
+    <p>In all these examples coherent modules are modules over a varying structure sheaf. Constructible sheaves in the later note are instead controlled by stratifications and locally constant coefficient objects. The words do not describe two versions of one finiteness condition. A locally constant finite-dimensional coefficient sheaf is not a replacement for a coherent analytic or algebraic module.</p>
+
+    <remark xml:id="st-c10-stack-caveat">
+      <p>The site is part of the meaning of coherence. On the large site used for algebraic stacks in <url href="https://stacks.math.columbia.edu/tag/0GR4">Stacks, §103.17</url>, the intrinsic coherent-module definition from <xref ref="st-c10-coherent"/> gives only zero modules: the site contains too many non-Noetherian test objects. Geometric coherent sheaves on a locally Noetherian stack are instead defined there by quasi-coherence and finite type, equivalently by the specified finite-presentation or atlas tests. This is not a contradiction to the invariance under equivalence of ringed topoi: changing to a larger site need not give an equivalent ringed topos.</p>
+      <p>The distinction also affects kernels. The geometric coherent category is Abelian inside the appropriate quasi-coherent category, but its kernel need not be the kernel in the full category of modules on that large site; see Lemma 103.17.5 of that section. Thus the intrinsic exact inclusion of <xref ref="st-c10-coherent-closure"/> must not be transferred to this differently defined geometric category. We record the boundary and the source, without developing stacks or a replacement kernel construction here.</p>
+    </remark>
+  </section>
+</chapter>

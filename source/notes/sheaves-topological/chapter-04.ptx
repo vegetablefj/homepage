@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="sh-c04">
+  <title>Inverse images, direct images, and gluing</title>
+  <introduction>
+    <p>A continuous map relates two kinds of local data. A sheaf on its domain can be evaluated on inverse images of open sets. A sheaf on its codomain can be transported to the domain by taking germs near the images of points. These constructions give an adjunction, but they have different exactness properties. We construct both functors, retain the maps belonging to the adjunction, and then examine inclusions and open coverings.</p>
+    <p>Throughout this chapter, <m>f:X\to Y</m> is continuous. Statements about sets apply to <m>\Sh(X)</m>; statements about exact sequences apply to <m>\Sh(X;\Lambda)</m>, for a fixed commutative ring <m>\Lambda</m>. The constructions for Abel groups are the case <m>\Lambda=\Z</m>. No separation condition is imposed. The basic constructions can be compared with <xref ref="sh-bib-ks90" detail="Section 2.3"/> and <url href="https://stacks.math.columbia.edu/tag/008C">Stacks, Section 6.21</url>.</p>
+  </introduction>
+
+  <section xml:id="sh-c04-direct">
+    <title>Direct image and the inverse image presheaf</title>
+    <definition xml:id="sh-c04-directimage">
+      <title>Direct image</title><idx>Direct image</idx><idx>Pushforward</idx>
+      <statement><p>For a presheaf <m>F</m> on <m>X</m>, its <em>direct image</em>, or <em>pushforward</em>, is the presheaf
+        <md number="no">(f_*F)(V)=F(f^{-1}V),\qquad V\subset Y\ \text{open},</md>
+        with the restriction maps induced by those of <m>F</m>. A morphism is sent to the corresponding maps on these sections. If <m>F</m> is a sheaf, so is <m>f_*F</m>.</p></statement>
+    </definition>
+    <p>The last assertion follows because a covering of <m>V</m> pulls back to a covering of <m>f^{-1}V</m>, with intersections preserved. Thus no sheafification is needed for direct image. With these definitions, <m>(gf)_*=g_*f_*</m> and <m>(\id_X)_*=\id</m> as functors, not merely up to isomorphism.</p>
+    <p>The expression <m>G(f(U))</m> does not define inverse image: <m>f(U)</m> need not be open, and a sheaf is initially defined only on open sets. Taking all open neighbourhoods of <m>f(U)</m> supplies the missing local data.</p>
+    <definition xml:id="sh-c04-inverseimage">
+      <title>Inverse image</title><idx>Inverse image</idx><idx>Pullback of a sheaf</idx>
+      <statement><p>For a presheaf <m>G</m> on <m>Y</m>, define
+        <md number="no">(f^\dagger G)(U)=\colim_{\substack{V\subset Y\ \mathrm{open}\\ f(U)\subset V}}G(V).</md>
+        The neighbourhoods are ordered by reverse inclusion. Restriction from <m>U</m> to <m>U'\subset U</m> uses the inclusion of the corresponding indexing systems. For a sheaf <m>G</m>, its <em>inverse image</em> is
+        <md number="no">f^{-1}G=(f^\dagger G)^\#.</md>
+        The symbol <m>f^\dagger</m> is used here only for this presheaf construction; <m>(-)^\#</m> is sheafification from <xref ref="sh-c02-sheafification"/>.</p></statement>
+    </definition>
+    <p>Each indexing system is nonempty, since it contains <m>Y</m>, and filtered, since it contains the intersection of two neighbourhoods. If <m>U=\varnothing</m>, it also contains <m>V=\varnothing</m>. The value of the inverse image presheaf on the empty set is therefore the terminal set, or the zero module, when <m>G</m> is a sheaf.</p>
+    <p>The presheaf <m>f^\dagger G</m> need not already be a sheaf. For the map from a space to a point it is the constant presheaf on nonempty opens; a locally constant function with different values on two disjoint opens may not be represented by a single element. Sheafification permits such local representatives to be glued.<fn>Some sources write <m>f^p</m>, <m>f_p</m>, or a Kan extension symbol for the presheaf inverse image. The notation <m>f^{-1}</m> in this note always includes sheafification. A ringed inverse image <m>f^*</m> additionally changes scalars; it is a different construction.</fn></p>
+  </section>
+
+  <section xml:id="sh-c04-adjoint">
+    <title>The adjunction and stalks</title>
+    <theorem xml:id="sh-c04-adjunction">
+      <statement><p>The constructions above give functors
+        <md number="no">f^{-1}:\Sh(Y)\rightleftarrows\Sh(X):f_*</md>
+        and a natural bijection
+        <md number="no">\Hom_X(f^{-1}G,F)\simeq\Hom_Y(G,f_*F).</md>
+        The same assertion holds for sheaves of <m>\Lambda</m>-modules, with linear morphisms.</p></statement>
+      <proof>
+        <p>A morphism <m>a:G\to f_*F</m> gives, whenever <m>f(U)\subset V</m>, a composite
+          <md number="no">G(V)\xrightarrow{a_V}F(f^{-1}V)\longrightarrow F(U).</md>
+          These maps are compatible with shrinking <m>V</m> and with restricting <m>U</m>. They give a morphism of presheaves <m>f^\dagger G\to F</m>, which factors uniquely through <m>f^{-1}G</m>.</p>
+        <p>Conversely, a morphism <m>b:f^{-1}G\to F</m> gives, for each open <m>V\subset Y</m>, the map
+          <md number="no">G(V)\longrightarrow (f^\dagger G)(f^{-1}V)\longrightarrow (f^{-1}G)(f^{-1}V)\xrightarrow{b}F(f^{-1}V).</md>
+          The first arrow is defined because <m>f(f^{-1}V)\subset V</m>. The composites commute with restrictions. Starting from <m>a</m> recovers <m>a_V</m>; starting from <m>b</m> recovers its maps on the local representatives defining <m>f^\dagger G</m>, and hence recovers <m>b</m>. All maps used are linear in the module case.</p>
+      </proof>
+    </theorem>
+    <p>The unit and counit are denoted
+      <md number="no">\eta_G:G\longrightarrow f_*f^{-1}G,\qquad
+        \epsilon_F:f^{-1}f_*F\longrightarrow F.</md>
+      The unit sends a section to its inverse image. The counit restricts a section over <m>f^{-1}V</m> to a smaller open <m>U\subset f^{-1}V</m>. These descriptions also show the triangle identities: applying either construction and then the other restricts each local representative to itself.</p>
+    <proposition xml:id="sh-c04-inverse-stalk">
+      <statement><p>For every <m>x\in X</m> there is a canonical isomorphism
+        <md number="no">(f^{-1}G)_x\simeq G_{f(x)}.</md>
+        For continuous maps <m>X\xrightarrow fY\xrightarrow gZ</m>, there is a canonical isomorphism <m>(gf)^{-1}\simeq f^{-1}g^{-1}</m>. The isomorphisms for triple composites agree.</p></statement>
+      <proof>
+        <p>Sheafification preserves stalks. A representative for the left side is a section <m>s\in G(V)</m>, together with a neighbourhood <m>U</m> of <m>x</m> satisfying <m>f(U)\subset V</m>. It determines the germ <m>s_{f(x)}</m>. Every neighbourhood <m>V</m> of <m>f(x)</m> occurs, by taking <m>U=f^{-1}V</m>. Equality of two germs on the right can be witnessed on an open neighbourhood <m>W</m> of <m>f(x)</m>; shrinking the two source neighbourhoods by <m>f^{-1}W</m> witnesses equality on the left.</p>
+        <p>For composition, both displayed inverse image functors are left adjoint to <m>g_*f_*=(gf)_*</m>. The unique isomorphism respecting these adjunctions gives the stated comparison. Its coherence follows from the same uniqueness, or from sending each germ successively to its germ at the image point.</p>
+      </proof>
+    </proposition>
+    <p>By <xref ref="sh-c02-stalkiso"/>, a morphism can be checked after inverse image by the points. This is a statement about morphisms of sheaves, rather than a formula expressing every set of sections as an arbitrary product of stalks. Local compatibility of germs remains necessary.</p>
+    <proposition xml:id="sh-c04-exactness">
+      <statement><p>On sheaves of modules, <m>f^{-1}</m> is exact and preserves all colimits and all finite limits. The functor <m>f_*</m> preserves all limits and is left exact. If <m>f</m> is surjective, <m>f^{-1}</m> reflects isomorphisms and exact sequences.</p></statement>
+      <proof><p>Exactness of inverse image follows by taking stalks and using <xref ref="sh-c03-exactness"/>. Preservation of colimits follows from its adjunction; preservation of finite limits also follows from the stalk calculation. A right adjoint preserves limits, which gives the assertions about <m>f_*</m>. If <m>f</m> is surjective, every stalk on <m>Y</m> is tested by at least one point of <m>X</m>, proving the last assertion.</p></proof>
+    </proposition>
+    <p>The assertion about finite limits applies to sheaves of sets as well. On sets it is preferable to state left exactness directly, since an exact sequence of modules is not available.<fn>Exactness of inverse image does not imply exactness of a ringed inverse image: extension of scalars is only right exact unless the relevant flatness condition holds. For fixed coefficients, the scalar ring map on each stalk is the identity.</fn></p>
+    <p>There is also a geometric description using the étalé space <m>E(G)\to Y</m> of <m>G</m>. Its topological fibre product with <m>X</m> is a local homeomorphism
+      <md number="no">X\times_Y E(G)\longrightarrow X.</md>
+      The sheaf of its local sections is <m>f^{-1}G</m>. A section near <m>x</m> chooses a germ of <m>G</m> near <m>f(x)</m> and transports its local representative to a neighbourhood of <m>x</m>. The local charts of <m>E(G)</m> give the same charts on the fibre product as the germs in our construction. This gives an isomorphism of étalé spaces and hence of sheaves.</p>
+    <p>This description also applies to module sheaves: the module operations on fibres pull back along <m>f</m>. The map <m>E(f^{-1}G)\to E(G)</m> goes in the direction of <m>f</m>, although the functor on sheaf categories goes from <m>Y</m> to <m>X</m>. The fibre at <m>x</m> is the fibre over <m>f(x)</m>, which explains the stalk formula without treating arbitrary families of germs as sections.</p>
+  </section>
+
+  <section xml:id="sh-c04-points">
+    <title>Point maps and direct image germs</title>
+    <definition xml:id="sh-c04-skyscraper">
+      <title>Skyscraper sheaf</title><idx>Skyscraper sheaf</idx>
+      <statement><p>Let <m>i_x:\{x\}\to X</m> be the inclusion of a point, and let <m>M</m> be a <m>\Lambda</m>-module. The <em>skyscraper sheaf</em> <m>(i_x)_*M</m> has sections <m>M</m> on opens containing <m>x</m> and zero on opens not containing <m>x</m>. Its restrictions are identities or zero maps as required.</p></statement>
+    </definition>
+    <proposition xml:id="sh-c04-point-adjunction">
+      <statement><p>There are natural identifications
+        <md number="no">i_x^{-1}F=F_x,\qquad
+          \Hom_X(F,(i_x)_*M)\simeq\Hom_\Lambda(F_x,M).</md>
+        The functor <m>(i_x)_*</m> is exact. For an arbitrary point <m>y\in X</m>,
+        <md number="no">((i_x)_*M)_y\simeq
+          \begin{cases}M,&amp;y\in\overline{\{x\}},\\0,&amp;y\notin\overline{\{x\}}.\end{cases}</md></p></statement>
+      <proof><p>The first two assertions follow from the inverse image formula and the adjunction. Exactness can be checked on sections, since each section functor in this formula is either the identity on modules or the zero functor. If every neighbourhood of <m>y</m> contains <m>x</m>, the stalk system is constantly <m>M</m>. Otherwise the opens missing <m>x</m> are cofinal at <m>y</m> and give zero.</p></proof>
+    </proposition>
+    <p>Thus a skyscraper need not have a single nonzero stalk when points are not closed. This matters on spectral and finite topological spaces.<fn>On a <m>T_1</m> space, including a Hausdorff space, <m>\overline{\{x\}}=\{x\}</m> and the familiar description is recovered. The specialization direction in the formula is <m>y\in\overline{\{x\}}</m>, not <m>x\in\overline{\{y\}}</m>.</fn> Compare <url href="https://stacks.math.columbia.edu/tag/0099">Stacks, skyscraper sheaves and stalks</url>.</p>
+    <p>For a general direct image, the correct stalk formula is
+      <md number="no">(f_*F)_y=\colim_{y\in V}F(f^{-1}V).</md>
+      There are maps from this module to <m>F_x</m> for <m>f(x)=y</m>, but the source records sections near the entire inverse image of a neighbourhood of <m>y</m>. It need not be a product of fibre stalks.</p>
+    <example xml:id="sh-c04-direct-point-example">
+      <statement><p>Let <m>a:X\to\{*\}</m> be the unique map. Then <m>a_*F=\Gamma(X,F)</m>. If <m>X=\R</m> and <m>F=\Lambda_X</m>, global sections are <m>\Lambda</m>, whereas the product of all stalks is <m>\prod_{x\in\R}\Lambda</m>. For a discrete space, global sections are instead precisely the product of the stalks.</p></statement>
+    </example>
+    <p>There are useful fibre formulas under additional hypotheses, including proper base change after derivation. Such formulas require a theorem; the definition of direct image alone gives the neighbourhood colimit above.</p>
+    <example xml:id="sh-c04-product-stalk">
+      <statement><p>Inverse image need not preserve infinite products. Let <m>X=\{0\}\cup\{1/n:n\geq1\}</m> and let <m>F=\prod_{r\geq1}\Bbbk_X</m>. A section of <m>F</m> is a family of locally constant scalar functions. Let its <m>r</m>-th component be the characteristic function of <m>\{1/r\}</m>. This singleton is open and closed in <m>X</m>, so the function is locally constant. Each component has zero germ at <m>0</m>, but the entire section has a nonzero germ there: every neighbourhood contains some <m>1/r</m>, where one component is nonzero. Hence
+        <md number="no">F_0\longrightarrow\prod_{r\geq1}(\Bbbk_X)_0</md>
+        has a nonzero kernel. Since the stalk functor is inverse image by the point map, finite-limit preservation cannot be strengthened to arbitrary-limit preservation.</p></statement>
+    </example>
+  </section>
+
+  <section xml:id="sh-c04-basechange">
+    <title>The base change comparison</title>
+    <p>Consider a commutative Cartesian square of spaces
+      <md number="no">\begin{matrix}
+        X'&amp;\xrightarrow{g'}&amp;X\\
+        {\scriptstyle f'}\downarrow&amp;&amp;\downarrow{\scriptstyle f}\\
+        Y'&amp;\xrightarrow{g}&amp;Y.
+      \end{matrix}</md>
+      The two routes from sheaves on <m>X</m> to sheaves on <m>Y'</m> have a natural comparison. Its construction uses only the adjunction and does not by itself prove an isomorphism.</p>
+    <proposition xml:id="sh-c04-basechange-map">
+      <statement><p>There is a natural morphism
+        <md number="no">g^{-1}f_*F\longrightarrow f'_*g'^{-1}F.</md>
+        If <m>g</m> is the inclusion of an open subset, this is an isomorphism. These comparisons agree under successive restriction to open subsets.</p></statement>
+      <proof><p>Using commutativity of the square and the inverse image composition isomorphisms, form
+        <md number="no">f'^{-1}g^{-1}f_*F
+          \simeq g'^{-1}f^{-1}f_*F
+          \xrightarrow{g'^{-1}\epsilon_F}g'^{-1}F.</md>
+        Its adjoint is the required comparison. If <m>g:V\hookrightarrow Y</m> is open, then <m>X'=f^{-1}V</m>. On each open <m>W\subset V</m>, both sides have section module <m>F(f^{-1}W)</m>, and the comparison is the identity. The same description proves compatibility with successive restrictions.</p></proof>
+    </proposition>
+    <example xml:id="sh-c04-basechange-failure">
+      <statement><p>Let <m>f:\R\setminus\{0\}\hookrightarrow\R</m> and let <m>g:\{0\}\hookrightarrow\R</m>. Their fibre product is empty. For <m>F=\Lambda_{\R\setminus\{0\}}</m>, the comparison is
+        <md number="no">(f_*F)_0\simeq\Lambda\oplus\Lambda\longrightarrow0.</md>
+        The two summands are the values on the positive and negative parts of a punctured interval. It is not an isomorphism when <m>\Lambda\ne0</m>, even though the square is Cartesian.</p></statement>
+    </example>
+    <p>The example records sections on punctured neighbourhoods that disappear on the empty fibre.<fn>A Cartesian square specifies the comparison, not its invertibility. Properness, support conditions, or local hypotheses can supply base change theorems. These will be introduced with their geometric proofs and derived statements in the note on support and duality.</fn> Open restriction is the unconditional case needed repeatedly in this note.</p>
+  </section>
+
+  <section xml:id="sh-c04-restriction">
+    <title>Subspaces and open extension by zero</title>
+    <p>For an inclusion <m>k:A\hookrightarrow X</m>, write <m>F|_A=k^{-1}F</m>. If <m>A</m> is open, this is ordinary restriction on opens: <m>(F|_A)(V)=F(V)</m> for <m>V\subset A</m>. For a general subspace, sections are formed from local neighbourhoods in <m>X</m> and sheafification; an open subset of <m>A</m> is not necessarily an open subset of <m>X</m>.</p>
+    <proposition xml:id="sh-c04-embedding">
+      <statement><p>For every subspace inclusion <m>k:A\hookrightarrow X</m>, the counit <m>k^{-1}k_*G\to G</m> is an isomorphism. Consequently <m>k_*</m> is fully faithful. If <m>k=j:U\hookrightarrow X</m> is open, then
+        <md number="no">(j_*G)(V)=G(V\cap U),\qquad j^{-1}F=F|_U.</md></p></statement>
+      <proof><p>Neighbourhoods of a point <m>a\in A</m> in the subspace are precisely the sets <m>A\cap V</m> with <m>V</m> open in <m>X</m>. The counit induces an isomorphism on each stalk of <m>A</m>. Full faithfulness follows from the adjunction.</p></proof>
+    </proposition>
+    <definition xml:id="sh-c04-openextension">
+      <title>Extension by zero for an open inclusion</title><idx>Extension by zero</idx><idx>Open inclusion</idx>
+      <statement><p>Let <m>j:U\hookrightarrow X</m> be open and <m>G\in\Sh(U;\Lambda)</m>. Define a presheaf on <m>X</m> by
+        <md number="no">P_G(V)=
+          \begin{cases}G(V),&amp;V\subset U,\\0,&amp;V\not\subset U.\end{cases}</md>
+        Its sheafification is the <em>extension by zero</em>, denoted <m>j_!G</m>.</p></statement>
+    </definition>
+    <p>In the category of sets the corresponding construction uses the empty set, the initial object, in place of zero. It is usually called extension by the empty set. Forgetting the module structure after extending by zero does not give extension by the empty set: the zero module has one underlying element.<fn>The choice of initial object explains the notation in both settings. On module sheaves, extension by zero is exact. On set sheaves, extension by the empty set does not preserve the terminal sheaf when <m>U\ne X</m>, and hence is not left exact in the usual finite-limit sense.</fn></p>
+    <proposition xml:id="sh-c04-open-adjunctions">
+      <statement><p>For an open inclusion there are adjunctions
+        <md number="no">j_!\dashv j^{-1}\dashv j_*.</md>
+        Both <m>j_!</m> and <m>j_*</m> are fully faithful. Extension by zero is exact, and
+        <md number="no">(j_!G)_x\simeq
+          \begin{cases}G_x,&amp;x\in U,\\0,&amp;x\notin U.\end{cases}</md>
+        Its essential image consists of the sheaves whose stalks vanish outside <m>U</m>.</p></statement>
+      <proof><p>A map <m>P_G\to F</m> is determined by its maps on the opens contained in <m>U</m>, and these are precisely a map <m>G\to F|_U</m>. Sheafification proves the first adjunction. The stalk formula follows directly from <m>P_G</m>. It implies exactness and <m>j^{-1}j_!G\simeq G</m>. If <m>F_x=0</m> outside <m>U</m>, the adjunction map <m>j_!j^{-1}F\to F</m> is a stalkwise isomorphism; this proves the essential-image assertion. Full faithfulness of <m>j_*</m> was proved for subspaces above.</p></proof>
+    </proposition>
+    <p>There is a natural injection <m>j_!G\to j_*G</m> restricting to the identity on <m>U</m>. A section of its image over <m>V</m> is a section <m>s\in G(V\cap U)</m> with the following property: for each <m>x\in V\setminus U</m>, there is an open neighbourhood <m>W\subset V</m> of <m>x</m> on which <m>s|_{W\cap U}=0</m>. The condition is local on <m>V</m>, so these sections form a sheaf. Its stalks are those of <m>j_!G</m>, and the injection identifies the two descriptions.</p>
+    <example xml:id="sh-c04-halfline">
+      <statement><p>Let <m>j:(0,\infty)\hookrightarrow\R</m> and assume <m>\Lambda\ne0</m>. On an interval crossing zero, <m>j_*\Lambda_{(0,\infty)}</m> has section module <m>\Lambda</m>. The only section of <m>j_!\Lambda_{(0,\infty)}</m> on that interval is zero: a constant section on its positive part that vanishes near zero is zero. In particular,
+        <md number="no">(j_*\Lambda_{(0,\infty)})_0=\Lambda,\qquad
+          (j_!\Lambda_{(0,\infty)})_0=0.</md></p></statement>
+    </example>
+    <p>For the construction, stalk descriptions, and coefficient distinction, see <url href="https://stacks.math.columbia.edu/tag/009Z">Stacks, Section 6.31</url>. The neighbourhood vanishing condition above is an elementary description for an open inclusion; general direct image with proper support has additional content.</p>
+  </section>
+
+  <section xml:id="sh-c04-closed">
+    <title>Closed inclusions and an exact sequence</title>
+    <proposition xml:id="sh-c04-closedimage">
+      <statement><p>Let <m>i:Z\hookrightarrow X</m> be closed. The functor <m>i_*:\Sh(Z;\Lambda)\to\Sh(X;\Lambda)</m> is exact and fully faithful. Its stalks are
+        <md number="no">(i_*G)_x\simeq
+          \begin{cases}G_x,&amp;x\in Z,\\0,&amp;x\notin Z.\end{cases}</md>
+        Its essential image consists of the sheaves whose stalks vanish on <m>X\setminus Z</m>.</p></statement>
+      <proof><p>At a point of <m>Z</m>, the subspace neighbourhoods give the first case. Outside <m>Z</m>, the neighbourhoods missing <m>Z</m> are cofinal and give zero. This proves exactness by stalks. If <m>F</m> vanishes off <m>Z</m>, the unit <m>F\to i_*i^{-1}F</m> is a stalkwise isomorphism. Full faithfulness follows from <xref ref="sh-c04-embedding"/>.</p></proof>
+    </proposition>
+    <p>For set sheaves, the stalk outside <m>Z</m> is terminal rather than empty. Closed direct image and open extension by the initial object therefore have distinct underlying-set behaviour. The module category, in which zero is both initial and terminal, makes their stalk descriptions look more similar. See <url href="https://stacks.math.columbia.edu/tag/00AD">Stacks, Section 6.32</url>.</p>
+    <proposition xml:id="sh-c04-openclosed">
+      <statement><p>Let <m>Z\subset X</m> be closed, <m>U=X\setminus Z</m>, and let <m>i,j</m> be the inclusions. For every <m>F\in\Sh(X;\Lambda)</m>, the adjunction maps give a natural short exact sequence
+        <md number="no">0\longrightarrow j_!j^{-1}F
+          \longrightarrow F\longrightarrow i_*i^{-1}F\longrightarrow0.</md></p></statement>
+      <proof><p>At a point of <m>U</m>, the nonzero part is <m>F_x\xrightarrow{\id}F_x</m>. At a point of <m>Z</m>, it is again <m>F_x\xrightarrow{\id}F_x</m>, now in the last two positions. Exactness follows from <xref ref="sh-c03-exactness"/>.</p></proof>
+    </proposition>
+    <p>This sequence need not split. Restrictions to the open and closed pieces do not by themselves specify a sheaf. For example, on <m>X=\R</m> with <m>Z=\{0\}</m>, the constant sheaf and <m>j_!\Lambda_U\oplus i_*\Lambda</m> have isomorphic restrictions to both pieces. For the latter sheaf every germ at zero has a representative whose restriction to a sufficiently small punctured interval is zero. For the constant sheaf a nonzero germ has no such representative. Thus they are not isomorphic if <m>\Lambda\ne0</m>.</p>
+    <p>The derived open–closed triangles and the second localization sequence involve the theory of supports. The exact sequence here is enough to distinguish the two elementary extensions and will be used when constructing resolutions.</p>
+  </section>
+
+  <section xml:id="sh-c04-descent">
+    <title>Gluing sheaves and morphisms</title>
+    <definition xml:id="sh-c04-gluingdatum">
+      <title>Gluing datum on an open covering</title><idx>Gluing datum</idx><idx>Cocycle for gluing sheaves</idx>
+      <statement><p>Let <m>X=\bigcup_{a\in A}U_a</m> be an open covering. A gluing datum consists of sheaves <m>F_a</m> on <m>U_a</m> and isomorphisms
+        <md number="no">\theta_{ab}:F_b|_{U_a\cap U_b}\longrightarrow F_a|_{U_a\cap U_b}</md>
+        satisfying <m>\theta_{aa}=\id</m> and <m>\theta_{ab}\theta_{bc}=\theta_{ac}</m> on every triple intersection. A morphism to a datum <m>(G_a,\psi_{ab})</m> consists of maps <m>u_a:F_a\to G_a</m> satisfying <m>u_a\theta_{ab}=\psi_{ab}u_b</m> on overlaps.</p></statement>
+    </definition>
+    <theorem xml:id="sh-c04-gluing">
+      <statement><p>Restriction from sheaves on <m>X</m> to gluing data on an open covering is an equivalence of categories. A sheaf realizing a given datum, together with the specified identifications on the covering, is unique up to a unique isomorphism respecting those identifications. This holds for sets, Abel groups, and <m>\Lambda</m>-modules.</p></statement>
+      <proof>
+        <p>For the given datum define, for every open <m>V\subset X</m>,
+          <md number="no">F(V)=
+            \left\{(s_a)\in\prod_aF_a(V\cap U_a):
+            s_a|_{V\cap U_a\cap U_b}
+            =\theta_{ab}(s_b|_{V\cap U_a\cap U_b})\right\}.</md>
+          Restrict tuples componentwise. A matching family of tuples on a covering of <m>V</m> glues in every <m>F_a</m>. The resulting components satisfy the overlap conditions because the conditions hold locally. Thus <m>F</m> is a sheaf.</p>
+        <p>When <m>V\subset U_c</m>, projection to <m>s_c</m> is a bijection from <m>F(V)</m> to <m>F_c(V)</m>. Its inverse sends <m>s_c</m> to the tuple with components <m>\theta_{ac}(s_c|_{V\cap U_a})</m>. The cocycle condition gives precisely the required compatibility. These maps identify <m>F|_{U_c}</m> with <m>F_c</m>.</p>
+        <p>A morphism of data acts on the tuples componentwise and hence gives a morphism of glued sheaves. Conversely, maps of sheaves on the covering that agree on overlaps glue uniquely: apply the sheaf axiom in the target to the images of each source section. This proves full faithfulness and the specified uniqueness. All operations are componentwise algebraic operations for groups or modules.</p>
+      </proof>
+    </theorem>
+    <p>Our transition convention makes a section a tuple satisfying <m>s_a=\theta_{ab}s_b</m>.<fn>The inverse convention <m>F_a\to F_b</m> is equally common. Reversing every transition map also reverses the written cocycle formula; mixing these two conventions produces an incorrect order of composition.</fn> Compare <xref ref="sh-bib-schapira" detail="Theorem 1.9.3"/> and <url href="https://stacks.math.columbia.edu/tag/00AK">Stacks, Section 6.33</url>.</p>
+    <p>Replacing the trivialization on <m>U_a</m> by an automorphism <m>h_a</m> changes the transitions to <m>h_a\theta_{ab}h_b^{-1}</m>. The glued sheaf is isomorphic to the original sheaf, with local maps <m>h_a</m>. This is the change-of-trivialization relation that appears when local systems are described by cocycles.</p>
+    <p>Restriction to an open covering detects isomorphisms and exactness. For example, an exact sequence on each <m>U_a</m> gives an exact sequence after gluing, since each stalk belongs to some member of the covering. This is local verification, not a requirement to choose lifts of all global sections.</p>
+    <p>Without chosen local identifications, uniqueness is only uniqueness of the isomorphism class.<fn>A sheaf may have many automorphisms. The phrase “unique up to unique isomorphism” in the theorem includes the identifications with the prescribed datum; it does not remove these automorphisms from the category of sheaves.</fn></p>
+  </section>
+</chapter>

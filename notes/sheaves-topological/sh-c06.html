@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-darkmode="disabled">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette: blue-red                     *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Tensor products and internal Hom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Sheaves on topological spaces and cohomology">
+<meta property="og:title" content="Sheaves on topological spaces and cohomology">
+<meta property="book:title" content="Sheaves on topological spaces and cohomology">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.53"></script><script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="../../vendor/lunr/lunr.min.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+<link rel="stylesheet" href="../../layout.css?v=fee08a8c1c">
+<script src="../../layout.js?v=e9391a21a7" defer></script><link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"C": "\\mathbb C", "Pone": "\\mathbb{P}^1_{\\mathbb{C}}", "cO": "\\mathcal{O}", "ord": "\\operatorname{ord}", "lt": "<", "gt": ">", "amp": "&", "Hom": "\\operatorname{Hom}", "End": "\\operatorname{End}", "Ext": "\\operatorname{Ext}", "Tor": "\\operatorname{Tor}", "colim": "\\operatorname{colim}", "im": "\\operatorname{im}", "coker": "\\operatorname{coker}", "Cone": "\\operatorname{Cone}", "Tot": "\\operatorname{Tot}", "Loc": "\\operatorname{Loc}", "Sh": "\\mathsf{Sh}", "PSh": "\\mathsf{PSh}", "Set": "\\mathsf{Set}", "Ab": "\\mathsf{Ab}", "Mod": "\\mathsf{Mod}", "Ch": "\\mathsf{C}", "K": "\\mathsf{K}", "D": "\\mathsf{D}", "id": "\\mathrm{id}", "op": "\\mathrm{op}", "RHom": "\\mathbf R\\!\\operatorname{Hom}", "sheafHom": "\\mathcal{H}\\!om", "RsheafHom": "\\mathbf R\\mathcal{H}\\!om", "Ltensor": "\\mathbin{\\otimes^{\\mathbf L}}", "Z": "\\mathbb Z", "N": "\\mathbb N", "Q": "\\mathbb Q", "R": "\\mathbb R"}}, "options": {"ignoreHtmlClass": "ignore-math", "processHtmlClass": "process-math", "enableMenu": false}};</script><script src="../../vendor/mathjax/tex-chtml.js" defer></script>
+</head>
+<body class="pretext book ignore-math note-page" data-page-format="note">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner"><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="sheaves-topological-notes.html"><span class="title">Sheaves on topological spaces and cohomology</span></a></div>
+<p class="byline"><a href="../../home.html">Jie Fu</a>'s <a href="../../notes.html">Notes</a></p>
+<p class="note-metadata"><span class="note-review-status">Under review and improvement</span> · <span class="note-last-updated">Last updated: <time datetime="2026-10-26">2026-10-26</time></span></p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Contents</span></button><a class="index-button button" href="sh-index.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Index</span></a><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true"></span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="treebuttons"><a class="previous-button button" href="sh-c05.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="up-button button" href="sheaves-topological-notes.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Up</span></a><a class="next-button button" href="sh-c07.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a></span>
+</div></nav><div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth4 focused" data-preexpanded-levels="1" data-max-levels="4"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c00.html" class="internal"><span class="codenumber">0</span> <span class="title">Conventions and the local-to-global problem</span></a></div>
+<ul id="ptx-toc-group-sh-c00" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c00.html#sh-c00-objects" class="internal"><span class="codenumber">0.1</span> <span class="title">Spaces, coefficients, and size</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c00.html#sh-c00-functors" class="internal"><span class="codenumber">0.2</span> <span class="title">Inverse images and the two Hom constructions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c00.html#sh-c00-complexes" class="internal"><span class="codenumber">0.3</span> <span class="title">Complexes, degrees, and derived categories</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c00.html#sh-c00-reading" class="internal"><span class="codenumber">0.4</span> <span class="title">Dependencies and sources</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c01.html" class="internal"><span class="codenumber">1</span> <span class="title">Presheaves, sheaves, and local data</span></a></div>
+<ul id="ptx-toc-group-sh-c01" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-presheaves" class="internal"><span class="codenumber">1.1</span> <span class="title">Restrictions and morphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-locality" class="internal"><span class="codenumber">1.2</span> <span class="title">Locality and gluing</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-examples" class="internal"><span class="codenumber">1.3</span> <span class="title">Functions and sections of maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-failures" class="internal"><span class="codenumber">1.4</span> <span class="title">Conditions that do not glue</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-basis" class="internal"><span class="codenumber">1.5</span> <span class="title">Sheaves on a basis</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-localtesting" class="internal"><span class="codenumber">1.6</span> <span class="title">Testing the sheaf condition</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c02.html" class="internal"><span class="codenumber">2</span> <span class="title">Stalks, étalé spaces, and sheafification</span></a></div>
+<ul id="ptx-toc-group-sh-c02" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-germs" class="internal"><span class="codenumber">2.1</span> <span class="title">Germs and neighbourhood colimits</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-etalespace" class="internal"><span class="codenumber">2.2</span> <span class="title">The space of germs</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-sheafification" class="internal"><span class="codenumber">2.3</span> <span class="title">Associated sheaves</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-detection" class="internal"><span class="codenumber">2.4</span> <span class="title">Detecting sheaf morphisms at stalks</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-equivalence" class="internal"><span class="codenumber">2.5</span> <span class="title">Sheaves and local homeomorphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-specialization" class="internal"><span class="codenumber">2.6</span> <span class="title">Compatibility between different points</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c03.html" class="internal"><span class="codenumber">3</span> <span class="title">Categories of sheaves and exactness</span></a></div>
+<ul id="ptx-toc-group-sh-c03" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c03.html#sh-c03-limits" class="internal"><span class="codenumber">3.1</span> <span class="title">Limits and colimits</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c03.html#sh-c03-monoepi" class="internal"><span class="codenumber">3.2</span> <span class="title">Monomorphisms and local surjectivity</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c03.html#sh-c03-exactness" class="internal"><span class="codenumber">3.3</span> <span class="title">Kernels, images, and quotients</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c03.html#sh-c03-grothendieck" class="internal"><span class="codenumber">3.4</span> <span class="title">Generators and the Grothendieck property</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c03.html#sh-c03-filteredsections" class="internal"><span class="codenumber">3.5</span> <span class="title">Filtered colimits and section functors</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c04.html" class="internal"><span class="codenumber">4</span> <span class="title">Inverse images, direct images, and gluing</span></a></div>
+<ul id="ptx-toc-group-sh-c04" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-direct" class="internal"><span class="codenumber">4.1</span> <span class="title">Direct image and the inverse image presheaf</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-adjoint" class="internal"><span class="codenumber">4.2</span> <span class="title">The adjunction and stalks</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-points" class="internal"><span class="codenumber">4.3</span> <span class="title">Point maps and direct image germs</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-basechange" class="internal"><span class="codenumber">4.4</span> <span class="title">The base change comparison</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-restriction" class="internal"><span class="codenumber">4.5</span> <span class="title">Subspaces and open extension by zero</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-closed" class="internal"><span class="codenumber">4.6</span> <span class="title">Closed inclusions and an exact sequence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-descent" class="internal"><span class="codenumber">4.7</span> <span class="title">Gluing sheaves and morphisms</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c05.html" class="internal"><span class="codenumber">5</span> <span class="title">Constant sheaves and local systems</span></a></div>
+<ul id="ptx-toc-group-sh-c05" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c05.html#sh-c05-constant-section" class="internal"><span class="codenumber">5.1</span> <span class="title">Constant coefficients and locally constant functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c05.html#sh-c05-local-section" class="internal"><span class="codenumber">5.2</span> <span class="title">Locally constant sheaves and transition maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c05.html#sh-c05-coverings" class="internal"><span class="codenumber">5.3</span> <span class="title">Covering spaces and transport</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c05.html#sh-c05-monodromy-section" class="internal"><span class="codenumber">5.4</span> <span class="title">The monodromy classification</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c05.html#sh-c05-examples" class="internal"><span class="codenumber">5.5</span> <span class="title">The circle, finite coverings, and pullback</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="sh-c06.html" class="internal"><span class="codenumber">6</span> <span class="title">Tensor products and internal Hom</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-sh-c06">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-tensor-section" class="internal"><span class="codenumber">6.1</span> <span class="title">The tensor product sheaf</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-hom-section" class="internal"><span class="codenumber">6.2</span> <span class="title">Internal Hom and its adjunction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-finite" class="internal"><span class="codenumber">6.3</span> <span class="title">Stalks and finite presentation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-functorial" class="internal"><span class="codenumber">6.4</span> <span class="title">Inverse image and direct image comparisons</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-localsystems" class="internal"><span class="codenumber">6.5</span> <span class="title">Tensor and Hom of local systems</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-duals" class="internal"><span class="codenumber">6.6</span> <span class="title">Finite local models and duals</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-flat-section" class="internal"><span class="codenumber">6.7</span> <span class="title">Flatness and its stalk criterion</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-flat-resolutions" class="internal"><span class="codenumber">6.8</span> <span class="title">Enough flat sheaves</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c07.html" class="internal"><span class="codenumber">7</span> <span class="title">Resolutions and derived sheaf operations</span></a></div>
+<ul id="ptx-toc-group-sh-c07" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c07.html#sh-c07-injective-section" class="internal"><span class="codenumber">7.1</span> <span class="title">Injectives and extension of sections</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c07.html#sh-c07-godement-section" class="internal"><span class="codenumber">7.2</span> <span class="title">The Godement resolution</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c07.html#sh-c07-unbounded-section" class="internal"><span class="codenumber">7.3</span> <span class="title">K-injective resolutions and direct image</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c07.html#sh-c07-tensor-hom-section" class="internal"><span class="codenumber">7.4</span> <span class="title">Derived tensor and internal Hom</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c08.html" class="internal"><span class="codenumber">8</span> <span class="title">Cohomology, hypercohomology, and products</span></a></div>
+<ul id="ptx-toc-group-sh-c08" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-cohomology-section" class="internal"><span class="codenumber">8.1</span> <span class="title">Derived sections and connecting morphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-directimage-section" class="internal"><span class="codenumber">8.2</span> <span class="title">Higher direct images and locality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-hypercohomology-section" class="internal"><span class="codenumber">8.3</span> <span class="title">The two hypercohomology spectral sequences</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-leray-section" class="internal"><span class="codenumber">8.4</span> <span class="title">Composition and the Leray spectral sequence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-ext-section" class="internal"><span class="codenumber">8.5</span> <span class="title">Local and global Ext</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-cup-section" class="internal"><span class="codenumber">8.6</span> <span class="title">Cup products</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c09.html" class="internal"><span class="codenumber">9</span> <span class="title">Čech cohomology and descent on open covers</span></a></div>
+<ul id="ptx-toc-group-sh-c09" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-complex-section" class="internal"><span class="codenumber">9.1</span> <span class="title">The complex of a covering</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-refinement-section" class="internal"><span class="codenumber">9.2</span> <span class="title">Refinements and their choices</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-comparison-section" class="internal"><span class="codenumber">9.3</span> <span class="title">Comparison with derived cohomology</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-acyclic-section" class="internal"><span class="codenumber">9.4</span> <span class="title">Acyclic covers and computations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-mayer-section" class="internal"><span class="codenumber">9.5</span> <span class="title">Mayer–Vietoris without acyclic intersections</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-products-section" class="internal"><span class="codenumber">9.6</span> <span class="title">Products and the scope of the comparison</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c10.html" class="internal"><span class="codenumber">10</span> <span class="title">Low-degree classes and calculations</span></a></div>
+<ul id="ptx-toc-group-sh-c10" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-lifting" class="internal"><span class="codenumber">10.1</span> <span class="title">Sections and their lifting obstructions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-torsors" class="internal"><span class="codenumber">10.2</span> <span class="title">Torsors and degree-one cocycles</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-extensions" class="internal"><span class="codenumber">10.3</span> <span class="title">Extensions and the classification of torsors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-affine-monodromy" class="internal"><span class="codenumber">10.4</span> <span class="title">Affine monodromy in degree one</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-circle" class="internal"><span class="codenumber">10.5</span> <span class="title">A circle with local coefficients</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-finite-gluing" class="internal"><span class="codenumber">10.6</span> <span class="title">A finite gluing space</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c11.html" class="internal"><span class="codenumber">11</span> <span class="title">Singular cohomology and homotopy</span></a></div>
+<ul id="ptx-toc-group-sh-c11" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-singular-cochains" class="internal"><span class="codenumber">11.1</span> <span class="title">Singular cochains with local coefficients</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-cochain-sheaves" class="internal"><span class="codenumber">11.2</span> <span class="title">The sheafified singular complex</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-comparison" class="internal"><span class="codenumber">11.3</span> <span class="title">The comparison theorem</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-broader-comparison" class="internal"><span class="codenumber">11.4</span> <span class="title">Broader local hypotheses</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-homotopy" class="internal"><span class="codenumber">11.5</span> <span class="title">Homotopy invariance with transported coefficients</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-examples-and-boundaries" class="internal"><span class="codenumber">11.6</span> <span class="title">Computations and the limits of the comparison</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="sheaves-topological-notes-16.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul id="ptx-toc-group-sheaves-topological-notes-16" class="structural toc-item-list">
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="sh-concordance.html" class="internal"><span class="codenumber">A.</span> <span class="title">Terminology and hypotheses</span></a></div>
+<ul id="ptx-toc-group-sh-concordance" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-concordance.html#sh-concordance-objects" class="internal"><span class="codenumber">A.1</span> <span class="title">Objects and notation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-concordance.html#sh-concordance-operations" class="internal"><span class="codenumber">A.2</span> <span class="title">Operations and exactness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-concordance.html#sh-concordance-cohomology" class="internal"><span class="codenumber">A.3</span> <span class="title">Cohomology and covering choices</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-concordance.html#sh-concordance-topology" class="internal"><span class="codenumber">A.4</span> <span class="title">Which topology assumptions are being used?</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="sh-references.html" class="internal"><span class="title">References</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="sh-index.html" class="internal"><span class="title">Index</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="chapter" id="sh-c06">
+<h1 class="heading">
+<span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Tensor products and internal Hom</span>
+</h1>
+<section class="introduction" id="sh-c06-2">
+<div class="para" id="sh-c06-2-1">For fixed coefficients, module sheaves have the same tensor and Hom adjunction as modules, but their sections do not obey the corresponding formulas on every open set. Tensor products require sheafification; internal Hom already forms a sheaf, but its stalk need not be the Hom of the stalks. Finite presentation explains one useful range in which that second comparison is valid.</div>
+<div class="para" id="sh-c06-2-2">We work in <span class="process-math">\(\Sh(X;\Lambda)\)</span> for an arbitrary topological space <span class="process-math">\(X\)</span> and a fixed commutative unital ring <span class="process-math">\(\Lambda\text{.}\)</span> The constructions are the fixed-coefficient cases of <a class="external" href="https://stacks.math.columbia.edu/tag/01CA" target="_blank">Stacks, tensor products</a> and <a class="external" href="https://stacks.math.columbia.edu/tag/01CM" target="_blank">internal Hom</a>. The more general theory of a varying structure sheaf has its own treatment in the note on sites and ringed structures.</div></section>
+<section class="section" id="sh-c06-tensor-section">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">The tensor product sheaf</span>
+</h2>
+<article class="definition definition-like" id="sh-c06-tensor"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Tensor product of module sheaves.</span>
+</h3>
+<div class="para logical" id="sh-c06-tensor-4-1">
+<div class="para">For <span class="process-math">\(F,G\in\Sh(X;\Lambda)\text{,}\)</span> their <em class="emphasis">tensor product</em> is the sheaf</div>
+<div class="displaymath process-math" id="sh-c06-tensor-4-1-3">
+\begin{equation*}
+F\otimes_\Lambda G
+=\bigl(U\longmapsto F(U)\otimes_\Lambda G(U)\bigr)^\#.
+\end{equation*}
+</div>
+<div class="para">Restrictions on the displayed presheaf are the tensor products of restrictions. A bilinear morphism from <span class="process-math">\(F,G\)</span> to <span class="process-math">\(H\)</span> is a family of bilinear maps <span class="process-math">\(F(U)\times G(U)\to H(U)\)</span> compatible with restriction.</div>
+</div>
+</article>
+<article class="proposition theorem-like" id="sh-c06-tensor-properties"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c06-tensor-properties-1-1">
+<div class="para">There is a universal bilinear morphism <span class="process-math">\(F\times G\to F\otimes_\Lambda G\text{.}\)</span> It gives a natural bijection between bilinear morphisms to <span class="process-math">\(H\)</span> and sheaf morphisms <span class="process-math">\(F\otimes_\Lambda G\to H\text{.}\)</span> At every point there is a canonical isomorphism</div>
+<div class="displaymath process-math" id="sh-c06-tensor-properties-1-1-4">
+\begin{equation*}
+(F\otimes_\Lambda G)_x
+\simeq F_x\otimes_\Lambda G_x.
+\end{equation*}
+</div>
+<div class="para">Every local section of the tensor product can, after restricting to an open covering, be written as a finite sum of tensors of sections.</div>
+</div>
+</article>
+<details id="sh-c06-tensor-properties-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c06-tensor-properties-2-1">The universal property for modules gives a presheaf morphism from the tensor presheaf to <span class="process-math">\(H\text{,}\)</span> and sheafification gives the claimed correspondence. For the stalk formula, representatives for finitely many germs in <span class="process-math">\(F_x\)</span> and <span class="process-math">\(G_x\)</span> can be chosen on one common neighbourhood. A finite tensor relation between such germs can also be witnessed on one common neighbourhood. Thus the colimit of the section tensor products is the tensor product of the two stalk colimits. Sheafification preserves this colimit. The last assertion is the local representation property of sheafification, together with the definition of a module tensor product.</div>
+</article></details>
+<div class="para" id="sh-c06-tensor-section-4">A sheaf of <span class="process-math">\(\Lambda\)</span>-modules is also a module over the constant ring sheaf <span class="process-math">\(\Lambda_X\text{.}\)</span> The tensor product defined above is canonically its tensor product over <span class="process-math">\(\Lambda_X\text{.}\)</span> In a ringed-space presentation one instead starts with <span class="process-math">\(F(U)\otimes_{\Lambda_X(U)}G(U)\text{.}\)</span> Both presheaf constructions have the same stalks and the same sheafification. Balancing by a locally constant scalar function is already imposed locally by balancing over <span class="process-math">\(\Lambda\text{.}\)</span><a id="sh-c06-tensor-section-4-6" href="#margin-sh-c06-tensor-section-4-6" class="margin-note-marker" aria-label="Margin note 1">1</a>
+</div>
+<article class="example example-like" id="sh-c06-two-points"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c06-two-points-1-1">
+<div class="para">Let <span class="process-math">\(X\)</span> consist of two isolated points and assume <span class="process-math">\(\Lambda\ne0\text{.}\)</span> With <span class="process-math">\(F=G=\Lambda_X\text{,}\)</span> the tensor presheaf over the fixed ring has</div>
+<div class="displaymath process-math" id="sh-c06-two-points-1-1-4">
+\begin{equation*}
+F(X)\otimes_\Lambda G(X)
+=\Lambda^2\otimes_\Lambda\Lambda^2\simeq\Lambda^4.
+\end{equation*}
+</div>
+<div class="para">The tensor product sheaf has section module <span class="process-math">\(\Lambda^2\text{.}\)</span> If <span class="process-math">\(e_1,e_2\)</span> are the characteristic functions of the two points, then <span class="process-math">\(e_1\otimes e_2\)</span> is nonzero in the presheaf and restricts to zero on both singleton opens. It becomes zero after sheafification. This is a failure of the presheaf separation axiom, before any question of gluing new sections.</div>
+</div>
+</article>
+<article class="example example-like" id="sh-c06-global-tensor-failure"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c06-global-tensor-failure-1-1">
+<div class="para">Let <span class="process-math">\(a,b\)</span> be distinct points of <span class="process-math">\(\R\)</span> and let <span class="process-math">\(F=(i_a)_*\Bbbk\text{,}\)</span> <span class="process-math">\(G=(i_b)_*\Bbbk\text{.}\)</span> At each point at least one of <span class="process-math">\(F_x,G_x\)</span> is zero, so <span class="process-math">\(F\otimes G=0\text{.}\)</span> Yet <span class="process-math">\(\Gamma(\R,F)=\Gamma(\R,G)=\Bbbk\text{.}\)</span> Thus the natural map</div>
+<div class="displaymath process-math" id="sh-c06-global-tensor-failure-1-1-8">
+\begin{equation*}
+\Gamma(\R,F)\otimes_\Bbbk\Gamma(\R,G)
+\longrightarrow\Gamma(\R,F\otimes_\Bbbk G)
+\end{equation*}
+</div>
+<div class="para">is <span class="process-math">\(\Bbbk\to0\text{.}\)</span> This failure occurs for flat sheaves and reflects the positions of their local data, rather than a torsion obstruction.</div>
+</div>
+</article>
+<div class="para" id="sh-c06-tensor-section-7">The symmetry and associativity maps are induced by the corresponding maps of module tensor products. Multiplication gives <span class="process-math">\(\Lambda_X\otimes_\Lambda F\simeq F\text{,}\)</span> as can be checked on stalks. These maps make <span class="process-math">\(\Sh(X;\Lambda)\)</span> a symmetric monoidal category. Their coherence follows by sheafifying the usual module identities; the formal terminology is developed in the <a class="external" href="../homological-algebra/ha-c03.html" target="_blank">chapter on closed monoidal structures</a>.</div>
+</section>
+<section class="section" id="sh-c06-hom-section">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Internal Hom and its adjunction</span>
+</h2>
+<article class="definition definition-like" id="sh-c06-internalhom"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Internal Hom.</span>
+</h3>
+<div class="para logical" id="sh-c06-internalhom-5-1">
+<div class="para">For module sheaves <span class="process-math">\(F,G\text{,}\)</span> define</div>
+<div class="displaymath process-math" id="sh-c06-internalhom-5-1-2">
+\begin{equation*}
+\sheafHom_\Lambda(F,G)(U)
+=\Hom_{\Sh(U;\Lambda)}(F|_U,G|_U).
+\end{equation*}
+</div>
+<div class="para">Restriction is restriction of morphisms. This is a sheaf of modules, called the <em class="emphasis">internal Hom</em> or <em class="emphasis">sheaf Hom</em>. Evaluation of a morphism on a section gives</div>
+<div class="displaymath process-math" id="sh-c06-internalhom-5-1-5">
+\begin{equation*}
+F\otimes_\Lambda\sheafHom_\Lambda(F,G)\longrightarrow G.
+\end{equation*}
+</div>
+</div>
+</article>
+<div class="para logical" id="sh-c06-hom-section-3">
+<div class="para">The sheaf axiom here is exactly gluing of morphisms in <a href="sh-c04.html#sh-c04-gluing" class="xref" data-knowl="./knowl/xref/sh-c04-gluing.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 4.19">Theorem 4.19</a>. Linearity is pointwise addition and multiplication of morphisms. No sheafification is needed. In particular,</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/sh-c04-gluing.html" id="sh-c06-hom-section-3-2">
+\begin{equation*}
+\Gamma(X,\sheafHom_\Lambda(F,G))
+=\Hom_{\Sh(X;\Lambda)}(F,G).
+\end{equation*}
+</div>
+<div class="para">The left side takes sections of a sheaf on <span class="process-math">\(X\text{;}\)</span> the right side is a single module. Their equality at <span class="process-math">\(X\)</span> does not identify either one with a pointwise family of arbitrary stalk maps.</div>
+</div>
+<article class="theorem theorem-like" id="sh-c06-tensorhom"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.6</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c06-tensorhom-1-1">
+<div class="para">For module sheaves <span class="process-math">\(F,G,H\text{,}\)</span> there are natural isomorphisms</div>
+<div class="displaymath process-math" id="sh-c06-tensorhom-1-1-2">
+\begin{equation*}
+\Hom_X(F\otimes_\Lambda G,H)
+\simeq\Hom_X(F,\sheafHom_\Lambda(G,H)),
+\end{equation*}
+</div>
+<div class="displaymath process-math" id="sh-c06-tensorhom-1-1-3">
+\begin{equation*}
+\sheafHom_\Lambda(F\otimes_\Lambda G,H)
+\simeq\sheafHom_\Lambda(F,\sheafHom_\Lambda(G,H)).
+\end{equation*}
+</div>
+<div class="para">Consequently tensor product preserves all colimits in either variable and is right exact. Internal Hom is left exact in the second variable and takes cokernel sequences in the first variable to kernel sequences.</div>
+</div>
+</article>
+<details id="sh-c06-tensorhom-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c06-tensorhom-2-1">A bilinear morphism <span class="process-math">\(F\times G\to H\)</span> sends <span class="process-math">\(s\in F(U)\)</span> to a morphism <span class="process-math">\(G|_U\to H|_U\text{:}\)</span> on <span class="process-math">\(V\subset U\)</span> evaluate the bilinear map on <span class="process-math">\(s|_V\text{.}\)</span> This gives a map <span class="process-math">\(F\to\sheafHom_\Lambda(G,H)\text{.}\)</span> Evaluation reverses this construction. The tensor universal property gives the first isomorphism. Applying the same correspondence on every open subset gives the second.</div>
+<div class="para" id="sh-c06-tensorhom-2-2">Preservation of colimits follows because tensor is a left adjoint. Left exactness of <span class="process-math">\(\sheafHom(F,-)\)</span> can be checked on each open by the left exactness of the ordinary Hom functor. Similarly a map from a cokernel to <span class="process-math">\(H|_U\)</span> is exactly a map from its presenting object that annihilates the given morphism; this proves the assertion about the first variable.</div>
+</article></details>
+<div class="para logical" id="sh-c06-hom-section-5">
+<div class="para">Internal Hom commutes with restriction to opens. For example,</div>
+<div class="displaymath process-math" id="sh-c06-hom-section-5-1">
+\begin{equation*}
+\sheafHom_X(F,G)|_U
+\simeq\sheafHom_U(F|_U,G|_U).
+\end{equation*}
+</div>
+<div class="para" id="sh-c06-hom-section-5-2-anchor">It does not in general commute with restriction to an arbitrary subspace in this way.<a id="sh-c06-hom-section-5-2" href="#margin-sh-c06-hom-section-5-2" class="margin-note-marker" aria-label="Margin note 2">2</a> That distinction will be expressed by a comparison map below.</div>
+</div>
+</section>
+<section class="section" id="sh-c06-finite">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Stalks and finite presentation</span>
+</h2>
+<div class="para logical" id="sh-c06-finite-2">
+<div class="para">Every germ of a local morphism has a map on stalks, giving</div>
+<div class="displaymath process-math" id="sh-c06-finite-2-1">
+\begin{equation*}
+\sheafHom_\Lambda(F,G)_x
+\longrightarrow\Hom_\Lambda(F_x,G_x).
+\end{equation*}
+</div>
+<div class="para">The source remembers a single neighbourhood on which the entire morphism exists. Specifying a stalk homomorphism need not give that neighbourhood, and specifying its values on infinitely many generators can require infinitely many incompatible shrinkings.</div>
+</div>
+<article class="definition definition-like" id="sh-c06-finitepresentation"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.7</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Local finite generation and presentation.</span>
+</h3>
+<div class="para logical" id="sh-c06-finitepresentation-4-1">
+<div class="para">A module sheaf <span class="process-math">\(F\)</span> is <em class="emphasis">locally finitely generated</em>, or <em class="emphasis">of finite type</em>, if every point has an open neighbourhood <span class="process-math">\(U\)</span> with an epimorphism <span class="process-math">\(\Lambda_U^b\to F|_U\)</span> for a finite <span class="process-math">\(b\text{.}\)</span> It is <em class="emphasis">locally finitely presented</em> if it has, near every point, a presentation</div>
+<div class="displaymath process-math" id="sh-c06-finitepresentation-4-1-8">
+\begin{equation*}
+\Lambda_U^a\longrightarrow\Lambda_U^b
+\longrightarrow F|_U\longrightarrow0
+\end{equation*}
+</div>
+<div class="para">with <span class="process-math">\(a,b\)</span> finite. These are local properties of sheaves, not a claim that <span class="process-math">\(\Hom_X(F,-)\)</span> preserves filtered colimits.</div>
+</div>
+</article>
+<div class="para" id="sh-c06-finite-4">Finite generation of every stalk is weaker than local finite generation of the sheaf. For example, let <span class="process-math">\(j:(0,\infty)\hookrightarrow\R\)</span> and assume <span class="process-math">\(\Lambda\ne0\text{.}\)</span> Every stalk of <span class="process-math">\(j_!\Lambda_{(0,\infty)}\)</span> is zero or cyclic. A section on an interval crossing zero must vanish on the positive part near zero. Finitely many such sections vanish on a common positive subinterval and cannot generate the sheaf there. Hence the sheaf is not locally finitely generated at zero.<a id="sh-c06-finite-4-4" href="#margin-sh-c06-finite-4-4" class="margin-note-marker" aria-label="Margin note 3">3</a>
+</div>
+<article class="proposition theorem-like" id="sh-c06-hom-stalk"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.8</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sh-c06-hom-stalk-1-1">If <span class="process-math">\(F\)</span> is locally finitely generated, the comparison <span class="process-math">\(\sheafHom(F,G)_x\to\Hom_\Lambda(F_x,G_x)\)</span> is injective. If <span class="process-math">\(F\)</span> is locally finitely presented, it is an isomorphism. In the fixed-coefficient setting, local finite presentation is equivalent to having local models <span class="process-math">\(M_U\)</span> with <span class="process-math">\(M\)</span> a finitely presented <span class="process-math">\(\Lambda\)</span>-module.</div>
+</article>
+<details id="sh-c06-hom-stalk-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c06-hom-stalk-2-1">For injectivity, represent a germ by <span class="process-math">\(u:F|_U\to G|_U\)</span> whose stalk map at <span class="process-math">\(x\)</span> is zero. Choose finitely many generating sections of <span class="process-math">\(F\)</span> near <span class="process-math">\(x\text{.}\)</span> Their images vanish after a common shrinking, so the whole map vanishes there.</div>
+<div class="para" id="sh-c06-hom-stalk-2-2">For finite presentation, applying internal Hom to a local presentation identifies <span class="process-math">\(\sheafHom(F,G)\)</span> with the kernel of a map <span class="process-math">\(G^b\to G^a\text{.}\)</span> Taking stalks commutes with this finite kernel and gives the same kernel that computes <span class="process-math">\(\Hom_\Lambda(F_x,G_x)\text{.}\)</span> This proves the isomorphism.</div>
+<div class="para" id="sh-c06-hom-stalk-2-3">A map between finite free constant sheaves is a finite matrix of locally constant scalar functions. After shrinking near any point, all entries are constant. Its cokernel is therefore the constant sheaf of the finitely presented cokernel module. The converse follows by applying the exact constant-sheaf functor to a finite module presentation.</div>
+</article></details>
+<div class="para" id="sh-c06-finite-6">For the general ringed-space version, see <a class="external" href="https://stacks.math.columbia.edu/tag/01CM" target="_blank">Stacks, Lemma 17.22.4</a>. A varying structure sheaf need not have locally constant matrix entries, so the final assertion of our proposition is specific to fixed coefficients.</div>
+<article class="example example-like" id="sh-c06-hom-stalk-failure"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.9</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sh-c06-hom-stalk-failure-1-1">Use <span class="process-math">\(X,M,h\)</span> from <a href="sh-c05.html#sh-c05-infinite-counterexample" class="xref" data-knowl="./knowl/xref/sh-c05-infinite-counterexample.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 5.7">Example 5.7</a>. The morphism <span class="process-math">\(h-\id:M_X\to M_X\)</span> is nonzero on every neighbourhood of zero, but its map on the stalk at zero is zero. Its germ is a nonzero element of <span class="process-math">\(\sheafHom(M_X,M_X)_0\)</span> mapping to zero in <span class="process-math">\(\Hom_\Bbbk(M,M)\text{.}\)</span> Thus the comparison can fail even to be injective for constant vector-space sheaves of infinite rank.</div>
+</article>
+<div class="para" id="sh-c06-finite-8">Finite presentation also explains why an internal Hom can commute with filtered colimits locally while the corresponding global Hom need not. Taking global sections introduces a second condition on the space.<a id="sh-c06-finite-8-1" href="#margin-sh-c06-finite-8-1" class="margin-note-marker" aria-label="Margin note 4">4</a>
+</div>
+</section>
+<section class="section" id="sh-c06-functorial">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Inverse image and direct image comparisons</span>
+</h2>
+<article class="proposition theorem-like" id="sh-c06-pullback-tensor"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.10</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c06-pullback-tensor-1-1">
+<div class="para">For every continuous <span class="process-math">\(f:X\to Y\text{,}\)</span> inverse image is symmetric monoidal:</div>
+<div class="displaymath process-math" id="sh-c06-pullback-tensor-1-1-2">
+\begin{equation*}
+f^{-1}(A\otimes_\Lambda B)
+\simeq f^{-1}A\otimes_\Lambda f^{-1}B,\qquad
+f^{-1}\Lambda_Y\simeq\Lambda_X.
+\end{equation*}
+</div>
+<div class="para">Evaluation defines a comparison</div>
+<div class="displaymath process-math" id="sh-c06-pullback-tensor-1-1-3">
+\begin{equation*}
+f^{-1}\sheafHom_Y(A,B)
+\longrightarrow\sheafHom_X(f^{-1}A,f^{-1}B).
+\end{equation*}
+</div>
+<div class="para">This comparison is an isomorphism if <span class="process-math">\(A\)</span> is locally finitely presented.</div>
+</div>
+</article>
+<details id="sh-c06-pullback-tensor-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c06-pullback-tensor-2-1">Pulling back the bilinear morphism <span class="process-math">\(A\times B\to A\otimes B\)</span> gives the tensor comparison. At <span class="process-math">\(x\text{,}\)</span> it is the identity on <span class="process-math">\(A_{f(x)}\otimes_\Lambda B_{f(x)}\text{,}\)</span> so it is an isomorphism. The unit assertion is <a href="sh-c05.html#sh-c05-constant-properties" class="xref" data-knowl="./knowl/xref/sh-c05-constant-properties.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 5.2">Proposition 5.2</a>. Evaluation and the tensor isomorphism give the Hom comparison by adjunction.</div>
+<div class="para" id="sh-c06-pullback-tensor-2-2">If <span class="process-math">\(A\)</span> has a finite presentation, internal Hom is locally a kernel between finite sums of <span class="process-math">\(B\text{.}\)</span> Exact inverse image preserves that kernel and those finite sums, and transforms the presentation into the corresponding presentation of <span class="process-math">\(f^{-1}A\text{.}\)</span> This gives the last assertion.</div>
+</article></details>
+<div class="para" id="sh-c06-functorial-3">For fixed coefficients the stalk ring map is the identity <span class="process-math">\(\Lambda\to\Lambda\text{,}\)</span> so the exactness used in the finite-presentation argument is part of ordinary inverse image.<a id="sh-c06-functorial-3-2" href="#margin-sh-c06-functorial-3-2" class="margin-note-marker" aria-label="Margin note 5">5</a>
+</div>
+<article class="proposition theorem-like" id="sh-c06-push-hom"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.11</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c06-push-hom-1-1">
+<div class="para">For <span class="process-math">\(A\in\Sh(Y;\Lambda)\)</span> and <span class="process-math">\(F\in\Sh(X;\Lambda)\text{,}\)</span> there is a natural isomorphism</div>
+<div class="displaymath process-math" id="sh-c06-push-hom-1-1-3">
+\begin{equation*}
+f_*\sheafHom_X(f^{-1}A,F)
+\simeq\sheafHom_Y(A,f_*F).
+\end{equation*}
+</div>
+<div class="para">There is also a natural projection morphism</div>
+<div class="displaymath process-math" id="sh-c06-push-hom-1-1-4">
+\begin{equation*}
+A\otimes_\Lambda f_*F
+\longrightarrow f_*(f^{-1}A\otimes_\Lambda F).
+\end{equation*}
+</div>
+<div class="para">It is an isomorphism when <span class="process-math">\(A\)</span> is finite locally free.</div>
+</div>
+</article>
+<details id="sh-c06-push-hom-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c06-push-hom-2-1">On an open <span class="process-math">\(V\subset Y\text{,}\)</span> the first assertion is the adjunction for the restricted map <span class="process-math">\(f^{-1}V\to V\text{,}\)</span> applied to morphisms between the restricted sheaves. These identifications commute with restriction in <span class="process-math">\(V\)</span> and hence give an isomorphism of sheaves.</div>
+<div class="para" id="sh-c06-push-hom-2-2">The projection morphism comes from pulling a local section of <span class="process-math">\(A\)</span> to <span class="process-math">\(f^{-1}V\)</span> and tensoring with a section of <span class="process-math">\(F\)</span> there. If <span class="process-math">\(A|_V=\Lambda_V^r\)</span> for finite <span class="process-math">\(r\text{,}\)</span> both sides are <span class="process-math">\((f_*F)|_V^r\text{,}\)</span> and the morphism is the identity under these identifications. Such opens cover <span class="process-math">\(Y\text{.}\)</span>
+</div>
+</article></details>
+<article class="example example-like" id="sh-c06-projection-failure"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.12</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c06-projection-failure-1-1">
+<div class="para">The projection morphism is not always invertible. Let <span class="process-math">\(X=\N\)</span> be discrete, <span class="process-math">\(f:X\to\{*\}\text{,}\)</span> <span class="process-math">\(F=\Bbbk_X\text{,}\)</span> and <span class="process-math">\(A=\bigoplus_{r\geq1}\Bbbk\text{.}\)</span> The map is</div>
+<div class="displaymath process-math" id="sh-c06-projection-failure-1-1-5">
+\begin{equation*}
+\left(\bigoplus_r\Bbbk\right)\otimes_\Bbbk\prod_n\Bbbk
+\longrightarrow\prod_n\left(\bigoplus_r\Bbbk\right).
+\end{equation*}
+</div>
+<div class="para">The left side consists of matrices whose nonzero columns lie in a single finite set. The right side permits an independent finite set of nonzero entries in each row. The matrix with entries <span class="process-math">\(\delta_{nr}\)</span> lies only on the right. The failure is a failure to interchange an infinite sum and an infinite product.</div>
+</div>
+</article>
+<div class="para" id="sh-c06-functorial-6">This is an ordinary sheaf statement. Derived projection formulas allow other hypotheses and involve derived tensor products; their formal construction is in the homological algebra note, and their support versions belong to the note on six functors.</div>
+<article class="proposition theorem-like" id="sh-c06-extensions-tensor"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.13</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c06-extensions-tensor-1-1">
+<div class="para">Let <span class="process-math">\(j:U\hookrightarrow X\)</span> be open and <span class="process-math">\(i:Z\hookrightarrow X\)</span> closed. For the indicated coefficient sheaves, there are natural isomorphisms</div>
+<div class="displaymath process-math" id="sh-c06-extensions-tensor-1-1-3">
+\begin{equation*}
+j_!A\otimes_\Lambda F
+\simeq j_!(A\otimes_\Lambda j^{-1}F),
+\end{equation*}
+</div>
+<div class="displaymath process-math" id="sh-c06-extensions-tensor-1-1-4">
+\begin{equation*}
+i_*B\otimes_\Lambda F
+\simeq i_*(B\otimes_\Lambda i^{-1}F).
+\end{equation*}
+</div>
+</div>
+</article>
+<details id="sh-c06-extensions-tensor-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c06-extensions-tensor-2-1">The first comparison is defined by the adjunction for <span class="process-math">\(j_!\)</span> and the tensor comparison after restriction to <span class="process-math">\(U\text{.}\)</span> The second is the projection morphism for <span class="process-math">\(i\text{.}\)</span> On the included subspace both are the tensor product of the two stalks, and outside it both sides have zero stalks. They are therefore isomorphisms.</div>
+</article></details></section>
+<section class="section" id="sh-c06-localsystems">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Tensor and Hom of local systems</span>
+</h2>
+<article class="proposition theorem-like" id="sh-c06-local-tensorhom"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.14</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c06-local-tensorhom-1-1">
+<div class="para">Let <span class="process-math">\(L,L'\)</span> be local systems.</div>
+<ol class="decimal" id="sh-c06-local-tensorhom-1-1-2">
+<li id="sh-c06-local-tensorhom-1-1-2-1">
+<div class="para" id="sh-c06-local-tensorhom-1-1-2-1-1">Their tensor product is locally constant, with local model <span class="process-math">\((M\otimes_\Lambda N)_U\)</span> whenever <span class="process-math">\(L|_U=M_U\)</span> and <span class="process-math">\(L'|_U=N_U\text{.}\)</span>
+</div>
+</li>
+<li id="sh-c06-local-tensorhom-1-1-2-2">
+<div class="para" id="sh-c06-local-tensorhom-1-1-2-2-1">The internal Hom is locally constant if <span class="process-math">\(X\)</span> is locally connected. The same conclusion holds on an arbitrary space if <span class="process-math">\(L\)</span> has finitely generated local models.</div>
+</li>
+<li id="sh-c06-local-tensorhom-1-1-2-3">
+<div class="para logical" id="sh-c06-local-tensorhom-1-1-2-3-1">
+<div class="para">Under the monodromy classification, tensor transport is <span class="process-math">\(T_\gamma\otimes T'_\gamma\text{.}\)</span> Where internal Hom is locally constant, its transport sends a map <span class="process-math">\(u:L_x\to L'_x\)</span> to</div>
+<div class="displaymath process-math" id="sh-c06-local-tensorhom-1-1-2-3-1-3">
+\begin{equation*}
+T'_\gamma\,u\,T_\gamma^{-1}:L_y\longrightarrow L'_y.
+\end{equation*}
+</div>
+</div>
+</li>
+</ol>
+</div>
+</article>
+<details id="sh-c06-local-tensorhom-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c06-local-tensorhom-2-1">The tensor formula follows from the universal property, or from the constant-sheaf tensor comparison for the map to a point. On a connected open where both systems are constant, the internal Hom is the constant sheaf of module homomorphisms, since morphisms between constant sheaves on each connected subopen are constant homomorphisms. A connected open basis proves the assertion for locally connected spaces. For a finitely generated source on an arbitrary space, <a href="sh-c05.html#sh-c05-maps-constant" class="xref" data-knowl="./knowl/xref/sh-c05-maps-constant.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 5.5">Proposition 5.5</a> shows that local morphisms are locally constant functions valued in <span class="process-math">\(\Hom_\Lambda(M,N)\text{.}\)</span> These local descriptions give the stated transport maps.</div>
+</article></details>
+<div class="para logical" id="sh-c06-localsystems-3">
+<div class="para">For finite-dimensional vector-space systems, their dual, tensor, and internal Hom systems therefore have the expected finite-dimensional fibres. The dual action is the contragredient action: a functional is transported by precomposition with inverse transport. For a connected space in the classification range,</div>
+<div class="displaymath process-math" id="sh-c06-localsystems-3-1">
+\begin{equation*}
+\Hom_X(L_M,L_N)
+=\{u:M\to N:u\rho_M(g)=\rho_N(g)u\text{ for every }g\}.
+\end{equation*}
+</div>
+<div class="para">Taking global sections of the Hom system is the same as taking invariants of its conjugation action.</div>
+</div>
+<div class="para" id="sh-c06-localsystems-4">The internal-Hom assertion for two local systems is broader than the finite-presentation criterion for an arbitrary target sheaf: here the target is itself locally constant. Local connectedness or a finite set of source generators controls the entire homomorphism on one neighbourhood. Without either condition, the counterexample in <a href="sh-c06.html#sh-c06-hom-stalk-failure" class="xref" data-knowl="./knowl/xref/sh-c06-hom-stalk-failure.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 6.9">Example 6.9</a> applies.<a id="sh-c06-localsystems-4-2" href="#margin-sh-c06-localsystems-4-2" class="margin-note-marker" aria-label="Margin note 6">6</a>
+</div>
+</section>
+<section class="section" id="sh-c06-duals">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Finite local models and duals</span>
+</h2>
+<article class="definition definition-like" id="sh-c06-dual"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.15</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Dual module sheaf.</span>
+</h3>
+<div class="para logical" id="sh-c06-dual-3-1">
+<div class="para">The <em class="emphasis">dual</em> of a module sheaf is <span class="process-math">\(F^\vee=\sheafHom_\Lambda(F,\Lambda_X)\text{.}\)</span> Evaluation and composition define maps</div>
+<div class="displaymath process-math" id="sh-c06-dual-3-1-3">
+\begin{equation*}
+F^\vee\otimes_\Lambda G\longrightarrow\sheafHom_\Lambda(F,G),
+\qquad F\longrightarrow F^{\vee\vee}.
+\end{equation*}
+</div>
+</div>
+</article>
+<article class="proposition theorem-like" id="sh-c06-finite-duality"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.16</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sh-c06-finite-duality-1-1">If <span class="process-math">\(F\)</span> is finite locally free, both displayed maps are isomorphisms. The functors <span class="process-math">\(F\otimes_\Lambda-\ \)</span> and <span class="process-math">\(\sheafHom_\Lambda(F,-)\)</span> are exact, and <span class="process-math">\(F\)</span> is dualizable in the monoidal category of module sheaves. These conclusions also hold when <span class="process-math">\(F\)</span> has local models <span class="process-math">\(P_U\)</span> with <span class="process-math">\(P\)</span> a finitely generated projective <span class="process-math">\(\Lambda\)</span>-module.</div>
+</article>
+<details id="sh-c06-finite-duality-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c06-finite-duality-2-1">For <span class="process-math">\(F|_U=\Lambda_U^r\text{,}\)</span> both sides of the first comparison are <span class="process-math">\(G|_U^r\text{.}\)</span> The dual basis gives the bidual isomorphism and the coevaluation <span class="process-math">\(\Lambda_U\to F|_U\otimes F^\vee|_U\)</span> sending <span class="process-math">\(1\)</span> to the identity endomorphism. The identity endomorphism is independent of the basis, so these local maps glue. The triangle identities can be checked in a basis. Exactness reduces locally to exactness of a finite direct sum. A finitely generated projective module is a direct summand of a finite free module; restricting these identities to the summand proves the last assertion.</div>
+</article></details>
+<div class="para" id="sh-c06-duals-4">A finite projective module need not be free. Already over a one-point space, dualizability means finite projectivity rather than freeness. Over a field, an infinite-dimensional vector space is not dualizable: the map <span class="process-math">\(M^\vee\otimes M\to\End(M)\)</span> has image the finite-rank operators and does not contain the identity. Thus the finite-dimensional condition in many uses of “local system” carries mathematical content beyond local constancy.</div>
+<div class="para" id="sh-c06-duals-5">For general module sheaves a dual is still defined, but biduality is only a comparison.<a id="sh-c06-duals-5-1" href="#margin-sh-c06-duals-5-1" class="margin-note-marker" aria-label="Margin note 7">7</a>
+</div>
+</section>
+<section class="section" id="sh-c06-flat-section">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.7</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Flatness and its stalk criterion</span>
+</h2>
+<article class="definition definition-like" id="sh-c06-flat"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.17</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Flat module sheaf.</span>
+</h3>
+<div class="para" id="sh-c06-flat-4-1">A module sheaf <span class="process-math">\(F\)</span> is <em class="emphasis">flat</em> if <span class="process-math">\(F\otimes_\Lambda-\)</span> is exact on <span class="process-math">\(\Sh(X;\Lambda)\text{.}\)</span> It is <em class="emphasis">flat at</em> <span class="process-math">\(x\)</span> if <span class="process-math">\(F_x\)</span> is a flat <span class="process-math">\(\Lambda\)</span>-module.</div>
+</article>
+<article class="theorem theorem-like" id="sh-c06-flat-stalk"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.18</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c06-flat-stalk-1-1">
+<div class="para">A sheaf is flat if and only if it is flat at every point. Inverse image preserves flat sheaves. Direct sums and filtered colimits of flat sheaves are flat. In a short exact sequence</div>
+<div class="displaymath process-math" id="sh-c06-flat-stalk-1-1-1">
+\begin{equation*}
+0\longrightarrow F'\longrightarrow F\longrightarrow F''\longrightarrow0,
+\end{equation*}
+</div>
+<div class="para">if <span class="process-math">\(F''\)</span> is flat, tensoring with any sheaf preserves this short exact sequence. If <span class="process-math">\(F''\)</span> is flat, flatness of <span class="process-math">\(F\)</span> is equivalent to flatness of <span class="process-math">\(F'\text{.}\)</span>
+</div>
+</div>
+</article>
+<details id="sh-c06-flat-stalk-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c06-flat-stalk-2-1">If the stalks are flat, the stalk tensor formula proves preservation of exact sequences. Conversely, apply exact tensoring by <span class="process-math">\(F\)</span> to a short exact sequence of skyscraper sheaves <span class="process-math">\((i_x)_*M\text{.}\)</span> These form an exact sequence by <a href="sh-c04.html#sh-c04-point-adjunction" class="xref" data-knowl="./knowl/xref/sh-c04-point-adjunction.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 4.7">Proposition 4.7</a>. Its stalk at <span class="process-math">\(x\text{,}\)</span> after tensoring, is the sequence of modules obtained by tensoring with <span class="process-math">\(F_x\text{.}\)</span> Thus <span class="process-math">\(F_x\)</span> is flat.</div>
+<div class="para" id="sh-c06-flat-stalk-2-2">Inverse image preserves the stalk modules at the image point. Stalks commute with direct sums and filtered colimits, which preserve flatness for modules. The remaining assertions are the corresponding module assertions, applied at every stalk: a flat quotient kills the relevant first Tor obstruction, and extensions or kernels of epimorphisms between flat modules have the stated flatness properties. These are also recorded for sheaves in <a class="external" href="https://stacks.math.columbia.edu/tag/05NC" target="_blank">Stacks, Lemmas 17.17.8–17.17.9</a>.</div>
+</article></details>
+<div class="para" id="sh-c06-flat-section-4">In particular, every sheaf of vector spaces over a field is flat, whether or not it is locally constant. Flatness measures exactness of tensoring; it is not a local triviality condition. With <span class="process-math">\(\Lambda=\Z\text{,}\)</span> a constant sheaf of a torsion-free group is flat, whereas <span class="process-math">\((\Z/n\Z)_X\)</span> fails to be flat on any nonempty space for <span class="process-math">\(n\geq2\text{.}\)</span> The latter failure is detected by tensoring multiplication by <span class="process-math">\(n\)</span> on <span class="process-math">\(\Z_X\text{.}\)</span>
+</div>
+</section>
+<section class="section" id="sh-c06-flat-resolutions">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.8</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Enough flat sheaves</span>
+</h2>
+<article class="proposition theorem-like" id="sh-c06-enoughflat"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">6.19</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c06-enoughflat-1-1">
+<div class="para">For every open <span class="process-math">\(U\subset X\text{,}\)</span> the sheaf <span class="process-math">\(j_{U!}\Lambda_U\)</span> is flat and satisfies</div>
+<div class="displaymath process-math" id="sh-c06-enoughflat-1-1-3">
+\begin{equation*}
+\Hom_X(j_{U!}\Lambda_U,F)\simeq F(U).
+\end{equation*}
+</div>
+<div class="para">Every module sheaf admits an epimorphism</div>
+<div class="displaymath process-math" id="sh-c06-enoughflat-1-1-4">
+\begin{equation*}
+\bigoplus_{(U,s),\ s\in F(U)}j_{U!}\Lambda_U
+\longrightarrow F.
+\end{equation*}
+</div>
+<div class="para">Consequently every module sheaf is a quotient of a flat sheaf and admits a flat resolution.</div>
+</div>
+</article>
+<details id="sh-c06-enoughflat-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c06-enoughflat-2-1">The first sheaf has stalk <span class="process-math">\(\Lambda\)</span> on <span class="process-math">\(U\)</span> and zero outside, so it is flat. Its Hom formula follows from <span class="process-math">\(j_{U!}\dashv j_U^{-1}\)</span> and the constant-sheaf adjunction. For each pair <span class="process-math">\((U,s)\text{,}\)</span> use the corresponding map to <span class="process-math">\(F\text{.}\)</span> Every germ of <span class="process-math">\(F\)</span> is represented by one of these sections and hence is in the image. The direct sum is flat, and the map is an epimorphism by stalks. Repeating the construction on successive kernels gives an exact complex of flat sheaves resolving <span class="process-math">\(F\text{.}\)</span>
+</div>
+</article></details>
+<div class="para" id="sh-c06-flat-resolutions-3">This also identifies <span class="process-math">\(j_{U!}\Lambda_U\)</span> with the generator attached to <span class="process-math">\(U\)</span> in <a href="sh-c03.html#sh-c03-generators" class="xref" data-knowl="./knowl/xref/sh-c03-generators.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 3.11">Proposition 3.11</a>: both represent the section functor <span class="process-math">\(F\mapsto F(U)\text{.}\)</span> In that earlier construction the generator was defined before extension by zero was available. The identification follows from the representing property, so it does not introduce a circular proof of the Grothendieck property.</div>
+<div class="para" id="sh-c06-flat-resolutions-4">The construction works with the opens of any basis: a germ can be represented on a basis neighbourhood. No compactness or separation hypothesis is needed. A basis that is a set gives a set of these generators, while the direct sum for one sheaf is indexed by the set of its sections on those opens. Compare <a class="external" href="https://stacks.math.columbia.edu/tag/05NC" target="_blank">Stacks, Lemmas 17.17.6–17.17.7</a>.</div>
+<div class="para logical" id="sh-c06-flat-resolutions-5">
+<div class="para">For the cochain conventions of this note, a flat resolution can be written</div>
+<div class="displaymath process-math" id="sh-c06-flat-resolutions-5-1">
+\begin{equation*}
+\cdots\longrightarrow P^{-2}\longrightarrow P^{-1}
+\longrightarrow P^0\longrightarrow F\longrightarrow0.
+\end{equation*}
+</div>
+<div class="para">Choose <span class="process-math">\(P^0\to F\)</span> as above, choose a flat epimorphism onto its kernel, and continue. The differential <span class="process-math">\(P^{-r}\to P^{-r+1}\)</span> is the epimorphism onto the previous kernel followed by that kernel’s inclusion. Its square is zero, and the resulting augmentation <span class="process-math">\(P^\bullet\to F[0]\)</span> is a quasi-isomorphism. This establishes existence, without claiming a finite length.</div>
+</div>
+<div class="para" id="sh-c06-flat-resolutions-6">These flat generators need not be projective.<a id="sh-c06-flat-resolutions-6-1" href="#margin-sh-c06-flat-resolutions-6-1" class="margin-note-marker" aria-label="Margin note 8">8</a> For unbounded derived tensor products, a complex of flat terms also requires a homotopical condition; the K-flat resolutions used for that purpose are introduced in <a href="sh-c07.html" class="internal" title="Chapter 7: Resolutions and derived sheaf operations">Chapter 7</a>.</div>
+</section></section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="sh-c05.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Top</span></a><a class="next-button button" href="sh-c07.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a>
+</div></main>
+<div class="margin-notes" role="complementary" aria-label="Margin notes">
+<aside id="margin-sh-c06-tensor-section-4-6" class="aside aside-like margin-note" data-margin-anchor="sh-c06-tensor-section-4" data-margin-label="1" data-margin-inline="true"><h4 class="heading"><a href="#sh-c06-tensor-section-4" class="margin-note-label">1</a></h4>
+<div class="para">On a disconnected open, <span class="process-math">\(\Lambda_X(U)\)</span> can be larger than <span class="process-math">\(\Lambda\text{.}\)</span> The equality of the resulting sheaves does not assert equality of the two tensor presheaves before sheafification.
+</div></aside><aside id="margin-sh-c06-hom-section-5-2" class="aside aside-like margin-note" data-margin-anchor="sh-c06-hom-section-5-2-anchor" data-margin-label="2" data-margin-inline="true"><h4 class="heading"><a href="#sh-c06-hom-section-5-2-anchor" class="margin-note-label">2</a></h4>
+<div class="para">Restriction to an open retains the same local category of sheaves near each of its points. Restriction to a point retains only one stalk, and can lose the common neighbourhood on which a morphism must be defined.
+</div></aside><aside id="margin-sh-c06-finite-4-4" class="aside aside-like margin-note" data-margin-anchor="sh-c06-finite-4" data-margin-label="3" data-margin-inline="true"><h4 class="heading"><a href="#sh-c06-finite-4" class="margin-note-label">3</a></h4>
+<div class="para">Local finite generation requires one neighbourhood and finitely many sections that generate at every point of that neighbourhood. Stalkwise choices alone need not extend with this uniformity.
+</div></aside><aside id="margin-sh-c06-finite-8-1" class="aside aside-like margin-note" data-margin-anchor="sh-c06-finite-8" data-margin-label="4" data-margin-inline="true"><h4 class="heading"><a href="#sh-c06-finite-8" class="margin-note-label">4</a></h4>
+<div class="para">For an infinite discrete space, <span class="process-math">\(\Lambda_X\)</span> is locally free of rank one, but <span class="process-math">\(\Hom_X(\Lambda_X,-)=\Gamma(X,-)\)</span> is an infinite product and need not preserve filtered colimits. Local finite presentation therefore does not by itself make a sheaf a finitely presented object of the whole category.
+</div></aside><aside id="margin-sh-c06-functorial-3-2" class="aside aside-like margin-note" data-margin-anchor="sh-c06-functorial-3" data-margin-label="5" data-margin-inline="true"><h4 class="heading"><a href="#sh-c06-functorial-3" class="margin-note-label">5</a></h4>
+<div class="para">In a general ringed-space statement one needs flatness of the ringed map for this argument; see <a class="external" href="https://stacks.math.columbia.edu/tag/01CM" target="_blank">Stacks, Lemma 17.22.5</a>. The corresponding ringed inverse image is not automatically exact.
+</div></aside><aside id="margin-sh-c06-localsystems-4-2" class="aside aside-like margin-note" data-margin-anchor="sh-c06-localsystems-4" data-margin-label="6" data-margin-inline="true"><h4 class="heading"><a href="#sh-c06-localsystems-4" class="margin-note-label">6</a></h4>
+<div class="para">A stalk formula for internal Hom must retain its hypotheses even when both sheaves happen to be constant. Constancy of the individual sheaves alone does not remove the infinite-neighbourhood issue.
+</div></aside><aside id="margin-sh-c06-duals-5-1" class="aside aside-like margin-note" data-margin-anchor="sh-c06-duals-5" data-margin-label="7" data-margin-inline="true"><h4 class="heading"><a href="#sh-c06-duals-5" class="margin-note-label">7</a></h4>
+<div class="para">Verdier duality uses a dualizing complex in place of <span class="process-math">\(\Lambda_X\)</span> and is not this underived operation. The present notation will be distinguished from it when support and duality are introduced.
+</div></aside><aside id="margin-sh-c06-flat-resolutions-6-1" class="aside aside-like margin-note" data-margin-anchor="sh-c06-flat-resolutions-6" data-margin-label="8" data-margin-inline="true"><h4 class="heading"><a href="#sh-c06-flat-resolutions-6" class="margin-note-label">8</a></h4>
+<div class="para">Their Hom functor is <span class="process-math">\(F\mapsto F(U)\text{,}\)</span> which is left exact and need not carry epimorphisms of sheaves to surjections of section modules. Enough flat objects therefore does not prove enough projective objects.
+</div></aside>
+</div>
+</div>
+<footer id="site-copyright" class="site-copyright"><p>© 2026 Jie Fu. All rights reserved.</p></footer>
+</body>
+</html>

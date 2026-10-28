@@ -1,0 +1,132 @@
+<chapter xml:id="st-c12">
+  <title>Hypercovers and cohomological descent</title>
+  <introduction>
+    <p>An ordinary covering prescribes its overlaps by fiber products. A hypercover allows those overlaps to be covered again, and repeats this process for compatible higher overlap data. This extra freedom is useful when local cohomology classes must be killed at several successive stages. The comparison concerns cohomology of complexes, with a specified total-complex model and convergence range.</p>
+    <p>We work first in a Grothendieck topos <m>\mathcal E</m>. Finite limits exist there even when a chosen site presentation has no fiber products. For an object <m>A</m>, a hypercover of <m>A</m> lives in the slice <m>\mathcal E/A</m>. A hypercover of the terminal object is the case that computes global cohomology of <m>\mathcal E</m>. The distinction is needed when the original site has no terminal object.</p>
+  </introduction>
+
+  <section xml:id="st-c12-simplicial-section">
+    <title>Faces, degeneracies, and matching objects</title>
+    <definition xml:id="st-c12-simplicial">
+      <idx>Simplicial object</idx><idx>Augmented simplicial object</idx><idx>Matching object</idx>
+      <statement><p>Let <m>\Delta</m> be the category of nonempty finite ordered sets <m>[n]=\{0,\ldots,n\}</m> and order-preserving maps. A <term>simplicial object</term> is a functor <m>U_\bullet:\Delta^{\op}\to\mathcal E</m>. Its face maps <m>d_i:U_n\to U_{n-1}</m> delete a vertex, and its degeneracy maps <m>s_i:U_n\to U_{n+1}</m> repeat one. They obey the identities imposed by composition in <m>\Delta</m>. An augmentation to <m>A</m> is a compatible family of maps <m>U_n\to A</m>; equivalently, it is a simplicial object in <m>\mathcal E/A</m>.</p>
+        <p>The <term><m>n</m>-th matching object</term> <m>M_n(U)</m> is the object of compatible boundaries of <m>n</m>-simplices, formed as a finite limit in <m>\mathcal E/A</m>. Set <m>U_{-1}=A</m> and regard <m>d_0:U_0\to A</m> as the augmentation. We set <m>M_0(U)=A</m> and <m>M_1(U)=U_0\times_AU_0</m>, so compatibility in degree one is equality of augmentations. For <m>n\geq2</m>, it consists of tuples of faces <m>(x_0,\ldots,x_n)</m>, with <m>x_i\in U_{n-1}</m>, satisfying
+          <md number="no">d_i x_j=d_{j-1}x_i\qquad(0\leq i&lt;j\leq n),</md>
+          and the common augmentation condition. The canonical map <m>U_n\to M_n(U)</m> sends a simplex to its faces.</p>
+      </statement>
+    </definition>
+    <p>These element-style descriptions specify finite-limit diagrams and make sense internally in a topos. They can also be read as descriptions of sections over every test object. They do not assert that global sections detect a limit or an epimorphism. For example,
+      <md number="no">M_1(U)=U_0\times_A U_0,</md>
+      while <m>M_2(U)</m> parametrizes three edges with their endpoints identified as the boundary of a triangle. There is no composition of edges until one supplies the additional two-simplex data.</p>
+    <p>Restriction to simplicial degrees at most <m>n</m> is denoted <m>\sk_n</m> here. Its right adjoint is the coskeleton <m>\cosk_n</m>, formed in the slice over <m>A</m>. In degree <m>n+1</m>, the coskeleton is the matching object determined by the lower degrees.<fn>The symbol <m>\sk_n</m> is also used for the left adjoint that freely extends a truncated object to all degrees. We only use it inside <m>\cosk_n\sk_n U</m>, meaning restriction followed by right extension. A boundary is a complete compatible family of faces; it is not merely a horn with one face omitted.</fn></p>
+    <definition xml:id="st-c12-hypercover">
+      <idx>Hypercover</idx><idx>Hypercovering</idx>
+      <statement><p>An augmented simplicial object <m>U_\bullet\to A</m> is a <term>hypercover</term>, or <term>hypercovering</term>, if every matching map
+        <md number="no">U_n\longrightarrow M_n(U)</md>
+        is an epimorphism, including <m>U_0\to A</m>. Equivalently, <m>U_0\to A</m> is epic and
+        <md number="no">U_{n+1}\longrightarrow(\cosk_n\sk_n U)_{n+1}</md>
+        is epic for every <m>n\geq0</m>.</p></statement>
+    </definition>
+    <p>The requirement is local existence of a filler for each compatible boundary. Fillers need not be unique and no global choice is required. This is a stronger requirement than a cover in degree zero alone. In a site model the epimorphisms are tested by local lifts on coverings, as in <xref ref="st-c02-local"/>.</p>
+  </section>
+
+  <section xml:id="st-c12-cover-section">
+    <title>Čech nerves and representable models</title>
+    <definition xml:id="st-c12-cech-nerve">
+      <idx>Čech nerve</idx>
+      <statement><p>For an epimorphism <m>U\to A</m>, its <term>Čech nerve</term> has
+        <md number="no">U_n=\underbrace{U\times_A\cdots\times_A U}_{n+1\text{ factors}},</md>
+        with faces omitting a factor and degeneracies repeating a factor. It is <m>\cosk_0(U/A)</m>. All its positive matching maps are isomorphisms, so it is a hypercover.</p></statement>
+    </definition>
+    <p>For an epimorphic family <m>(U_i\to A)</m>, apply this definition to <m>\coprod_iU_i\to A</m>. Products distribute over coproducts in a topos, giving
+      <md number="no">U_n=\coprod_{i_0,\ldots,i_n}U_{i_0}\times_A\cdots\times_A U_{i_n}.</md>
+      Sections of an abelian sheaf on this coproduct are a product of section groups. Thus the resulting cochain complex is the full Čech complex, with ordered tuples and repetitions. In a general site, a diagonal term <m>U_i\times_A U_i</m> need not equal <m>U_i</m>; it carries descent information even for a covering with one member.</p>
+    <example xml:id="st-c12-refined-overlaps">
+      <statement><p>A hypercover can refine overlaps without replacing its entire degree-zero covering.</p></statement>
+      <solution><p>Start with a cover <m>U_0\to A</m>. Choose a further cover of <m>U_0\times_A U_0</m> and adjoin the diagonal degeneracy from <m>U_0</m>; their coproduct can be used as <m>U_1</m>. The two projections define its faces. The object <m>M_2(U)</m> now asks for triples of these chosen overlap pieces with compatible endpoints. Choose a covering of that object, together with the required degenerate simplices, for degree two. Continue in higher degrees. An ordinary Čech nerve instead uses the whole fiber product in every degree, with its higher degrees already forced by <m>U_0</m>.</p></solution>
+    </example>
+    <definition xml:id="st-c12-split">
+      <idx>Split hypercover</idx><idx>Semi-representable hypercover</idx>
+      <statement><p>A simplicial object is <term>split</term> if there are objects <m>N_k</m> and decompositions
+        <md number="no">U_n\simeq\coprod_{[n]\twoheadrightarrow[k]}N_k</md>
+        compatible with degeneracies. The summand for the identity is the object of chosen nondegenerate simplices. Given a site <m>(\mathcal C,J)</m>, we call a model <term>semi-representable</term> if each degree is a coproduct of sheafified representables <m>a h_V</m>.</p></statement>
+    </definition>
+    <proposition xml:id="st-c12-model-existence">
+      <statement><p>Every object <m>A</m> of a Grothendieck topos admits a split hypercover whose terms are coproducts of objects in a fixed generating family of sheafified representables.</p></statement>
+      <proof><p>Choose an epimorphism from a coproduct of generators to <m>A</m>; this defines <m>N_0=U_0</m>. Suppose degrees below <m>n</m> have been constructed with the split decompositions. Their degeneracies prescribe the degenerate summands in degree <m>n</m>, with their maps to <m>M_n(U)</m>. Choose an epimorphism <m>N_n\to M_n(U)</m> from a coproduct of generators and adjoin those degenerate summands. Its map to the matching object is still epic. The matching coordinates prescribe all faces of <m>N_n</m>, and the split degeneracy formulas prescribe the remaining structure maps. The matching identities are exactly the simplicial identities involving a new face. This extends the construction through degree <m>n</m>. Induction gives all degrees.</p></proof>
+    </proposition>
+    <p>This argument uses the finite limits of the topos and its generators. It does not require the original category <m>\mathcal C</m> to have fiber products, a terminal object, or a subcanonical topology. For an object <m>X\in\mathcal C</m>, one can take <m>A=a h_X</m>. To compute cohomology of the whole topos, take <m>A=1_{\mathcal E}</m>; that object need not be represented in <m>\mathcal C</m>.<fn>The classical site definition often assumes fiber products and uses families of actual objects over <m>X</m>. See <url href="https://stacks.math.columbia.edu/tag/01FZ">Stacks, §25.3</url>. Our definition in the topos also covers presentations without those limits. Sheafified representables, rather than unproved representable sheaves, are the generators in that definition.</fn></p>
+    <p>For comparisons with the classical model, one may pass to a small equivalent presentation closed under the finite limits needed for the construction. A split construction permits the necessary choices of new covering families while preserving degeneracies. Ignoring degeneracies in a degree-by-degree choice would not yet construct a simplicial object.</p>
+  </section>
+
+  <section xml:id="st-c12-resolution-section">
+    <title>The augmented free resolution</title>
+    <p>Let <m>\Z[B]</m> denote the free abelian object on <m>B\in\mathcal E</m>. On a site it is obtained by sheafifying the presheaf of free abelian groups. It represents sections:
+      <md number="no">\Hom_{\Ab(\mathcal E)}(\Z[B],F)\simeq\Gamma(B,F).</md>
+      Here the right side is sections in the slice over <m>B</m>. Applying this to the degrees of a simplicial object gives its augmented chain complex, with boundary <m>\partial=\sum_i(-1)^id_i</m>.</p>
+    <theorem xml:id="st-c12-free-resolution">
+      <statement><p>If <m>U_\bullet\to A</m> is a hypercover, the augmented complex of abelian sheaves
+        <md number="no">\cdots\longrightarrow\Z[U_2]\xrightarrow{\partial}\Z[U_1]\xrightarrow{\partial}\Z[U_0]\longrightarrow\Z[A]\longrightarrow0</md>
+        is exact.</p></statement>
+      <proof><p>Surjectivity of the augmentation follows from the epimorphism <m>U_0\to A</m>: a generator over a test object lifts locally, and finitely many generators admit a common covering on which they lift. Exactness in higher degrees is also local, so start with a cycle over a test object. After a covering, represent it as a finite integral sum of simplices. Its boundary equation is a finite relation in free abelian presheaves after a further covering, since sheafification makes precisely locally valid relations valid.</p>
+        <p>Collect the finite set of simplices occurring in that sum and all their faces. Group them by their augmentation to <m>A</m>; those with different augmentations have separate boundary equations. Locally choose a vertex <m>v</m> above each of the finitely many augmentations. Cone the finite collection inductively from this vertex. For a vertex <m>x</m>, an edge with faces <m>x,v</m> exists locally because <m>U_1\to U_0\times_AU_0</m> is epic. If the cones of the proper faces of an <m>r</m>-simplex <m>x</m> have already been chosen compatibly, prescribe the boundary of its cone <m>c(x)</m> by
+          <md number="no">d_0c(x)=x,\qquad d_{i+1}c(x)=c(d_ix).</md>
+          These faces satisfy the matching identities by induction. The epic map <m>U_{r+1}\to M_{r+1}(U)</m> supplies a cone after a covering. There are only finitely many required choices up to the degree of the original cycle, so successive local lifts can be made on one common refinement.</p>
+        <p>The resulting finite coning operation satisfies <m>\partial c+c\partial=\id</m> on the collection and its boundary, with the augmentation included. Hence the original cycle is locally a boundary. This proves equality of the kernel and image sheaves. The argument constructs no global contraction and requires no points of the topos. The site formulation is <url href="https://stacks.math.columbia.edu/tag/01GA">Stacks, Lemmas 25.4.4–25.4.5</url>.</p>
+      </proof>
+    </theorem>
+    <p>Repeated simplices can be assigned the same cone throughout this finite construction. This matters when an equation contains cancellation between equal faces. Degenerate simplices may either be retained, as above, or removed using the normalized chain complex; the degenerate subcomplex is contractible. The exactness statement is the same in both models.<fn>The proof is local for each finite cycle. It does not assert that <m>U_\bullet(T)</m> is a contractible simplicial set for every object <m>T</m>. An epimorphism of sheaves need not give a surjection on sections over <m>T</m>.</fn></p>
+    <corollary xml:id="st-c12-injective-acyclic">
+      <statement><p>For an injective abelian sheaf <m>I</m>, the augmented cochain complex
+        <md number="no">0\longrightarrow\Gamma(A,I)\longrightarrow\Gamma(U_0,I)\longrightarrow\Gamma(U_1,I)\longrightarrow\cdots</md>
+        is exact. Its differential is <m>\delta=\sum_i(-1)^id_i^*</m>.</p></statement>
+      <proof><p>Apply the exact contravariant functor <m>\Hom(-,I)</m> to <xref ref="st-c12-free-resolution"/>. The free objects are not required to be projective.</p></proof>
+    </corollary>
+    <p>This is the resolution mechanism behind cohomological descent. It is exactness of the augmented free sheaf complex, followed by injectivity, rather than an assertion that arbitrary sections glue in every positive degree.</p>
+  </section>
+
+  <section xml:id="st-c12-descent-section">
+    <title>A bounded below total-complex theorem</title>
+    <definition xml:id="st-c12-total-model">
+      <idx>Hypercover total complex</idx>
+      <statement><p>Let <m>K\in\D^+(\Ab(\mathcal E))</m> and choose a bounded below injective resolution <m>K\to I^\bullet</m>. Define
+        <md number="no">T(U_\bullet,K)=\Tot\bigl(\Gamma(U_p,I^q)\bigr)_{p\geq0},\qquad d=\delta+(-1)^p d_I.</md>
+        The terms in total degree <m>n</m> are <m>\bigoplus_{p+q=n}\Gamma(U_p,I^q)</m>. This sum is finite because <m>q</m> has a fixed lower bound. The augmentation gives a map <m>\Gamma(A,I^\bullet)\to T(U_\bullet,K)</m>.</p></statement>
+    </definition>
+    <theorem xml:id="st-c12-descent">
+      <statement><p>For a hypercover <m>U_\bullet\to A</m> and <m>K\in\D^+(\Ab(\mathcal E))</m>, the augmentation induces a natural isomorphism
+        <md number="no">R\Gamma(A,K)\xrightarrow{\sim}T(U_\bullet,K)</md>
+        in the derived category of abelian groups. The total model is independent of the injective resolution, and the isomorphism is compatible with morphisms of complexes and maps of augmented hypercovers. The same conclusion for bounded below module complexes follows after forgetting the ring action.</p></statement>
+      <proof><p>For each <m>q</m>, <xref ref="st-c12-injective-acyclic"/> identifies the augmented horizontal row with a resolution of <m>\Gamma(A,I^q)</m>. The spectral sequence obtained by taking horizontal cohomology is therefore concentrated in the augmentation column. It proves that the augmentation is a quasi-isomorphism. For any fixed total degree only finitely many columns contribute, so this argument has no infinite-diagonal convergence problem.</p>
+        <p>Comparison maps between bounded below injective resolutions are unique up to homotopy. Applying sections on each <m>U_p</m> gives compatible maps of double complexes, and their total maps are homotopic with the usual totalization signs. Alternatively, the augmentation quasi-isomorphisms identify both models with <m>R\Gamma(A,K)</m>. Maps of hypercovers commute with faces and augmentation and so give the asserted naturality. For module complexes, use the bounded below agreement of module and underlying abelian cohomology from <xref ref="st-c11-cohomology"/> and its following discussion.</p>
+      </proof>
+    </theorem>
+    <p>This is a concrete meaning of the expression <m>\Tot R\Gamma(U_\bullet,K)</m>: one global resolution provides all cosimplicial maps before totalization. Choosing unrelated representatives of <m>R\Gamma(U_p,K)</m> separately would not by itself specify a cosimplicial complex.<fn>A diagram in an ordinary derived category has only morphisms up to homotopy already forgotten. Writing a totalization requires additional compatible data or a construction, such as the single resolution above, that supplies them.</fn></p>
+    <theorem xml:id="st-c12-spectral-sequence">
+      <statement><p>The total model has a natural convergent spectral sequence
+        <md number="no">E_1^{p,q}=H^q(U_p,K)\ \Longrightarrow\ H^{p+q}(A,K),\qquad p\geq0.</md>
+        The first differential is the alternating sum of pullbacks by the faces, and <m>d_r</m> has bidegree <m>(r,1-r)</m>. If <m>U_p=\coprod_{\alpha}a h_{V_{p,\alpha}}</m>, then
+        <md number="no">E_1^{p,q}=\prod_\alpha H^q(V_{p,\alpha},K).</md>
+        Each abutment degree has a finite filtration. If all positive cohomology of a sheaf <m>F</m> on all the <m>U_p</m> vanishes, its underived hypercover cochain complex <m>\Gamma(U_\bullet,F)</m> computes <m>H^*(A,F)</m>.</p></statement>
+      <proof><p>Take vertical cohomology of the double complex in <xref ref="st-c12-total-model"/>. Restriction of an injective sheaf to a slice is injective, so it computes the displayed local cohomology. For coproducts the section complex is a product of complexes of groups, and products of groups are exact. Boundedness below of <m>I</m> gives the finite filtration. For a sheaf acyclic on the terms, the spectral sequence has only its row <m>q=0</m>. A classical site version is <url href="https://stacks.math.columbia.edu/tag/01FX">Stacks, §25.5</url>.</p></proof>
+    </theorem>
+    <p>For the Čech nerve this is the ordinary Čech-to-derived comparison spectral sequence. Thus even a single ordinary covering satisfies the derived total-complex descent theorem. What can fail is computation by the row of ordinary sections alone. Hypercovers offer the additional possibility of killing positive cohomology obstructions by choosing covers in higher degrees.</p>
+  </section>
+
+  <section xml:id="st-c12-refinement-section">
+    <title>Refinement, local classes, and the classical theorem</title>
+    <p>A morphism of augmented hypercovers is a simplicial map over <m>A</m>. It induces a map of cochain complexes in the opposite direction. Simplicially homotopic maps induce chain-homotopic maps on cochains, so they induce equal maps on cohomology. This is why the classical indexing category uses maps of hypercovers modulo simplicial homotopy, rather than treating every index choice as distinct.</p>
+    <theorem xml:id="st-c12-verdier">
+      <title>Hypercover theorem</title>
+      <statement><p>Let <m>\mathcal C</m> be a small site with fiber products, let <m>X\in\mathcal C</m>, and let <m>F</m> be an abelian sheaf. Use classical semi-representable hypercovers of <m>X</m>, with coverings in their matching maps. Then the comparison maps give isomorphisms
+        <md number="no">\colim_{U_\bullet}H^n\bigl(\Gamma(U_\bullet,F)\bigr)\xrightarrow{\sim}H^n(X,F),\qquad n\geq0,</md>
+        where the colimit is taken in the refinement direction in the homotopy category of hypercovers.</p></statement>
+      <proof><p>This is <url href="https://stacks.math.columbia.edu/tag/01GZ">Stacks, Theorem 25.10.1</url>. The construction of common refinements and of refinements equalizing maps up to homotopy makes the indexing diagram filtered. Those are parts of the cited theorem, not consequences of an arbitrary category of simplicial objects.</p>
+        <p>The cohomological mechanism can be read from <xref ref="st-c12-spectral-sequence"/>. A positive-degree global class first becomes zero on a covering in simplicial degree zero; degree-zero classes are already handled by the sheaf axiom. Its successive obstructions to coming from the bottom row are represented by positive cohomology classes on terms in higher simplicial degrees. Each such class vanishes after a covering of that term by locality of cohomology. Extending that choice to a refinement of the hypercover kills the obstruction. For a fixed total degree only finitely many stages are needed. The same process kills a bottom-row class whose comparison is zero, proving injectivity in the limit.</p>
+      </proof>
+    </theorem>
+    <p>The fiber-product hypothesis belongs to this explicit classical site model. The point-free total-complex theorem above is stated in the topos, where those limits always exist. Passing between the formulations requires their chosen presentations; it does not justify assuming fiber products in the original site.</p>
+    <p>In degree one an ordinary cover suffices to record differences of local lifts, which explains the all-cover Čech comparison in that degree. In higher degree, a class on an overlap can require a new cover of that overlap. Repeatedly covering matching objects records these choices together with their compatibility. The refinement construction therefore explains how hypercover cochains recover all degrees without assuming one acyclic ordinary cover.</p>
+    <p>These results prove cohomological descent for bounded below complexes pulled back from the base, in the specified abelian and total-complex models. They do not identify an arbitrary family of objects of ordinary triangulated derived categories on the terms with a global object. Effective descent of complexes with higher compatibility data is a different assertion and requires a suitable model. No stack property for an unenhanced triangulated derived category is used here.</p>
+  </section>
+</chapter>

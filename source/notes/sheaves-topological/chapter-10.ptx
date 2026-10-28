@@ -1,0 +1,256 @@
+<chapter xml:id="sh-c10">
+  <title>Low-degree classes and calculations</title>
+  <introduction>
+    <p>A degree-zero class is a section. A degree-one class records a failure of local choices to agree, and can be represented by a torsor or by an extension. These interpretations do not require separation, local compactness, or a finiteness condition on the coefficients. They explain why an epimorphism of sheaves need not be surjective on global sections, and they give concrete ways to calculate the connecting homomorphism.</p>
+    <p>We first use sheaves of Abelian groups. The corresponding statements for <m>\Lambda</m>-module sheaves use the coefficient comparison in <xref ref="sh-c08-coefficients"/>. The last two sections calculate cohomology on a circle and on a finite non-Hausdorff space. The calculations use the Čech and Mayer–Vietoris results of <xref ref="sh-c09"/>; the acyclicity of locally constant sheaves on intervals is proved in <xref ref="sh-c11"/>.</p>
+  </introduction>
+
+  <section xml:id="sh-c10-lifting">
+    <title>Sections and their lifting obstructions</title>
+    <p>Let
+      <md number="no">0\longrightarrow F\xrightarrow{\iota}G\xrightarrow{q}H\longrightarrow0</md>
+      be an exact sequence of Abelian sheaves on <m>X</m>. An element <m>h\in H(X)</m> has local lifts in <m>G</m>, since <m>q</m> is an epimorphism of sheaves. It need not have a global lift. The beginning of the cohomology sequence is
+      <md number="no">0\longrightarrow F(X)\longrightarrow G(X)\longrightarrow H(X)\xrightarrow{\partial}H^1(X,F)\longrightarrow H^1(X,G).</md>
+      Thus <m>\partial h</m> is the obstruction to a global lift. This is an obstruction to making already existing local lifts compatible; it is not an obstruction to their local existence.</p>
+
+    <proposition xml:id="sh-c10-boundary-cocycle">
+      <statement>
+        <p>Choose an open covering <m>\mathcal U=(U_i)</m> and lifts <m>g_i\in G(U_i)</m> of <m>h|_{U_i}</m>. Define <m>c_{ij}\in F(U_i\cap U_j)</m> by
+          <md number="no">\iota(c_{ij})=g_j-g_i.</md>
+          Then <m>c_{ij}+c_{jk}=c_{ik}</m> on triple intersections. Its image under the Čech-to-derived comparison is <m>\partial h</m>. Replacing <m>g_i</m> by <m>g_i+\iota(b_i)</m> replaces <m>c_{ij}</m> by <m>c_{ij}+b_j-b_i</m>.</p>
+      </statement>
+      <proof>
+        <p>The difference <m>g_j-g_i</m> belongs to the kernel of <m>q</m>, so exactness determines <m>c_{ij}</m>. The identity
+          <md number="no">(g_j-g_i)+(g_k-g_j)=g_k-g_i</md>
+          gives the cocycle relation. A connecting class is obtained by lifting a cocycle and applying the differential. Applying this construction in the Čech resolution and an injective resolution gives the displayed representative of <m>\partial h</m>; the comparison of the two constructions is the naturality of the connecting homomorphism.<fn>With the total differential used in <xref ref="sh-c09"/>, resolution preimages <m>u_i</m> satisfying <m>d u_i=b</m> represent <m>[b]</m> by <m>u_i-u_j</m>. There is no sign conflict here: if <m>\widetilde h</m> is a global resolution lift of <m>h</m>, then <m>u_i=\widetilde h-g_i</m>, so <m>g_j-g_i=u_i-u_j</m>. Genuine local lifts in <m>G</m> and local preimages in a resolution of <m>F</m> are different choices.</fn> The formula for a change of lifts follows by subtraction.</p>
+      </proof>
+    </proposition>
+
+    <p>If the local lifts can be adjusted to agree, the adjusted sections glue to a global lift. One must allow refinements when using arbitrary Čech classes: a fixed covering need not represent every class of <m>H^1(X,F)</m>. The direct limit over all open coverings does represent every degree-one class, as explained in <xref ref="sh-c09-comparison"/>.<fn>When a class is given by local lifts on a particular covering, its fixed-cover Čech representative is already available. This does not imply surjectivity of the fixed-cover comparison for other classes.</fn></p>
+
+    <example xml:id="sh-c10-angle">
+      <statement>
+        <p>Let <m>\mathcal C_{\mathbf R}</m> be the sheaf of continuous real-valued functions and <m>\mathcal C_{S^1}</m> the sheaf of continuous circle-valued functions, the latter regarded as an Abelian group under multiplication. There is an exact sequence of Abelian sheaves
+          <md number="no">0\longrightarrow\Z_X\longrightarrow\mathcal C_{\mathbf R}\xrightarrow{\ e\ }\mathcal C_{S^1}\longrightarrow1,\qquad e(u)=\exp(2\pi\mathrm i u).</md>
+          For a continuous map <m>h:X\to S^1</m>, the class <m>\partial h\in H^1(X,\Z_X)</m> vanishes exactly when <m>h</m> has a continuous real-valued logarithm with this normalization.</p>
+      </statement>
+      <solution>
+        <p>Every point of the circle has an open arc on which a continuous argument exists. Pulling back such arcs proves local surjectivity of <m>e</m> for any <m>X</m>. Its kernel consists of continuous integer-valued functions, which are locally constant. If <m>u_i</m> are local arguments for <m>h</m>, their differences <m>u_j-u_i</m> are integer-valued and represent the boundary class. The lifting criterion follows from the long exact sequence. For <m>X=S^1</m> and <m>h</m> the identity, this class is nonzero: a continuous lift around a full turn would have to return both to its initial value and to that value plus <m>1</m>. Choosing the positive orientation gives the usual generator of <m>H^1(S^1,\Z)</m>.</p>
+      </solution>
+    </example>
+    <p>This example uses only exactness and local arguments. No assertion about higher cohomology of <m>\mathcal C_{\mathbf R}</m> is needed. Acyclicity statements derived from partitions of unity have additional space hypotheses and belong to the treatment of fine and soft sheaves.</p>
+  </section>
+
+  <section xml:id="sh-c10-torsors">
+    <title>Torsors and degree-one cocycles</title>
+    <definition xml:id="sh-c10-torsor-definition">
+      <title>Torsors</title>
+      <idx>Torsor</idx><idx>Principal homogeneous sheaf</idx><idx>Non-Abelian first cohomology</idx>
+      <statement>
+        <p>Let <m>G</m> be a sheaf of groups on <m>X</m>. A <term>right <m>G</m>-torsor</term> is a sheaf of sets <m>P</m> with a right <m>G</m>-action such that every point has a neighborhood on which <m>P</m> has a section, and the morphism
+          <md number="no">P\times G\longrightarrow P\times P,\qquad (p,g)\longmapsto(p,p\cdot g)</md>
+          is an isomorphism. A morphism of torsors is a <m>G</m>-equivariant morphism of sheaves. The trivial torsor is <m>G</m> with right multiplication. The set of isomorphism classes, pointed by this trivial torsor, is denoted <m>H^1(X,G)</m> when <m>G</m> is not assumed Abelian.</p>
+        <p>For an Abelian sheaf <m>F</m>, we write the action additively. The torsor is a sheaf of sets acted on by <m>F</m>; it does not come with a chosen zero section or an Abelian group structure.</p>
+      </statement>
+    </definition>
+    <p>The isomorphism in the definition says that two sections on the same open set differ by a unique group section whenever those sections exist. The local-existence condition is equivalent to the nonemptiness of all stalks of <m>P</m>. It does not require <m>P(U)</m> to be nonempty for every open <m>U</m>.<fn>A torsor is also called a principal homogeneous sheaf. A principal bundle for a topological group includes continuity and local-triviality data of a different kind. For a constant discrete group the étalé space of a torsor is a covering space; this does not identify torsors under an arbitrary sheaf of groups with bundles for one fixed topological group.</fn></p>
+
+    <proposition xml:id="sh-c10-torsor-basics">
+      <statement>
+        <p>Every morphism of <m>G</m>-torsors is an isomorphism. A <m>G</m>-torsor is trivial if and only if it has a global section. If <m>F</m> is Abelian and <m>P</m> is an <m>F</m>-torsor, translation gives an isomorphism
+          <md number="no">F(X)\xrightarrow{\sim}\operatorname{Aut}_F(P).</md>
+        </p>
+      </statement>
+      <proof>
+        <p>Choose a local section <m>p</m> of the source torsor. The map <m>g\mapsto p\cdot g</m> identifies that torsor locally with <m>G</m>, and the image of <m>p</m> gives the same identification for the target. An equivariant morphism becomes the identity in these coordinates. It is therefore an isomorphism on an open covering. A global section makes the same construction on all of <m>X</m>, proving the criterion for triviality. In the Abelian case an equivariant automorphism is locally translation by a unique element of <m>F</m>; these translations agree on overlaps and glue to an element of <m>F(X)</m>.</p>
+      </proof>
+    </proposition>
+
+    <p>Choose local sections <m>p_i\in P(U_i)</m>. Write
+      <md number="no">p_j=p_i\cdot g_{ij}.</md>
+      Associativity and uniqueness give <m>g_{ij}g_{jk}=g_{ik}</m>. If <m>p'_i=p_i\cdot b_i</m>, then
+      <md number="no">g'_{ij}=b_i^{-1}g_{ij}b_j.</md>
+      Conversely, such transition sections glue copies of <m>G|_{U_i}</m> to a torsor. For an Abelian sheaf, these are exactly the additive cocycle and coboundary formulas
+      <md number="no">c_{ij}+c_{jk}=c_{ik},\qquad c'_{ij}=c_{ij}+b_j-b_i.</md>
+      The change-of-trivialization formula explains why isomorphism classes are the objects to classify.</p>
+
+    <p>For non-Abelian <m>G</m>, the notation <m>H^1(X,G)</m> denotes a pointed set here. It is not the first right derived functor of global sections in an Abelian category, and there is no addition of its classes supplied by the definition. We will not introduce higher non-Abelian cohomology. For Abelian <m>F</m>, the torsor classification agrees with the cohomology group already defined; this agreement is proved below.</p>
+
+    <example xml:id="sh-c10-lift-torsor">
+      <statement>
+        <p>In the exact sequence of <xref ref="sh-c10-lifting"/>, let <m>h\in H(X)</m>. The rule
+          <md number="no">P_h(U)=\{g\in G(U):q(g)=h|_U\}</md>
+          defines an <m>F</m>-torsor, acted on by addition. Its class is <m>\partial h</m>.</p>
+      </statement>
+      <solution>
+        <p>The equation defining <m>P_h</m> is local, so this rule is a sheaf. Epimorphy of <m>q</m> gives local sections, and exactness identifies differences of lifts with unique sections of <m>F</m>. Local trivializations are the chosen lifts <m>g_i</m>; their transition cocycle is <m>g_j-g_i</m>. Thus the torsor and the connecting class record the same failure to lift globally.</p>
+      </solution>
+    </example>
+  </section>
+
+  <section xml:id="sh-c10-extensions">
+    <title>Extensions and the classification of torsors</title>
+    <p>For Abelian sheaves, the identification
+      <md number="no">\Hom_{\Sh(X;\Z)}(\Z_X,F)=\Gamma(X,F)</md>
+      identifies their right derived functors. Hence <m>H^1(X,F)</m> classifies extensions
+      <md number="no">0\longrightarrow F\longrightarrow E\xrightarrow{q}\Z_X\longrightarrow0,</md>
+      with the end terms fixed. The module version is <xref ref="sh-c08-ext-global"/>. We use the Yoneda interpretation of <m>\Ext^1</m> from the <url href="../homological-algebra/ha-c06.html">homological algebra note</url>, rather than prove the general theory of extensions again.</p>
+
+    <theorem xml:id="sh-c10-torsor-classification">
+      <statement>
+        <p>For any Abelian sheaf <m>F</m> on any topological space <m>X</m>, there is a natural bijection
+          <md number="no">\{\text{isomorphism classes of }F\text{-torsors}\}\xrightarrow{\sim}H^1(X,F).</md>
+          The trivial torsor corresponds to zero. If an extension of <m>\Z_X</m> by <m>F</m> represents a class <m>\xi</m>, its fiber over the global section <m>1\in\Z_X(X)</m> is a torsor representing <m>\xi</m>.</p>
+      </statement>
+      <proof>
+        <p>For an extension <m>E</m>, let <m>P=q^{-1}(1)</m>, taking the fiber in sheaves of sets. Since <m>q</m> is an epimorphism, <m>1</m> has local lifts. Their differences are unique sections of <m>F</m>, so <m>P</m> is a torsor. This construction respects equivalences of extensions.</p>
+        <p>Conversely, choose local sections <m>p_i</m> of a torsor <m>P</m> and write <m>p_j=p_i+c_{ij}</m>. On <m>U_i</m>, take <m>E_i=F|_{U_i}\oplus\Z_{U_i}</m>. Glue the copy on <m>U_j</m> to the copy on <m>U_i</m> by
+          <md number="no">(a,n)\longmapsto(a+n c_{ij},n).</md>
+          The cocycle relation is exactly the compatibility required for these isomorphisms on triple intersections. Their first component fixes <m>F</m>, and their second component fixes <m>\Z</m>. They therefore glue to an extension of <m>\Z_X</m> by <m>F</m>. Its fiber over <m>1</m> has the same transitions as <m>P</m>, and is isomorphic to <m>P</m>.</p>
+        <p>Changing the sections to <m>p_i+b_i</m> gives an equivalent extension, using the local coordinate change <m>(a,n)\mapsto(a+n b_i,n)</m> in the old coordinates. Any two trivializing coverings have a common refinement, so the extension class is independent of the covering. Starting instead with an extension, choose lifts <m>e_i</m> of <m>1</m>. The maps <m>(a,n)\mapsto a+n e_i</m> identify it with the extension just constructed from its fiber torsor. Thus the two constructions are inverse on isomorphism classes.</p>
+        <p>The connecting homomorphism for an extension sends <m>1</m> to its Yoneda class. Its local lifts are the sections of the fiber torsor, whose differences are <m>c_{ij}</m>. The bijection therefore agrees with the Čech-to-derived comparison and with <xref ref="sh-c10-boundary-cocycle"/>. Pullback and morphisms of Abelian coefficient sheaves preserve these descriptions, proving naturality.</p>
+      </proof>
+    </theorem>
+    <p>For the general result and a construction without choosing local coordinates, see <url href="https://stacks.math.columbia.edu/tag/02FN">Stacks, §20.4</url>. The proof above keeps the transition maps visible, so it also fixes our sign convention.</p>
+
+    <p>If <m>F</m> is a <m>\Lambda</m>-module sheaf, replace <m>\Z</m> by <m>\Lambda</m> in the gluing construction and use <m>(a,\lambda)\mapsto(a+\lambda c_{ij},\lambda)</m>. This realizes the same additive torsor as a <m>\Lambda</m>-linear extension of <m>\Lambda_X</m>. Thus the Abelian torsor interpretation agrees with the module-valued cohomology and with <m>\Ext^1_{\Sh(X;\Lambda)}(\Lambda_X,F)</m>; it does not require <m>F</m> to be free or flat. The automorphisms of such an extension that induce the identity on both end terms are also <m>F(X)</m>, acting by <m>e\mapsto e+q(e)b</m>. The cohomology group classifies isomorphism classes, and does not assert that objects in one class have no automorphisms.</p>
+
+    <p>The group operation has a torsor interpretation. For two <m>F</m>-torsors <m>P,Q</m>, form the sheaf quotient of <m>P\times Q</m> by the action
+      <md number="no">a:(p,q)\longmapsto(p+a,q-a).</md>
+      The result, usually written <m>P+_F Q</m>, is an <m>F</m>-torsor. Local sections <m>p_i,q_i</m> give transitions <m>c_{ij}+d_{ij}</m>, so its class is the sum of the two classes. Negating the action gives the inverse torsor. This construction agrees with Baer sum of the corresponding extensions.<fn>The quotient is sheafified. Taking orbit sets on each open set need not itself give a sheaf. This is the same reason that cokernels of Abelian sheaves are obtained by sheafifying presheaf cokernels.</fn></p>
+
+    <proposition xml:id="sh-c10-splitting-torsor">
+      <statement>
+        <p>Let <m>P</m> be a finite locally free <m>\Lambda_X</m>-module sheaf and let <m>F</m> be any <m>\Lambda</m>-module sheaf. Equivalence classes of extensions
+          <md number="no">0\longrightarrow F\longrightarrow E\longrightarrow P\longrightarrow0</md>
+          are naturally classified by
+          <md number="no">H^1\bigl(X,\sheafHom_\Lambda(P,F)\bigr).</md>
+          The torsor associated with an extension is its sheaf of local <m>\Lambda</m>-linear splittings.</p>
+      </statement>
+      <proof>
+        <p>Where <m>P</m> is free of finite rank, lift its finitely many basis sections through <m>E\to P</m> after shrinking the neighborhood. This gives a local splitting. Two splittings differ by a unique section of <m>\sheafHom_\Lambda(P,F)</m>. They therefore form a torsor under this Abelian sheaf. Conversely, glue the locally split extensions <m>F\oplus P</m> using the additive cocycle of a torsor, by the maps <m>(a,p)\mapsto(a+c_{ij}(p),p)</m>. These constructions are inverse, by the same coordinate changes as in <xref ref="sh-c10-torsor-classification"/>.</p>
+      </proof>
+    </proposition>
+    <p>Local freeness and finite rank have been used to obtain local splittings by lifting finitely many generators simultaneously. A locally free sheaf need not be a projective object of the global sheaf category. Even <m>\Lambda_X</m> can have nonzero global <m>\Ext^1</m>. The obstruction is precisely the failure of the local splittings to glue. For a general quotient sheaf <m>P</m>, an extension need not be locally split, and a torsor of splittings need not exist; one then needs more than this <m>H^1</m> description.</p>
+  </section>
+
+  <section xml:id="sh-c10-affine-monodromy">
+    <title>Affine monodromy in degree one</title>
+    <p>For locally constant coefficients, the torsor description expresses degree one directly in terms of monodromy. Assume in this section that <m>X</m> is connected, locally path-connected, and semilocally simply connected. These are sufficient hypotheses for the monodromy classification in <xref ref="sh-c05-monodromy"/>. Let <m>L</m> have stalk <m>M</m> at <m>x</m>, and write <m>\rho:\pi_1(X,x)\to\operatorname{Aut}_\Lambda(M)</m> for its monodromy. We choose the multiplication convention in which <m>\rho(gh)=\rho(g)\rho(h)</m>.</p>
+
+    <definition xml:id="sh-c10-crossed-homomorphism">
+      <title>Crossed homomorphisms</title>
+      <idx>Crossed homomorphism</idx><idx>Group cohomology!degree one</idx><idx>Affine monodromy</idx>
+      <statement>
+        <p>A <term>crossed homomorphism</term> for <m>\rho</m> is a map <m>c:\pi_1(X,x)\to M</m> satisfying
+          <md number="no">c(gh)=c(g)+\rho(g)c(h).</md>
+          Two such maps are equivalent if, for one <m>b\in M</m>,
+          <md number="no">c'(g)=c(g)+\rho(g)b-b\qquad\text{for all }g.</md>
+          Their quotient group, under addition, is the degree-one group cohomology <m>H^1(\pi_1(X,x),M)</m> for this action.</p>
+      </statement>
+    </definition>
+
+    <proposition xml:id="sh-c10-affine-classification">
+      <statement>
+        <p>Under the stated hypotheses there is an isomorphism
+          <md number="no">H^1(X,L)\simeq H^1(\pi_1(X,x),M).</md>
+          No asphericity hypothesis on <m>X</m> is needed in degree one.</p>
+      </statement>
+      <proof>
+        <p>An <m>L</m>-torsor is locally isomorphic to <m>L</m> as a sheaf of sets. It is therefore locally constant. Choose an element <m>p\in P_x</m>; its additive torsor action identifies <m>P_x</m> with <m>M</m> by <m>v\mapsto p+v</m>. Compatibility of monodromy with the <m>L</m>-action forces the action of <m>g</m> to have the affine form
+          <md number="no">v\longmapsto\rho(g)v+c(g).</md>
+          Composition of these affine maps is an action exactly when <m>c</m> satisfies the crossed-homomorphism identity. Changing the chosen origin to <m>p+b</m> changes <m>c</m> by the displayed equivalence relation.</p>
+        <p>Conversely, a crossed homomorphism defines an affine action on the set <m>M</m>, whose translations are compatible with the given linear action <m>\rho</m>. The monodromy equivalence constructs a locally constant sheaf of sets with this action and a locally simply transitive <m>L</m>-action; it is an <m>L</m>-torsor. An equivariant map respecting translations is a translation by one <m>b</m>, and gives exactly the stated change of crossed homomorphism. The torsor classification proves the bijection. Addition of torsors adds the translation parts, so the bijection is a group isomorphism.</p>
+      </proof>
+    </proposition>
+
+    <p>When the action is trivial, a crossed homomorphism is an ordinary homomorphism into the additive group <m>M</m>, and the equivalence relation does not change it. Thus <m>H^1(X,M_X)\simeq\Hom(\pi_1(X,x),M)</m> under these hypotheses. For nontrivial monodromy, replacing crossed homomorphisms by ordinary homomorphisms discards the coefficient action.<fn>The group-cohomology description in degree one follows because a torsor has no topology beyond its locally constant gluing and its affine monodromy. In higher degrees the cohomology of the universal cover can contribute. The example of <m>S^2</m> in <xref ref="sh-c11"/> shows why this argument must not be promoted to an all-degree formula without further assumptions.</fn></p>
+  </section>
+
+  <section xml:id="sh-c10-circle">
+    <title>A circle with local coefficients</title>
+    <p>Let <m>L</m> be a locally constant <m>\Lambda</m>-module sheaf on <m>S^1</m>. Choose a base point, an orientation, and an identification of its stalk with a module <m>M</m>. Positive monodromy is an automorphism <m>T:M\to M</m>; compare <xref ref="sh-c05-monodromy"/>. No finite-generation or projectivity assumption on <m>M</m> is imposed.</p>
+
+    <proposition xml:id="sh-c10-circle-formula">
+      <statement>
+        <p>With these choices, the cohomology of <m>L</m> is computed by the two-term complex
+          <md number="no">M\xrightarrow{\ T-1\ }M</md>
+          in degrees <m>0,1</m>. Thus
+          <md number="no">H^0(S^1,L)\simeq\ker(T-1),\qquad H^1(S^1,L)\simeq\coker(T-1),\qquad H^q(S^1,L)=0\quad(q\geq2).</md>
+          The first isomorphism is evaluation at the chosen base point. The second uses the orientation and the corresponding trivializations.</p>
+      </statement>
+      <proof>
+        <p>Cover the circle by two open arcs <m>U,V</m> whose intersection is a disjoint union of two open arcs <m>A,B</m>. Locally constant sheaves on each of these intervals are constant and have no positive cohomology, by <xref ref="sh-c11-contractible"/>. Consequently the Mayer–Vietoris sequence is represented by
+          <md number="no">M\oplus M\xrightarrow{\ d\ }M\oplus M,\qquad d(u,v)=(v-u,Tv-u),</md>
+          after choosing the trivializations to agree on <m>A</m>. We choose the orientation so that their transition on <m>B</m> is <m>T</m>. This is the difference-of-restrictions convention of <xref ref="sh-c09-mayer-vietoris"/>.</p>
+        <p>The kernel consists of pairs <m>(u,v)</m> with <m>u=v</m> and <m>(T-1)v=0</m>. For the cokernel, use coordinates <m>(r,s)\mapsto(r,s-r)</m> in the target and <m>(u,v)\mapsto(v-u,v)</m> in the source. The differential becomes
+          <md number="no">(a,v)\longmapsto\bigl(a,(T-1)v\bigr).</md>
+          Its first summand is an isomorphism and can be removed. The second summand is the stated two-term complex. The higher groups vanish because the cover and all its nonempty intersections are acyclic and its normalized Čech complex has length one.</p>
+      </proof>
+    </proposition>
+
+    <p>The kernel consists of invariant elements, while the cokernel consists of coinvariants. These are different operations. For example, an automorphism can have no fixed vectors and still have nonzero coinvariants over a general ring. Reversing the circle replaces <m>T</m> by <m>T^{-1}</m>. The identity
+      <md number="no">T^{-1}-1=-T^{-1}(T-1)</md>
+      identifies the resulting kernels and cokernels, but the coordinate expression for the degree-one class depends on this change.<fn>Some accounts obtain <m>1-T</m> or <m>T^{-1}-1</m> instead of <m>T-1</m>, depending on the chosen loop and on whether cochain values are transported to the first or last vertex. The induced complexes are isomorphic; the sign and transport convention should still be fixed before calculating a specific connecting class.</fn></p>
+
+    <example xml:id="sh-c10-circle-examples">
+      <statement>
+        <p>The formula gives the following cases.</p>
+        <p><ol>
+          <li><p>If <m>T=1</m>, then <m>H^0(S^1,M_{S^1})=M</m> and <m>H^1(S^1,M_{S^1})=M</m>.</p></li>
+          <li><p>For <m>M=\Z</m> and <m>T=-1</m>, the invariants are zero and the coinvariants are <m>\Z/2\Z</m>. The torsion in degree one comes from an integral local system even though its stalk is torsion-free.</p></li>
+          <li><p>For a rank-one local system over a field with monodromy <m>t\ne1</m>, both groups vanish. Over <m>\Z</m>, the same argument only works when <m>t-1</m> is a unit.</p></li>
+        </ol></p>
+      </statement>
+    </example>
+
+    <example xml:id="sh-c10-unipotent-extension">
+      <statement>
+        <p>For <m>a\in\Lambda</m>, let <m>E_a</m> be the local system with stalk <m>\Lambda^2</m> and monodromy
+          <md number="no">T_a=\begin{pmatrix}1&amp;a\\0&amp;1\end{pmatrix}.</md>
+          The first coordinate and the second-coordinate quotient give an extension
+          <md number="no">0\longrightarrow\Lambda_{S^1}\longrightarrow E_a\longrightarrow\Lambda_{S^1}\longrightarrow0.</md>
+          Under the identification <m>H^1(S^1,\Lambda)\simeq\Lambda</m>, with the corresponding transition convention, its class is <m>a</m>.</p>
+      </statement>
+      <solution>
+        <p>The quotient section <m>1</m> has local lifts given by the second basis vector. After one positive turn this vector differs from itself by <m>a</m> times the first basis vector. The torsor of lifts therefore has transition <m>a</m>, representing the stated class. A global splitting would be a monodromy-invariant vector of the form <m>(b,1)</m>. Its image under <m>T_a</m> is <m>(b+a,1)</m>, so such a splitting exists exactly when <m>a=0</m>. Local splitting does not imply global splitting, even when both end terms are constant free rank-one sheaves.</p>
+      </solution>
+    </example>
+  </section>
+
+  <section xml:id="sh-c10-finite-gluing">
+    <title>A finite gluing space</title>
+    <p>A finite example separates the calculation from manifold intuition. Let <m>X=\{a,b,c,d\}</m>, with open sets the upper sets for the order
+      <md number="no">a&lt;c,\quad a&lt;d,\quad b&lt;c,\quad b&lt;d,</md>
+      and no further strict comparisons. This is a finite <m>T_0</m> space. It is not Hausdorff. The minimal open neighborhoods of <m>a,b</m> are
+      <md number="no">U=\{a,c,d\},\qquad V=\{b,c,d\},</md>
+      and <m>U\cap V=\{c,d\}</m> is discrete.</p>
+
+    <proposition xml:id="sh-c10-fourpoint-computation">
+      <statement>
+        <p>For every <m>F\in\Sh(X;\Lambda)</m>, its cohomology is computed by
+          <md number="no">F_a\oplus F_b\longrightarrow F_c\oplus F_d,\qquad (u,v)\longmapsto\bigl(r_{bc}v-r_{ac}u,\ r_{bd}v-r_{ad}u\bigr),</md>
+          in degrees <m>0,1</m>, where the maps <m>r</m> are induced by restriction from minimal neighborhoods. In particular, for the constant sheaf,
+          <md number="no">H^0(X,\Lambda_X)\simeq\Lambda,\qquad H^1(X,\Lambda_X)\simeq\Lambda,\qquad H^q(X,\Lambda_X)=0\quad(q\geq2).</md>
+        </p>
+      </statement>
+      <proof>
+        <p>On a finite space, the stalk at a point is the sections over its minimal open neighborhood. Thus <m>\Gamma(U,F)=F_a</m> and <m>\Gamma(V,F)=F_b</m>. These functors are exact, because stalks are exact. On the discrete two-point space, sections are the finite product <m>F_c\times F_d</m>, which is exact as well. The covering <m>(U,V)</m> and its intersection are therefore acyclic for every <m>F</m>. The Čech calculation in <xref ref="sh-c09-acyclic-cover"/> gives precisely the displayed complex.</p>
+        <p>For <m>F=\Lambda_X</m>, every restriction in that complex is the identity. The differential is <m>(u,v)\mapsto(v-u,v-u)</m>. Its kernel is the diagonal copy of <m>\Lambda</m>; its cokernel is <m>(\Lambda\oplus\Lambda)/\Delta\Lambda\simeq\Lambda</m>, using the difference of the two coordinates. The complex has no higher terms.</p>
+      </proof>
+    </proposition>
+
+    <p>The space is connected: each of <m>U,V</m> is connected and their intersection is nonempty. Its nonzero degree-one class comes from the two components of the overlap. This is the same gluing calculation as for the two-arc cover of a circle, although the spaces are very different as topological spaces. Equality of these cohomology groups alone asserts neither a homeomorphism nor a homotopy equivalence.</p>
+
+    <example xml:id="sh-c10-fourpoint-torsor">
+      <statement>
+        <p>An <m>\Lambda_X</m>-torsor trivialized over <m>U</m> and <m>V</m> is specified by a pair <m>(s,t)\in\Lambda\oplus\Lambda</m> of translations on the two overlap points. Its class is <m>t-s\in\Lambda</m>.</p>
+      </statement>
+      <solution>
+        <p>A change of trivializations by <m>u\in\Lambda</m> on <m>U</m> and <m>v\in\Lambda</m> on <m>V</m> adds <m>(v-u,v-u)</m> to <m>(s,t)</m>. The difference <m>t-s</m> is invariant, and every pair is equivalent to <m>(0,t-s)</m>. Such a torsor is trivial exactly when the two overlap translations agree. This realizes every element of the calculated <m>H^1</m> as an actual gluing obstruction.</p>
+      </solution>
+    </example>
+
+    <p>These examples suggest a practical order for a low-degree calculation: identify which local choices are being made; determine the sheaf acting on those choices; compute their differences on overlaps; then justify the comparison with derived cohomology. The justification may use the general degree-one classification, or an acyclic covering when all degrees are wanted. Knowing the overlap equations without that justification is a Čech calculation, not yet a general computation of sheaf cohomology.</p>
+  </section>
+</chapter>

@@ -354,6 +354,25 @@ def finish_pages(directory, is_note=False, macros=None, footnotes="margin", meta
         for attachment in (ROOT / "source/assets").glob("*.pdf"):
             shutil.copy2(attachment, OUT / "pdfs" / attachment.name)
         shutil.copytree(ROOT / "vendor", OUT / "vendor", dirs_exist_ok=True)
+        copy_writing_prompts()
+
+
+def copy_writing_prompts():
+    """Copy the editable writing guides to their public Markdown URLs."""
+    source = ROOT / "prompts"
+    destination = OUT / "downloads/prompts"
+    files = sorted(source.glob("*.md"))
+    if not files or not (source / "README.md").is_file():
+        raise RuntimeError("Writing guide sources are missing")
+    destination.mkdir(parents=True, exist_ok=True)
+    expected = {path.name for path in files}
+    for path in destination.glob("*.md"):
+        if path.name not in expected:
+            if not path.resolve().is_relative_to(OUT.resolve()):
+                raise RuntimeError("Unsafe guide cleanup path")
+            path.unlink()
+    for path in files:
+        shutil.copy2(path, destination / path.name)
 
 def write_note_redirects(notes):
     for note in notes:
@@ -464,8 +483,8 @@ def publish_to_root(scopes=None, report_name="build-check.json"):
             "Generated website files are excluded by Git ignore rules. Update .gitignore before publishing:\n"
             + "\n".join(publishing["ignored_generated_files"])
         )
-    protected = {".git", ".venv", ".build", "source", "publication", "xsl", "tools", "cv", "images"}
-    protected_files = {"CNAME", ".nojekyll", ".gitignore", ".site-files.json", "README.md", "README_cn.md", "NOTES.md", "NOTES_cn.md", "project.ptx", "build.py", "requirements.txt", "Rebuild.ps1", "Start-preview.ps1"}
+    protected = {".git", ".venv", ".build", "source", "publication", "xsl", "tools", "cv", "images", "prompts"}
+    protected_files = {"CNAME", ".nojekyll", ".gitignore", ".site-files.json", "AGENTS.md", "README.md", "NOTES.md", "project.ptx", "build.py", "requirements.txt", "Rebuild.ps1", "Start-preview.ps1"}
 
     def destination(relative):
         target = (ROOT / relative).resolve()
@@ -502,7 +521,7 @@ def publish_to_root(scopes=None, report_name="build-check.json"):
     if scopes is None:
         print("Updated the repository-root website. Existing attachments and domain settings were preserved.")
     else:
-        print("Updated only the selected note and its redirect in the local website.")
+        print("Updated the selected pages and files in the local website.")
 
 
 def included_sources(source, seen=None):

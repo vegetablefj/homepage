@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-darkmode="disabled">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette: blue-red                     *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Presheaves, sheaves, and local data</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Sheaves on topological spaces and cohomology">
+<meta property="og:title" content="Sheaves on topological spaces and cohomology">
+<meta property="book:title" content="Sheaves on topological spaces and cohomology">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.53"></script><script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="../../vendor/lunr/lunr.min.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+<link rel="stylesheet" href="../../layout.css?v=fee08a8c1c">
+<script src="../../layout.js?v=e9391a21a7" defer></script><link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"C": "\\mathbb C", "Pone": "\\mathbb{P}^1_{\\mathbb{C}}", "cO": "\\mathcal{O}", "ord": "\\operatorname{ord}", "lt": "<", "gt": ">", "amp": "&", "Hom": "\\operatorname{Hom}", "End": "\\operatorname{End}", "Ext": "\\operatorname{Ext}", "Tor": "\\operatorname{Tor}", "colim": "\\operatorname{colim}", "im": "\\operatorname{im}", "coker": "\\operatorname{coker}", "Cone": "\\operatorname{Cone}", "Tot": "\\operatorname{Tot}", "Loc": "\\operatorname{Loc}", "Sh": "\\mathsf{Sh}", "PSh": "\\mathsf{PSh}", "Set": "\\mathsf{Set}", "Ab": "\\mathsf{Ab}", "Mod": "\\mathsf{Mod}", "Ch": "\\mathsf{C}", "K": "\\mathsf{K}", "D": "\\mathsf{D}", "id": "\\mathrm{id}", "op": "\\mathrm{op}", "RHom": "\\mathbf R\\!\\operatorname{Hom}", "sheafHom": "\\mathcal{H}\\!om", "RsheafHom": "\\mathbf R\\mathcal{H}\\!om", "Ltensor": "\\mathbin{\\otimes^{\\mathbf L}}", "Z": "\\mathbb Z", "N": "\\mathbb N", "Q": "\\mathbb Q", "R": "\\mathbb R"}}, "options": {"ignoreHtmlClass": "ignore-math", "processHtmlClass": "process-math", "enableMenu": false}};</script><script src="../../vendor/mathjax/tex-chtml.js" defer></script>
+</head>
+<body class="pretext book ignore-math note-page" data-page-format="note">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner"><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="sheaves-topological-notes.html"><span class="title">Sheaves on topological spaces and cohomology</span></a></div>
+<p class="byline"><a href="../../home.html">Jie Fu</a>'s <a href="../../notes.html">Notes</a></p>
+<p class="note-metadata"><span class="note-review-status">Under review and improvement</span> · <span class="note-last-updated">Last updated: <time datetime="2026-10-26">2026-10-26</time></span></p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Contents</span></button><a class="index-button button" href="sh-index.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Index</span></a><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true"></span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="treebuttons"><a class="previous-button button" href="sh-c00.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="up-button button" href="sheaves-topological-notes.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Up</span></a><a class="next-button button" href="sh-c02.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a></span>
+</div></nav><div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth4 focused" data-preexpanded-levels="1" data-max-levels="4"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c00.html" class="internal"><span class="codenumber">0</span> <span class="title">Conventions and the local-to-global problem</span></a></div>
+<ul id="ptx-toc-group-sh-c00" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c00.html#sh-c00-objects" class="internal"><span class="codenumber">0.1</span> <span class="title">Spaces, coefficients, and size</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c00.html#sh-c00-functors" class="internal"><span class="codenumber">0.2</span> <span class="title">Inverse images and the two Hom constructions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c00.html#sh-c00-complexes" class="internal"><span class="codenumber">0.3</span> <span class="title">Complexes, degrees, and derived categories</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c00.html#sh-c00-reading" class="internal"><span class="codenumber">0.4</span> <span class="title">Dependencies and sources</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="sh-c01.html" class="internal"><span class="codenumber">1</span> <span class="title">Presheaves, sheaves, and local data</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-sh-c01">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-presheaves" class="internal"><span class="codenumber">1.1</span> <span class="title">Restrictions and morphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-locality" class="internal"><span class="codenumber">1.2</span> <span class="title">Locality and gluing</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-examples" class="internal"><span class="codenumber">1.3</span> <span class="title">Functions and sections of maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-failures" class="internal"><span class="codenumber">1.4</span> <span class="title">Conditions that do not glue</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-basis" class="internal"><span class="codenumber">1.5</span> <span class="title">Sheaves on a basis</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c01.html#sh-c01-localtesting" class="internal"><span class="codenumber">1.6</span> <span class="title">Testing the sheaf condition</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c02.html" class="internal"><span class="codenumber">2</span> <span class="title">Stalks, étalé spaces, and sheafification</span></a></div>
+<ul id="ptx-toc-group-sh-c02" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-germs" class="internal"><span class="codenumber">2.1</span> <span class="title">Germs and neighbourhood colimits</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-etalespace" class="internal"><span class="codenumber">2.2</span> <span class="title">The space of germs</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-sheafification" class="internal"><span class="codenumber">2.3</span> <span class="title">Associated sheaves</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-detection" class="internal"><span class="codenumber">2.4</span> <span class="title">Detecting sheaf morphisms at stalks</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-equivalence" class="internal"><span class="codenumber">2.5</span> <span class="title">Sheaves and local homeomorphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c02.html#sh-c02-specialization" class="internal"><span class="codenumber">2.6</span> <span class="title">Compatibility between different points</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c03.html" class="internal"><span class="codenumber">3</span> <span class="title">Categories of sheaves and exactness</span></a></div>
+<ul id="ptx-toc-group-sh-c03" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c03.html#sh-c03-limits" class="internal"><span class="codenumber">3.1</span> <span class="title">Limits and colimits</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c03.html#sh-c03-monoepi" class="internal"><span class="codenumber">3.2</span> <span class="title">Monomorphisms and local surjectivity</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c03.html#sh-c03-exactness" class="internal"><span class="codenumber">3.3</span> <span class="title">Kernels, images, and quotients</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c03.html#sh-c03-grothendieck" class="internal"><span class="codenumber">3.4</span> <span class="title">Generators and the Grothendieck property</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c03.html#sh-c03-filteredsections" class="internal"><span class="codenumber">3.5</span> <span class="title">Filtered colimits and section functors</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c04.html" class="internal"><span class="codenumber">4</span> <span class="title">Inverse images, direct images, and gluing</span></a></div>
+<ul id="ptx-toc-group-sh-c04" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-direct" class="internal"><span class="codenumber">4.1</span> <span class="title">Direct image and the inverse image presheaf</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-adjoint" class="internal"><span class="codenumber">4.2</span> <span class="title">The adjunction and stalks</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-points" class="internal"><span class="codenumber">4.3</span> <span class="title">Point maps and direct image germs</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-basechange" class="internal"><span class="codenumber">4.4</span> <span class="title">The base change comparison</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-restriction" class="internal"><span class="codenumber">4.5</span> <span class="title">Subspaces and open extension by zero</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-closed" class="internal"><span class="codenumber">4.6</span> <span class="title">Closed inclusions and an exact sequence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c04.html#sh-c04-descent" class="internal"><span class="codenumber">4.7</span> <span class="title">Gluing sheaves and morphisms</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c05.html" class="internal"><span class="codenumber">5</span> <span class="title">Constant sheaves and local systems</span></a></div>
+<ul id="ptx-toc-group-sh-c05" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c05.html#sh-c05-constant-section" class="internal"><span class="codenumber">5.1</span> <span class="title">Constant coefficients and locally constant functions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c05.html#sh-c05-local-section" class="internal"><span class="codenumber">5.2</span> <span class="title">Locally constant sheaves and transition maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c05.html#sh-c05-coverings" class="internal"><span class="codenumber">5.3</span> <span class="title">Covering spaces and transport</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c05.html#sh-c05-monodromy-section" class="internal"><span class="codenumber">5.4</span> <span class="title">The monodromy classification</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c05.html#sh-c05-examples" class="internal"><span class="codenumber">5.5</span> <span class="title">The circle, finite coverings, and pullback</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c06.html" class="internal"><span class="codenumber">6</span> <span class="title">Tensor products and internal Hom</span></a></div>
+<ul id="ptx-toc-group-sh-c06" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-tensor-section" class="internal"><span class="codenumber">6.1</span> <span class="title">The tensor product sheaf</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-hom-section" class="internal"><span class="codenumber">6.2</span> <span class="title">Internal Hom and its adjunction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-finite" class="internal"><span class="codenumber">6.3</span> <span class="title">Stalks and finite presentation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-functorial" class="internal"><span class="codenumber">6.4</span> <span class="title">Inverse image and direct image comparisons</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-localsystems" class="internal"><span class="codenumber">6.5</span> <span class="title">Tensor and Hom of local systems</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-duals" class="internal"><span class="codenumber">6.6</span> <span class="title">Finite local models and duals</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-flat-section" class="internal"><span class="codenumber">6.7</span> <span class="title">Flatness and its stalk criterion</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c06.html#sh-c06-flat-resolutions" class="internal"><span class="codenumber">6.8</span> <span class="title">Enough flat sheaves</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c07.html" class="internal"><span class="codenumber">7</span> <span class="title">Resolutions and derived sheaf operations</span></a></div>
+<ul id="ptx-toc-group-sh-c07" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c07.html#sh-c07-injective-section" class="internal"><span class="codenumber">7.1</span> <span class="title">Injectives and extension of sections</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c07.html#sh-c07-godement-section" class="internal"><span class="codenumber">7.2</span> <span class="title">The Godement resolution</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c07.html#sh-c07-unbounded-section" class="internal"><span class="codenumber">7.3</span> <span class="title">K-injective resolutions and direct image</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c07.html#sh-c07-tensor-hom-section" class="internal"><span class="codenumber">7.4</span> <span class="title">Derived tensor and internal Hom</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c08.html" class="internal"><span class="codenumber">8</span> <span class="title">Cohomology, hypercohomology, and products</span></a></div>
+<ul id="ptx-toc-group-sh-c08" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-cohomology-section" class="internal"><span class="codenumber">8.1</span> <span class="title">Derived sections and connecting morphisms</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-directimage-section" class="internal"><span class="codenumber">8.2</span> <span class="title">Higher direct images and locality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-hypercohomology-section" class="internal"><span class="codenumber">8.3</span> <span class="title">The two hypercohomology spectral sequences</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-leray-section" class="internal"><span class="codenumber">8.4</span> <span class="title">Composition and the Leray spectral sequence</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-ext-section" class="internal"><span class="codenumber">8.5</span> <span class="title">Local and global Ext</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c08.html#sh-c08-cup-section" class="internal"><span class="codenumber">8.6</span> <span class="title">Cup products</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c09.html" class="internal"><span class="codenumber">9</span> <span class="title">Čech cohomology and descent on open covers</span></a></div>
+<ul id="ptx-toc-group-sh-c09" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-complex-section" class="internal"><span class="codenumber">9.1</span> <span class="title">The complex of a covering</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-refinement-section" class="internal"><span class="codenumber">9.2</span> <span class="title">Refinements and their choices</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-comparison-section" class="internal"><span class="codenumber">9.3</span> <span class="title">Comparison with derived cohomology</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-acyclic-section" class="internal"><span class="codenumber">9.4</span> <span class="title">Acyclic covers and computations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-mayer-section" class="internal"><span class="codenumber">9.5</span> <span class="title">Mayer–Vietoris without acyclic intersections</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c09.html#sh-c09-products-section" class="internal"><span class="codenumber">9.6</span> <span class="title">Products and the scope of the comparison</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c10.html" class="internal"><span class="codenumber">10</span> <span class="title">Low-degree classes and calculations</span></a></div>
+<ul id="ptx-toc-group-sh-c10" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-lifting" class="internal"><span class="codenumber">10.1</span> <span class="title">Sections and their lifting obstructions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-torsors" class="internal"><span class="codenumber">10.2</span> <span class="title">Torsors and degree-one cocycles</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-extensions" class="internal"><span class="codenumber">10.3</span> <span class="title">Extensions and the classification of torsors</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-affine-monodromy" class="internal"><span class="codenumber">10.4</span> <span class="title">Affine monodromy in degree one</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-circle" class="internal"><span class="codenumber">10.5</span> <span class="title">A circle with local coefficients</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c10.html#sh-c10-finite-gluing" class="internal"><span class="codenumber">10.6</span> <span class="title">A finite gluing space</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="sh-c11.html" class="internal"><span class="codenumber">11</span> <span class="title">Singular cohomology and homotopy</span></a></div>
+<ul id="ptx-toc-group-sh-c11" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-singular-cochains" class="internal"><span class="codenumber">11.1</span> <span class="title">Singular cochains with local coefficients</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-cochain-sheaves" class="internal"><span class="codenumber">11.2</span> <span class="title">The sheafified singular complex</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-comparison" class="internal"><span class="codenumber">11.3</span> <span class="title">The comparison theorem</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-broader-comparison" class="internal"><span class="codenumber">11.4</span> <span class="title">Broader local hypotheses</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-homotopy" class="internal"><span class="codenumber">11.5</span> <span class="title">Homotopy invariance with transported coefficients</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-c11.html#sh-c11-examples-and-boundaries" class="internal"><span class="codenumber">11.6</span> <span class="title">Computations and the limits of the comparison</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="sheaves-topological-notes-16.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul id="ptx-toc-group-sheaves-topological-notes-16" class="structural toc-item-list">
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="sh-concordance.html" class="internal"><span class="codenumber">A.</span> <span class="title">Terminology and hypotheses</span></a></div>
+<ul id="ptx-toc-group-sh-concordance" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-concordance.html#sh-concordance-objects" class="internal"><span class="codenumber">A.1</span> <span class="title">Objects and notation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-concordance.html#sh-concordance-operations" class="internal"><span class="codenumber">A.2</span> <span class="title">Operations and exactness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-concordance.html#sh-concordance-cohomology" class="internal"><span class="codenumber">A.3</span> <span class="title">Cohomology and covering choices</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="sh-concordance.html#sh-concordance-topology" class="internal"><span class="codenumber">A.4</span> <span class="title">Which topology assumptions are being used?</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="sh-references.html" class="internal"><span class="title">References</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="sh-index.html" class="internal"><span class="title">Index</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="chapter" id="sh-c01">
+<h1 class="heading">
+<span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Presheaves, sheaves, and local data</span>
+</h1>
+<section class="introduction" id="sh-c01-2">
+<div class="para" id="sh-c01-2-1">A function can be specified on an open cover if the local functions agree on overlaps. The same principle applies to many objects whose sections are not functions on the base. The definition of a sheaf records precisely this agreement and gluing. The open cover, its overlaps, and the restriction maps are all part of the data.</div>
+<div class="para" id="sh-c01-2-2">This chapter treats sets and modules in parallel. Set-valued sheaves give the general local construction; modules add algebra needed for cohomology. No separation or compactness assumption on the space is used.</div></section>
+<section class="section" id="sh-c01-presheaves">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Restrictions and morphisms</span>
+</h2>
+<article class="definition definition-like" id="sh-c01-defpresheaf"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.1</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c01-defpresheaf-4-1">
+<div class="para">Let <span class="process-math">\(X\)</span> be a space. Write <span class="process-math">\(\operatorname{Op}(X)\)</span> for the category whose objects are open subsets and whose arrows are inclusions. A <em class="emphasis">presheaf of sets</em> is a functor <span class="process-math">\(\mathcal F:\operatorname{Op}(X)^{\op}\to\Set\text{.}\)</span> A <em class="emphasis">presheaf of <span class="process-math">\(\Lambda\)</span>-modules</em> has target <span class="process-math">\(\Mod(\Lambda)\text{.}\)</span> For <span class="process-math">\(V\subseteq U\text{,}\)</span> write <span class="process-math">\(\rho^U_V:\mathcal F(U)\to\mathcal F(V)\)</span> for restriction and <span class="process-math">\(s|_V\)</span> for <span class="process-math">\(\rho^U_V(s)\text{.}\)</span> Functoriality means</div>
+<div class="displaymath process-math" id="sh-c01-defpresheaf-4-1-11">
+\begin{equation*}
+\rho^U_U=\id,\qquad \rho^V_W\rho^U_V=\rho^U_W\quad(W\subseteq V\subseteq U).
+\end{equation*}
+</div>
+<div class="para">A morphism is a natural transformation. The corresponding presheaf categories are <span class="process-math">\(\PSh(X)\)</span> and <span class="process-math">\(\PSh(X;\Lambda)\text{.}\)</span>
+</div>
+</div>
+</article>
+<div class="para" id="sh-c01-presheaves-3">A section is an element of <span class="process-math">\(\mathcal F(U)\text{.}\)</span> It is not assumed to be a function from <span class="process-math">\(U\text{.}\)</span> For example, sections may be equivalence classes of functions or sections of a map with nontrivial fibres. A morphism <span class="process-math">\(u:\mathcal F\to\mathcal G\)</span> assigns maps <span class="process-math">\(u_U\)</span> compatible with restrictions. Compatibility on every inclusion is necessary even if the two presheaves have isomorphic values on every open set.</div>
+<figure class="figure figure-like" id="sh-c01-restrictionsquare"><div class="image-box" style="width: 35%; margin-left: 32.5%; margin-right: 32.5%;">
+<img src="generated/latex-image/sh-image-restrictionsquare.svg" role="img" class="contained" alt="described in detail following the image" aria-describedby="sh-image-restrictionsquare-description"><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true"></span></summary><div id="sh-image-restrictionsquare-description">
+<div class="para" id="sh-image-restrictionsquare-2-1">A square with the section maps of u horizontally and the restriction maps from U to V vertically. The two composites agree.</div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.2<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>A presheaf morphism commutes with restriction for every inclusion <span class="process-math">\(V\subseteq U\text{.}\)</span></figcaption>
+</figure>
+<div class="para" id="sh-c01-presheaves-5">Restriction maps need not be injective or surjective. Distinct functions on <span class="process-math">\(U\)</span> may agree on a smaller open set. A function on a smaller open set may have no extension to <span class="process-math">\(U\text{.}\)</span> These possibilities will remain present for sheaves.</div>
+<div class="para" id="sh-c01-presheaves-6">The empty open subset is an object of <span class="process-math">\(\operatorname{Op}(X)\text{.}\)</span> We impose no normalization on the value of a presheaf at the empty set. For a sheaf, this value is forced by the empty cover below.<a id="sh-c01-presheaves-6-2" href="#margin-sh-c01-presheaves-6-2" class="margin-note-marker" aria-label="Margin note 1">1</a>
+</div>
+<div class="para" id="sh-c01-presheaves-7">Limits and colimits of presheaves are computed on each open subset, since these are functor categories. The same statement for sheaves is only partly true: limits remain sectionwise, whereas colimits generally require sheafification. The distinction is proved in <a href="sh-c03.html" class="internal" title="Chapter 3: Categories of sheaves and exactness">Chapter 3</a>.</div>
+</section>
+<section class="section" id="sh-c01-locality">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Locality and gluing</span>
+</h2>
+<article class="definition definition-like" id="sh-c01-defsheaf"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sh-c01-defsheaf-5-1">Let <span class="process-math">\(\mathcal F\)</span> be a presheaf of sets or modules on <span class="process-math">\(X\text{,}\)</span> and let <span class="process-math">\(U=\bigcup_{i\in I}U_i\)</span> be an open cover. A family <span class="process-math">\((s_i)\text{,}\)</span> with <span class="process-math">\(s_i\in\mathcal F(U_i)\text{,}\)</span> is <em class="emphasis">matching</em> if <span class="process-math">\(s_i|_{U_i\cap U_j}=s_j|_{U_i\cap U_j}\)</span> for all <span class="process-math">\(i,j\text{.}\)</span> The presheaf is <em class="emphasis">separated</em> if a section on <span class="process-math">\(U\)</span> is determined by all its restrictions to any such cover. It is a <em class="emphasis">sheaf</em> if every matching family is the family of restrictions of a unique section on <span class="process-math">\(U\text{.}\)</span> Empty covers are included. Morphisms of sheaves are presheaf morphisms; <span class="process-math">\(\Sh(X)\)</span> and <span class="process-math">\(\Sh(X;\Lambda)\)</span> are the resulting full subcategories.</div>
+</article>
+<article class="proposition theorem-like" id="sh-c01-equalizer"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c01-equalizer-1-1">
+<div class="para">A presheaf of sets or modules is a sheaf if and only if, for every open cover of every <span class="process-math">\(U\text{,}\)</span> the diagram</div>
+<div class="displaymath process-math" id="sh-c01-equalizer-1-1-2">
+\begin{equation*}
+\mathcal F(U)\longrightarrow\prod_i\mathcal F(U_i)\rightrightarrows\prod_{i,j}\mathcal F(U_i\cap U_j)
+\end{equation*}
+</div>
+<div class="para">is an equalizer. The two parallel maps restrict from the <span class="process-math">\(i\)</span>-th and <span class="process-math">\(j\)</span>-th factors. In the module case the condition is equivalently exactness of</div>
+<div class="displaymath process-math" id="sh-c01-equalizer-1-1-5">
+\begin{equation*}
+0\longrightarrow\mathcal F(U)\longrightarrow\prod_i\mathcal F(U_i)\xrightarrow{\delta}\prod_{i,j}\mathcal F(U_i\cap U_j),
+\end{equation*}
+</div>
+<div class="para">where <span class="process-math">\(\delta(s)_{ij}=s_j|_{U_i\cap U_j}-s_i|_{U_i\cap U_j}\text{.}\)</span>
+</div>
+</div>
+</article>
+<details id="sh-c01-equalizer-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c01-equalizer-2-1">The equalizer is the set or module of matching families. The asserted isomorphism to it is precisely existence and uniqueness of gluing. For modules, an equalizer of two linear maps is the kernel of their difference.</div>
+</article></details>
+<div class="para" id="sh-c01-locality-4">For the empty cover of the empty set, the products are terminal objects. Thus a sheaf of sets has exactly one section on the empty set; an abelian or module sheaf has value zero there. A separated set-valued presheaf has at most one section on the empty set. The existence of this section is part of the sheaf condition.</div>
+<div class="para" id="sh-c01-locality-5">If <span class="process-math">\(U\)</span> is a disjoint union of open subsets <span class="process-math">\(U_i\text{,}\)</span> matching imposes no condition beyond the unique restrictions to the empty set. Hence <span class="process-math">\(\mathcal F(U)\simeq\prod_i\mathcal F(U_i)\text{.}\)</span> An infinite disjoint union gives a product, not a direct sum. This difference already explains several failures of naive sheaf constructions.</div>
+<article class="proposition theorem-like" id="sh-c01-localmorphisms"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sh-c01-localmorphisms-1-1">Let <span class="process-math">\(\mathcal F,\mathcal G\)</span> be sheaves. A family of maps between their sections on open subsets, defined locally on an open cover of <span class="process-math">\(X\)</span> and compatible on overlaps and with restriction, glues uniquely to a sheaf morphism <span class="process-math">\(\mathcal F\to\mathcal G\text{.}\)</span> If two sheaf morphisms agree on the members of an open cover, they agree globally.</div>
+</article>
+<details id="sh-c01-localmorphisms-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c01-localmorphisms-2-1">For <span class="process-math">\(s\in\mathcal F(U)\text{,}\)</span> apply the local maps to <span class="process-math">\(s|_{U\cap U_i}\text{.}\)</span> Compatibility makes these images a matching family in <span class="process-math">\(\mathcal G\text{,}\)</span> which has a unique gluing. The gluing respects restriction and the algebraic operations, because these identities can be tested on the cover. Uniqueness follows from separatedness of <span class="process-math">\(\mathcal G\text{.}\)</span>
+</div>
+</article></details>
+<div class="para" id="sh-c01-locality-7">A property of sections is local if it can be checked after restriction to an open cover. This assertion includes both directions: a section with the property restricts to sections with the property, and compatible sections with the property glue to one having it. When only the first direction holds, the resulting subpresheaf need not be a sheaf.</div>
+</section>
+<section class="section" id="sh-c01-examples">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Functions and sections of maps</span>
+</h2>
+<article class="example example-like" id="sh-c01-functions"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.6</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sh-c01-functions-1-1">For any space <span class="process-math">\(T\text{,}\)</span> the assignment <span class="process-math">\(U\mapsto C(U,T)\)</span> of continuous maps to <span class="process-math">\(T\)</span> is a sheaf of sets. If <span class="process-math">\(T\)</span> is a topological abelian group or a topological <span class="process-math">\(\Lambda\)</span>-module with continuous operations, it is a sheaf with that algebraic structure.</div>
+<div class="solutions">
+<details id="sh-c01-functions-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sh-c01-functions-2-1">Matching maps have a unique set-theoretic gluing. The gluing is continuous because continuity is local on an open cover of the domain. The operations are pointwise, and equality of the required identities is also local.</div>
+</div></details>
+</div>
+</article>
+<div class="para" id="sh-c01-examples-3">On a smooth manifold, smooth real-valued functions form a sheaf; on a complex manifold, holomorphic functions do so. These examples use the corresponding local regularity theorem, not a separation hypothesis on a general sheaf. Their underlying real or complex vector spaces can be studied here without developing their module theory over a variable function sheaf.</div>
+<article class="example example-like" id="sh-c01-sectionsofmap"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.7</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c01-sectionsofmap-1-1">
+<div class="para">Let <span class="process-math">\(p:E\to X\)</span> be continuous. The assignment</div>
+<div class="displaymath process-math" id="sh-c01-sectionsofmap-1-1-2">
+\begin{equation*}
+U\longmapsto\{s:U\to E\text{ continuous}:p\circ s=\id_U\}
+\end{equation*}
+</div>
+<div class="para">is a sheaf of sets, called the sheaf of sections of <span class="process-math">\(p\text{.}\)</span>
+</div>
+</div>
+<div class="solutions">
+<details id="sh-c01-sectionsofmap-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sh-c01-sectionsofmap-2-1">Compatible local sections glue as continuous maps. Their composite with <span class="process-math">\(p\)</span> is the identity because that equality holds on the covering opens.</div>
+</div></details>
+</div>
+</article>
+<div class="para" id="sh-c01-examples-5">There is no local triviality assumption on <span class="process-math">\(p\text{.}\)</span> Its sheaf of sections nevertheless exists. Conversely, a later construction realizes every set-valued sheaf as the sheaf of sections of a particular local homeomorphism. This converse does require the topology on the total space to be chosen from germs, rather than from an arbitrary bundle model.</div>
+<article class="example example-like" id="sh-c01-solutions"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.8</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sh-c01-solutions-1-1">Let <span class="process-math">\(u:\mathcal F\to\mathcal G\)</span> be a morphism of sheaves of modules. Then <span class="process-math">\(U\mapsto\ker(u_U)\)</span> is a sheaf. More generally, for two set-valued morphisms <span class="process-math">\(u,v:\mathcal F\to\mathcal G\text{,}\)</span> their sectionwise equalizer is a sheaf.</div>
+<div class="solutions">
+<details id="sh-c01-solutions-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sh-c01-solutions-2-1">Glue a matching family in the equalizer as sections of <span class="process-math">\(\mathcal F\text{.}\)</span> Its two images agree locally and therefore agree in <span class="process-math">\(\mathcal G\text{.}\)</span> The glued section lies in the equalizer, with uniqueness inherited from <span class="process-math">\(\mathcal F\text{.}\)</span>
+</div>
+</div></details>
+</div>
+</article>
+<div class="para" id="sh-c01-examples-7">This gives a general reason that solutions of a linear local equation form a sheaf when its operator is a morphism of sheaves. For instance, the derivative of a smooth function restricts compatibly to smaller opens, and its kernel consists of locally constant functions. A condition on the existence of a global primitive is a different matter: primitives on two open sets may differ by a nonzero constant on their overlap.</div>
+<article class="example example-like" id="sh-c01-subterminal"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.9</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sh-c01-subterminal-1-1">For an open subset <span class="process-math">\(W\subseteq X\text{,}\)</span> define <span class="process-math">\(h_W(U)\)</span> to be a singleton if <span class="process-math">\(U\subseteq W\)</span> and empty otherwise. Then <span class="process-math">\(h_W\)</span> is a sheaf. It is represented by <span class="process-math">\(W\)</span> in the category of open subsets.</div>
+<div class="solutions">
+<details id="sh-c01-subterminal-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sh-c01-subterminal-2-1">A section on each member of a cover exists exactly when every member is contained in <span class="process-math">\(W\text{,}\)</span> which is equivalent to their union being contained in <span class="process-math">\(W\text{.}\)</span> If it exists, it is unique.</div>
+</div></details>
+</div>
+</article>
+<div class="para" id="sh-c01-representable-test">Representable sheaves turn statements about maps into statements about sections: <span class="process-math">\(\Hom(h_U,\mathcal F)\simeq\mathcal F(U)\text{.}\)</span> A map takes the unique section of <span class="process-math">\(h_U(U)\)</span> to a section of <span class="process-math">\(\mathcal F(U)\text{,}\)</span> and restrictions determine all its other components.<a id="sh-c01-initial" href="#margin-sh-c01-initial" class="margin-note-marker" aria-label="Margin note 2">2</a>
+</div>
+</section>
+<section class="section" id="sh-c01-failures">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Conditions that do not glue</span>
+</h2>
+<article class="example example-like" id="sh-c01-bounded"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.10</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sh-c01-bounded-1-1">The bounded continuous real-valued functions on each open subset form a separated presheaf on <span class="process-math">\(\R\text{,}\)</span> but not a sheaf.</div>
+<div class="solutions">
+<details id="sh-c01-bounded-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sh-c01-bounded-2-1">Restrictions of bounded functions are bounded, and continuous functions agreeing on a cover are equal. On the cover <span class="process-math">\(\R=\bigcup_{n\geq1}(-n,n)\text{,}\)</span> the functions <span class="process-math">\(t\mapsto t\)</span> are bounded on each member and agree on all overlaps. Their only possible gluing is the unbounded function <span class="process-math">\(t\mapsto t\text{.}\)</span>
+</div>
+</div></details>
+</div>
+</article>
+<div class="para" id="sh-c01-failures-3">The missing ingredient is a single global bound. A bound that may vary with the member of the cover is a local condition. The distinction is not repaired by checking only finite covers, since the sheaf condition is imposed on arbitrary covers.</div>
+<article class="example example-like" id="sh-c01-finiteimage"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.11</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sh-c01-finiteimage-1-1">On an infinite discrete space <span class="process-math">\(X\text{,}\)</span> the functions <span class="process-math">\(U\to\Z\)</span> with finite image form a separated presheaf that is not a sheaf.</div>
+<div class="solutions">
+<details id="sh-c01-finiteimage-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sh-c01-finiteimage-2-1">Every function on a singleton has finite image. A family assigning distinct integers to countably many different points is a matching family on the singleton cover, but its gluing has infinite image.</div>
+</div></details>
+</div>
+</article>
+<div class="para" id="sh-c01-failures-5">Likewise, on a countably infinite discrete space, finitely supported functions with values in a nonzero module do not form a sheaf. Their value on the whole space is a direct sum, whereas the singleton cover requires the product of the point values. The sheaf of all functions has that product.</div>
+<article class="example example-like" id="sh-c01-constantpresheaf"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.12</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sh-c01-constantpresheaf-1-1">The constant presheaf with value a set <span class="process-math">\(A\)</span> takes <span class="process-math">\(A\)</span> on every open subset and uses identity restriction maps. Its associated sheaf has a different description: it consists of locally constant <span class="process-math">\(A\)</span>-valued functions. If <span class="process-math">\(A\)</span> has at least two elements and <span class="process-math">\(U\)</span> is a union of two nonempty disjoint open subsets, the constant presheaf fails the gluing condition on that cover after normalization at the empty set.</div>
+<div class="solutions">
+<details id="sh-c01-constantpresheaf-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="sh-c01-constantpresheaf-2-1">For the normalized presheaf, choose different constant values on the two components. The restrictions agree on the empty intersection, but no single element of <span class="process-math">\(A\)</span> gives both values. The unnormalized constant functor already fails the required value on the empty set unless <span class="process-math">\(A\)</span> is a singleton. The locally constant functions do glue, because local constancy is local.</div>
+</div></details>
+</div>
+</article>
+<div class="para" id="sh-c01-constant-conventions">Both conventions yield the same associated constant sheaf. The universal property is established in <a href="sh-c02.html" class="internal" title="Chapter 2: Stalks, étalé spaces, and sheafification">Chapter 2</a>, and local systems are studied in <a href="sh-c05.html" class="internal" title="Chapter 5: Constant sheaves and local systems">Chapter 5</a>.<a id="sh-c01-constant-empty" href="#margin-sh-c01-constant-empty" class="margin-note-marker" aria-label="Margin note 3">3</a>
+</div>
+<div class="para" id="sh-c01-failures-8">Sheafification repairs gluing, not global analytic bounds. For bounded continuous functions, every continuous function is locally bounded, so sheafification recovers all continuous functions. For finite-image functions, it recovers locally finite-image functions; on a discrete space these are all functions. These assertions follow from the local description of sheafification in <a href="sh-c02.html#sh-c02-sheafification" class="internal" title="Section 2.3: Associated sheaves">Section 2.3</a>.</div>
+</section>
+<section class="section" id="sh-c01-basis">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Sheaves on a basis</span>
+</h2>
+<div class="para" id="sh-c01-basis-anchor">A basis can reduce the number of opens needed to specify a sheaf. Its elements need not be closed under intersections. If <span class="process-math">\(B,C\)</span> belong to the basis, their intersection is covered by basis elements, and compatibility has to be checked on those elements.<a id="sh-c01-balls" href="#margin-sh-c01-balls" class="margin-note-marker" aria-label="Margin note 4">4</a>
+</div>
+<article class="definition definition-like" id="sh-c01-basisdefinition"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.13</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sh-c01-basisdefinition-2-1">Let <span class="process-math">\(\mathcal B\)</span> be a basis for <span class="process-math">\(X\text{.}\)</span> A presheaf on <span class="process-math">\(\mathcal B\)</span> assigns sets or modules to basis opens, with restriction maps for inclusions between them. It is a sheaf on the basis if, for every cover <span class="process-math">\(B=\bigcup_i B_i\)</span> by basis opens, a family <span class="process-math">\(s_i\in\mathcal F(B_i)\)</span> glues uniquely whenever its restrictions agree on every basis open contained in <span class="process-math">\(B_i\cap B_j\text{.}\)</span> If the empty set belongs to the basis, the empty cover is included.</div>
+</article>
+<article class="proposition theorem-like" id="sh-c01-basisextension"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.14</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="sh-c01-basisextension-1-1">
+<div class="para">Restriction to <span class="process-math">\(\mathcal B\)</span> induces an equivalence between sheaves on <span class="process-math">\(X\)</span> and sheaves on <span class="process-math">\(\mathcal B\text{.}\)</span> For a sheaf <span class="process-math">\(\mathcal F\)</span> on the basis, the extension to an open <span class="process-math">\(U\)</span> consists of the compatible families</div>
+<div class="displaymath process-math" id="sh-c01-basisextension-1-1-6">
+\begin{equation*}
+\widetilde{\mathcal F}(U)=\left\{(s_B)_{B\subseteq U}:s_B\in\mathcal F(B),\ s_B|_C=s_C\text{ for }C\subseteq B\subseteq U,\ B,C\in\mathcal B\right\}.
+\end{equation*}
+</div>
+<div class="para">The same construction works for morphisms and for module-valued sheaves.</div>
+</div>
+</article>
+<details id="sh-c01-basisextension-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c01-basisextension-2-1">Restriction of a sheaf satisfies the basis condition: agreement on basis subopens of an intersection implies agreement on the whole intersection, by separatedness. A matching family on a basis cover therefore glues in the original sheaf.</div>
+<div class="para" id="sh-c01-basisextension-2-2">Now start with a sheaf on the basis. A compatible family on <span class="process-math">\(U\)</span> restricts by forgetting components. If <span class="process-math">\(U\in\mathcal B\text{,}\)</span> its component at <span class="process-math">\(U\)</span> determines all the others, so extension followed by restriction recovers <span class="process-math">\(\mathcal F\text{.}\)</span>
+</div>
+<div class="para" id="sh-c01-basisextension-2-3">To check the sheaf condition for the extension, suppose compatible families are given on an arbitrary open cover <span class="process-math">\(U=\bigcup_i U_i\text{,}\)</span> agreeing on overlaps. For each basis open <span class="process-math">\(B\subseteq U\text{,}\)</span> cover <span class="process-math">\(B\)</span> by basis opens contained in some <span class="process-math">\(U_i\cap B\text{.}\)</span> The given local components agree on basis refinements of intersections. The basis sheaf condition gives a unique <span class="process-math">\(s_B\in\mathcal F(B)\text{.}\)</span> Its restrictions to smaller basis opens are the corresponding components, by uniqueness. Thus the <span class="process-math">\(s_B\)</span> form a compatible family on <span class="process-math">\(U\text{.}\)</span> The same argument gives uniqueness of its gluing.</div>
+<div class="para" id="sh-c01-basisextension-2-4">Finally, a sheaf on <span class="process-math">\(X\)</span> is recovered from all its restrictions to basis opens: compatible sections on them glue on their union. These constructions commute with morphisms, so the two restriction and extension functors are quasi-inverse.</div>
+</article></details>
+<div class="para" id="sh-c01-basis-5">Basis neighbourhoods of a point are cofinal among all open neighbourhoods. Consequently they compute the same stalk. Using a basis is therefore compatible both with the gluing description above and with the germ description in the next chapter.</div>
+<div class="para" id="sh-c01-basis-6">For a basis closed under finite intersections, compatibility takes the simpler form of equality on <span class="process-math">\(B_i\cap B_j\)</span> itself. The more general definition is useful for balls, local coordinate neighbourhoods, and other bases whose intersections need not have the chosen shape. Replacing the intersection by a basis refinement is part of the definition, not an extra geometric assumption.</div>
+</section>
+<section class="section" id="sh-c01-localtesting">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Testing the sheaf condition</span>
+</h2>
+<article class="proposition theorem-like" id="sh-c01-localonsource"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">1.15</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="sh-c01-localonsource-1-1">Let <span class="process-math">\(\mathcal F\)</span> be a presheaf on <span class="process-math">\(X\)</span> and let <span class="process-math">\(X=\bigcup_i U_i\)</span> be an open cover. Suppose every restricted presheaf <span class="process-math">\(\mathcal F|_{U_i}\)</span> is a sheaf. Then <span class="process-math">\(\mathcal F\)</span> is a sheaf if, for each open <span class="process-math">\(V\subseteq X\text{,}\)</span> matching sections on the cover <span class="process-math">\((V\cap U_i)_i\)</span> glue uniquely in <span class="process-math">\(\mathcal F(V)\text{.}\)</span>
+</div>
+</article>
+<details id="sh-c01-localonsource-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="sh-c01-localonsource-2-1">Let a matching family be given on an arbitrary cover <span class="process-math">\(V=\bigcup_a V_a\text{.}\)</span> Within each <span class="process-math">\(V\cap U_i\text{,}\)</span> glue its restrictions to <span class="process-math">\(V_a\cap U_i\text{,}\)</span> using the sheaf condition there. The resulting sections on <span class="process-math">\(V\cap U_i\)</span> agree on their intersections because they agree after further restriction to the cover by the <span class="process-math">\(V_a\text{.}\)</span> The assumed gluing condition for <span class="process-math">\((V\cap U_i)_i\)</span> yields the required section on <span class="process-math">\(V\text{.}\)</span> Both applications include uniqueness.</div>
+</article></details>
+<div class="para" id="sh-c01-localtesting-3">The extra gluing condition in this statement is essential. A presheaf can have sheaf restrictions on all members of a cover and still impose an incorrect global condition on larger opens. For example, the normalized constant presheaf on a discrete two-point space has sheaf restrictions to each point but is not a sheaf on their union. Sheafhood is local for data that already satisfy descent across the chosen cover, not for arbitrary assignments of global sections.</div>
+<div class="para" id="sh-c01-localtesting-4">For a separated presheaf with terminal value on the empty open, the sheaf condition on all finite covers is equivalent to gluing on every two-open cover. Induction proves the assertion, using the intersection of the last member with the union of its predecessors. Arbitrary covers require another condition: gluing over an increasing union of opens. This is why a verification on finite covers alone does not exclude the bounded-function example.</div>
+<div class="para" id="sh-c01-localtesting-5">The definitions and basic examples can be compared with <a href="sh-references.html#Bre97" class="xref" data-knowl="./knowl/xref/sh-bib-bredon.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Bre97">[Bre97, Chapter I]</a>, <a href="sh-references.html#Ive86" class="xref" data-knowl="./knowl/xref/sh-bib-iversen.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Ive86">[Ive86, Chapter II]</a>, and <a class="external" href="https://stacks.math.columbia.edu/tag/006S" target="_blank">Stacks, Sheaves</a>. The basis construction is treated in <a class="external" href="https://stacks.math.columbia.edu/tag/009H" target="_blank">Stacks, Bases and sheaves</a>. Our proofs isolate the two uses of the sheaf axiom: uniqueness detects equality locally, and existence reconstructs sections from matching local data.</div>
+</section></section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="sh-c00.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Top</span></a><a class="next-button button" href="sh-c02.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a>
+</div></main>
+<div class="margin-notes" role="complementary" aria-label="Margin notes">
+<aside id="margin-sh-c01-presheaves-6-2" class="aside aside-like margin-note" data-margin-anchor="sh-c01-presheaves-6" data-margin-label="1" data-margin-inline="true"><h4 class="heading"><a href="#sh-c01-presheaves-6" class="margin-note-label">1</a></h4>
+<div class="para">Some references require an abelian presheaf to vanish on the empty set. This changes the category of presheaves but not the usual category of sheaves. We allow unnormalized presheaves so that the constant functor has its literal categorical meaning.
+</div></aside><aside id="margin-sh-c01-initial" class="aside aside-like margin-note" data-margin-anchor="sh-c01-representable-test" data-margin-label="2" data-margin-inline="true"><h4 class="heading"><a href="#sh-c01-representable-test" class="margin-note-label">2</a></h4>
+<div class="para">The empty set satisfies <span class="process-math">\(h_W(\emptyset)=\{*\}\text{,}\)</span> including when <span class="process-math">\(W=\emptyset\text{.}\)</span> The terminal sheaf is <span class="process-math">\(h_X\text{;}\)</span> <span class="process-math">\(h_\emptyset\)</span> is the initial sheaf of sets. The initial presheaf instead takes the empty set on every open. Sheafification corrects its value on the empty open.
+</div></aside><aside id="margin-sh-c01-constant-empty" class="aside aside-like margin-note" data-margin-anchor="sh-c01-constant-conventions" data-margin-label="3" data-margin-inline="true"><h4 class="heading"><a href="#sh-c01-constant-conventions" class="margin-note-label">3</a></h4>
+<div class="para">For the literal constant functor, agreement on an empty overlap still means equality in <span class="process-math">\(A\text{.}\)</span> Two distinct constants are therefore not a matching family for that unnormalized functor. The empty-open convention must be translated before using this counterexample from a reference.
+</div></aside><aside id="margin-sh-c01-balls" class="aside aside-like margin-note" data-margin-anchor="sh-c01-basis-anchor" data-margin-label="4" data-margin-inline="true"><h4 class="heading"><a href="#sh-c01-basis-anchor" class="margin-note-label">4</a></h4>
+<div class="para">Open balls form a basis of Euclidean space. The intersection of two balls need not be a ball. Requiring a formula only on balls is useful, but agreement on their intersection must then be read as agreement on smaller balls contained in it.
+</div></aside>
+</div>
+</div>
+<footer id="site-copyright" class="site-copyright"><p>© 2026 Jie Fu. All rights reserved.</p></footer>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<chapter xml:id="sh-c03">
+  <title>Categories of sheaves and exactness</title>
+  <introduction>
+    <p>The sheaf condition changes how algebraic constructions are computed. Kernels and limits are already sheaves when formed on sections. Images, quotients, and other colimits may have to acquire additional local sections. Stalks make the resulting constructions explicit, but they do not commute with arbitrary products.</p>
+    <p>We establish the abelian and Grothendieck properties required for homological algebra. The argument separates exactness in a sheaf category from exactness of a sequence of sections on a particular open subset.</p>
+  </introduction>
+  <section xml:id="sh-c03-limits">
+    <title>Limits and colimits</title>
+    <proposition xml:id="sh-c03-limitformulas">
+      <statement><p>Let <m>(\mathcal F_i)</m> be a small diagram of sheaves of sets or modules. Its limit and colimit exist. The limit is computed sectionwise, and the colimit is the associated sheaf of the sectionwise presheaf colimit:
+        <md number="no">\left(\lim_i\mathcal F_i\right)(U)=\lim_i\mathcal F_i(U),</md>
+        <md number="no">\colim_i^{\Sh}\mathcal F_i=a\left(U\longmapsto\colim_i\mathcal F_i(U)\right).</md>
+        For a point <m>x</m>, stalks commute with these colimits and with finite limits. The natural maps are
+        <md number="no">\left(\colim_i^{\Sh}\mathcal F_i\right)_x\simeq\colim_i\mathcal F_{i,x},</md>
+        <md number="no">\left(\lim_i\mathcal F_i\right)_x\longrightarrow\lim_i\mathcal F_{i,x},</md>
+        the latter being an isomorphism when the indexing category is finite.</p></statement>
+      <proof><p>The sectionwise limit is a sheaf because a compatible local family can be glued in every component, and the unique gluings respect the diagram maps. This also verifies its universal property. The colimit formula follows from the adjunction between sheafification and inclusion: a morphism from that associated sheaf to a sheaf <m>\mathcal G</m> is exactly a compatible family of morphisms <m>\mathcal F_i\to\mathcal G</m>.</p>
+        <p>Sheafification preserves stalks, and a stalk is itself a colimit of sections. Interchanging two colimits proves the stalk-colimit formula. For a finite limit, filtered colimits over neighbourhoods commute with the finite limit in sets or modules. This proves the remaining comparison.</p></proof>
+    </proposition>
+    <p>In particular, a product of sheaves is its sectionwise product. An equalizer is also computed sectionwise. For modules, finite products and coproducts coincide and need no sheafification. An infinite direct sum, however, is the sheafification of a sectionwise direct sum; it need not have the same sections as that presheaf.</p>
+    <example xml:id="sh-c03-coproductsections">
+      <statement><p>Let <m>X=\N</m> be discrete and let <m>\Lambda\ne0</m>. Consider the coproduct of countably many copies of <m>\Lambda_X</m>. Its sections on <m>X</m> include the function assigning to the point <m>n</m> the <m>n</m>-th standard basis vector in <m>\bigoplus_{i\geq1}\Lambda</m>. This section is not in <m>\bigoplus_i\Gamma(X,\Lambda_X)</m>.</p></statement>
+      <solution><p>A sheaf on a discrete space has arbitrary independent sections at the individual points. Thus the section in question is obtained by gluing its values on singletons. A section in the raw direct sum of global section modules has nonzero entries in only finitely many summand indices, uniformly over <m>X</m>. Our section has no such uniform finite set.</p></solution>
+    </example>
+    <p>More generally, a section of a coproduct of module sheaves is locally a finite sum of sections of its summands. The finite set of summands may vary from neighbourhood to neighbourhood. Merely requiring finitely many nonzero components at each stalk is weaker than this neighbourhood condition.</p>
+    <example xml:id="sh-c03-productstalks">
+      <statement><p>Let <m>X=\{0\}\cup\{1/n:n\geq1\}\subseteq\R</m> and let <m>\Lambda\ne0</m>. For each <m>n</m>, let <m>\mathcal F_n(U)=\Lambda</m> if <m>1/n\in U</m>, and let <m>\mathcal F_n(U)=0</m> otherwise, with the evident restriction maps. Each is a sheaf and each stalk <m>\mathcal F_{n,0}</m> is zero. Nevertheless,
+        <md number="no">\left(\prod_{n\geq1}\mathcal F_n\right)_0\simeq\left(\prod_{n\geq1}\Lambda\right)\Big/\left(\bigoplus_{n\geq1}\Lambda\right)\ne0.</md></p></statement>
+      <solution><p>Each fixed point <m>1/n</m> can be excluded from a neighbourhood of zero, giving its zero stalk there. The tails <m>V_N=\{0\}\cup\{1/n:n\geq N\}</m> are a cofinal neighbourhood basis at zero. Sections of the product on <m>V_N</m> are arbitrary sequences indexed by <m>n\geq N</m>, and restriction forgets initial entries. The colimit identifies two sequences exactly when they agree eventually. Its kernel from the full product is the direct sum. The class of the sequence constantly equal to one is nonzero.</p></solution>
+    </example>
+    <p>The canonical map from this product stalk to the product of the stalks is therefore not injective. The same example shows the neighbourhood issue for coproducts: the section with value one in every skyscraper component is pointwise finite at every point of <m>X</m>, but near zero it involves infinitely many summands, so it is not a section of the coproduct.</p>
+    <p>The general formulas and useful variants for directed colimits appear in <url href="https://stacks.math.columbia.edu/tag/009E">Stacks, Limits and colimits of sheaves</url>. The formulas distinguish a colimit in sheaves from a colimit of section modules; the superscript on <m>\colim^{\Sh}</m> can be omitted once its category is clear.</p>
+  </section>
+  <section xml:id="sh-c03-monoepi">
+    <title>Monomorphisms and local surjectivity</title>
+    <definition xml:id="sh-c03-subsheaf">
+      <idx>Subsheaf</idx><idx>Locally surjective morphism</idx><idx>Epimorphism of sheaves</idx>
+      <statement><p>A <em>subsheaf</em> <m>\mathcal A\subseteq\mathcal F</m> is a subpresheaf which is a sheaf. A morphism <m>u:\mathcal F\to\mathcal G</m> is <em>locally surjective</em> if, for every <m>t\in\mathcal G(U)</m>, there is an open cover <m>U=\bigcup_i U_i</m> and sections <m>s_i\in\mathcal F(U_i)</m> with <m>u(s_i)=t|_{U_i}</m>. We use <em>surjective morphism of sheaves</em> in this local sense, and explicitly say sectionwise surjective when that stronger condition is intended.</p></statement>
+    </definition>
+    <proposition xml:id="sh-c03-setmonoepi">
+      <statement><p>For sheaves of sets, monomorphisms are precisely sectionwise injections, equivalently stalkwise injections. Epimorphisms are precisely locally surjective morphisms, equivalently stalkwise surjections. A morphism both monic and epic is an isomorphism.</p></statement>
+      <proof><p>The representable sheaf <m>h_U</m> satisfies <m>\Hom(h_U,\mathcal F)\simeq\mathcal F(U)</m>. A monomorphism therefore induces injections on sections; the converse follows by cancellation on each open. The stalkwise characterization was proved in <xref ref="sh-c02-stalkiso"/>.</p>
+        <p>A locally surjective morphism is epic: if two maps from its target agree after composition, they agree on the local lifts of every target section and hence agree locally on every target section. Separatedness then gives equality.</p>
+        <p>For the converse, fix <m>x</m> and a set <m>A</m>. The sheaf <m>S_x(A)</m> with value <m>A</m> on opens containing <m>x</m> and a singleton on other opens satisfies <m>\Hom(\mathcal F,S_x(A))\simeq\Hom(\mathcal F_x,A)</m>. Thus if <m>u</m> is epic, precomposition with <m>u_x</m> is injective for every <m>A</m>. This says that <m>u_x</m> is an epimorphism of sets, hence surjective. The local lifting criterion in <xref ref="sh-c02-stalkiso"/> applies. Finally, a stalkwise bijective morphism is an isomorphism by that same proposition.</p></proof>
+    </proposition>
+    <p>The sheaf <m>S_x(A)</m> is the direct image from the one-point subspace; no condition that <m>\{x\}</m> be closed is needed for this construction. Its stalk at a different point can be nontrivial in a non-Hausdorff space. Calling it a skyscraper does not license the additional assertion that its only nontrivial stalk is at <m>x</m>.<fn>On a <m>T_1</m> space, every other point has an open neighbourhood excluding <m>x</m>, and the other stalks are terminal or zero. This is the usual picture of a skyscraper. The functorial definition works without the <m>T_1</m> assumption.</fn></p>
+    <p>A subsheaf is determined by local membership: a section of <m>\mathcal F(U)</m> lies in <m>\mathcal A(U)</m> if and only if its restrictions lie there on an open cover. For the reverse implication, glue the local sections in <m>\mathcal A</m> and use the inclusion into <m>\mathcal F</m>. A subpresheaf defined by a global bound, such as bounded functions, fails precisely this local membership condition.</p>
+    <p>We will use the module analogues after constructing kernels and cokernels. The stalkwise criterion is the same, but the abelian formulation also gives images and exact sequences.</p>
+  </section>
+  <section xml:id="sh-c03-exactness">
+    <title>Kernels, images, and quotients</title>
+    <theorem xml:id="sh-c03-abelian">
+      <statement><p>The category <m>\Sh(X;\Lambda)</m> is abelian. For <m>u:\mathcal F\to\mathcal G</m>, its kernel is the sectionwise kernel, and its cokernel is
+        <md number="no">\coker u=a\left(U\longmapsto\mathcal G(U)/u_U\mathcal F(U)\right).</md>
+        The image is the associated sheaf of the sectionwise image, viewed as the subsheaf of <m>\mathcal G</m> consisting of sections locally in the image. Stalks are exact and preserve these kernels, cokernels, and images.</p></statement>
+      <proof><p>Morphism sets are modules, composition is bilinear, and finite sums of sheaves are biproducts. The sectionwise kernel is a sheaf by <xref ref="sh-c01-solutions"/>, and has the kernel universal property. The cokernel formula has the required universal property by sheafification and the sectionwise cokernel property in presheaves.</p>
+        <p>Taking a stalk preserves a sectionwise kernel by the finite-limit property. For the displayed cokernel it first removes sheafification, then commutes the neighbourhood colimit with a cokernel. Thus it gives the ordinary module cokernel. The canonical map from coimage to image consequently becomes an isomorphism of modules at each stalk. By <xref ref="sh-c02-stalkiso"/>, it is an isomorphism of sheaves. An additive category with kernels, cokernels, and these coimage-image isomorphisms is abelian.</p>
+        <p>Exactness of stalks now follows from the kernel and cokernel formulas. For the image formula, its presheaf image has the module image at each stalk because filtered colimits of modules are exact. Its associated sheaf maps injectively to <m>\mathcal G</m> with those image stalks, and hence is the abelian image. The local representability criterion for sheafification gives the description by local membership.</p></proof>
+    </theorem>
+    <proposition xml:id="sh-c03-stalkexact">
+      <statement><p>For a sequence of module sheaves
+        <md number="no">\mathcal F\xrightarrow{u}\mathcal G\xrightarrow{v}\mathcal H,</md>
+        exactness at <m>\mathcal G</m> is equivalent to exactness of the sequence of stalk modules at every point. Equivalently, <m>vu=0</m> and every section of <m>\ker v</m> locally lifts through <m>u</m>. In particular, module-sheaf monomorphisms are sectionwise and stalkwise injections, and epimorphisms are locally surjective and stalkwise surjective.</p></statement>
+      <proof><p>Exactness implies stalkwise exactness by the preceding theorem. Conversely, the quotient of <m>\ker v</m> by the sheaf image of <m>u</m> has zero stalks, and hence is zero by <xref ref="sh-c02-stalkiso"/>. This proves exactness. The description of the image gives the local lifting form. The last assertions follow from the kernel and cokernel tests in an abelian category.</p></proof>
+    </proposition>
+    <p>For every open <m>U</m>, the functor <m>\Gamma(U,-)</m> is left exact. If a sequence is exact at <m>\mathcal G</m>, a section of <m>\mathcal G(U)</m> killed by <m>v</m> need only lift locally; local preimages may differ by kernel sections and fail to glue. Thus a short exact sequence of sheaves gives a left exact sequence of sections, with no unconditional final surjectivity.</p>
+    <example xml:id="sh-c03-exponential">
+      <statement><p>Let <m>X=\R/\Z</m> be the circle. Let <m>\mathcal C_{\R}</m> and <m>\mathcal C_{\R/\Z}</m> be the sheaves of continuous functions from opens of <m>X</m> to the indicated topological abelian groups. Reduction modulo integers gives a short exact sequence of abelian sheaves
+        <md number="no">0\longrightarrow\Z_X\longrightarrow\mathcal C_{\R}\longrightarrow\mathcal C_{\R/\Z}\longrightarrow0.</md>
+        Its map on global sections is not surjective.</p></statement>
+      <solution><p>The kernel consists of continuous integer-valued functions, which are locally constant. Every continuous circle-valued function has real lifts near each point because <m>\R\to\R/\Z</m> is a local homeomorphism. This proves local surjectivity.</p>
+        <p>The identity of <m>\R/\Z</m> has no global continuous real lift. If <m>h:\R/\Z\to\R</m> were such a lift, the continuous function <m>t\mapsto h(t\bmod\Z)-t</m> would be integer-valued on the connected space <m>\R</m>, and therefore constant. It follows that <m>h(t\bmod\Z)=t+n</m>, contradicting periodicity in <m>t</m>.</p></solution>
+    </example>
+    <p>The presheaf cokernel of this morphism has a nonzero global value but zero stalks; its sheafification is zero. This supplies a concrete reason that sectionwise quotients cannot replace quotient sheaves. The obstruction to a global lift is later represented by a cohomology class.</p>
+    <proposition xml:id="sh-c03-exactsheafification">
+      <statement><p>The functor <m>a:\PSh(X;\Lambda)\to\Sh(X;\Lambda)</m> is exact. The inclusion in the other direction preserves kernels and all limits, but need not preserve cokernels or epimorphisms. A complex of sheaves is exact if and only if all its stalk complexes are exact.</p></statement>
+      <proof><p>A sectionwise exact sequence of presheaves remains exact on taking filtered neighbourhood colimits. Sheafification does not change those stalks, and <xref ref="sh-c03-stalkexact"/> applies. The inclusion preserves limits by <xref ref="sh-c03-limitformulas"/>; the exponential sequence gives failure of preservation of epimorphisms. Exactness of complexes follows by applying the same stalk criterion at each degree.</p></proof>
+    </proposition>
+    <p>For a complex <m>K</m>, exactness of stalks also gives <m>\mathcal H^q(K)_x\simeq H^q(K_x)</m>. The cohomology sheaf is the sheafification of the presheaf <m>U\mapsto H^q(K(U))</m>. Its sections need not be those presheaf values, even though their germs agree.</p>
+  </section>
+  <section xml:id="sh-c03-grothendieck">
+    <title>Generators and the Grothendieck property</title>
+    <definition xml:id="sh-c03-freeopen">
+      <idx>Free sheaf on an open subset</idx><idx>Generator, sheaf category</idx>
+      <statement><p>For an open subset <m>U\subseteq X</m>, let <m>\mathcal P_U</m> be the sheafification of the free <m>\Lambda</m>-module presheaf on <m>h_U</m>. Explicitly, this presheaf takes <m>\Lambda</m> on <m>V\subseteq U</m> and zero on other opens, with the induced restrictions. We call <m>\mathcal P_U</m> the free sheaf associated with <m>U</m>.</p></statement>
+    </definition>
+    <proposition xml:id="sh-c03-generators">
+      <statement><p>There is a natural isomorphism <m>\Hom_X(\mathcal P_U,\mathcal F)\simeq\mathcal F(U)</m>. The stalk of <m>\mathcal P_U</m> is <m>\Lambda</m> on <m>U</m> and zero outside <m>U</m>. The set of objects <m>(\mathcal P_U)_{U\in\operatorname{Op}(X)}</m> generates <m>\Sh(X;\Lambda)</m>. More explicitly, every sheaf is a quotient of a coproduct of these objects.</p></statement>
+      <proof><p>The adjunction for sheafification and the free-module version of Yoneda identify a map from <m>\mathcal P_U</m> to <m>\mathcal F</m> with the image of its distinguished generator on <m>U</m>, namely an arbitrary section of <m>\mathcal F(U)</m>. For a point of <m>U</m>, neighbourhoods inside <m>U</m> give the constant germ <m>\Lambda</m>. For a point outside <m>U</m>, no neighbourhood of the point is contained in <m>U</m>, and all the relevant presheaf values are zero.</p>
+        <p>For each pair <m>(U,s)</m> with <m>s\in\mathcal F(U)</m>, use its corresponding map <m>\mathcal P_U\to\mathcal F</m>, and take the coproduct of these maps. A germ of <m>\mathcal F</m> is represented by some such <m>s</m>, and is the image of the generator germ in that summand. The resulting map is stalkwise surjective and therefore an epimorphism. Finally, the maps from all <m>\mathcal P_U</m> detect whether two sheaf morphisms differ, since the maps on sections detect a difference.</p></proof>
+    </proposition>
+    <p>In <xref ref="sh-c04"/>, <m>\mathcal P_U</m> is identified with extension by zero of <m>\Lambda_U</m> along the open inclusion. The present construction gives its universal property without needing that functor in advance. It does not make <m>\mathcal P_U</m> projective: that would require the section functor on <m>U</m> to take every sheaf epimorphism to a surjection of modules.</p>
+    <theorem xml:id="sh-c03-grothendiecktheorem">
+      <statement><p>For every space <m>X</m> and commutative coefficient ring <m>\Lambda</m>, the category <m>\Sh(X;\Lambda)</m> is a Grothendieck abelian category. In particular, it has all small colimits, filtered colimits are exact, and it has a generator. It has enough injective objects.</p></statement>
+      <proof><p>Abelianity and colimits have already been proved. A filtered colimit of an exact diagram of module sheaves is exact at every stalk, because stalks commute with colimits and filtered colimits of modules are exact. Thus it is an exact sheaf sequence. The coproduct <m>\bigoplus_U \mathcal P_U</m> is a generator by <xref ref="sh-c03-generators"/>.</p>
+        <p>The enough-injectives assertion is the general existence theorem for a Grothendieck abelian category, applied to these verified hypotheses. It is stated with its sources in the <url href="../homological-algebra/ha-c02.html#ha-c02-injective-existence">Grothendieck categories chapter</url> of the homological algebra notes; see also the injective-existence results in <xref ref="sh-bib-stacks" detail="Injectives"/>. An explicit sheaf construction of an injective embedding is given in <xref ref="sh-c07"/>.</p></proof>
+    </theorem>
+    <p>The generator is generally a large coproduct, not a finite-rank constant sheaf. Grothendieckness does not assert enough projectives, exactness of products, or exactness of global sections. These are independent properties. For instance, on the circle the object <m>\Z_X</m> represents global sections and is not projective by <xref ref="sh-c03-exponential"/>.</p>
+    <p>Over a discrete space, every sheaf of modules is determined by its point values and arbitrary choices at distinct points are independent. There is an equivalence
+      <md number="no">\Sh(X;\Lambda)\simeq\prod_{x\in X}\Mod(\Lambda).</md>
+      It follows directly by gluing over the singleton cover. In this special case, sections are products of stalk modules, and projective and injective constructions can be performed separately at every point. The general theory cannot assume that description because a general point has no singleton open neighbourhood.</p>
+  </section>
+  <section xml:id="sh-c03-filteredsections">
+    <title>Filtered colimits and section functors</title>
+    <p>Exact filtered colimits in the sheaf category do not imply that a section functor commutes with them. The first statement is detected locally at stalks; the second asks for a common diagram stage representing a section on an entire open subset.</p>
+    <p>A space is <em>quasi-compact</em> if every open cover has a finite subcover. An open subset is quasi-compact with respect to its subspace topology.<fn>Some references use compact for this property, while others include Hausdorffness in compactness. The word quasi-compact in the following statements carries no separation condition.</fn></p>
+    <example xml:id="sh-c03-filteredcounterexample">
+      <statement><p>Let <m>X=\N</m> be discrete, let <m>\Lambda\ne0</m>, and let <m>\mathcal F_n=(\Lambda^n)_X</m> with the standard inclusions. The map
+        <md number="no">\colim_n\Gamma(X,\mathcal F_n)\longrightarrow\Gamma\left(X,\colim_n^{\Sh}\mathcal F_n\right)</md>
+        is not surjective.</p></statement>
+      <solution><p>The sheaf colimit has stalk <m>\bigoplus_{i\geq1}\Lambda</m> at each point. Assigning its <m>m</m>-th standard basis vector to the point <m>m</m> gives a global section. It is not represented by one finite rank <m>n</m> at all points. This is the filtered version of <xref ref="sh-c03-coproductsections"/>.</p></solution>
+    </example>
+    <proposition xml:id="sh-c03-qccolimits">
+      <statement><p>Let <m>(\mathcal F_i)</m> be a directed system of sheaves of sets or modules, and put <m>\mathcal F=\colim_i^{\Sh}\mathcal F_i</m>. For an open <m>U</m>, consider the comparison <m>\psi_U:\colim_i\mathcal F_i(U)\to\mathcal F(U)</m>.
+        <ol>
+          <li><p>If <m>U</m> is quasi-compact, <m>\psi_U</m> is injective.</p></li>
+          <li><p>If all transition maps are monomorphisms, <m>\psi_U</m> is injective for every <m>U</m>, and is bijective when <m>U</m> is quasi-compact.</p></li>
+          <li><p>If <m>U</m> is quasi-compact and has a basis of quasi-compact opens stable under finite intersections, then <m>\psi_U</m> is bijective without the monomorphism assumption.</p></li>
+        </ol></p></statement>
+      <proof><p>Suppose two sections from a common stage have the same image in <m>\mathcal F(U)</m>. Equality of their germs at each point is witnessed at some later stage on a neighbourhood of that point. If <m>U</m> is quasi-compact, take finitely many such neighbourhoods and one stage dominating their stages. The sections agree there on a cover, hence agree as sections. This proves the first assertion.</p>
+        <p>If transition maps are monic, each map to the sheaf colimit is monic, as can be checked on stalks. This proves injectivity on every open. A section of <m>\mathcal F(U)</m> has local representatives from diagram stages. For quasi-compact <m>U</m>, choose finitely many and move them to one common stage. Since that stage maps monomorphically into <m>\mathcal F</m>, the representatives already agree on overlaps; glue them there. This proves the second assertion.</p>
+        <p>For the third, choose the finite local-representative cover from the stated basis and move to a common stage. On an overlap the two representative sections have the same image in <m>\mathcal F</m>. The overlap is quasi-compact, so the first assertion supplies a stage where they agree there. Finitely many overlaps require only one common later stage. Glue at that stage. Injectivity has already been proved.</p></proof>
+    </proposition>
+    <p>The last proof separates two finite choices: a finite cover obtains representatives in one stage, and quasi-compact overlaps obtain agreement in one stage. Quasi-compactness of <m>U</m> alone supplies only the first kind of choice. This is why an additional intersection hypothesis appears when transition maps are not injective.</p>
+    <p>These variants are consistent with <xref ref="sh-bib-stacks" detail="Lemma 6.29.1, tag 009E"/>. They will be used only with their stated hypotheses. In particular, the exactness of filtered colimits in <xref ref="sh-c03-grothendiecktheorem"/> needs none of these extra conditions on section functors.</p>
+  </section>
+</chapter>

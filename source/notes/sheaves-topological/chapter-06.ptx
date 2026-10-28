@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="sh-c06">
+  <title>Tensor products and internal Hom</title>
+  <introduction>
+    <p>For fixed coefficients, module sheaves have the same tensor and Hom adjunction as modules, but their sections do not obey the corresponding formulas on every open set. Tensor products require sheafification; internal Hom already forms a sheaf, but its stalk need not be the Hom of the stalks. Finite presentation explains one useful range in which that second comparison is valid.</p>
+    <p>We work in <m>\Sh(X;\Lambda)</m> for an arbitrary topological space <m>X</m> and a fixed commutative unital ring <m>\Lambda</m>. The constructions are the fixed-coefficient cases of <url href="https://stacks.math.columbia.edu/tag/01CA">Stacks, tensor products</url> and <url href="https://stacks.math.columbia.edu/tag/01CM">internal Hom</url>. The more general theory of a varying structure sheaf has its own treatment in the note on sites and ringed structures.</p>
+  </introduction>
+
+  <section xml:id="sh-c06-tensor-section">
+    <title>The tensor product sheaf</title>
+    <definition xml:id="sh-c06-tensor">
+      <title>Tensor product of module sheaves</title><idx>Tensor product of sheaves</idx><idx>Bilinear morphism</idx>
+      <statement><p>For <m>F,G\in\Sh(X;\Lambda)</m>, their <em>tensor product</em> is the sheaf
+        <md number="no">F\otimes_\Lambda G
+          =\bigl(U\longmapsto F(U)\otimes_\Lambda G(U)\bigr)^\#.</md>
+        Restrictions on the displayed presheaf are the tensor products of restrictions. A bilinear morphism from <m>F,G</m> to <m>H</m> is a family of bilinear maps <m>F(U)\times G(U)\to H(U)</m> compatible with restriction.</p></statement>
+    </definition>
+    <proposition xml:id="sh-c06-tensor-properties">
+      <statement><p>There is a universal bilinear morphism <m>F\times G\to F\otimes_\Lambda G</m>. It gives a natural bijection between bilinear morphisms to <m>H</m> and sheaf morphisms <m>F\otimes_\Lambda G\to H</m>. At every point there is a canonical isomorphism
+        <md number="no">(F\otimes_\Lambda G)_x
+          \simeq F_x\otimes_\Lambda G_x.</md>
+        Every local section of the tensor product can, after restricting to an open covering, be written as a finite sum of tensors of sections.</p></statement>
+      <proof><p>The universal property for modules gives a presheaf morphism from the tensor presheaf to <m>H</m>, and sheafification gives the claimed correspondence. For the stalk formula, representatives for finitely many germs in <m>F_x</m> and <m>G_x</m> can be chosen on one common neighbourhood. A finite tensor relation between such germs can also be witnessed on one common neighbourhood. Thus the colimit of the section tensor products is the tensor product of the two stalk colimits. Sheafification preserves this colimit. The last assertion is the local representation property of sheafification, together with the definition of a module tensor product.</p></proof>
+    </proposition>
+    <p>A sheaf of <m>\Lambda</m>-modules is also a module over the constant ring sheaf <m>\Lambda_X</m>. The tensor product defined above is canonically its tensor product over <m>\Lambda_X</m>. In a ringed-space presentation one instead starts with
+      <m>F(U)\otimes_{\Lambda_X(U)}G(U)</m>. Both presheaf constructions have the same stalks and the same sheafification. Balancing by a locally constant scalar function is already imposed locally by balancing over <m>\Lambda</m>.<fn>On a disconnected open, <m>\Lambda_X(U)</m> can be larger than <m>\Lambda</m>. The equality of the resulting sheaves does not assert equality of the two tensor presheaves before sheafification.</fn></p>
+    <example xml:id="sh-c06-two-points">
+      <statement><p>Let <m>X</m> consist of two isolated points and assume <m>\Lambda\ne0</m>. With <m>F=G=\Lambda_X</m>, the tensor presheaf over the fixed ring has
+        <md number="no">F(X)\otimes_\Lambda G(X)
+          =\Lambda^2\otimes_\Lambda\Lambda^2\simeq\Lambda^4.</md>
+        The tensor product sheaf has section module <m>\Lambda^2</m>. If <m>e_1,e_2</m> are the characteristic functions of the two points, then <m>e_1\otimes e_2</m> is nonzero in the presheaf and restricts to zero on both singleton opens. It becomes zero after sheafification. This is a failure of the presheaf separation axiom, before any question of gluing new sections.</p></statement>
+    </example>
+    <example xml:id="sh-c06-global-tensor-failure">
+      <statement><p>Let <m>a,b</m> be distinct points of <m>\R</m> and let <m>F=(i_a)_*\Bbbk</m>, <m>G=(i_b)_*\Bbbk</m>. At each point at least one of <m>F_x,G_x</m> is zero, so <m>F\otimes G=0</m>. Yet <m>\Gamma(\R,F)=\Gamma(\R,G)=\Bbbk</m>. Thus the natural map
+        <md number="no">\Gamma(\R,F)\otimes_\Bbbk\Gamma(\R,G)
+          \longrightarrow\Gamma(\R,F\otimes_\Bbbk G)</md>
+        is <m>\Bbbk\to0</m>. This failure occurs for flat sheaves and reflects the positions of their local data, rather than a torsion obstruction.</p></statement>
+    </example>
+    <p>The symmetry and associativity maps are induced by the corresponding maps of module tensor products. Multiplication gives <m>\Lambda_X\otimes_\Lambda F\simeq F</m>, as can be checked on stalks. These maps make <m>\Sh(X;\Lambda)</m> a symmetric monoidal category. Their coherence follows by sheafifying the usual module identities; the formal terminology is developed in the <url href="../homological-algebra/ha-c03.html">chapter on closed monoidal structures</url>.</p>
+  </section>
+
+  <section xml:id="sh-c06-hom-section">
+    <title>Internal Hom and its adjunction</title>
+    <definition xml:id="sh-c06-internalhom">
+      <title>Internal Hom</title><idx>Internal Hom</idx><idx>Sheaf Hom</idx><idx>Evaluation morphism</idx>
+      <statement><p>For module sheaves <m>F,G</m>, define
+        <md number="no">\sheafHom_\Lambda(F,G)(U)
+          =\Hom_{\Sh(U;\Lambda)}(F|_U,G|_U).</md>
+        Restriction is restriction of morphisms. This is a sheaf of modules, called the <em>internal Hom</em> or <em>sheaf Hom</em>. Evaluation of a morphism on a section gives
+        <md number="no">F\otimes_\Lambda\sheafHom_\Lambda(F,G)\longrightarrow G.</md></p></statement>
+    </definition>
+    <p>The sheaf axiom here is exactly gluing of morphisms in <xref ref="sh-c04-gluing"/>. Linearity is pointwise addition and multiplication of morphisms. No sheafification is needed. In particular,
+      <md number="no">\Gamma(X,\sheafHom_\Lambda(F,G))
+        =\Hom_{\Sh(X;\Lambda)}(F,G).</md>
+      The left side takes sections of a sheaf on <m>X</m>; the right side is a single module. Their equality at <m>X</m> does not identify either one with a pointwise family of arbitrary stalk maps.</p>
+    <theorem xml:id="sh-c06-tensorhom">
+      <statement><p>For module sheaves <m>F,G,H</m>, there are natural isomorphisms
+        <md number="no">\Hom_X(F\otimes_\Lambda G,H)
+          \simeq\Hom_X(F,\sheafHom_\Lambda(G,H)),</md>
+        <md number="no">\sheafHom_\Lambda(F\otimes_\Lambda G,H)
+          \simeq\sheafHom_\Lambda(F,\sheafHom_\Lambda(G,H)).</md>
+        Consequently tensor product preserves all colimits in either variable and is right exact. Internal Hom is left exact in the second variable and takes cokernel sequences in the first variable to kernel sequences.</p></statement>
+      <proof><p>A bilinear morphism <m>F\times G\to H</m> sends <m>s\in F(U)</m> to a morphism <m>G|_U\to H|_U</m>: on <m>V\subset U</m> evaluate the bilinear map on <m>s|_V</m>. This gives a map <m>F\to\sheafHom_\Lambda(G,H)</m>. Evaluation reverses this construction. The tensor universal property gives the first isomorphism. Applying the same correspondence on every open subset gives the second.</p>
+        <p>Preservation of colimits follows because tensor is a left adjoint. Left exactness of <m>\sheafHom(F,-)</m> can be checked on each open by the left exactness of the ordinary Hom functor. Similarly a map from a cokernel to <m>H|_U</m> is exactly a map from its presenting object that annihilates the given morphism; this proves the assertion about the first variable.</p></proof>
+    </theorem>
+    <p>Internal Hom commutes with restriction to opens. For example,
+      <md number="no">\sheafHom_X(F,G)|_U
+        \simeq\sheafHom_U(F|_U,G|_U).</md>
+      It does not in general commute with restriction to an arbitrary subspace in this way.<fn>Restriction to an open retains the same local category of sheaves near each of its points. Restriction to a point retains only one stalk, and can lose the common neighbourhood on which a morphism must be defined.</fn> That distinction will be expressed by a comparison map below.</p>
+  </section>
+
+  <section xml:id="sh-c06-finite">
+    <title>Stalks and finite presentation</title>
+    <p>Every germ of a local morphism has a map on stalks, giving
+      <md number="no">\sheafHom_\Lambda(F,G)_x
+        \longrightarrow\Hom_\Lambda(F_x,G_x).</md>
+      The source remembers a single neighbourhood on which the entire morphism exists. Specifying a stalk homomorphism need not give that neighbourhood, and specifying its values on infinitely many generators can require infinitely many incompatible shrinkings.</p>
+    <definition xml:id="sh-c06-finitepresentation">
+      <title>Local finite generation and presentation</title><idx>Locally finitely generated sheaf</idx><idx>Locally finitely presented sheaf</idx>
+      <statement><p>A module sheaf <m>F</m> is <em>locally finitely generated</em>, or <em>of finite type</em>, if every point has an open neighbourhood <m>U</m> with an epimorphism <m>\Lambda_U^b\to F|_U</m> for a finite <m>b</m>. It is <em>locally finitely presented</em> if it has, near every point, a presentation
+        <md number="no">\Lambda_U^a\longrightarrow\Lambda_U^b
+          \longrightarrow F|_U\longrightarrow0</md>
+        with <m>a,b</m> finite. These are local properties of sheaves, not a claim that <m>\Hom_X(F,-)</m> preserves filtered colimits.</p></statement>
+    </definition>
+    <p>Finite generation of every stalk is weaker than local finite generation of the sheaf. For example, let <m>j:(0,\infty)\hookrightarrow\R</m> and assume <m>\Lambda\ne0</m>. Every stalk of <m>j_!\Lambda_{(0,\infty)}</m> is zero or cyclic. A section on an interval crossing zero must vanish on the positive part near zero. Finitely many such sections vanish on a common positive subinterval and cannot generate the sheaf there. Hence the sheaf is not locally finitely generated at zero.<fn>Local finite generation requires one neighbourhood and finitely many sections that generate at every point of that neighbourhood. Stalkwise choices alone need not extend with this uniformity.</fn></p>
+    <proposition xml:id="sh-c06-hom-stalk">
+      <statement><p>If <m>F</m> is locally finitely generated, the comparison
+        <m>\sheafHom(F,G)_x\to\Hom_\Lambda(F_x,G_x)</m> is injective. If <m>F</m> is locally finitely presented, it is an isomorphism. In the fixed-coefficient setting, local finite presentation is equivalent to having local models <m>M_U</m> with <m>M</m> a finitely presented <m>\Lambda</m>-module.</p></statement>
+      <proof><p>For injectivity, represent a germ by <m>u:F|_U\to G|_U</m> whose stalk map at <m>x</m> is zero. Choose finitely many generating sections of <m>F</m> near <m>x</m>. Their images vanish after a common shrinking, so the whole map vanishes there.</p>
+        <p>For finite presentation, applying internal Hom to a local presentation identifies <m>\sheafHom(F,G)</m> with the kernel of a map <m>G^b\to G^a</m>. Taking stalks commutes with this finite kernel and gives the same kernel that computes <m>\Hom_\Lambda(F_x,G_x)</m>. This proves the isomorphism.</p>
+        <p>A map between finite free constant sheaves is a finite matrix of locally constant scalar functions. After shrinking near any point, all entries are constant. Its cokernel is therefore the constant sheaf of the finitely presented cokernel module. The converse follows by applying the exact constant-sheaf functor to a finite module presentation.</p></proof>
+    </proposition>
+    <p>For the general ringed-space version, see <url href="https://stacks.math.columbia.edu/tag/01CM">Stacks, Lemma 17.22.4</url>. A varying structure sheaf need not have locally constant matrix entries, so the final assertion of our proposition is specific to fixed coefficients.</p>
+    <example xml:id="sh-c06-hom-stalk-failure">
+      <statement><p>Use <m>X,M,h</m> from <xref ref="sh-c05-infinite-counterexample"/>. The morphism <m>h-\id:M_X\to M_X</m> is nonzero on every neighbourhood of zero, but its map on the stalk at zero is zero. Its germ is a nonzero element of <m>\sheafHom(M_X,M_X)_0</m> mapping to zero in <m>\Hom_\Bbbk(M,M)</m>. Thus the comparison can fail even to be injective for constant vector-space sheaves of infinite rank.</p></statement>
+    </example>
+    <p>Finite presentation also explains why an internal Hom can commute with filtered colimits locally while the corresponding global Hom need not. Taking global sections introduces a second condition on the space.<fn>For an infinite discrete space, <m>\Lambda_X</m> is locally free of rank one, but <m>\Hom_X(\Lambda_X,-)=\Gamma(X,-)</m> is an infinite product and need not preserve filtered colimits. Local finite presentation therefore does not by itself make a sheaf a finitely presented object of the whole category.</fn></p>
+  </section>
+
+  <section xml:id="sh-c06-functorial">
+    <title>Inverse image and direct image comparisons</title>
+    <proposition xml:id="sh-c06-pullback-tensor">
+      <statement><p>For every continuous <m>f:X\to Y</m>, inverse image is symmetric monoidal:
+        <md number="no">f^{-1}(A\otimes_\Lambda B)
+          \simeq f^{-1}A\otimes_\Lambda f^{-1}B,\qquad
+          f^{-1}\Lambda_Y\simeq\Lambda_X.</md>
+        Evaluation defines a comparison
+        <md number="no">f^{-1}\sheafHom_Y(A,B)
+          \longrightarrow\sheafHom_X(f^{-1}A,f^{-1}B).</md>
+        This comparison is an isomorphism if <m>A</m> is locally finitely presented.</p></statement>
+      <proof><p>Pulling back the bilinear morphism <m>A\times B\to A\otimes B</m> gives the tensor comparison. At <m>x</m>, it is the identity on <m>A_{f(x)}\otimes_\Lambda B_{f(x)}</m>, so it is an isomorphism. The unit assertion is <xref ref="sh-c05-constant-properties"/>. Evaluation and the tensor isomorphism give the Hom comparison by adjunction.</p>
+        <p>If <m>A</m> has a finite presentation, internal Hom is locally a kernel between finite sums of <m>B</m>. Exact inverse image preserves that kernel and those finite sums, and transforms the presentation into the corresponding presentation of <m>f^{-1}A</m>. This gives the last assertion.</p></proof>
+    </proposition>
+    <p>For fixed coefficients the stalk ring map is the identity <m>\Lambda\to\Lambda</m>, so the exactness used in the finite-presentation argument is part of ordinary inverse image.<fn>In a general ringed-space statement one needs flatness of the ringed map for this argument; see <url href="https://stacks.math.columbia.edu/tag/01CM">Stacks, Lemma 17.22.5</url>. The corresponding ringed inverse image is not automatically exact.</fn></p>
+    <proposition xml:id="sh-c06-push-hom">
+      <statement><p>For <m>A\in\Sh(Y;\Lambda)</m> and <m>F\in\Sh(X;\Lambda)</m>, there is a natural isomorphism
+        <md number="no">f_*\sheafHom_X(f^{-1}A,F)
+          \simeq\sheafHom_Y(A,f_*F).</md>
+        There is also a natural projection morphism
+        <md number="no">A\otimes_\Lambda f_*F
+          \longrightarrow f_*(f^{-1}A\otimes_\Lambda F).</md>
+        It is an isomorphism when <m>A</m> is finite locally free.</p></statement>
+      <proof><p>On an open <m>V\subset Y</m>, the first assertion is the adjunction for the restricted map <m>f^{-1}V\to V</m>, applied to morphisms between the restricted sheaves. These identifications commute with restriction in <m>V</m> and hence give an isomorphism of sheaves.</p>
+        <p>The projection morphism comes from pulling a local section of <m>A</m> to <m>f^{-1}V</m> and tensoring with a section of <m>F</m> there. If <m>A|_V=\Lambda_V^r</m> for finite <m>r</m>, both sides are <m>(f_*F)|_V^r</m>, and the morphism is the identity under these identifications. Such opens cover <m>Y</m>.</p></proof>
+    </proposition>
+    <example xml:id="sh-c06-projection-failure">
+      <statement><p>The projection morphism is not always invertible. Let <m>X=\N</m> be discrete, <m>f:X\to\{*\}</m>, <m>F=\Bbbk_X</m>, and <m>A=\bigoplus_{r\geq1}\Bbbk</m>. The map is
+        <md number="no">\left(\bigoplus_r\Bbbk\right)\otimes_\Bbbk\prod_n\Bbbk
+          \longrightarrow\prod_n\left(\bigoplus_r\Bbbk\right).</md>
+        The left side consists of matrices whose nonzero columns lie in a single finite set. The right side permits an independent finite set of nonzero entries in each row. The matrix with entries <m>\delta_{nr}</m> lies only on the right. The failure is a failure to interchange an infinite sum and an infinite product.</p></statement>
+    </example>
+    <p>This is an ordinary sheaf statement. Derived projection formulas allow other hypotheses and involve derived tensor products; their formal construction is in the homological algebra note, and their support versions belong to the note on six functors.</p>
+    <proposition xml:id="sh-c06-extensions-tensor">
+      <statement><p>Let <m>j:U\hookrightarrow X</m> be open and <m>i:Z\hookrightarrow X</m> closed. For the indicated coefficient sheaves, there are natural isomorphisms
+        <md number="no">j_!A\otimes_\Lambda F
+          \simeq j_!(A\otimes_\Lambda j^{-1}F),</md>
+        <md number="no">i_*B\otimes_\Lambda F
+          \simeq i_*(B\otimes_\Lambda i^{-1}F).</md></p></statement>
+      <proof><p>The first comparison is defined by the adjunction for <m>j_!</m> and the tensor comparison after restriction to <m>U</m>. The second is the projection morphism for <m>i</m>. On the included subspace both are the tensor product of the two stalks, and outside it both sides have zero stalks. They are therefore isomorphisms.</p></proof>
+    </proposition>
+  </section>
+
+  <section xml:id="sh-c06-localsystems">
+    <title>Tensor and Hom of local systems</title>
+    <proposition xml:id="sh-c06-local-tensorhom">
+      <statement><p>Let <m>L,L'</m> be local systems.
+        <ol>
+          <li><p>Their tensor product is locally constant, with local model <m>(M\otimes_\Lambda N)_U</m> whenever <m>L|_U=M_U</m> and <m>L'|_U=N_U</m>.</p></li>
+          <li><p>The internal Hom is locally constant if <m>X</m> is locally connected. The same conclusion holds on an arbitrary space if <m>L</m> has finitely generated local models.</p></li>
+          <li><p>Under the monodromy classification, tensor transport is <m>T_\gamma\otimes T'_\gamma</m>. Where internal Hom is locally constant, its transport sends a map <m>u:L_x\to L'_x</m> to
+            <md number="no">T'_\gamma\,u\,T_\gamma^{-1}:L_y\longrightarrow L'_y.</md></p></li>
+        </ol></p></statement>
+      <proof><p>The tensor formula follows from the universal property, or from the constant-sheaf tensor comparison for the map to a point. On a connected open where both systems are constant, the internal Hom is the constant sheaf of module homomorphisms, since morphisms between constant sheaves on each connected subopen are constant homomorphisms. A connected open basis proves the assertion for locally connected spaces. For a finitely generated source on an arbitrary space, <xref ref="sh-c05-maps-constant"/> shows that local morphisms are locally constant functions valued in <m>\Hom_\Lambda(M,N)</m>. These local descriptions give the stated transport maps.</p></proof>
+    </proposition>
+    <p>For finite-dimensional vector-space systems, their dual, tensor, and internal Hom systems therefore have the expected finite-dimensional fibres. The dual action is the contragredient action: a functional is transported by precomposition with inverse transport. For a connected space in the classification range,
+      <md number="no">\Hom_X(L_M,L_N)
+        =\{u:M\to N:u\rho_M(g)=\rho_N(g)u\text{ for every }g\}.</md>
+      Taking global sections of the Hom system is the same as taking invariants of its conjugation action.</p>
+    <p>The internal-Hom assertion for two local systems is broader than the finite-presentation criterion for an arbitrary target sheaf: here the target is itself locally constant. Local connectedness or a finite set of source generators controls the entire homomorphism on one neighbourhood. Without either condition, the counterexample in <xref ref="sh-c06-hom-stalk-failure"/> applies.<fn>A stalk formula for internal Hom must retain its hypotheses even when both sheaves happen to be constant. Constancy of the individual sheaves alone does not remove the infinite-neighbourhood issue.</fn></p>
+  </section>
+
+  <section xml:id="sh-c06-duals">
+    <title>Finite local models and duals</title>
+    <definition xml:id="sh-c06-dual">
+      <title>Dual module sheaf</title><idx>Dual sheaf</idx>
+      <statement><p>The <em>dual</em> of a module sheaf is <m>F^\vee=\sheafHom_\Lambda(F,\Lambda_X)</m>. Evaluation and composition define maps
+        <md number="no">F^\vee\otimes_\Lambda G\longrightarrow\sheafHom_\Lambda(F,G),
+          \qquad F\longrightarrow F^{\vee\vee}.</md></p></statement>
+    </definition>
+    <proposition xml:id="sh-c06-finite-duality">
+      <statement><p>If <m>F</m> is finite locally free, both displayed maps are isomorphisms. The functors <m>F\otimes_\Lambda-\ </m> and <m>\sheafHom_\Lambda(F,-)</m> are exact, and <m>F</m> is dualizable in the monoidal category of module sheaves. These conclusions also hold when <m>F</m> has local models <m>P_U</m> with <m>P</m> a finitely generated projective <m>\Lambda</m>-module.</p></statement>
+      <proof><p>For <m>F|_U=\Lambda_U^r</m>, both sides of the first comparison are <m>G|_U^r</m>. The dual basis gives the bidual isomorphism and the coevaluation <m>\Lambda_U\to F|_U\otimes F^\vee|_U</m> sending <m>1</m> to the identity endomorphism. The identity endomorphism is independent of the basis, so these local maps glue. The triangle identities can be checked in a basis. Exactness reduces locally to exactness of a finite direct sum. A finitely generated projective module is a direct summand of a finite free module; restricting these identities to the summand proves the last assertion.</p></proof>
+    </proposition>
+    <p>A finite projective module need not be free. Already over a one-point space, dualizability means finite projectivity rather than freeness. Over a field, an infinite-dimensional vector space is not dualizable: the map <m>M^\vee\otimes M\to\End(M)</m> has image the finite-rank operators and does not contain the identity. Thus the finite-dimensional condition in many uses of “local system” carries mathematical content beyond local constancy.</p>
+    <p>For general module sheaves a dual is still defined, but biduality is only a comparison.<fn>Verdier duality uses a dualizing complex in place of <m>\Lambda_X</m> and is not this underived operation. The present notation will be distinguished from it when support and duality are introduced.</fn></p>
+  </section>
+
+  <section xml:id="sh-c06-flat-section">
+    <title>Flatness and its stalk criterion</title>
+    <definition xml:id="sh-c06-flat">
+      <title>Flat module sheaf</title><idx>Flat sheaf</idx><idx>Stalk criterion for flatness</idx>
+      <statement><p>A module sheaf <m>F</m> is <em>flat</em> if <m>F\otimes_\Lambda-</m> is exact on <m>\Sh(X;\Lambda)</m>. It is <em>flat at</em> <m>x</m> if <m>F_x</m> is a flat <m>\Lambda</m>-module.</p></statement>
+    </definition>
+    <theorem xml:id="sh-c06-flat-stalk">
+      <statement><p>A sheaf is flat if and only if it is flat at every point. Inverse image preserves flat sheaves. Direct sums and filtered colimits of flat sheaves are flat. In a short exact sequence
+        <md number="no">0\longrightarrow F'\longrightarrow F\longrightarrow F''\longrightarrow0,</md>
+        if <m>F''</m> is flat, tensoring with any sheaf preserves this short exact sequence. If <m>F''</m> is flat, flatness of <m>F</m> is equivalent to flatness of <m>F'</m>.</p></statement>
+      <proof><p>If the stalks are flat, the stalk tensor formula proves preservation of exact sequences. Conversely, apply exact tensoring by <m>F</m> to a short exact sequence of skyscraper sheaves <m>(i_x)_*M</m>. These form an exact sequence by <xref ref="sh-c04-point-adjunction"/>. Its stalk at <m>x</m>, after tensoring, is the sequence of modules obtained by tensoring with <m>F_x</m>. Thus <m>F_x</m> is flat.</p>
+        <p>Inverse image preserves the stalk modules at the image point. Stalks commute with direct sums and filtered colimits, which preserve flatness for modules. The remaining assertions are the corresponding module assertions, applied at every stalk: a flat quotient kills the relevant first Tor obstruction, and extensions or kernels of epimorphisms between flat modules have the stated flatness properties. These are also recorded for sheaves in <url href="https://stacks.math.columbia.edu/tag/05NC">Stacks, Lemmas 17.17.8–17.17.9</url>.</p></proof>
+    </theorem>
+    <p>In particular, every sheaf of vector spaces over a field is flat, whether or not it is locally constant. Flatness measures exactness of tensoring; it is not a local triviality condition. With <m>\Lambda=\Z</m>, a constant sheaf of a torsion-free group is flat, whereas <m>(\Z/n\Z)_X</m> fails to be flat on any nonempty space for <m>n\geq2</m>. The latter failure is detected by tensoring multiplication by <m>n</m> on <m>\Z_X</m>.</p>
+  </section>
+
+  <section xml:id="sh-c06-flat-resolutions">
+    <title>Enough flat sheaves</title>
+    <proposition xml:id="sh-c06-enoughflat">
+      <statement><p>For every open <m>U\subset X</m>, the sheaf <m>j_{U!}\Lambda_U</m> is flat and satisfies
+        <md number="no">\Hom_X(j_{U!}\Lambda_U,F)\simeq F(U).</md>
+        Every module sheaf admits an epimorphism
+        <md number="no">\bigoplus_{(U,s),\ s\in F(U)}j_{U!}\Lambda_U
+          \longrightarrow F.</md>
+        Consequently every module sheaf is a quotient of a flat sheaf and admits a flat resolution.</p></statement>
+      <proof><p>The first sheaf has stalk <m>\Lambda</m> on <m>U</m> and zero outside, so it is flat. Its Hom formula follows from <m>j_{U!}\dashv j_U^{-1}</m> and the constant-sheaf adjunction. For each pair <m>(U,s)</m>, use the corresponding map to <m>F</m>. Every germ of <m>F</m> is represented by one of these sections and hence is in the image. The direct sum is flat, and the map is an epimorphism by stalks. Repeating the construction on successive kernels gives an exact complex of flat sheaves resolving <m>F</m>.</p></proof>
+    </proposition>
+    <p>This also identifies <m>j_{U!}\Lambda_U</m> with the generator attached to <m>U</m> in <xref ref="sh-c03-generators"/>: both represent the section functor <m>F\mapsto F(U)</m>. In that earlier construction the generator was defined before extension by zero was available. The identification follows from the representing property, so it does not introduce a circular proof of the Grothendieck property.</p>
+    <p>The construction works with the opens of any basis: a germ can be represented on a basis neighbourhood. No compactness or separation hypothesis is needed. A basis that is a set gives a set of these generators, while the direct sum for one sheaf is indexed by the set of its sections on those opens. Compare <url href="https://stacks.math.columbia.edu/tag/05NC">Stacks, Lemmas 17.17.6–17.17.7</url>.</p>
+    <p>For the cochain conventions of this note, a flat resolution can be written
+      <md number="no">\cdots\longrightarrow P^{-2}\longrightarrow P^{-1}
+        \longrightarrow P^0\longrightarrow F\longrightarrow0.</md>
+      Choose <m>P^0\to F</m> as above, choose a flat epimorphism onto its kernel, and continue. The differential <m>P^{-r}\to P^{-r+1}</m> is the epimorphism onto the previous kernel followed by that kernel's inclusion. Its square is zero, and the resulting augmentation <m>P^\bullet\to F[0]</m> is a quasi-isomorphism. This establishes existence, without claiming a finite length.</p>
+    <p>These flat generators need not be projective.<fn>Their Hom functor is <m>F\mapsto F(U)</m>, which is left exact and need not carry epimorphisms of sheaves to surjections of section modules. Enough flat objects therefore does not prove enough projective objects.</fn> For unbounded derived tensor products, a complex of flat terms also requires a homotopical condition; the K-flat resolutions used for that purpose are introduced in <xref ref="sh-c07"/>.</p>
+  </section>
+</chapter>

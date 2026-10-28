@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-darkmode="disabled">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette: blue-red                     *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Derived operations on ringed topoi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Sites, topoi, and ringed structures">
+<meta property="og:title" content="Sites, topoi, and ringed structures">
+<meta property="book:title" content="Sites, topoi, and ringed structures">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.53"></script><script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="../../vendor/lunr/lunr.min.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+<link rel="stylesheet" href="../../layout.css?v=fee08a8c1c">
+<script src="../../layout.js?v=e9391a21a7" defer></script><link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"C": "\\mathbb C", "Pone": "\\mathbb{P}^1_{\\mathbb{C}}", "cO": "\\mathcal{O}", "ord": "\\operatorname{ord}", "lt": "<", "gt": ">", "amp": "&", "Hom": "\\operatorname{Hom}", "End": "\\operatorname{End}", "Ext": "\\operatorname{Ext}", "Tor": "\\operatorname{Tor}", "colim": "\\operatorname{colim}", "im": "\\operatorname{im}", "coker": "\\operatorname{coker}", "Cone": "\\operatorname{Cone}", "Tot": "\\operatorname{Tot}", "Loc": "\\operatorname{Loc}", "Spec": "\\operatorname{Spec}", "cosk": "\\operatorname{cosk}", "sk": "\\operatorname{sk}", "Lan": "\\operatorname{Lan}", "Ran": "\\operatorname{Ran}", "Nat": "\\operatorname{Nat}", "Coh": "\\mathsf{Coh}", "QCoh": "\\mathsf{QCoh}", "Perf": "\\mathsf{Perf}", "Sh": "\\mathsf{Sh}", "PSh": "\\mathsf{PSh}", "Set": "\\mathsf{Set}", "Ab": "\\mathsf{Ab}", "Mod": "\\mathsf{Mod}", "Ch": "\\mathsf{C}", "K": "\\mathsf{K}", "D": "\\mathsf{D}", "id": "\\mathrm{id}", "op": "\\mathrm{op}", "RHom": "\\mathbf R\\!\\operatorname{Hom}", "sheafHom": "\\mathcal{H}\\!om", "RsheafHom": "\\mathbf R\\mathcal{H}\\!om", "Ltensor": "\\mathbin{\\otimes^{\\mathbf L}}", "Z": "\\mathbb Z", "N": "\\mathbb N", "Q": "\\mathbb Q", "R": "\\mathbb R"}}, "options": {"ignoreHtmlClass": "ignore-math", "processHtmlClass": "process-math", "enableMenu": false}};</script><script src="../../vendor/mathjax/tex-chtml.js" defer></script>
+</head>
+<body class="pretext book ignore-math note-page" data-page-format="note">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner"><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="sheaves-sites-notes.html"><span class="title">Sites, topoi, and ringed structures</span></a></div>
+<p class="byline"><a href="../../home.html">Jie Fu</a>'s <a href="../../notes.html">Notes</a></p>
+<p class="note-metadata"><span class="note-review-status">Under review and improvement</span> · <span class="note-last-updated">Last updated: <time datetime="2026-10-26">2026-10-26</time></span></p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Contents</span></button><a class="index-button button" href="st-index.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Index</span></a><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true"></span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="treebuttons"><a class="previous-button button" href="st-c10.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="up-button button" href="sheaves-sites-notes.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Up</span></a><a class="next-button button" href="st-c12.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a></span>
+</div></nav><div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth4 focused" data-preexpanded-levels="1" data-max-levels="4"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c00.html" class="internal"><span class="codenumber">0</span> <span class="title">From open covers to sites</span></a></div>
+<ul id="ptx-toc-group-st-c00" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c00.html#st-c00-background" class="internal"><span class="codenumber">0.1</span> <span class="title">What changes from topological sheaves</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c00.html#st-c00-size" class="internal"><span class="codenumber">0.2</span> <span class="title">Size and categorical conventions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c00.html#st-c00-ringed" class="internal"><span class="codenumber">0.3</span> <span class="title">Ringed structures and directions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c00.html#st-c00-sources" class="internal"><span class="codenumber">0.4</span> <span class="title">Sources and dependencies</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c01.html" class="internal"><span class="codenumber">1</span> <span class="title">Grothendieck topologies and sheaves</span></a></div>
+<ul id="ptx-toc-group-st-c01" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c01.html#st-c01-presheaves" class="internal"><span class="codenumber">1.1</span> <span class="title">Test objects and restrictions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c01.html#st-c01-topologies" class="internal"><span class="codenumber">1.2</span> <span class="title">Covering sieves and local consequences</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c01.html#st-c01-families" class="internal"><span class="codenumber">1.3</span> <span class="title">Covering families and pretopologies</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c01.html#st-c01-sheaves" class="internal"><span class="codenumber">1.4</span> <span class="title">Matching families and the sheaf condition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c01.html#st-c01-representability" class="internal"><span class="codenumber">1.5</span> <span class="title">Subcanonical and canonical topologies</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c02.html" class="internal"><span class="codenumber">2</span> <span class="title">Sheafification without points</span></a></div>
+<ul id="ptx-toc-group-st-c02" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c02.html#st-c02-construction" class="internal"><span class="codenumber">2.1</span> <span class="title">The plus construction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c02.html#st-c02-two-steps" class="internal"><span class="codenumber">2.2</span> <span class="title">Separation and amalgamation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c02.html#st-c02-local-tests" class="internal"><span class="codenumber">2.3</span> <span class="title">Local equality and lifting</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c02.html#st-c02-exactness" class="internal"><span class="codenumber">2.4</span> <span class="title">Finite limits and algebraic structures</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c02.html#st-c02-recovering-topology" class="internal"><span class="codenumber">2.5</span> <span class="title">Recovering the topology from its sheaves</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c03.html" class="internal"><span class="codenumber">3</span> <span class="title">Grothendieck topoi and their presentations</span></a></div>
+<ul id="ptx-toc-group-st-c03" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c03.html#st-c03-presented" class="internal"><span class="codenumber">3.1</span> <span class="title">Topoi and generating sheaves</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c03.html#st-c03-images" class="internal"><span class="codenumber">3.2</span> <span class="title">Images, epimorphisms, and exactness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c03.html#st-c03-quotients" class="internal"><span class="codenumber">3.3</span> <span class="title">Equivalence relations and universal colimits</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c03.html#st-c03-variable-sets" class="internal"><span class="codenumber">3.4</span> <span class="title">Exponentials and the subobject classifier</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c03.html#st-c03-intrinsic" class="internal"><span class="codenumber">3.5</span> <span class="title">Intrinsic recognition and changing presentations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c03.html#st-c03-examples" class="internal"><span class="codenumber">3.6</span> <span class="title">Examples beyond a space of opens</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c04.html" class="internal"><span class="codenumber">4</span> <span class="title">Morphisms of sites and topoi</span></a></div>
+<ul id="ptx-toc-group-st-c04" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c04.html#st-c04-kan" class="internal"><span class="codenumber">4.1</span> <span class="title">Restriction and sheafified Kan extension</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c04.html#st-c04-geometric-section" class="internal"><span class="codenumber">4.2</span> <span class="title">Geometric morphisms and exactness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c04.html#st-c04-left-exact" class="internal"><span class="codenumber">4.3</span> <span class="title">Useful sufficient conditions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c04.html#st-c04-cocont-section" class="internal"><span class="codenumber">4.4</span> <span class="title">Cocontinuous functors and the other direction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c04.html#st-c04-compatibility" class="internal"><span class="codenumber">4.5</span> <span class="title">Composition and the information retained</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c05.html" class="internal"><span class="codenumber">5</span> <span class="title">Localization, bases, and comparison</span></a></div>
+<ul id="ptx-toc-group-st-c05" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c05.html#st-c05-slice-section" class="internal"><span class="codenumber">5.1</span> <span class="title">The site over an object</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c05.html#st-c05-sums-products" class="internal"><span class="codenumber">5.2</span> <span class="title">Dependent sum, restriction, and dependent product</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c05.html#st-c05-general-object" class="internal"><span class="codenumber">5.3</span> <span class="title">Localizing at an arbitrary sheaf</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c05.html#st-c05-comparison-section" class="internal"><span class="codenumber">5.4</span> <span class="title">The comparison lemma for a dense full subcategory</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c05.html#st-c05-local-comparison" class="internal"><span class="codenumber">5.5</span> <span class="title">Comparison without literal full faithfulness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c05.html#st-c05-presentations" class="internal"><span class="codenumber">5.6</span> <span class="title">Changing a presentation rather than an assumption</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c06.html" class="internal"><span class="codenumber">6</span> <span class="title">Points and local detection</span></a></div>
+<ul id="ptx-toc-group-st-c06" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c06.html#st-c06-point-section" class="internal"><span class="codenumber">6.1</span> <span class="title">A point as a geometric morphism</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c06.html#st-c06-flat-section" class="internal"><span class="codenumber">6.2</span> <span class="title">Flat functors and systems of neighborhoods</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c06.html#st-c06-continuity" class="internal"><span class="codenumber">6.3</span> <span class="title">Covering compatibility and the point theorem</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c06.html#st-c06-examples" class="internal"><span class="codenumber">6.4</span> <span class="title">Spatial and nonspatial examples</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c06.html#st-c06-detection" class="internal"><span class="codenumber">6.5</span> <span class="title">Enough points and exactness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c06.html#st-c06-existence" class="internal"><span class="codenumber">6.6</span> <span class="title">Existence theorems and a topos without points</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c07.html" class="internal"><span class="codenumber">7</span> <span class="title">Gluing, torsors, and descent</span></a></div>
+<ul id="ptx-toc-group-st-c07" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c07.html#st-c07-effective-section" class="internal"><span class="codenumber">7.1</span> <span class="title">Descent along an epimorphism</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c07.html#st-c07-covers-section" class="internal"><span class="codenumber">7.2</span> <span class="title">Families, overlaps, and site presentations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c07.html#st-c07-structures-section" class="internal"><span class="codenumber">7.3</span> <span class="title">Descending algebraic structures</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c07.html#st-c07-torsor-section" class="internal"><span class="codenumber">7.4</span> <span class="title">Torsors and changes of origin</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c07.html#st-c07-first-section" class="internal"><span class="codenumber">7.5</span> <span class="title">The Abelian first-cohomology class</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c07.html#st-c07-functorial-section" class="internal"><span class="codenumber">7.6</span> <span class="title">Functoriality and a nonspatial example</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c08.html" class="internal"><span class="codenumber">8</span> <span class="title">Ringed sites, ringed topoi, and modules</span></a></div>
+<ul id="ptx-toc-group-st-c08" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c08.html#st-c08-ring-objects" class="internal"><span class="codenumber">8.1</span> <span class="title">Rings and modules in a topos</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c08.html#st-c08-exact-category" class="internal"><span class="codenumber">8.2</span> <span class="title">Exactness and generators</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c08.html#st-c08-localization-section" class="internal"><span class="codenumber">8.3</span> <span class="title">Localization and descent of modules</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c08.html#st-c08-morphisms" class="internal"><span class="codenumber">8.4</span> <span class="title">Ringed morphisms and extension of scalars</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c08.html#st-c08-local-rings" class="internal"><span class="codenumber">8.5</span> <span class="title">The additional local-ring condition</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c09.html" class="internal"><span class="codenumber">9</span> <span class="title">Tensor, internal Hom, and flatness</span></a></div>
+<ul id="ptx-toc-group-st-c09" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c09.html#st-c09-tensor-section" class="internal"><span class="codenumber">9.1</span> <span class="title">Tensor products from local bilinear maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c09.html#st-c09-hom-section" class="internal"><span class="codenumber">9.2</span> <span class="title">Internal Hom and the closed adjunction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c09.html#st-c09-scalar-change" class="internal"><span class="codenumber">9.3</span> <span class="title">Scalar change and pullback comparisons</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c09.html#st-c09-flat-section" class="internal"><span class="codenumber">9.4</span> <span class="title">Flatness and local relations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c09.html#st-c09-flat-functoriality" class="internal"><span class="codenumber">9.5</span> <span class="title">Flat pullback and relative flatness</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c10.html" class="internal"><span class="codenumber">10</span> <span class="title">Finite presentation and coherent modules</span></a></div>
+<ul id="ptx-toc-group-st-c10" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c10.html#st-c10-presentations" class="internal"><span class="codenumber">10.1</span> <span class="title">Generators, presentations, and their local meaning</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c10.html#st-c10-coherence" class="internal"><span class="codenumber">10.2</span> <span class="title">Coherent modules and their Abelian category</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c10.html#st-c10-functorial-finiteness" class="internal"><span class="codenumber">10.3</span> <span class="title">Tensor, Hom, pullback, and finite presentation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c10.html#st-c10-duals-section" class="internal"><span class="codenumber">10.4</span> <span class="title">Finite projectivity and duality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c10.html#st-c10-geometric-contexts" class="internal"><span class="codenumber">10.5</span> <span class="title">Geometric interpretations and site choices</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="st-c11.html" class="internal"><span class="codenumber">11</span> <span class="title">Derived operations on ringed topoi</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-st-c11">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c11.html#st-c11-resolution-section" class="internal"><span class="codenumber">11.1</span> <span class="title">Resolutions and the closed tensor structure</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c11.html#st-c11-morphism-section" class="internal"><span class="codenumber">11.2</span> <span class="title">Derived pullback, adjunction, and composition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c11.html#st-c11-cohomology-section" class="internal"><span class="codenumber">11.3</span> <span class="title">Cohomology without stalks</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c11.html#st-c11-finiteness-section" class="internal"><span class="codenumber">11.4</span> <span class="title">Finite complexes, pseudo-coherence, and Tor amplitude</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c11.html#st-c11-comparison-section" class="internal"><span class="codenumber">11.5</span> <span class="title">Comparison maps and sufficient conditions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c12.html" class="internal"><span class="codenumber">12</span> <span class="title">Hypercovers and cohomological descent</span></a></div>
+<ul id="ptx-toc-group-st-c12" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c12.html#st-c12-simplicial-section" class="internal"><span class="codenumber">12.1</span> <span class="title">Faces, degeneracies, and matching objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c12.html#st-c12-cover-section" class="internal"><span class="codenumber">12.2</span> <span class="title">Čech nerves and representable models</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c12.html#st-c12-resolution-section" class="internal"><span class="codenumber">12.3</span> <span class="title">The augmented free resolution</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c12.html#st-c12-descent-section" class="internal"><span class="codenumber">12.4</span> <span class="title">A bounded below total-complex theorem</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c12.html#st-c12-refinement-section" class="internal"><span class="codenumber">12.5</span> <span class="title">Refinement, local classes, and the classical theorem</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c13.html" class="internal"><span class="codenumber">13</span> <span class="title">Geometric sites and the étale topology</span></a></div>
+<ul id="ptx-toc-group-st-c13" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c13.html#st-c13-etale-section" class="internal"><span class="codenumber">13.1</span> <span class="title">Étale morphisms as generalized neighborhoods</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c13.html#st-c13-small-section" class="internal"><span class="codenumber">13.2</span> <span class="title">The small site and its sheaves</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c13.html#st-c13-big-section" class="internal"><span class="codenumber">13.3</span> <span class="title">Big sites and the direction of restriction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c13.html#st-c13-points-section" class="internal"><span class="codenumber">13.4</span> <span class="title">Geometric points and étale stalks</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c13.html#st-c13-structure-section" class="internal"><span class="codenumber">13.5</span> <span class="title">Structure sheaves and changes of base</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c13.html#st-c13-comparison-topologies" class="internal"><span class="codenumber">13.6</span> <span class="title">Related covering notions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="sheaves-sites-notes-18.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul id="ptx-toc-group-sheaves-sites-notes-18" class="structural toc-item-list">
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="st-concordance.html" class="internal"><span class="codenumber">A.</span> <span class="title">Terminology, hypotheses, and source conventions</span></a></div>
+<ul id="ptx-toc-group-st-concordance" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-concordance.html#st-concordance-sites" class="internal"><span class="codenumber">A.1</span> <span class="title">Sites, presentations, and local tests</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-concordance.html#st-concordance-morphisms" class="internal"><span class="codenumber">A.2</span> <span class="title">Morphisms, points, and descent</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-concordance.html#st-concordance-modules" class="internal"><span class="codenumber">A.3</span> <span class="title">Ringed objects and finiteness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-concordance.html#st-concordance-derived" class="internal"><span class="codenumber">A.4</span> <span class="title">Derived operations and covering complexes</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="st-references.html" class="internal"><span class="title">References</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="st-index.html" class="internal"><span class="title">Index</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="chapter" id="st-c11">
+<h1 class="heading">
+<span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Derived operations on ringed topoi</span>
+</h1>
+<section class="introduction" id="st-c11-2">
+<div class="para" id="st-c11-2-1">A ringed topos has the homological algebra of a Grothendieck category, together with tensor and internal Hom. A morphism introduces a further operation: extension of scalars. Its failure of exactness is independent of the underlying inverse image of sheaves, which remains exact. We construct the derived operations with their target categories visible, then distinguish the existence of a comparison map from conditions making it an isomorphism.</div>
+<div class="para" id="st-c11-2-2">Write <span class="process-math">\(\D(\mathcal O)=\D(\Mod(\mathcal O))\text{.}\)</span> Unless boundedness is stated, this derived category is unbounded. Local statements mean statements after restriction to an epimorphic family of objects of the topos. They do not presume enough points. General resolution and derived-category arguments are used from the <a class="external" href="../homological-algebra/homological-algebra-notes.html" target="_blank">homological algebra note</a>; the constructions specific to sites are explained here.</div></section>
+<section class="section" id="st-c11-resolution-section">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Resolutions and the closed tensor structure</span>
+</h2>
+<article class="definition definition-like" id="st-c11-resolutions"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.1</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c11-resolutions-3-1">A complex <span class="process-math">\(I\)</span> of <span class="process-math">\(\mathcal O\)</span>-modules is <dfn class="terminology">K-injective</dfn> if <span class="process-math">\(\Hom_{\K(\mathcal O)}(A,I)=0\)</span> for every acyclic complex <span class="process-math">\(A\text{.}\)</span> A complex <span class="process-math">\(P\)</span> is <dfn class="terminology">K-flat</dfn> if <span class="process-math">\(A\otimes_{\mathcal O}P\)</span> is acyclic for every acyclic <span class="process-math">\(A\text{.}\)</span> Tensor complexes use direct sums along diagonals and the differential <span class="process-math">\(d(a\otimes p)=da\otimes p+(-1)^{\deg a}a\otimes dp\text{.}\)</span> Hom complexes use products and differential <span class="process-math">\(d(u)=d_Iu-(-1)^{\deg u}ud_K\text{.}\)</span>
+</div>
+</article>
+<article class="theorem theorem-like" id="st-c11-resolution-existence"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c11-resolution-existence-1-1">Every complex of <span class="process-math">\(\mathcal O\)</span>-modules has a quasi-isomorphism to a K-injective complex and a quasi-isomorphism from a K-flat complex with flat terms. K-injective replacements may be chosen functorially. Every bounded below complex of injectives is K-injective, and every bounded above complex of flat modules is K-flat.</div>
+</article>
+<details id="st-c11-resolution-existence-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c11-resolution-existence-2-1">The module category is Grothendieck by <a href="st-c08.html#st-c08-grothendieck" class="xref" data-knowl="./knowl/xref/st-c08-grothendieck.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 8.6">Theorem 8.6</a>, so the general K-injective existence theorem applies. For K-flat replacements, the flat generators associated with objects of a site presentation, from <a href="st-c09.html#st-c09-enoughflat" class="xref" data-knowl="./knowl/xref/st-c09-enoughflat.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 9.12">Theorem 9.12</a>, give compatible bounded above flat resolutions of canonical truncations. Taking their filtered colimit produces the required replacement. The compatibility of those resolutions, rather than a separate resolution of each term, is part of the existence theorem. Precise site formulations are <a class="external" href="https://stacks.math.columbia.edu/tag/07A5" target="_blank">Stacks, §21.19</a> and <a class="external" href="https://stacks.math.columbia.edu/tag/06YL" target="_blank">Lemma 21.17.11</a>. The bounded assertions are the usual bounded resolution criteria.</div>
+</article></details>
+<div class="para" id="st-c11-resolution-section-4">These results hold for arbitrary ring objects on Grothendieck topoi. Their proofs use generators and local epimorphisms, rather than stalks. If a conservative family of points has been supplied, K-flatness can also be tested on the corresponding complexes of stalk modules; see <a class="external" href="https://stacks.math.columbia.edu/tag/06YV" target="_blank">Stacks, Lemma 21.18.6</a>.<a id="st-c11-resolution-section-4-2" href="#margin-st-c11-resolution-section-4-2" class="margin-note-marker" aria-label="Margin note 1">1</a>
+</div>
+<article class="proposition theorem-like" id="st-c11-derived-closed"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="st-c11-derived-closed-4-1">
+<div class="para">For <span class="process-math">\(K,L\in\D(\mathcal O)\text{,}\)</span> choose <span class="process-math">\(P\to K\)</span> K-flat and <span class="process-math">\(L\to I\)</span> K-injective. The formulas</div>
+<div class="displaymath process-math" id="st-c11-derived-closed-4-1-4">
+\begin{equation*}
+K\Ltensor_{\mathcal O}L=P\otimes_{\mathcal O}L,\qquad \RsheafHom_{\mathcal O}(K,L)=\sheafHom_{\mathcal O}^{\bullet}(K,I)
+\end{equation*}
+</div>
+<div class="para">define bifunctors on the derived categories. They give a closed symmetric monoidal structure, with unit <span class="process-math">\(\mathcal O\text{:}\)</span>
+</div>
+<div class="displaymath process-math" id="st-c11-derived-closed-4-1-6">
+\begin{equation*}
+\Hom_{\D(\mathcal O)}(A\Ltensor_{\mathcal O}K,L)\simeq\Hom_{\D(\mathcal O)}(A,\RsheafHom_{\mathcal O}(K,L)).
+\end{equation*}
+</div>
+<div class="para">Global derived Hom is the complex <span class="process-math">\(\RHom_{\mathcal O}(K,L)=\underline{\Hom}^{\bullet}_{\Mod(\mathcal O)}(K,I)\)</span> of abelian groups. It has a natural <span class="process-math">\(\Gamma(\mathcal E,\mathcal O)\)</span>-module structure and satisfies</div>
+<div class="displaymath process-math" id="st-c11-derived-closed-4-1-9">
+\begin{equation*}
+R\Gamma(\mathcal E,\RsheafHom_{\mathcal O}(K,L))\simeq\RHom_{\mathcal O}(K,L).
+\end{equation*}
+</div>
+</div>
+</article>
+<details id="st-c11-derived-closed-5" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c11-derived-closed-5-1">Restriction to a slice <span class="process-math">\(\mathcal E/U\)</span> preserves K-injectives. Indeed, its left adjoint on modules is the exact additive extension obtained by summing over the fibers of <span class="process-math">\(U\text{.}\)</span> Hence internal Hom into <span class="process-math">\(I\)</span> takes a quasi-isomorphism in the source to a quasi-isomorphism, as one checks on sections over generating objects. A quasi-isomorphism between K-injective targets is a homotopy equivalence, proving independence in the other variable.</div>
+<div class="para" id="st-c11-derived-closed-5-2">The complex <span class="process-math">\(\sheafHom^\bullet_{\mathcal O}(P,I)\)</span> is K-injective: Hom into it from an acyclic <span class="process-math">\(A\)</span> equals Hom from <span class="process-math">\(A\otimes_{\mathcal O}P\)</span> into <span class="process-math">\(I\text{,}\)</span> which is acyclic. The tensor–Hom adjunction on complexes therefore computes the asserted derived adjunction and the global comparison. Associativity and the symmetry with sign <span class="process-math">\((-1)^{pq}\)</span> follow using K-flat replacements of all factors. See <a class="external" href="https://stacks.math.columbia.edu/tag/08J7" target="_blank">Stacks, §21.35</a> for the internal construction.</div>
+</article></details>
+<div class="para" id="st-c11-resolution-section-6">Internal Hom is an object of the ringed topos; global Hom is a complex of modules over its ring of global sections. The displayed comparison is derived global sections, not ordinary global sections of an arbitrary representative. Its K-flat-source, K-injective-target representative is one on which ordinary sections suffice.</div>
+</section>
+<section class="section" id="st-c11-morphism-section">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Derived pullback, adjunction, and composition</span>
+</h2>
+<article class="theorem theorem-like" id="st-c11-derived-pullback"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.4</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="st-c11-derived-pullback-3-1">
+<div class="para">Let <span class="process-math">\(f:(\mathcal E,\mathcal O_{\mathcal E})\to(\mathcal F,\mathcal O_{\mathcal F})\)</span> be a morphism of ringed topoi. There are exact functors</div>
+<div class="displaymath process-math" id="st-c11-derived-pullback-3-1-2">
+\begin{equation*}
+Lf^*:\D(\mathcal O_{\mathcal F})\longrightarrow\D(\mathcal O_{\mathcal E}),\qquad Rf_*:\D(\mathcal O_{\mathcal E})\longrightarrow\D(\mathcal O_{\mathcal F})
+\end{equation*}
+</div>
+<div class="para">with <span class="process-math">\(Lf^*\dashv Rf_*\text{.}\)</span> If <span class="process-math">\(P\to K\)</span> is K-flat with flat terms and <span class="process-math">\(L\to I\)</span> is K-injective, they are computed by</div>
+<div class="displaymath process-math" id="st-c11-derived-pullback-3-1-6">
+\begin{equation*}
+Lf^*K=f^*P,\qquad Rf_*L=f_*I.
+\end{equation*}
+</div>
+<div class="para">Equivalently, the pullback is extension of scalars in the derived sense:</div>
+<div class="displaymath process-math" id="st-c11-derived-pullback-3-1-7">
+\begin{equation*}
+Lf^*K=\mathcal O_{\mathcal E}\Ltensor_{f^{-1}\mathcal O_{\mathcal F}}f^{-1}K.
+\end{equation*}
+</div>
+<div class="para">The functor <span class="process-math">\(Lf^*\)</span> is symmetric monoidal and takes the unit to the unit.</div>
+</div>
+</article>
+<details id="st-c11-derived-pullback-4" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c11-derived-pullback-4-1">For the direct image, apply the K-injective construction. For pullback, use the K-flat replacements with flat terms. Pullback preserves this class, and takes quasi-isomorphisms between its objects to quasi-isomorphisms. This is a point-free resolution result for ringed topoi, proved in <a class="external" href="https://stacks.math.columbia.edu/tag/06YV" target="_blank">Stacks, Lemmas 21.18.1–21.18.2</a>. It is what justifies the unbounded formula; exactness of the underlying <span class="process-math">\(f^{-1}\)</span> alone would not justify extension of scalars.</div>
+<div class="para" id="st-c11-derived-pullback-4-2">The derived-adjunction theorem applied to <span class="process-math">\(f^*\dashv f_*\)</span> gives the adjunction; see <a class="external" href="https://stacks.math.columbia.edu/tag/07A5" target="_blank">Stacks, Lemma 21.19.1</a>. Tensor compatibility follows by replacing both factors by K-flat complexes with flat terms: their tensor and their pullbacks remain in that class, and the ordinary scalar-extension isomorphism gives the result.</div>
+</article></details>
+<div class="para" id="st-c11-morphism-section-3">There are natural transformations <span class="process-math">\(Lf^*K\to f^*K\)</span> and <span class="process-math">\(f_*L\to Rf_*L\)</span> for actual complexes. On modules, the degree-zero functors are the original functors. If <span class="process-math">\(f\)</span> is flat in the sense of <a href="st-c09.html#st-c09-flat-morphism" class="xref" data-knowl="./knowl/xref/st-c09-flat-morphism.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 9.15: Flat ringed morphisms and relative flatness">Definition 9.15</a>, then <span class="process-math">\(Lf^*=f^*\)</span> on the entire derived category. A right derived image is left t-exact; derived pullback is right t-exact. Our terminology means that <span class="process-math">\(Rf_*\)</span> preserves complexes with no negative cohomology, and <span class="process-math">\(Lf^*\)</span> preserves complexes with no positive cohomology.<a id="st-c11-morphism-section-3-8" href="#margin-st-c11-morphism-section-3-8" class="margin-note-marker" aria-label="Margin note 2">2</a>
+</div>
+<article class="proposition theorem-like" id="st-c11-composition"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="st-c11-composition-1-1">
+<div class="para">For composable ringed morphisms <span class="process-math">\(f:\mathcal E\to\mathcal F\)</span> and <span class="process-math">\(g:\mathcal F\to\mathcal G\text{,}\)</span> there are natural isomorphisms</div>
+<div class="displaymath process-math" id="st-c11-composition-1-1-3">
+\begin{equation*}
+Lf^*Lg^*\simeq L(gf)^*,\qquad Rg_*Rf_*\simeq R(gf)_*.
+\end{equation*}
+</div>
+<div class="para">They respect units, counits, and a third composition.</div>
+</div>
+</article>
+<details id="st-c11-composition-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c11-composition-2-1">A K-flat resolution with flat terms on <span class="process-math">\(\mathcal G\)</span> remains such a complex after applying <span class="process-math">\(g^*\text{,}\)</span> so both pullbacks are computed by the same ordinary composite. The two right derived images are right adjoint to the isomorphic left adjoints, hence are canonically isomorphic. Uniqueness of the adjoint isomorphism proves the compatibility statements. See <a class="external" href="https://stacks.math.columbia.edu/tag/07A5" target="_blank">Stacks, Lemma 21.19.2</a>.</div>
+</article></details>
+<div class="para" id="st-c11-morphism-section-5">In a general ringed situation, <span class="process-math">\(f_*\)</span> need not preserve injectives or K-injectives as <span class="process-math">\(\mathcal O_{\mathcal F}\)</span>-module complexes, because its left adjoint <span class="process-math">\(f^*\)</span> need not be exact. The composition proof therefore uses the derived adjunction. It does not copy the stronger preservation assertion valid for exact fixed-coefficient inverse images in Note I.</div>
+<article class="example example-like" id="st-c11-ring-example"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.6</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c11-ring-example-1-1">For a ring homomorphism <span class="process-math">\(A\to B\text{,}\)</span> regard both ringed topoi as the one-point topos. Then <span class="process-math">\(Lf^*=B\Ltensor_A(-)\)</span> and <span class="process-math">\(Rf_*\)</span> is ordinary restriction of scalars. For <span class="process-math">\(A=\Z\text{,}\)</span> <span class="process-math">\(B=\Z/p\Z\text{,}\)</span> and <span class="process-math">\(K=B\text{,}\)</span> the pullback has cohomology <span class="process-math">\(B\)</span> in degrees <span class="process-math">\(-1,0\text{.}\)</span>
+</div>
+<div class="solutions">
+<details id="st-c11-ring-example-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="st-c11-ring-example-2-1">Use the two-term free resolution <span class="process-math">\([\Z\xrightarrow{p}\Z]\)</span> in degrees <span class="process-math">\(-1,0\text{.}\)</span> Tensoring with <span class="process-math">\(B\)</span> makes its differential zero. Ordinary extension of scalars sees only degree zero. Restriction of scalars is exact, which explains its underived formula in this example.</div>
+</div></details>
+</div>
+</article></section>
+<section class="section" id="st-c11-cohomology-section">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Cohomology without stalks</span>
+</h2>
+<article class="definition definition-like" id="st-c11-cohomology"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.7</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="st-c11-cohomology-3-1">
+<div class="para">Let <span class="process-math">\(A=\Gamma(\mathcal E,\mathcal O)\text{.}\)</span> Define</div>
+<div class="displaymath process-math" id="st-c11-cohomology-3-1-2">
+\begin{equation*}
+R\Gamma(\mathcal E,-):\D(\mathcal O)\longrightarrow\D(A),\qquad H^n(\mathcal E,K)=H^n(R\Gamma(\mathcal E,K)).
+\end{equation*}
+</div>
+<div class="para">For an object <span class="process-math">\(U\)</span> of <span class="process-math">\(\mathcal E\text{,}\)</span> write <span class="process-math">\(H^n(U,K)\)</span> for derived sections of <span class="process-math">\(K|_U\)</span> in the slice ringed topos. A terminal object in a chosen site presentation is not needed: the topos itself has its terminal object.</div>
+</div>
+</article>
+<div class="para" id="st-c11-cohomology-section-3">An injective resolution computes cohomology of a module. A K-injective replacement computes unbounded hypercohomology. Restriction to a slice preserves K-injectives, so the same replacement computes sections over every object. On a site presentation and for a module <span class="process-math">\(M\text{,}\)</span> a positive-degree class in <span class="process-math">\(H^q(U,M)\)</span> vanishes after passing to a covering of <span class="process-math">\(U\text{.}\)</span> Indeed, a cocycle in an injective resolution is locally a boundary because the resolution is exact as a sheaf complex. This is the version of locality that does not mention points.</div>
+<div class="para" id="st-c11-cohomology-section-4">For modules and bounded below complexes, forgetting the ring action gives the same cohomology as in <span class="process-math">\(\Ab(\mathcal E)\text{.}\)</span> The reason is acyclicity: injective module sheaves are acyclic for sections on objects after forgetting coefficients. This is <a class="external" href="https://stacks.math.columbia.edu/tag/03FA" target="_blank">Stacks, §21.12</a>. It does not assert that forgetting coefficients preserves injective objects. It allows the bounded below descent theorem in <a href="st-c12.html" class="internal" title="Chapter 12: Hypercovers and cohomological descent">Chapter 12</a> to apply to ringed coefficients as well.</div>
+<article class="proposition theorem-like" id="st-c11-spectral-sequences"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.8</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="st-c11-spectral-sequences-1-1">
+<div class="para">For <span class="process-math">\(K\in\D^+(\mathcal O)\text{,}\)</span> there is a spectral sequence</div>
+<div class="displaymath process-math" id="st-c11-spectral-sequences-1-1-2">
+\begin{equation*}
+E_2^{p,q}=H^p(\mathcal E,\mathcal H^q(K))\ \Longrightarrow\ H^{p+q}(\mathcal E,K),\qquad p\geq0.
+\end{equation*}
+</div>
+<div class="para">For a ringed morphism <span class="process-math">\(f:\mathcal E\to\mathcal F\)</span> and a module <span class="process-math">\(M\text{,}\)</span> the Leray spectral sequence is</div>
+<div class="displaymath process-math" id="st-c11-spectral-sequences-1-1-5">
+\begin{equation*}
+E_2^{p,q}=H^p(\mathcal F,R^qf_*M)\ \Longrightarrow\ H^{p+q}(\mathcal E,M).
+\end{equation*}
+</div>
+<div class="para">Here global scalar actions are restricted along <span class="process-math">\(\Gamma(\mathcal F,\mathcal O_{\mathcal F})\to\Gamma(\mathcal E,\mathcal O_{\mathcal E})\)</span> when necessary. Both sequences have finite filtrations on each abutment degree. There is also a local-to-global Ext spectral sequence</div>
+<div class="displaymath process-math" id="st-c11-spectral-sequences-1-1-7">
+\begin{equation*}
+H^p(\mathcal E,\mathcal E xt^q_{\mathcal O}(M,N))\ \Longrightarrow\ \Ext^{p+q}_{\Mod(\mathcal O)}(M,N).
+\end{equation*}
+</div>
+</div>
+</article>
+<details id="st-c11-spectral-sequences-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c11-spectral-sequences-2-1">Apply derived sections to canonical truncation triangles for the first sequence. For Leray use the composition comparison with derived sections, including restriction of global scalars, and the Grothendieck spectral-sequence theorem. For Ext apply the first sequence to <span class="process-math">\(\RsheafHom_{\mathcal O}(M,N)\text{,}\)</span> which is bounded below, and use <a href="st-c11.html#st-c11-derived-closed" class="xref" data-knowl="./knowl/xref/st-c11-derived-closed.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 11.3">Proposition 11.3</a>. The point-free acyclicity needed for the composition is established in <a class="external" href="https://stacks.math.columbia.edu/tag/01FQ" target="_blank">Stacks, §§21.12–21.14</a>. Boundedness below gives the finite-diagonal convergence used in each case.</div>
+</article></details>
+<div class="para" id="st-c11-cohomology-section-6">Cohomology sheaves and these spectral sequences are intrinsic to the ringed topos. A site is used to describe covering families, generators, and local resolutions. Changing to an equivalent site presentation transports all these constructions through the corresponding exact equivalence of module categories.</div>
+</section>
+<section class="section" id="st-c11-finiteness-section">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Finite complexes, pseudo-coherence, and Tor amplitude</span>
+</h2>
+<article class="definition definition-like" id="st-c11-pseudocoherent"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.9</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c11-pseudocoherent-4-1">A complex is <dfn class="terminology">strictly perfect</dfn> if it has finitely many nonzero terms and each term is a direct summand of a finite free module. For <span class="process-math">\(m\in\Z\text{,}\)</span> an object <span class="process-math">\(K\in\D(\mathcal O)\)</span> is <dfn class="terminology"><span class="process-math">\(m\)</span>-pseudo-coherent</dfn> if locally there is a strictly perfect complex <span class="process-math">\(P\)</span> and a morphism <span class="process-math">\(P\to K\)</span> inducing an isomorphism on <span class="process-math">\(\mathcal H^j\)</span> for <span class="process-math">\(j&gt;m\)</span> and an epimorphism for <span class="process-math">\(j=m\text{.}\)</span> It is <dfn class="terminology">pseudo-coherent</dfn> if this holds for every <span class="process-math">\(m\text{.}\)</span> The coverings and approximations may depend on <span class="process-math">\(m\text{.}\)</span>
+</div> 
+<div class="para" id="st-c11-pseudocoherent-4-2">An object has <dfn class="terminology">Tor amplitude in <span class="process-math">\([a,b]\)</span></dfn> if <span class="process-math">\(\mathcal H^i(K\Ltensor_{\mathcal O}M)=0\)</span> for every module <span class="process-math">\(M\)</span> and every <span class="process-math">\(i\notin[a,b]\text{.}\)</span> It has <dfn class="terminology">locally finite Tor amplitude</dfn> if locally such an interval exists, with endpoints allowed to vary.</div>
+</article>
+<div class="para" id="st-c11-finiteness-section-3">The definition asks for finite approximations near the upper end of a complex, to every prescribed depth. It does not require one global resolution or one covering that works for all depths. The use of finite projective summands, rather than only finite free terms, agrees with the general ringed-site convention in <a class="external" href="https://stacks.math.columbia.edu/tag/08FK" target="_blank">Stacks, §21.44</a> and <a class="external" href="https://stacks.math.columbia.edu/tag/08FS" target="_blank">§21.45</a>.<a id="st-c11-finiteness-section-3-3" href="#margin-st-c11-finiteness-section-3-3" class="margin-note-marker" aria-label="Margin note 3">3</a>
+</div>
+<article class="definition definition-like" id="st-c11-perfect"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.10</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c11-perfect-2-1">An object <span class="process-math">\(K\in\D(\mathcal O)\)</span> is <dfn class="terminology">perfect</dfn> if locally it is isomorphic to a strictly perfect complex. Write <span class="process-math">\(\Perf(\mathcal O)\)</span> for the resulting full subcategory.</div>
+</article>
+<article class="theorem theorem-like" id="st-c11-perfect-criteria"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.11</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="st-c11-perfect-criteria-1-1">
+<div class="para">An object is perfect if and only if it is pseudo-coherent and has locally finite Tor amplitude. Equivalently, it is dualizable in the symmetric monoidal category <span class="process-math">\(\D(\mathcal O)\text{.}\)</span> Its dual is</div>
+<div class="displaymath process-math" id="st-c11-perfect-criteria-1-1-2">
+\begin{equation*}
+K^\vee=\RsheafHom_{\mathcal O}(K,\mathcal O),
+\end{equation*}
+</div>
+<div class="para">and for every <span class="process-math">\(L\)</span> the evaluation comparison is an isomorphism</div>
+<div class="displaymath process-math" id="st-c11-perfect-criteria-1-1-4">
+\begin{equation*}
+K^\vee\Ltensor_{\mathcal O}L\xrightarrow{\sim}\RsheafHom_{\mathcal O}(K,L).
+\end{equation*}
+</div>
+<div class="para">Perfect objects are closed under shifts, cones, tensor products, duals, and direct summands. Derived pullback preserves them.</div>
+</div>
+</article>
+<details id="st-c11-perfect-criteria-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c11-perfect-criteria-2-1">There is a global canonical tensor–Hom comparison in the displayed direction. On a strictly perfect model, tensor and internal Hom are computed termwise and finite-projective duality makes it an isomorphism with the cochain signs. For a perfect object the comparison is therefore an isomorphism locally, hence globally, since its cone has zero cohomology locally. Thus <span class="process-math">\(K^\vee\Ltensor(-)\)</span> is the right adjoint of tensoring with <span class="process-math">\(K\text{.}\)</span> This formal adjunction gives its duality data and their triangle identities. No gluing of arbitrary local derived morphisms is being assumed. Conversely, dualizability implies perfectness by <a class="external" href="https://stacks.math.columbia.edu/tag/0FPP" target="_blank">Stacks, Lemma 21.48.7</a>.</div>
+<div class="para" id="st-c11-perfect-criteria-2-2">The finite-approximation criterion is <a class="external" href="https://stacks.math.columbia.edu/tag/08G4" target="_blank">Stacks, Lemmas 21.47.3–21.47.4</a>. Its mechanism is to approximate below the lowest possible tensor cohomology degree; the Tor vanishing makes the remaining endpoint cokernel flat, and finite presentation makes that module locally a finite projective summand. The finite resolution can then be truncated there. Closure and pullback follow from these local models and the equivalent duality criterion; the detailed local replacement of morphisms by maps between finite models is part of the cited strictly-perfect results.</div>
+</article></details>
+<div class="para" id="st-c11-finiteness-section-6">A perfect object need not be globally cohomologically bounded when the topos is not quasi-compact. On the discrete space <span class="process-math">\(\N\)</span> with coefficient field <span class="process-math">\(k\text{,}\)</span> prescribe <span class="process-math">\(K|_{\{n\}}=k[-n]\text{.}\)</span> Every restriction to a point is strictly perfect, but <span class="process-math">\(\mathcal H^n(K)\)</span> is nonzero for arbitrarily large <span class="process-math">\(n\text{.}\)</span> A quasi-compactness hypothesis can turn local bounds into uniform bounds; the definitions themselves do not include it.</div>
+<article class="proposition theorem-like" id="st-c11-coherent-derived"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.12</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c11-coherent-derived-2-1">Write <span class="process-math">\(\D^b_{\mathrm{coh}}(\mathcal O)\)</span> for the full subcategory of <span class="process-math">\(\D(\mathcal O)\)</span> with bounded coherent cohomology objects, using the intrinsic coherence of <a href="st-c10.html#st-c10-coherent" class="xref" data-knowl="./knowl/xref/st-c10-coherent.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 10.4: Coherent modules">Definition 10.4</a>. It is closed under shifts and cones. If <span class="process-math">\(\mathcal O\)</span> is coherent, an object of <span class="process-math">\(\D^-(\mathcal O)\)</span> is pseudo-coherent exactly when all its cohomology objects are coherent. In particular every object of <span class="process-math">\(\D^b_{\mathrm{coh}}(\mathcal O)\)</span> is then pseudo-coherent. It is perfect precisely when it additionally has locally finite Tor amplitude.</div>
+</article>
+<details id="st-c11-coherent-derived-3" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c11-coherent-derived-3-1">Coherent modules are closed under kernels and cokernels of morphisms between them, and under extensions. Apply these properties to the long exact sequence of cohomology to obtain the first assertion.</div>
+<div class="para" id="st-c11-coherent-derived-3-2">Suppose now that the ring object is coherent and that <span class="process-math">\(K\)</span> is bounded above with coherent cohomology. To construct an approximation through degree <span class="process-math">\(m\text{,}\)</span> start at the largest degree with nonzero cohomology, choose finitely many local generators, and lift them to cycles in a representative of <span class="process-math">\(K\text{.}\)</span> These choices are possible after a covering. The corresponding map from a shifted finite free module surjects onto the top cohomology. Its cone has its new top cohomology an extension of the next coherent cohomology object by the kernel of that finite free surjection; this is coherent. Repeat this finite procedure down to degree <span class="process-math">\(m\text{.}\)</span> Attaching the shifted finite free modules gives the required strictly perfect approximation. Only finitely many choices of covering are needed for any fixed <span class="process-math">\(m\text{.}\)</span>
+</div>
+<div class="para" id="st-c11-coherent-derived-3-3">Conversely, approximate a pseudo-coherent <span class="process-math">\(K\)</span> below any given degree. It agrees in that degree with the cohomology of a strictly perfect complex. Finite free modules, their summands, and kernels and cokernels between coherent modules are coherent, so that cohomology object is coherent. The final assertion is <a href="st-c11.html#st-c11-perfect-criteria" class="xref" data-knowl="./knowl/xref/st-c11-perfect-criteria.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 11.11">Theorem 11.11</a>.</div>
+</article></details>
+<div class="para" id="st-c11-finiteness-section-8">The exact inclusion <span class="process-math">\(\Coh(\mathcal O)\to\Mod(\mathcal O)\)</span> induces a functor <span class="process-math">\(\D^b(\Coh(\mathcal O))\to\D^b_{\mathrm{coh}}(\mathcal O)\text{.}\)</span> We have not identified it with an equivalence: comparison of Ext groups and the existence of suitable coherent representatives are further questions. Also, this intrinsic definition is not a replacement for a geometry-specific coherent category on a big stack site; see <a href="st-c10.html#st-c10-stack-caveat" class="xref" data-knowl="./knowl/xref/st-c10-stack-caveat.html" data-reveal-label="Reveal" data-close-label="Close" title="Remark 10.20">Remark 10.20</a>.</div>
+<article class="example example-like" id="st-c11-coherent-not-perfect"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.13</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c11-coherent-not-perfect-1-1">For <span class="process-math">\(A=k[\epsilon]/(\epsilon^2)\text{,}\)</span> the module <span class="process-math">\(k=A/(\epsilon)\)</span> is coherent and pseudo-coherent, but not perfect.</div>
+<div class="solutions">
+<details id="st-c11-coherent-not-perfect-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="st-c11-coherent-not-perfect-2-1">The finite-dimensional algebra is Noetherian. A free resolution of <span class="process-math">\(k\)</span> continues indefinitely with multiplication by <span class="process-math">\(\epsilon\text{.}\)</span> Tensoring with <span class="process-math">\(k\)</span> makes all these differentials zero, so <span class="process-math">\(\Tor^A_i(k,k)=k\)</span> for every <span class="process-math">\(i\geq0\text{.}\)</span> No finite Tor interval exists. This separates bounded coherent cohomology from perfectness, even on a one-point ringed topos.</div>
+</div></details>
+</div>
+</article>
+<div class="para" id="st-c11-finiteness-section-10">Tor bounds also explain preservation of boundedness. If <span class="process-math">\(P\)</span> has Tor amplitude <span class="process-math">\([a,b]\)</span> and <span class="process-math">\(L\)</span> has cohomology in <span class="process-math">\([c,d]\text{,}\)</span> then <span class="process-math">\(P\Ltensor L\)</span> has cohomology in <span class="process-math">\([a+c,b+d]\text{.}\)</span> Use the finite truncation filtration of <span class="process-math">\(L\text{.}\)</span> If <span class="process-math">\(\mathcal O\)</span> is coherent and the two objects are pseudo-coherent, their tensor is pseudo-coherent, so boundedness gives coherent cohomology. Similarly, for a ringed morphism between coherent ringed topoi, a uniform finite Tor bound for <span class="process-math">\(Lf^*\)</span> makes it preserve <span class="process-math">\(\D^b_{\mathrm{coh}}\text{.}\)</span> Pullback preserves pseudo-coherence by pulling back its finite approximations.</div>
+<div class="para" id="st-c11-finiteness-section-11">Direct image requires different hypotheses. For the one-point ring map <span class="process-math">\(k\to k[t]\text{,}\)</span> restriction of scalars sends the perfect module <span class="process-math">\(k[t]\)</span> to an infinite-dimensional <span class="process-math">\(k\)</span>-vector space. Thus even exact direct image need not preserve coherence or perfectness. Properness and finiteness theorems in algebraic or analytic geometry are substantive extra inputs.</div>
+</section>
+<section class="section" id="st-c11-comparison-section">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Comparison maps and sufficient conditions</span>
+</h2>
+<article class="proposition theorem-like" id="st-c11-comparison-maps"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.14</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="st-c11-comparison-maps-1-1">
+<div class="para">For a ringed morphism <span class="process-math">\(f:\mathcal E\to\mathcal F\text{,}\)</span> there is a natural projection morphism</div>
+<div class="displaymath process-math" id="st-c11-comparison-maps-1-1-2">
+\begin{equation*}
+Rf_*L\Ltensor_{\mathcal O_{\mathcal F}}K\longrightarrow Rf_*(L\Ltensor_{\mathcal O_{\mathcal E}}Lf^*K).
+\end{equation*}
+</div>
+<div class="para">It is an isomorphism whenever <span class="process-math">\(K\)</span> is perfect. The natural internal-Hom comparison</div>
+<div class="displaymath process-math" id="st-c11-comparison-maps-1-1-4">
+\begin{equation*}
+Lf^*\RsheafHom(K,N)\longrightarrow\RsheafHom(Lf^*K,Lf^*N)
+\end{equation*}
+</div>
+<div class="para">is likewise an isomorphism when <span class="process-math">\(K\)</span> is perfect.</div>
+</div>
+</article>
+<details id="st-c11-comparison-maps-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para logical" id="st-c11-comparison-maps-2-1">
+<div class="para">The projection morphism is adjoint to the tensor of the counit <span class="process-math">\(Lf^*Rf_*L\to L\)</span> with <span class="process-math">\(Lf^*K\text{,}\)</span> using tensor compatibility of pullback. If <span class="process-math">\(K\)</span> is dualizable, maps from a test object <span class="process-math">\(T\)</span> into its source are successively</div>
+<div class="displaymath process-math" id="st-c11-comparison-maps-2-1-5">
+\begin{equation*}
+\Hom(T\Ltensor K^\vee,Rf_*L)\simeq\Hom(Lf^*T\Ltensor Lf^*K^\vee,L)\simeq\Hom(Lf^*T,L\Ltensor Lf^*K).
+\end{equation*}
+</div>
+<div class="para">These are maps from <span class="process-math">\(T\)</span> into the target. The identifications are induced by the displayed comparison, so Yoneda proves it is an isomorphism. This is the projection formula of <a class="external" href="https://stacks.math.columbia.edu/tag/0943" target="_blank">Stacks, Lemma 21.50.1</a>. The Hom comparison is adjoint to pulled-back evaluation; for perfect <span class="process-math">\(K\)</span> it becomes the isomorphism obtained by pulling back <span class="process-math">\(K^\vee\Ltensor N\text{.}\)</span>
+</div>
+</div>
+</article></details>
+<div class="para logical" id="st-c11-comparison-section-3">
+<div class="para">For a square of ringed morphisms with <span class="process-math">\(fg'=gf'\text{,}\)</span> where <span class="process-math">\(f:\mathcal E\to\mathcal F\text{,}\)</span> <span class="process-math">\(g:\mathcal F'\to\mathcal F\text{,}\)</span> <span class="process-math">\(g':\mathcal E'\to\mathcal E\text{,}\)</span> and <span class="process-math">\(f':\mathcal E'\to\mathcal F'\text{,}\)</span> the base change morphism is</div>
+<div class="displaymath process-math" id="st-c11-comparison-section-3-6">
+\begin{equation*}
+Lg^*Rf_*L\longrightarrow Rf'_*Lg'^*L.
+\end{equation*}
+</div>
+<div class="para">It is adjoint to <span class="process-math">\(Lf'^*Lg^*Rf_*L\simeq Lg'^*Lf^*Rf_*L\to Lg'^*L\text{.}\)</span> The construction uses the commutativity identification of the square and the counit. It does not require an isomorphism theorem. Its compatibility with composing squares follows from the unit–counit identities; see <a class="external" href="https://stacks.math.columbia.edu/tag/07A5" target="_blank">Stacks, Remarks 21.19.3–21.19.5</a>.</div>
+</div>
+<article class="example example-like" id="st-c11-basechange-failure"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">11.15</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c11-basechange-failure-1-1">A cartesian square of ringed topoi need not have an invertible derived base change morphism.</div>
+<div class="solutions">
+<details id="st-c11-basechange-failure-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="st-c11-basechange-failure-2-1">
+<div class="para">Use one-point topoi, with rings <span class="process-math">\(A=\Z\text{,}\)</span> <span class="process-math">\(B=A'=\Z/p\Z\text{,}\)</span> and <span class="process-math">\(B'=B\otimes_A A'=\Z/p\Z\text{.}\)</span> For the source unit <span class="process-math">\(L=B\text{,}\)</span> the comparison is</div>
+<div class="displaymath process-math" id="st-c11-basechange-failure-2-1-5">
+\begin{equation*}
+A'\Ltensor_A B\longrightarrow B'.
+\end{equation*}
+</div>
+<div class="para">The source has nonzero cohomology in degree <span class="process-math">\(-1\text{,}\)</span> while the target is in degree zero. The missing condition in this example is Tor independence. A geometric base change theorem must provide conditions that remove this obstruction and any separate obstruction to commuting direct image with pullback.</div>
+</div>
+</div></details>
+</div>
+</article>
+<div class="para" id="st-c11-comparison-section-5">Thus the general ringed-topos theory supplies derived adjunctions, tensor and Hom, and specified comparison morphisms. Preservation of a coherent subcategory and invertibility of base change are additional assertions with their own hypotheses. These distinctions remain necessary when the ringed topos comes from a familiar geometric site.</div>
+</section></section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="st-c10.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Top</span></a><a class="next-button button" href="st-c12.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a>
+</div></main>
+<div class="margin-notes" role="complementary" aria-label="Margin notes">
+<aside id="margin-st-c11-resolution-section-4-2" class="aside aside-like margin-note" data-margin-anchor="st-c11-resolution-section-4" data-margin-label="1" data-margin-inline="true"><h4 class="heading"><a href="#st-c11-resolution-section-4" class="margin-note-label">1</a></h4>
+<div class="para">Without enough points, a statement about all existing stalks need not detect exactness. The existence theorem is independent of that detection method. Also, unbounded complexes with injective or flat terms need not be K-injective or K-flat; an explicit example is in <a class="external" href="../sheaves-topological/sh-c07.html" target="_blank">Note I, Chapter 7</a>.
+</div></aside><aside id="margin-st-c11-morphism-section-3-8" class="aside aside-like margin-note" data-margin-anchor="st-c11-morphism-section-3" data-margin-label="2" data-margin-inline="true"><h4 class="heading"><a href="#st-c11-morphism-section-3" class="margin-note-label">2</a></h4>
+<div class="para">For sheaves, negative cohomology of a derived pullback records Tor. Positive cohomology of a derived direct image records the failure of sections over inverse images to be exact. Their degree conventions are opposite.
+</div></aside><aside id="margin-st-c11-finiteness-section-3-3" class="aside aside-like margin-note" data-margin-anchor="st-c11-finiteness-section-3" data-margin-label="3" data-margin-inline="true"><h4 class="heading"><a href="#st-c11-finiteness-section-3" class="margin-note-label">3</a></h4>
+<div class="para">A finite projective module is a direct summand of a finite free module, but need not be free on a one-point ringed topos. On locally ringed spaces, finite projective summands become finite locally free after an open localization. A convention silently requiring free terms on every general ringed topos would exclude legitimate perfect objects.
+</div></aside>
+</div>
+</div>
+<footer id="site-copyright" class="site-copyright"><p>© 2026 Jie Fu. All rights reserved.</p></footer>
+</body>
+</html>

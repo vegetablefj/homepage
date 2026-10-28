@@ -1,6 +1,8 @@
 # Writing and maintaining notes
 
-These instructions apply to the production project at `D:\homepage`. Paths below are relative to that directory. The website interface and the mathematical examples are in English; [NOTES_cn.md](NOTES_cn.md) explains the same procedure in Chinese.
+For mathematical exposition and language, use the [writing prompts](prompts/README.md), especially [Study notes](prompts/study-notes.md) and [Language and word preferences](prompts/style-reference.md). This file documents the site's PreTeXt implementation.
+
+These instructions apply to the production project at `D:\homepage`. Paths below are relative to that directory. The website interface and the mathematical examples are in English.
 
 ## Editable sources
 
@@ -23,7 +25,7 @@ These instructions apply to the production project at `D:\homepage`. Paths below
 | `source/notes-list.ptx` | Visible entries on the Notes page |
 | `source/selected-notes-list.ptx` | Separate Home selection, currently empty |
 
-The active targets are `web` for the homepage, and nine independent `note-*` targets listed in `project.ptx`. Only category theory, cubic fourfold rationality, Nagata, and Fujita currently have entries on the Notes page. Toric geometry, hyperkähler geometry, cubic fourfolds and K3 structures, homological algebra, and hyperkähler SYZ are built and uploaded but temporarily unlisted. Home's Selected Notes selection remains empty. Each note uses the shared `note-html.xsl`, layout, header, and navigation. Edit the sources, then run `.\Rebuild.ps1`. Generated HTML and shared static assets are written at the project root. The ignored `.build/cache`, `.build/tmp`, and `.build/reports` directories hold runtime files and reports. See [README.md](README.md) for setup and the current visibility choices.
+The active targets are `web` for the homepage, and independent `note-*` targets listed in `project.ptx`. Only category theory, cubic fourfold rationality, Nagata, and Fujita currently have entries on the Notes page. Toric geometry, hyperkähler geometry, cubic fourfolds and K3 structures, homological algebra, and hyperkähler SYZ are built and uploaded but temporarily unlisted. Home's Selected Notes selection remains empty. Each note uses the shared `note-html.xsl`, layout, header, and navigation. Edit the sources, then run `.\Rebuild.ps1`. Generated HTML and shared static assets are written at the project root. The ignored `.build/cache`, `.build/tmp`, and `.build/reports` directories hold runtime files and reports. See [README.md](README.md) for setup and the current visibility choices.
 
 The four examples `source/notes/affine-basics.ptx`, `divisors-p1.ptx`, `finite-maps.ptx`, and `projective-line.ptx` remain available to copy. They are absent from the production targets and public listings. The three older PDF notes remain in `pdfs/`, without listing entries.
 
@@ -87,9 +89,11 @@ Create the included files before building. A chapter file has a `chapter` root:
 
 Add `section`, `subsection`, and `subsubsection` as needed. IDs must be unique across all included files of a note. Keep them stable when changing titles or moving content: references and saved links use the IDs.
 
-### Preface
+### Preface, appendices, and references
 
-Use native `frontmatter` and `preface` elements for a preface. Add the include below to an existing `frontmatter`, preserving its `bibinfo` (including author metadata) and `titlepage`. If none exists, create one before the chapter includes; do not create a second `frontmatter`.
+When creating or substantially revising a note, use the order **Preface → main body → Appendix → References**. The [study-note guide](prompts/study-notes.md) specifies the author's requirements for these parts and for treating supporting theories either as precise black boxes or through a complete development of the required material.
+
+Use native `frontmatter` and `preface` elements for the preface. Add the include below to an existing `frontmatter`, preserving its `bibinfo` (including author metadata) and `titlepage`. If none exists, create one before the chapter includes; do not create a second `frontmatter`. This is an insertion fragment, not a complete note:
 
 ~~~xml
 <frontmatter>
@@ -97,16 +101,31 @@ Use native `frontmatter` and `preface` elements for a preface. Add the include b
 </frontmatter>
 ~~~
 
-The separate `preface.ptx` has this outline:
+The included `preface.ptx` has a `preface` root, a `title`, and actual content blocks such as `p`. Adapt the [Preface template](prompts/study-notes.md#preface-template): start with the mathematical objects, properties, and questions, using notation and useful theorem statements. Then explain the background and literature, scope and level of detail, organizing ideas, chapter route, related reading, plans for updates, and AI assistance. Use the parts that fit the note and its sources. A [structure map](#chapter-and-proof-diagrams) can follow the chapter route, before related reading; a linear route usually needs only prose. Write the actual preface before including the file in a public note.
+
+The pinned PreTeXt schema accepts `paragraphs` in a preface, but not a native `theorem` element there. For an unnumbered theorem statement in the preface, use a titled `paragraphs` block:
 
 ~~~xml
-<preface xml:id="my-note-preface">
-  <title>Preface</title>
-  <!-- Add the supplied preface here. -->
-</preface>
+<paragraphs xml:id="my-note-preface-theorem">
+  <title>Theorem</title>
+  <p>[Precise statement, with hypotheses and attribution.]</p>
+</paragraphs>
 ~~~
 
-The comment is not preface content: the native schema requires at least one content block, such as `<p>`, before building. Retain the `xi` namespace declaration on the book's `pretext` root. A preface is independent of the bibliography and the shared note header. The user will provide a preface template later; until then, do not add placeholder prefaces to public notes.
+Use native `m` and displayed mathematics in the statement. Link to the source or to a numbered theorem in the body, keeping repeated statements consistent. Use the body's native theorem ID for references to that numbered result.
+
+Place any native `appendix` elements after the main chapters, inside `backmatter`, followed by native `references`. These may also be separate included files:
+
+~~~xml
+<backmatter>
+  <xi:include href="appendix-a.ptx"/>
+  <xi:include href="references.ptx"/>
+</backmatter>
+~~~
+
+Include files containing the corresponding content and merge them into the existing `backmatter`. Retain the `xi` namespace declaration on the book's `pretext` root. Apply these conventions to each note's existing structure.
+
+In the displayed contents and navigation, list each appendix, References, and any Index directly alongside the chapters, without a separate **Back Matter** heading or landing page. Keep the native `backmatter` container in the source. The shared stylesheet already flattens bibliography-only back matter. Apply the same display treatment to other notes as they are revised, checking chapter links, search results, and previous/next navigation. An optional index may follow the references.
 
 ## Statements, proofs, and mathematics
 
@@ -147,6 +166,108 @@ Use `number="no"` for an unnumbered display. Define additional mathematical macr
 
 The category theory draft uses native `latex-image` elements with `tikz-cd`; see `source/notes/category-theory/diagram-naturality.ptx` and `diagram-transformation.ptx`. The book's `docinfo/latex-image-preamble` loads `tikz-cd`. Use `\amp` as the cell separator in XML. `.\Rebuild.ps1` detects these images and generates changed assets before building their note. This step needs a working TeX installation with `tikz-cd`; the generated SVGs preserve curved arrows and double arrows. Keep captions and alternative text in the source.
 
+### Chapter and proof diagrams
+
+Follow the [study-note guide](prompts/study-notes.md#optional-dependency-diagram) for the map's content, arrows, and relation to the chapter route. A linear route usually needs only prose. Branches may meet again, so use a tree only when the dependencies form a tree. The examples below cover rendering and links.
+
+PreTeXt supports both [Mermaid and TikZ images](https://pretextbook.org/doc/guide/html/topic-images.html). Mermaid is convenient for text labels and automatic layout. Use TikZ when the diagram contains formulas or needs precise positioning. Both have been tested with this project's pinned PreTeXt version.
+
+**Mermaid.** In a `preface`, insert a native `image` after the chapter route and before related reading. The current schema permits `image` directly in a preface, but not `figure`. In a chapter or section, a numbered figure can wrap the image, with `caption` before `image`.
+
+~~~xml
+<image xml:id="note-route" width="90%">
+  <description><p>Definitions lead to two constructions, both used
+    in the main theorem.</p></description>
+  <mermaid label="note-route-mermaid"><![CDATA[
+flowchart TD
+    A["Definitions"] --> B["Construction A"]
+    A --> C["Construction B"]
+    B --> D["Main theorem"]
+    C --> D
+]]></mermaid>
+</image>
+~~~
+
+Give the image a unique `xml:id` and the Mermaid source a unique `label`. `CDATA` keeps the diagram syntax separate from XML escaping. Keep labels short, provide a description, and check the diagram at a narrow page width. Use native `xref` elements in the surrounding prose to link to chapters or results; Mermaid text does not resolve PreTeXt references. Mermaid's own `click` links work in the current HTML output, but use literal URLs that must be maintained separately.
+
+Keep the default Mermaid theme unless another value is accepted by the pinned publisher options, and check the build log for fallback messages. HTML currently loads Mermaid from a CDN. Static Mermaid assets for PDF output require Mermaid CLI (`mmdc`) and a separate generation step; the site's rebuild command currently generates only `latex-image` assets automatically.
+
+**TikZ.** Add these lines to the existing `docinfo/latex-image-preamble`:
+
+~~~latex
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+~~~
+
+Use the same `image` structure, with a `latex-image` in place of `mermaid`:
+
+~~~xml
+<latex-image><![CDATA[
+\begin{tikzpicture}[
+  every node/.style={draw, align=center, inner sep=5pt},
+  every path/.style={draw, -{Latex[length=2mm]}}
+]
+\node (a) at (0,0) {Definitions};
+\node (b) at (-2,-1.2) {Construction A};
+\node (c) at (2,-1.2) {Construction B};
+\node (d) at (0,-2.4) {Main theorem};
+\path (a) edge (b) (a) edge (c) (b) edge (d) (c) edge (d);
+\end{tikzpicture}
+]]></latex-image>
+~~~
+
+Rebuild the note to generate SVG images with the installed TeX tools. TikZ labels can use LaTeX mathematics. For PDF output, PreTeXt includes the TikZ code in the generated LaTeX document. The SVG conversion does not preserve clickable links within the image, so keep chapter and theorem links in the surrounding prose.
+
+
+### Linked maps with fixed positions
+
+Use an inline SVG when a chapter map needs both exact alignment and direct node links. Keep a native `image` in the PreTeXt source, and give only that image a local rendering override. The cubic-fourfold [map source](source/notes/cubic-k3/images/ck3-structure-map.svg) and its template in [note-html.xsl](xsl/note-html.xsl) provide a complete example.
+
+Place the SVG beside the note's source, for example `source/notes/my-note/images/note-route.svg`, and reference it relative to the note's root source file:
+
+~~~xml
+<image xml:id="note-route" source="images/note-route.svg" width="100%">
+  <description><p>The main constructions and their dependencies.</p></description>
+</image>
+~~~
+
+The SVG contains its coordinates, edges, and ordinary hyperlinks. Use a `viewBox`, responsive dimensions, a title and description, and accessible names on links. Use `role="group"` rather than `role="img"` so that the links remain available to assistive technology. For example:
+
+~~~xml
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 180"
+     role="group" aria-labelledby="note-map-title"
+     aria-describedby="note-map-description" style="display:block;width:100%;height:auto">
+  <title id="note-map-title">Chapter dependencies</title>
+  <desc id="note-map-description">Geometry is the starting chapter.</desc>
+  <style>
+    .chapter-node rect { fill:#ececff;stroke:#9370db; }
+    .chapter-node text { font:17px Arial,sans-serif;text-anchor:middle; }
+    .chapter-node:hover rect,.chapter-node:focus rect { stroke:#195684;stroke-width:2; }
+  </style>
+  <a class="chapter-node" href="my-note-geometry.html"
+     aria-label="Chapter 1: Geometry">
+    <rect x="17" y="10" width="146" height="48"/>
+    <text x="90" y="40">1 Geometry</text>
+  </a>
+</svg>
+~~~
+
+Give marker and accessibility IDs a prefix unique to the note. Add the remaining nodes and arrow paths in the same SVG. For a graph with a main linear branch, a common x-coordinate can make that branch easier to follow. Side exits and separate channels for incoming arrows can reduce crossings. Choose positions for the actual graph, keeping joins and arrowheads clear. Use the arrow conventions in the [study-note guide](prompts/study-notes.md#optional-dependency-diagram).
+
+The current HTML renderer normally puts an external SVG in an `img`, which does not preserve links inside the SVG. Inline its XML using a narrowly scoped template in the local stylesheet:
+
+~~~xml
+<xsl:template match="image[@xml:id='note-route'][@source]" mode="image-inclusion">
+  <div id="note-route" style="width:100%;max-width:420px;margin:0 auto;">
+    <xsl:copy-of select="document(concat($external-directory-source, @source), $original)/*[local-name()='svg']"/>
+  </div>
+</xsl:template>
+~~~
+
+When the external-directory setting is empty, this resolves `@source` relative to the original book source. With `<directories external="assets"/>`, place the file at `assets/images/note-route.svg` relative to the root source, while keeping `source="images/note-route.svg"`. The finished page contains the SVG itself, so its link URLs are relative to the generated HTML page, not to the SVG source file. Keep links within the note and use the actual generated chapter filenames.
+
+The width cap centers the map in the text column while `width:100%` lets it shrink on a narrow screen. Choose the cap for the diagram and check text readability at both widths. Keep the inline SVG outside image-expansion handlers so that clicking a node follows its link immediately. Verify every node link, keyboard focus, centering, crossings and joins, and the absence of page overflow in the built page. Validate with the pinned main PreTeXt schema; do not switch schemas or modify the core to enable this map.
+
 ## Footnotes and margin notes
 
 Write a footnote at its point of use:
@@ -186,15 +307,13 @@ At widths of at least 1280 px, notes occupy the right rail and align with their 
 
 ### Use margin notes actively in exposition
 
-Use margin notes actively to help readers follow the argument. Suitable content includes short derivations or calculations, explanations of proof steps, the role of a hypothesis, examples and intuition, notation and background conventions, and precise source comments. When discussion reveals a useful clarification, add it beside the relevant passage if it fits in a short note.
-
-Keep essential hypotheses, estimates, existence choices, and limiting arguments in the body, together with the main logical steps of the proof. Margin notes can expand a local step or explain a standard fact; they should supplement the argument without moving an indispensable part of the proof entirely out of the body.
-
-Anchor each note to the passage it explains. Notes may contain inline or displayed mathematics and linked references. Keep them focused: if a supplementary argument becomes long, write it as a lemma, remark, subsection, or appendix and link to it from the margin.
+Use margin notes actively, keeping essential assumptions and proof steps in the body. The shared [study-note guide](prompts/study-notes.md) gives the editorial rules; the examples above show their PreTeXt implementation.
 
 ## Concept index
 
-Use native `idx` entries and an `index-list` to make definitions and alternate names findable. For a grouped definition or theorem, put its index entries after the title, before the statement. The index preview then contains the entire entry, including every part:
+An index is optional. Use one when the note's length, range of topics, or alternative terminology makes it useful for lookup. A focused note may need only the contents, cross-references, and search. Retain useful existing entries and check their destinations after revisions. Index entries locate explanations; they do not require adding definitions of assumed background.
+
+When including an index, use native `idx` entries and an `index-list`. For a grouped definition or theorem, put its index entries after the title, before the statement. The index preview then contains the entire entry, including every part:
 
 ```xml
 <definition xml:id="my-note-definition">
@@ -206,7 +325,7 @@ Use native `idx` entries and an `index-list` to make definitions and alternate n
 
 An index entry inside the first list item can instead preview only that item. Put an index entry beside the actual definition when it occurs in a separate paragraph, and give that paragraph a stable `xml:id`. Check that aliases indexed at a definition are explained inside the same container. See the category theory note for examples.
 
-Add an `index` division to native `backmatter`, with its title and an empty `index-list` child. The build preserves the native index and converts alphabet jumps without a corresponding letter group into plain text. Rebuild, then check both the destination and the expandable preview of representative entries.
+For the index page, add an `index` division to native `backmatter`, with its title and an empty `index-list` child. Show it directly in the contents alongside the other divisions. The build preserves the native index and converts alphabet jumps without a corresponding letter group into plain text. Rebuild, then check both the destination and the expandable preview of representative entries.
 
 ## Linked references with alphabetic labels
 
@@ -233,17 +352,13 @@ Place the corresponding entry in the note's `references`:
 
 The stylesheet displays the supplied `label`, such as `How01`, rather than a numerical bibliography label. Choose unambiguous author-year labels and order entries consistently. Cite with `xref` instead of typing a bracketed label: the reference then remains linked. Reuse an existing entry rather than duplicating its ID.
 
-Keep bibliography sources inside native `backmatter`. When the back matter contains only the bibliography, the shared note template automatically presents **References** directly in the contents and navigation, without a redundant **Back Matter** level. If it contains other divisions, retain the normal back-matter structure.
+Keep bibliography sources inside native `backmatter` and show **References** directly in the contents and navigation. Follow the [display rules above](#preface-appendices-and-references) when the note also contains appendices or an index.
 
 Check the source's version, hypotheses, and exact theorem or definition used. A bibliographical link or a successful build does not verify the mathematical claim. Use “see also” for supplementary sources.
 
 ## Important ideas from the source literature
 
-Actively look for important ideas in the original literature and incorporate them selectively. These may include motivations for a definition, geometric intuition, proof strategies, the role of hypotheses, connections between results, revealing examples, limitations, and research questions. Select material that helps the intended reader follow the note's main argument or understand why its results matter.
-
-Restate these ideas in the note's own language, preserving the source's scope, qualifications, and distinction between proved results, conjectures, analogies, and explanatory viewpoints. Attribute the idea where it is used and, when possible, cite the relevant section, page, or remark. Distinguish the source authors' views from the note writer's interpretation and later developments. For research questions, record the source's historical context and check subsequent progress.
-
-Place ideas central to the argument in the body. Use margin notes for short explanations and related observations, and a remark, subsection, or appendix for longer discussions. Each addition should have a clear role in the exposition and fit the note's organization.
+The shared [study-note guide](prompts/study-notes.md) explains how to select and attribute motivations, proof strategies, examples, and other viewpoints from sources. Use native linked references here; retain the source distinction and precise scope in the text.
 
 ## Shared note header
 

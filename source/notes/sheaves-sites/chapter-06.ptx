@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="st-c06">
+  <title>Points and local detection</title>
+  <introduction>
+    <p>On a topological space, stalks detect isomorphisms and exactness. On a site, one can still define a stalk from a suitable system of generalized neighborhoods. The resulting point is a geometric morphism from sets, and the neighborhood system is encoded by a covariant functor on the site. This construction explains which properties of ordinary stalks extend without a space.</p>
+    <p>The existence of enough such points is a separate theorem. A Grothendieck topos can have no points at all. We therefore establish local arguments using covering sieves first, and use pointwise arguments only after a conservative family has been supplied.</p>
+  </introduction>
+
+  <section xml:id="st-c06-point-section">
+    <title>A point as a geometric morphism</title>
+    <definition xml:id="st-c06-point">
+      <title>Point and stalk</title><idx>Point of a topos</idx><idx>Stalk functor</idx><idx>Fiber functor of a point</idx>
+      <statement><p>A <em>point</em> of a topos <m>\mathcal E</m> is a geometric morphism
+        <md number="no">p:\Set\longrightarrow\mathcal E.</md>
+        Its inverse image <m>p^{-1}:\mathcal E\to\Set</m> is called its stalk or fiber functor. We write <m>F_p=p^{-1}F</m>. The functor has a right adjoint <m>p_*:\Set\to\mathcal E</m>.</p></statement>
+    </definition>
+    <p>A point is not merely an object of <m>\mathcal C</m> or a global section of a sheaf. The stalk functor preserves finite limits and all colimits, whereas a section functor <m>F\mapsto F(U)</m> generally does not preserve colimits. Their relationship is that a point can be approached through neighborhood objects, on which sections supply representatives of germs.</p>
+    <p>For a presented topos define
+      <md number="no">A_p:\mathcal C\longrightarrow\Set,\qquad
+        A_p(U)=p^{-1}(a h_U).</md>
+      It is covariant, because <m>U\mapsto h_U</m> is covariant. Its elements label generalized neighborhoods of the point. They are not values of the contravariant sheaf <m>F</m> whose stalk is being taken.</p>
+    <p>For definitions and the neighborhood description, see <url href="https://stacks.math.columbia.edu/tag/00Y3">Stacks, Section 7.32</url> and <xref ref="st-bib-mlm" detail="Chapter VII, Sections 5–7"/>.<fn>Writing a point as <m>p^{-1}:\mathcal E\to\Set</m> suppresses its right adjoint and reverses the arrow used to name the geometric morphism. We retain <m>p:\Set\to\mathcal E</m> whenever directions matter.</fn></p>
+  </section>
+
+  <section xml:id="st-c06-flat-section">
+    <title>Flat functors and systems of neighborhoods</title>
+    <definition xml:id="st-c06-flatfunctor">
+      <title>Flat covariant functor</title><idx>Flat functor</idx><idx>Category of neighborhoods</idx><idx>Category of elements</idx>
+      <statement><p>For <m>A:\mathcal C\to\Set</m>, let <m>\int A</m> have objects <m>(U,a)</m> with <m>a\in A(U)</m>, and arrows
+        <m>(V,b)\to(U,a)</m> given by <m>v:V\to U</m> with <m>A(v)b=a</m>. Call <m>A</m> <em>flat</em> if <m>\int A</m> is cofiltered. Equivalently, it is nonempty, two neighborhoods have a common refinement, and two parallel refinement maps become equal after a further refinement.</p></statement>
+    </definition>
+    <p>The associated germ functor on presheaves is
+      <md number="no">L_A(F)=\colim_{(U,a)\in(\int A)^{\op}}F(U).</md>
+      A representative is a triple <m>(U,a,s)</m> with <m>s\in F(U)</m>. A refinement <m>v:(V,b)\to(U,a)</m> identifies it with <m>(V,b,F(v)s)</m>. Flatness makes the indexing category of this colimit filtered.<fn>For a covariant <m>A</m>, its category of elements is cofiltered. The opposite category is the filtered colimit index. Sources that define the category of elements with opposite arrows instead call that category filtered. This variance difference does not change the stalk.</fn></p>
+    <proposition xml:id="st-c06-flat-criterion">
+      <statement><p>The functor <m>L_A:\PSh(\mathcal C)\to\Set</m> preserves finite limits if and only if <m>A</m> is flat. It is always a left adjoint, with right adjoint
+        <md number="no">R_A(S)(U)=\operatorname{Map}(A(U),S).</md>
+        There is a canonical bijection <m>L_A(h_U)\simeq A(U)</m>.</p></statement>
+      <proof><p>A map from the germ colimit to <m>S</m> is a compatible family of maps <m>F(U)\times A(U)\to S</m>. This is precisely a natural transformation <m>F\to R_A(S)</m>, proving the adjunction. The representable formula sends the class <m>(V,b,v:V\to U)</m> to <m>A(v)b</m>, with inverse represented by <m>(U,a,\id_U)</m>.</p>
+        <p>If <m>A</m> is flat, filtered colimits of sets commute with finite limits, so the stalk formula proves finite-limit preservation. Conversely, assume finite-limit preservation. Since <m>L_A(1)=1</m>, the neighborhood category is nonempty. For <m>a\in A(U)</m>, <m>b\in A(V)</m>, preservation of the product <m>h_U\times h_V</m> gives a representative <m>(W,c)</m> and arrows <m>W\to U</m>, <m>W\to V</m> carrying <m>c</m> to <m>a,b</m>. This is a common refinement.</p>
+        <p>For parallel arrows <m>r,s:(V,b)\rightrightarrows(U,a)</m>, consider the presheaf equalizer of <m>h_V\rightrightarrows h_U</m>. Since <m>A(r)b=A(s)b</m>, preservation of this equalizer gives a representative <m>(W,c)</m> and a map <m>t:W\to V</m> with <m>A(t)c=b</m> and <m>rt=st</m>. This is the required refinement. Thus <m>\int A</m> is cofiltered.</p></proof>
+    </proposition>
+    <p>In the converse proof, <m>h_U\times h_V</m> and its equalizer exist as presheaves; they need not be representable. This is why the flat-functor criterion works without finite limits in <m>\mathcal C</m>. If <m>\mathcal C</m> does have finite limits, a covariant functor is flat exactly when it preserves them: the representable finite-limit diagrams and the same refinement argument give the two implications.</p>
+  </section>
+
+  <section xml:id="st-c06-continuity">
+    <title>Covering compatibility and the point theorem</title>
+    <definition xml:id="st-c06-cover-continuous">
+      <title>Covering compatibility for a flat functor</title><idx>Covering-continuous flat functor</idx>
+      <statement><p>A covariant functor <m>A:\mathcal C\to\Set</m> is <em><m>J</m>-continuous</em> if, for every covering sieve <m>R</m> on <m>U</m>,
+        <md number="no">A(U)=
+          \bigcup_{(v:V\to U)\in R}\im\bigl(A(V)\xrightarrow{A(v)}A(U)\bigr).</md>
+        Thus a neighborhood label over <m>U</m> lifts to some arrow in every cover. For a covering family, this is surjectivity of <m>\coprod_iA(U_i)\to A(U)</m>.</p></statement>
+    </definition>
+    <theorem xml:id="st-c06-point-classification">
+      <statement><p>Points of <m>\Sh(\mathcal C,J)</m>, up to isomorphism, correspond to flat <m>J</m>-continuous functors <m>A:\mathcal C\to\Set</m>, up to natural isomorphism. The point associated with <m>A</m> has
+        <md number="no">F_p=L_A(F),\qquad p_*S(U)=\operatorname{Map}(A(U),S).</md>
+        The latter presheaf is a sheaf. For every presheaf <m>P</m>, <m>L_A(P)\simeq L_A(aP)</m>.</p></statement>
+      <proof><p>Suppose <m>A</m> is flat and <m>J</m>-continuous. For a covering sieve <m>R\hookrightarrow h_U</m>, the map <m>L_A(R)\to L_A(h_U)=A(U)</m> is surjective by covering compatibility. It is injective because <m>L_A</m> preserves monomorphisms. Hence it is a bijection. By adjunction, <m>R_A(S)</m> satisfies the sheaf condition for every <m>S</m>. The adjunction therefore restricts to sheaves, and its left adjoint preserves finite limits by <xref ref="st-c06-flat-criterion"/>. It defines a point.</p>
+        <p>The same adjunction shows that <m>L_A(P)</m> and <m>L_A(aP)</m> represent the same maps into every set <m>S</m>, since <m>R_A(S)</m> is a sheaf. This proves their identification.</p>
+        <p>Conversely, for a point <m>p</m>, set <m>A(U)=p^{-1}(a h_U)</m>. Every presheaf is a colimit of representables. Applying <m>p^{-1}a</m>, which preserves colimits, identifies this functor with <m>L_A</m> on presheaves. Since <m>p^{-1}a</m> preserves finite limits, <m>A</m> is flat. The covering epimorphism from the sheafified arrows of a covering sieve to <m>a h_U</m> becomes a surjection after inverse image, proving covering compatibility. The representable formula recovers <m>A</m>, so the constructions are inverse.</p></proof>
+    </theorem>
+    <p>This is the flat-functor description of points in <xref ref="st-bib-mlm" detail="Chapter VII, Sections 5–9"/>. The family-presentation version is developed in <url href="https://stacks.math.columbia.edu/tag/00Y3">Stacks, Section 7.32</url>. Our sieve formulation packages the compatibility of overlaps into flatness rather than postulating fiber products in the site.</p>
+    <p>The theorem also explains the role of equality of germs. For a flat functor, equality of two representatives is witnessed after a common refinement. That refinement concerns the labelled objects <m>(U,a)</m>, not only the underlying objects of <m>\mathcal C</m>. Ignoring the labels can identify different branches of a neighborhood and give an incorrect fiber functor.<fn>Here <m>\Set</m> is the category of values of <m>A</m>, not an unspecified target site. The phrase <m>J</m>-continuous in the definition refers to its explicit covering-surjectivity condition; one need not choose a topology on a large category of sets to use the theorem.</fn></p>
+  </section>
+
+  <section xml:id="st-c06-examples">
+    <title>Spatial and nonspatial examples</title>
+    <example xml:id="st-c06-topological-point">
+      <statement><p>For a point <m>x</m> of a topological space, define on its open-set site
+        <md number="no">A_x(U)=
+          \begin{cases}\{*\},&amp;x\in U,\\\varnothing,&amp;x\notin U.\end{cases}</md>
+        Its neighborhood category is the ordinary neighborhood system of <m>x</m>, ordered by inclusions. It is cofiltered, and open coverings give covering compatibility. The resulting stalk is the ordinary stalk <m>F_x</m>, and its direct image on a set <m>S</m> is the skyscraper sheaf with value <m>S</m>.</p></statement>
+    </example>
+    <p>The ordinary points of a space form a conservative family even when the space is not sober. A topos point need not be the point of a chosen space, and distinct points of a non-<m>T_0</m> space can define isomorphic fiber functors.</p>
+    <example xml:id="st-c06-irreducible-point">
+      <statement><p>Let <m>Z</m> be a nonempty irreducible closed subset of <m>X</m>. Define <m>A_Z(U)=\{*\}</m> if <m>U\cap Z\ne\varnothing</m> and <m>A_Z(U)=\varnothing</m> otherwise. Irreducibility says that two opens meeting <m>Z</m> have intersection meeting <m>Z</m>, so this is flat. A covering of an open meeting <m>Z</m> has a member meeting it, so it is continuous. If <m>Z=\overline{\{x\}}</m>, it gives the point <m>x</m>. An irreducible closed set without a generic point therefore gives an additional topos point. A sober space is one in which every such <m>Z</m> has a unique generic point.</p></statement>
+    </example>
+    <p>The equality of the open predicates distinguishes this example from choosing an arbitrary subset. Irreducibility is what gives the common refinement of two nonempty neighborhoods. Compare <xref ref="st-bib-mlm" detail="Chapter IX, Section 2"/>.</p>
+    <example xml:id="st-c06-group-point">
+      <statement><p>For the topos of right <m>G</m>-sets, the underlying-set functor preserves finite limits and all colimits and has the cofree right <m>G</m>-set functor as its right adjoint. It therefore defines a point. This point is conservative: an equivariant bijection of underlying sets has an equivariant inverse. One point can thus detect isomorphisms in a topos whose objects retain nontrivial group actions.</p></statement>
+    </example>
+    <p>A fiber functor does not discard the morphisms from which the group action can be reconstructed. Its purpose here is to detect local equality and existence. It does not turn all sheaves into globally constant objects, nor make their global sections exact.</p>
+  </section>
+
+  <section xml:id="st-c06-detection">
+    <title>Enough points and exactness</title>
+    <definition xml:id="st-c06-enoughpoints">
+      <title>Conservative family of points</title><idx>Enough points</idx><idx>Conservative family of points</idx>
+      <statement><p>A set-indexed family <m>(p_i)_{i\in I}</m> is <em>conservative</em> if a sheaf morphism is an isomorphism whenever all its stalk maps at these points are bijections. A topos has <em>enough points</em> if it has such a family.</p></statement>
+    </definition>
+    <proposition xml:id="st-c06-stalk-tests">
+      <statement><p>For a conservative family, a morphism is monic or epic exactly when all its stalk maps are injective or surjective, respectively. Finite-limit cones and arbitrary small colimit cones can be tested after these stalk functors. On Abelian objects, a complex is exact exactly when every stalk complex is exact, and a map of complexes is a quasi-isomorphism exactly when it is so on every stalk in the family.</p></statement>
+      <proof><p>A morphism is monic exactly when its diagonal to its kernel pair is an isomorphism. Stalks preserve that finite limit and the family reflects isomorphisms, proving the monomorphism assertion. For epimorphisms, factor a map through its image; stalks preserve this factorization by <xref ref="st-c04-exactness"/>. Surjectivity at all stalks makes the image inclusion an isomorphism. Comparing a proposed cone to the actual limit or colimit proves the cone assertions, using preservation by the stalk functors.</p>
+        <p>On Abelian objects each stalk is exact, and hence commutes with taking cohomology objects. A cohomology object vanishes if and only if its map from zero is an isomorphism, which the family detects. Apply this to a complex or to the cone of a complex morphism.</p></proof>
+    </proposition>
+    <p>The restriction to finite limits is necessary. Enough points does not make stalks commute with arbitrary products; the counterexample in Note I remains available. Nor do enough points make an injectivity or projectivity assertion a statement about individual stalk modules. Those are lifting properties in a sheaf category, with a common domain of definition.</p>
+    <proposition xml:id="st-c06-local-points">
+      <statement><p>Points of <m>\mathcal E/A</m> are described by pairs <m>(p,a)</m>, where <m>p</m> is a point of <m>\mathcal E</m> and <m>a\in A_p</m>. The stalk of <m>B\to A</m> is its fiber
+        <md number="no">\{b\in B_p:p(b)=a\}.</md>
+        If <m>(p_i)</m> is conservative on <m>\mathcal E</m>, all pairs <m>(p_i,a)</m> form a conservative family on the slice.</p></statement>
+      <proof><p>The point functor induces <m>\mathcal E/A\to\Set/A_p</m>, and taking the fiber at <m>a</m> is the inverse image of a point of <m>\Set/A_p</m>. Their composite gives the stated point. Conversely, composition of a slice point with <m>\pi_A</m> gives <m>p</m>; the diagonal section of the pulled-back object <m>A</m> determines <m>a</m>. The fiber formulas give inverse constructions. A morphism of sets over <m>A_p</m> is a bijection exactly when all its fibers are, so conservativity follows.</p></proof>
+    </proposition>
+    <p>For <m>f:\mathcal E\to\mathcal F</m>, composition sends a point <m>p</m> to <m>fp</m>, with
+      <md number="no">G_{fp}=p^{-1}f^{-1}G.</md>
+      If <m>\mathcal E</m> has a conservative family <m>(p_i)</m>, then <m>f</m> is surjective in the sense of <xref ref="st-c04-embedding-surjective"/> exactly when <m>(fp_i)</m> is conservative on <m>\mathcal F</m>. This is a criterion for detecting isomorphisms, not a claim that every individual point of <m>\mathcal F</m> has been listed or lifted.</p>
+  </section>
+
+  <section xml:id="st-c06-existence">
+    <title>Existence theorems and a topos without points</title>
+    <theorem xml:id="st-c06-deligne">
+      <title>Deligne's criterion</title>
+      <statement><p>Suppose <m>\mathcal C</m> has finite limits and every covering sieve contains a finite family of arrows that is still covering. Then <m>\Sh(\mathcal C,J)</m> has enough points.</p></statement>
+      <proof><p>This is the sieve form of <url href="https://stacks.math.columbia.edu/tag/00YQ">Stacks, Proposition 7.39.3</url>, attributed there to <xref ref="st-bib-sga4-2" detail="Exposé VI, Deligne's appendix, Proposition 9.0"/>. One chooses a covering-family presentation from these finite families. Finite limits and their stability supply the hypotheses of that proposition. The existence proof constructs refined neighborhood systems that separate specified unequal sections while lifting all covering tests.</p></proof>
+    </theorem>
+    <p>The criterion is often phrased as “coherent topoi have enough points.” Its finiteness assumptions concern a suitable presentation and its covering families.<fn>A coherent topos, a coherent structure ring, and a locally coherent category of modules are different notions. The theorem here concerns existence of set-valued fiber functors and has no ring hypothesis.</fn> It is an existence theorem, so one need not identify all the points before using stalk tests.</p>
+    <example xml:id="st-c06-pointless">
+      <statement><p>Let <m>B</m> be a nontrivial atomless complete Boolean algebra. Regard it as a poset site, with a family <m>(b_i\leq b)</m> covering when <m>\bigvee_i b_i=b</m>. Then <m>\Sh(B)</m> is nondegenerate and has no points.</p></statement>
+      <solution><p>The representable sheaves <m>h_b</m> are the subterminal objects corresponding to <m>b\in B</m>; their joins and finite meets agree with those in <m>B</m>. A point would therefore induce a map
+        <md number="no">\phi:B\longrightarrow\{0,1\}</md>
+        preserving arbitrary joins and finite meets. Its fiber at <m>1</m> is an ultrafilter, since <m>\phi(b)\vee\phi(\neg b)=1</m> and the two values have zero meet.</p>
+        <p>Let <m>a=\bigwedge_{\phi(b)=1}b</m>. The complement <m>\neg a</m> is the join of the complements of those <m>b</m>, all of which map to zero. Hence <m>\phi(\neg a)=0</m> and <m>\phi(a)=1</m>. For any <m>0&lt;c\leq a</m>, if <m>\phi(c)=1</m> then <m>a\leq c</m> by definition of <m>a</m>, so <m>c=a</m>. If <m>\phi(c)=0</m>, then <m>a\leq\neg c</m>, which would imply <m>c=0</m>. Thus <m>a</m> is an atom, a contradiction.</p>
+        <p>Nondegeneracy follows because <m>h_0</m> and <m>h_1</m> are different sheaves. Complete atomless Boolean algebras exist: regular open subsets of <m>\R</m> give one, with join <m>\operatorname{int}\overline{\bigcup_iU_i}</m>, finite meet intersection, and Boolean complement <m>\operatorname{int}(\R\setminus U)</m>. Every nonempty regular open set contains two disjoint nonempty open intervals and therefore contains a smaller nonzero element.</p></solution>
+    </example>
+    <p>The example is discussed in <xref ref="st-bib-mlm" detail="Chapter VII, Section 5"/> and in the introduction to <url href="https://ncatlab.org/nlab/files/Barr-ToposesWithoutPoints.pdf">Barr, <em>Toposes without points</em></url>. The algebra is used here only to exhibit a boundary of stalk methods, not to develop locale theory.</p>
+    <p>Thus “all stalk maps are isomorphisms” has content only after a conservative family is known. In the nondegenerate point-free example the condition would be vacuous and would incorrectly certify every morphism. Covering-sieve local criteria from <xref ref="st-c02-local-criterion"/> still apply, and the descent theorem of the next chapter also remains valid.</p>
+  </section>
+</chapter>

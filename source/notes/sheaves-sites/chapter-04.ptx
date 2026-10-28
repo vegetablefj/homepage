@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="st-c04">
+  <title>Morphisms of sites and topoi</title>
+  <introduction>
+    <p>A functor between the categories underlying two sites need not give an inverse image functor. Restricting presheaves is always possible, but restriction might not preserve sheaves. Even when it does, its left adjoint on sheaves need not preserve finite limits. These are separate conditions. We distinguish them before introducing geometric morphisms.</p>
+    <p>Write <m>\mathcal E=\Sh(\mathcal C,J)</m> and <m>\mathcal F=\Sh(\mathcal D,K)</m>. The site categories <m>\mathcal C,\mathcal D</m> are small in the chosen universe. No finite limits in them are assumed. Our notation is fixed by the arrows: for <m>u:\mathcal C\to\mathcal D</m>, restriction, when defined on sheaves, is <m>u_s:\mathcal F\to\mathcal E</m>; its left adjoint is <m>u^s:\mathcal E\to\mathcal F</m>.</p>
+  </introduction>
+
+  <section xml:id="st-c04-kan">
+    <title>Restriction and sheafified Kan extension</title>
+    <p>Let <m>u:\mathcal C\to\mathcal D</m> be any functor. Precomposition gives
+      <md number="no">u^{\mathrm{pre}}:\PSh(\mathcal D)\longrightarrow\PSh(\mathcal C),
+        \qquad G\longmapsto G\circ u^{\op}.</md>
+      It has a left adjoint <m>L_u=\Lan_{u^{\op}}</m> and a right adjoint <m>R_u=\Ran_{u^{\op}}</m>. These are presheaf adjunctions; no topology has yet been used.</p>
+    <p>For <m>d\in\mathcal D</m>, define <m>I_d</m> to have objects <m>(c,\alpha:d\to u(c))</m>. A morphism from <m>(c,\alpha)</m> to <m>(c',\alpha')</m> is a map <m>h:c'\to c</m> satisfying <m>u(h)\alpha'=\alpha</m>. Then
+      <md number="no">(L_uF)(d)=\colim_{(c,\alpha)\in I_d}F(c).</md>
+      The direction of <m>h</m> makes <m>F(h):F(c)\to F(c')</m> a map in this colimit. The right adjoint can be described without an indexing convention by
+      <md number="no">(R_uF)(d)=\Nat(u^{\mathrm{pre}}h_d,F).</md>
+      Thus its elements are compatible assignments in <m>F(c)</m> for all maps <m>u(c)\to d</m>.<fn>The left Kan formula uses maps <m>d\to u(c)</m>; the right Kan formula uses maps <m>u(c)\to d</m>. Reversing only one of these arrows exchanges two different constructions. The general Kan extension proofs belong to the category theory note.</fn></p>
+    <definition xml:id="st-c04-continuous">
+      <title>Continuous functor</title><idx>Continuous functor of sites</idx><idx>Restriction of sheaves</idx>
+      <statement><p>A functor <m>u:(\mathcal C,J)\to(\mathcal D,K)</m> is <em>continuous</em> if <m>G\circ u^{\op}</m> is a <m>J</m>-sheaf for every <m>K</m>-sheaf <m>G</m>. In this case restriction defines
+        <md number="no">u_s:\Sh(\mathcal D,K)\longrightarrow\Sh(\mathcal C,J).</md></p></statement>
+    </definition>
+    <p>This definition is intrinsic to the specified sheaf categories. A common sufficient condition uses a presentation by covering families: <m>u</m> sends covering families to covering families and preserves their pullbacks, including the pullbacks used to test agreement on overlaps. The sheaf equalizer for an image covering is then the equalizer required for its restriction. This sufficient criterion is useful when the indicated fiber products exist; it is not a hidden assumption on every site in this note.</p>
+    <proposition xml:id="st-c04-continuity-test">
+      <statement><p>A functor <m>u</m> is continuous if and only if, for every <m>J</m>-covering sieve <m>S\hookrightarrow h_c</m>, the induced map
+        <md number="no">a_{\mathcal D}L_uS\longrightarrow a_{\mathcal D}h_{u(c)}</md>
+        is an isomorphism.</p></statement>
+      <proof><p>The presheaf adjunction identifies restriction along this map, tested against a sheaf <m>G</m> on <m>\mathcal D</m>, with
+        <md number="no">G(u(c))\longrightarrow\Nat(S,u^{\mathrm{pre}}G).</md>
+        Indeed <m>L_uh_c\simeq h_{u(c)}</m> by Yoneda. Bijectivity for all covering sieves is precisely the sheaf condition for <m>u^{\mathrm{pre}}G</m>. Bijectivity against every sheaf <m>G</m> detects an isomorphism in <m>\Sh(\mathcal D,K)</m>, again by Yoneda.</p></proof>
+    </proposition>
+    <p>The criterion controls both local lifting and local equality. Sending a collection of covering arrows to covering arrows, without a compatibility condition for their relations, does not alone prove continuity.</p>
+    <proposition xml:id="st-c04-adjunction">
+      <statement><p>For continuous <m>u</m>, sheafification of left Kan extension gives an adjunction
+        <md number="no">u^s=a_{\mathcal D}L_u:\mathcal E
+          \rightleftarrows\mathcal F:u_s.</md>
+        Here the input of <m>L_u</m> is the underlying presheaf of a sheaf. For every presheaf <m>P</m> on <m>\mathcal C</m>,
+        <md number="no">a_{\mathcal D}L_uP\simeq
+          a_{\mathcal D}L_u(a_{\mathcal C}P).</md>
+        In particular <m>u^s(a_{\mathcal C}h_c)\simeq a_{\mathcal D}h_{u(c)}</m>.</p></statement>
+      <proof><p>For sheaves <m>F,G</m> on the two sites, respectively, the adjunctions give
+        <md number="no">\Hom_{\mathcal F}(a_{\mathcal D}L_uF,G)
+          \simeq\Hom_{\PSh(\mathcal C)}(F,u^{\mathrm{pre}}G)
+          =\Hom_{\mathcal E}(F,u_sG).</md>
+        Since <m>u^{\mathrm{pre}}G</m> is a sheaf, maps from <m>P</m> into it factor uniquely through <m>a_{\mathcal C}P</m>. The same bijections with arbitrary <m>G</m> prove the second assertion. Apply it to <m>P=h_c</m> and use the representable Kan extension formula for the last assertion.</p></proof>
+    </proposition>
+    <p>For a comparison of conventions, see <url href="https://stacks.math.columbia.edu/tag/00WU">Stacks, Section 7.13</url>.<fn>Stacks writes <m>u^s</m> for our restriction <m>u_s</m>, and <m>u_s</m> for our left adjoint <m>u^s</m>. Its definition of continuous functor uses covering families and specified pullbacks. We state its presentation hypotheses when applying that criterion; the abstract sheaf-preservation definition above does not require those pullbacks.</fn></p>
+  </section>
+
+  <section xml:id="st-c04-geometric-section">
+    <title>Geometric morphisms and exactness</title>
+    <definition xml:id="st-c04-geometric">
+      <title>Geometric morphism</title><idx>Geometric morphism</idx><idx>Inverse image of a geometric morphism</idx><idx>Direct image of a geometric morphism</idx>
+      <statement><p>A <em>geometric morphism</em> <m>f:\mathcal E\to\mathcal F</m> is an adjunction
+        <md number="no">f^{-1}:\mathcal F\rightleftarrows\mathcal E:f_*</md>
+        whose left adjoint <m>f^{-1}</m> preserves finite limits. The functors are its <em>inverse image</em> and <em>direct image</em>, respectively.</p></statement>
+    </definition>
+    <p>The arrow naming the geometric morphism follows the direct image. The inverse image goes the other way. It preserves all colimits because it is a left adjoint; preservation of finite limits is the additional condition. For sheaves of sets, “exact inverse image” usually refers to this left exactness together with its automatic preservation of colimits, rather than to an Abelian exact sequence.</p>
+    <proposition xml:id="st-c04-site-morphism">
+      <statement><p>A continuous <m>u:\mathcal C\to\mathcal D</m> gives a geometric morphism
+        <md number="no">f:\Sh(\mathcal D,K)\longrightarrow\Sh(\mathcal C,J),
+          \qquad f^{-1}=u^s,\quad f_*=u_s,</md>
+        precisely when its sheafified left Kan extension <m>u^s</m> is left exact. We call such data a morphism of sites in this direction.</p></statement>
+      <proof><p>The adjunction is <xref ref="st-c04-adjunction"/>. The remaining condition is exactly the finite-limit condition in <xref ref="st-c04-geometric"/>.</p></proof>
+    </proposition>
+    <example xml:id="st-c04-continuous-not-geometric">
+      <statement><p>Give the discrete two-object category <m>\mathcal C</m> and the one-object terminal category <m>\mathcal D</m> the topology in which only maximal sieves cover. The unique functor <m>u:\mathcal C\to\mathcal D</m> is continuous, since every presheaf is a sheaf. Restriction is the diagonal <m>\Set\to\Set\times\Set</m>; its left adjoint is coproduct. This sends the terminal pair <m>(1,1)</m> to a two-element set, so it is not left exact. Continuity alone therefore does not give the claimed geometric morphism.</p></statement>
+    </example>
+    <p>The example tests the empty finite limit, namely the terminal object. Preserving pullbacks while failing to preserve a terminal object would still not suffice. Conversely, preserving a terminal object and fiber products suffices to preserve all finite limits when those limits exist.</p>
+    <proposition xml:id="st-c04-exactness">
+      <statement><p>For a geometric morphism, inverse image preserves monomorphisms, epimorphisms, images, and quotients by equivalence relations. It induces an exact functor
+        <md number="no">f^{-1}:\Ab(\mathcal F)\longrightarrow\Ab(\mathcal E).</md>
+        Direct image induces a left exact functor on Abelian objects.</p></statement>
+      <proof><p>Finite-limit preservation gives monomorphisms and kernel pairs. Epimorphisms in a topos are effective, and a left adjoint preserves their coequalizers; hence inverse image preserves epimorphisms. Apply this to the image factorization. For equivalence relations, finite limits give the pulled-back relation and preservation of its coequalizer gives its quotient. Abelian group operations use finite products and equations, so inverse image preserves those structures. Kernels and cokernels of Abelian objects are the corresponding finite-limit and coequalizer constructions, proving exactness. A right adjoint preserves limits, giving left exactness of direct image.</p></proof>
+    </proposition>
+    <p>This argument uses the exactness properties of a topos from <xref ref="st-c03-exactness"/>, rather than a stalk test.<fn>An inverse image need not preserve an infinite product. The convergent-sequence product example in <url href="../sheaves-topological/sh-c04.html#sh-c04-product-stalk">Note I</url> already supplies a geometric morphism with that failure.</fn> For module objects over varying rings, an additional scalar-extension functor occurs, and exactness must be checked again in <xref ref="st-c08"/>.</p>
+  </section>
+
+  <section xml:id="st-c04-left-exact">
+    <title>Useful sufficient conditions</title>
+    <proposition xml:id="st-c04-filtered-kan">
+      <statement><p>Let <m>u:\mathcal C\to\mathcal D</m> be continuous. If every category <m>I_d</m> in the left Kan formula is filtered, then <m>u^s</m> is left exact. In particular, this holds if <m>\mathcal C,\mathcal D</m> have finite limits and <m>u</m> preserves them.</p></statement>
+      <proof><p>Finite limits of presheaves are evaluated objectwise. Filtered colimits of sets commute with finite limits, so the formula for <m>L_u</m> shows that it preserves them when each <m>I_d</m> is filtered. Sheafification also preserves finite limits, giving the first assertion.</p>
+        <p>For the second, <m>d\to u(1_{\mathcal C})=1_{\mathcal D}</m> gives an object of <m>I_d</m>. Two objects <m>d\to u(c)</m>, <m>d\to u(c')</m> have a common target in <m>I_d</m> using <m>c\times c'</m>. For two parallel arrows in <m>I_d</m>, take the equalizer of the corresponding arrows in <m>\mathcal C</m>. The equality of their composites from <m>d</m> makes the map from <m>d</m> factor through its image under <m>u</m>. This supplies a coequalizing arrow in <m>I_d</m>. Thus that category is filtered.</p></proof>
+    </proposition>
+    <p>The result is also <url href="https://stacks.math.columbia.edu/tag/00X0">Stacks, Lemma 7.14.6 and Proposition 7.14.7</url>. Its finite-limit hypothesis is a sufficient hypothesis in this section, not a convention imposed elsewhere. Sheafification can make a left Kan extension left exact even when its raw indexing categories do not provide this particular proof.</p>
+    <example xml:id="st-c04-topological-map">
+      <statement><p>For a continuous map <m>f:X\to Y</m>, the functor
+        <md number="no">\operatorname{Open}(Y)\longrightarrow\operatorname{Open}(X),
+          \qquad V\longmapsto f^{-1}V</md>
+        preserves terminal objects, finite intersections, and open coverings. Its restriction on sheaves sends <m>F</m> to <m>(V\mapsto F(f^{-1}V))</m>, which is the direct image of Note I. Its sheafified left Kan extension is therefore the usual inverse image, by uniqueness of the left adjoint. The geometric morphism is <m>\Sh(X)\to\Sh(Y)</m>.</p></statement>
+    </example>
+    <example xml:id="st-c04-topology-change">
+      <statement><p>Suppose <m>J\subset K</m> are topologies on one category. A <m>K</m>-sheaf is a <m>J</m>-sheaf. The identity functor from <m>(\mathcal C,J)</m> to <m>(\mathcal C,K)</m> is continuous and gives
+        <md number="no">\Sh(\mathcal C,K)\longrightarrow\Sh(\mathcal C,J).</md>
+        Its direct image is the full inclusion, and its inverse image is <m>K</m>-sheafification of a <m>J</m>-sheaf. This inverse image is left exact by <xref ref="st-c02-left-exact"/>.</p></statement>
+    </example>
+    <p>More covering sieves impose more sheaf conditions. They produce a smaller full sheaf category, not a larger one. A change of topology is therefore different from replacing a site by a basis that presents the same topology locally; the latter can give an equivalence, as proved in <xref ref="st-c05"/>.</p>
+  </section>
+
+  <section xml:id="st-c04-cocont-section">
+    <title>Cocontinuous functors and the other direction</title>
+    <definition xml:id="st-c04-cocontinuous">
+      <title>Cocontinuous functor</title><idx>Cocontinuous functor of sites</idx>
+      <statement><p>A functor <m>u:(\mathcal C,J)\to(\mathcal D,K)</m> is <em>cocontinuous</em> if for every <m>c\in\mathcal C</m> and every covering sieve <m>R</m> on <m>u(c)</m>, the sieve
+        <md number="no">\{h:c'\to c:u(h)\in R\}</md>
+        is <m>J</m>-covering. In a covering-family presentation, this says that each cover of <m>u(c)</m> can be refined by the image under <m>u</m> of a cover of <m>c</m>.</p></statement>
+    </definition>
+    <p>The image of that source covering need not itself be a target covering. Cocontinuity lifts target covers locally; continuity ensures that target sheaves restrict to source sheaves. The two requirements have different purposes.</p>
+    <theorem xml:id="st-c04-cocont-morphism">
+      <statement><p>A cocontinuous functor gives a geometric morphism in the same direction:
+        <md number="no">g:\Sh(\mathcal C,J)\longrightarrow\Sh(\mathcal D,K),</md>
+        with
+        <md number="no">g^{-1}G=a_{\mathcal C}(u^{\mathrm{pre}}G),\qquad
+          g_*F=R_uF.</md>
+        In the second formula the presheaf right Kan extension is already a sheaf.</p></statement>
+      <proof><p>We first check that <m>R_uF</m> is a sheaf. For a covering sieve <m>S\hookrightarrow h_d</m>, its sheaf condition is, by the presheaf adjunction, the bijectivity of
+        <md number="no">\Nat(u^{\mathrm{pre}}h_d,F)
+          \longrightarrow\Nat(u^{\mathrm{pre}}S,F).</md>
+        The inclusion <m>u^{\mathrm{pre}}S\hookrightarrow u^{\mathrm{pre}}h_d</m> is a monomorphism and is locally surjective after sheafification on <m>\mathcal C</m>. To see the latter, take an element <m>\alpha:u(c)\to d</m>. The pullback sieve <m>\alpha^*S</m> covers <m>u(c)</m>; cocontinuity gives a covering sieve of maps <m>h:c'\to c</m> such that <m>\alpha u(h)\in S</m>. Thus <m>\alpha</m> lifts locally. By <xref ref="st-c02-local-criterion"/>, sheafification of the inclusion is an isomorphism, which proves the required bijection.</p>
+        <p>The presheaf adjunction now restricts to
+          <md number="no">\Hom_{\mathcal E}(a_{\mathcal C}u^{\mathrm{pre}}G,F)
+            \simeq\Hom_{\mathcal F}(G,R_uF).</md>
+          Precomposition and sheafification both preserve finite limits. Hence the left adjoint is left exact and defines a geometric morphism.</p></proof>
+    </theorem>
+    <p>This is the sieve form of <url href="https://stacks.math.columbia.edu/tag/00XN">Stacks, Lemma 7.21.1</url>. Both constructions can involve the same underlying functor but give opposite geometric arrows:
+      <md number="no">\begin{array}{c|c|c}
+        \text{hypothesis on }u:\mathcal C\to\mathcal D&amp;
+        \text{geometric morphism}&amp;\text{inverse image}\\
+        \text{continuous and }u^s\text{ left exact}&amp;
+        \Sh(\mathcal D)\to\Sh(\mathcal C)&amp;a_{\mathcal D}L_u\\
+        \text{cocontinuous}&amp;
+        \Sh(\mathcal C)\to\Sh(\mathcal D)&amp;a_{\mathcal C}u^{\mathrm{pre}}.
+      \end{array}</md></p>
+    <p>If <m>u</m> is both continuous and cocontinuous, restriction is already a sheaf and one has three adjoints <m>u^s\dashv u_s\dashv R_u</m>. The middle functor is then an inverse image for the cocontinuous construction. The first functor still need not be left exact.<fn>For the inclusion <m>\operatorname{Open}(U)\to\operatorname{Open}(X)</m> of an open subspace, these three adjoints are extension by the empty set, restriction, and direct image. The first sends the terminal sheaf to the subterminal sheaf of <m>U</m>, so it fails to preserve the terminal object unless <m>U=X</m>.</fn></p>
+  </section>
+
+  <section xml:id="st-c04-compatibility">
+    <title>Composition and the information retained</title>
+    <p>For continuous functors <m>u:\mathcal C\to\mathcal D</m> and <m>v:\mathcal D\to\mathcal A</m>, restriction satisfies <m>(vu)_s=u_sv_s</m>. Their left adjoints therefore satisfy <m>(vu)^s\simeq v^su^s</m>. If both give site morphisms, the composite does as well. For cocontinuous functors the geometric arrows instead follow <m>u</m> and <m>v</m>; their inverse images compose contravariantly as required. The canonical comparison isomorphisms are coherent by uniqueness of adjoints.</p>
+    <definition xml:id="st-c04-embedding-surjective">
+      <title>Geometric embeddings and surjective geometric morphisms</title><idx>Geometric embedding</idx><idx>Surjective geometric morphism</idx>
+      <statement><p>A geometric morphism is a <em>geometric embedding</em> if its direct image is fully faithful. It is <em>surjective</em> if its inverse image is conservative, meaning that it reflects isomorphisms. These words refer to functors between topoi; a given presentation need not include a map of underlying point sets.</p></statement>
+    </definition>
+    <p>An embedding is characterized by the counit <m>f^{-1}f_*\to\id</m> being an isomorphism. The topology-change morphism above is an embedding. A surjective continuous map of spaces gives a surjective geometric morphism, because every target stalk is tested on the source. The two definitions also apply to topoi without enough points.<fn>Surjectivity of a geometric morphism does not say that every target sheaf has a section after direct image. It says that inverse image loses no isomorphism test. In particular, existence of a global section is a different property.</fn></p>
+    <p>Natural transformations also have a direction convention. A transformation <m>\alpha:f^{-1}\to g^{-1}</m> between inverse images has the adjoint mate <m>g_*\to f_*</m>, obtained on <m>A\in\mathcal E</m> by
+      <md number="no">g_*A\longrightarrow f_*f^{-1}g_*A
+        \xrightarrow{f_*\alpha}f_*g^{-1}g_*A\longrightarrow f_*A.</md>
+      The first arrow is a unit and the last a counit. This is the adjoint-transposition operation from <url href="../homological-algebra/ha-c17.html">the homological algebra note</url>; its direction need not be guessed from the names of the functors.</p>
+    <p>Finally, an abstract geometric morphism need not be induced by a functor between two previously chosen site presentations. One may replace the source presentation by a suitable small site built inside its sheaf topos, including inverse images of the target generators. A precise realization theorem is <url href="https://stacks.math.columbia.edu/tag/039Z">Stacks, Lemma 7.29.6</url>. This changes the presentation, rather than imposing extra finite limits or representability on the original category. The comparison results of the next chapter explain why that replacement is legitimate.</p>
+  </section>
+</chapter>

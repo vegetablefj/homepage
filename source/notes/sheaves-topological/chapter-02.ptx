@@ -1,0 +1,139 @@
+<chapter xml:id="sh-c02">
+  <title>Stalks, étalé spaces, and sheafification</title>
+  <introduction>
+    <p>A germ remembers a section on an unspecified sufficiently small neighbourhood. Equality of germs therefore permits shrinking that neighbourhood. A stalk gathers all germs at one point; it does not impose compatibility between different points. The topology of the étalé space records precisely the compatibility needed to recover sections.</p>
+    <p>We construct sheafification from these local data. The construction applies to every presheaf on every space, and its universal property makes the result independent of the chosen description.</p>
+  </introduction>
+  <section xml:id="sh-c02-germs">
+    <title>Germs and neighbourhood colimits</title>
+    <definition xml:id="sh-c02-stalk">
+      <idx>Stalk</idx><idx>Germ</idx>
+      <statement><p>Let <m>\mathcal F</m> be a presheaf on <m>X</m> and let <m>x\in X</m>. Its <em>stalk at <m>x</m></em> is
+        <md number="no">\mathcal F_x=\colim_{x\in U}\mathcal F(U),</md>
+        where an arrow from <m>U</m> to <m>V</m> means <m>x\in V\subseteq U</m> and induces restriction. For a section <m>s\in\mathcal F(U)</m>, its image <m>s_x</m> is its <em>germ at <m>x</m></em>. Explicitly, <m>(U,s)</m> and <m>(V,t)</m> determine the same germ if there is an open <m>W</m> with <m>x\in W\subseteq U\cap V</m> and <m>s|_W=t|_W</m>.</p></statement>
+    </definition>
+    <p>The neighbourhood category is filtered: two neighbourhoods admit their intersection as a common smaller neighbourhood. In particular, equality in the colimit has the explicit shrinking description just given. The colimit is taken in sets, abelian groups, or modules according to the presheaf. For the latter two targets, the set of germs carries the induced algebraic operations.</p>
+    <proposition xml:id="sh-c02-germtests">
+      <statement><p>Let <m>\mathcal F</m> be a presheaf on <m>X</m>.
+        <ol>
+          <li><p>Every germ has a representative on an open neighbourhood. Two local representatives give the same germ exactly when they agree after a common shrinking.</p></li>
+          <li><p>The set of points where two sections on the same open subset have equal germs is open.</p></li>
+          <li><p>If <m>\mathcal F</m> is separated, the map <m>\mathcal F(U)\to\prod_{x\in U}\mathcal F_x</m> is injective for every open <m>U</m>. Conversely, these injections imply separatedness.</p></li>
+          <li><p>A basis of open neighbourhoods of <m>x</m> computes the same stalk.</p></li>
+        </ol></p></statement>
+      <proof><p>The first assertion is the explicit description of a filtered colimit. If <m>s_x=t_x</m>, choose a neighbourhood where the restrictions agree; every point in that neighbourhood also has equal germs. This proves the second assertion. For the third, equality of all germs gives an open cover on which the sections agree, so separatedness gives their equality. Conversely, equality after restriction to a cover gives equality of germs at every point. This includes the empty open, where the asserted injection gives at most one section. Cofinality of basis neighbourhoods proves the last assertion.</p></proof>
+    </proposition>
+    <p xml:id="sh-c02-germ-value">A germ of a function is more than its value. On <m>\R</m>, the functions <m>t\mapsto0</m> and <m>t\mapsto t</m> have the same value at zero but different germs there. A germ also contains less information than a section on a specified neighbourhood: changing that section outside a smaller neighbourhood does not change its germ.<fn xml:id="sh-c02-germ-jet">A smooth germ is also more than its Taylor series. The function <m>e^{-1/t^2}</m> for <m>t\ne0</m>, extended by zero at zero, is smooth with every derivative zero there, but has a nonzero germ. Each derivative away from zero is the exponential times a polynomial in <m>1/t</m>. The exponential decays faster than every power of <m>1/|t|</m>, so each such derivative tends to zero. Thus matching all derivatives does not replace equality on a neighbourhood.</fn></p>
+    
+    <p>For an arbitrary family of sets <m>(A_x)_{x\in X}</m>, the assignment <m>U\mapsto\prod_{x\in U}A_x</m> is a sheaf. Its stalk at <m>x</m> need not be <m>A_x</m>. Evaluation gives a map to <m>A_x</m>, but a germ of an arbitrary assignment can remember how its other values behave arbitrarily near <m>x</m>.<fn>On the convergent-sequence space <m>\{0\}\cup\{1/n:n\geq1\}</m>, a germ of an arbitrary scalar-valued function at zero remembers its tail modulo eventual equality. Its value at zero alone does not determine this tail. A product indexed by points is therefore not automatically a sheaf with prescribed stalks.</fn></p>
+    <p>A presheaf morphism <m>u</m> induces <m>u_x</m> by taking the germ of its image. Compatibility with restriction ensures that this is well-defined. The stalk functor preserves all colimits of presheaves and all finite limits. The colimit assertion interchanges two colimits; the finite-limit assertion uses the fact that filtered colimits of sets or modules commute with finite limits. An infinite family requires a common neighbourhood for all its entries, which a finite-limit argument cannot provide.</p>
+    <p>These constructions are compared with <url href="https://stacks.math.columbia.edu/tag/0078">Stacks, Stalks</url>. The common direction of the arrows is important: smaller neighbourhoods receive restriction maps and are later in the filtered system.</p>
+  </section>
+  <section xml:id="sh-c02-etalespace">
+    <title>The space of germs</title>
+    <definition xml:id="sh-c02-defetale">
+      <idx>Étalé space</idx><idx>Sheaf space</idx><idx>Local homeomorphism</idx>
+      <statement><p>For a presheaf of sets <m>\mathcal F</m>, let <m>E(\mathcal F)=\coprod_{x\in X}\mathcal F_x</m> and let <m>p:E(\mathcal F)\to X</m> send a germ to its base point. For <m>s\in\mathcal F(U)</m>, write <m>\widetilde s:U\to E(\mathcal F)</m> for <m>x\mapsto s_x</m>. Give <m>E(\mathcal F)</m> the topology generated by the sets <m>\widetilde s(U)</m>. This is the <em>étalé space</em>, or space of germs, of <m>\mathcal F</m>. A map <m>p:E\to X</m> is a <em>local homeomorphism</em> if every point of <m>E</m> has an open neighbourhood on which <m>p</m> is a homeomorphism onto an open subset of <m>X</m>.</p></statement>
+    </definition>
+    <proposition xml:id="sh-c02-etalecharts">
+      <statement><p>The sets <m>\widetilde s(U)</m> form a basis for the stated topology. Each restriction <m>p:\widetilde s(U)\to U</m> is a homeomorphism. In particular, <m>p</m> is a local homeomorphism, every fibre is discrete, and each <m>\widetilde s</m> is a continuous section.</p></statement>
+      <proof><p>Every germ is represented by some <m>s</m>, so these sets cover <m>E(\mathcal F)</m>. If <m>s_x=t_x</m>, the two representatives agree on a smaller open neighbourhood <m>W</m> of <m>x</m>. Then <m>\widetilde s(W)=\widetilde t(W)</m> lies in the intersection of their two basic sets. This proves the basis property.</p>
+        <p>The projection is bijective from <m>\widetilde s(U)</m> to <m>U</m>. It is continuous because inverse images of opens are unions of basic sets restricted to those opens. The inverse <m>\widetilde s</m> is continuous: the inverse image of <m>\widetilde t(V)</m> is the open subset of <m>U\cap V</m> on which the germs of <m>s</m> and <m>t</m> agree. Thus each such projection is a homeomorphism.</p></proof>
+    </proposition>
+    <p>A continuous section of <m>p</m> is locally a section <m>\widetilde s</m> obtained from a section of the original presheaf. To see this at <m>x</m>, choose a basic neighbourhood of the value of the section at <m>x</m>, and shrink the domain into its inverse image. Both local sections then land in the same chart of the local homeomorphism and have the same projection, so they coincide.</p>
+    <p xml:id="sh-c02-etale-covering">The adjective étalé in this topological construction refers to a local homeomorphism. It does not invoke the étale topology of a scheme. A local homeomorphism need not be a covering map: the latter requires a single base neighbourhood to trivialize the entire inverse image, while the former provides a neighbourhood separately for each point of the total space. This distinction matters for sheaves that are not locally constant.<fn xml:id="sh-c02-extra-sheet">The projection from the disjoint union <m>\R\sqcup(0,\infty)</m> to <m>\R</m>, with each summand mapped by inclusion, is a surjective local homeomorphism. It has one point over zero and two over every positive number, so no neighbourhood of zero is evenly covered. Surjectivity does not repair the difference.</fn></p>
+    
+    <example xml:id="sh-c02-nonhausdorff">
+      <statement><p>Even when <m>X</m> is Hausdorff, an étalé space need not be Hausdorff. For the sheaf of continuous real-valued functions on <m>\R</m>, consider at zero the germs of <m>f(t)=0</m> and <m>g(t)=\max(t,0)</m>.</p></statement>
+      <solution><p>The germs are different because the functions disagree on every neighbourhood of zero. Any two basic neighbourhoods of these germs contain germs at negative points close enough to zero, where <m>f</m> and <m>g</m> agree. Thus the two germs have no disjoint neighbourhoods in the étalé space.</p></solution>
+    </example>
+    <p>The construction therefore uses the ordinary category of topological spaces, allowing non-Hausdorff total spaces. Requiring every étalé space to be Hausdorff would exclude familiar sheaves of functions.</p>
+  </section>
+  <section xml:id="sh-c02-sheafification">
+    <title>Associated sheaves</title>
+    <definition xml:id="sh-c02-associated">
+      <idx>Sheafification</idx><idx>Associated sheaf</idx><idx>Locally representable germ family</idx>
+      <statement><p>For a presheaf <m>\mathcal F</m>, define <m>a\mathcal F(U)</m> to be the continuous sections of <m>E(\mathcal F)\to X</m> over <m>U</m>. Equivalently, it is the set of families <m>(t_x)_{x\in U}</m> with <m>t_x\in\mathcal F_x</m> such that, for every <m>x\in U</m>, there is an open neighbourhood <m>V\subseteq U</m> and a section <m>s\in\mathcal F(V)</m> with <m>t_y=s_y</m> for every <m>y\in V</m>. These are <em>locally representable families of germs</em>. The presheaf <m>a\mathcal F</m> is called the <em>associated sheaf</em>. The natural map <m>\eta_\mathcal F:\mathcal F\to a\mathcal F</m> sends a section to its germs.</p></statement>
+    </definition>
+    <proposition xml:id="sh-c02-associatedproperties">
+      <statement><p>The construction above has the following properties.
+        <ol>
+          <li><p><m>a\mathcal F</m> is a sheaf, functorially in <m>\mathcal F</m>.</p></li>
+          <li><p>The maps <m>(\eta_\mathcal F)_x:\mathcal F_x\to(a\mathcal F)_x</m> are bijections, or isomorphisms for modules.</p></li>
+          <li><p><m>\eta_\mathcal F</m> is an isomorphism if and only if <m>\mathcal F</m> is a sheaf.</p></li>
+          <li><p>For a sheaf <m>\mathcal G</m>, composition with <m>\eta_\mathcal F</m> induces a natural bijection
+            <md number="no">\Hom_{\Sh(X)}(a\mathcal F,\mathcal G)\simeq\Hom_{\PSh(X)}(\mathcal F,\mathcal G).</md>
+            The analogous assertion holds for modules.</p></li>
+        </ol></p></statement>
+      <proof><p>Continuous sections of a continuous map form a sheaf by <xref ref="sh-c01-sectionsofmap"/>. A presheaf morphism induces a map of stalks and takes a locally represented family to the family represented by its images, so the construction is functorial.</p>
+        <p>Evaluation at <m>x</m> gives a map <m>(a\mathcal F)_x\to\mathcal F_x</m>. It is surjective because every germ has a local representative. If a section of <m>a\mathcal F</m> evaluates to a given germ, choose its local representative near <m>x</m>; equality of the represented germs allows one further shrinking. This shows that evaluation and <m>(\eta_\mathcal F)_x</m> are inverse.</p>
+        <p>If <m>\mathcal F</m> is a sheaf, a locally represented family comes from local sections that agree wherever their germs agree. Separatedness turns equality of germs on an intersection into equality of the sections there. These sections therefore glue uniquely in <m>\mathcal F</m>. Conversely, if <m>\eta_\mathcal F</m> is an isomorphism, <m>\mathcal F</m> is isomorphic to a sheaf.</p>
+        <p>Finally, given <m>u:\mathcal F\to\mathcal G</m>, represent a section of <m>a\mathcal F</m> locally by sections <m>s_i</m>. On an overlap, equality of their germs implies local equality of the images <m>u(s_i)</m>, and separatedness of <m>\mathcal G</m> gives equality throughout the overlap. Glue these images in <m>\mathcal G</m>. This prescription is independent of the representatives and commutes with restriction. Any extension of <m>u</m> must have these local values, so it is unique.</p></proof>
+    </proposition>
+    <p>For module-valued presheaves, add and scale families of germs pointwise. These operations preserve local representability: two sections have simultaneous representatives after intersecting their neighbourhoods, and their sum represents the pointwise sum. Thus the associated sheaf is a module sheaf, and the universal property respects linear morphisms.</p>
+    <p>Sheafification is left adjoint to the full inclusion of sheaves into presheaves. Its universal property also proves uniqueness up to a unique isomorphism compatible with <m>\eta</m>. A construction using covers, or the plus construction on a site, must therefore agree with this one whenever both apply. The space-of-germs construction is particularly concrete because points already detect the sheaves under consideration.</p>
+    <figure xml:id="sh-c02-sheafificationtriangle">
+      <caption>A morphism to a sheaf factors uniquely through the associated sheaf.</caption>
+      <image xml:id="sh-image-sheafificationtriangle" width="32%"><latex-image>
+\begin{tikzcd}[row sep=large,column sep=large]
+\mathcal F \arrow[r,"\eta_{\mathcal F}"] \arrow[dr,"u"'] \amp a\mathcal F \arrow[d,dashed,"\exists!\,\overline u"] \\
+\amp \mathcal G
+\end{tikzcd}
+      </latex-image><description><p>A triangle from the presheaf F to its associated sheaf aF and to a sheaf G. The map from aF to G is the unique factorization of u through eta.</p></description></image>
+    </figure>
+    <proposition xml:id="sh-c02-localequality">
+      <statement><p>Let <m>s,t\in\mathcal F(U)</m>. Their images in <m>a\mathcal F(U)</m> agree if and only if there is an open cover of <m>U</m> on which their restrictions agree. Every section of <m>a\mathcal F</m> is locally the image of a section of <m>\mathcal F</m>. In particular, <m>\eta_\mathcal F</m> is injective on each open subset exactly when <m>\mathcal F</m> is separated.</p></statement>
+      <proof><p>Equality in <m>a\mathcal F(U)</m> is equality of the germ at every point. At each point this is witnessed by a smaller neighbourhood, and these neighbourhoods form the required cover. The converse follows by taking germs. Local representability is the definition of <m>a\mathcal F</m>. The last assertion is then the locality part of the sheaf axiom, including the empty cover.</p></proof>
+    </proposition>
+    <p>The two assertions describe the two changes made by sheafification: local equality becomes equality, and locally compatible sections become sections. A separated presheaf undergoes only the second change. An arbitrary presheaf may undergo both.</p>
+    <example xml:id="sh-c02-constantassociated">
+      <statement><p>For the constant presheaf with value <m>A</m>, the associated sheaf is the sheaf of locally constant maps to the discrete set <m>A</m>. Its étalé space is <m>X\times A</m> with the product topology.</p></statement>
+      <solution><p>Every stalk is <m>A</m>. A germ family is locally represented by a constant section exactly when its associated map to <m>A</m> is locally constant. The basic open sets of the étalé topology are <m>U\times\{a\}</m>. This gives the asserted product, including the empty-space and empty-set cases.</p></solution>
+    </example>
+    <p>The same argument works for groups and modules. It shows why the adjective constant refers to a sheaf locally represented by a single fixed coefficient object, rather than to a sectionwise constant functor.</p>
+    <p>For a presheaf on a basis, the germ construction can be made using basis neighbourhoods and then locally representable germ families on all opens. When the basis presheaf is already a sheaf on the basis, this recovers the extension in <xref ref="sh-c01-basisextension"/>.</p>
+    <p>The universal property and the equality criterion can be checked against <url href="https://stacks.math.columbia.edu/tag/007X">Stacks, Sheafification</url> and its abelian and module variants. These criteria will also explain why an image or a quotient of sheaves must sometimes be sheafified.</p>
+  </section>
+  <section xml:id="sh-c02-detection">
+    <title>Detecting sheaf morphisms at stalks</title>
+    <proposition xml:id="sh-c02-stalkiso">
+      <statement><p>Let <m>u:\mathcal F\to\mathcal G</m> be a morphism of sheaves of sets or modules on <m>X</m>.
+        <ol>
+          <li><p><m>u</m> is injective on the sections of every open subset if and only if each <m>u_x</m> is injective.</p></li>
+          <li><p>Each <m>u_x</m> is surjective if and only if every local section of <m>\mathcal G</m> has preimages after passage to an open cover of its domain.</p></li>
+          <li><p><m>u</m> is an isomorphism if and only if every <m>u_x</m> is an isomorphism.</p></li>
+        </ol></p></statement>
+      <proof><p>If the section maps are injective, equality of two images in a stalk is witnessed by equality on a smaller open, where injectivity applies. Conversely, if two sections have the same image, stalkwise injectivity makes their germs equal at every point; separatedness makes the sections equal.</p>
+        <p>For surjectivity, lift the germ of a given section at <m>x</m>, represent that lift near <m>x</m>, and shrink until its image agrees with the original section. These local lifts form a cover. The converse follows by taking a local lift near the point of a representative of any germ.</p>
+        <p>If all stalk maps are bijective, choose these local lifts for a section of <m>\mathcal G</m>. Their images agree on overlaps, and the first part makes the lifts themselves agree. They glue uniquely in <m>\mathcal F</m>, proving that the section maps are bijective. Their inverses commute with restriction by uniqueness. The converse follows from functoriality of stalks.</p></proof>
+    </proposition>
+    <p>Surjectivity in the second part is local. It does not assert surjectivity of <m>\mathcal F(U)\to\mathcal G(U)</m> for each <m>U</m>. Isomorphisms do have such sectionwise inverses, because uniqueness permits the local lifts to glue. The difference between local existence and unique gluing is responsible for this asymmetry.</p>
+    <p>For a morphism of presheaves, a stalkwise isomorphism says that its sheafification is an isomorphism. It need not say that the original presheaves are isomorphic. The constant presheaf mapping to its associated sheaf is a basic example.</p>
+    <proposition xml:id="sh-c02-finitelimits">
+      <statement><p>Sheafification preserves finite limits. Stalks of sheaves preserve finite limits, and a map between sheaves obtained from any such finite-limit comparison is an isomorphism as soon as it is an isomorphism at every stalk.</p></statement>
+      <proof><p>A sectionwise limit of sheaves is a sheaf: the universal property of a limit combines the unique local gluings in each component. For a finite diagram, take the canonical map from the sheafification of its presheaf limit to the limit of the sheafifications. At a stalk, this is the finite-limit comparison for a filtered colimit of sets or modules, and is an isomorphism. Apply <xref ref="sh-c02-stalkiso"/>. The assertion about stalks follows by the same argument before sheafification.</p></proof>
+    </proposition>
+    <p xml:id="sh-c02-colimit-adjoint">Preservation of all colimits follows instead from the adjunction for sheafification, with colimits in sheaves formed as in <xref ref="sh-c03"/>.<fn xml:id="sh-c02-left-exact">Preservation of finite limits is additional structure, not a consequence of being a left adjoint. Here it follows from the finite-limit property of filtered neighbourhood colimits and the fact that stalks detect isomorphisms.</fn></p>
+    
+  </section>
+  <section xml:id="sh-c02-equivalence">
+    <title>Sheaves and local homeomorphisms</title>
+    <theorem xml:id="sh-c02-etaleequivalence">
+      <statement><p>The functor taking a local homeomorphism over <m>X</m> to its sheaf of continuous sections is an equivalence from the category of local homeomorphisms over <m>X</m> to <m>\Sh(X)</m>. A quasi-inverse sends a sheaf to its étalé space.</p></statement>
+      <proof><p>For a sheaf <m>\mathcal F</m>, its section sheaf after the étalé construction is <m>a\mathcal F</m>, already identified with <m>\mathcal F</m>. For a local homeomorphism <m>p:E\to X</m>, let <m>\mathcal S</m> be its sheaf of sections. A germ of a section at <m>x</m> determines its value in <m>E_x</m>. Conversely, a point of <m>E_x</m> lies in a local homeomorphism chart; the inverse chart gives a germ of a section through it. Any two sections through this point agree near <m>x</m> after shrinking into that same chart. Thus evaluation gives a bijection <m>E(\mathcal S)\to E</m>.</p>
+        <p>This bijection is a homeomorphism. A local section of a local homeomorphism has open image locally, and its image as a whole is a union of these local open images. Evaluation takes the basic open associated with a section to this image, homeomorphically over its domain. The correspondence is natural for maps over <m>X</m> and for sheaf morphisms, proving the equivalence.</p></proof>
+    </theorem>
+    <p>In the module case, the fibres of the étalé space carry module structures, with continuous addition on the fibre product and continuous scalar operations. Conversely, these operations give a sheaf of modules on sections. This describes how algebraic structure can be local without making the sheaf a locally trivial vector bundle.</p>
+    <p>The equivalence is useful for interpretation and for constructing local systems. It is not necessary to pass to a topological total space every time a sheaf is used; the presheaf description is usually more convenient for algebra and derived functors.</p>
+  </section>
+  <section xml:id="sh-c02-specialization">
+    <title>Compatibility between different points</title>
+    <p>Stalks detect a morphism when that morphism is already given. A family of stalks, with no compatibility data, does not determine a sheaf. Even a family of linear maps between stalks need not arise from a sheaf morphism.</p>
+    <example xml:id="sh-c02-sierpinski">
+      <statement><p>Let <m>X=\{\eta,s\}</m> with open subsets <m>\emptyset,\{\eta\},X</m>. Giving a sheaf of modules is equivalent to giving a module map <m>A\to B</m>. The stalks are <m>\mathcal F_s=A</m> and <m>\mathcal F_\eta=B</m>, and the map is restriction from <m>X</m> to <m>\{\eta\}</m>.</p></statement>
+      <solution><p>A sheaf must have value zero at the empty set. Every cover of <m>X</m> contains <m>X</m>, and every nonempty cover of <m>\{\eta\}</m> contains that open, so there are no further gluing conditions. These two opens are the smallest neighbourhoods of their points, hence compute the stalks. Distinct choices of <m>A\to B</m> can give nonisomorphic sheaves even with the same stalk modules. For instance, for a nonzero field, the identity and the zero map from the field to itself are not isomorphic as arrows.</p></solution>
+    </example>
+    <p>More generally, if <m>x\in\overline{\{y\}}</m>, every open neighbourhood of <m>x</m> contains <m>y</m>. Taking the germ at <m>y</m> of a representative at <m>x</m> gives a canonical map <m>\mathcal F_x\to\mathcal F_y</m>. We call it a generization map. The condition is often expressed by saying that <m>x</m> is a specialization of <m>y</m>.<fn>The direction of the specialization order varies among references. Writing <m>x\in\overline{\{y\}}</m> and displaying <m>\mathcal F_x\to\mathcal F_y</m> avoids that convention problem. On a Hausdorff space, distinct points have no such relation; compatibility is still carried by local sections and the étalé topology.</fn></p>
+    <p>A finite topological space has a smallest neighbourhood at each point. A sheaf is determined by its values on these neighbourhoods and their restriction maps, subject to the corresponding functoriality. The example shows the simplest nontrivial case. More elaborate finite spaces can also have nonzero sheaf cohomology, as calculated in <xref ref="sh-c10"/>.</p>
+  </section>
+</chapter>

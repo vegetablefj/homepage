@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="sh-c05">
+  <title>Constant sheaves and local systems</title>
+  <introduction>
+    <p>A constant sheaf has a single coefficient object, but its sections need only be locally constant. A locally constant sheaf can have a single coefficient object on each small open set and still have nontrivial transport around a loop. We distinguish these assertions before describing monodromy. The distinction between arbitrary modules and finite-dimensional vector spaces is also relevant: without local connectedness, infinitely many coefficients need not be controlled on one neighbourhood.</p>
+    <p>The definitions apply to arbitrary topological spaces. The classification by the fundamental groupoid will assume local path connectedness and semilocal simple connectedness. This chapter uses only the gluing and inverse image constructions of <xref ref="sh-c04"/>. Basic definitions and transition functions may be compared with <xref ref="sh-bib-schapira" detail="Section 1.9"/>; that source uses the term local system over a field with an additional finite-rank condition.</p>
+  </introduction>
+
+  <section xml:id="sh-c05-constant-section">
+    <title>Constant coefficients and locally constant functions</title>
+    <definition xml:id="sh-c05-constant">
+      <title>Constant sheaf</title><idx>Constant sheaf</idx><idx>Constant presheaf</idx><idx>Locally constant function</idx>
+      <statement><p>For a set <m>A</m>, the <em>constant sheaf</em> <m>A_X</m> is the sheaf associated to the constant presheaf with value <m>A</m>. Equivalently,
+        <md number="no">A_X(U)=\{s:U\to A:s\text{ is locally constant}\},</md>
+        where <m>A</m> has the discrete topology. For a <m>\Lambda</m>-module <m>M</m>, the constant sheaf <m>M_X</m> has this description with pointwise module operations. A sheaf is <em>constant</em> if it is isomorphic to <m>A_X</m> or <m>M_X</m>, as appropriate.</p></statement>
+    </definition>
+    <p>The function description follows from sheafification by germs: a germ of the constant presheaf at any point is an element of <m>A</m>, and a section of the associated sheaf is locally represented by a single such element. It gives the correct value on the empty set: one empty function, even when <m>A=\varnothing</m>.<fn>A constant presheaf with value <m>A</m> also on the empty open set need not satisfy the empty-cover sheaf axiom; its sheafification still has this description. Normalizing its empty-open value before sheafification gives the same sheaf.</fn></p>
+    <proposition xml:id="sh-c05-constant-properties">
+      <statement><p>Let <m>a:X\to\{*\}</m>. Constant sheaves satisfy
+        <md number="no">M_X\simeq a^{-1}M,\qquad
+          \Hom_X(M_X,F)\simeq\Hom_\Lambda(M,\Gamma(X,F)).</md>
+        The functor <m>M\mapsto M_X</m> is exact, preserves all colimits and finite limits, and has stalk <m>M</m> at each point. For every continuous <m>f:X\to Y</m>, there is a canonical isomorphism <m>f^{-1}M_Y\simeq M_X</m>. If <m>X</m> is nonempty and connected, <m>M\mapsto M_X</m> is fully faithful.</p></statement>
+      <proof><p>The first assertion follows by applying the inverse image construction to a point. The adjunction and exactness follow from <xref ref="sh-c04-adjunction"/> and <xref ref="sh-c04-exactness"/>. Compatibility with <m>f</m> follows from <m>a_Yf=a_X</m>. On a nonempty connected space, every locally constant function to a discrete set is constant. Hence <m>\Gamma(X,N_X)=N</m>, and the adjunction identifies morphisms between constant sheaves with module homomorphisms.</p></proof>
+    </proposition>
+    <p>For a disconnected space, sections of a constant sheaf can have different values on different open-and-closed pieces. If connected components are open, then
+      <md number="no">\Gamma(X,M_X)\simeq\prod_{C\in\pi_0(X)}M.</md>
+      Without that condition, a function constant on each component need not be locally constant.</p>
+    <example xml:id="sh-c05-convergent-sequence">
+      <statement><p>Let <m>X=\{0\}\cup\{1/n:n\geq1\}\subset\R</m>. Its connected components are individual points. A section of <m>M_X</m> is a sequence of values <m>(m_0,m_1,m_2,\ldots)</m> such that <m>m_n=m_0</m> for all sufficiently large <m>n</m>. An arbitrary function on the components does not have this property. In particular, the constant sheaf is not the sheaf of all functions to <m>M</m>.</p></statement>
+    </example>
+    <p>The name “constant” specifies the isomorphism type of a sheaf. It does not specify a chosen trivialization. Once <m>F\simeq M_X</m> has been chosen, changing it acts by an automorphism of the constant sheaf; on a connected nonempty space these are precisely the automorphisms of <m>M</m>.</p>
+  </section>
+
+  <section xml:id="sh-c05-local-section">
+    <title>Locally constant sheaves and transition maps</title>
+    <definition xml:id="sh-c05-localsystem">
+      <title>Locally constant sheaf and local system</title><idx>Locally constant sheaf</idx><idx>Local system</idx><idx>Finite-rank local system</idx>
+      <statement><p>A sheaf <m>L</m> on <m>X</m> is <em>locally constant</em> if every point has an open neighbourhood <m>U</m> on which <m>L|_U</m> is constant. We use <em>local system of <m>\Lambda</m>-modules</em> for any locally constant object of <m>\Sh(X;\Lambda)</m>, and denote their category by <m>\Loc(X;\Lambda)</m>. A <em>finite-rank local system over a field</em> <m>\Bbbk</m> has local models <m>\Bbbk_U^r</m> with <m>r</m> finite. Over a general ring, <em>finite locally free</em> means that the local models are <m>\Lambda_U^r</m> with <m>r</m> finite.</p></statement>
+    </definition>
+    <p>For a nonzero commutative ring, the integer <m>r</m> in a free local model is determined by its stalk, as can be seen after passing to a residue field. It is locally constant on <m>X</m>. On a disconnected space it may vary between components and need not have a global finite bound. The zero ring is allowed throughout the note, but rank is not an invariant of its zero module.<fn>Some authors reserve “local system” for finite-dimensional vector spaces, or for finite locally free modules, and use “locally constant sheaf” for the unrestricted version. We state these finiteness conditions explicitly. A flat vector bundle with its parallel transport can give a local system; its sheaf of all smooth or continuous sections is a different sheaf.</fn></p>
+    <p>Choose trivializations <m>L|_{U_a}\simeq (M_a)_{U_a}</m>. Their transition isomorphisms satisfy the cocycle condition of <xref ref="sh-c04-gluingdatum"/>. Conversely, any such isomorphisms glue the constant sheaves into a local system by <xref ref="sh-c04-gluing"/>. The overlaps need not be connected.</p>
+    <proposition xml:id="sh-c05-maps-constant">
+      <statement><p>Let <m>M,N</m> be modules.
+        <ol>
+          <li><p>A morphism <m>M_X\to N_X</m> is the same as a family of linear maps <m>h_x:M\to N</m> such that, for every <m>m\in M</m>, the function <m>x\mapsto h_x(m)</m> is locally constant.</p></li>
+          <li><p>If <m>M</m> is finitely generated, this family is locally constant as a function to the set <m>\Hom_\Lambda(M,N)</m> with its discrete topology.</p></li>
+          <li><p>If <m>X</m> is connected and nonempty, the family is constant, without a finite-generation hypothesis.</p></li>
+        </ol></p></statement>
+      <proof><p>The constant-sheaf adjunction identifies a morphism with a map <m>M\to\Gamma(X,N_X)</m>, which is precisely the first description. Conversely, evaluating these functions on any locally constant section of <m>M_X</m> gives the required section of <m>N_X</m>. For the second assertion choose finitely many generators of <m>M</m> and intersect neighbourhoods on which their images have constant values. The map is determined by these images. For the third, each function <m>x\mapsto h_x(m)</m> is constant by connectedness, for every <m>m</m>.</p></proof>
+    </proposition>
+    <p>Thus transition maps between finite locally free local systems are locally constant matrices. For unrestricted modules, the correct general condition is constancy after evaluation on each element, not necessarily constancy of the whole homomorphism on a single neighbourhood. These coincide on locally connected spaces after passing to connected open neighbourhoods.<fn>This is one reason that the topology on an automorphism group requires care for infinite coefficient modules. A family can be continuous after evaluation on each element without being locally constant in the discrete topology on the entire automorphism group.</fn></p>
+    <proposition xml:id="sh-c05-local-kernels">
+      <statement><p>The following statements hold.
+        <ol>
+          <li><p>If <m>X</m> is locally connected, kernels and cokernels of morphisms in <m>\Loc(X;\Lambda)</m>, computed in <m>\Sh(X;\Lambda)</m>, are locally constant. Thus <m>\Loc(X;\Lambda)</m> is Abelian and its inclusion is exact.</p></li>
+          <li><p>On an arbitrary <m>X</m>, the same conclusion for the kernel and cokernel of <m>L\to L'</m> holds if <m>L</m> has finitely generated local models.</p></li>
+          <li><p>For any <m>X</m>, finite-rank local systems over a field are closed under kernels, cokernels, and extensions in the category of all module sheaves.</p></li>
+        </ol></p></statement>
+      <proof>
+        <p>Trivialize source and target near a point. On a connected open neighbourhood, the morphism is induced by one module homomorphism, by <xref ref="sh-c05-maps-constant"/>. Its kernel and cokernel are the constant sheaves of the corresponding modules because the constant-sheaf functor is exact. A connected open basis gives the first assertion. Finitely generated source modules give a neighbourhood with the same property without assuming local connectedness, proving the second.</p>
+        <p>Over a field, kernels and cokernels of maps of finite-dimensional vector spaces are finite-dimensional. For an extension <m>0\to L'\to E\to L''\to0</m>, choose local finite-dimensional trivializations of <m>L'</m> and <m>L''</m>. The finitely many basis sections of <m>L''</m> lift to <m>E</m> after a common shrinking, since a sheaf epimorphism is locally surjective. These lifts split the sequence on that neighbourhood. Hence <m>E</m> is locally a direct sum of the two constant sheaves.</p>
+      </proof>
+    </proposition>
+    <p>Over a general ring, kernels of maps of finite free modules need not be finite free or even finitely generated.<fn>For example, the kernel of multiplication by <m>2</m> on <m>\Z/4\Z</m> is a module with two elements and is not free over <m>\Z/4\Z</m>. Thus the field hypothesis in the finite-rank assertion has a role independent of the topology.</fn> The unrestricted locally constant kernel may still exist, as specified in the proposition. Local freeness and local constancy are separate conditions.</p>
+    <example xml:id="sh-c05-infinite-counterexample">
+      <statement><p>For infinite-dimensional local systems, the hypothesis on the space cannot be omitted from the first assertion. Take the convergent sequence <m>X</m> of <xref ref="sh-c05-convergent-sequence"/> and let <m>M=\bigoplus_{r\geq1}\Bbbk e_r</m>. Define maps
+        <md number="no">h_0=\id_M,\qquad
+          h_{1/n}(e_r)=
+          \begin{cases}e_r,&amp;r\leq n,\\0,&amp;r&gt;n.\end{cases}</md>
+        Every <m>m\in M</m> has finite support, so <m>h_{1/n}(m)=m</m> eventually. These maps define a sheaf morphism <m>h:M_X\to M_X</m>. Its kernel has stalk zero at <m>0</m> and a nonzero stalk at every <m>1/n</m>. No neighbourhood of zero can trivialize that kernel, since a constant sheaf with a zero stalk has zero local model. Thus this kernel is not locally constant.</p></statement>
+    </example>
+    <p>The example also shows why a fibrewise family of homomorphisms requires a local compatibility condition. Here the compatibility holds separately for each vector, but there is no single neighbourhood on which all the maps equal <m>\id_M</m>.</p>
+  </section>
+
+  <section xml:id="sh-c05-coverings">
+    <title>Covering spaces and transport</title>
+    <definition xml:id="sh-c05-covering">
+      <title>Covering space</title><idx>Covering space</idx><idx>Evenly covered neighbourhood</idx>
+      <statement><p>A <em>covering space over</em> <m>X</m> is a continuous map <m>p:E\to X</m> such that every point has an open neighbourhood <m>U</m> with an isomorphism over <m>U</m>
+        <md number="no">p^{-1}U\simeq U\times A</md>
+        for a discrete set <m>A</m>. We allow <m>A=\varnothing</m>; thus a covering is not required to be surjective. Morphisms are continuous maps over <m>X</m>.</p></statement>
+    </definition>
+    <proposition xml:id="sh-c05-cover-equivalence">
+      <statement><p>The étalé-space equivalence of <xref ref="sh-c02"/> restricts to an equivalence between locally constant sheaves of sets and covering spaces over <m>X</m>. Constant sheaves correspond to trivial coverings <m>X\times A\to X</m>.</p></statement>
+      <proof><p>The étalé space of <m>A_U</m> is <m>U\times A</m>, since its basic sections are locally constant functions to <m>A</m>. Thus local trivializations of the sheaf give evenly covered neighbourhoods. Conversely, the sheaf of sections of a covering restricts on an evenly covered open to the sheaf of locally constant <m>A</m>-valued functions.</p></proof>
+    </proposition>
+    <p>A local homeomorphism is more general than a covering. For example, the inclusion of <m>(0,\infty)</m> in <m>\R</m> is a local homeomorphism but is not a covering near zero. Its sheaf of local sections has an empty stalk at zero and nonempty stalks arbitrarily close to zero. For module local systems one uses locally trivial bundles of discrete modules, with linear local trivializations, rather than discarding the module structure of the fibres.<fn>Some definitions require a covering to be surjective. Allowing empty fibres includes the empty sheaf and gives the equivalence with all locally constant set sheaves without exceptions on components where the sheaf is empty.</fn></p>
+    <p>Let <m>\gamma:[0,1]\to X</m> be a path and <m>L</m> a local system. A finite subdivision of the interval can be chosen so that each subpath lies in a trivializing open. Within a constant sheaf the fibre at one endpoint is identified with the fibre at the other by evaluation of constant sections. Composing these identifications gives
+      <md number="no">T_\gamma:L_{\gamma(0)}\longrightarrow L_{\gamma(1)}.</md>
+      Refining the subdivision does not change the map. On a subinterval lying in two trivializing opens, the transition isomorphism is constant along that subinterval, so changing the trivialization also gives the same map.</p>
+    <proposition xml:id="sh-c05-transport">
+      <statement><p>Transport is an isomorphism and satisfies
+        <md number="no">T_{\text{constant path}}=\id,\qquad
+          T_{\overline\gamma}=T_\gamma^{-1},\qquad
+          T_{\delta\gamma}=T_\delta T_\gamma.</md>
+        Here <m>\delta\gamma</m> means first traverse <m>\gamma</m>, then <m>\delta</m>. Transport depends only on the homotopy class relative to endpoints. A morphism of local systems commutes with every transport map.</p></statement>
+      <proof><p>The first three assertions follow by reversing or adjoining subdivisions. For homotopy invariance, pull back trivializing opens to a homotopy square. By compactness, subdivide the square into rectangles whose images lie in trivializing opens. Transport around each rectangle is the identity. Cancelling the interior edges identifies transport along the two opposite boundary paths; the other boundary paths are constant when endpoints are fixed. Compatibility with a sheaf morphism follows on each subinterval from the description of maps between constant sheaves on a connected interval.</p></proof>
+    </proposition>
+    <p>For set sheaves this is path lifting in the associated covering space; for module sheaves it also retains linearity. The covering-space lifting statements are proved in <xref ref="sh-bib-hatcher" detail="Section 1.3, Proposition 1.30"/>. No local condition on <m>X</m> is needed to transport an already given local system. The extra conditions in the classification theorem concern constructing a local system from arbitrary transport data.</p>
+  </section>
+
+  <section xml:id="sh-c05-monodromy-section">
+    <title>The monodromy classification</title>
+    <definition xml:id="sh-c05-fundamental-groupoid">
+      <title>Fundamental groupoid and monodromy</title><idx>Fundamental groupoid</idx><idx>Monodromy</idx><idx>Semilocally simply connected space</idx>
+      <statement><p>The <em>fundamental groupoid</em> <m>\Pi_1(X)</m> has points as objects and endpoint-preserving homotopy classes of paths as morphisms. Composition follows the convention of <xref ref="sh-c05-transport"/>. Transport defines a functor
+        <md number="no">\Pi_1(X)\longrightarrow\Mod(\Lambda),\qquad x\longmapsto L_x.</md>
+        We call it the <em>monodromy functor</em> of <m>L</m>. A space is <em>semilocally simply connected</em> if every point has an open neighbourhood whose loops based at that point become null-homotopic in <m>X</m>.</p></statement>
+    </definition>
+    <p>Semilocal simple connectedness does not require the neighbourhood itself to be simply connected. Under local path connectedness, its neighbourhood can be chosen path connected, and all of its loops, with any chosen basepoint, become null-homotopic in <m>X</m> by change of basepoint.<fn>“Locally simply connected” is a stronger neighbourhood condition. The weaker condition in our theorem is enough because monodromy only depends on the images of the loops in the ambient space.</fn></p>
+    <theorem xml:id="sh-c05-monodromy">
+      <statement><p>If <m>X</m> is locally path connected and semilocally simply connected, monodromy is an equivalence
+        <md number="no">\Loc(X;\Lambda)\simeq
+          \operatorname{Fun}(\Pi_1(X),\Mod(\Lambda)).</md>
+        The analogous equivalence holds for locally constant sheaves of sets. If <m>X</m> is also path connected and <m>x\in X</m>, evaluation at <m>x</m> gives an equivalence with modules equipped with a left action of <m>\pi_1(X,x)</m> by linear automorphisms.</p></statement>
+      <proof>
+        <p>Let <m>V:\Pi_1(X)\to\Mod(\Lambda)</m> be a functor. Form the set <m>E=\coprod_{x\in X}V_x</m> over <m>X</m>. Choose a path-connected open neighbourhood <m>U</m> such that its loops become null-homotopic in <m>X</m>, and choose <m>a\in U</m>. Transport along paths in <m>U</m> gives bijections <m>V_a\to V_y</m> for every <m>y\in U</m>, independent of the chosen path: two paths differ by a loop that is trivial in <m>\Pi_1(X)</m>. They define a bijection <m>U\times V_a\to E|_U</m>.</p>
+        <p>These bijections define compatible covering charts. On an overlap, choose a path-connected neighbourhood of a point contained in the overlap. Following paths in this smaller neighbourhood shows that the transition map between the two fixed modules is constant there. Hence the transition is continuous for discrete fibres. The resulting topology on <m>E</m> makes it a covering, with locally constant linear transition maps. Its sheaf of sections is a local system with monodromy <m>V</m>.</p>
+        <p>A natural transformation between two such functors gives fibre maps that commute with transport. In each path-connected trivializing neighbourhood, they are one fixed homomorphism, and hence define a map of local systems. Conversely, every sheaf morphism gives those fibre maps. These constructions are inverse, proving full faithfulness as well as essential surjectivity.</p>
+        <p>When <m>X</m> is path connected, its fundamental groupoid is connected and its automorphism group at <m>x</m> is <m>\pi_1(X,x)</m>. Restriction of functors to this one-object groupoid is an equivalence: paths from <m>x</m> to the other points reconstruct all other fibres, and changing these paths gives a naturally isomorphic functor.</p>
+      </proof>
+    </theorem>
+    <p>The topology in the proof explains both hypotheses. Local path connectedness gives neighbourhoods on which transport determines sections. Semilocal simple connectedness gives neighbourhoods on which <em>every</em> loop acts trivially, uniformly for the entire module. Without it, an arbitrary representation of the fundamental group need not have this local triviality property. A given local system still has monodromy, by <xref ref="sh-c05-transport"/>. The classical covering classification under the stated hypotheses is also <xref ref="sh-bib-hatcher" detail="Theorem 1.38 and the following discussion"/>.</p>
+    <p>Our convention makes transport a covariant functor and a left action.<fn>Conventions that concatenate loops in the opposite written order can give a right action or insert inverses. This changes the displayed representation, not the local system, once the convention is translated consistently.</fn></p>
+    <corollary xml:id="sh-c05-monodromy-sections">
+      <statement><p>Under the hypotheses of <xref ref="sh-c05-monodromy"/>, global sections are compatible families in the fibres:
+        <md number="no">\Gamma(X,L)\simeq\lim_{\Pi_1(X)}L_x.</md>
+        If <m>X</m> is path connected and the local system corresponds to <m>(M,\rho)</m>, then
+        <md number="no">\Gamma(X,L)\simeq M^{\pi_1(X,x)}.</md>
+        In this path-connected case, a local system is constant if and only if its monodromy action is trivial.</p></statement>
+      <proof><p>A section has fibre values compatible with transport. Conversely, such a family is constant in each path-connected trivializing open, and therefore defines a section. In the path-connected case, the value at <m>x</m> determines the entire family and is allowed precisely when it is fixed by all loops. The final assertion follows from the classification and the trivial monodromy of <m>M_X</m>.</p></proof>
+    </corollary>
+    <p>A path-connected, locally path-connected, simply connected space satisfies the hypotheses of the theorem and has only constant local systems. Given a basepoint, transport gives <m>L_x\to L_y</m> independently of the path, so it explicitly trivializes <m>L</m>. The equivalence with the category of modules is evaluation at that basepoint. An identification of its fibre with a previously specified module remains a choice.</p>
+    <p>For a space with several path components, local path connectedness makes those components open. Choosing a point in each gives an equivalence with the product of the representation categories of their fundamental groups. Coefficients and ranks may differ between components. The groupoid formulation records this without making those choices.</p>
+    <p>Basepoint choices are necessary for the representation description, not for the groupoid formulation.<fn>A path joining two basepoints conjugates the fundamental groups and transports the fibre; two choices can give conjugate identifications. No fibre is intrinsically preferred.</fn></p>
+  </section>
+
+  <section xml:id="sh-c05-examples">
+    <title>The circle, finite coverings, and pullback</title>
+    <example xml:id="sh-c05-circle">
+      <statement><p>A local system on <m>S^1</m> is described by a module <m>M</m> and an automorphism <m>T\in\operatorname{Aut}_\Lambda(M)</m>, the transport around a positively oriented generator. It can be constructed by gluing two constant sheaves on arcs; use the identity on one component of their intersection and an appropriate transition <m>T</m> on the other. An equivalent discrete-module bundle is
+        <md number="no">(\R\times M)/((t+1,m)\sim(t,Tm))\longrightarrow\R/\Z.</md>
+        Its monodromy is <m>T</m>, since <m>(1,m)</m> and <m>(0,Tm)</m> represent the same point in the fibre. Isomorphisms between <m>(M,T)</m> and <m>(N,S)</m> are the isomorphisms <m>u:M\to N</m> satisfying <m>uT=Su</m>. Moreover,
+        <md number="no">\Gamma(S^1,L_T)=\ker(T-\id_M).</md></p></statement>
+    </example>
+    <example xml:id="sh-c05-unipotent-extension">
+      <statement><p>Let <m>M=\Bbbk e_1\oplus\Bbbk e_2</m> and let <m>T(e_1)=e_1</m>, <m>T(e_2)=e_2+e_1</m>. The invariant line and its quotient give an exact sequence
+        <md number="no">0\longrightarrow\Bbbk_{S^1}
+          \longrightarrow L_T\longrightarrow\Bbbk_{S^1}\longrightarrow0.</md>
+        This sequence splits near every point, but it does not split as local systems. A splitting would lift the invariant generator of the quotient to a fixed vector <m>e_2+ae_1</m>, and <m>T(e_2+ae_1)=e_2+(a+1)e_1</m> is different. Exactness on stalks and even local splitting therefore do not imply a global splitting.</p></statement>
+    </example>
+    <p>The same calculation explains why the global-section functor is not generally right exact. The quotient section <m>1</m> has local lifts but no global lift in this sequence. For the map <m>S^1\to\{*\}</m>, direct image is precisely the global-section functor, so this also supplies an example of a nonexact direct image.</p>
+    <p>For a rank-one free module, an automorphism is multiplication by a unit <m>a\in\Lambda^\times</m>. The global sections are <m>\{m\in\Lambda:(a-1)m=0\}</m>. Over an integral domain they vanish for <m>a\ne1</m>. Over <m>\Lambda=\Z/4\Z</m>, multiplication by <m>-1</m> is nontrivial but fixes <m>2</m>, so nontrivial monodromy does not imply absence of nonzero sections over an arbitrary ring. This qualifies the domain hypothesis in <xref ref="sh-bib-schapira" detail="Example 1.9.4"/>.</p>
+    <p>The sheaf <m>L_T</m> has stalk isomorphic to <m>M</m> at every point, independently of <m>T</m>. Isomorphic stalks alone therefore do not decide whether two local systems are isomorphic. Transport is the additional gluing information.<fn>Even local constancy does not follow from constant stalk dimensions: on <m>\R</m>, the sheaf <m>j_!\Bbbk_{\R\setminus\{0\}}\oplus i_*\Bbbk</m> from <xref ref="sh-c04-openclosed"/> has one-dimensional stalks everywhere but is not locally constant near zero. Its sections near zero restrict to zero on a sufficiently small punctured interval.</fn> Higher cohomology of these circle systems is calculated in <xref ref="sh-c10"/>.</p>
+    <proposition xml:id="sh-c05-finite-cover">
+      <statement><p>Let <m>p:E\to X</m> be a covering with finite fibres. Then <m>p_*\Lambda_E</m> is finite locally free. On a path-connected component where the fibre has <m>d</m> points, its monodromy permutes the coordinates of <m>\Lambda^d</m> according to the lifting of loops to the covering.</p></statement>
+      <proof><p>On an evenly covered open with <m>d</m> sheets, direct image is the product of the <m>d</m> constant sheaves on the sheets. Finite products of constant module sheaves are constant, by exact inverse image from a point. A path carries the sheet labels to their endpoint labels, so it permutes the corresponding coordinate vectors.</p></proof>
+    </proposition>
+    <p>For the map <m>S^1\to S^1</m>, <m>z\mapsto z^d</m>, with <m>d\geq1</m>, a positive loop permutes the <m>d</m> sheets cyclically. The invariant vectors are the vectors with all coordinates equal, so the global sections are <m>\Lambda</m>. This agrees with taking global sections on the connected covering circle itself.</p>
+    <p>The finite-fibre assumption avoids an infinite product of constant sheaves on a space without local connectedness.<fn>Infinite products of locally constant scalar functions can require infinitely many different neighbourhoods. The product-stalk comparison in <xref ref="sh-c04-product-stalk"/> gives an explicit failure of the constant-sheaf functor to preserve an infinite product; a product cannot be replaced by a constant product module without additional hypotheses.</fn></p>
+    <proposition xml:id="sh-c05-pullback">
+      <statement><p>Inverse image under any continuous map sends local systems to local systems. It sends finite locally free systems to finite locally free systems, and its transport is obtained by composing paths with the map. Under the monodromy equivalences, <m>f^{-1}</m> is precomposition with <m>\Pi_1(f)</m>. In particular, on spaces satisfying the classification hypotheses, a homotopy equivalence induces an equivalence of local-system categories.</p></statement>
+      <proof><p>Pulling back a constant trivialization on <m>U\subset Y</m> gives a constant trivialization on <m>f^{-1}U</m>, by <xref ref="sh-c05-constant-properties"/>. The subdivisions used for transport give exactly transport along <m>f\gamma</m>. A homotopy gives a natural isomorphism of the induced fundamental-groupoid functors, using its path at each point. A homotopy inverse therefore gives a quasi-inverse on local systems.</p></proof>
+    </proposition>
+    <p>This final statement concerns local systems and their transport. Homotopy invariance of their derived global sections requires an additional cohomological comparison; it is treated in <xref ref="sh-c11"/>. An arbitrary sheaf may contain local data that is not invariant under homotopy of spaces.</p>
+  </section>
+</chapter>

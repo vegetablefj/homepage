@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" data-darkmode="disabled">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette: blue-red                     *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Finite presentation and coherent modules</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Sites, topoi, and ringed structures">
+<meta property="og:title" content="Sites, topoi, and ringed structures">
+<meta property="book:title" content="Sites, topoi, and ringed structures">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.53"></script><script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="../../vendor/lunr/lunr.min.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+<link rel="stylesheet" href="../../layout.css?v=fee08a8c1c">
+<script src="../../layout.js?v=e9391a21a7" defer></script><link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"C": "\\mathbb C", "Pone": "\\mathbb{P}^1_{\\mathbb{C}}", "cO": "\\mathcal{O}", "ord": "\\operatorname{ord}", "lt": "<", "gt": ">", "amp": "&", "Hom": "\\operatorname{Hom}", "End": "\\operatorname{End}", "Ext": "\\operatorname{Ext}", "Tor": "\\operatorname{Tor}", "colim": "\\operatorname{colim}", "im": "\\operatorname{im}", "coker": "\\operatorname{coker}", "Cone": "\\operatorname{Cone}", "Tot": "\\operatorname{Tot}", "Loc": "\\operatorname{Loc}", "Spec": "\\operatorname{Spec}", "cosk": "\\operatorname{cosk}", "sk": "\\operatorname{sk}", "Lan": "\\operatorname{Lan}", "Ran": "\\operatorname{Ran}", "Nat": "\\operatorname{Nat}", "Coh": "\\mathsf{Coh}", "QCoh": "\\mathsf{QCoh}", "Perf": "\\mathsf{Perf}", "Sh": "\\mathsf{Sh}", "PSh": "\\mathsf{PSh}", "Set": "\\mathsf{Set}", "Ab": "\\mathsf{Ab}", "Mod": "\\mathsf{Mod}", "Ch": "\\mathsf{C}", "K": "\\mathsf{K}", "D": "\\mathsf{D}", "id": "\\mathrm{id}", "op": "\\mathrm{op}", "RHom": "\\mathbf R\\!\\operatorname{Hom}", "sheafHom": "\\mathcal{H}\\!om", "RsheafHom": "\\mathbf R\\mathcal{H}\\!om", "Ltensor": "\\mathbin{\\otimes^{\\mathbf L}}", "Z": "\\mathbb Z", "N": "\\mathbb N", "Q": "\\mathbb Q", "R": "\\mathbb R"}}, "options": {"ignoreHtmlClass": "ignore-math", "processHtmlClass": "process-math", "enableMenu": false}};</script><script src="../../vendor/mathjax/tex-chtml.js" defer></script>
+</head>
+<body class="pretext book ignore-math note-page" data-page-format="note">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner"><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="sheaves-sites-notes.html"><span class="title">Sites, topoi, and ringed structures</span></a></div>
+<p class="byline"><a href="../../home.html">Jie Fu</a>'s <a href="../../notes.html">Notes</a></p>
+<p class="note-metadata"><span class="note-review-status">Under review and improvement</span> · <span class="note-last-updated">Last updated: <time datetime="2026-10-26">2026-10-26</time></span></p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Contents</span></button><a class="index-button button" href="st-index.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Index</span></a><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true"></span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="treebuttons"><a class="previous-button button" href="st-c09.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="up-button button" href="sheaves-sites-notes.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Up</span></a><a class="next-button button" href="st-c11.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a></span>
+</div></nav><div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth4 focused" data-preexpanded-levels="1" data-max-levels="4"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c00.html" class="internal"><span class="codenumber">0</span> <span class="title">From open covers to sites</span></a></div>
+<ul id="ptx-toc-group-st-c00" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c00.html#st-c00-background" class="internal"><span class="codenumber">0.1</span> <span class="title">What changes from topological sheaves</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c00.html#st-c00-size" class="internal"><span class="codenumber">0.2</span> <span class="title">Size and categorical conventions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c00.html#st-c00-ringed" class="internal"><span class="codenumber">0.3</span> <span class="title">Ringed structures and directions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c00.html#st-c00-sources" class="internal"><span class="codenumber">0.4</span> <span class="title">Sources and dependencies</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c01.html" class="internal"><span class="codenumber">1</span> <span class="title">Grothendieck topologies and sheaves</span></a></div>
+<ul id="ptx-toc-group-st-c01" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c01.html#st-c01-presheaves" class="internal"><span class="codenumber">1.1</span> <span class="title">Test objects and restrictions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c01.html#st-c01-topologies" class="internal"><span class="codenumber">1.2</span> <span class="title">Covering sieves and local consequences</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c01.html#st-c01-families" class="internal"><span class="codenumber">1.3</span> <span class="title">Covering families and pretopologies</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c01.html#st-c01-sheaves" class="internal"><span class="codenumber">1.4</span> <span class="title">Matching families and the sheaf condition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c01.html#st-c01-representability" class="internal"><span class="codenumber">1.5</span> <span class="title">Subcanonical and canonical topologies</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c02.html" class="internal"><span class="codenumber">2</span> <span class="title">Sheafification without points</span></a></div>
+<ul id="ptx-toc-group-st-c02" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c02.html#st-c02-construction" class="internal"><span class="codenumber">2.1</span> <span class="title">The plus construction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c02.html#st-c02-two-steps" class="internal"><span class="codenumber">2.2</span> <span class="title">Separation and amalgamation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c02.html#st-c02-local-tests" class="internal"><span class="codenumber">2.3</span> <span class="title">Local equality and lifting</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c02.html#st-c02-exactness" class="internal"><span class="codenumber">2.4</span> <span class="title">Finite limits and algebraic structures</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c02.html#st-c02-recovering-topology" class="internal"><span class="codenumber">2.5</span> <span class="title">Recovering the topology from its sheaves</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c03.html" class="internal"><span class="codenumber">3</span> <span class="title">Grothendieck topoi and their presentations</span></a></div>
+<ul id="ptx-toc-group-st-c03" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c03.html#st-c03-presented" class="internal"><span class="codenumber">3.1</span> <span class="title">Topoi and generating sheaves</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c03.html#st-c03-images" class="internal"><span class="codenumber">3.2</span> <span class="title">Images, epimorphisms, and exactness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c03.html#st-c03-quotients" class="internal"><span class="codenumber">3.3</span> <span class="title">Equivalence relations and universal colimits</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c03.html#st-c03-variable-sets" class="internal"><span class="codenumber">3.4</span> <span class="title">Exponentials and the subobject classifier</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c03.html#st-c03-intrinsic" class="internal"><span class="codenumber">3.5</span> <span class="title">Intrinsic recognition and changing presentations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c03.html#st-c03-examples" class="internal"><span class="codenumber">3.6</span> <span class="title">Examples beyond a space of opens</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c04.html" class="internal"><span class="codenumber">4</span> <span class="title">Morphisms of sites and topoi</span></a></div>
+<ul id="ptx-toc-group-st-c04" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c04.html#st-c04-kan" class="internal"><span class="codenumber">4.1</span> <span class="title">Restriction and sheafified Kan extension</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c04.html#st-c04-geometric-section" class="internal"><span class="codenumber">4.2</span> <span class="title">Geometric morphisms and exactness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c04.html#st-c04-left-exact" class="internal"><span class="codenumber">4.3</span> <span class="title">Useful sufficient conditions</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c04.html#st-c04-cocont-section" class="internal"><span class="codenumber">4.4</span> <span class="title">Cocontinuous functors and the other direction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c04.html#st-c04-compatibility" class="internal"><span class="codenumber">4.5</span> <span class="title">Composition and the information retained</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c05.html" class="internal"><span class="codenumber">5</span> <span class="title">Localization, bases, and comparison</span></a></div>
+<ul id="ptx-toc-group-st-c05" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c05.html#st-c05-slice-section" class="internal"><span class="codenumber">5.1</span> <span class="title">The site over an object</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c05.html#st-c05-sums-products" class="internal"><span class="codenumber">5.2</span> <span class="title">Dependent sum, restriction, and dependent product</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c05.html#st-c05-general-object" class="internal"><span class="codenumber">5.3</span> <span class="title">Localizing at an arbitrary sheaf</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c05.html#st-c05-comparison-section" class="internal"><span class="codenumber">5.4</span> <span class="title">The comparison lemma for a dense full subcategory</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c05.html#st-c05-local-comparison" class="internal"><span class="codenumber">5.5</span> <span class="title">Comparison without literal full faithfulness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c05.html#st-c05-presentations" class="internal"><span class="codenumber">5.6</span> <span class="title">Changing a presentation rather than an assumption</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c06.html" class="internal"><span class="codenumber">6</span> <span class="title">Points and local detection</span></a></div>
+<ul id="ptx-toc-group-st-c06" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c06.html#st-c06-point-section" class="internal"><span class="codenumber">6.1</span> <span class="title">A point as a geometric morphism</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c06.html#st-c06-flat-section" class="internal"><span class="codenumber">6.2</span> <span class="title">Flat functors and systems of neighborhoods</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c06.html#st-c06-continuity" class="internal"><span class="codenumber">6.3</span> <span class="title">Covering compatibility and the point theorem</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c06.html#st-c06-examples" class="internal"><span class="codenumber">6.4</span> <span class="title">Spatial and nonspatial examples</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c06.html#st-c06-detection" class="internal"><span class="codenumber">6.5</span> <span class="title">Enough points and exactness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c06.html#st-c06-existence" class="internal"><span class="codenumber">6.6</span> <span class="title">Existence theorems and a topos without points</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c07.html" class="internal"><span class="codenumber">7</span> <span class="title">Gluing, torsors, and descent</span></a></div>
+<ul id="ptx-toc-group-st-c07" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c07.html#st-c07-effective-section" class="internal"><span class="codenumber">7.1</span> <span class="title">Descent along an epimorphism</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c07.html#st-c07-covers-section" class="internal"><span class="codenumber">7.2</span> <span class="title">Families, overlaps, and site presentations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c07.html#st-c07-structures-section" class="internal"><span class="codenumber">7.3</span> <span class="title">Descending algebraic structures</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c07.html#st-c07-torsor-section" class="internal"><span class="codenumber">7.4</span> <span class="title">Torsors and changes of origin</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c07.html#st-c07-first-section" class="internal"><span class="codenumber">7.5</span> <span class="title">The Abelian first-cohomology class</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c07.html#st-c07-functorial-section" class="internal"><span class="codenumber">7.6</span> <span class="title">Functoriality and a nonspatial example</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c08.html" class="internal"><span class="codenumber">8</span> <span class="title">Ringed sites, ringed topoi, and modules</span></a></div>
+<ul id="ptx-toc-group-st-c08" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c08.html#st-c08-ring-objects" class="internal"><span class="codenumber">8.1</span> <span class="title">Rings and modules in a topos</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c08.html#st-c08-exact-category" class="internal"><span class="codenumber">8.2</span> <span class="title">Exactness and generators</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c08.html#st-c08-localization-section" class="internal"><span class="codenumber">8.3</span> <span class="title">Localization and descent of modules</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c08.html#st-c08-morphisms" class="internal"><span class="codenumber">8.4</span> <span class="title">Ringed morphisms and extension of scalars</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c08.html#st-c08-local-rings" class="internal"><span class="codenumber">8.5</span> <span class="title">The additional local-ring condition</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c09.html" class="internal"><span class="codenumber">9</span> <span class="title">Tensor, internal Hom, and flatness</span></a></div>
+<ul id="ptx-toc-group-st-c09" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c09.html#st-c09-tensor-section" class="internal"><span class="codenumber">9.1</span> <span class="title">Tensor products from local bilinear maps</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c09.html#st-c09-hom-section" class="internal"><span class="codenumber">9.2</span> <span class="title">Internal Hom and the closed adjunction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c09.html#st-c09-scalar-change" class="internal"><span class="codenumber">9.3</span> <span class="title">Scalar change and pullback comparisons</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c09.html#st-c09-flat-section" class="internal"><span class="codenumber">9.4</span> <span class="title">Flatness and local relations</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c09.html#st-c09-flat-functoriality" class="internal"><span class="codenumber">9.5</span> <span class="title">Flat pullback and relative flatness</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="st-c10.html" class="internal"><span class="codenumber">10</span> <span class="title">Finite presentation and coherent modules</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-st-c10">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c10.html#st-c10-presentations" class="internal"><span class="codenumber">10.1</span> <span class="title">Generators, presentations, and their local meaning</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c10.html#st-c10-coherence" class="internal"><span class="codenumber">10.2</span> <span class="title">Coherent modules and their Abelian category</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c10.html#st-c10-functorial-finiteness" class="internal"><span class="codenumber">10.3</span> <span class="title">Tensor, Hom, pullback, and finite presentation</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c10.html#st-c10-duals-section" class="internal"><span class="codenumber">10.4</span> <span class="title">Finite projectivity and duality</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c10.html#st-c10-geometric-contexts" class="internal"><span class="codenumber">10.5</span> <span class="title">Geometric interpretations and site choices</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c11.html" class="internal"><span class="codenumber">11</span> <span class="title">Derived operations on ringed topoi</span></a></div>
+<ul id="ptx-toc-group-st-c11" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c11.html#st-c11-resolution-section" class="internal"><span class="codenumber">11.1</span> <span class="title">Resolutions and the closed tensor structure</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c11.html#st-c11-morphism-section" class="internal"><span class="codenumber">11.2</span> <span class="title">Derived pullback, adjunction, and composition</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c11.html#st-c11-cohomology-section" class="internal"><span class="codenumber">11.3</span> <span class="title">Cohomology without stalks</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c11.html#st-c11-finiteness-section" class="internal"><span class="codenumber">11.4</span> <span class="title">Finite complexes, pseudo-coherence, and Tor amplitude</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c11.html#st-c11-comparison-section" class="internal"><span class="codenumber">11.5</span> <span class="title">Comparison maps and sufficient conditions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c12.html" class="internal"><span class="codenumber">12</span> <span class="title">Hypercovers and cohomological descent</span></a></div>
+<ul id="ptx-toc-group-st-c12" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c12.html#st-c12-simplicial-section" class="internal"><span class="codenumber">12.1</span> <span class="title">Faces, degeneracies, and matching objects</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c12.html#st-c12-cover-section" class="internal"><span class="codenumber">12.2</span> <span class="title">Čech nerves and representable models</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c12.html#st-c12-resolution-section" class="internal"><span class="codenumber">12.3</span> <span class="title">The augmented free resolution</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c12.html#st-c12-descent-section" class="internal"><span class="codenumber">12.4</span> <span class="title">A bounded below total-complex theorem</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c12.html#st-c12-refinement-section" class="internal"><span class="codenumber">12.5</span> <span class="title">Refinement, local classes, and the classical theorem</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="st-c13.html" class="internal"><span class="codenumber">13</span> <span class="title">Geometric sites and the étale topology</span></a></div>
+<ul id="ptx-toc-group-st-c13" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c13.html#st-c13-etale-section" class="internal"><span class="codenumber">13.1</span> <span class="title">Étale morphisms as generalized neighborhoods</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c13.html#st-c13-small-section" class="internal"><span class="codenumber">13.2</span> <span class="title">The small site and its sheaves</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c13.html#st-c13-big-section" class="internal"><span class="codenumber">13.3</span> <span class="title">Big sites and the direction of restriction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c13.html#st-c13-points-section" class="internal"><span class="codenumber">13.4</span> <span class="title">Geometric points and étale stalks</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c13.html#st-c13-structure-section" class="internal"><span class="codenumber">13.5</span> <span class="title">Structure sheaves and changes of base</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-c13.html#st-c13-comparison-topologies" class="internal"><span class="codenumber">13.6</span> <span class="title">Related covering notions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="sheaves-sites-notes-18.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul id="ptx-toc-group-sheaves-sites-notes-18" class="structural toc-item-list">
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="st-concordance.html" class="internal"><span class="codenumber">A.</span> <span class="title">Terminology, hypotheses, and source conventions</span></a></div>
+<ul id="ptx-toc-group-st-concordance" class="structural toc-item-list">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-concordance.html#st-concordance-sites" class="internal"><span class="codenumber">A.1</span> <span class="title">Sites, presentations, and local tests</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-concordance.html#st-concordance-morphisms" class="internal"><span class="codenumber">A.2</span> <span class="title">Morphisms, points, and descent</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-concordance.html#st-concordance-modules" class="internal"><span class="codenumber">A.3</span> <span class="title">Ringed objects and finiteness</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="st-concordance.html#st-concordance-derived" class="internal"><span class="codenumber">A.4</span> <span class="title">Derived operations and covering complexes</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="st-references.html" class="internal"><span class="title">References</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="st-index.html" class="internal"><span class="title">Index</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="chapter" id="st-c10">
+<h1 class="heading">
+<span class="type">Chapter</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Finite presentation and coherent modules</span>
+</h1>
+<section class="introduction" id="st-c10-2">
+<div class="para" id="st-c10-2-1">Finite presentation controls a finite list of generators and relations. Coherence additionally controls the relations among every finite list of sections. Over a coherent structure sheaf these conditions agree; over an arbitrary structure sheaf even a free rank-one module can fail to be coherent. Coherent modules always form an Abelian subcategory.</div>
+<div class="para" id="st-c10-2-2">We develop these statements locally in a ringed topos, then distinguish finite locally projective modules from finite locally free modules. Affine schemes and complex analysis enter only through precise external comparison results. A final caution explains why geometric coherence on a stack cannot be read off by applying one intrinsic definition on every possible large site.</div></section>
+<section class="section" id="st-c10-presentations">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Generators, presentations, and their local meaning</span>
+</h2>
+<article class="definition definition-like" id="st-c10-finite"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Finite type and local presentations.</span>
+</h3>
+<div class="para" id="st-c10-finite-6-1">For a ringed topos <span class="process-math">\((\mathcal E,\mathcal O)\text{,}\)</span> the following conditions on a module <span class="process-math">\(M\)</span> are interpreted after localization on an epimorphic family of objects.</div> 
+<div class="para logical" id="st-c10-finite-6-2">
+<ol class="decimal" id="st-c10-finite-6-2-1">
+<li id="st-c10-finite-6-2-1-1">
+<div class="para" id="st-c10-finite-6-2-1-1-1">
+<span class="process-math">\(M\)</span> is <dfn class="terminology">of finite type</dfn> if locally there is an epimorphism <span class="process-math">\(\mathcal O^n\to M\)</span> with <span class="process-math">\(n\)</span> finite.</div>
+</li>
+<li id="st-c10-finite-6-2-1-2">
+<div class="para" id="st-c10-finite-6-2-1-2-1">
+<span class="process-math">\(M\)</span> is <dfn class="terminology">locally finitely presented</dfn>, or <dfn class="terminology">of finite presentation</dfn>, if locally there is an exact sequence <span class="process-math">\(\mathcal O^r\to\mathcal O^n\to M\to0\)</span> with <span class="process-math">\(r,n\)</span> finite.</div>
+</li>
+<li id="st-c10-finite-6-2-1-3">
+<div class="para" id="st-c10-finite-6-2-1-3-1">
+<span class="process-math">\(M\)</span> is <dfn class="terminology">quasi-coherent</dfn> in the ringed-topos sense if locally there is such a presentation with arbitrary set-indexed free modules <span class="process-math">\(\mathcal O^{(I)}\to\mathcal O^{(J)}\to M\to0\text{.}\)</span>
+</div>
+</li>
+<li id="st-c10-finite-6-2-1-4">
+<div class="para" id="st-c10-finite-6-2-1-4-1">
+<span class="process-math">\(M\)</span> is <dfn class="terminology">finite locally free</dfn> if locally it is isomorphic to <span class="process-math">\(\mathcal O^n\)</span> for a finite <span class="process-math">\(n\text{.}\)</span>
+</div>
+</li>
+</ol>
+</div> 
+<div class="para" id="st-c10-finite-6-3">In a site presentation, each condition means that every object <span class="process-math">\(U\)</span> has a covering on whose members the corresponding statement holds in the slice. Neither the number of generators nor the rank is required to have one finite bound over the whole topos.</div>
+</article>
+<div class="para" id="st-c10-presentations-3">A global finite presentation is stronger than a local one. It is also different from a finite presentation of the section module <span class="process-math">\(M(U)\)</span> over <span class="process-math">\(\mathcal O(U)\text{,}\)</span> since sections of a sheaf epimorphism need only lift locally. Our terminology follows <a class="external" href="https://stacks.math.columbia.edu/tag/03DK" target="_blank">Stacks, Definition 18.23.1</a>. The adjective <em class="emphasis">local</em> refers to the chosen topos, rather than to a topology imposed later on a ring spectrum.<a id="st-c10-presentations-3-5" href="#margin-st-c10-presentations-3-5" class="margin-note-marker" aria-label="Margin note 1">1</a>
+</div>
+<div class="para" id="st-c10-presentations-4">The general definition of quasi-coherent is included to specify the range of the word. It is not an assertion that every module is locally presented by free copies of <span class="process-math">\(\mathcal O\text{.}\)</span> The always available generators <span class="process-math">\(\mathcal O[a h_U]\)</span> of <a href="st-c08.html#st-c08-grothendieck" class="xref" data-knowl="./knowl/xref/st-c08-grothendieck.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 8.6">Theorem 8.6</a> are different from free copies of the tensor unit. On schemes this local-presentation definition becomes the usual quasi-coherence; on other ringed topoi it can describe a different geometric class.</div>
+<article class="proposition theorem-like" id="st-c10-presentation-kernel"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c10-presentation-kernel-1-1">For a local epimorphism <span class="process-math">\(q:\mathcal O^n\to M\)</span> with <span class="process-math">\(n\)</span> finite, <span class="process-math">\(M\)</span> is locally finitely presented if and only if <span class="process-math">\(\ker q\)</span> is of finite type. In particular this kernel condition holds for every finite free epimorphism onto a locally finitely presented module, not just for one chosen presentation.</div>
+</article>
+<details id="st-c10-presentation-kernel-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c10-presentation-kernel-2-1">A finite-type kernel gives a finite presentation by choosing finitely many local generators of that kernel. Conversely, choose a finite presentation <span class="process-math">\(\mathcal O^r\xrightarrow{A}\mathcal O^s\xrightarrow{p}M\to0\text{.}\)</span> After a covering, lift the finitely many generators of each free module through the other epimorphism. This gives maps <span class="process-math">\(u:\mathcal O^s\to\mathcal O^n\)</span> and <span class="process-math">\(v:\mathcal O^n\to\mathcal O^s\)</span> with <span class="process-math">\(qu=p\)</span> and <span class="process-math">\(pv=q\text{.}\)</span>
+</div>
+<div class="para logical" id="st-c10-presentation-kernel-2-2">
+<div class="para">The images of <span class="process-math">\(uA\)</span> and <span class="process-math">\(1-uv\)</span> lie in <span class="process-math">\(\ker q\text{.}\)</span> They generate it locally: for a local section <span class="process-math">\(x\)</span> of the kernel, <span class="process-math">\(vx\)</span> lies in <span class="process-math">\(\ker p=\im A\text{,}\)</span> so after a covering it is <span class="process-math">\(Ay\text{.}\)</span> Then</div>
+<div class="displaymath process-math" id="st-c10-presentation-kernel-2-2-8">
+\begin{equation*}
+x=(1-uv)x+uAy.
+\end{equation*}
+</div>
+<div class="para">There are only finitely many columns in these two matrices. Their images therefore generate the kernel as a sheaf. This proof only uses finitely many local lifts; it does not require free sheaves to be projective globally. See <a class="external" href="https://stacks.math.columbia.edu/tag/082S" target="_blank">Stacks, Lemma 18.24.2</a>.</div>
+</div>
+</article></details>
+<div class="para" id="st-c10-presentations-6">Finite-type quotients and images of finite-type modules are of finite type. Extensions of finite-type modules are of finite type: locally lift a finite set of generators of the quotient and add generators of the submodule. A quotient of a locally finitely presented module by a finite-type submodule is locally finitely presented, by adding finitely many lifts of the latter generators to a finite list of relations. Extensions of locally finitely presented modules are likewise locally finitely presented; the same finite lifting argument combines presentations of the two end terms. Arbitrary kernels need not be locally finitely presented. Coherence is the condition that supplies a stable kernel theory.</div>
+<article class="example example-like" id="st-c10-constant-quasicoherence"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.3</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c10-constant-quasicoherence-1-1">On a locally connected topological space with constant field sheaf <span class="process-math">\(k_X\text{,}\)</span> the ringed-space quasi-coherent modules are exactly locally constant sheaves of vector spaces.</div>
+<div class="solutions">
+<details id="st-c10-constant-quasicoherence-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="st-c10-constant-quasicoherence-2-1">Refine a local free presentation to connected open sets. A free <span class="process-math">\(k_X\)</span>-module there is the constant sheaf of a free vector space. A morphism between constant sheaves on a connected open is one linear map, even for infinite-dimensional spaces, by the constant-sheaf adjunction. Its cokernel is therefore constant. Conversely, a vector space has a basis, so a locally constant vector-space sheaf is locally free and has a local presentation. The skyscraper sheaf at a point of <span class="process-math">\(\R\)</span> is consequently not quasi-coherent for <span class="process-math">\(k_{\R}\text{.}\)</span> This example gives the word a precise meaning outside algebraic geometry, without identifying all module sheaves with quasi-coherent ones.</div>
+</div></details>
+</div>
+</article></section>
+<section class="section" id="st-c10-coherence">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Coherent modules and their Abelian category</span>
+</h2>
+<article class="definition definition-like" id="st-c10-coherent"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Coherent modules.</span>
+</h3>
+<div class="para" id="st-c10-coherent-4-1">An <span class="process-math">\(\mathcal O\)</span>-module <span class="process-math">\(M\)</span> is <dfn class="terminology">coherent</dfn> if it is of finite type and, in every slice, the kernel of every morphism <span class="process-math">\(\mathcal O^n\to M\)</span> with <span class="process-math">\(n\)</span> finite is of finite type. The full subcategory is denoted <span class="process-math">\(\Coh(\mathcal O)\text{.}\)</span>
+</div> 
+<div class="para" id="st-c10-coherent-4-2">Equivalently, on a site every finite list of sections <span class="process-math">\(m_1,\ldots,m_n\in M(U)\)</span> has a finite-type sheaf of relations: the kernel of <span class="process-math">\(\mathcal O_U^n\to M|_U\text{,}\)</span> <span class="process-math">\(e_i\mapsto m_i\text{.}\)</span> This condition concerns all finite lists, including lists which do not generate <span class="process-math">\(M|_U\text{.}\)</span>
+</div>
+</article>
+<div class="para" id="st-c10-coherence-3">Every coherent module is locally finitely presented: choose a local finite generating list and then finite generators for its relation sheaf. The converse requires a condition on <span class="process-math">\(\mathcal O\text{.}\)</span> A local presentation controls the relations for a generating list; coherence controls the kernels for arbitrary lists, including finite lists in a submodule. The definition is local and invariant under equivalence of ringed topoi; see <a class="external" href="https://stacks.math.columbia.edu/tag/03DK" target="_blank">Stacks, §18.23</a>.<a id="st-c10-coherence-3-3" href="#margin-st-c10-coherence-3-3" class="margin-note-marker" aria-label="Margin note 2">2</a>
+</div>
+<article class="theorem theorem-like" id="st-c10-coherent-closure"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.5</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c10-coherent-closure-1-1">For any commutative structure sheaf <span class="process-math">\(\mathcal O\)</span> the following assertions hold.</div> 
+<div class="para logical" id="st-c10-coherent-closure-1-2">
+<ol class="decimal" id="st-c10-coherent-closure-1-2-1">
+<li id="st-c10-coherent-closure-1-2-1-1">
+<div class="para" id="st-c10-coherent-closure-1-2-1-1-1">A finite-type submodule of a coherent module is coherent.</div>
+</li>
+<li id="st-c10-coherent-closure-1-2-1-2">
+<div class="para" id="st-c10-coherent-closure-1-2-1-2-1">The kernel of a morphism from a finite-type module to a coherent module is of finite type.</div>
+</li>
+<li id="st-c10-coherent-closure-1-2-1-3">
+<div class="para" id="st-c10-coherent-closure-1-2-1-3-1">Kernels, images, and cokernels of morphisms between coherent modules are coherent.</div>
+</li>
+<li id="st-c10-coherent-closure-1-2-1-4">
+<div class="para" id="st-c10-coherent-closure-1-2-1-4-1">In a short exact sequence, coherence of any two terms implies coherence of the third.</div>
+</li>
+</ol>
+</div> 
+<div class="para" id="st-c10-coherent-closure-1-3">Consequently <span class="process-math">\(\Coh(\mathcal O)\)</span> is Abelian and its inclusion into <span class="process-math">\(\Mod(\mathcal O)\)</span> is exact. No coherence assumption on <span class="process-math">\(\mathcal O\)</span> is required.</div>
+</article>
+<details id="st-c10-coherent-closure-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c10-coherent-closure-2-1">For a submodule <span class="process-math">\(N\subset M\text{,}\)</span> a map <span class="process-math">\(\mathcal O^n\to N\)</span> has the same kernel after composition with <span class="process-math">\(N\hookrightarrow M\text{.}\)</span> Thus the relation condition descends to every submodule, and the finite-type condition gives the first assertion.</div>
+<div class="para" id="st-c10-coherent-closure-2-2">For <span class="process-math">\(u:N\to M\)</span> as in the second assertion, choose a local epimorphism <span class="process-math">\(\mathcal O^n\to N\text{.}\)</span> The kernel of its composite with <span class="process-math">\(u\)</span> is of finite type by coherence of <span class="process-math">\(M\text{.}\)</span> Its image in <span class="process-math">\(N\)</span> is <span class="process-math">\(\ker u\text{,}\)</span> proving that this kernel is of finite type. For a morphism of coherent modules, its kernel is therefore a finite-type submodule of the source, and its image a finite-type submodule of the target. Both are coherent.</div>
+<div class="para logical" id="st-c10-coherent-closure-2-3">
+<div class="para">It remains to check a quotient <span class="process-math">\(Q=M/I\text{,}\)</span> where <span class="process-math">\(M\)</span> is coherent and <span class="process-math">\(I\)</span> is a finite-type submodule. It is finite type. Given <span class="process-math">\(t:\mathcal O^n\to Q\text{,}\)</span> locally lift the finitely many images of its basis to a map <span class="process-math">\(\widetilde t:\mathcal O^n\to M\text{,}\)</span> and choose a finite generating map <span class="process-math">\(v:\mathcal O^r\to I\text{.}\)</span> The kernel of</div>
+<div class="displaymath process-math" id="st-c10-coherent-closure-2-3-7">
+\begin{equation*}
+(\widetilde t,-v):\mathcal O^{n+r}\longrightarrow M
+\end{equation*}
+</div>
+<div class="para">is of finite type. Its image under projection to <span class="process-math">\(\mathcal O^n\)</span> is <span class="process-math">\(\ker t\text{,}\)</span> as is checked by lifting a section of <span class="process-math">\(I\)</span> locally through <span class="process-math">\(v\text{.}\)</span> This proves coherence of <span class="process-math">\(Q\text{,}\)</span> and hence the cokernel assertion.</div>
+</div>
+<div class="para" id="st-c10-coherent-closure-2-4">For an extension <span class="process-math">\(0\to A\to B\to C\to0\)</span> with <span class="process-math">\(A,C\)</span> coherent, finite generators of <span class="process-math">\(A\)</span> and local lifts of generators of <span class="process-math">\(C\)</span> generate <span class="process-math">\(B\text{.}\)</span> For any <span class="process-math">\(\mathcal O^n\to B\text{,}\)</span> let <span class="process-math">\(K\)</span> be the kernel of its composite to <span class="process-math">\(C\text{.}\)</span> It is finite type. Choose locally <span class="process-math">\(\mathcal O^r\to K\)</span> onto. The induced map <span class="process-math">\(\mathcal O^r\to A\)</span> has finite-type kernel. Its image in <span class="process-math">\(\mathcal O^n\)</span> is the kernel of the original map to <span class="process-math">\(B\text{,}\)</span> so that kernel is finite type. This proves coherence of <span class="process-math">\(B\text{.}\)</span> The other two cases follow from the kernel and cokernel assertions. The proof is entirely local and applies to sites; compare the ringed-space formulation in <a class="external" href="https://stacks.math.columbia.edu/tag/01BU" target="_blank">Stacks, Lemma 17.12.4</a>.</div>
+</article></details>
+<div class="para" id="st-c10-coherence-5">This is a weak Serre property, not closure under all subobjects and quotients. A submodule of a coherent module can have infinitely many generators. The theorem ensures coherence of a finite-type submodule and of kernels of maps between coherent modules; it does not remove the finite-type requirement from arbitrary submodules.<a id="st-c10-coherence-5-1" href="#margin-st-c10-coherence-5-1" class="margin-note-marker" aria-label="Margin note 3">3</a>
+</div>
+<article class="definition definition-like" id="st-c10-coherent-ring"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.6</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Coherent structure sheaves.</span>
+</h3>
+<div class="para" id="st-c10-coherent-ring-4-1">The structure sheaf <span class="process-math">\(\mathcal O\)</span> is <dfn class="terminology">coherent</dfn> if it is coherent as a module over itself. On a one-point topos this is the usual notion of a coherent commutative ring.</div>
+</article>
+<article class="proposition theorem-like" id="st-c10-coherent-finite-presentation"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.7</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c10-coherent-finite-presentation-1-1">If <span class="process-math">\(\mathcal O\)</span> is coherent, an <span class="process-math">\(\mathcal O\)</span>-module is coherent if and only if it is locally finitely presented. Finite locally free modules and their local finite direct summands are then coherent.</div>
+</article>
+<details id="st-c10-coherent-finite-presentation-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c10-coherent-finite-presentation-2-1">Finite powers of <span class="process-math">\(\mathcal O\)</span> are coherent by the extension assertion of <a href="st-c10.html#st-c10-coherent-closure" class="xref" data-knowl="./knowl/xref/st-c10-coherent-closure.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 10.5">Theorem 10.5</a>. A local finite presentation expresses its module as the cokernel of a morphism between such powers, hence gives coherence. The reverse implication was proved from the definition. A finite summand is the image of an idempotent on a finite power, so is coherent as well.</div>
+</article></details>
+<article class="example example-like" id="st-c10-noncoherent-ring"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.8</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c10-noncoherent-ring-1-1">Let <span class="process-math">\(V\)</span> be an infinite-dimensional vector space over a field <span class="process-math">\(k\text{,}\)</span> and let <span class="process-math">\(R=k\oplus V\)</span> with <span class="process-math">\(V^2=0\text{.}\)</span> On the one-point ringed topos with ring <span class="process-math">\(R\text{,}\)</span> the module <span class="process-math">\(R\)</span> is finite free and finitely presented, but not coherent.</div>
+<div class="solutions">
+<details id="st-c10-noncoherent-ring-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="st-c10-noncoherent-ring-2-1">For a nonzero <span class="process-math">\(v\in V\text{,}\)</span> multiplication <span class="process-math">\(R\xrightarrow{v}R\)</span> has kernel <span class="process-math">\(V\text{.}\)</span> The <span class="process-math">\(R\)</span>-action on this kernel factors through <span class="process-math">\(k\text{,}\)</span> so finite generation would make <span class="process-math">\(V\)</span> finite-dimensional. This contradicts its construction. Thus coherence fails for one finite list in <span class="process-math">\(R\text{,}\)</span> although the identity presentation of <span class="process-math">\(R\)</span> has no relations.</div>
+</div></details>
+</div>
+</article>
+<article class="example example-like" id="st-c10-coherent-not-noetherian"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.9</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c10-coherent-not-noetherian-1-1">The ring <span class="process-math">\(R=k[x_1,x_2,\ldots]\)</span> is coherent but not Noetherian. Its ideal <span class="process-math">\(I=(x_1,x_2,\ldots)\)</span> is not coherent, and neither is <span class="process-math">\(R/I\text{.}\)</span>
+</div>
+<div class="solutions">
+<details id="st-c10-coherent-not-noetherian-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="st-c10-coherent-not-noetherian-2-1">The entries of a finite matrix lie in some Noetherian polynomial subring <span class="process-math">\(R_n=k[x_1,\ldots,x_n]\text{.}\)</span> The extension <span class="process-math">\(R_n\to R\)</span> is free, hence flat. Its kernel module is therefore obtained by extending the finitely generated matrix kernel over <span class="process-math">\(R_n\text{;}\)</span> it is finitely generated over <span class="process-math">\(R\text{.}\)</span> This gives the relation criterion for coherence of <span class="process-math">\(R\text{.}\)</span> The ideal <span class="process-math">\(I\)</span> is not finitely generated, since finitely many polynomials involve only finitely many variables and cannot generate the remaining variables. Finally, if <span class="process-math">\(R/I\)</span> were finitely presented, the kernel criterion for <span class="process-math">\(R\to R/I\)</span> would make <span class="process-math">\(I\)</span> finitely generated. Thus it is not coherent either. The same coherent non-Noetherian ring is recorded in <a class="external" href="https://stacks.math.columbia.edu/tag/01BU" target="_blank">Stacks, Example 17.12.3</a>.</div>
+</div></details>
+</div>
+</article></section>
+<section class="section" id="st-c10-functorial-finiteness">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Tensor, Hom, pullback, and finite presentation</span>
+</h2>
+<article class="proposition theorem-like" id="st-c10-tensor-hom-coherence"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.10</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c10-tensor-hom-coherence-1-1">Let <span class="process-math">\(M\)</span> be locally finitely presented and <span class="process-math">\(N\)</span> coherent. Then both <span class="process-math">\(M\otimes_{\mathcal O}N\)</span> and <span class="process-math">\(\sheafHom_{\mathcal O}(M,N)\)</span> are coherent. Consequently tensor and internal Hom of two coherent modules are coherent. These assertions do not require <span class="process-math">\(\mathcal O\)</span> coherent.</div>
+</article>
+<details id="st-c10-tensor-hom-coherence-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c10-tensor-hom-coherence-2-1">Locally choose a finite presentation <span class="process-math">\(\mathcal O^r\to\mathcal O^n\to M\to0\text{.}\)</span> Tensor gives a cokernel <span class="process-math">\(N^r\to N^n\to M\otimes N\to0\text{.}\)</span> Internal Hom gives a kernel <span class="process-math">\(0\to\sheafHom(M,N)\to N^n\to N^r\text{.}\)</span> Apply the kernel and cokernel assertions for coherent modules. For two coherent modules use that the first is locally finitely presented. See <a class="external" href="https://stacks.math.columbia.edu/tag/03L6" target="_blank">Stacks, Lemma 18.26.3</a> and the analogous Hom argument.</div>
+</article></details>
+<article class="proposition theorem-like" id="st-c10-pullback"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.11</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c10-pullback-1-1">Every ringed pullback preserves finite type, local finite presentation, quasi-coherence in the local-presentation sense, and finite local freeness. It preserves coherence if the target of the pullback has coherent structure sheaf. Without that hypothesis coherence need not be preserved, even by a flat ringed morphism.</div>
+</article>
+<details id="st-c10-pullback-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c10-pullback-2-1">Pull back a local presentation. Underlying inverse image preserves the epimorphic covering, and <span class="process-math">\(f^*\)</span> preserves free modules, coproducts, and cokernels. This gives the first four assertions. A coherent source module is locally finitely presented, so if the new structure sheaf is coherent its pullback is coherent by <a href="st-c10.html#st-c10-coherent-finite-presentation" class="xref" data-knowl="./knowl/xref/st-c10-coherent-finite-presentation.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 10.7">Proposition 10.7</a>. For the failure, take the ringed point morphism associated with <span class="process-math">\(k\to k\oplus V\)</span> from <a href="st-c10.html#st-c10-noncoherent-ring" class="xref" data-knowl="./knowl/xref/st-c10-noncoherent-ring.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 10.8">Example 10.8</a>. This is flat over the field, but pulls the coherent module <span class="process-math">\(k\)</span> back to the noncoherent module <span class="process-math">\(k\oplus V\text{.}\)</span> See also <a class="external" href="https://stacks.math.columbia.edu/tag/03DK" target="_blank">Stacks, Lemma 18.23.4</a>, which does not include coherence among the unconditional assertions.</div>
+</article></details>
+<div class="para" id="st-c10-functorial-finiteness-4">Here “target of the pullback” means the ringed topos <span class="process-math">\((\mathcal E,\mathcal O_{\mathcal E})\)</span> receiving modules under <span class="process-math">\(f^*:\Mod(\mathcal O_{\mathcal F})\to\Mod(\mathcal O_{\mathcal E})\text{.}\)</span> The base geometric arrow goes in the opposite direction. Keeping the two directions visible avoids an ambiguous coherence condition.</div>
+<article class="proposition theorem-like" id="st-c10-hom-colimits"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.12</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="st-c10-hom-colimits-1-1">
+<div class="para">If <span class="process-math">\(M\)</span> is locally finitely presented, internal Hom from <span class="process-math">\(M\)</span> commutes with filtered colimits:</div>
+<div class="displaymath process-math" id="st-c10-hom-colimits-1-1-3">
+\begin{equation*}
+\colim_i\sheafHom_{\mathcal O}(M,N_i)\xrightarrow{\sim}\sheafHom_{\mathcal O}(M,\colim_iN_i).
+\end{equation*}
+</div>
+<div class="para">This does not assert that global <span class="process-math">\(\Hom_{\mathcal O}(M,-)\)</span> commutes with filtered colimits.</div>
+</div>
+</article>
+<details id="st-c10-hom-colimits-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c10-hom-colimits-2-1">For a local finite presentation, internal Hom is the kernel of <span class="process-math">\(N^n\to N^r\text{.}\)</span> Filtered colimits are exact and commute with these finite powers. Thus the comparison is an isomorphism locally and therefore globally. This is <a class="external" href="https://stacks.math.columbia.edu/tag/04TT" target="_blank">Stacks, Lemma 18.27.11</a>. Global sections are an additional functor and need not preserve this colimit.</div>
+</article></details>
+<article class="example example-like" id="st-c10-categorical-presentation"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.13</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c10-categorical-presentation-1-1">Let <span class="process-math">\(X=\N\)</span> be discrete and let <span class="process-math">\(\mathcal O=k_X\text{.}\)</span> The module <span class="process-math">\(\mathcal O\)</span> is finite locally free and coherent, but not a finitely presented object of the Grothendieck category <span class="process-math">\(\Mod(\mathcal O)\text{,}\)</span> where categorical finite presentation means preservation of filtered colimits by global Hom.</div>
+<div class="solutions">
+<details id="st-c10-categorical-presentation-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para logical" id="st-c10-categorical-presentation-2-1">
+<div class="para">Let <span class="process-math">\(N_n\)</span> equal <span class="process-math">\(k\)</span> on the first <span class="process-math">\(n\)</span> points and zero elsewhere, with the natural inclusions. Their colimit as sheaves is <span class="process-math">\(\mathcal O\text{.}\)</span> However,</div>
+<div class="displaymath process-math" id="st-c10-categorical-presentation-2-1-5">
+\begin{equation*}
+\colim_n\Hom_{\mathcal O}(\mathcal O,N_n)=\bigoplus_{i\in\N}k,\qquad\Hom_{\mathcal O}(\mathcal O,\colim_nN_n)=\prod_{i\in\N}k.
+\end{equation*}
+</div>
+<div class="para">The map is not surjective for a nonzero field. Local finite presentation and categorical finite presentation therefore cannot be exchanged without additional conditions on the topos.</div>
+</div>
+</div></details>
+</div>
+</article>
+<div class="para" id="st-c10-functorial-finiteness-7">A coherent topos is a finiteness notion for the underlying topos. A coherent ring object is the module-theoretic condition above. A locally coherent Grothendieck category is a locally finitely presented Grothendieck category whose categorically finitely presented objects form an Abelian subcategory. These names refer to different objects and conditions; none is used as a synonym for another in this note.</div>
+</section>
+<section class="section" id="st-c10-duals-section">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Finite projectivity and duality</span>
+</h2>
+<article class="definition definition-like" id="st-c10-local-projectivity"><h3 class="heading">
+<span class="type">Definition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.14</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Finite locally projective and dualizable modules.</span>
+</h3>
+<div class="para" id="st-c10-local-projectivity-5-1">We call <span class="process-math">\(P\)</span> <dfn class="terminology">finite locally projective</dfn> if locally it is a direct summand of a finite free module. It is <dfn class="terminology">dualizable</dfn> if it has a dual in the symmetric monoidal category <span class="process-math">\((\Mod(\mathcal O),\otimes_{\mathcal O},\mathcal O)\text{.}\)</span> Set <span class="process-math">\(P^\vee=\sheafHom_{\mathcal O}(P,\mathcal O)\text{.}\)</span>
+</div>
+</article>
+<div class="para" id="st-c10-duals-section-3">Local projectivity in this definition is a local finite-retract condition. It does not assert that <span class="process-math">\(P\)</span> is projective in the global module category. For example, a finite locally free sheaf can have nonzero global Ext because its local splittings fail to glue, as in <a class="external" href="../sheaves-topological/sh-c10.html" target="_blank">Note I, Chapter 10</a>.<a id="st-c10-duals-section-3-3" href="#margin-st-c10-duals-section-3-3" class="margin-note-marker" aria-label="Margin note 4">4</a>
+</div>
+<article class="theorem theorem-like" id="st-c10-dualizable"><h3 class="heading">
+<span class="type">Theorem</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.15</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para logical" id="st-c10-dualizable-1-1">
+<div class="para">For an <span class="process-math">\(\mathcal O\)</span>-module <span class="process-math">\(P\)</span> on an arbitrary ringed topos, the following are equivalent: <span class="process-math">\(P\)</span> is dualizable; <span class="process-math">\(P\)</span> is finite locally projective; <span class="process-math">\(P\)</span> is flat and locally finitely presented. Its dual is then <span class="process-math">\(P^\vee\text{,}\)</span> the bidual map is an isomorphism, and for every <span class="process-math">\(N\)</span> the evaluation map gives</div>
+<div class="displaymath process-math" id="st-c10-dualizable-1-1-8">
+\begin{equation*}
+P^\vee\otimes_{\mathcal O}N\xrightarrow{\sim}\sheafHom_{\mathcal O}(P,N).
+\end{equation*}
+</div>
+</div>
+</article>
+<details id="st-c10-dualizable-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c10-dualizable-2-1">If <span class="process-math">\(P\)</span> is a finite free module, the formula for internal Hom is the finite-basis formula, and its duality maps are the usual evaluation and coevaluation. The same formula restricts to every direct summand: an idempotent on the finite free module induces the corresponding idempotent on its dual, and the tensor and Hom maps respect these idempotents. Thus the displayed map is an isomorphism locally for finite locally projective <span class="process-math">\(P\text{,}\)</span> hence globally. The section corresponding to <span class="process-math">\(\id_P\)</span> under <span class="process-math">\(P\otimes P^\vee\simeq\sheafHom(P,P)\)</span> supplies coevaluation. Evaluation and this coevaluation satisfy the two triangle identities locally on finite summands, hence globally. The same finite-summand calculation proves biduality.</div>
+<div class="para logical" id="st-c10-dualizable-2-2">
+<div class="para">Conversely, let <span class="process-math">\(Q\)</span> be a dual, with coevaluation <span class="process-math">\(\eta:\mathcal O\to P\otimes Q\text{.}\)</span> Locally write <span class="process-math">\(\eta(1)=\sum_{i=1}^n p_i\otimes q_i\text{.}\)</span> This local finite expression is supplied by the sheaf tensor construction. Define</div>
+<div class="displaymath process-math" id="st-c10-dualizable-2-2-4">
+\begin{equation*}
+u:\mathcal O^n\longrightarrow P,\quad e_i\longmapsto p_i,\qquad v:P\longrightarrow\mathcal O^n,\quad p\longmapsto(\operatorname{ev}(q_i,p))_i.
+\end{equation*}
+</div>
+<div class="para">The triangle identity says <span class="process-math">\(uv=\id_P\text{.}\)</span> Hence <span class="process-math">\(P\)</span> is locally a finite free summand. Evaluation identifies <span class="process-math">\(Q\)</span> with <span class="process-math">\(P^\vee\)</span> by uniqueness of the dual.</div>
+</div>
+<div class="para" id="st-c10-dualizable-2-3">A finite free summand is flat. If <span class="process-math">\(e\)</span> is its projector on <span class="process-math">\(\mathcal O^n\text{,}\)</span> it also has the finite presentation <span class="process-math">\(\mathcal O^n\xrightarrow{1-e}\mathcal O^n\to P\to0\text{.}\)</span> Finally suppose that <span class="process-math">\(P\)</span> is flat and locally finitely presented. Choose locally a finite presentation <span class="process-math">\(\mathcal O^r\xrightarrow{A}\mathcal O^n\xrightarrow{q}P\to0\text{.}\)</span> By <a href="st-c09.html#st-c09-equational-flatness" class="xref" data-knowl="./knowl/xref/st-c09-equational-flatness.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 9.10">Proposition 9.10</a>, after a covering <span class="process-math">\(q\)</span> factors as <span class="process-math">\(tB\)</span> through a finite free module with <span class="process-math">\(BA=0\text{.}\)</span> Thus <span class="process-math">\(B\)</span> descends to <span class="process-math">\(s:P\to\mathcal O^l\text{.}\)</span> Since <span class="process-math">\(tsq=tB=q\)</span> and <span class="process-math">\(q\)</span> is an epimorphism, <span class="process-math">\(ts=\id_P\text{.}\)</span> This is the desired finite retract. The general site statement is <a class="external" href="https://stacks.math.columbia.edu/tag/0FNX" target="_blank">Stacks, §18.29</a>.</div>
+</article></details>
+<div class="para" id="st-c10-duals-section-5">No coherence of <span class="process-math">\(\mathcal O\)</span> occurs in the theorem. Over a coherent structure sheaf one can replace local finite presentation by coherence, but this uses <a href="st-c10.html#st-c10-coherent-finite-presentation" class="xref" data-knowl="./knowl/xref/st-c10-coherent-finite-presentation.html" data-reveal-label="Reveal" data-close-label="Close" title="Proposition 10.7">Proposition 10.7</a>. Coherence alone does not imply dualizability: <span class="process-math">\(\Z/n\Z\)</span> for <span class="process-math">\(n&gt;1\)</span> is coherent over <span class="process-math">\(\Z\)</span> and is not flat. Conversely, the unit over the noncoherent ring of <a href="st-c10.html#st-c10-noncoherent-ring" class="xref" data-knowl="./knowl/xref/st-c10-noncoherent-ring.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 10.8">Example 10.8</a> is dualizable and is not coherent.</div>
+<article class="proposition theorem-like" id="st-c10-locally-ringed-free"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.16</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c10-locally-ringed-free-1-1">On a locally ringed topos, every finite locally projective module is finite locally free. Without the local-ring condition this conclusion need not hold.</div>
+</article>
+<details id="st-c10-locally-ringed-free-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c10-locally-ringed-free-2-1">Locally the module is the image of an idempotent matrix over <span class="process-math">\(A=\mathcal O(U)\text{.}\)</span> Its image as an ordinary <span class="process-math">\(A\)</span>-module is finite projective. The finite-projective theorem for rings gives elements <span class="process-math">\(f_1,\ldots,f_t\)</span> generating the unit ideal such that this module becomes finite free over each <span class="process-math">\(A_{f_i}\text{;}\)</span> see <a class="external" href="https://stacks.math.columbia.edu/tag/00NV" target="_blank">Stacks, Lemma 10.78.2</a>. The local-ring condition implies that <span class="process-math">\(U\)</span> has a covering on whose members one of these <span class="process-math">\(f_i\)</span> is invertible. The corresponding basis matrices over <span class="process-math">\(A_{f_i}\)</span> then define a finite free model on that member. This is a point-independent argument, as in <a class="external" href="https://stacks.math.columbia.edu/tag/04ER" target="_blank">Stacks, the proof of Lemma 18.40.7</a>.</div>
+</article></details>
+<article class="example example-like" id="st-c10-retract-not-free"><h3 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.17</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c10-retract-not-free-1-1">On a one-point ringed topos let <span class="process-math">\(R=k\times k\text{,}\)</span> and let <span class="process-math">\(P=(k,0)\text{.}\)</span> Then <span class="process-math">\(P\)</span> is dualizable and finitely presented flat, but not locally free on that topos.</div>
+<div class="solutions">
+<details id="st-c10-retract-not-free-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="st-c10-retract-not-free-2-1">It is the image of the idempotent <span class="process-math">\((1,0)\)</span> on <span class="process-math">\(R\text{,}\)</span> hence a finite free summand. A free <span class="process-math">\(R\)</span>-module of finite rank has equal dimensions on the two factors, whereas <span class="process-math">\(P\)</span> has dimensions <span class="process-math">\(1,0\text{.}\)</span> No covering of the one-point topos makes it free. On the different ringed space <span class="process-math">\(\Spec(R)\text{,}\)</span> the two idempotent components are separate open sets and the associated module is locally free. The local meaning of “free” depends on the topos being used.</div>
+</div></details>
+</div>
+</article>
+<article class="proposition theorem-like" id="st-c10-hom-comparisons"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.18</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c10-hom-comparisons-1-1">The pullback comparison for internal Hom is an isomorphism if its first argument is finite locally projective. It is also an isomorphism for a locally finitely presented first argument when the ringed morphism is flat. Pullback along every ringed morphism preserves dualizable modules and their duals.</div>
+</article>
+<details id="st-c10-hom-comparisons-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c10-hom-comparisons-2-1">For a finite locally projective <span class="process-math">\(P\text{,}\)</span> use <span class="process-math">\(\sheafHom(P,N)=P^\vee\otimes N\text{.}\)</span> Strong monoidality of <span class="process-math">\(f^*\)</span> preserves the duality diagrams, and uniqueness of a dual identifies <span class="process-math">\(f^*P^\vee\)</span> with <span class="process-math">\((f^*P)^\vee\text{.}\)</span> This gives the first and third assertions. For a locally finitely presented module, use a finite presentation and express internal Hom as the kernel of <span class="process-math">\(N^n\to N^r\text{.}\)</span> Flat pullback is exact and preserves finite sums, so it preserves this kernel presentation and gives the second assertion.</div>
+</article></details>
+<div class="para" id="st-c10-duals-section-9">Neither existence of a comparison morphism nor preservation of tensor products makes arbitrary internal Hom commute with pullback. The proof states exactly which extra feature supplies the missing compatibility: a finite dual, or a finite presentation together with exact pullback.</div>
+</section>
+<section class="section" id="st-c10-geometric-contexts">
+<h2 class="heading hide-type">
+<span class="type">Section</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.5</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Geometric interpretations and site choices</span>
+</h2>
+<article class="proposition theorem-like" id="st-c10-geometric-comparison"><h3 class="heading">
+<span class="type">Proposition</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.19</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c10-geometric-comparison-1-1">For a locally Noetherian scheme <span class="process-math">\(X\)</span> with its Zariski structure sheaf, the following conditions on <span class="process-math">\(M\)</span> agree: coherence in the ringed-space sense; quasi-coherence and finite type; local finite presentation. On <span class="process-math">\(\Spec(R)\)</span> with <span class="process-math">\(R\)</span> Noetherian, these are the sheaves <span class="process-math">\(\widetilde N\)</span> for finite <span class="process-math">\(R\)</span>-modules <span class="process-math">\(N\text{.}\)</span>
+</div>
+</article>
+<details id="st-c10-geometric-comparison-2" class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h3 class="heading"><span class="type">Proof<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3></summary>
+<article class="hiddenproof knowl__content">
+<div class="para" id="st-c10-geometric-comparison-2-1">The external scheme inputs are the equivalence <span class="process-math">\(\Mod(R)\simeq\QCoh(\Spec R)\text{,}\)</span> the localization description of its sections, and the finite-generation and finite-presentation tests under that equivalence. They are established in <a class="external" href="https://stacks.math.columbia.edu/tag/01I6" target="_blank">Stacks, §26.7</a>. Noetherianity makes the kernels of finite matrices finite, so the structure sheaf is coherent and finite quasi-coherent modules have finite presentations. Applying the general results above locally gives the equivalence. The precise geometric statement, including its locally Noetherian hypothesis, is <a class="external" href="https://stacks.math.columbia.edu/tag/01XY" target="_blank">Stacks, Lemma 30.9.1</a>.</div>
+</article></details>
+<div class="para" id="st-c10-geometric-contexts-3">Noetherianity is a convenient sufficient condition, not the definition of coherence. For a coherent ring <span class="process-math">\(R\text{,}\)</span> the same finite-matrix and localization argument shows that the Zariski structure sheaf on <span class="process-math">\(\Spec R\)</span> is coherent; its coherent modules correspond to finitely presented <span class="process-math">\(R\)</span>-modules. Over an arbitrary ring, finite type and finite presentation cannot be substituted for one another. The ring examples above already show the distinction before any scheme geometry is used.</div>
+<div class="para" id="st-c10-geometric-contexts-4">For a complex manifold, the structure sheaf of holomorphic functions is coherent by the Oka coherence theorem, taken here as an external analytic theorem. Thus its coherent modules are exactly its locally finitely presented modules, and kernels of finite holomorphic matrices are locally finitely generated. A classical primary reference is <a class="external" href="https://www.numdam.org/article/AIF_1956__6__1_0.pdf" target="_blank">Serre, Géométrie algébrique et géométrie analytique, §1, no. 3, Proposition 1</a>, which states the corresponding result for the analytic spaces treated there and identifies the Oka–Cartan input. We do not replace this analytic theorem by the statement that individual holomorphic local rings are Noetherian: local finite generation on one neighborhood is part of what coherence supplies.<a id="st-c10-geometric-contexts-4-2" href="#margin-st-c10-geometric-contexts-4-2" class="margin-note-marker" aria-label="Margin note 5">5</a>
+</div>
+<div class="para" id="st-c10-geometric-contexts-5">In all these examples coherent modules are modules over a varying structure sheaf. Constructible sheaves in the later note are instead controlled by stratifications and locally constant coefficient objects. The words do not describe two versions of one finiteness condition. A locally constant finite-dimensional coefficient sheaf is not a replacement for a coherent analytic or algebraic module.</div>
+<article class="remark remark-like" id="st-c10-stack-caveat"><h3 class="heading">
+<span class="type">Remark</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.20</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="st-c10-stack-caveat-1">The site is part of the meaning of coherence. On the large site used for algebraic stacks in <a class="external" href="https://stacks.math.columbia.edu/tag/0GR4" target="_blank">Stacks, §103.17</a>, the intrinsic coherent-module definition from <a href="st-c10.html#st-c10-coherent" class="xref" data-knowl="./knowl/xref/st-c10-coherent.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 10.4: Coherent modules">Definition 10.4</a> gives only zero modules: the site contains too many non-Noetherian test objects. Geometric coherent sheaves on a locally Noetherian stack are instead defined there by quasi-coherence and finite type, equivalently by the specified finite-presentation or atlas tests. This is not a contradiction to the invariance under equivalence of ringed topoi: changing to a larger site need not give an equivalent ringed topos.</div>
+<div class="para" id="st-c10-stack-caveat-2">The distinction also affects kernels. The geometric coherent category is Abelian inside the appropriate quasi-coherent category, but its kernel need not be the kernel in the full category of modules on that large site; see Lemma 103.17.5 of that section. Thus the intrinsic exact inclusion of <a href="st-c10.html#st-c10-coherent-closure" class="xref" data-knowl="./knowl/xref/st-c10-coherent-closure.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 10.5">Theorem 10.5</a> must not be transferred to this differently defined geometric category. We record the boundary and the source, without developing stacks or a replacement kernel construction here.</div>
+</article></section></section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="st-c09.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true"></span><span class="name">Top</span></a><a class="next-button button" href="st-c11.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true"></span></a>
+</div></main>
+<div class="margin-notes" role="complementary" aria-label="Margin notes">
+<aside id="margin-st-c10-presentations-3-5" class="aside aside-like margin-note" data-margin-anchor="st-c10-presentations-3" data-margin-label="1" data-margin-inline="true"><h4 class="heading"><a href="#st-c10-presentations-3" class="margin-note-label">1</a></h4>
+<div class="para">The expression “of finite presentation” for a module sheaf conventionally includes localization. For the finite global condition we retain the word “global”. Categorical finite presentation in <span class="process-math">\(\Mod(\mathcal O)\)</span> is distinguished below.
+</div></aside><aside id="margin-st-c10-coherence-3-3" class="aside aside-like margin-note" data-margin-anchor="st-c10-coherence-3" data-margin-label="2" data-margin-inline="true"><h4 class="heading"><a href="#st-c10-coherence-3" class="margin-note-label">2</a></h4>
+<div class="para">For ringed spaces this is the definition in <a href="st-references.html#Ser55" class="xref" data-knowl="./knowl/xref/st-bib-serre.html" data-reveal-label="Reveal" data-close-label="Close" title="Bibliographic Entry Ser55">[Ser55, Chapter I, §2, no. 12, Definition 2]</a>. Its kernel and extension theorems occur in no. 13, before coherence of the ring sheaf is imposed in no. 15. Thus the classical definition already distinguishes coherence of a module from coherence of its coefficient ring. The local arguments here also apply without points.
+</div></aside><aside id="margin-st-c10-coherence-5-1" class="aside aside-like margin-note" data-margin-anchor="st-c10-coherence-5" data-margin-label="3" data-margin-inline="true"><h4 class="heading"><a href="#st-c10-coherence-5" class="margin-note-label">3</a></h4>
+<div class="para">A Serre subcategory is closed under all subobjects, quotients, and extensions in the ambient Abelian category. The exact Abelian subcategory established here need not have that stronger property. Its kernels are the ambient kernels for morphisms between its own objects.
+</div></aside><aside id="margin-st-c10-duals-section-3-3" class="aside aside-like margin-note" data-margin-anchor="st-c10-duals-section-3" data-margin-label="4" data-margin-inline="true"><h4 class="heading"><a href="#st-c10-duals-section-3" class="margin-note-label">4</a></h4>
+<div class="para">“Projective” without a local qualifier usually refers to lifting morphisms across all global epimorphisms in the Abelian category. Our definition is instead a condition after localization. The tensor-duality characterization specifies it without relying on the adjective alone.
+</div></aside><aside id="margin-st-c10-geometric-contexts-4-2" class="aside aside-like margin-note" data-margin-anchor="st-c10-geometric-contexts-4" data-margin-label="5" data-margin-inline="true"><h4 class="heading"><a href="#st-c10-geometric-contexts-4" class="margin-note-label">5</a></h4>
+<div class="para">The classical reduced analytic-space convention in that reference and modern conventions allowing nonreduced spaces require a translation in an analytic-geometry treatment. The manifold case used here needs no such translation. GAGA comparison, proper direct-image coherence, and analytic cohomology vanishing are further theorems with their own hypotheses; none follows merely from coherence of the structure sheaf.
+</div></aside>
+</div>
+</div>
+<footer id="site-copyright" class="site-copyright"><p>© 2026 Jie Fu. All rights reserved.</p></footer>
+</body>
+</html>

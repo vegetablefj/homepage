@@ -1,0 +1,151 @@
+<chapter xml:id="st-c11">
+  <title>Derived operations on ringed topoi</title>
+  <introduction>
+    <p>A ringed topos has the homological algebra of a Grothendieck category, together with tensor and internal Hom. A morphism introduces a further operation: extension of scalars. Its failure of exactness is independent of the underlying inverse image of sheaves, which remains exact. We construct the derived operations with their target categories visible, then distinguish the existence of a comparison map from conditions making it an isomorphism.</p>
+    <p>Write <m>\D(\mathcal O)=\D(\Mod(\mathcal O))</m>. Unless boundedness is stated, this derived category is unbounded. Local statements mean statements after restriction to an epimorphic family of objects of the topos. They do not presume enough points. General resolution and derived-category arguments are used from the <url href="../homological-algebra/homological-algebra-notes.html">homological algebra note</url>; the constructions specific to sites are explained here.</p>
+  </introduction>
+
+  <section xml:id="st-c11-resolution-section">
+    <title>Resolutions and the closed tensor structure</title>
+    <definition xml:id="st-c11-resolutions">
+      <idx>K-injective complex</idx><idx>K-flat complex</idx>
+      <statement><p>A complex <m>I</m> of <m>\mathcal O</m>-modules is <term>K-injective</term> if <m>\Hom_{\K(\mathcal O)}(A,I)=0</m> for every acyclic complex <m>A</m>. A complex <m>P</m> is <term>K-flat</term> if <m>A\otimes_{\mathcal O}P</m> is acyclic for every acyclic <m>A</m>. Tensor complexes use direct sums along diagonals and the differential <m>d(a\otimes p)=da\otimes p+(-1)^{\deg a}a\otimes dp</m>. Hom complexes use products and differential <m>d(u)=d_Iu-(-1)^{\deg u}ud_K</m>.</p></statement>
+    </definition>
+    <theorem xml:id="st-c11-resolution-existence">
+      <statement><p>Every complex of <m>\mathcal O</m>-modules has a quasi-isomorphism to a K-injective complex and a quasi-isomorphism from a K-flat complex with flat terms. K-injective replacements may be chosen functorially. Every bounded below complex of injectives is K-injective, and every bounded above complex of flat modules is K-flat.</p></statement>
+      <proof><p>The module category is Grothendieck by <xref ref="st-c08-grothendieck"/>, so the general K-injective existence theorem applies. For K-flat replacements, the flat generators associated with objects of a site presentation, from <xref ref="st-c09-enoughflat"/>, give compatible bounded above flat resolutions of canonical truncations. Taking their filtered colimit produces the required replacement. The compatibility of those resolutions, rather than a separate resolution of each term, is part of the existence theorem. Precise site formulations are <url href="https://stacks.math.columbia.edu/tag/07A5">Stacks, §21.19</url> and <url href="https://stacks.math.columbia.edu/tag/06YL">Lemma 21.17.11</url>. The bounded assertions are the usual bounded resolution criteria.</p></proof>
+    </theorem>
+    <p>These results hold for arbitrary ring objects on Grothendieck topoi. Their proofs use generators and local epimorphisms, rather than stalks. If a conservative family of points has been supplied, K-flatness can also be tested on the corresponding complexes of stalk modules; see <url href="https://stacks.math.columbia.edu/tag/06YV">Stacks, Lemma 21.18.6</url>.<fn>Without enough points, a statement about all existing stalks need not detect exactness. The existence theorem is independent of that detection method. Also, unbounded complexes with injective or flat terms need not be K-injective or K-flat; an explicit example is in <url href="../sheaves-topological/sh-c07.html">Note I, Chapter 7</url>.</fn></p>
+    <proposition xml:id="st-c11-derived-closed">
+      <idx>Derived tensor product</idx><idx>Derived internal Hom</idx><idx>Global derived Hom</idx>
+      <statement><p>For <m>K,L\in\D(\mathcal O)</m>, choose <m>P\to K</m> K-flat and <m>L\to I</m> K-injective. The formulas
+        <md number="no">K\Ltensor_{\mathcal O}L=P\otimes_{\mathcal O}L,\qquad \RsheafHom_{\mathcal O}(K,L)=\sheafHom_{\mathcal O}^{\bullet}(K,I)</md>
+        define bifunctors on the derived categories. They give a closed symmetric monoidal structure, with unit <m>\mathcal O</m>:
+        <md number="no">\Hom_{\D(\mathcal O)}(A\Ltensor_{\mathcal O}K,L)\simeq\Hom_{\D(\mathcal O)}(A,\RsheafHom_{\mathcal O}(K,L)).</md>
+        Global derived Hom is the complex <m>\RHom_{\mathcal O}(K,L)=\underline{\Hom}^{\bullet}_{\Mod(\mathcal O)}(K,I)</m> of abelian groups. It has a natural <m>\Gamma(\mathcal E,\mathcal O)</m>-module structure and satisfies
+        <md number="no">R\Gamma(\mathcal E,\RsheafHom_{\mathcal O}(K,L))\simeq\RHom_{\mathcal O}(K,L).</md>
+      </p></statement>
+      <proof><p>Restriction to a slice <m>\mathcal E/U</m> preserves K-injectives. Indeed, its left adjoint on modules is the exact additive extension obtained by summing over the fibers of <m>U</m>. Hence internal Hom into <m>I</m> takes a quasi-isomorphism in the source to a quasi-isomorphism, as one checks on sections over generating objects. A quasi-isomorphism between K-injective targets is a homotopy equivalence, proving independence in the other variable.</p>
+        <p>The complex <m>\sheafHom^\bullet_{\mathcal O}(P,I)</m> is K-injective: Hom into it from an acyclic <m>A</m> equals Hom from <m>A\otimes_{\mathcal O}P</m> into <m>I</m>, which is acyclic. The tensor–Hom adjunction on complexes therefore computes the asserted derived adjunction and the global comparison. Associativity and the symmetry with sign <m>(-1)^{pq}</m> follow using K-flat replacements of all factors. See <url href="https://stacks.math.columbia.edu/tag/08J7">Stacks, §21.35</url> for the internal construction.</p>
+      </proof>
+    </proposition>
+    <p>Internal Hom is an object of the ringed topos; global Hom is a complex of modules over its ring of global sections. The displayed comparison is derived global sections, not ordinary global sections of an arbitrary representative. Its K-flat-source, K-injective-target representative is one on which ordinary sections suffice.</p>
+  </section>
+
+  <section xml:id="st-c11-morphism-section">
+    <title>Derived pullback, adjunction, and composition</title>
+    <theorem xml:id="st-c11-derived-pullback">
+      <idx>Derived pullback</idx><idx>Derived direct image</idx>
+      <statement><p>Let <m>f:(\mathcal E,\mathcal O_{\mathcal E})\to(\mathcal F,\mathcal O_{\mathcal F})</m> be a morphism of ringed topoi. There are exact functors
+        <md number="no">Lf^*:\D(\mathcal O_{\mathcal F})\longrightarrow\D(\mathcal O_{\mathcal E}),\qquad Rf_*:\D(\mathcal O_{\mathcal E})\longrightarrow\D(\mathcal O_{\mathcal F})</md>
+        with <m>Lf^*\dashv Rf_*</m>. If <m>P\to K</m> is K-flat with flat terms and <m>L\to I</m> is K-injective, they are computed by
+        <md number="no">Lf^*K=f^*P,\qquad Rf_*L=f_*I.</md>
+        Equivalently, the pullback is extension of scalars in the derived sense:
+        <md number="no">Lf^*K=\mathcal O_{\mathcal E}\Ltensor_{f^{-1}\mathcal O_{\mathcal F}}f^{-1}K.</md>
+        The functor <m>Lf^*</m> is symmetric monoidal and takes the unit to the unit.</p></statement>
+      <proof><p>For the direct image, apply the K-injective construction. For pullback, use the K-flat replacements with flat terms. Pullback preserves this class, and takes quasi-isomorphisms between its objects to quasi-isomorphisms. This is a point-free resolution result for ringed topoi, proved in <url href="https://stacks.math.columbia.edu/tag/06YV">Stacks, Lemmas 21.18.1–21.18.2</url>. It is what justifies the unbounded formula; exactness of the underlying <m>f^{-1}</m> alone would not justify extension of scalars.</p>
+        <p>The derived-adjunction theorem applied to <m>f^*\dashv f_*</m> gives the adjunction; see <url href="https://stacks.math.columbia.edu/tag/07A5">Stacks, Lemma 21.19.1</url>. Tensor compatibility follows by replacing both factors by K-flat complexes with flat terms: their tensor and their pullbacks remain in that class, and the ordinary scalar-extension isomorphism gives the result.</p>
+      </proof>
+    </theorem>
+    <p>There are natural transformations <m>Lf^*K\to f^*K</m> and <m>f_*L\to Rf_*L</m> for actual complexes. On modules, the degree-zero functors are the original functors. If <m>f</m> is flat in the sense of <xref ref="st-c09-flat-morphism"/>, then <m>Lf^*=f^*</m> on the entire derived category. A right derived image is left t-exact; derived pullback is right t-exact. Our terminology means that <m>Rf_*</m> preserves complexes with no negative cohomology, and <m>Lf^*</m> preserves complexes with no positive cohomology.<fn>For sheaves, negative cohomology of a derived pullback records Tor. Positive cohomology of a derived direct image records the failure of sections over inverse images to be exact. Their degree conventions are opposite.</fn></p>
+    <proposition xml:id="st-c11-composition">
+      <statement><p>For composable ringed morphisms <m>f:\mathcal E\to\mathcal F</m> and <m>g:\mathcal F\to\mathcal G</m>, there are natural isomorphisms
+        <md number="no">Lf^*Lg^*\simeq L(gf)^*,\qquad Rg_*Rf_*\simeq R(gf)_*.</md>
+        They respect units, counits, and a third composition.</p></statement>
+      <proof><p>A K-flat resolution with flat terms on <m>\mathcal G</m> remains such a complex after applying <m>g^*</m>, so both pullbacks are computed by the same ordinary composite. The two right derived images are right adjoint to the isomorphic left adjoints, hence are canonically isomorphic. Uniqueness of the adjoint isomorphism proves the compatibility statements. See <url href="https://stacks.math.columbia.edu/tag/07A5">Stacks, Lemma 21.19.2</url>.</p></proof>
+    </proposition>
+    <p>In a general ringed situation, <m>f_*</m> need not preserve injectives or K-injectives as <m>\mathcal O_{\mathcal F}</m>-module complexes, because its left adjoint <m>f^*</m> need not be exact. The composition proof therefore uses the derived adjunction. It does not copy the stronger preservation assertion valid for exact fixed-coefficient inverse images in Note I.</p>
+    <example xml:id="st-c11-ring-example">
+      <statement><p>For a ring homomorphism <m>A\to B</m>, regard both ringed topoi as the one-point topos. Then <m>Lf^*=B\Ltensor_A(-)</m> and <m>Rf_*</m> is ordinary restriction of scalars. For <m>A=\Z</m>, <m>B=\Z/p\Z</m>, and <m>K=B</m>, the pullback has cohomology <m>B</m> in degrees <m>-1,0</m>.</p></statement>
+      <solution><p>Use the two-term free resolution <m>[\Z\xrightarrow{p}\Z]</m> in degrees <m>-1,0</m>. Tensoring with <m>B</m> makes its differential zero. Ordinary extension of scalars sees only degree zero. Restriction of scalars is exact, which explains its underived formula in this example.</p></solution>
+    </example>
+  </section>
+
+  <section xml:id="st-c11-cohomology-section">
+    <title>Cohomology without stalks</title>
+    <definition xml:id="st-c11-cohomology">
+      <idx>Cohomology of a topos</idx><idx>Hypercohomology</idx>
+      <statement><p>Let <m>A=\Gamma(\mathcal E,\mathcal O)</m>. Define
+        <md number="no">R\Gamma(\mathcal E,-):\D(\mathcal O)\longrightarrow\D(A),\qquad H^n(\mathcal E,K)=H^n(R\Gamma(\mathcal E,K)).</md>
+        For an object <m>U</m> of <m>\mathcal E</m>, write <m>H^n(U,K)</m> for derived sections of <m>K|_U</m> in the slice ringed topos. A terminal object in a chosen site presentation is not needed: the topos itself has its terminal object.</p></statement>
+    </definition>
+    <p>An injective resolution computes cohomology of a module. A K-injective replacement computes unbounded hypercohomology. Restriction to a slice preserves K-injectives, so the same replacement computes sections over every object. On a site presentation and for a module <m>M</m>, a positive-degree class in <m>H^q(U,M)</m> vanishes after passing to a covering of <m>U</m>. Indeed, a cocycle in an injective resolution is locally a boundary because the resolution is exact as a sheaf complex. This is the version of locality that does not mention points.</p>
+    <p>For modules and bounded below complexes, forgetting the ring action gives the same cohomology as in <m>\Ab(\mathcal E)</m>. The reason is acyclicity: injective module sheaves are acyclic for sections on objects after forgetting coefficients. This is <url href="https://stacks.math.columbia.edu/tag/03FA">Stacks, §21.12</url>. It does not assert that forgetting coefficients preserves injective objects. It allows the bounded below descent theorem in <xref ref="st-c12"/> to apply to ringed coefficients as well.</p>
+    <proposition xml:id="st-c11-spectral-sequences">
+      <statement><p>For <m>K\in\D^+(\mathcal O)</m>, there is a spectral sequence
+        <md number="no">E_2^{p,q}=H^p(\mathcal E,\mathcal H^q(K))\ \Longrightarrow\ H^{p+q}(\mathcal E,K),\qquad p\geq0.</md>
+        For a ringed morphism <m>f:\mathcal E\to\mathcal F</m> and a module <m>M</m>, the Leray spectral sequence is
+        <md number="no">E_2^{p,q}=H^p(\mathcal F,R^qf_*M)\ \Longrightarrow\ H^{p+q}(\mathcal E,M).</md>
+        Here global scalar actions are restricted along <m>\Gamma(\mathcal F,\mathcal O_{\mathcal F})\to\Gamma(\mathcal E,\mathcal O_{\mathcal E})</m> when necessary. Both sequences have finite filtrations on each abutment degree. There is also a local-to-global Ext spectral sequence
+        <md number="no">H^p(\mathcal E,\mathcal E xt^q_{\mathcal O}(M,N))\ \Longrightarrow\ \Ext^{p+q}_{\Mod(\mathcal O)}(M,N).</md>
+      </p></statement>
+      <proof><p>Apply derived sections to canonical truncation triangles for the first sequence. For Leray use the composition comparison with derived sections, including restriction of global scalars, and the Grothendieck spectral-sequence theorem. For Ext apply the first sequence to <m>\RsheafHom_{\mathcal O}(M,N)</m>, which is bounded below, and use <xref ref="st-c11-derived-closed"/>. The point-free acyclicity needed for the composition is established in <url href="https://stacks.math.columbia.edu/tag/01FQ">Stacks, §§21.12–21.14</url>. Boundedness below gives the finite-diagonal convergence used in each case.</p></proof>
+    </proposition>
+    <p>Cohomology sheaves and these spectral sequences are intrinsic to the ringed topos. A site is used to describe covering families, generators, and local resolutions. Changing to an equivalent site presentation transports all these constructions through the corresponding exact equivalence of module categories.</p>
+  </section>
+
+  <section xml:id="st-c11-finiteness-section">
+    <title>Finite complexes, pseudo-coherence, and Tor amplitude</title>
+    <definition xml:id="st-c11-pseudocoherent">
+      <idx>Strictly perfect complex</idx><idx>Pseudo-coherent complex</idx><idx>Tor amplitude</idx>
+      <statement><p>A complex is <term>strictly perfect</term> if it has finitely many nonzero terms and each term is a direct summand of a finite free module. For <m>m\in\Z</m>, an object <m>K\in\D(\mathcal O)</m> is <term><m>m</m>-pseudo-coherent</term> if locally there is a strictly perfect complex <m>P</m> and a morphism <m>P\to K</m> inducing an isomorphism on <m>\mathcal H^j</m> for <m>j&gt;m</m> and an epimorphism for <m>j=m</m>. It is <term>pseudo-coherent</term> if this holds for every <m>m</m>. The coverings and approximations may depend on <m>m</m>.</p>
+        <p>An object has <term>Tor amplitude in <m>[a,b]</m></term> if <m>\mathcal H^i(K\Ltensor_{\mathcal O}M)=0</m> for every module <m>M</m> and every <m>i\notin[a,b]</m>. It has <term>locally finite Tor amplitude</term> if locally such an interval exists, with endpoints allowed to vary.</p>
+      </statement>
+    </definition>
+    <p>The definition asks for finite approximations near the upper end of a complex, to every prescribed depth. It does not require one global resolution or one covering that works for all depths. The use of finite projective summands, rather than only finite free terms, agrees with the general ringed-site convention in <url href="https://stacks.math.columbia.edu/tag/08FK">Stacks, §21.44</url> and <url href="https://stacks.math.columbia.edu/tag/08FS">§21.45</url>.<fn>A finite projective module is a direct summand of a finite free module, but need not be free on a one-point ringed topos. On locally ringed spaces, finite projective summands become finite locally free after an open localization. A convention silently requiring free terms on every general ringed topos would exclude legitimate perfect objects.</fn></p>
+    <definition xml:id="st-c11-perfect">
+      <idx>Perfect complex</idx>
+      <statement><p>An object <m>K\in\D(\mathcal O)</m> is <term>perfect</term> if locally it is isomorphic to a strictly perfect complex. Write <m>\Perf(\mathcal O)</m> for the resulting full subcategory.</p></statement>
+    </definition>
+    <theorem xml:id="st-c11-perfect-criteria">
+      <statement><p>An object is perfect if and only if it is pseudo-coherent and has locally finite Tor amplitude. Equivalently, it is dualizable in the symmetric monoidal category <m>\D(\mathcal O)</m>. Its dual is
+        <md number="no">K^\vee=\RsheafHom_{\mathcal O}(K,\mathcal O),</md>
+        and for every <m>L</m> the evaluation comparison is an isomorphism
+        <md number="no">K^\vee\Ltensor_{\mathcal O}L\xrightarrow{\sim}\RsheafHom_{\mathcal O}(K,L).</md>
+        Perfect objects are closed under shifts, cones, tensor products, duals, and direct summands. Derived pullback preserves them.</p></statement>
+      <proof><p>There is a global canonical tensor–Hom comparison in the displayed direction. On a strictly perfect model, tensor and internal Hom are computed termwise and finite-projective duality makes it an isomorphism with the cochain signs. For a perfect object the comparison is therefore an isomorphism locally, hence globally, since its cone has zero cohomology locally. Thus <m>K^\vee\Ltensor(-)</m> is the right adjoint of tensoring with <m>K</m>. This formal adjunction gives its duality data and their triangle identities. No gluing of arbitrary local derived morphisms is being assumed. Conversely, dualizability implies perfectness by <url href="https://stacks.math.columbia.edu/tag/0FPP">Stacks, Lemma 21.48.7</url>.</p>
+        <p>The finite-approximation criterion is <url href="https://stacks.math.columbia.edu/tag/08G4">Stacks, Lemmas 21.47.3–21.47.4</url>. Its mechanism is to approximate below the lowest possible tensor cohomology degree; the Tor vanishing makes the remaining endpoint cokernel flat, and finite presentation makes that module locally a finite projective summand. The finite resolution can then be truncated there. Closure and pullback follow from these local models and the equivalent duality criterion; the detailed local replacement of morphisms by maps between finite models is part of the cited strictly-perfect results.</p>
+      </proof>
+    </theorem>
+    <p>A perfect object need not be globally cohomologically bounded when the topos is not quasi-compact. On the discrete space <m>\N</m> with coefficient field <m>k</m>, prescribe <m>K|_{\{n\}}=k[-n]</m>. Every restriction to a point is strictly perfect, but <m>\mathcal H^n(K)</m> is nonzero for arbitrarily large <m>n</m>. A quasi-compactness hypothesis can turn local bounds into uniform bounds; the definitions themselves do not include it.</p>
+    <proposition xml:id="st-c11-coherent-derived">
+      <idx>Derived category with coherent cohomology</idx>
+      <statement><p>Write <m>\D^b_{\mathrm{coh}}(\mathcal O)</m> for the full subcategory of <m>\D(\mathcal O)</m> with bounded coherent cohomology objects, using the intrinsic coherence of <xref ref="st-c10-coherent"/>. It is closed under shifts and cones. If <m>\mathcal O</m> is coherent, an object of <m>\D^-(\mathcal O)</m> is pseudo-coherent exactly when all its cohomology objects are coherent. In particular every object of <m>\D^b_{\mathrm{coh}}(\mathcal O)</m> is then pseudo-coherent. It is perfect precisely when it additionally has locally finite Tor amplitude.</p></statement>
+      <proof><p>Coherent modules are closed under kernels and cokernels of morphisms between them, and under extensions. Apply these properties to the long exact sequence of cohomology to obtain the first assertion.</p>
+        <p>Suppose now that the ring object is coherent and that <m>K</m> is bounded above with coherent cohomology. To construct an approximation through degree <m>m</m>, start at the largest degree with nonzero cohomology, choose finitely many local generators, and lift them to cycles in a representative of <m>K</m>. These choices are possible after a covering. The corresponding map from a shifted finite free module surjects onto the top cohomology. Its cone has its new top cohomology an extension of the next coherent cohomology object by the kernel of that finite free surjection; this is coherent. Repeat this finite procedure down to degree <m>m</m>. Attaching the shifted finite free modules gives the required strictly perfect approximation. Only finitely many choices of covering are needed for any fixed <m>m</m>.</p>
+        <p>Conversely, approximate a pseudo-coherent <m>K</m> below any given degree. It agrees in that degree with the cohomology of a strictly perfect complex. Finite free modules, their summands, and kernels and cokernels between coherent modules are coherent, so that cohomology object is coherent. The final assertion is <xref ref="st-c11-perfect-criteria"/>.</p>
+      </proof>
+    </proposition>
+    <p>The exact inclusion <m>\Coh(\mathcal O)\to\Mod(\mathcal O)</m> induces a functor <m>\D^b(\Coh(\mathcal O))\to\D^b_{\mathrm{coh}}(\mathcal O)</m>. We have not identified it with an equivalence: comparison of Ext groups and the existence of suitable coherent representatives are further questions. Also, this intrinsic definition is not a replacement for a geometry-specific coherent category on a big stack site; see <xref ref="st-c10-stack-caveat"/>.</p>
+    <example xml:id="st-c11-coherent-not-perfect">
+      <statement><p>For <m>A=k[\epsilon]/(\epsilon^2)</m>, the module <m>k=A/(\epsilon)</m> is coherent and pseudo-coherent, but not perfect.</p></statement>
+      <solution><p>The finite-dimensional algebra is Noetherian. A free resolution of <m>k</m> continues indefinitely with multiplication by <m>\epsilon</m>. Tensoring with <m>k</m> makes all these differentials zero, so <m>\Tor^A_i(k,k)=k</m> for every <m>i\geq0</m>. No finite Tor interval exists. This separates bounded coherent cohomology from perfectness, even on a one-point ringed topos.</p></solution>
+    </example>
+    <p>Tor bounds also explain preservation of boundedness. If <m>P</m> has Tor amplitude <m>[a,b]</m> and <m>L</m> has cohomology in <m>[c,d]</m>, then <m>P\Ltensor L</m> has cohomology in <m>[a+c,b+d]</m>. Use the finite truncation filtration of <m>L</m>. If <m>\mathcal O</m> is coherent and the two objects are pseudo-coherent, their tensor is pseudo-coherent, so boundedness gives coherent cohomology. Similarly, for a ringed morphism between coherent ringed topoi, a uniform finite Tor bound for <m>Lf^*</m> makes it preserve <m>\D^b_{\mathrm{coh}}</m>. Pullback preserves pseudo-coherence by pulling back its finite approximations.</p>
+    <p>Direct image requires different hypotheses. For the one-point ring map <m>k\to k[t]</m>, restriction of scalars sends the perfect module <m>k[t]</m> to an infinite-dimensional <m>k</m>-vector space. Thus even exact direct image need not preserve coherence or perfectness. Properness and finiteness theorems in algebraic or analytic geometry are substantive extra inputs.</p>
+  </section>
+
+  <section xml:id="st-c11-comparison-section">
+    <title>Comparison maps and sufficient conditions</title>
+    <proposition xml:id="st-c11-comparison-maps">
+      <statement><p>For a ringed morphism <m>f:\mathcal E\to\mathcal F</m>, there is a natural projection morphism
+        <md number="no">Rf_*L\Ltensor_{\mathcal O_{\mathcal F}}K\longrightarrow Rf_*(L\Ltensor_{\mathcal O_{\mathcal E}}Lf^*K).</md>
+        It is an isomorphism whenever <m>K</m> is perfect. The natural internal-Hom comparison
+        <md number="no">Lf^*\RsheafHom(K,N)\longrightarrow\RsheafHom(Lf^*K,Lf^*N)</md>
+        is likewise an isomorphism when <m>K</m> is perfect.</p></statement>
+      <proof><p>The projection morphism is adjoint to the tensor of the counit <m>Lf^*Rf_*L\to L</m> with <m>Lf^*K</m>, using tensor compatibility of pullback. If <m>K</m> is dualizable, maps from a test object <m>T</m> into its source are successively
+        <md number="no">\Hom(T\Ltensor K^\vee,Rf_*L)\simeq\Hom(Lf^*T\Ltensor Lf^*K^\vee,L)\simeq\Hom(Lf^*T,L\Ltensor Lf^*K).</md>
+        These are maps from <m>T</m> into the target. The identifications are induced by the displayed comparison, so Yoneda proves it is an isomorphism. This is the projection formula of <url href="https://stacks.math.columbia.edu/tag/0943">Stacks, Lemma 21.50.1</url>. The Hom comparison is adjoint to pulled-back evaluation; for perfect <m>K</m> it becomes the isomorphism obtained by pulling back <m>K^\vee\Ltensor N</m>.</p></proof>
+    </proposition>
+    <p>For a square of ringed morphisms with <m>fg'=gf'</m>, where <m>f:\mathcal E\to\mathcal F</m>, <m>g:\mathcal F'\to\mathcal F</m>, <m>g':\mathcal E'\to\mathcal E</m>, and <m>f':\mathcal E'\to\mathcal F'</m>, the base change morphism is
+      <md number="no">Lg^*Rf_*L\longrightarrow Rf'_*Lg'^*L.</md>
+      It is adjoint to <m>Lf'^*Lg^*Rf_*L\simeq Lg'^*Lf^*Rf_*L\to Lg'^*L</m>. The construction uses the commutativity identification of the square and the counit. It does not require an isomorphism theorem. Its compatibility with composing squares follows from the unit–counit identities; see <url href="https://stacks.math.columbia.edu/tag/07A5">Stacks, Remarks 21.19.3–21.19.5</url>.</p>
+    <example xml:id="st-c11-basechange-failure">
+      <statement><p>A cartesian square of ringed topoi need not have an invertible derived base change morphism.</p></statement>
+      <solution><p>Use one-point topoi, with rings <m>A=\Z</m>, <m>B=A'=\Z/p\Z</m>, and <m>B'=B\otimes_A A'=\Z/p\Z</m>. For the source unit <m>L=B</m>, the comparison is
+        <md number="no">A'\Ltensor_A B\longrightarrow B'.</md>
+        The source has nonzero cohomology in degree <m>-1</m>, while the target is in degree zero. The missing condition in this example is Tor independence. A geometric base change theorem must provide conditions that remove this obstruction and any separate obstruction to commuting direct image with pullback.</p></solution>
+    </example>
+    <p>Thus the general ringed-topos theory supplies derived adjunctions, tensor and Hom, and specified comparison morphisms. Preservation of a coherent subcategory and invertibility of base change are additional assertions with their own hypotheses. These distinctions remain necessary when the ringed topos comes from a familiar geometric site.</p>
+  </section>
+</chapter>

@@ -1,0 +1,175 @@
+<chapter xml:id="st-c08">
+  <title>Ringed sites, ringed topoi, and modules</title>
+  <introduction>
+    <p>A topology specifies which data can be checked and glued locally. A structure sheaf adds scalars that may themselves vary locally. The resulting module category retains the exactness properties needed for homological algebra, but its pullback has two separate steps: inverse image in the underlying topos, followed by extension of scalars. Only the first step is automatically exact.</p>
+    <p>We work with commutative unital ring objects, including the zero ring. A presentation by a small site gives explicit formulas; the definitions and results are invariant under equivalence of ringed topoi. No terminal object, subcanonical topology, or conservative family of points is assumed for the presenting site. Local statements over an object mean statements in the corresponding slice topos.</p>
+  </introduction>
+
+  <section xml:id="st-c08-ring-objects">
+    <title>Rings and modules in a topos</title>
+    <definition xml:id="st-c08-ringed">
+      <title>Ringed sites and ringed topoi</title>
+      <idx>Ringed site</idx><idx>Ringed topos</idx><idx>Ring object</idx>
+      <statement>
+        <p>A <term>ringed site</term> is a site <m>(\mathcal C,J)</m> together with a sheaf <m>\mathcal O</m> of commutative unital rings. A <term>ringed topos</term> is a pair <m>(\mathcal E,\mathcal O)</m>, where <m>\mathcal E</m> is a Grothendieck topos and <m>\mathcal O</m> is a commutative unital ring object of <m>\mathcal E</m>. Ring operations are morphisms in <m>\mathcal E</m> satisfying the usual identities as commutative diagrams.</p>
+        <p>A ringed site presents <m>(\Sh(\mathcal C,J),\mathcal O)</m>. Conversely, after choosing a site presentation of <m>\mathcal E</m>, its ring object becomes a sheaf of rings on that site.</p>
+      </statement>
+    </definition>
+    <p>For a sheaf <m>\mathcal O</m>, each <m>\mathcal O(U)</m> is a ring and each restriction is a ring homomorphism. This is a description in a presentation, not a requirement that every scalar arise from <m>\Gamma(\mathcal E,\mathcal O)</m>. The latter means <m>\Hom_{\mathcal E}(1,\mathcal O)</m> even when the site has no terminal object.</p>
+
+    <definition xml:id="st-c08-module">
+      <title>Module sheaves</title>
+      <idx>Module sheaf</idx><idx>Module object</idx><idx>Restriction of a module</idx>
+      <statement>
+        <p>An <term><m>\mathcal O</m>-module</term> is an Abelian group object <m>M</m> of <m>\mathcal E</m> with an action <m>\mathcal O\times M\to M</m> satisfying the unital and distributive module identities. Its morphisms are action-preserving morphisms of Abelian objects. Write <m>\Mod(\mathcal O)</m> for this category.</p>
+        <p>In a site presentation, <m>M(U)</m> is an <m>\mathcal O(U)</m>-module and restriction maps are linear relative to the restriction maps of scalars. For <m>A\in\mathcal E</m>, write <m>\mathcal O_A</m> and <m>M|_A</m> for their inverse images in <m>\mathcal E/A</m>. For a site object <m>U</m>, this agrees with restriction to <m>\mathcal C/U</m>; the corresponding topos object is <m>a h_U</m>, not necessarily <m>h_U</m> itself.</p>
+      </statement>
+    </definition>
+    <p>These definitions use only finite-limit diagrams and morphisms. A family of scalars or module elements over <m>U</m> is therefore a family of generalized sections, and an identity between them can be checked after a covering of <m>U</m>. No test by unspecified global elements is being used.<fn>For noncommutative ring objects, left and right modules and the two scalar actions in a tensor product must be distinguished. Commutativity lets us use a symmetric tensor product later; it does not identify those noncommutative constructions.</fn></p>
+
+    <example xml:id="st-c08-ringed-examples">
+      <statement>
+        <p>For <m>\mathcal E=\Set</m>, a ringed topos is a ring <m>R</m>, and <m>\Mod(\mathcal O)</m> is the ordinary module category <m>\Mod(R)</m>. For <m>\mathcal E=\Sh(X)</m>, the definition is precisely a ringed space <m>(X,\mathcal O_X)</m>. The fixed-coefficient theory of Note I is the case <m>\mathcal O_X=\Lambda_X</m>. A sheaf of functions, such as the holomorphic functions on a complex manifold, gives a different structure sheaf on the same underlying topology.</p>
+      </statement>
+    </example>
+    <p>The zero ring causes no exception to the module definitions: its only unital module is zero. It is permitted as a structure object. The additional definition of a locally ringed topos below excludes a nonempty region on which zero and one coincide.</p>
+  </section>
+
+  <section xml:id="st-c08-exact-category">
+    <title>Exactness and generators</title>
+    <proposition xml:id="st-c08-module-exactness">
+      <statement>
+        <p>The category <m>\Mod(\mathcal O)</m> is Abelian. The forgetful functor to <m>\Ab(\mathcal E)</m> creates kernels and cokernels and preserves all limits and colimits. Filtered colimits in <m>\Mod(\mathcal O)</m> are exact. A module morphism is a monomorphism if it is injective on sections over each site object, and is an epimorphism if its sections admit lifts locally.</p>
+      </statement>
+      <proof>
+        <p>A kernel is the sectionwise kernel, with the restricted action. The presheaf quotient by the image is a presheaf of modules; its associated Abelian sheaf has a unique induced <m>\mathcal O</m>-action. It is the cokernel in modules as well. Since image and coimage agree for Abelian sheaves, they agree in modules. Limits carry the componentwise action. A presheaf colimit carries an action and sheafification extends it to the sheaf colimit. These constructions have the required universal properties in modules.</p>
+        <p>The underlying Abelian sheaf functor consequently preserves the exact sequences and filtered colimits in question. Exactness of filtered colimits follows from the local sheafification criterion, as in <xref ref="st-c03-exactness"/>. The mono and epi descriptions are the same local criteria for the underlying Abelian sheaves. See <url href="https://stacks.math.columbia.edu/tag/03D9">Stacks, Lemmas 18.14.1–18.14.2</url>.</p>
+      </proof>
+    </proposition>
+    <p>In particular, taking sections need not preserve a module epimorphism. A presentation exact in <m>\Mod(\mathcal O)</m> is not automatically an exact presentation of the modules of sections over every object. This distinction will matter for finite presentation and flatness as well as for cohomology.</p>
+
+    <definition xml:id="st-c08-free-on-object">
+      <title>Free modules on sheaf objects</title>
+      <idx>Free module on a sheaf</idx><idx>Generator!module sheaves</idx>
+      <statement>
+        <p>For a set sheaf <m>A</m>, the free <m>\mathcal O</m>-module <m>\mathcal O[A]</m> is characterized by
+          <md number="no">\Hom_{\mathcal O}(\mathcal O[A],M)\simeq\Hom_{\mathcal E}(A,\operatorname{For}M).</md>
+          Here <m>\operatorname{For}M</m> is its underlying set object. The free module can be constructed by sheafifying <m>U\mapsto\mathcal O(U)[A(U)]</m>. For a site object <m>U</m>, let <m>P_U=\mathcal O[a h_U]</m>. Equivalently, <m>P_U</m> is the sheafification of
+          <md number="no">V\longmapsto\bigoplus_{\alpha:V\to U}\mathcal O(V).</md>
+        </p>
+      </statement>
+    </definition>
+    <p>The two formulas for <m>P_U</m> agree by their adjunctions: maps from either object to <m>M</m> are sections <m>M(U)</m>. The definition is meaningful without assuming representables are sheaves. The formal symbol for a generator is allowed to vary over the object <m>a h_U</m>; it is not a choice of a set of global sections.</p>
+
+    <theorem xml:id="st-c08-grothendieck">
+      <statement>
+        <p>The category <m>\Mod(\mathcal O)</m> is Grothendieck. In a small site presentation, <m>(P_U)_{U\in\mathcal C}</m> is a generating family. Every <m>M</m> admits an epimorphism
+          <md number="no">\bigoplus_{(U,s),\ s\in M(U)}P_U\longrightarrow M.</md>
+          In particular, enough injectives and the Grothendieck-category existence results of homological algebra apply.</p>
+      </statement>
+      <proof>
+        <p>The summand indexed by <m>(U,s)</m> maps its universal generator to <m>s</m>. Every section over a site object occurs in this way, so the map is locally surjective, and in fact every such section is in its sectionwise image. The index is a set because the site is small and every <m>M(U)</m> is a set. If two module morphisms differ, they differ on some section and hence after precomposition with some <m>P_U</m>. Thus their coproduct is a generator. Cocompleteness and exact filtered colimits were proved in <xref ref="st-c08-module-exactness"/>, which gives the Grothendieck property. The assertion about injectives now calls the general theorem, rather than a stalkwise construction.</p>
+      </proof>
+    </theorem>
+    <p>Although these generators will be flat, they need not be projective. The represented functor is <m>M\mapsto M(U)</m>, and a local lifting need not extend to one section on <m>U</m>. Nor is the tensor unit <m>\mathcal O</m> generally a generator: its morphisms see only global sections. Local presentations by sums of the unit, introduced in <xref ref="st-c10"/>, are an additional condition, not a consequence of the epimorphism just constructed.<fn>The notation <m>\mathcal O^{(I)}</m> denotes a coproduct indexed by an ordinary set. The object <m>\mathcal O[A]</m> uses an object of the topos as its set of local generators. These two uses of “free” agree for a constant discrete indexing object, but should not be conflated in a topos with few global sections.</fn></p>
+  </section>
+
+  <section xml:id="st-c08-localization-section">
+    <title>Localization and descent of modules</title>
+    <proposition xml:id="st-c08-localization">
+      <statement>
+        <p>For the localization <m>j_U:\mathcal E/a h_U\to\mathcal E</m>, restriction of modules is exact and has adjoints
+          <md number="no">j_{U!}\dashv j_U^{-1}\dashv j_{U*}.</md>
+          The additive left adjoint <m>j_{U!}</m> is exact, and <m>j_{U!}\mathcal O_U=P_U</m>. Restriction preserves all limits and colimits. It takes injective modules to injective modules.</p>
+      </statement>
+      <proof>
+        <p>In the slice-site presentation, define <m>j_{U!}N</m> by sheafifying
+          <md number="no">V\longmapsto\bigoplus_{\alpha:V\to U}N(V\xrightarrow{\alpha}U).</md>
+          A map from this presheaf to a sheaf <m>M</m> is precisely a compatible family of maps from <m>N</m> to <m>M|_U</m>. This proves the left adjunction. Direct image is the right adjoint supplied by localization. Restriction is computed by passing to the slice; it preserves the sectionwise finite-limit constructions and the sheafified colimit constructions.</p>
+        <p>To prove exactness of <m>j_{U!}</m>, a section is locally represented by a finite sum from the displayed presheaf. For a locally surjective map of modules on the slice, lift those finitely many terms after coverings of their objects, then take a common covering. For a local kernel relation, the same finite-sum argument lifts a representative from the kernel on a covering. Monomorphisms are preserved because the displayed sums preserve injectivity before sheafification. These local tests prove exactness. The formula for the unit follows by setting <m>N=\mathcal O_U</m>. An exact left adjoint makes its right adjoint preserve injectives, so restriction preserves injectives. See <url href="https://stacks.math.columbia.edu/tag/03DH">Stacks, §18.19</url>.</p>
+      </proof>
+    </proposition>
+    <p>This <m>j_{U!}</m> is the additive left adjoint for localization. When <m>U</m> is an open subspace it is extension by zero, but its existence here does not give a proper-support direct image for an arbitrary ringed geometric morphism. No general <m>f_!</m> or <m>f^!</m> is being constructed.<fn>On a slice topos, an Abelian object is a family of Abelian groups over the base object. Simply forgetting the map to that base does not turn its total set into an Abelian group. The additive left adjoint sums the fibers; it is not just that forgetful set functor. For a general localization, the unit <m>N\to j_U^{-1}j_{U!}N</m> is injective but need not be an isomorphism; the open-subspace case has additional full-faithfulness properties.</fn></p>
+
+    <proposition xml:id="st-c08-module-descent">
+      <statement>
+        <p>Module objects and their morphisms satisfy effective descent along epimorphic families in <m>\mathcal E</m>. In particular, compatible <m>\mathcal O</m>-modules on a covering, with linear transition isomorphisms satisfying the cocycle identity, glue to an <m>\mathcal O</m>-module. This assertion is invariant under a change of site presenting the same ringed topos.</p>
+      </statement>
+      <proof>
+        <p>Use the effective descent of sheaf objects from <xref ref="st-c07"/> to glue the underlying objects. Addition, zero, additive inverse, and scalar multiplication are morphisms between their finite products and pullbacks of <m>\mathcal O</m>. Linearity of the transition maps supplies descent data for these morphisms, so they glue uniquely. Each module axiom is an equality of morphisms; it holds after the epimorphic covering and hence globally. The same argument glues morphisms. An equivalence of topoi preserving the ring object transports all these operations and diagrams, which proves the last assertion.</p>
+      </proof>
+    </proposition>
+    <p>There is no need to repeat the proof of descent for underlying sheaves, and no claim about descent of arbitrary derived categories is implicit here. Module structures are extra finite-diagram data on the already descended objects. In particular, module descent does not require conservative points.</p>
+  </section>
+
+  <section xml:id="st-c08-morphisms">
+    <title>Ringed morphisms and extension of scalars</title>
+    <definition xml:id="st-c08-ringed-morphism">
+      <title>Morphisms of ringed topoi</title>
+      <idx>Morphism!ringed topoi</idx><idx>Structure morphism</idx>
+      <statement>
+        <p>A morphism
+          <md number="no">(f,f^\sharp):(\mathcal E,\mathcal O_{\mathcal E})\longrightarrow(\mathcal F,\mathcal O_{\mathcal F})</md>
+          consists of a geometric morphism <m>f</m> and a ring morphism <m>f^\sharp:\mathcal O_{\mathcal F}\to f_*\mathcal O_{\mathcal E}</m>. By adjunction this is equivalently a ring morphism
+          <md number="no">\theta_f:f^{-1}\mathcal O_{\mathcal F}\longrightarrow\mathcal O_{\mathcal E}.</md>
+          A morphism of ringed sites includes a morphism of the associated topoi with this structure map; a bare functor of the underlying categories does not suffice.</p>
+      </statement>
+    </definition>
+    <p>The inverse image of the underlying geometric morphism acts on ring and module objects because it preserves finite limits and all colimits. It gives an exact functor
+      <md number="no">f^{-1}:\Mod(\mathcal O_{\mathcal F})\longrightarrow\Mod(f^{-1}\mathcal O_{\mathcal F}).</md>
+      Its scalars are still <m>f^{-1}\mathcal O_{\mathcal F}</m>. Forgetting that target ring is the source of an incorrect assertion that ringed pullback is always exact.</p>
+
+    <definition xml:id="st-c08-module-pullback">
+      <title>Direct image and ringed inverse image of modules</title>
+      <idx>Inverse image!ringed</idx><idx>Direct image!module sheaves</idx><idx>Extension of scalars</idx>
+      <statement>
+        <p>The direct image of an <m>\mathcal O_{\mathcal E}</m>-module <m>N</m> is its underlying <m>f_*N</m>, with <m>\mathcal O_{\mathcal F}</m>-action induced by <m>f^\sharp</m>. The <term>ringed inverse image</term> of an <m>\mathcal O_{\mathcal F}</m>-module <m>M</m> is
+          <md number="no">f^*M=\mathcal O_{\mathcal E}\otimes_{f^{-1}\mathcal O_{\mathcal F}}f^{-1}M.</md>
+          The tensor product is the sheaf tensor product constructed in <xref ref="st-c09-tensor"/>. The notation <m>f^{-1}M</m> and <m>f^*M</m> therefore records two different scalar rings, even when the underlying objects happen to be isomorphic.</p>
+      </statement>
+    </definition>
+    <proposition xml:id="st-c08-module-adjunction">
+      <statement>
+        <p>There is a natural adjunction
+          <md number="no">\Hom_{\mathcal O_{\mathcal E}}(f^*M,N)\simeq\Hom_{\mathcal O_{\mathcal F}}(M,f_*N).</md>
+          Thus <m>f^*</m> preserves all colimits and is right exact, while <m>f_*</m> preserves all limits and is left exact. For composable ringed morphisms <m>f:\mathcal E\to\mathcal F</m> and <m>g:\mathcal F\to\mathcal G</m>, one has coherent isomorphisms <m>(gf)^*\simeq f^*g^*</m>, and direct images compose.</p>
+      </statement>
+      <proof>
+        <p>An <m>\mathcal O_{\mathcal E}</m>-linear map from the tensor product to <m>N</m> is equivalent to an <m>f^{-1}\mathcal O_{\mathcal F}</m>-linear map <m>f^{-1}M\to N</m>. Under the geometric adjunction this is a map <m>M\to f_*N</m>; its linearity is exactly compatibility with the action induced by <m>f^\sharp</m>. This proves the adjunction. The limit and colimit statements follow. For composition, the composite structure map and the associativity of scalar extension identify both pullbacks with
+          <md number="no">\mathcal O_{\mathcal E}\otimes_{(gf)^{-1}\mathcal O_{\mathcal G}}(gf)^{-1}M.</md>
+          These isomorphisms respect the adjunctions and hence the composition coherence. See <url href="https://stacks.math.columbia.edu/tag/03D5">Stacks, §18.13</url>.</p>
+      </proof>
+    </proposition>
+    <p>The unit sends a local section to <m>1\otimes s</m> after inverse image. The counit evaluates <m>b\otimes s</m> by the <m>\mathcal O_{\mathcal E}</m>-action after the underlying geometric counit. These are local descriptions of morphisms, so their compatibility is checked over generating objects and coverings, not only on global sections.</p>
+
+    <example xml:id="st-c08-nonexact-pullback">
+      <statement>
+        <p>The identity geometric morphism of <m>\Set</m>, with ring map <m>\Z\to\Z/2\Z</m>, defines a ringed morphism <m>(\Set,\Z/2\Z)\to(\Set,\Z)</m>. Its <m>f^{-1}</m> is the identity, but <m>f^*M=M\otimes_\Z\Z/2\Z</m> is not exact.</p>
+      </statement>
+      <solution><p>The injection <m>\Z\xrightarrow{2}\Z</m> becomes the zero map on <m>\Z/2\Z</m>. The failure is entirely scalar extension; no topology or absence of points is responsible. The flatness conditions restoring exactness are in <xref ref="st-c09-flat-morphism"/>.</p></solution>
+    </example>
+    <p>For fixed coefficients and a geometric morphism with the canonical coefficient identification, <m>\theta_f</m> is an isomorphism. Ringed pullback then agrees with the exact underlying inverse image. For a morphism of ringed spaces the same formula gives the familiar <m>\mathcal O_X\otimes_{f^{-1}\mathcal O_Y}f^{-1}M</m>; the topological inverse image alone need not be an <m>\mathcal O_X</m>-module.</p>
+  </section>
+
+  <section xml:id="st-c08-local-rings">
+    <title>The additional local-ring condition</title>
+    <definition xml:id="st-c08-locally-ringed">
+      <title>Locally ringed topoi</title>
+      <idx>Locally ringed topos</idx><idx>Local ring object</idx><idx>Locally ringed space</idx>
+      <statement>
+        <p>A ringed topos is <term>locally ringed</term> if zero and one have initial equalizer, and locally every section <m>a</m> of <m>\mathcal O</m> satisfies the alternative that <m>a</m> is invertible or <m>1-a</m> is invertible. In a site presentation, the alternative means that each section over each object has a covering on whose individual members one of the two alternatives holds.</p>
+        <p>A ringed morphism is a morphism of locally ringed topoi when its scalar map is local: the inverse image of the subobject of units of <m>\mathcal O_{\mathcal E}</m> under <m>\theta_f</m> is precisely the unit subobject of <m>f^{-1}\mathcal O_{\mathcal F}</m>.</p>
+      </statement>
+    </definition>
+    <p>The equalizer condition forbids a nonempty sheaf-theoretic region on which <m>0=1</m>.<fn>SGA4, Exposé IV, Exercise 13.9 omits this extra condition, allowing zero local rings. We follow the convention of <url href="https://stacks.math.columbia.edu/tag/04ER">Stacks, Definition 18.40.4</url>, which includes it to match the usual convention for locally ringed spaces. The unrestricted ringed theory above still allows the zero ring.</fn> The alternative is a local statement; it does not assert that the ring of sections over every object is a local ring. For example, holomorphic functions on a disconnected open set need not form a local ring, even though the holomorphic stalks are local.</p>
+    <proposition xml:id="st-c08-local-ring-points">
+      <statement>
+        <p>Every point of a locally ringed topos has a nonzero local stalk ring. With a conservative family of points, the converse holds. For the topos of a topological space this recovers the usual condition that every <m>\mathcal O_{X,x}</m> be a local ring; locality of a ringed morphism is locality of the stalk homomorphisms.</p>
+      </statement>
+      <proof>
+        <p>Inverse image at a point preserves finite limits, colimits, and epimorphisms, hence preserves the unit condition and the local alternative. A nonzero ring in which every element or its complement is a unit is local. Conversely, with conservative points, the epimorphism expressing the local alternative and the isomorphism expressing the zero-one condition are detected on stalks. The assertion about morphisms is detection of the corresponding pullback square of unit subobjects. These are the point criteria of <url href="https://stacks.math.columbia.edu/tag/04ER">Stacks, §18.40</url>.</p>
+      </proof>
+    </proposition>
+    <p>Without conservative points one uses the local definitions, rather than an assertion about all stalks. The local-ring condition has a concrete consequence later: finite locally projective modules become finite locally free in this setting. It is not needed for the Abelian and Grothendieck properties of <m>\Mod(\mathcal O)</m>, for scalar extension, or for their adjunction.</p>
+  </section>
+</chapter>
