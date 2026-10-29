@@ -15,6 +15,7 @@ from urllib.parse import parse_qs, urlsplit
 
 
 ROOT = Path(__file__).resolve().parent.parent
+SITE = ROOT / ".build/site"
 PROTOCOL = "pretext-local-preview-v1"
 CLIENT_TTL = 90
 CLIENT_SCRIPT = r"""(() => {
@@ -93,8 +94,10 @@ def atomic_json(path, contents):
 class PreviewServer(ThreadingHTTPServer):
     daemon_threads = True
 
-    def __init__(self, root=ROOT, port=8765):
+    def __init__(self, root=SITE, port=8765):
         self.root = Path(root).resolve()
+        self.reports = (ROOT / ".build/reports" if self.root == SITE.resolve()
+                        else self.root / ".build/reports")
         self.clients = {}
         self.client_lock = threading.Lock()
         super().__init__(("127.0.0.1", port), partial(PreviewHandler, directory=str(self.root)))
@@ -113,7 +116,7 @@ class PreviewServer(ThreadingHTTPServer):
             return sorted({value["path"] for value in self.clients.values()})
 
     def build_status(self):
-        report = self.root / ".build/reports/editor-preview.json"
+        report = self.reports / "editor-preview.json"
         try:
             result = json.loads(report.read_text(encoding="utf-8"))
             if not isinstance(result, dict):
@@ -197,12 +200,12 @@ class PreviewHandler(SimpleHTTPRequestHandler):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--port", type=int, default=8765)
-    parser.add_argument("--root", type=Path, default=ROOT)
+    parser.add_argument("--root", type=Path, default=SITE)
     args = parser.parse_args()
     root = args.root.resolve(strict=True)
     with PreviewServer(root=root, port=args.port) as server:
         url = f"http://localhost:{server.server_port}/"
-        atomic_json(root / ".build/reports/preview-server.json", {
+        atomic_json(ROOT / ".build/reports/preview-server.json", {
             "ProcessId": os.getpid(), "Directory": str(root), "Url": url,
             "protocol": PROTOCOL,
         })

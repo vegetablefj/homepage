@@ -69,6 +69,8 @@ def validate_file(source, schema, assembled, command=None):
 
 
 def main():
+    from note_catalog import ensure_catalog
+    ensure_catalog(ROOT)
     project = etree.parse(str(ROOT / 'project.ptx'))
     report_dir = ROOT / '.build/reports/validation'
     command = jing_command()

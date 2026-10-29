@@ -1,0 +1,356 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="grv-ch-symmetric">
+  <title>Symmetric products and rationality</title>
+
+  <introduction>
+    <p>For a quasiprojective variety <m>X</m>, the classes of its symmetric products depend only on <m>[X]</m>. The resulting series has a simple formula for a curve, but already for a smooth projective surface its rationality distinguishes ruled surfaces from surfaces of nonnegative Kodaira dimension. This chapter explains the curve calculation and develops a nonrationality argument for surfaces before discussing the stronger general criterion. Unless another field is specified, <m>k</m> is algebraically closed of characteristic zero, and <m>R=\Rk</m>.</p>
+    <p>There are two different sources of difficulty. Symmetric products are usually singular, even when <m>X</m> is smooth. Also, rationality of a formal series over a ring with zero divisors has several meanings. Neither difficulty can be removed by treating the coefficients as numbers.</p>
+  </introduction>
+
+  <section xml:id="grv-sym-construction">
+    <title>Symmetric products and the scissor relation</title>
+
+    <definition xml:id="grv-sym-definition">
+      <title>Symmetric products and the Kapranov zeta function</title>
+      <idx>symmetric product</idx><idx>Kapranov zeta function</idx>
+      <statement>
+        <p>For a quasiprojective <m>k</m>-variety <m>X</m> and <m>n\geq 1</m>, let
+          <md number="no">\Sym^n X=X^n/\mathfrak S_n,\qquad \Sym^0X=\Spec k.</md>
+          The quotient is the quasiprojective variety for the permutation action. Its geometric points are effective zero-cycles of degree <m>n</m> on <m>X</m>. The <em>Kapranov zeta function</em> is
+          <md number="no">\zeta_X(t)=\sum_{n\geq 0}[\Sym^nX]t^n\in 1+tR[[t]].</md>
+          The variable <m>t</m> is formal. In particular, no convergence assertion is involved. See <xref ref="grv-bib-Kapranov" detail="§1.3"/>.</p>
+      </statement>
+    </definition>
+
+    <p>Quasiprojectivity ensures that these finite-group quotients exist as varieties. It causes no restriction on the definition of the operations on <m>R</m>: every variety has a finite stratification by quasiprojective varieties, and the next identity makes the construction compatible with such stratifications.</p>
+
+    <proposition xml:id="grv-sym-scissors">
+      <title>Scissor multiplicativity</title>
+      <statement>
+        <p>If <m>Y\subseteq X</m> is closed and <m>U=X\setminus Y</m>, then
+          <md number="no">[\Sym^nX]=\sum_{i+j=n}[\Sym^iY][\Sym^jU],\qquad \zeta_X(t)=\zeta_Y(t)\zeta_U(t).</md>
+          Consequently there is a unique homomorphism of abelian groups
+          <md number="no">\sigma_t:(R,+)\longrightarrow (1+tR[[t]],\cdot),\qquad [X]\longmapsto\zeta_X(t).</md>
+          If <m>\sigma_t(a)=\sum_{n\geq0}\sigma^n(a)t^n</m>, then <m>\sigma^0(a)=1</m>, <m>\sigma^1(a)=a</m>, and
+          <md number="no">\sigma^n(a+b)=\sum_{i+j=n}\sigma^i(a)\sigma^j(b).</md>
+        </p>
+      </statement>
+      <proof>
+        <p>Stratify <m>\Sym^nX</m> by the degree of the part of a cycle supported on <m>Y</m>. The stratum with degrees <m>i</m> and <m>j</m> is <m>\Sym^iY\times\Sym^jU</m>. The scissor relation gives the coefficient identity, and multiplication of formal series gives the second identity.</p>
+        <p>The series <m>\zeta_X</m> has constant coefficient <m>1</m>, so it is a unit in <m>R[[t]]</m>. The identity respects every scissor relation, and group completion therefore extends it to <m>R</m>. For a virtual class one has, in particular,
+          <md number="no">\sigma_t([X]-[Y])=\zeta_X(t)\zeta_Y(t)^{-1}.</md>
+          Refining two finite stratifications to a common stratification proves independence of the chosen quasiprojective pieces. The construction and identity are also recorded in <xref ref="grv-bib-LL04" detail="Lemma 3.1 and Example 4.10"/>.</p>
+      </proof>
+    </proposition>
+
+    <p xml:id="grv-zeta-point-counts"><idx>Hasse–Weil zeta function</idx><idx>point-counting realization</idx>Over a finite field, these coefficients recover the Hasse–Weil zeta function. Let <m>X</m> now be quasiprojective over <m>\mathbf F_q</m>. Point counting gives a ring homomorphism
+      <md number="no">\#_q:K_0(\Var_{\mathbf F_q})\longrightarrow\Z,\qquad [Y]\longmapsto\#Y(\mathbf F_q).</md>
+      Let <m>|X|</m> be the set of closed points and let <m>\deg x=[\kappa(x):\mathbf F_q]</m>. Applying <m>\#_q</m> coefficientwise gives
+      <md number="no"><mrow>\#_q(\zeta_X(t))=\sum_{n\ge0}\#\Sym^nX(\mathbf F_q)t^n</mrow><mrow>=\prod_{x\in|X|}(1-t^{\deg x})^{-1}</mrow><mrow>=\exp\!\left(\sum_{r\ge1}\#X(\mathbf F_{q^r})\frac{t^r}{r}\right)=Z(X,t).</mrow></md>
+      The exponential is computed in <m>\Q[[t]]</m>; the first expression shows that its coefficients are integers.</p>
+    <p>A point of <m>\Sym^nX(\mathbf F_q)</m> is a Frobenius-invariant multiset of geometric points, equivalently an effective zero-cycle <m>\sum_x n_xx</m> with <m>\sum_xn_x\deg x=n</m>. Choosing the multiplicity at each closed point gives the product. It is a formal product, since only finitely many closed points have bounded degree. Finally,
+      <md number="no">\#X(\mathbf F_{q^r})=\sum_{\deg x\mid r}\deg x</md>
+      identifies the formal logarithm of the product with the displayed exponential. This is the arithmetic specialization of Kapranov's construction; see <xref ref="grv-bib-Mustata" detail="Remark 2.9 and Proposition 7.31"/>.</p>
+
+    <p xml:id="grv-sym-prelambda">We call the additive structure just constructed a <em>pre-lambda structure</em>, using symmetric-power notation <m>\sigma_t</m>. The corresponding exterior-power convention is
+        <md number="no">\lambda_t(a)=\sigma_{-t}(a)^{-1}.</md>
+        A special lambda ring satisfies further universal identities for products and iterated operations. Those identities do not follow from scissor multiplicativity, and the Grothendieck ring of varieties does not satisfy them in general. A formula for <m>\zeta_{X\times Y}</m> cannot therefore be inferred from <m>\zeta_X</m> and <m>\zeta_Y</m> by invoking the identities for vector bundles.<fn>Larsen and Lunts use <q>lambda ring</q> for the weaker structure and discuss <q>special</q> separately. Their initial operations are symmetric powers; they later pass to the opposite structure. See <xref ref="grv-bib-LL04" detail="§4 and the beginning of §8"/>. Keeping both the terminology and the sign convention explicit avoids identifying different assertions.</fn></p>
+      <p>The notation <m>(1-t)^{-a}=\sigma_t(a)</m> is useful, provided its meaning is specified. A power structure extends this notation to expressions <m>A(t)^a</m> for arbitrary <m>A(t)\in1+tR[[t]]</m>; its construction is a further result, not part of the definition of an ordinary formal power series. For the geometric construction over <m>\C</m>, see <xref ref="grv-bib-GuseinZade"/>.</p>
+    </section>
+
+  <section xml:id="grv-zeta-rationality-conventions">
+    <title>Rationality over a coefficient ring</title>
+
+    <p>Let <m>A</m> be a commutative ring. Writing <m>f(t)=P(t)/Q(t)</m> inside <m>A[[t]]</m> is unambiguous when <m>Q(0)</m> is a unit. A nonzero polynomial need not be invertible in <m>A[[t]]</m>, and a polynomial annihilating the tail of a series may have zero-divisor coefficients. We use the following convention for an unqualified rationality assertion.</p>
+
+    <definition xml:id="grv-zeta-rational-definition">
+      <title>Rationality at the origin</title>
+      <idx>rationality at the origin</idx>
+      <statement>
+        <p>A series <m>f(t)\in A[[t]]</m> is <em>rational at the origin</em> if there are <m>P,Q\in A[t]</m> with
+          <md number="no">Q(0)=1,\qquad Q(t)f(t)=P(t).</md>
+          Throughout this chapter, <q>rational</q> without a modifier means rational at the origin. Allowing an arbitrary unit <m>Q(0)</m> gives the same definition, by rescaling. This is the convention stated in <xref ref="grv-bib-LL18" detail="Introduction, p. 1"/>.</p>
+      </statement>
+    </definition>
+
+    <p xml:id="grv-zeta-recurrence">For <m>f(t)=\sum_{n\geq0}a_nt^n</m>, rationality is equivalent to the existence of <m>d,N\geq0</m> and <m>q_1,\ldots,q_d\in A</m> such that
+          <md number="no">a_n+q_1a_{n-1}+\cdots+q_da_{n-d}=0\qquad(n\geq N).</md>
+          One may increase <m>N</m> so that <m>N\geq d</m>. Rational series form a subring of <m>A[[t]]</m>. If a rational series has constant coefficient <m>1</m>, its inverse is rational. Ring homomorphisms preserve rationality.</p>
+      <p>Take <m>Q=1+q_1t+\cdots+q_dt^d</m>. The displayed expression is the coefficient of <m>t^n</m> in <m>Qf</m>, so eventual vanishing is precisely the assertion that <m>Qf</m> is a polynomial. Products and sums use the product of the two denominators. If <m>f=P/Q</m> and <m>f(0)=1</m>, then <m>P(0)=1</m> and <m>f^{-1}=Q/P</m>. Applying a ring homomorphism to the polynomial identity preserves the denominator's constant coefficient.</p>
+      <definition xml:id="grv-zeta-other-rationalities">
+      <title>Global, determinantal, and pointwise rationality</title>
+      <idx>global rationality</idx><idx>determinantal rationality</idx><idx>pointwise rationality</idx>
+      <statement>
+        <p>For comparison with Larsen and Lunts, distinguish three further conditions on <m>f=\sum a_nt^n\in A[[t]]</m>:
+          <ol>
+            <li><p><em>Global rationality:</em> there exist <m>g,h\in A[t]</m> such that <m>f</m> is the unique solution of <m>g x=h</m> in <m>A[[t]]</m>.</p></li>
+            <li><p><em>Determinantal rationality:</em> there exist <m>d,N\geq0</m> such that
+              <md number="no">\det(a_{n+i+j})_{0\leq i,j\leq d}=0\qquad(n\geq N).</md>
+            </p></li>
+            <li><p><em>Pointwise rationality:</em> for every homomorphism <m>\phi:A\to F</m> to a field, the series <m>\sum\phi(a_n)t^n</m> is a rational function over <m>F</m>.</p></li>
+          </ol>
+          These are <xref ref="grv-bib-LL04" detail="Definitions 2.1–2.3"/>. Here <q>pointwise</q> refers to field-valued homomorphisms of the coefficient ring, not points of the original variety.</p>
+      </statement>
+    </definition>
+
+    <proposition xml:id="grv-zeta-rationality-strengths">
+      <title>Implications between the conventions</title>
+      <statement>
+        <p>For every commutative ring <m>A</m>,
+          <md number="no">
+            <mrow>\text{rational at the origin}\ \Longrightarrow\ \text{globally rational},</mrow>
+            <mrow>\text{globally rational}\ \Longrightarrow\ \text{determinantally rational}\ \Longrightarrow\ \text{pointwise rational}.</mrow>
+          </md>
+          The last three conditions agree when <m>A</m> is a domain. Over a general ring, neither of the last two arrows is reversible. See <xref ref="grv-bib-LL04" detail="Proposition 2.4"/>. The assertion for domains concerns those three conditions; it does not assert equivalence with rationality at the origin.</p>
+      </statement>
+      <proof>
+        <p>The first implication follows because <m>Q(0)=1</m> makes multiplication by <m>Q</m> an automorphism of <m>A[[t]]</m>. For the second, let <m>g f=h</m> have a unique solution and write <m>g=\sum_{j=0}^d g_jt^j</m>. For all sufficiently large indices, the coefficient equations give a linear recurrence with coefficients <m>g_j</m>. Each sufficiently late square Hankel matrix of size <m>d+1</m> therefore has, after reversing the coefficient vector, a vector in its kernel with entries <m>g_0,\ldots,g_d</m>. Multiplying by the adjugate shows that its determinant annihilates every <m>g_j</m>. Their common annihilator in <m>A</m> is zero: otherwise a nonzero constant series would be in the kernel of multiplication by <m>g</m>, contradicting uniqueness. The determinant is therefore zero.</p>
+        <p>After a homomorphism to a field, eventual vanishing of these Hankel determinants is the usual finite-rank criterion for a rational series. This proves the third implication. The converse statements for domains and the counterexamples over rings with nilpotents are given in the cited proposition.</p>
+      </proof>
+    </proposition>
+
+    <example xml:id="grv-zeta-global-not-origin">
+      <title>Global rationality without a unit denominator</title>
+      <p>Let <m>u,v</m> be algebraically independent over a field <m>F</m>, and let
+        <md number="no">A=F+uF[u,v]\subset F[u,v],\qquad f(t)=1+\sum_{n\geq1}uv^{n-1}t^n.</md>
+        The domain <m>A</m> need not have the same rational series as its fraction field. Indeed,
+        <md number="no">(u-uvt)f(t)=u+(u^2-uv)t.</md>
+        Multiplication by the nonzero series <m>u-uvt</m> is injective, so <m>f</m> is globally rational. It is not rational at the origin. If a denominator <m>1+q_1t+\cdots+q_dt^d</m> existed, a sufficiently late coefficient equation, calculated in <m>F[u,v]</m>, would give
+        <md number="no">v^d+q_1v^{d-1}+\cdots+q_d=0.</md>
+        Setting <m>u=0</m> sends each <m>q_i</m> to an element of <m>F</m>, contradicting the transcendence of <m>v</m>. This elementary example explains why the denominator convention remains necessary even after quoting the domain case of <xref ref="grv-zeta-rationality-strengths"/>.</p>
+    </example>
+
+    <p>The Hodge–Deligne polynomial computes another image of the same series. Over <m>\C</m>, it sends every Kapranov series to a rational function, including examples whose series in the Grothendieck ring is nonrational.</p>
+    <proposition xml:id="grv-zeta-hodge-series">
+      <title>Hodge realization of symmetric products</title>
+      <idx>Hodge–Deligne polynomial</idx>
+      <statement><p>Let <m>X</m> be a complex quasiprojective variety, and write
+        <md number="no">E(X;u,v)=\sum_{p,q}e^{p,q}(X)u^pv^q.</md>
+        Then
+        <md number="no">\sum_{n\geq0}E(\Sym^nX;u,v)t^n=\prod_{p,q}(1-u^pv^qt)^{-e^{p,q}(X)}.</md>
+        In particular, the coefficientwise Hodge realization of <m>\zeta_X(t)</m> is rational at the origin over <m>\Z[u,v]</m>.</p></statement>
+      <proof><p>The cohomological input is the symmetric-product theorem for graded mixed Hodge structures:
+        <md number="no">H_c^\bullet(\Sym^nX,\Q)\simeq\bigl(H_c^\bullet(X,\Q)^{\otimes n}\bigr)^{\mathfrak S_n}.</md>
+        The action includes the sign <m>(-1)^{ij}</m> when classes of cohomological degrees <m>i,j</m> are interchanged. We use the compact-support version of <xref ref="grv-bib-MSS" detail="Theorem 1, Corollaries 1–2, and the compact-support statement following Corollary 3"/>.</p>
+        <p>Taking the Hodge and weight graded pieces reduces the calculation to even and odd one-dimensional generators. An even generator of Hodge bidegree <m>(p,q)</m> contributes its symmetric powers, with generating factor <m>(1-u^pv^qt)^{-1}</m>. An odd generator contributes exterior powers; including the cohomological sign gives the factor <m>1-u^pv^qt</m>. Their multiplicities combine into
+          <md number="no">e^{p,q}(X)=\sum_i(-1)^i h^{p,q}(H_c^i(X,\Q)),</md>
+          proving the product formula. Only finitely many <m>e^{p,q}(X)</m> are nonzero, so this is a quotient of polynomials whose denominator has constant coefficient <m>1</m>.</p>
+      </proof>
+    </proposition>
+    <p>For a complex projective K3 surface <m>S</m>, one has
+      <md number="no">E(S;u,v)=1+u^2+20uv+v^2+u^2v^2.</md>
+      Hence
+      <md number="no">\sum_{n\geq0}E(\Sym^nS;u,v)t^n=\frac{1}{(1-t)(1-u^2t)(1-uvt)^{20}(1-v^2t)(1-u^2v^2t)}.</md>
+      Yet <m>\zeta_S(t)</m> is not pointwise rational by <xref ref="grv-zeta-surface-criterion"/>. This provides a concrete instance of a realization losing an irrationality obstruction.</p>
+  </section>
+
+  <section xml:id="grv-sym-affine-and-L">
+    <title>Affine factors and L-equivalence</title>
+
+    <p>The equality <m>\Sym^n\A^1\cong\A^n</m> follows by taking the coefficients of a monic polynomial with the prescribed roots. For higher-dimensional affine space, the analogous assertion needed here is an equality of classes. We do not identify the quotient with affine space.</p>
+
+    <theorem xml:id="grv-sym-totaro">
+      <title>Totaro's vector-bundle formula</title>
+      <statement><p>If <m>E\to X</m> is a vector bundle of rank <m>r</m> on a quasiprojective variety, then
+        <md number="no">[\Sym^nE]=\LL^{rn}[\Sym^nX],\qquad \zeta_E(t)=\zeta_X(\LL^rt).</md>
+        In particular, <m>[\Sym^n\A^r]=\LL^{rn}</m> and <m>\zeta_{\A^r}(t)=(1-\LL^rt)^{-1}</m>.</p></statement>
+      <proof><p>We first treat <m>E=X\times\A^1</m>. This is Totaro's multiplicity-stratification argument, as presented in <xref ref="grv-bib-Mustata" detail="Proposition 7.32"/>; the general statement is recorded in <xref ref="grv-bib-LL04" detail="Proposition 3.3"/>. Fix <m>n\geq1</m> and a partition <m>\lambda=(d_1,\ldots,d_s)</m> with <m>d_1\leq\cdots\leq d_s</m> and <m>\sum_jd_j=n</m>. Let <m>S_\lambda\subseteq\Sym^nX</m> consist of cycles with these multiplicities at distinct support points. Put
+        <md number="no"><mrow>U_\lambda=\{(x_1,\ldots,x_s)\in X^s:x_i\ne x_j\text{ for }i\ne j\},</mrow><mrow>H_\lambda=\{\tau\in\mathfrak S_s:d_{\tau(j)}=d_j\text{ for every }j\}.</mrow></md>
+        Thus <m>H_\lambda</m> permutes only support points having the same multiplicity. The weighted-cycle map gives a morphism <m>U_\lambda/H_\lambda\to S_\lambda</m>.</p>
+        <p>Let <m>T_\lambda</m> be the reduced inverse image of <m>S_\lambda</m> under the projection <m>\Sym^n(X\times\A^1)\to\Sym^nX</m>. Its cycles are obtained by choosing a degree-<m>d_j</m> cycle on the affine line above each <m>x_j</m>. Accordingly, addition of cycles gives a morphism
+          <md number="no">V_\lambda:=\left(U_\lambda\times\prod_{j=1}^s\Sym^{d_j}\A^1\right)/H_\lambda\longrightarrow T_\lambda.</md>
+          Both comparison maps are radicial and surjective: over every algebraically closed extension, forgetting the order of equal-multiplicity support points gives exactly one representative orbit. In characteristic zero a radicial surjective morphism of varieties is a piecewise isomorphism. Indeed, the corresponding function-field extensions are purely inseparable, hence trivial; an isomorphism over dense opens followed by induction on the complements gives the required pieces. Thus
+          <md number="no">[U_\lambda/H_\lambda]=[S_\lambda],\qquad [V_\lambda]=[T_\lambda].</md>
+          The quotient constructions used here are described in <xref ref="grv-bib-Mustata" detail="Appendix A.1 and Proposition A.25"/>.</p>
+        <p>Writing a cycle on <m>\A^1</m> as the roots of a monic polynomial identifies <m>\Sym^{d_j}\A^1</m> with its coefficient space <m>\A^{d_j}</m>. Consequently <m>\prod_j\Sym^{d_j}\A^1\simeq\A^n</m>, and <m>H_\lambda</m> acts linearly by permuting coefficient blocks of equal size. Its free action on <m>U_\lambda</m> makes <m>U_\lambda\to U_\lambda/H_\lambda</m> a finite étale torsor. Descent of this equivariant trivial vector bundle therefore makes <m>V_\lambda</m> the total space of a rank-<m>n</m> vector bundle on <m>U_\lambda/H_\lambda</m>. Linearity supplies the locally free sheaf, so the descended bundle is Zariski locally trivial. The bundle formula now gives
+          <md number="no">[T_\lambda]=\LL^n[S_\lambda].</md>
+          Summing over the finitely many multiplicity strata proves the affine-line case; <m>n=0</m> is immediate.</p>
+        <p>Iteration gives <m>\zeta_{X\times\A^r}(t)=\zeta_X(\LL^rt)</m>. For a general rank-<m>r</m> bundle, choose a finite locally closed partition <m>X=\bigsqcup_iX_i</m> on which it is trivial. Scissor multiplicativity yields
+          <md number="no">\zeta_E(t)=\prod_i\zeta_{X_i\times\A^r}(t)=\prod_i\zeta_{X_i}(\LL^rt)=\zeta_X(\LL^rt).</md>
+          Comparing coefficients proves the stated class formula.</p>
+      </proof>
+    </theorem>
+
+    <p>The class identity <m>[E]=\LL^r[X]</m> gives <m>\zeta_E(t)=\sigma_t(\LL^r[X])</m>. Totaro’s theorem computes this series as <m>\sigma_{\LL^rt}([X])</m>. Applying this identity to differences of variety classes extends the scaling formula to every virtual class:
+      <md number="no">\sigma_t(\LL^r a)=\sigma_{\LL^rt}(a)\qquad(a\in R).</md>
+      This formula controls the interaction with the Lefschetz class.</p>
+
+    <p xml:id="grv-zeta-projective-space">Using <m>[\PP^r]=1+\LL+\cdots+\LL^r</m>, scissor multiplicativity and Totaro's formula give
+        <md number="no">\zeta_{\PP^r}(t)=\prod_{i=0}^r(1-\LL^it)^{-1}.</md>
+        More generally, if <m>[X]=\sum_{i=0}^d c_i\LL^i</m> with <m>c_i\in\Z</m>, then
+        <md number="no">\zeta_X(t)=\prod_{i=0}^d(1-\LL^it)^{-c_i}.</md>
+        These formulas depend only on the class identity. An affine paving is one way to obtain such an identity, but the formula does not require a chosen paving. For <m>\PP^1</m> it agrees with <m>\Sym^n\PP^1\cong\PP^n</m> and gives <m>\zeta_{\PP^1}(t)=((1-t)(1-\LL t))^{-1}</m>.</p>
+    <p>The same scaling identity also transfers annihilating relations to symmetric powers. It gives a bound that depends explicitly on the symmetric-power degree.</p><proposition xml:id="grv-sym-preserves-L-equivalence">
+      <title>Symmetric products preserve L-equivalence</title>
+      <statement>
+        <p>If <m>a,b\in R</m>, <m>r\ge0</m>, and <m>\LL^r(a-b)=0</m>, then, for every <m>n\geq0</m>,
+          <md number="no">\LL^{rn}\bigl(\sigma^n(a)-\sigma^n(b)\bigr)=0.</md>
+          Consequently, L-equivalent varieties have L-equivalent symmetric products of each fixed degree. The operation <m>\sigma_t</m> also descends to <m>R/(\LL)</m>.</p>
+      </statement>
+      <proof>
+        <p>The equality <m>\LL^ra=\LL^rb</m> implies
+          <md number="no">\sigma_{\LL^rt}(a)=\sigma_t(\LL^ra)=\sigma_t(\LL^rb)=\sigma_{\LL^rt}(b).</md>
+          Comparing the coefficients of <m>t^n</m> proves the first assertion. If <m>a-b=\LL c</m>, then
+          <md number="no">\sigma_t(a)\sigma_t(b)^{-1}=\sigma_t(\LL c)=\sigma_{\LL t}(c)\equiv1\pmod{\LL}.</md>
+          This proves the assertion about the quotient.</p>
+      </proof>
+    </proposition>
+
+    <p xml:id="grv-zeta-coefficientwise-localization">The exponent <m>rn</m> depends on the symmetric-power degree. Thus the proposition gives equality of the two zeta functions in <m>R[\LL^{-1}][[t]]</m>. It does not provide one power of <m>\LL</m> annihilating their difference as an element of <m>R[[t]]</m>. The natural map
+        <md number="no">R[[t]][\LL^{-1}]\longrightarrow R[\LL^{-1}][[t]]</md>
+        involves a uniformity condition: equality in its source requires one annihilating power for every coefficient, while equality in its target allows the power to depend on the degree. The proposition proves only the latter assertion. No assertion about a nonzero kernel for this particular <m>R</m> is needed here.</p>
+    </section>
+
+  <section xml:id="grv-zeta-curves">
+    <title>Curves, normalization, and rational recurrences</title>
+
+    <p>The denominator for a projective curve comes from its large symmetric products. Its degree does not grow with the genus; the genus appears in the numerator. The geometric input is the Abel–Jacobi description of effective divisors of sufficiently large degree.</p>
+
+    <theorem xml:id="grv-zeta-smooth-projective-curve">
+      <title>Kapranov's rationality theorem for curves</title>
+      <statement>
+        <p>Let <m>C</m> be a smooth connected projective curve of genus <m>g</m>. Then
+          <md number="no">P_C(t)=(1-t)(1-\LL t)\zeta_C(t)\in R[t],\qquad \deg P_C\leq2g.</md>
+          In particular, <m>\zeta_C</m> is rational in the convention of <xref ref="grv-zeta-rational-definition"/>. See <xref ref="grv-bib-Kapranov" detail="§1.3"/> and <xref ref="grv-bib-LL04" detail="Theorem 3.7"/>.</p>
+      </statement>
+      <proof>
+        <p>The genus-zero case is the calculation for <m>\PP^1</m>. Assume <m>g\geq1</m>, choose <m>p\in C(k)</m>, and let <m>J=\Pic^0(C)</m>. For <m>n\geq2g-1</m>, the map
+          <md number="no">\alpha_n:\Sym^nC\longrightarrow\Pic^n(C),\qquad D\longmapsto\mathcal O_C(D)</md>
+          is a Zariski locally trivial projective-space bundle with fiber <m>\PP^{n-g}</m>. Here is the precise standard input from the theory of curves. A Poincaré line bundle, normalized at <m>p</m>, exists on <m>C\times\Pic^n(C)</m>; its pushforward is locally free of rank <m>n+1-g</m>, since <m>H^1(C,L)=0</m> for every degree-<m>n</m> line bundle in this range. Its projectivization parametrizes nonzero sections up to scalar, equivalently effective divisors. Translation by <m>\mathcal O_C(-np)</m> identifies <m>\Pic^n(C)</m> with <m>J</m>. These are the only facts about the Picard variety used here.</p>
+        <p>Writing <m>a_n=[\Sym^nC]</m>, we obtain
+          <md number="no">a_n=[J](1+\LL+\cdots+\LL^{n-g})\qquad(n\geq2g-1).</md>
+          Thus, whenever <m>n\geq2g+1</m>, all three terms in
+          <md number="no">a_n-(1+\LL)a_{n-1}+\LL a_{n-2}</md>
+          have this expression and the difference is zero. These are precisely the coefficients of <m>(1-t)(1-\LL t)\zeta_C(t)</m> in degrees greater than <m>2g</m>. No division by <m>\LL-1</m> is used.</p>
+      </proof>
+    </theorem>
+
+    <p>Over a nonclosed field, the absence of a rational point can obstruct the projective-bundle description used in the proof. Litt's extension and its denominator are discussed in <xref ref="grf-pointless-curves"/>.</p>
+
+    <p>The tail formula also describes how the numerator depends on the curve. In genus one it can be summed explicitly; removing finitely many points then extends the calculation to open and singular curves.</p><p xml:id="grv-zeta-elliptic">Let <m>E</m> be a smooth projective genus-one curve, with a chosen point. Its Jacobian is isomorphic to <m>E</m>, and the projective-bundle formula holds for every <m>n\geq1</m>. Therefore
+        <md number="no">\zeta_E(t)=1+[E]\sum_{n\geq1}(1+\LL+\cdots+\LL^{n-1})t^n=\frac{1+([E]-1-\LL)t+\LL t^2}{(1-t)(1-\LL t)}.</md>
+        The numerator already retains information about <m>[E]</m>. Rationality does not assert that the coefficients are polynomials in <m>\LL</m>.</p>
+    <p xml:id="grv-zeta-arbitrary-curves">Every quasiprojective variety of dimension at most one has rational Kapranov zeta function. More explicitly, suppose <m>C</m> is a reduced curve of pure dimension one, <m>U\subseteq C</m> is a smooth dense open subvariety, and <m>S=C\setminus U</m> is finite. Let <m>\overline U</m> be the disjoint union of the smooth projective completions of the connected components of <m>U</m>, and let <m>T=\overline U\setminus U</m>. If <m>s=\#S</m> and <m>r=\#T</m>, then
+          <md number="no">\zeta_C(t)=\zeta_{\overline U}(t)(1-t)^{r-s}.</md>
+        </p>
+      <p>Every finite reduced <m>k</m>-scheme of <m>q</m> points has class <m>q</m> and zeta function <m>(1-t)^{-q}</m>, since <m>k</m> is algebraically closed. The two decompositions give
+          <md number="no">[C]=[U]+s=[\overline U]-r+s.</md>
+          Apply <m>\sigma_t</m> and use rationality for each smooth projective component. A reduced pure one-dimensional variety admits such a smooth open set because <m>k</m> is perfect. For a variety of dimension at most one, split off the finitely many isolated point components and apply the same argument to its pure one-dimensional part.</p>
+      <p xml:id="grv-zeta-node-cusp">Let <m>C_{\mathrm n}</m> be a projective rational curve with one ordinary node and no other singularities. Its normalization is <m>\PP^1</m>; the node has two preimages. Consequently <m>[C_{\mathrm n}]=[\PP^1]-1=\LL</m> and
+        <md number="no">\zeta_{C_{\mathrm n}}(t)=\frac1{1-\LL t}.</md>
+        For a projective rational curve <m>C_{\mathrm c}</m> with one cusp and no other singularities, the cusp has one preimage under normalization, so <m>[C_{\mathrm c}]=[\PP^1]</m> and <m>\zeta_{C_{\mathrm c}}=\zeta_{\PP^1}</m>. These conclusions use the scissor relation. They do not identify the curves, their normalizations, or their symmetric products as varieties.</p>
+    </section>
+
+  <section xml:id="grv-zeta-surfaces">
+    <title>Surfaces and higher-dimensional obstructions</title>
+
+    <p>The curve calculation controls the boundary terms in a birational comparison of surfaces: isomorphic dense opens leave complements of dimension at most one.</p>
+    <proposition xml:id="grv-zeta-surface-birational">
+      <title>Birational invariance for surfaces</title>
+      <statement>
+        <p>If irreducible quasiprojective surfaces <m>X</m> and <m>Y</m> are birational, then <m>\zeta_X</m> is rational if and only if <m>\zeta_Y</m> is rational. The same equivalence holds separately for global rationality and for pointwise rationality.</p>
+      </statement>
+      <proof>
+        <p>Choose isomorphic dense open subvarieties and denote either by <m>U</m>. The complements have dimension at most one, so their zeta functions are rational by <xref ref="grv-zeta-arbitrary-curves" text="custom">the normalization formula for curves</xref>. The identities
+          <md number="no">\zeta_X=\zeta_U\zeta_{X\setminus U},\qquad \zeta_Y=\zeta_U\zeta_{Y\setminus U}</md>
+          and closure under products and inverses prove the assertion for rationality at the origin. For global rationality, products are handled by multiplying the two polynomial equations: the regular polynomial multipliers have regular product. A globally rational unit series has a globally rational inverse: if <m>gf=h</m> uniquely, then multiplication by <m>g</m>, hence by <m>h=gf</m>, is injective, and <m>hx=g</m> has unique solution <m>f^{-1}</m>. For pointwise rationality, apply the same identities after every field-valued homomorphism. Compare <xref ref="grv-bib-LL04" detail="Corollary 3.8"/>.</p>
+      </proof>
+    </proposition>
+
+    <p xml:id="grv-zeta-early-obstruction">The Hodge series is always rational by <xref ref="grv-zeta-hodge-series"/>. To detect nonrationality when <m>p_g(S)\geq2</m>, we construct a stronger field-valued measure on <m>R_\C=K_0(\Var_\C)</m>. We develop this earlier argument of Larsen and Lunts <xref ref="grv-bib-LL03" detail="Theorem 1.6 and §3 of the author preprint"/>; compare <xref ref="grv-bib-Mustata" detail="§7.4"/>.</p>
+      <proposition xml:id="grv-zeta-geometric-genus-obstruction">
+        <title>Surfaces with geometric genus at least two</title>
+        <idx>geometric genus</idx><idx>Hankel determinant</idx>
+        <statement><p>Let <m>S</m> be a smooth connected projective complex surface with <m>r=p_g(S)\geq2</m>. There is a field-valued motivic measure under which <m>\zeta_S(t)</m> is not rational. In particular, <m>\zeta_S(t)</m> is not pointwise rational.</p></statement>
+        <proof>
+          <p>For a smooth connected projective complex variety <m>V</m>, set
+            <md number="no">H_V(z)=\sum_{p\geq0}h^{p,0}(V)z^p.</md>
+            Holomorphic forms are birational invariants of smooth projective varieties. Künneth gives <m>H_{V\times W}=H_VH_W</m>, and <m>H_{\PP^a}=1</m>. Thus <m>H_V</m> depends only on the stable birational class of <m>V</m>.</p>
+          <p>Let <m>\mathcal P</m> be the multiplicative monoid of polynomials <m>P\in\Z[z]</m> with <m>P(0)=1</m>, and let <m>A=\Z[\mathcal P]</m>. Write <m>\langle P\rangle</m> for the basis element labelled by <m>P</m>; in particular,
+            <md number="no">\langle P\rangle\langle Q\rangle=\langle PQ\rangle.</md>
+            Unique factorization in <m>\Z[z]</m>, with each irreducible factor normalized to have constant term <m>1</m>, identifies <m>A</m> with a polynomial ring on these factors. Hence <m>A</m> is a domain. The stable birational quotient in <xref ref="grv-thm-larsen-lunts"/> now gives a ring homomorphism
+            <md number="no">\mu:R_\C\longrightarrow A\longrightarrow F=\operatorname{Frac}(A),\qquad \mu([V])=\langle H_V(z)\rangle</md>
+            for smooth connected projective <m>V</m>. The brackets are essential: distinct polynomials label linearly independent elements of <m>A</m>, rather than being added as ordinary polynomials.</p>
+          <p>We first record what this independence detects. For an irreducible variety <m>Y</m> of dimension <m>d</m>, choose a smooth projective birational model <m>\overline Y</m> and define <m>p_g(Y)=h^{d,0}(\overline Y)</m>. Comparing dense open subsets and resolving their complements expresses
+            <md number="no">\mu([Y])=\langle H_{\overline Y}\rangle+\sum_j n_j\langle H_{V_j}\rangle,\qquad \dim V_j\lt d.</md>
+            If <m>p_g(Y)\ne0</m>, the first label has degree <m>d</m>, while every correction label has smaller degree. Consequently, if <m>Y,Y_1,\ldots,Y_s</m> are irreducible of the same dimension and
+            <md number="no">\mu([Y])=\sum_i c_i\mu([Y_i]),\qquad c_i\in\Z,</md>
+            then some <m>Y_i</m> has <m>p_g(Y_i)=p_g(Y)</m>: its degree-<m>d</m> label must equal <m>H_{\overline Y}</m> to account for that basis coefficient. The relation lies in <m>A</m>, and the inclusion <m>A\hookrightarrow F</m> preserves it.</p>
+          <p>The geometric input is the symmetric-power genus formula
+            <md number="no">p_g(\Sym^nS)=\dim\Sym^nH^0(S,\omega_S)=\binom{n+r-1}{r-1}.</md>
+            Here the geometric genus is computed on a smooth projective resolution. The identification of its top forms with the indicated symmetric power is <xref ref="grv-bib-LL03" detail="Lemma 3.8 of the author preprint"/>. It includes extension across the quotient singularities; we use that geometric result as an input. Products of these varieties have geometric genus equal to the product of their genera, by Künneth on smooth projective birational models.</p>
+          <p>Suppose <m>\sum_{n\geq0}a_nt^n</m>, where <m>a_n=\mu([\Sym^nS])</m>, were rational over <m>F</m>. Its eventual linear recurrence implies that for some <m>q\geq1</m> and every sufficiently large <m>m</m>,
+            <md number="no">\det(a_{m+i+j})_{0\leq i,j\leq q}=0.</md>
+            Expanding and using multiplicativity gives an integral relation among the <m>\mu([Y_\sigma])</m>, where
+            <md number="no">Y_\sigma=\prod_{i=0}^{q}\Sym^{m+i+\sigma(i)}S,\qquad \sigma\in\mathfrak S_{q+1}.</md>
+            These irreducible varieties all have dimension <m>2((q+1)m+q(q+1))</m>. The identity permutation appears once. The preceding basis argument therefore forces its geometric genus to equal that of some other <m>Y_\sigma</m>.</p>
+          <p>In fact its genus is uniquely smallest. Apart from the common positive factor <m>((r-1)!)^{-(q+1)}</m>, the genus of <m>Y_\sigma</m> is
+            <md number="no">\prod_{i=0}^{q}\prod_{s=1}^{r-1}(m+i+\sigma(i)+s).</md>
+            If <m>i\lt j</m> and <m>\sigma(i)\gt\sigma(j)</m>, exchanging these two values strictly decreases this product: for every <m>s</m>, the difference between the old pair of factors multiplied together and the new pair is
+            <md number="no">(j-i)(\sigma(i)-\sigma(j))\gt0.</md>
+            All factors are positive. Repeatedly removing inversions ends at the identity permutation, proving strict inequality for every other permutation. This contradicts the forced equality of genera, so the image series is not rational.</p>
+        </proof>
+      </proposition>
+      <p>The independence of the labels <m>\langle H_V\rangle</m> is what turns the geometric-genus calculation into an obstruction. The stronger theorem below also treats surfaces with <m>p_g=0</m> or <m>1</m>.</p>
+
+    <theorem xml:id="grv-zeta-surface-criterion">
+      <title>Larsen–Lunts rationality criterion</title>
+      <statement>
+        <p>Let <m>S</m> be a smooth connected projective complex surface.
+          <ol>
+            <li><p>If <m>\kappa(S)=-\infty</m>, then <m>\zeta_S(t)</m> is rational at the origin.</p></li>
+            <li><p>If <m>\kappa(S)\geq0</m>, then <m>\zeta_S(t)</m> is not pointwise rational: there is a ring homomorphism <m>R_\C\to F</m> to a field for which the image series is not rational.</p></li>
+          </ol>
+          In particular the criterion is an equivalence for each of the four rationality conditions discussed above. The source is <xref ref="grv-bib-LL04" detail="Theorems 1.1, 3.9, and 7.6"/>.</p>
+      </statement>
+      <proof>
+        <p>For the positive direction, use the classification fact that a smooth projective complex surface of Kodaira dimension <m>-\infty</m> is birational to a ruled surface. A ruled surface has a representative <m>\PP(E)\to C</m>, where <m>E</m> has rank two and <m>C</m> is a smooth projective curve. Zariski local triviality gives
+          <md number="no">[\PP(E)]=(1+\LL)[C],\qquad \zeta_{\PP(E)}(t)=\zeta_C(t)\zeta_C(\LL t).</md>
+          Both factors have denominators with constant coefficient <m>1</m>. Birational invariance now proves the assertion for <m>S</m>.</p>
+        <p>For the negative direction we invoke Larsen and Lunts' theorem as a black box. Its proof uses multiplicative invariants formed from spaces of tensor differentials on smooth projective varieties. Applied to resolutions of the symmetric products, these invariants obstruct any rational recurrence after a suitable field-valued motivic measure. This is stronger than disproving a candidate denominator in <m>R_\C[t]</m>: it disproves pointwise rationality, hence all stronger versions.</p>
+      </proof>
+    </theorem>
+
+    <p>For example, a K3 surface has <m>p_g=1</m> and <m>\kappa=0</m>, so its nonrationality follows from <xref ref="grv-zeta-surface-criterion"/> rather than the geometric-genus argument above. Projectivity alone therefore predicts little: <m>\PP^2</m> and a K3 surface are both smooth and projective, while their zeta functions have opposite rationality behavior.</p>
+
+    <p>The negative direction extends to higher dimensions. Alongside nonnegative Kodaira dimension, even-degree holomorphic forms supply another obstruction.</p>
+    <theorem xml:id="grv-zeta-shein-obstruction">
+      <title>A higher-dimensional obstruction</title>
+      <statement>
+        <p>Let <m>X</m> be a smooth connected projective complex variety with <m>\dim X\gt1</m>. If either
+          <md number="no">\kappa(X)\geq0\qquad\text{or}\qquad H^0(X,\Omega_X^{2i})\neq0\ \text{for some }i\geq1,</md>
+          then there is a field-valued ring homomorphism under which <m>\zeta_X(t)</m> is not rational. The homomorphism factors through <m>R_\C/(\LL)</m>, so the obstruction already occurs in that quotient. This is <xref ref="grv-bib-Shein25" detail="Theorem 1.2, its proof, and the beginning of §4"/>, in the version of 27 October 2025.<fn>We use the universal quantifier in Larsen and Lunts' definition of pointwise rationality. Definition 3.1 of the cited preprint prints an existential quantifier instead. The proof of Theorem 1.2 constructs one field-valued image that is irrational, which is the precise conclusion stated here and negates pointwise rationality in our convention.</fn></p>
+      </statement>
+    </theorem>
+
+    <p>The singularities of the symmetric products matter in extending the surface argument. One input in the cited work is that for smooth projective <m>X</m> in characteristic zero and a resolution <m>\widetilde{\Sym^nX}\to\Sym^nX</m>,
+      <md number="no">[\widetilde{\Sym^nX}]=[\Sym^nX]\quad\text{in }R/(\LL).</md>
+      This is <xref ref="grv-bib-Shein25" detail="Corollary 2.15, following Theorem 1.4"/> and answers the symmetric-product part of <xref ref="grv-bib-LL04" detail="Question 6.7"/>. The result applies to the permutation action on <m>X^n</m>; a general finite-group quotient requires its own singularity analysis.</p>
+
+    <example xml:id="grv-zeta-obstruction-converse-fails">
+      <title>The necessary conditions are not sufficient</title>
+      <p>Let <m>Y\subset\PP^4_\C</m> be a smooth quintic threefold and let <m>X=Y\times\PP^1</m>. Adjunction gives <m>\kappa(Y)=0</m>. Every positive pluricanonical power on <m>X</m> has no sections because of its <m>\PP^1</m> factor, so <m>\kappa(X)=-\infty</m>. The Lefschetz hyperplane theorem and Hodge decomposition give <m>H^0(Y,\Omega_Y^1)=H^0(Y,\Omega_Y^2)=0</m>. The product formula and <m>H^0(\PP^1,\Omega^1_{\PP^1})=0</m> then give <m>H^0(X,\Omega_X^{2i})=0</m> for every <m>i\geq1</m>.</p>
+      <p>Nevertheless, <m>[X]\equiv[Y]\pmod{\LL}</m>, so <xref ref="grv-sym-preserves-L-equivalence"/> gives equal image zeta functions modulo <m>\LL</m>. The image for <m>Y</m> is irrational by <xref ref="grv-zeta-shein-obstruction"/>, hence so is the image for <m>X</m>. This is the example in <xref ref="grv-bib-Shein25" detail="Remark 3.11"/>. A higher-dimensional converse to the surface criterion using only these necessary conditions is therefore false.</p>
+    </example>
+  </section>
+
+  <section xml:id="grv-zeta-questions">
+    <title>Localization and arithmetic irrationality</title>
+
+    <p>A rationality question should specify the coefficient ring and the convention for a denominator. Rationality in <m>R[[t]]</m> implies rationality after inverting <m>\LL</m>, but an irrationality witness that sends <m>\LL</m> to zero cannot be used after localization. In particular, the surface criterion does not by itself determine rationality in <m>R_\C[\LL^{-1}][[t]]</m>.</p>
+
+    <p xml:id="grv-zeta-localized-counterexample">Larsen and Lunts later constructed a K3 surface over <m>\Q</m> whose zeta function is not rational even over <m>K_0(\Var_\Q)[\LL^{-1}]</m>; see <xref ref="grv-bib-LL18" detail="Theorem 7.1"/>. This disproves the unrestricted localized rationality conjecture. It is a theorem over <m>\Q</m>, and does not establish the corresponding assertion for its base change to <m>\C</m>. The arithmetic distinction is discussed in <xref ref="grv-ch-fields"/>. A rationality statement after passing to a ring of motives is another separate assertion; see <xref ref="grv-ch-motives"/>.</p>
+    <p>The Fano question in <xref ref="grv-zeta-fano-question"/> and the comparison with rational Chow motives in <xref ref="grm-zeta-comparison"/> therefore concern different images of the original series. Products of curves will give a concrete example where passing to motives removes an irrationality obstruction.</p><exercise xml:id="grv-zeta-curve-exercises">
+      <title>Calculations with established answers</title>
+      <statement>
+        <p>These exercises test the distinctions used in this chapter.
+          <ol>
+            <li><p>Remove <m>q</m> distinct points from a smooth projective genus-<m>g</m> curve. Express its zeta function using <m>P_C(t)</m>, and keep the numerator a polynomial by transferring any negative powers of <m>1-t</m> to the denominator.</p></li>
+            <li><p>Compute <m>\zeta_{\A^r\setminus\{0\}}(t)</m> and <m>\zeta_{(\A^1\setminus\{0\})^r}(t)</m>. Use the class formulas, rather than a nonexistent multiplicativity <m>\zeta_{X\times Y}=\zeta_X\zeta_Y</m>.</p></li>
+            <li><p>For a smooth projective complex curve <m>C</m> of positive genus, prove that <m>\zeta_C</m> is rational but <m>\zeta_{C\times C}</m> is not pointwise rational. Identify the precise step that prevents rationality from being closed under products of varieties.</p></li>
+          </ol>
+        </p>
+      </statement>
+    </exercise>
+  </section>
+</chapter>

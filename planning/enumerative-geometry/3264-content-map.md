@@ -1,6 +1,6 @@
 # 《3264 and All That》内容归属与拆分方案
 
-[返回笔记分配与目录](../../ENUMERATIVE_GEOMETRY_PLAN.md)。
+[返回笔记分配与目录](README.md)。
 
 核查日期：2026-10-25。对象是 David Eisenbud、Joe Harris，*3264 and All That: A Second Course in Algebraic Geometry*，Cambridge University Press，2016。下列章号、节号和正文页码按正式版出版社目录；不同年份的公开草稿不宜混用页码。[正式书目与 DOI](https://doi.org/10.1017/CBO9781139062046)；[出版社完整目录](https://assets.cambridge.org/97811070/17085/toc/9781107017085_toc.pdf)。
 

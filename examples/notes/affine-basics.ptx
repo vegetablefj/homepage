@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pretext xml:lang="en-US">
+  <docinfo>
+    <directories external="../../source/assets"/>
+    <macros>
+      \DeclareMathOperator{\Spec}{Spec}
+      \newcommand{\cO}{\mathcal O}
+    </macros>
+  </docinfo>
+  <book xml:id="affine-basics">
+    <title>Affine Geometry: Rings, Points, and Localization</title>
+    <shorttitle>Affine geometry</shorttitle>
+    <frontmatter xml:id="affine-metadata">
+      <bibinfo><author><personname>Jie Fu</personname></author></bibinfo>
+      <titlepage><titlepage-items/></titlepage>
+    </frontmatter>
+    <chapter xml:id="affine-rings">
+      <title>Affine rings</title>
+      <introduction>
+        <p>Fix a field <m>k</m>. All rings are commutative with identity, and ring homomorphisms preserve identity. We describe points using prime ideals and then compute the effect of inverting a function.</p>
+      </introduction>
+      <section xml:id="basic-rings">
+        <title>Rings and their spectra</title>
+        <shorttitle>Spectra</shorttitle>
+        <introduction>
+          <p xml:id="anchor-prime-points">The points of <m>\Spec A</m> are the prime ideals of <m>A</m>. Its Zariski topology has closed subsets <m>V(I)=\{\mathfrak p:I\subseteq\mathfrak p\}</m>, where <m>I</m> is an ideal. The affine scheme also carries a structure sheaf whose stalk at <m>\mathfrak p</m> is the localization <m>A_{\mathfrak p}</m>. These definitions are described in <xref ref="stacks-affine">Stacks26</xref>, Tags 00DY and 01HR.</p>
+          <aside xml:id="margin-prime-points">
+            <p>A prime ideal is proper and satisfies <m>ab\in\mathfrak p\Rightarrow a\in\mathfrak p\text{ or }b\in\mathfrak p</m>. Equivalently, <m>A/\mathfrak p</m> is an integral domain.</p>
+          </aside>
+        </introduction>
+        <subsection xml:id="polynomial-rings">
+          <title>Polynomial rings</title>
+          <introduction>
+            <p>The ring <m>k[x_1,\ldots,x_n]</m> consists of finite sums of monomials with coefficients in <m>k</m>. Substituting values for the variables defines a <m>k</m>-algebra homomorphism to <m>k</m>.</p>
+          </introduction>
+          <subsubsection xml:id="affine-line-coordinate">
+            <title>A coordinate on the affine line</title>
+            <shorttitle>Affine line</shorttitle>
+            <p xml:id="anchor-evaluation">The affine line is <m>\mathbb A^1_k=\Spec k[t]</m>. For <m>a\in k</m>, evaluation at <m>a</m> has kernel <m>(t-a)</m>, since division by <m>t-a</m> leaves the remainder <m>g(a)</m>. The quotient is a field, so this ideal defines a closed point.</p>
+            <aside xml:id="margin-evaluation">
+              <p>Evaluation at <m>a</m> gives
+                <me>k[t]/(t-a)\cong k.</me>
+              </p>
+              <p>The coordinate <m>t</m> becomes the scalar <m>a</m>. This explains how a ring homomorphism records a point with coordinates in <m>k</m>.</p>
+            </aside>
+            <example xml:id="field-spectrum">
+              <p>The spectrum of a field <m>k</m> has one point, namely <m>(0)</m>, because this is its only proper ideal. Its local ring is <m>k</m>. In <m>\Spec k[t]</m>, the ideal <m>(0)</m> is also prime, but its closure is the whole affine line: every prime contains it.</p>
+            </example>
+            <p>The standard open <m>D(t)</m> consists of the primes not containing <m>t</m>. By <xref ref="prop-localization-affine"/>, it is the affine scheme with coordinate ring <m>k[t,t^{-1}]</m>. The proposition is proved in the next chapter.</p>
+          </subsubsection>
+        </subsection>
+      </section>
+    </chapter>
+    <chapter xml:id="localization">
+      <title>Localization</title>
+      <p>For <m>f\in A</m>, the localization <m>A_f</m> makes <m>f</m> invertible. Its elements are fractions <m>a/f^r</m>, with <m>r\geq0</m>. Every homomorphism from <m>A</m> sending <m>f</m> to a unit factors uniquely through <m>A_f</m>; see <xref ref="stacks-affine">Stacks26</xref>, Tag 00CM, Proposition 10.9.3.</p>
+      <p>The scheme interpretation below is the standard-open result of <xref ref="stacks-affine">Stacks26</xref>, Tag 01I3.</p>
+      <proposition xml:id="prop-localization-affine">
+        <statement>
+          <p>For every ring <m>A</m> and <m>f\in A</m>, the map sending <m>T</m> to <m>f^{-1}</m> gives an isomorphism</p>
+          <md number="no">A[T]/(fT-1)\cong A_f.</md>
+          <p>The morphism induced by <m>A\to A_f</m> identifies <m>\Spec A_f</m> with the open subscheme <m>D(f)=\{\mathfrak p:f\notin\mathfrak p\}</m> of <m>\Spec A</m>.</p>
+        </statement>
+        <proof xml:id="proof-localization-affine">
+          <p>Let <m>B=A[T]/(fT-1)</m>. The class of <m>T</m> is inverse to the image of <m>f</m>, so the universal property gives <m>A_f\to B</m>. Substitution <m>T\mapsto f^{-1}</m> gives <m>B\to A_f</m>. Their compositions fix the images of <m>A</m> and the respective inverse of <m>f</m>, which generate these rings. The maps are therefore inverse.</p>
+          <p>A prime of <m>A_f</m> contracts to a prime <m>\mathfrak p</m> not containing <m>f</m>, since a prime cannot contain a unit. Conversely, such a prime extends to <m>\mathfrak pA_f</m>: its quotient is the nonzero domain <m>(A/\mathfrak p)_f</m>. Extension and contraction are inverse, because multiplying a fraction by its unit denominator does not change membership in a prime.</p>
+          <p>Under this correspondence, <m>D(a/f^r)</m> maps to <m>D(a)\cap D(f)</m>. These sets form bases on both sides, so the correspondence is a homeomorphism. At the corresponding points, the map on stalks identifies <m>(A_f)_{\mathfrak pA_f}</m> with <m>A_{\mathfrak p}</m>, where <m>f</m> is already a unit. Thus the structure sheaves are identified, and the homeomorphism is an isomorphism of schemes.</p>
+        </proof>
+      </proposition>
+      <p>No condition that <m>f</m> be a nonzero divisor is needed. If <m>f</m> is nilpotent, making it invertible forces the localization to be the zero ring; every prime contains <m>f</m>, so <m>D(f)</m> is empty.</p>
+    </chapter>
+    <backmatter>
+      <references xml:id="affine-references">
+        <title>References</title>
+        <biblio xml:id="stacks-affine" label="Stacks26" type="raw">The Stacks Project Authors. <em>The Stacks Project</em>. <url href="https://stacks.math.columbia.edu/tag/00DY">Tag 00DY: The spectrum of a ring</url>; <url href="https://stacks.math.columbia.edu/tag/00CM">Tag 00CM: Localization</url>; <url href="https://stacks.math.columbia.edu/tag/01HR">Tag 01HR: Affine schemes</url>; <url href="https://stacks.math.columbia.edu/tag/01I3">Tag 01I3: Lemma 26.6.6</url>.</biblio>
+      </references>
+    </backmatter>
+  </book>
+</pretext>

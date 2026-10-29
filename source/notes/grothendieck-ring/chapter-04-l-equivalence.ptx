@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xml:id="grv-ch-l-equivalence">
+  <title><m>\LL</m>-equivalence</title>
+  <introduction>
+    <p>The Calabi–Yau examples of <xref ref="grv-thm-imou"/> have different classes that become equal after inverting <m>\LL</m>. They lead to a geometric question about the localized ring: which distinctions between varieties survive this identification? We begin with annihilating exponents, compare the resulting equivalence with stable birationality and cohomology, and then examine constructions and obstructions for K3 surfaces and abelian varieties. Their derived categories provide a further comparison whose two directions require different examples. Unless stated otherwise, <m>k</m> is algebraically closed of characteristic zero. We write <m>\Mk=\Rk[\LL^{-1}]</m>. The Hodge-theoretic results below are over <m>\C</m>.</p>
+  </introduction>
+  <section xml:id="grv-leq-localization">
+  <title>Localization and annihilating exponents</title>
+  <p>In the localized ring, a difference disappears exactly when a power of <m>\LL</m> annihilates it in the original ring. Keeping this equation visible lets us compare a geometric construction with the information lost under localization.</p>
+  <definition xml:id="grv-leq-definition">
+    <title><m>\LL</m>-equivalence</title><idx>L-equivalence</idx>
+    <statement><p>Two <m>k</m>-varieties <m>X,Y</m> are <em><m>\LL</m>-equivalent</em>, written <m>X\sim_{\LL}Y</m>, if there is an integer <m>N\geq0</m> such that
+      <md number="no">\LL^N([X]-[Y])=0\quad\text{in }\Rk.</md>
+      The exponent is common to both classes; <m>N=0</m> includes equality in <m>\Rk</m>.</p></statement>
+  </definition>
+  <p>An isomorphism <m>X\times\A^N\cong Y\times\A^N</m> gives such a relation by taking classes. Conversely, the relation supplies an equality of classes, whose additive meaning is given by <xref ref="grv-prop-stabilized-piecewise"/>; it does not give an isomorphism of these products. Allowing different powers on the two classes would define a different relation, under which even <m>\A^1</m> and a point would be equivalent.</p>
+  <p>For an arbitrary virtual class, the corresponding condition is <em><m>\LL</m>-torsion</em>. These elements form the union
+    <md number="no">T_{\LL}(\Rk)=\bigcup_{N\geq0}\Ann_{\Rk}(\LL^N),\qquad
+      \Ann_{\Rk}(\LL^N)=\{a\in\Rk:\LL^Na=0\},</md>
+    where <m>\Ann_{\Rk}(1)=0</m>. This is the ideal <m>T_\infty</m> introduced in <xref ref="grv-ch-zero-divisors"/>. The localization calculation explains why it governs the equivalence relation.</p>
+  <proposition xml:id="grv-leq-localization-kernel">
+    <statement><p>The subset <m>T_{\LL}(\Rk)</m> is an ideal, and
+      <md number="no">\ker(\Rk\longrightarrow\Mk)=T_{\LL}(\Rk).</md>
+      Hence <m>X\sim_{\LL}Y</m> if and only if their images in <m>\Mk</m> agree. This is an equivalence relation preserved by disjoint union and product with any variety.</p></statement>
+    <proof><p>The annihilator ideals are increasing, because <m>\LL^Na=0</m> implies <m>\LL^{N+1}a=0</m>. If powers with exponents <m>N,M</m> annihilate <m>a,b</m>, their maximum annihilates <m>a+b</m>. Multiplication by an arbitrary ring element preserves annihilation, so the union is an ideal.</p>
+      <p>In localization at <m>S=\{1,\LL,\LL^2,\ldots\}</m>, fractions <m>a/s</m> and <m>b/t</m> agree precisely when some <m>u\in S</m> satisfies <m>u(ta-sb)=0</m>. Taking <m>s=t=1</m> proves the kernel formula and the characterization of <m>\LL</m>-equivalence. Reflexivity and symmetry follow from the definition. For transitivity, the maximum of exponents annihilating <m>[X]-[Y]</m> and <m>[Y]-[Z]</m> annihilates their sum. The same calculation handles disjoint unions, and multiplication of a witnessing equation by <m>[W]</m> handles products with <m>W</m>.</p></proof>
+  </proposition>
+  <p>The induced map <m>\Rk/T_{\LL}(\Rk)\hookrightarrow\Mk</m> is injective. Multiplication by <m>\LL</m> is injective on this quotient: if <m>\LL a</m> is <m>\LL</m>-torsion, then <m>a</m> is too. Thus the quotient permits cancellation of <m>\LL</m>, while localization additionally supplies its inverse.</p>
+  <p xml:id="grv-leq-minimal-exponent">The exponent needed to annihilate a class measures more than its disappearance after localization. For <m>a\in T_{\LL}(\Rk)</m>, define its <em>minimal exponent</em> by
+    <md number="no">\nu_{\LL}(a)=\min\{N\geq0:\LL^Na=0\}.</md>
+    For an <m>\LL</m>-equivalent pair write <m>\nu_{\LL}(X,Y)=\nu_{\LL}([X]-[Y])</m>. Exponent zero means that the difference is already zero.</p>
+  <p xml:id="grv-leq-exponent-calculus">The operations used in the proposition give, for <m>a,b\in T_{\LL}(\Rk)</m> and <m>r\in\Rk</m>,
+    <md number="no">\begin{aligned}
+      \nu_{\LL}(a+b)&amp;\leq\max\{\nu_{\LL}(a),\nu_{\LL}(b)\},\\
+      \nu_{\LL}(ra)&amp;\leq\nu_{\LL}(a),\\
+      \nu_{\LL}(ab)&amp;\leq\min\{\nu_{\LL}(a),\nu_{\LL}(b)\},\\
+      \nu_{\LL}(\LL a)&amp;=\max\{\nu_{\LL}(a)-1,0\}.
+    \end{aligned}</md>
+    The first three inequalities follow because the indicated powers annihilate the expressions. For the last equality, let <m>n=\nu_{\LL}(a)\geq1</m>. The power <m>\LL^{n-1}</m> annihilates <m>\LL a</m>, while any smaller exponent would annihilate <m>a</m> after multiplication by one more <m>\LL</m>, contrary to minimality. This includes <m>n=1</m>, when <m>\LL a=0</m>; the case <m>a=0</m> also satisfies the formula.</p>
+  <p>A geometric equation <m>\LL^N([X]-[Y])=0</m> therefore gives an upper bound. To prove that a positive <m>N</m> is minimal requires the additional nonvanishing <m>\LL^{N-1}([X]-[Y])\ne0</m>. The examples below obtain this from invariants of the difference, since nonisomorphism of the two varieties alone does not prove that their classes differ.</p>
+</section>
+  <section xml:id="grv-leq-comparisons">
+  <title>Stable birationality and realization maps</title>
+  <p xml:id="grv-app-equalities">For smooth projective integral varieties, the two maps
+    <md number="no">\Rk\longrightarrow\Rk/(\LL)\simeq\Z[\SB_k],\qquad \Rk\longrightarrow\Mk</md>
+    compare <m>\LL</m>-equivalence with stable birationality. An isomorphism gives a piecewise isomorphism and hence equality in <m>\Rk</m>; conversely, equality in <m>\Rk</m> means piecewise isomorphism after adding the same auxiliary variety, by <xref ref="grv-prop-stabilized-piecewise"/>. Such an equality survives both maps. The first image records stable birationality by <xref ref="grv-cor-sb-test"/>, whereas the second records <m>\LL</m>-equivalence. Their kernels do not contain one another, as two calculations show.</p>
+  <p xml:id="grv-leq-independent-stable-birational">For the pair in <xref ref="grv-thm-imou"/>, the difference <m>a=[X]-[Y]</m> satisfies <m>\LL a=0</m> and <m>a\notin(\LL)</m>. Thus <m>\nu_{\LL}(X,Y)=1</m>, but <m>X,Y</m> are not stably birational. In particular, no isomorphism <m>X\times\A^n\cong Y\times\A^m</m> can exist for any <m>n,m\geq0</m>, since it would make the two varieties stably birational.</p>
+  <p>The opposite comparison is furnished by <m>\PP^2</m> and <m>\Bl_p\PP^2</m>. They are birational, but the blowup formula gives
+    <md number="no">[\Bl_p\PP^2]-[\PP^2]=\LL.</md>
+    This difference is neither zero nor <m>\LL</m>-torsion: the virtual Hodge polynomial sends every power <m>\LL^n</m> to the nonzero polynomial <m>(uv)^n</m>. Hence stable birationality implies neither equality of classes nor <m>\LL</m>-equivalence, even for smooth projective surfaces of the same dimension.</p>
+  <p>A product relation <m>[W]([X]-[Y])=0</m> fits into these comparisons after examining its factor <m>[W]</m>. If <m>[W]</m> is a non-zero-divisor in <m>\Rk</m>, it gives equality in the original ring. If its image is a non-zero-divisor in <m>\Mk</m>, it gives <m>\LL</m>-equivalence. A realization gives a related way to cancel the particular factor <m>\LL</m>.</p>
+  <proposition xml:id="grv-leq-realization-test">
+    <statement><p>Let <m>\mu:\Rk\to B</m> be a ring homomorphism to a commutative ring. If multiplication by <m>\mu(\LL)</m> is injective on <m>B</m>, then <m>\LL</m>-equivalent varieties have the same image under <m>\mu</m>.</p></statement>
+    <proof><p>Apply <m>\mu</m> to a witnessing relation to obtain <m>\mu(\LL)^N(\mu([X])-\mu([Y]))=0</m>, then cancel <m>\mu(\LL)</m> successively <m>N</m> times.</p></proof>
+  </proposition>
+  <p>Over <m>\C</m>, the Hodge–Deligne polynomial has <m>E(\LL)=uv</m> in <m>\Z[u,v]</m>, where multiplication by <m>uv</m> is injective. Thus <m>X\sim_{\LL}Y</m> gives <m>E(X;u,v)=E(Y;u,v)</m>. For smooth projective varieties the coefficient of <m>u^pv^q</m> is <m>(-1)^{p+q}h^{p,q}</m>, so every Hodge number agrees. For arbitrary varieties it is an alternating sum over compactly supported cohomology and does not recover the separate cohomological degrees. The realization and its conventions are developed in <xref ref="grv-ch-motives"/>.</p>
+  <p>Passing from dimensions to integral Hodge structures can strengthen this test. All complex elliptic curves have polynomial <m>1-u-v+uv</m>, but <xref ref="grv-leq-efimov-rigidity"/> distinguishes their <m>\LL</m>-equivalence classes when one curve has endomorphism ring <m>\Z</m>. This obstruction uses an integral realization, rather than a converse to equality of Hodge polynomials.</p>
+  <p xml:id="grv-leq-rational-and-completed">The coefficient ring also enters the localization calculation. Equality in <m>(\Rk\otimes\Q)[\LL^{-1}]</m> means that there are integers <m>m\geq1</m> and <m>N\geq0</m> with
+    <md number="no">m\LL^N([X]-[Y])=0\quad\text{in }\Rk.</md>
+    Apply the localization criterion first to powers of <m>\LL</m> and then to nonzero integers to obtain this equivalence. It allows additive torsion in addition to <m>\LL</m>-torsion. Equality in a dimension completion of <m>\Mk</m> also depends on the kernel of the completion map. It yields <m>\LL</m>-equivalence if that map is injective; without an argument controlling its kernel, an equality proved only in the completion does not establish the relation in <m>\Mk</m>.</p>
+</section>
+  <section xml:id="grv-leq-geometric-examples">
+    <title>Constructions and rigidity</title>
+    <p>There are two geometric tasks: constructing a relation and detecting whether its difference is nonzero. The K3 constructions below illustrate the first task; in the Cremona example a nonvanishing argument also proves that the exponent is minimal. Rigidity results then restrict the possible members of an equivalence class.</p>
+    <p>Many constructions compare one auxiliary variety in two ways. Suppose, for example, that a variety <m>Z</m> has two finite stratifications, and their class computations give
+      <md number="no">[Z]=A+\LL^N[X]=A+\LL^N[Y]</md>
+      for the same <m>A\in\Rk</m>. Subtraction proves <m>X\sim_{\LL}Y</m>. The geometric content lies in constructing the stratifications and checking local triviality of the fibrations used to compute their classes. Equality of the fibers over closed points alone does not justify multiplication of classes.</p>
+    <p xml:id="grv-leq-d-equivalence">Smooth projective <m>k</m>-varieties <m>X,Y</m> are <em>derived equivalent</em>, or <em><m>D</m>-equivalent</em>, if their bounded derived categories of coherent sheaves admit an exact <m>k</m>-linear equivalence <m>D^b(X)\simeq D^b(Y)</m>. These are the untwisted categories.</p><p>For complete intersections of three quadrics, the auxiliary geometry also compares derived categories. The categorical comparison involves a Brauer class, whose vanishing is part of the following theorem.</p>
+    <theorem xml:id="grv-leq-ks-quadrics">
+      <title>Kuznetsov–Shinder</title>
+      <statement><p>Let <m>X\subset\PP^5_k</m> be a smooth complete intersection of three quadrics. Assume that its discriminant double cover <m>Y\to\PP^2_k</m> is smooth, the associated Brauer class on <m>Y</m> vanishes, and <m>X</m> has a <m>k</m>-point lying on no line contained in <m>X</m>. Then
+        <md number="no">D^b(X)\simeq D^b(Y),\qquad \LL([X]-[Y])=0.</md></p></statement>
+    </theorem>
+    <p>This is <xref ref="grv-bib-KS" detail="Theorem 1.9"/>, whose proof compares a family of quadrics with its hyperbolic reduction. The Brauer condition removes a twist in the categorical equivalence, so the stated equivalence uses untwisted categories. These geometric hypotheses specify the degree-eight K3 surfaces to which the theorem applies.</p>
+    <p>An exponent-one relation also arises from a Cremona transformation for degree-twelve K3 surfaces. In this construction a nonvanishing result proves that the relation is nontrivial.</p>
+    <theorem xml:id="grv-leq-hassett-lai">
+      <title>Hassett–Lai</title>
+      <statement><p>There exist pairs of complex degree-twelve K3 surfaces <m>S,T</m>, obtained by the Cremona construction of Hassett–Lai, that are derived equivalent and satisfy
+        <md number="no">\LL([S]-[T])=0,\qquad [S]-[T]\ne0.</md>
+        Thus their minimal exponent is one.</p></statement>
+    </theorem>
+    <p>The construction uses generic surfaces and generic auxiliary projection data, with Picard rank one in the nonisomorphism argument. See <xref ref="grv-bib-HassettLai" detail="Theorems 2.1, 3.1, and 4.1"/> in the corrected author version, which repairs Lemma 3.3 in the lattice calculation. Theorem 4.1 gives the class relation and its minimality. The resulting existence theorem does not assert that the relation extends to every pair of degree-twelve K3 surfaces or to every specialization. Spreading and specialization of these relations are treated in <xref ref="grv-ch-fields"/>.</p>
+  <p xml:id="grv-leq-rigidity">The K3 constructions give nontrivial equivalence classes. Integral Hodge theory also restricts which varieties can belong to such a class. The following theorems over <m>\C</m> give rigidity in an abelian case, finiteness in the K3 case, and a positive relation with derived equivalence.</p>
+    <theorem xml:id="grv-leq-efimov-rigidity">
+      <title>Efimov</title>
+      <statement><p>Let <m>A</m> be a complex abelian variety with <m>\operatorname{End}(A)=\Z</m>. If a complex abelian variety <m>B</m> is <m>\LL</m>-equivalent to <m>A</m>, then <m>A\cong B</m> as abelian varieties.</p></statement>
+    </theorem>
+    <p>This is <xref ref="grv-bib-Efimov" detail="Theorem 3.1(2)"/>. It concerns <m>\LL</m>-equivalence <em>among abelian varieties</em>. It does not say that <m>[A]</m> is a non-zero-divisor: that stronger assertion would require cancellation against every element of <m>\Rk</m>.</p>
+    <theorem xml:id="grv-leq-efimov-finiteness">
+      <title>Efimov</title>
+      <statement><p>For a fixed complex K3 surface <m>S</m>, there are only finitely many isomorphism classes of complex K3 surfaces <m>T</m> satisfying <m>T\sim_{\LL}S</m>.</p></statement>
+    </theorem>
+    <p>See <xref ref="grv-bib-Efimov" detail="Theorem 3.4"/>. The proof passes from the integral Hodge realization to finiteness for the possible integral second-cohomology structures, then uses a finiteness theorem for K3 surfaces with that Hodge structure. This is a finiteness theorem for each fixed class, rather than an effective count of its members or a classification of all <m>\LL</m>-equivalent K3 pairs.</p>
+    <p>Finiteness bounds the number of possible K3 surfaces in an <m>\LL</m>-equivalence class. Identifying them as derived partners also requires the cup-product form. For a complex projective K3 surface <m>X</m>, write
+        <md number="no">T(X)=\operatorname{NS}(X)^{\perp}\subset H^2(X,\Z),\qquad \rho(X)=\operatorname{rank}\operatorname{NS}(X),</md>
+        where <m>\operatorname{NS}(X)</m> is the Néron–Severi lattice and the orthogonal complement is taken for the cup-product pairing.</p>
+      <theorem xml:id="grv-leq-meinsma-k3">
+        <title>Meinsma</title>
+        <idx>transcendental lattice</idx><idx>K3 surface</idx>
+        <statement><p>Let <m>X</m> be a complex projective K3 surface satisfying
+          <md number="no">\rho(X)\ne18,\qquad \operatorname{End}_{\mathrm{Hdg}}(T(X)\otimes\Q)=\Q.</md>
+          If a complex projective K3 surface <m>Y</m> is <m>\LL</m>-equivalent to <m>X</m>, then <m>D^b(X)\simeq D^b(Y)</m>.</p></statement>
+      </theorem>
+      <p>This is <xref ref="grv-bib-MeinsmaK3" detail="Theorems 1.2 and 4.2"/>. The endomorphism condition says that every rational Hodge endomorphism of <m>T(X)\otimes\Q</m> is scalar; it holds for a very general polarized K3 surface <xref ref="grv-bib-MeinsmaK3" detail="Lemma 3.1"/>. We use the theorem as an external result. Its proof first obtains an integral Hodge isomorphism <m>T(X)\simeq T(Y)</m> and equality of their discriminants from <m>\LL</m>-equivalence. These inputs are supplied by the integral Hodge realization and the discriminant invariant in <xref ref="grv-bib-MeinsmaK3" detail="Lemma 4.1 and the proof of Theorem 4.2"/>.</p>
+      <p>The role of the lattice hypotheses can be seen in the remaining comparison. An isomorphism of Hodge structures need not preserve the pairing. With only scalar rational Hodge endomorphisms, the transported pairing differs by a factor <m>c\in\Q^\times</m>. Equality of discriminants gives <m>c^{22-\rho(X)}=1</m>, so <m>c=\pm1</m>. The signature of <m>T(X)</m> is <m>(2,20-\rho(X))</m>; unless <m>\rho(X)=18</m>, changing the sign cannot give the signature of another K3 transcendental lattice. Thus the Hodge isomorphism is an isometry, and the derived Torelli theorem gives the equivalence. This is the lattice argument in <xref ref="grv-bib-MeinsmaK3" detail="Proposition 3.11"/>.</p>
+  </section>
+  <section xml:id="grv-leq-derived">
+    <title>Derived equivalence and its two directions</title>
+    <p>The preceding K3 theorem gives a positive implication under its lattice hypotheses. For arbitrary smooth projective varieties, neither direction holds. Rational surfaces, abelian varieties, and higher-dimensional hyperkähler manifolds provide the counterexamples below.</p><p xml:id="grv-leq-equal-classes-not-derived">For the direction from classes to categories, consider <m>F_0=\PP^1\times\PP^1</m> and <m>F_1=\Bl_p\PP^2</m>. The projective-bundle and blow-up formulas give
+        <md number="no">[F_0]=[F_1]=1+2\LL+\LL^2.</md>
+        Their derived categories are not equivalent. Both surfaces have ample anticanonical class, so reconstruction from the derived category would imply isomorphism. The surfaces are not isomorphic: <m>F_1</m> contains a curve of self-intersection <m>-1</m>, whereas <m>F_0</m> does not. This example and the reconstruction input are discussed in <xref ref="grv-bib-KS" detail="Section 1.2"/>. Hence even equality in <m>\Rk</m> does not imply derived equivalence for arbitrary smooth projective varieties.</p>
+    <p>For the direction from categories to classes, the abelian rigidity theorem supplies a counterexample. Efimov gives abelian varieties <m>A</m> with <m>\operatorname{End}(A)=\Z</m> for which the dual variety <m>\widehat A</m> is not isomorphic to <m>A</m>. They are derived equivalent but, by <xref ref="grv-leq-efimov-rigidity"/>, are not <m>\LL</m>-equivalent <xref ref="grv-bib-Efimov" detail="Theorem 3.1"/>. This refutes the unrestricted implication from derived equivalence to <m>\LL</m>-equivalence.</p>
+    <p>The published Kuznetsov–Shinder conjecture imposed simple connectedness <xref ref="grv-bib-KS" detail="Conjecture 1.6"/>. Abelian counterexamples do not refute that restricted statement. The following theorem does. Here a hyperkähler manifold means a compact irreducible holomorphic symplectic manifold.</p>
+    <theorem xml:id="grv-leq-meinsma-counterexample">
+      <title>Meinsma</title>
+      <statement><p>Let <m>(S,H)</m> be a primitively polarized complex K3 surface with <m>H^2=2g-2\geq2</m> and Picard rank one. The moduli spaces of <m>H</m>-stable sheaves with the indicated Mukai vectors,
+        <md number="no">M_H(0,H,1-g)\quad\text{and}\quad M_H(0,H,0),</md>
+        are derived equivalent but not <m>\LL</m>-equivalent. They are smooth projective hyperkähler manifolds of dimension <m>2g</m>, in particular simply connected.</p></statement>
+    </theorem>
+    <p>See <xref ref="grv-bib-Meinsma" detail="Theorems 1.3 and 3.1, version 3"/>. These spaces parametrize degree-zero and degree-<m>g-1</m> rank-one sheaves on curves in <m>|H|</m>. Their non-equivalence under <m>\LL</m> uses integral Hodge invariants. Simple connectedness therefore does not restore the implication from derived equivalence.</p>
+    <p>The remaining hyperkähler conjecture asks the opposite direction, from <m>\LL</m>-equivalence to derived equivalence; <xref ref="grv-leq-meinsma-k3"/> gives a known K3 case. Its formulation and the exponent and family questions suggested by the constructions are collected in <xref ref="grv-leq-problems"/>. The rational-surface calculation explains why this direction also needs a restriction on the varieties.</p>
+  </section>
+  </chapter>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="grv-ch-motives">
+  <title>Motives and realizations</title>
+  <introduction>
+    <p>Cohomological localization reflects the scissors relation, and the Künneth formula reflects multiplication of varieties. Motives provide objects satisfying the corresponding formulas before choosing a cohomology theory. Their realization maps help answer two questions about the Grothendieck ring: which relations can be detected by cohomology, and which information has already been lost on passing from a variety to a motivic class? We construct the characteristic-zero motivic Euler characteristic from blowup formulas, then apply it to <m>\LL</m>-equivalence, product cancellation, and zeta functions.</p>
+  </introduction>
+  <section xml:id="grm-chow">
+    <title>Chow motives and the Euler characteristic</title>
+    <p xml:id="grm-conventions">Throughout this chapter <m>k</m> has characteristic zero, and <m>R_k=K_0(\Var_k)</m>. To extend an invariant from smooth projective varieties by Bittner's theorem, we need a target in which the exceptional pieces of a blowup cancel. Rational Chow motives supply such a target. We use rational equivalence of cycles; numerical equivalence would define another category.</p>
+    <p>We assume the correspondence construction of Chow motives, in the contravariant convention
+      <md number="no">\operatorname{Hom}(h(X),h(Y))=\CH^{\dim X}(X\times Y)_{\Q}</md>
+      for smooth projective <m>X,Y</m> with <m>X</m> pure dimensional. Here <m>\CH^r(-)_{\Q}</m> consists of codimension-<m>r</m> cycles modulo rational equivalence with rational coefficients. Composition is intersection followed by pushforward along <m>X\times Y\times Z\to X\times Z</m>. The graph of a morphism <m>Y\to X</m> therefore gives a morphism <m>h(X)\to h(Y)</m>. Disconnected or non-equidimensional varieties are treated component by component.</p>
+    <p>Finite direct sums and images of idempotent correspondences are added to this category. For a correspondence <m>p</m> with <m>p\circ p=p</m>, its image is denoted <m>(X,p)</m>; a morphism <m>(X,p)\to(Y,q)</m> is a correspondence <m>\alpha</m> satisfying <m>\alpha=q\circ\alpha\circ p</m>. Products and exterior products of correspondences define a tensor product. The construction, composition, and tensor identities are external results; see <xref ref="grm-bib-scholl" detail="Sections 1–2"/>.</p>
+    <p xml:id="grm-effective-full">Write <m>\mathrm{Chow}^{\mathrm{eff}}(k)_{\Q}</m> for this additive idempotent complete tensor category of effective motives. Its unit is <m>\one=h(\operatorname{Spec}k)</m>, and its Lefschetz object <m>\T</m> is defined by
+      <md number="no">h(\mathbb P^1)=\one\oplus\T.</md>
+      The category <m>\mathrm{Chow}(k)_{\Q}</m> allows both positive and negative tensor powers of <m>\T</m>, making it tensor invertible.</p>
+    <p xml:id="anchor-grm-tate">The coefficient subscript <m>\Q</m> refers to correspondence groups. The Grothendieck groups of these categories will still be abelian groups over <m>\Z</m>.</p>
+    <aside xml:id="margin-grm-tate"><title>Tate notation</title><p>In the cohomological convention, some sources write <m>\Q(-1)</m> for <m>\T</m>. Its geometric-motive counterpart is specified in <xref ref="grm-compact-support"/>; the twist and shift depend on the variance convention.</p></aside>
+    <p xml:id="grm-split-kzero">For an essentially small additive category <m>\mathcal A</m>, its split Grothendieck group <m>K_0^{\oplus}(\mathcal A)</m> has generators <m>[M]</m> and relations <m>[M\oplus N]=[M]+[N]</m>. A distributive tensor product makes it a ring, with <m>[M][N]=[M\otimes N]</m>. Only direct sum relations are imposed: short exact sequences in an abelian category, or triangles in a triangulated category, would give different relations.</p>
+    <p xml:id="grm-stable-sums">The additive group completion has a concrete meaning:
+      <md number="no">[M]=[N]\quad\Longleftrightarrow\quad M\oplus P\simeq N\oplus P\text{ for some }P.</md>
+      Indeed, two elements of a commutative monoid have the same image in its group completion exactly when adding the same monoid element makes them equal. Apply this to isomorphism classes under direct sum; the reverse implication also follows by subtracting <m>[P]</m>. Thus equality of motivic classes will give a stable additive isomorphism. Removing <m>P</m> requires a cancellation theorem for the category in question.</p>
+    <p xml:id="grm-bittner-extension">We can now compare the defining relations of <m>R_k</m> with those of the target. By <xref ref="grv-thm-bittner"/>, it suffices to use smooth projective varieties and the blowup relation. The projective bundle and blowup formulas for Chow motives give, for a smooth center <m>Z\subset X</m> of codimension <m>r\geq1</m> and exceptional divisor <m>E</m>,
+      <md number="no"><mrow>h(E)\simeq\bigoplus_{i=0}^{r-1}h(Z)\otimes\T^i,</mrow><mrow>h(\Bl_ZX)\simeq h(X)\oplus\bigoplus_{i=1}^{r-1}h(Z)\otimes\T^i.</mrow></md>
+      Disconnected centers are treated component by component. These motivic decompositions are the external input from <xref ref="grv-bib-Bittner" detail="proof of Corollary 4.3"/>; their cancellation in the split Grothendieck group proves the extension.</p>
+    <theorem xml:id="grm-euler-map">
+      <title>Motivic Euler characteristic</title>
+      <statement>
+        <p>There is a unique ring homomorphism
+          <md number="no">\chi_{c,\mathrm{mot}}:R_k\longrightarrow K_0^{\oplus}(\mathrm{Chow}^{\mathrm{eff}}(k)_{\Q})</md>
+          with <m>\chi_{c,\mathrm{mot}}([X])=[h(X)]</m> for every smooth projective <m>X</m>. It sends <m>\LL</m> to <m>[\T]</m>. After passage to non-effective Chow motives it extends uniquely to
+          <md number="no">R_k[\LL^{-1}]\longrightarrow K_0^{\oplus}(\mathrm{Chow}(k)_{\Q}).</md></p>
+      </statement>
+      <proof>
+        <p>Assign <m>[h(X)]</m> to a smooth projective generator. In the split Grothendieck group the two displayed decompositions give
+          <md number="no">[h(\Bl_Z X)]-[h(E)]=[h(X)]-[h(Z)],</md>
+          because the summands with powers <m>\T^i</m> for <m>1\leq i\leq r-1</m> cancel. If the center contains a connected component of <m>X</m>, its contribution to the relation is just the corresponding direct sum relation; the blowup of that entire component is empty. Thus these cases are respected as well. The empty variety has zero motive. Bittner's presentation therefore gives a unique homomorphism of abelian groups with the prescribed values.</p>
+        <p>For two smooth projective generators, <m>h(X\times Y)=h(X)\otimes h(Y)</m>. Both products are bilinear on the respective Grothendieck groups, so the homomorphism is multiplicative on all elements. The motive of a point is the tensor unit. Finally,
+          <md number="no">\chi_{c,\mathrm{mot}}(\LL)=\chi_{c,\mathrm{mot}}([\mathbb P^1]-1)=[\one\oplus\T]-[\one]=[\T].</md>
+          This class becomes a unit in the non-effective category. The universal property of ring localization gives the last map and its uniqueness.</p>
+      </proof>
+    </theorem>
+    <p xml:id="grm-duality">The blowup construction in <xref ref="grv-thm-bittner-duality"/> works over any characteristic-zero field. Duality on Chow motives gives its motivic interpretation. In the non-effective category, a smooth projective variety <m>X</m> of pure dimension <m>d</m> satisfies
+      <md number="no">h(X)^\vee\simeq h(X)\otimes\T^{-d}.</md>
+      We use this duality from the correspondence formalism; see <xref ref="grv-bib-Bittner" detail="Corollary 4.3 and its proof"/>. It respects direct sums and tensor products, so <m>[M]\mapsto[M^\vee]</m> defines an involution on the split Grothendieck ring. For the localized motivic Euler characteristic,
+      <md number="no">\chi_{c,\mathrm{mot}}(\mathcal D(a))=\chi_{c,\mathrm{mot}}(a)^\vee\qquad(a\in\Mk).</md>
+      The two sides agree on smooth projective generators by the displayed duality formula, and on <m>\LL^{-1}</m> because <m>\T^\vee\simeq\T^{-1}</m>.</p>
+    <p xml:id="grm-open-motive-example">For an open curve the resulting value is visibly virtual. Let <m>C</m> be a smooth projective geometrically connected curve with a <m>k</m>-point. Its pointed decomposition <m>h(C)=\one\oplus h^1(C)\oplus\T</m> defines the middle summand <m>h^1(C)</m>; this is the curve-motive decomposition of <xref ref="grm-bib-scholl" detail="Section 2"/>. Removing distinct <m>k</m>-points <m>p_1,\ldots,p_s</m> gives
+      <md number="no">\chi_{c,\mathrm{mot}}([C\setminus\{p_1,\ldots,p_s\}])=[h^1(C)]+[\T]+(1-s)[\one].</md>
+      For <m>s\geq2</m>, the displayed coefficient of the unit is negative. The construction supplies an Euler class, without promising a single effective pure motive representing every open variety. Gillet–Soulé attach a stronger object, a bounded complex of Chow motives in characteristic zero, unique up to homotopy; its Euler class gives the same extension <xref ref="grm-bib-gillet-soule"/>. We use the existence of that weight complex as an external result. The blowup calculation above already proves the existence of the Euler-class map used here.</p>
+  </section>
+  <section xml:id="grm-compact-support">
+    <title>Compact supports and the scissors relation</title>
+    <p>The virtual value of an open curve can also be understood through a localization triangle. We assume the following compact-support formalism: over a perfect field, rational compactly supported geometric motives lie in a tensor triangulated category <m>DM_{\mathrm{gm}}(k)_{\Q}</m>, satisfy a tensor product formula, and for <m>Z\subset X</m> closed fit into
+      <md number="no">M^c(Z)\longrightarrow M^c(X)\longrightarrow M^c(X\setminus Z)\longrightarrow M^c(Z)[1].</md>
+      In characteristic zero, under resolution, these properties are given in <xref ref="grm-bib-mvw" detail="Theorem 16.15 and Corollaries 16.16–16.17"/>. The rational positive-characteristic formalism and its construction references are recorded in <xref ref="grm-bib-tabuada" detail="Section 8, proof of Proposition 8.3"/>.</p>
+    <p>In the triangulated Grothendieck group the triangle gives
+      <md number="no">[M^c(X)]=[M^c(Z)]+[M^c(X\setminus Z)].</md>
+      Together with the tensor formula, this makes <m>[X]\mapsto[M^c(X)]</m> a ring homomorphism. For comparison with our contravariant Chow convention, use the opposite, homological Chow category. It has the same split Grothendieck ring, since its objects, isomorphisms, direct sums, and tensor products are the same. Its comparison with geometric motives sends the object labeled <m>h(X)</m> to <m>M(X)=M^c(X)</m> for smooth projective <m>X</m>, and <m>\T</m> to <m>\Q(1)[2]</m>; see <xref ref="grm-bib-mvw" detail="Proposition 20.1 and Remark 20.2"/>. The two characteristic-zero Euler maps therefore agree on the smooth projective generators, hence on <m>R_k</m>.</p>
+    <p>A covariant comparison directly from the cohomological Chow category instead sends <m>h(X)</m> to <m>M(X)^\vee</m>. This variance translation is needed at the object level. The comparison of Euler classes does not identify the Chow and triangulated categories. Cohomology of a singular or nonproper variety can contain mixed weights and extension data; passing to a Grothendieck group removes extension data encoded by triangles. The pure and mixed theories can consequently give the same Euler characteristic while retaining different objects.</p>
+  </section>
+  <section xml:id="grm-information">
+    <title>What L-equivalence determines</title>
+    <p xml:id="grm-lequivalence">By the definition in <xref ref="grv-ch-l-equivalence"/>, <m>X\sim_{\LL}Y</m> means that <m>\LL^n([X]-[Y])=0</m> for some <m>n\geq0</m>, equivalently that the classes agree after localization. This is precisely the kind of equality seen by a realization in which the affine line becomes invertible.</p>
+    <p xml:id="grm-localized-realization">If <m>\mu:R_k\to A</m> is a ring homomorphism with <m>\mu(\LL)</m> a unit, applying it to the annihilation relation and multiplying by <m>\mu(\LL)^{-n}</m> gives <m>\mu([X])=\mu([Y])</m>. In particular, <xref ref="grm-euler-map"/> gives equal classes in <m>K_0^{\oplus}(\mathrm{Chow}(k)_{\Q})</m>.</p>
+    <p xml:id="grm-tate-invertibility">For smooth projective varieties the conclusion is a stable additive isomorphism
+      <md number="no">h(X)\oplus P\simeq h(Y)\oplus P</md>
+      for some motive <m>P</m>, by the group-completion description in <xref ref="grm-stable-sums" text="custom">the stable-sum calculation</xref>. This conclusion contains no cancellation of <m>P</m>.</p>
+    <p xml:id="grm-appendix">For smooth projective varieties in characteristic zero these comparisons give
+      <md number="no"><mrow xml:id="grm-implication-guide">[X]=[Y]\text{ in }R_k\ \Longrightarrow\ X\sim_{\LL}Y</mrow><mrow>\Longrightarrow\ [h(X)]=[h(Y)]\text{ in }K_0^{\oplus}(\mathrm{Chow}(k)_{\Q}).</mrow></md>
+      A motivic isomorphism implies the final equality too. A realization with <m>\mu(\LL)=0</m>, such as the stable birational measure, instead detects a class modulo <m>\LL</m> and cannot extend to a nonzero target after localization. Thus the choice of target determines which comparison can be tested.</p>
+    <example xml:id="grm-isogenous-elliptic">
+      <title>Equal rational motives, different variety classes</title>
+      <p>Let <m>k</m> be algebraically closed of characteristic zero, and let <m>E,E'</m> be nonisomorphic isogenous elliptic curves. Then
+        <md number="no">h(E)\simeq h(E')\quad\text{in }\mathrm{Chow}(k)_{\Q},\qquad [E]\neq[E']\quad\text{in }R_k.</md>
+        For the first assertion, the decomposition <m>h(E)=\one\oplus h^1(E)\oplus\T</m> and the correspondence description of <m>h^1</m> identify an isogeny with an invertible rational correspondence on <m>h^1</m>. Its inverse uses division by the degree of the isogeny; this is where rational coefficients enter. See <xref ref="grm-bib-scholl" detail="Section 2"/>.</p>
+      <p>For the second assertion use the Larsen–Lunts isomorphism <m>R_k/(\LL)\simeq\Z[\mathrm{SB}_k]</m>, where <m>\mathrm{SB}_k</m> is the monoid of stable birational classes of smooth projective irreducible varieties. Stable birational varieties have isomorphic Albanese varieties. Thus stable birational elliptic curves are isomorphic, and the two distinct basis elements in <m>\Z[\mathrm{SB}_k]</m> distinguish <m>[E]</m> and <m>[E']</m>. See <xref ref="grv-bib-LL03" detail="Theorem 2.3 and the stable birational specialization"/>.</p>
+    </example>
+    <p>The example proves that even isomorphic rational Chow motives need not recover equality in <m>R_k</m>. It does not decide <m>\LL</m>-equivalence of these elliptic curves: the stable birational detector used to separate their classes sends <m>\LL</m> to zero. To obstruct localized equality we need a realization that survives inversion and retains more than rational cohomological dimensions.</p>
+  </section>
+  <section xml:id="grm-integral-realizations">
+    <title>Integral realizations and cancellation</title>
+    <p>Over <m>\C</m>, the Hodge–Deligne polynomial gives a localized invariant with values in <m>\Z[u^{\pm1},v^{\pm1}]</m>. Its coefficients record dimensions, so equal Hodge numbers give equal polynomial values. Keeping a Hodge structure retains more information; keeping its integral lattice can distinguish varieties with the same rational structure.</p>
+    <theorem xml:id="grm-efimov">
+      <title>Efimov's integral obstruction</title>
+      <statement>
+        <p>There is a homomorphism of abelian groups
+          <md number="no">\mathrm{Hdg}_{\Z}:R_{\C}[\LL^{-1}]\longrightarrow K_0^{\oplus}(\mathrm{HS}_{\Z}),</md>
+          where <m>\mathrm{HS}_{\Z}</m> is the additive category of graded pure integral polarizable Hodge structures used by Efimov. Its weight-one component on a complex abelian variety <m>A</m> is <m>[H^1(A,\Z)]</m>. If <m>\End(A)=\Z</m>, any abelian variety <m>A'</m> that is <m>\LL</m>-equivalent to <m>A</m> is isomorphic to <m>A</m>. Each <m>\LL</m>-equivalence class contains only finitely many isomorphism classes of complex abelian varieties, and only finitely many isomorphism classes of complex K3 surfaces.</p>
+      </statement>
+    </theorem>
+    <p>These external results are proved in <xref ref="grv-bib-Efimov" detail="Section 3, Theorems 3.1, 3.2, and 3.4"/> using cancellation and finiteness in additive categories with finitely generated integral morphism groups.</p>
+    <p xml:id="anchor-grm-integral">The endomorphism hypothesis controls a specific cancellation step. An isogeny identifies rational first cohomology, but generally not the integral lattices. A complex abelian variety is reconstructed from its integral weight-one Hodge structure; Efimov's additive-category theorem passes from stable isomorphism of these structures to isomorphism when the endomorphism ring is <m>\Z</m>.</p>
+    <p xml:id="margin-grm-integral">The target in the theorem imposes direct sum relations. An exact Grothendieck group of rational mixed Hodge structures would impose different relations, and the Hodge polynomial would keep only dimensions. The cancellation conclusion uses the integral split target specified in the theorem.</p>
+    <p xml:id="grm-picard-cancellation">The same issue appears geometrically in Ekedahl's Picard realization. Let <m>\mathcal A_{\C}</m> be generated by isomorphism classes of commutative group schemes whose identity component is an abelian variety and whose group of components is finitely generated, with relations <m>[G\times H]=[G]+[H]</m>. Ekedahl constructs an additive map <m>\Pic:R_{\C}\to\mathcal A_{\C}</m> taking a smooth projective variety to its Picard group-scheme class, and extends it to <m>R_{\C}[\LL^{-1}]</m>. This is an additive realization; no multiplicativity is asserted <xref ref="grv-bib-Ekedahl" detail="Theorem 3.4, Corollary 3.5, and Proposition 3.6"/>.</p>
+    <p xml:id="grm-picard-trap">Its product relations explain exactly what happens to the elliptic witness in <xref ref="grv-ex-shioda-elliptic"/>. From <m>E\times E_1\simeq E\times E_2</m>, group completion in this target gives
+      <md number="no">[E]+[E_1]=[E]+[E_2],\qquad [E_1]=[E_2].</md>
+      Dualizing the product isomorphism gives the corresponding equality of dual classes. Since <m>\Pic(E_i)\simeq E_i^{\vee}\times\Z</m>, the nonzero virtual class <m>[E_1]-[E_2]</m> has zero Picard image. Its nonvanishing in <m>R_{\C}</m> follows from stable birational geometry, but this Picard realization cannot prove its survival after localization. Ekedahl's surviving zero divisors use further endomorphism-ring cancellation arguments. His result applies to those examples, rather than to every failure of product cancellation.</p>
+  </section>
+  <section xml:id="grm-zeta-comparison">
+    <title>Rationality after passing to motives</title>
+    <p>Over <m>\C</m>, the Hodge realization makes every symmetric-product series rational, by <xref ref="grv-zeta-hodge-series"/>. We now ask when rationality holds at the level of Chow motives. For a rational Chow motive <m>M</m>, the symmetric power <m>\Sym^nM</m> is the image of the idempotent <m>(n!)^{-1}\sum_{\sigma\in S_n}\sigma</m> on <m>M^{\otimes n}</m>. Rational coefficients and idempotent completeness allow this construction. Define
+      <md number="no">\zeta_M(t)=\sum_{n\geq0}[\Sym^nM]t^n\in K_0^{\oplus}(\mathrm{Chow}(k)_{\Q})[[t]].</md>
+      As in <xref ref="grv-zeta-rational-definition"/>, rationality means <m>P(t)/Q(t)</m> with <m>Q(0)=1</m>.</p>
+    <proposition xml:id="grm-finite-dimensional-zeta">
+      <statement><p>Suppose <m>M=M_+\oplus M_-</m>, with <m>\bigwedge^a M_+=0</m> and <m>\Sym^bM_-=0</m> for all sufficiently large <m>a,b</m>. Then <m>\zeta_M(t)</m> is rational.</p></statement>
+      <proof><p>The standard symmetric and exterior power identities in a rational idempotent complete symmetric tensor category give
+          <md number="no">\zeta_M(t)=\frac{\sum_{j\geq0}[\Sym^jM_-]t^j}{\sum_{i\geq0}(-1)^i[\bigwedge^iM_+]t^i}.</md>
+          The vanishing assumptions make both sums polynomials; the denominator has constant term <m>[\one]=1</m>.</p></proof>
+    </proposition>
+    <p>The hypothesis is Kimura–O'Sullivan finite dimensionality, and holds for motives of products of smooth projective curves. Let <m>X=C_1\times C_2</m> over <m>\C</m>, with both genera greater than one. The geometric Kapranov series is nonrational by <xref ref="grv-zeta-surface-criterion"/>, whereas its image in rational Chow motives is rational by the proposition. The comparison uses compatibility of the motivic Euler characteristic with symmetric powers over rational coefficients; André explains the two conclusions together in <xref ref="grm-bib-andre" detail="Sections 2.4.2–2.5.1"/>. Thus a rational series after realization need not lift to a rational series of varieties. The finite-dimensionality hypothesis is being applied to these curve-generated motives, not to arbitrary Chow motives.</p>
+  </section>
+</chapter>

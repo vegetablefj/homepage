@@ -2,151 +2,133 @@
 
 [Guide index](README.md)
 
-These are the author's requirements for drafting, substantially rewriting, and expanding study notes. They govern the note's organization, depth, and treatment of supporting theories. Use the [style reference](style-reference.md) for language and notation, and [Paper writing and revision](paper-revision.md) for a wording-only edit. PreTeXt implementation is covered in the repository's [notes guide](https://github.com/vegetablefj/homepage/blob/main/NOTES.md).
+These are the author's requirements for drafting, rewriting, and expanding study notes. Use the [style reference](style-reference.md) for language and notation, [Paper writing and revision](paper-revision.md) for a wording-only edit, and the repository's [notes guide](https://github.com/vegetablefj/homepage/blob/main/docs/note-authoring.md) for PreTeXt implementation.
 
 ## Establish the task
 
-Infer what is already clear from the request and conversation. Ask only about missing information that materially changes the result; continue independent work.
+Infer the topic, sources, reader, scope, permitted changes, and deliverable from the request and conversation. Ask only about missing information that materially affects the result; continue independent work.
 
-- Topic and material: [source files, references, or the question discussed].
-- Reader: [assumed background and desired depth].
-- Scope and preservation: [whole note or selected passage; all substantive source content or selected material].
-- Permitted changes: [reorder, change notation, split or combine results, add proofs and examples].
-- Deliverable: [editable source and format, or text only].
+For an existing note, read its `brief.md` for note-specific decisions and follow the current request. Keep the brief concise: record the intended reader, scope, organizing references, consequential conventions, and unresolved questions when these have been established. Link to the preface, bibliography, or a topic plan rather than duplicating them. Use the [brief template](https://github.com/vegetablefj/homepage/blob/main/docs/note-brief-template.md) when needed. General writing standards stay in this guide; website settings and publication visibility belong in the technical configuration.
 
-Prioritize mathematical correctness, faithful scope and attribution, clear exposition, then brevity. Reduce what the intended reader must reconstruct: definitions, maps, reductions, and dependencies. Develop the note around the questions the reader needs answered.
+Prioritize mathematical correctness, faithful scope and attribution, clear exposition, then brevity. Apply these requirements with judgment. Mathematical checks belong in the working process; include their explanations in the note when they help the reader understand the mathematics. Avoid turning every check into a warning, comparison, or statement about what the note does not do.
 
 ## Reshape the whole before polishing sentences
 
-For new or substantially rewritten notes, use the overall order **Preface → main body → Appendix → References**. Plan these parts together before expanding chapters:
+For new or substantially rewritten notes, use **Preface → main body → Appendix → References**, with appendices included when useful.
 
-- **Preface:** begin with concrete mathematical objects, their relevant properties, and the questions that motivate their study. State the note's aim through this mathematics, using concise notation and formulas where they help. Include useful theorem statements, background, and literature with accurate, concise attribution. Explain the scope, level of detail, principal results, and organizing ideas. Identify the intended reader and prerequisites. Give the chapter route and dependencies, then discuss relevant adjacent topics, related notes, and further reading. Add a short statement about continuing revisions and a factual acknowledgment of AI assistance. Use the parts that apply to the note. A linear route usually needs only prose; branching chapters or converging arguments may benefit from a diagram. Adapt the [Preface template](#preface-template).
-- **Main body:** develop the definitions, constructions, results, examples, and proofs in their mathematical order. Essential hypotheses and dependencies must be available where needed.
-- **Appendix:** collect substantial technical complements, detailed comparisons, or alternative proofs that would interrupt the main reading route. Explain their connection to the body and provide links in both directions. Do not move essential definitions or hypotheses here merely to shorten a chapter.
-- **References:** give the complete, consistent bibliography for cited material after the appendices. Connect each entry to its actual uses; make sources of borrowed viewpoints and arguments identifiable.
+- **Preface:** introduce the mathematics, scope, organizing ideas, and reading route. Adapt the [Preface template](#preface-template).
+- **Main body:** develop the objects, constructions, results, examples, and proofs in a coherent mathematical order.
+- **Appendix:** give substantial technical complements, comparisons, or alternative proofs that would interrupt the main route. Keep essential definitions and hypotheses available in the body and link to the supplement where needed.
+- **References:** provide a consistent bibliography for the sources actually used.
 
-Further results and problems are optional. Their inclusion and length should follow the note's purpose, scope, and intended reader. Place further results primarily in the corresponding chapters, usually near their ends, as a few paragraphs or a short subsection. Give exact hypotheses and sources, and explain the connection to the chapter. Select material for its mathematical relevance; a recent date alone does not justify inclusion. Technical proofs may be summarized or cited under the rules below. Keep external theories within the declared scope.
+Organize chapters and sections around mathematical topics or arguments. Keep closely related constructions, formulas, proofs, and examples together. Choose separate or combined statements according to their mathematical roles and clarity. Routine consequences and short calculations can remain in the surrounding prose. Preserve detail and useful reference anchors when reorganizing; decide divisions by the mathematics rather than quotas for words, headings, or formal blocks.
 
-Further problems may be collected at the end. Choose a short closing discussion, a section, or a separate chapter according to the nature of the note; a dedicated chapter is optional and belongs before the appendices. Organize it around precise questions, with concise accounts of known cases and remaining difficulties. Refer to the results in the corresponding chapters instead of repeating their full statements. Distinguish attributed conjectures from questions raised in the notes, and do not invent an open problem merely to accompany a known result. Check source versions and current status before calling a question open; an unsuccessful search is insufficient.
+When examples share a method, explain it once and compare the changing data and conclusions, using a table if helpful. Distinguish constructions for general members from extensions to an entire family. State substantial conclusions where readers can find and cite them.
 
-In the reader-facing contents, list each appendix, References, and any Index directly alongside the chapters. Omit an intermediate "Back Matter" heading or landing page. In PreTeXt source, retain the native `backmatter` container for these divisions; the display hierarchy is separate from the source structure. An optional index may follow the references.
+Further results belong primarily in the corresponding chapters. Further questions may be gathered at the end, in a discussion, section, or chapter according to the note's nature. Use "Further problems" as the default chapter title; individual items may be labelled "Question". Include relevant known cases and sources, refer back to earlier results, and distinguish attributed conjectures from questions proposed in the notes. Select material for its mathematical relevance and verify current status before calling a problem open.
 
-For new notes or substantial rewriting, determine the main questions, dependency order, and background to assume or supply. Explain the need for an important construction; a worked example can precede its abstract definition. Related definitions or statements can share a numbered item with parts. Separate results when their hypotheses, roles, or proofs differ.
+For website notes:
 
-When several examples use the same argument, explain the common construction once and compare the varying hypotheses, objects, and conclusions concisely; a table may help. Distinguish a construction valid for general members from its extension to a whole family by specialization or another theorem. Give substantial conclusions a statement readers can locate and cite, with their exact range.
+- List each appendix, References, and any Index alongside the chapters, without a separate Back Matter heading or landing page. Keep the native backmatter container in PreTeXt source.
+- Normally use one complete chapter per page, with sections and subsections as anchored headings. Use deeper pagination only when those units contain substantial material and the split improves reading. Contents depth, pagination, and numbering are separate choices; verify the actual output rather than copying a numerical setting.
+- Default to two-component, chapter-based numbering for statements and numbered equations, such as Proposition 3.7 and (3.4). Equations have their own sequence. Long notes may use section-based numbering when it helps navigation. Keep the chosen scheme consistent and preserve reference IDs and counter-sharing conventions.
+- An index is optional. Use it for useful lookup terms and notation, not to add explanations or definitions of assumed background. Write entries in lower case except for proper names, acronyms, and mathematical notation.
 
-Authorized rewriting permits replacing poor exposition, reorganizing proofs, changing confusing notation after checking its uses, and adding explanatory lemmas. Preserve the requested mathematical content. For a whole-source rewrite that must retain everything, keep a compact working map: source location → destination → treatment. Cover definitions, results, arguments, examples, substantive remarks, and qualifications. Record splits, mergers, and notation changes; check omissions before delivery. Local expansion only needs a check of the affected passage and dependencies.
+Authorized rewriting allows reordering, changing confusing notation, splitting or combining results, and adding explanations or proofs. Preserve the requested content and attribution. For a full-content rewrite, check that definitions, results, substantive arguments, examples, and qualifications survive; a source-to-destination map can help with a large reorganization. A citation supplements rather than replaces arguments that the task requires retaining.
 
 ## Either invoke a supporting theory precisely or develop it fully
 
-Treat the intended reader's background as known. Use standard notions from external theories directly when those theories are outside the note's scope. If a reminder helps, keep it brief and put it in a margin note. Invoking a theorem from another subject does not require a preliminary account of that subject's definitions. Retain the conventions and hypotheses needed for the actual application. Develop definitions belonging to the note's subject in the body. Define its own objects and constructions before using them, even when their surrounding theory is assumed. Give the defining map, sequence, triangle, or other data needed to identify the object, and distinguish it from related objects introduced earlier.
+Treat the intended reader's background as known. Use standard notions from external theories directly, retaining the conventions needed for the application; a brief margin reminder may help. Define the note's own objects and constructions with the data that identify them.
 
-For supporting material that needs further treatment, choose one of the following approaches before introducing a sequence of definitions or preliminary results:
+For supporting material requiring further treatment, choose a coherent approach:
 
-- **Use a black box.** State the exact result needed, its hypotheses, and any notation or nonstandard conventions needed to apply it. Give a precise source or a link to a complete treatment, verify the hypotheses in the present situation, and explain the conclusion obtained. A short explanation of its meaning or use may help; make the boundary of the assumed result explicit.
-- **Develop the required part of the theory.** Give it a coherent treatment in a section, chapter, appendix, or separate note. Supply the definitions, constructions, exact results, and mathematical connections needed to reach the stated goal from the declared prerequisites. Choose proof detail by expository role: develop instructive arguments, and give accurate outlines or precise verified references for complex technical proofs. Identify further results assumed as black boxes. Completeness concerns the declared mathematical scope and explicit dependencies; choose a scope that can actually be completed.
+- **Use a black box:** state the exact result and hypotheses, give a precise source, and check that it applies. Explain its use when the connection needs clarification.
+- **Develop the required part:** supply the definitions, constructions, results, and connections needed to reach a stated goal from the declared prerequisites. Give representative arguments in detail; complex technical proofs may be outlined or cited accurately.
 
-Avoid introducing a few definitions and fragments of proof, then relying on undeclared theory to finish the argument. Deliver the promised level of explanation, making assumed results and externally cited proofs explicit. For a substantial detour, provide a separate place for the coherent treatment and a precise reference at the point of use. Keep the dependencies free of cycles.
-
-Brief intuition, examples, and margin notes can explain a black box without presenting themselves as its proof. In a rewrite required to preserve the source's full content, retain its substantive arguments as well; a citation supplements those arguments rather than replacing them.
+Complete the chosen mathematical scope. Avoid fragments of a supporting theory followed by reliance on undeclared machinery. A substantial detour can have its own chapter, appendix, or separate note. Short intuition and examples may explain an external result without serving as its proof. Once the role of the input is clear, no repeated disclaimer about the omitted theory is needed.
 
 ## Define objects and use stable language
 
-Within the declared scope, seek broadly applicable definitions and results with justified hypotheses. Compare useful directions of generality instead of assuming there is one strongest formulation. Give a clear main version, valuable variants, and recognizable common cases, explaining the choice. Establish the additional argument needed for a broader statement; develop its supporting theory under the rule above. Generality should improve the treatment of the chosen questions, not extend the project indefinitely.
+Seek useful generality within the note's scope. Give a clear main formulation and valuable variants or common cases; justify broader claims rather than importing them through a change of wording. Generality should improve the treatment of the chosen questions.
 
 ### Defining data and quantifiers
 
-Check a definition's data, axioms, quantifiers, and variable ranges. When a definition concerning \(A\) uses \(B\), distinguish internally:
+When a definition concerning \(A\) uses \(B\), distinguish:
 
-- An existence property of \(A\): \(P(A)\iff\exists B\,R(A,B)\).
-- Specified structure: the object is \((A,B)\), with \(R(A,B)\).
-- A parameter \(B\) fixed by the surrounding conventions, on which the definition depends.
-- An auxiliary choice, witness, or representative \(B\), whose role must be stated.
+- An existence property: \(P(A)\iff\exists B\,R(A,B)\).
+- Specified structure: the object is \((A,B)\), satisfying \(R(A,B)\).
+- A parameter fixed by the context.
+- An auxiliary choice, witness, or representative.
 
-Separate existence from choosing a witness, uniqueness, and a canonical choice. Distinguish “some admissible \(B\)” from “every admissible \(B\)”, checking existence where needed to avoid a vacuous inference. Choosing a witness alone does not establish independence. If a construction depends only on \(A\), justify that claim; otherwise retain its dependence on \(B\). Morphisms and equivalences must respect specified structure in the adopted sense.
+Check quantifiers, ranges, and existence, including the difference between "some" and "every". Separate existence, uniqueness, and a canonical choice. Justify independence of auxiliary choices when claimed; otherwise keep the dependence visible. Morphisms and equivalences must respect the specified structure.
 
-Apply this check to authoritative sources too, reading the ambient category and global conventions before interpreting an omitted \(B\). In finished prose, encode the correct data and quantifiers in natural standard definitions. Once they are clear, avoid repeating the distinction in explanatory prose. Keep comparisons that affect a construction, hypothesis, or conclusion; a concrete example may explain the difference better than another warning about choices or canonicity. Report a material unresolved ambiguity for review, with its source location, rather than silently choosing an interpretation or alleging an error.
+Apply these checks to authoritative sources too, taking global conventions into account. Express the adopted definition naturally and correctly. Keep significant comparisons when they affect meaning or use, perhaps as a remark; do not repeatedly explain distinctions already encoded in the definition. Investigate material ambiguities before choosing an interpretation.
 
 ### Conventions, notation, and prose
 
-Specify the base field or ring, finiteness, variance, composition order, normalization, and size when relevant. Global conventions need not be repeated. Compare mathematical conditions before unifying terminology or notation. Explain differences that affect meaning or use, and give the hypotheses under which formulations agree. Preserve different notions even when sources share a name, and check errata. Put short comparisons near their first use, often in a margin note, and give longer discussions a complete place.
+State relevant conventions about the base, finiteness, variance, normalization, and size. Define symbols near their use and keep them stable within their scope. Compare meanings before unifying terminology across sources; preserve genuinely different notions and explain consequential differences. Compatible conventions across related notes help, without requiring universal notation.
 
-Define local symbols nearby and collect shared conventions briefly. Keep names stable within their scope; compatible conventions across related notes help, but different contexts need not share one universal symbol. A cross-note reference should identify the exact result, its required assumptions and conventions, any needed translation, and a link to its full treatment. Internal links should likewise point to the actual statement, construction, or proof promised by the surrounding sentence. When definitions or notation change, check affected statements, proofs, formulas, references, and dependent notes. Preserve valid IDs, macros, and links unless their revision is part of the task.
+Link to the actual result or construction used. Add assumptions or notation translations when the application requires them, rather than restating them at every reference. Check affected statements and links after changing notation.
 
-An index is optional. Include one when the length, range of topics, or alternative terminology makes it useful for lookup. A focused note may be served well by its contents, cross-references, and search. If an index is included, link significant terms, alternative names, and useful notation to their definitions or main discussions. Use it to locate content, not to repeat explanations or add definitions of assumed background. Retain useful existing entries and check their destinations when the text changes.
+Use familiar mathematical notation throughout the note, including explanatory passages. Give objects, maps, hypotheses, relations, and calculations directly in symbols where that is clearer. Display substantial formulas and connected derivations. Let prose explain reasons, choices, and mathematical connections, instead of replacing the mathematics with long descriptions or translating every formula back into words. Break overloaded passages at meaningful mathematical steps and keep formulas part of grammatical, punctuated sentences.
 
-Write index entries in lower case, preserving proper names, acronyms, and mathematical notation: `primitive cohomology`, `Tate twist`, `Bridgeland stability condition`, `K3 surface`. Use the same capitalization as in ordinary prose.
-
-Use concise, idiomatic chapter and section titles. For topic headings, prefer omitting an initial "The" when the shorter wording is natural and preserves the meaning. Judge particular constructions and theorem names individually; keep necessary articles and the intended singular or plural. Follow the [heading guidance](style-reference.md#mathematical-typography-and-source-formatting) and check titles in the contents together.
-
-Develop one mathematical point per paragraph in connected sentences. Prefer existing accurate terms to synonyms chosen for variety. Keep modifiers next to their objects; repeat a symbol when a pronoun is ambiguous. Use “respectively” only for an ordered correspondence. Distinguish indices from indexed elements, inclusion from strict inclusion, and equality from isomorphism.
-
-Check which object bears each property: a representative, class, family, image, quotient, action, or lattice. Write “classification of stable objects” when the objects are stable; “stable classification” changes the claim. Do not introduce “canonical”, “natural”, “unique”, or “maximal” without a precise meaning and justification.
-
-Use “We use Proposition 3” instead of “The key ingredient is to leverage Proposition 3”. Avoid empty emphasis, invented noun clusters, and engineering metaphors; retain genuine technical terms. Integrate formulas into punctuated sentences and display long relations. Choose theorem environments by mathematical role; avoid invented parenthetical theorem names. Use recognized names and attribution where appropriate. Apply the detailed word preferences contextually, never by blind substitution.
+Write plainly, with accurate established terminology and explicit mathematical subjects. Avoid empty emphasis, invented terminology, unnecessary qualifiers, and repetitive summaries. Follow the detailed [style reference](style-reference.md), applying word preferences in context. Keep titles short and consistent; omit an initial "The" when the shorter heading is natural, while preserving necessary articles and meaning.
 
 ## Make proofs informative and checkable
 
-Develop representative constructions and proofs central to the learning goal in detail. State routine implications briefly. Complex or technical proofs may be summarized or cited according to their role in the exposition. Mark an outline as such, give its main steps and inputs, and identify omitted technical parts with a verified source for the full argument. Keep exact hypotheses and explain how the result is used. Check the deductions connecting the cited inputs: an outline still requires a valid implication at each step. Attribute only conclusions supplied by the cited result, and justify any further inference. Weaker hypotheses, stronger conclusions, and new assertions require their own justification or a verified applicable proof. For example, replacing “finite-dimensional” by “arbitrary” in a claim that \(V\to V^{**}\) is an isomorphism is not a language edit.
+Match each chapter's depth to its learning goal and prerequisites. Decide which methods the reader should learn here, which external results are assumed, and which intermediate deductions connect them. A literature overview and a detailed proof account require different treatments. Develop representative constructions and core methods; routine implications can be brief, and complex technical proofs may be summarized or precisely cited.
 
-For long proofs, state intermediate claims with exact hypotheses and conclusions, then explain why they suffice before proving them. Construct important maps with sources and targets before asserting naturality or invertibility. Show a short inverse construction or calculation when it explains how the objects or formulas are connected. Specify its domain of validity and separate what it proves from any existence or extension result still supplied by a citation. When shrinking, changing base, or replacing an object, justify the operation, identify preserved hypotheses, and return to the original goal. Establish independence of choices by an appropriate equality or comparison; when comparison maps are used, specify them and check the required compatibility. Keep characterization, uniqueness, existence, and verification logically distinct.
+Identify a proof outline as such and supply its main steps and sources for omitted details. Check the deductions connecting its inputs. Attribute only what the cited result supplies and justify further inferences. Broader hypotheses, stronger conclusions, and new assertions require their own arguments.
 
-Locate where consequential assumptions are used. Check well-definedness, implication directions, and relevant exceptional cases. Select examples and counterexamples that explain definitions or hypotheses; retain alternative proofs when they reveal different mechanisms. If a route fails, examine the precise obstruction or a counterexample rather than restating the desired conclusion.
+For long arguments, organize intermediate claims around the goal. Construct important maps with their sources and targets, justify changes of base or replacements, and establish the relevant well-definedness, choice independence, and compatibility. Keep existence, characterization, and verification distinct. Use formulas, calculations, diagrams, or short intermediate results when they make a compressed step easier to follow.
 
-Replace “The map is well-defined, clearly” by a verification. For a homomorphism \(f:A\to B\) of abelian groups and subgroups \(N\subseteq A\), \(M\subseteq B\) with \(f(N)\subseteq M\): “If \(x-x'\in N\), then \(f(x)-f(x')\in M\), so \(f(x)+M\) depends only on \(x+N\).”
+Preserve useful mathematical guidance from textbooks: why a construction is chosen, where assumptions matter, how results connect, and how abstract statements lead to concrete calculations. Select examples, counterexamples, or alternative proofs for what they explain. Expand identifiable missing steps or applications according to the reader's needs, rather than matching a textbook's length or reproducing all its background theory.
 
 ## Compare and integrate sources
 
-Actively survey and integrate multiple reliable sources for each substantial topic. Use established textbooks, specialist monographs, author notes, original articles, and maintained references according to their strengths. Assess mathematical relevance, precision, availability of arguments, versions, and corrections. Choose an organizing reference when helpful, but seek complementary treatments, broader or sharper formulations, alternative proofs, explanations, and independent checks. Authority and repeated agreement do not replace evidence; several sources may repeat the same argument or mistake. Add sources for a mathematical contribution, not a quota. Once the declared scope is covered and material differences are resolved or explicitly identified, continue the writing rather than gathering references indefinitely.
+Actively integrate multiple reliable sources according to their strengths: textbooks, monographs, author notes, original papers, and maintained references. Choose an organizing reference when helpful, and seek complementary formulations, proofs, examples, and viewpoints. Compare terminology, conventions, hypotheses, and conclusions before combining treatments. Organize the note around the mathematics, not successive summaries of papers.
 
-Read the relevant passages, including global conventions, before claiming verification. For substantial integration, keep a concise working map of concepts or claims, source versions and locators, assumptions, relationships between arguments, the adopted formulation, and unresolved differences. Extend an existing preservation map rather than duplicating records. Organize the exposition around mathematical questions and dependencies; synthesize the sources' contributions rather than presenting successive summaries. Bring consequential comparisons into the reading text; the working map itself need not be published.
+Read the relevant passages, including global conventions, and check versions and corrections. Authority and agreement do not replace evidence. Examine key statements and arguments for hidden assumptions, gaps, or counterexamples even when sources agree. Distinguish convention differences, compressed arguments, typographical errors, established defects, and unresolved concerns. Before alleging an error, locate the precise claim and check the proof and errata. Correct verified defects transparently and trace their consequences; keep uncertain criticism narrowly qualified.
 
-Actively check key source statements and the arguments actually used for hidden assumptions, gaps, and possible counterexamples; source disagreement is not the only trigger. Investigate concerns through the proof, relevant cases, and independent evidence. Distinguish a harmless convention difference, a typographical error, an omitted argument, a false assertion, and an unresolved conflict. A compressed step may need expansion for this reader without being an error in the source. Before alleging a defect, check the version, surrounding conventions, and errata. Record the exact location and claim, supporting reasoning or a counterexample, any established repair, and the effect on dependent results. Correct established defects transparently and trace their downstream consequences. In a full-content rewrite, preserve the original claim's place in the correspondence and explain its correction; do not silently discard it or reproduce it as valid. Keep uncertain criticism explicitly unresolved and narrowly scoped.
+Use working comparisons or source maps when the material warrants them, without imposing a fixed record for every topic. Bring differences into the note when they affect understanding or application. Once the scope is covered and consequential differences are resolved or identified, continue writing rather than accumulating sources indefinitely.
 
-Select important viewpoints and integrate them in fresh language, preserving qualifications and attribution. Cite a result, motivation, reduction, or proof strategy where used; give verified locators, and use “see also” for supplementary sources. Distinguish the source author's explanation, later developments, and this note's interpretation. Check current status before calling a historical question open; unsuccessful lookup establishes neither novelty nor priority. Unavailable evidence remains identified as unverified.
+Integrate important viewpoints, motivations, and proof strategies in fresh language with accurate attribution. Cite them where used, as well as theorems. Distinguish original contributions, later developments, and the note's interpretation. Verify locators and bibliographical details; never invent them. Use linked alphabetic author-year citations such as AB26, preserving valid keys and distinguishing versions where relevant.
 
-For exceptionally recent results or work with substantial AI involvement, cautious attribution is appropriate while substantial verification is still pending: “The authors claim that ...” or “The following result is claimed in [source].” Match this wording to the available mathematical evidence and scrutiny. A brief qualification at the statement usually suffices. Make conclusions that depend on such a claim conditional, and revisit the wording when its status becomes clearer.
-
-Use consistent alphabetic author-year labels such as `AB26`, disambiguating collisions. Use actual citation links and bibliography entries, not typed bracketed labels. Preserve existing citation keys, distinguish editions and publication versions, and verify metadata before updating it. Never invent a locator or bibliographical field. A source describing an isomorphism class need not provide the coordinates used here.
+Check current literature before declaring a problem open or attributing novelty. For exceptionally recent results or work with substantial AI involvement whose correctness remains insufficiently examined, a brief attribution such as "The authors claim that ..." is appropriate. Keep dependent conclusions conditional and revisit the wording as the status becomes clearer. A concise qualification usually suffices.
 
 ## Add explanations at their point of need
 
-Use footnotes and margin notes actively for short calculations, local proof details, notation translations, assumptions, intuition, examples, and source comments. Anchor each to its passage; readable displayed formulas and references are welcome. Essential hypotheses, constructions, estimates, and logical steps remain in the body. Long supplements belong in remarks, lemmas, subsections, or appendices, with nearby links.
+Give substantial mathematical explanations and distinctions a suitable form. A **remark** can carry an important viewpoint, equivalent formulation, relation to the literature, boundary, or counterexample worth retaining or referring to. Use remarks selectively and support their claims by reasoning or sources. Keep indispensable steps in the main argument; use ordinary paragraphs for local transitions.
 
-When conversation reveals a misunderstanding, check it against definitions and sources, then insert the reusable explanation at the affected passage. Update dependencies if a convention or claim changes. Integrate the explanation into the note's prose. Diagrams and interactive examples should resolve a concrete question. The surrounding mathematical discussion can supply their text explanation; add a separate explanation only when needed. Demonstrations do not replace general proofs.
+Use footnotes and margin notes actively for short calculations, proof details, notation translations, intuition, examples, and source comments. Anchor them to the relevant passage; formulas and references are welcome. Keep essential hypotheses and the main logical route in the body. Longer supplements belong in a coherent remark, subsection, or appendix.
+
+When discussion reveals a misunderstanding, check it against definitions and sources, then integrate a reusable explanation where it is needed. A formula, worked example, or brief remark may be more effective than another paragraph of commentary. Avoid repeating the same qualification in several places or adding explanations solely to satisfy a checklist.
 
 ## Review the actual result
 
-Check coverage and dependencies, mathematical claims and source comparisons, notation, links, and any index, then English and presentation. Verify that supporting theories are usable black boxes or completed treatments within their declared scope. Inspect the draft and diff for missing conditions, unsupported generalizations, altered attribution, unresolved conflicts hidden by unified wording, broken references, and remaining reading obstacles. Trace changes to affected dependents, fix findings, and recheck affected passages without repeating unrelated work.
+Reread the revised chapters as connected mathematics. Check scope and coverage, core arguments, source integration, notation, language, and references; follow changes to affected passages. Distinguish developed proofs, legitimate external inputs, and missing deductions. Read folded proofs and arguments outside formal proof environments before judging depth. Page length, statement counts, and comparison with textbook size do not determine completeness.
 
-Distinguish established proofs, conditional results, computations, conjectures, and gaps. Model agreement and successful builds do not certify mathematics. Report only checks actually performed. Correct established errors within scope and disclose substantive changes; otherwise identify the exact unresolved claim and its effect. Deliver the complete requested unit and its source, keeping working records and routine checklists out of reading text.
+Inspect the built contents and representative pages for the agreed hierarchy, pagination, numbering, links, and readability. Successful builds and model agreement do not certify mathematics or good exposition. Base findings on specific passages, report the scope of any sampling, and identify substantive unresolved issues and their effects. Keep routine working records and checklists out of the reading text.
 
 ## Preface template
 
-Use this template as an outline of the content and its order. Adapt the sentences and paragraph divisions to the actual mathematics. Replace the bracketed fields with concise text, verified citations, and working links. State the scope, prerequisites, organization, and sources directly. Keep only sentences that describe the actual contents.
+Use this as an adaptable outline, not a form that every note must fill. Begin with concrete objects, formulas, and questions that establish the note's purpose. Place useful history and literature around that mathematics. The preface may contain theorem statements when they clarify the aim or principal results.
 
-- Open with the objects under study, concrete properties or constructions, and the questions they raise. Explain why they are worth studying through a mathematical connection, consequence, or application. Let these observations establish the note's overall aim before describing its organization.
-- Use familiar mathematical notation for objects, conditions, invariants, and short relations. For a smooth complex cubic fourfold \(X\), for example, write \(h^{3,1}(X)=1\). Use prose to explain the significance of the relation rather than restating it at greater length. Introduce the notation needed at this point and keep formulas part of grammatical sentences. The balance of formulas and prose should follow the mathematics.
-- The preface may contain theorem statements, including motivating results, central comparisons, and principal conclusions. Give the relevant hypotheses and conclusions, with attribution and a link to the proof or source. Use such statements where they clarify the mathematical purpose or organization. The main-result sentence below can become a theorem block, or be omitted when there is no single main theorem.
-- Place the useful history and literature around this mathematical account. Credit the relevant authors accurately and concisely, including independent contributions where appropriate. Add historical claims only when supported by sources.
-- Omit the adjacent-topic paragraph when no suitable related note or reference is available. The reference paragraph can reuse the main sources; it does not require additional sources.
-- Give one reading route unless an alternative helps. Use section references for a shorter note. Explain conventions when they affect the mathematics or its interpretation. Omit routine interface commentary about what an index locates or which nodes are clickable. Let the chapter route explain the map's mathematical content.
+Explain the scope and level of detail, organizing ideas, and chapter route. Add relevant adjacent topics and reading recommendations when useful and available. End with a short statement about continuing revisions and factual AI assistance. Keep attribution accurate and concise. Omit inapplicable material and avoid generic descriptions that say little about the actual mathematics.
 
 ### Preface
 
-Let [objects with the necessary hypotheses]. [Concrete properties or constructions, using mathematical notation where helpful.] These lead to [specific question or comparison]. These notes study [precise mathematical goal].
+Let [objects with the necessary hypotheses]. [Concrete properties or constructions, using familiar notation and formulas.] These lead to [question or comparison]. These notes study [mathematical goal].
 
-[Brief account of the relevant results and their development, with sources and concise attribution.]
+[Brief history and relevant results, with sources and concise attribution.]
 
-These notes cover [scope] and assume familiarity with [prerequisites]. The main result is [statement with essential hypotheses and a link]. We give the main constructions and arguments in detail. Some longer technical proofs are outlined or cited from the literature; the results used here are stated with their hypotheses.
+These notes cover [scope] and assume [prerequisites]. [Main theorem or principal conclusions, with essential hypotheses and references where useful.] We develop [central constructions and arguments]; [technical results whose proofs are outlined or cited].
 
-We organize the material around [main idea and how it connects the parts].
+The organizing idea is [the mathematical connection that guides the treatment]. The chapters follow [route, links, and useful dependencies]. The appendices contain [substantial complements, if any].
 
-The chapters follow [route, with links and important dependencies]. The appendices contain [supporting material].
+For [adjacent topic], see [related note or source and its connection]. [Brief description of relevant topics outside this note when useful.]
 
-For [adjacent topic], see [related note or reference and its connection to these notes].
-
-For further reading, [references and the topics for which each is useful].
+For further reading, [main references and the subjects or viewpoints for which each is useful].
 
 I plan to keep updating these notes to correct errors, improve explanations, and add useful material. Corrections, questions, and suggestions are welcome.
 
@@ -154,25 +136,8 @@ AI tools assisted with [tasks actually performed] in preparing these notes.
 
 ### Optional dependency diagram
 
-Add a structure map after the chapter route and before related reading when it helps explain the dependencies. A linear route usually needs only prose. Use short chapter titles for a reading map, and intermediate statements for a proof map. Show the main branches and where they meet; check each arrow against the actual text. Distinguish mathematical dependencies from suggested reading order.
+Add a compact chapter map after the chapter route when it helps show the main branches and broad dependencies. A linear route usually needs only prose. Use chapter numbers and short titles, and select the connections that clarify the organization. This is an overview, without a formal audit or classification of every arrow.
 
-Use solid arrows for the main dependencies. Dashed arrows may distinguish secondary uses, such as an input needed in only one later section. Keep their meaning consistent within the map. An indirect dependency through other chapters may still be essential; an additional arrow is useful only if it conveys something the existing path does not. The chapter-route prose can explain these relations. Omit routine legends and explanations of links; add a short label only when needed to resolve an ambiguity.
+Use the common style in the [notes guide](https://github.com/vegetablefj/homepage/blob/main/docs/note-authoring.md#chapter-and-proof-diagrams): pale blue-gray rounded rectangles, dark text, and simple arrows. Keep labels and spacing readable and consistent, and let the layout follow the material. A single arrow style is usually enough. Additional legends or explanatory paragraphs are normally unnecessary.
 
-In this example, two arguments meet at a main theorem. Replace the labels and arrows with the actual dependencies. Use a tree only when the dependencies form a tree.
-
-```mermaid
-flowchart TD
-    A["Definitions and conventions"] --> B["Construction A"]
-    A --> C["Construction B"]
-    B --> D["Intermediate result A"]
-    C --> E["Intermediate result B"]
-    D --> F["Main theorem"]
-    E --> F
-    F --> G["Applications"]
-```
-
-Use precise, established mathematical labels. Shorten chapter titles while keeping the construction, result, or relation identifiable.
-
-Center the map and keep its text readable at narrow widths. Align a main linear branch when this makes the graph easier to follow; other graphs may need a different layout. Minimize crossings and make joins unambiguous. Preserve the mathematical dependencies when adjusting the layout.
-
-When the output supports it, make chapter nodes direct links to their chapters. Keep accessible descriptions and keyboard navigation, and verify the links in the built page. The repository's [notes guide](https://github.com/vegetablefj/homepage/blob/main/NOTES.md#chapter-and-proof-diagrams) gives the PreTeXt source formats, rendering choices, and checks.
+For website chapter maps, use clickable inline SVG by default. Check centering, readability, links, and accessibility at desktop and narrow widths. Proof diagrams near an argument may use more precise notation or TikZ.

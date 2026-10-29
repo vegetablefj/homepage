@@ -1,0 +1,91 @@
+name: Build and publish website
+
+# Run manually after reviewing the source changes. Build-only is the default;
+# deployment requires the explicit deploy input on main.
+on:
+  workflow_dispatch:
+    inputs:
+      deploy:
+        description: Deploy the successful build to the existing Pages site
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: homepage-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out sources
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install validation and diagram tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends \
+            default-jre-headless ghostscript poppler-utils \
+            texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-pictures texlive-fonts-recommended texlive-xetex
+
+      - name: Install pinned PreTeXt and validation dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -X utf8 tools/setup_validation.py
+
+      - name: Build and check the public site
+        run: |
+          python -X utf8 build.py
+          python -X utf8 tools/check_site_contract.py --site-only
+
+      - name: Check build tools
+        run: python -X utf8 -m unittest discover -s tools -p 'test_*.py'
+
+      # Keep .nojekyll as well as ordinary public files. The Pages composite
+      # action excludes dotfiles; use its documented single-tar format here.
+      - name: Package only the verified website
+        run: |
+          tar --dereference --hard-dereference --directory .build/site \
+            -cf "$RUNNER_TEMP/artifact.tar" .
+
+      - name: Upload only the built website
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
+          retention-days: 1
+          if-no-files-found: error
+
+  deploy:
+    if: inputs.deploy && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure the existing Pages site
+        uses: actions/configure-pages@v5
+
+      - name: Deploy the built website
+        id: deployment
+        uses: actions/deploy-pages@v4

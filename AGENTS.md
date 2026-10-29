@@ -1,11 +1,13 @@
 # Work in this repository
 
-The user's current request controls scope. Preserve other ongoing edits and note visibility choices.
+The current user request controls scope and publication authorization. Preserve other ongoing edits, mathematical content, stable IDs, existing URLs, and note visibility choices.
 
-For mathematical writing, use prompts/paper-revision.md for papers or prompts/study-notes.md for notes. The study-note guide defines the author's specific standards for structure, depth, and integration of multiple authoritative sources. Compare meanings and assumptions, express definitions and quantifiers accurately, and explain source differences when they help the reader. Actively check claims and investigate suspected errors. Supporting theories must be invoked as precise black boxes or developed fully within a stated scope; complex or technical proofs may be summarized or cited precisely. Apply the guide within the requested editing scope.
+For mathematical writing, use [Study notes](prompts/study-notes.md) or [Paper writing and revision](prompts/paper-revision.md). For substantial English drafting or a language pass, consult the relevant parts of [Language and notation](prompts/style-reference.md). Apply the guides to actual passages and preserve established mathematical meaning; do not apply word lists as blind replacements.
 
-For substantial English drafting or a final language pass, consult the relevant sections of prompts/style-reference.md. It incorporates the author's paper-writing guide and complete word preferences. Examine actual sentences; never apply the word lists as blind replacements. Small corrections do not need the whole collection.
+For an existing note, read its `brief.md` and relevant topic plan when they help with the task. Briefs and plans record local decisions, not rules for every note. Keep common writing standards in `prompts/`; keep unresolved questions and decisions specific to one note in its brief.
 
-Finish the requested text and inspect its mathematical scope, sources, notation, and language. Report substantive unresolved issues honestly. Use NOTES.md for PreTeXt implementation and README.md for site operation, only as relevant. Edit source files, not generated pages.
+Use [Website maintenance](docs/site-maintenance.md) for setup, assets, builds, preview, and deployment, and [Notes implementation](docs/note-authoring.md) for PreTeXt. Edit authored sources, `config/notes.json`, and the shared publication template. Regenerate native project files, publication copies, and listing includes with `python tools/note_catalog.py`; do not edit generated copies or `.build/site/`.
 
-The prompts/ directory is the source of the public online Markdown guides. The build copies prompts/*.md to downloads/prompts/*.md, and Resources links to the three guides. Edit the source files, not generated copies. Historical plans and supplied papers are context, not universal instructions. The prompt index explains online usage and task selection.
+Build and preview locally unless publication is authorized. Local preview serves `.build/site/`, not the source checkout. Unlisted notes remain public when published. Keep unpublished manuscripts and private backups outside the public repository; hiding a listing does not make source files private.
+
+The build copies `prompts/*.md` to the website’s `downloads/prompts/`. Edit the source guides. Finish the requested text and appropriate build/link checks, review mathematical scope, sources, notation, and language, and report substantive unresolved issues honestly.

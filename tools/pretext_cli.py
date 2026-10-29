@@ -8,6 +8,8 @@ import tempfile
 PROJECT = Path(__file__).resolve().parent.parent
 from runtime import configure
 configure()
+from note_catalog import ensure_catalog
+ensure_catalog(PROJECT)
 BUILD_TEMP = PROJECT / ".build/tmp"
 BUILD_TEMP.mkdir(parents=True, exist_ok=True)
 tempfile.tempdir = str(BUILD_TEMP)
@@ -35,13 +37,7 @@ core.pretext.release_temporary_directories = cleanup_scratch
 core.pretext._place_runestone_services = lambda *args, **kwargs: None
 core.pretext._cdn_runestone_services = lambda *args, **kwargs: None
 
-def use_packaged_theme(xml, publisher_variables, temporary_directory):
-    """Use official CSS and honor the publication's native color options."""
-    from lxml import etree
-    publication = etree.parse(str(PROJECT / "publication/publication.ptx"))
-    css = publication.find("html/css")
-    options = {key: value for key, value in css.attrib.items() if key != "theme"}
-    core.pretext._move_prebuilt_theme(css.get("theme", "default-modern"), {"options": options}, temporary_directory)
-
+from pretext_theme import use_packaged_theme
+core.build_or_copy_theme = use_packaged_theme
 core.pretext.build_or_copy_theme = use_packaged_theme
 runpy.run_module("pretext", run_name="__main__")

@@ -13,7 +13,7 @@ from urllib.parse import quote
 from urllib.request import urlopen
 import webbrowser
 
-from preview_server import PROTOCOL, ROOT
+from preview_server import PROTOCOL, ROOT, SITE
 
 
 def server_info(port):
@@ -21,7 +21,7 @@ def server_info(port):
         with urlopen(f"http://127.0.0.1:{port}/__preview/info", timeout=1) as response:
             info = json.load(response)
         if (info.get("protocol") == PROTOCOL
-                and Path(info.get("root", "")).resolve() == ROOT):
+                and Path(info.get("root", "")).resolve() == SITE.resolve()):
             return info
     except (OSError, URLError, ValueError, AttributeError):
         pass
@@ -51,7 +51,7 @@ def ensure_server(port):
     with (reports / "editor-preview-server.log").open("ab") as log:
         server = subprocess.Popen(
             [sys.executable, "-X", "utf8", str(ROOT / "tools/preview_server.py"),
-             "--port", str(port), "--root", str(ROOT)],
+             "--port", str(port), "--root", str(SITE)],
             stdout=log, stderr=subprocess.STDOUT, **options)
     for _ in range(40):
         info = server_info(port)

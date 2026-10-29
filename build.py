@@ -20,7 +20,8 @@ from tools.runtime import configure
 configure()
 from lxml import etree, html
 
-OUT = ROOT / ".build/site"
+OUT = ROOT / ".build/staging"
+SITE = ROOT / ".build/site"
 REPORTS = ROOT / ".build/reports"
 COPYRIGHT = "© 2026 Jie Fu. All rights reserved."
 
@@ -181,8 +182,10 @@ def update_banner(document):
     banner.append(current_title)
 
 def note_targets(selected=None):
+    from tools.note_catalog import ensure_catalog
+    ensure_catalog(ROOT)
     project = etree.parse(str(ROOT / "project.ptx"))
-    settings_path = ROOT / "publication/note-settings.json"
+    settings_path = ROOT / "publication/generated/note-settings.json"
     settings = json.loads(settings_path.read_text(encoding="utf-8")) if settings_path.exists() else {}
     defaults = settings.get("defaults", {})
     notes = []
@@ -354,7 +357,27 @@ def finish_pages(directory, is_note=False, macros=None, footnotes="margin", meta
         for attachment in (ROOT / "source/assets").glob("*.pdf"):
             shutil.copy2(attachment, OUT / "pdfs" / attachment.name)
         shutil.copytree(ROOT / "vendor", OUT / "vendor", dirs_exist_ok=True)
+        static = ROOT / "source/static"
+        if static.is_dir():
+            shutil.copytree(static, OUT, dirs_exist_ok=True)
+        for name in ("CNAME", ".nojekyll"):
+            shutil.copy2(ROOT / name, OUT / name)
+        copy_note_authoring_guide()
         copy_writing_prompts()
+
+
+def copy_note_authoring_guide():
+    """Keep the public guide URL and resolve its links after moving its source."""
+    from urllib.parse import urljoin
+    guide = (ROOT / "docs/note-authoring.md").read_text(encoding="utf-8")
+    base = 'https://github.com/vegetablefj/homepage/blob/main/docs/note-authoring.md'
+    def rebase(match):
+        target = match.group(1)
+        if target.startswith(('#', '/')) or urlsplit(target).scheme:
+            return match.group(0)
+        return '](' + urljoin(base, target) + ')'
+    guide = re.sub(r'\]\(([^)]+)\)', rebase, guide)
+    (OUT / "NOTES.md").write_text(guide, encoding="utf-8")
 
 
 def copy_writing_prompts():
@@ -446,82 +469,51 @@ def verify(notes):
         raise RuntimeError(json.dumps(report, indent=2))
     print("Built the homepage and independent PreTeXt notes. All local links resolve.")
 
-def check_generated_ignore_rules(generated):
-    """Check publishable paths without requiring them to be staged or tracked."""
-    if not (ROOT / ".git").exists() or shutil.which("git") is None:
-        return {"git_ignore_check": "skipped", "ignored_generated_files": []}
-    try:
-        result = subprocess.run(
-            ["git", "check-ignore", "--no-index", "-z", "--stdin"],
-            input="\0".join(sorted(generated)) + "\0", cwd=ROOT,
-            capture_output=True, text=True, encoding="utf-8",
-        )
-    except FileNotFoundError:
-        return {"git_ignore_check": "skipped", "ignored_generated_files": []}
-    if result.returncode not in (0, 1):
-        raise RuntimeError("Could not check generated files against Git ignore rules: " + result.stderr.strip())
-    ignored = sorted(path for path in result.stdout.split("\0") if path)
-    return {"git_ignore_check": "failed" if ignored else "passed", "ignored_generated_files": ignored}
-
-
-def publish_to_root(scopes=None, report_name="build-check.json"):
-    """Synchronize generated files, preserving user files and repository data."""
-    manifest_path = ROOT / ".site-files.json"
-    previous = set(json.loads(manifest_path.read_text(encoding="utf-8"))) if manifest_path.exists() else set()
+def publish_site(scopes=None, report_name="build-check.json"):
+    """Publish verified output into the ignored local site, never the source root."""
+    if SITE.resolve() != (ROOT / '.build/site').resolve():
+        raise RuntimeError('Unexpected preview output directory')
+    SITE.mkdir(parents=True, exist_ok=True)
+    manifest_path = REPORTS / 'site-files.json'
+    previous = (set(json.loads(manifest_path.read_text(encoding='utf-8')))
+                if manifest_path.exists() else
+                {p.relative_to(SITE).as_posix() for p in SITE.rglob('*') if p.is_file()})
     def in_scope(relative):
-        return scopes is None or any(relative == scope or relative.startswith(scope + "/") for scope in scopes)
-
-    generated = {path.relative_to(OUT).as_posix() for path in OUT.rglob("*") if path.is_file() and in_scope(path.relative_to(OUT).as_posix())}
-    publishing = check_generated_ignore_rules(generated)
-    report_path = REPORTS / report_name
-    report = json.loads(report_path.read_text(encoding="utf-8")) if report_path.exists() else {}
-    report["publishing"] = publishing
-    REPORTS.mkdir(parents=True, exist_ok=True)
-    report_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
-    if publishing["ignored_generated_files"]:
-        raise RuntimeError(
-            "Generated website files are excluded by Git ignore rules. Update .gitignore before publishing:\n"
-            + "\n".join(publishing["ignored_generated_files"])
-        )
-    protected = {".git", ".venv", ".build", "source", "publication", "xsl", "tools", "cv", "images", "prompts"}
-    protected_files = {"CNAME", ".nojekyll", ".gitignore", ".site-files.json", "AGENTS.md", "README.md", "NOTES.md", "project.ptx", "build.py", "requirements.txt", "Rebuild.ps1", "Start-preview.ps1"}
-
+        return scopes is None or any(relative == scope or relative.startswith(scope + '/') for scope in scopes)
+    generated = {p.relative_to(OUT).as_posix() for p in OUT.rglob('*')
+                 if p.is_file() and in_scope(p.relative_to(OUT).as_posix())}
+    forbidden = {'.git', '.private', 'source', 'config', 'tools', 'research', 'planning'}
+    for relative in generated:
+        if Path(relative).parts[0] in forbidden:
+            raise RuntimeError('Source or private path in website output: ' + relative)
     def destination(relative):
-        target = (ROOT / relative).resolve()
-        if not target.is_relative_to(ROOT.resolve()) or target == ROOT.resolve() or target.relative_to(ROOT.resolve()).parts[0] in protected or target.relative_to(ROOT.resolve()).as_posix() in protected_files:
-            raise RuntimeError("Unsafe generated-file destination: " + relative)
+        target = (SITE / relative).resolve()
+        if target == SITE.resolve() or not target.is_relative_to(SITE.resolve()):
+            raise RuntimeError('Unsafe site destination: ' + relative)
         return target
-
     for relative in sorted(generated):
         target = destination(relative)
-        target.parent.mkdir(parents=True, exist_ok=True)
         source = OUT / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
         if not target.is_file() or source.read_bytes() != target.read_bytes():
-            if target.is_file():
+            if target.exists():
                 target.chmod(target.stat().st_mode | stat.S_IWRITE)
-            for attempt in range(4):
-                try:
-                    shutil.copy2(source, target)
-                    break
-                except OSError as error:
-                    if getattr(error, 'winerror', None) != 1224 or attempt == 3:
-                        error.add_note(f'Updating generated file: {relative}')
-                        raise
-                    # Windows may briefly retain a mapped view of a web asset.
-                    time.sleep(0.5 * (attempt + 1))
-    for relative in sorted(relative for relative in previous - generated if in_scope(relative)):
-        target = destination(relative)
-        if Path(relative).parts[0] == 'pdfs':
+            shutil.copy2(source, target)
+    for relative in sorted(previous - generated):
+        if not in_scope(relative):
             continue
+        target = destination(relative)
         if target.is_file():
             target.chmod(target.stat().st_mode | stat.S_IWRITE)
             target.unlink()
-    retained = {relative for relative in previous if not in_scope(relative)}
-    manifest_path.write_text(json.dumps(sorted(retained | generated), indent=2) + "\n", encoding="utf-8")
-    if scopes is None:
-        print("Updated the repository-root website. Existing attachments and domain settings were preserved.")
-    else:
-        print("Updated the selected pages and files in the local website.")
+    REPORTS.mkdir(parents=True, exist_ok=True)
+    manifest_path.write_text(json.dumps(sorted({p for p in previous if not in_scope(p)} | generated), indent=2) + '\n', encoding='utf-8')
+    report_path = REPORTS / report_name
+    report = json.loads(report_path.read_text(encoding='utf-8')) if report_path.exists() else {}
+    report['publishing'] = {'destination': '.build/site', 'local_only': True,
+                            'generated_files': len(generated)}
+    report_path.write_text(json.dumps(report, indent=2), encoding='utf-8')
+    print('Updated the verified local preview in .build/site. No deployment was performed.')
 
 
 def included_sources(source, seen=None):
@@ -550,6 +542,8 @@ def included_sources(source, seen=None):
 
 
 def select_note(source_path=None, target_name=None):
+    from tools.note_catalog import ensure_catalog
+    ensure_catalog(ROOT)
     project = etree.parse(str(ROOT / 'project.ptx'))
     targets = project.xpath('//target[starts-with(@name, "note-")]')
     by_name = {target.get('name'): target for target in targets}
@@ -637,7 +631,7 @@ def verify_note(note):
                 # References into other notes or shared resources must be
                 # checked against the files that are actually being served.
                 if not target.is_relative_to(directory) and target != page.resolve():
-                    target = ROOT / target.relative_to(OUT.resolve())
+                    target = SITE / target.relative_to(OUT.resolve())
                 if not target.is_file():
                     broken.append({'page': page.relative_to(OUT).as_posix(), 'target': value})
                 elif url.fragment and target.suffix == '.html' and not parsed(target).xpath('//*[@id=$ref]', ref=unquote(url.fragment)):
@@ -705,7 +699,7 @@ def build_note(target, source=None):
     notes_area = (OUT / 'notes').resolve()
     if not directory.is_relative_to(notes_area) or directory == notes_area:
         raise RuntimeError('Unexpected note build directory')
-    if not (ROOT / 'home.html').is_file() or not (ROOT / 'layout.js').is_file():
+    if not (SITE / 'home.html').is_file() or not (SITE / 'layout.js').is_file():
         raise RuntimeError('Build the full website once before using the current-note shortcut.')
     if directory.exists():
         remove_generated_tree(directory)
@@ -717,7 +711,7 @@ def build_note(target, source=None):
     write_note_redirects([note])
     verify_note(note)
     scopes = [note['directory'].relative_to(OUT).as_posix(), note['id'] + '.html']
-    publish_to_root(scopes=scopes, report_name='note-build-check.json')
+    publish_site(scopes=scopes, report_name='note-build-check.json')
     write_editor_preview(note, source)
 
 
@@ -726,7 +720,7 @@ def build_all():
     # A failed or unavailable schema validator must stop before replacing output.
     subprocess.run([sys.executable, '-X', 'utf8', str(ROOT / 'tools/validate_sources.py')],
                    cwd=ROOT, check=True)
-    if OUT.resolve() != (ROOT / ".build/site").resolve() or not OUT.resolve().is_relative_to(ROOT.resolve()):
+    if OUT.resolve() != (ROOT / ".build/staging").resolve() or not OUT.resolve().is_relative_to(ROOT.resolve()):
         raise RuntimeError("Unexpected build output directory")
     if OUT.exists():
         remove_generated_tree(OUT)
@@ -741,7 +735,7 @@ def build_all():
         finish_pages(note["directory"], is_note=True, macros=note["macros"], footnotes=note["footnotes"], metadata=note["metadata"])
     write_note_redirects(notes)
     verify(notes)
-    publish_to_root()
+    publish_site()
 
 
 def tidy_build_files():
