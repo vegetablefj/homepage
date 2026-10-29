@@ -96,14 +96,15 @@ Edit writing guides in `prompts/`. The build copies them to `downloads/prompts/`
 
 ## Publication
 
-GitHub Pages publishes the verified `.build/site/` artifact through [the manual workflow](../.github/workflows/pages.yml). The repository contains sources; generated HTML is ignored. Build and preview commands do not commit, push, or deploy.
+Every push to `main` runs [the GitHub Pages workflow](../.github/workflows/pages.yml), which builds and checks the sources before publishing the verified `.build/site/` artifact. If a build or check fails, the current live site stays in place. The repository contains sources; generated HTML is ignored. Local build and preview commands do not commit, push, or deploy.
 
 1. Build locally and review the pages, links, and intended source changes. Keep private manuscripts and backups outside the repository.
-2. Commit and push the reviewed sources. A push does not trigger publication.
-3. In GitHub Actions, open **Build and publish website**, choose **Run workflow**, and select `main`. Leave `deploy` disabled to check the cloud build, or enable it when publication is authorized.
-4. Check the build and deployment results, then inspect the public website. The workflow uploads only the built website; it never deploys the whole checkout.
+2. Commit and push the reviewed sources to `main` when ready to publish. This automatically starts the cloud build, checks, and deployment.
+3. Check **Build and publish website** in GitHub Actions, then inspect the public website. The workflow uploads only the built website; it never deploys the whole checkout.
 
-The repository's **Settings → Pages → Source** must be **GitHub Actions**. When setting up another repository, configure that before deploying; the source checkout cannot be published directly from its root. The workflow's `deploy` input defaults to false, and deployment is restricted to `main`.
+For a manual build, open **Build and publish website**, choose **Run workflow**, and select a branch. Leave `deploy` disabled to check the cloud build without publishing, or enable it on `main` to rebuild and publish that revision. Pushes to other branches do not trigger this workflow.
+
+The repository's **Settings → Pages → Source** must be **GitHub Actions**. When setting up another repository, configure that before deploying; the source checkout cannot be published directly from its root. Deployment is restricted to `main`. The manual `deploy` input defaults to false; it does not disable automatic publication for pushes to `main`.
 
 Keep `CNAME`, favicon, redirects, and `.nojekyll` behavior in the build/deployment inputs. GitHub's [custom workflow documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages) describes artifact-based Pages publishing. Local preview must serve the built website rather than the complete checkout.
 

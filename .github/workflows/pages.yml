@@ -1,8 +1,10 @@
 name: Build and publish website
 
-# Run manually after reviewing the source changes. Build-only is the default;
-# deployment requires the explicit deploy input on main.
+# Pushes to main build and publish after all checks pass.
+# Manual runs can still build without deploying.
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       deploy:
@@ -72,7 +74,7 @@ jobs:
           if-no-files-found: error
 
   deploy:
-    if: inputs.deploy && github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || inputs.deploy)
     needs: build
     runs-on: ubuntu-24.04
     timeout-minutes: 10

@@ -31,4 +31,4 @@ Each note has its own directory under `source/notes/`. Register its build settin
 
 The Notes page retains four selected entries; Home’s Selected Notes remains empty. An unlisted note is still public when published. Keep unpublished manuscripts and private backups outside the public repository.
 
-Publication uses the manual [GitHub Pages workflow](.github/workflows/pages.yml). Pushing source changes does not deploy them. Run the workflow on `main` with `deploy` enabled to publish the verified website artifact; leave it disabled for a build check. See [Website maintenance](docs/site-maintenance.md#publication) for the procedure.
+Every push to `main` runs the [GitHub Pages workflow](.github/workflows/pages.yml): build, check, then publish the verified website artifact. A failed build or check leaves the live site unchanged. Local edits and previews do not publish anything. Manual workflow runs remain available, with `deploy` disabled by default for a build check. See [Website maintenance](docs/site-maintenance.md#publication) for the procedure.
