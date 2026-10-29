@@ -21,6 +21,8 @@ Open [http://localhost:8765/](http://localhost:8765/). Preview serves `.build/si
 
 Each note has its own directory under `source/notes/`. Register its build settings, review metadata, and listing choices once in [config/notes.json](config/notes.json). The build generates native PreTeXt configuration from the catalog and shared template. Edit those sources rather than generated copies.
 
+Other Resources provides reading pages and Markdown downloads for the writing guides. Edit `prompts/*.md`; the build generates both versions from those sources.
+
 | Directory | What to edit |
 | --- | --- |
 | `source/` | Site pages, note chapters, images, PDFs, and shared layout |

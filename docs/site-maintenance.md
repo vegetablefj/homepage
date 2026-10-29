@@ -92,7 +92,7 @@ Use the extension preview while editing prose and formulas. Use localhost to che
 
 Retain authored images, original PDFs, CV files, and third-party assets with their licenses. The build copies static inputs into their existing public paths, including `pdfs/`, `external/`, `images/`, and `vendor/`. Original PDFs and images moved from the old publishing root are kept in `source/static/`; native PreTeXt inputs remain in `source/assets/`.
 
-Edit writing guides in `prompts/`. The build copies them to `downloads/prompts/` inside the website, where Resources links to them. Do not edit generated copies. The [online guide index](https://fujiemath.com/downloads/prompts/README.md) keeps its existing URL. The technical notes guide is also copied to the previous public `NOTES.md` path for compatibility.
+Edit writing guides in `prompts/`. The build renders the three guides as native site pages (`paper-revision.html`, `study-notes.html`, and `style-reference.html`) and copies the original files to `downloads/prompts/`. Other Resources links to the reading pages, each with a Markdown download button. The small wrappers in `source/resources/` supply native titles and navigation; `tools/writing_guides.py` renders the Markdown body, headings, tables, and links. Keep the Markdown files as the sole content source. Do not edit generated copies. The [online guide index](https://fujiemath.com/downloads/prompts/README.md) keeps its existing URL. The technical notes guide is also copied to the previous public `NOTES.md` path for compatibility.
 
 ## Publication
 

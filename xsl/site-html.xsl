@@ -15,6 +15,6 @@
     <li><xsl:apply-templates select="." mode="toc-item-properties"/></li>
   </xsl:template>
   <!-- These pages are reached through resource links rather than menu entries. -->
-  <xsl:template match="chapter[@xml:id='miscellaneous' or @xml:id='ai4math']" mode="toc-item"/>
-  <xsl:template match="chapter[@xml:id='miscellaneous' or @xml:id='ai4math']" mode="summary-nav"/>
+  <xsl:template match="chapter[@xml:id='miscellaneous' or @xml:id='ai4math' or @xml:id='paper-revision' or @xml:id='study-notes' or @xml:id='style-reference']" mode="toc-item"/>
+  <xsl:template match="chapter[@xml:id='miscellaneous' or @xml:id='ai4math' or @xml:id='paper-revision' or @xml:id='study-notes' or @xml:id='style-reference']" mode="summary-nav"/>
 </xsl:stylesheet>

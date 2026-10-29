@@ -286,6 +286,8 @@ def finish_pages(directory, is_note=False, macros=None, footnotes="margin", meta
                     byline.addnext(note_metadata)
         else:
             update_banner(document)
+            from tools.writing_guides import enhance_writing_guide
+            enhance_writing_guide(document, ROOT)
             menu_toggle = document.get_element_by_id("ptx-toc-toggle", None)
             if menu_toggle is not None:
                 menu_toggle.set("title", "Menu")
